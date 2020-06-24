@@ -1,0 +1,71 @@
+/* app css stylesheet */
+
+@font-face {
+	font-family: 'Uniform 2';
+	src: url('font/Uniform-Regular5.eot');
+	src: url('font/Uniform-Regular5.eot?#iefix') format('embedded-opentype'),
+		url('font/Uniform-Regular5.woff') format('woff'),
+		url('font/Uniform-Regular5.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+     font-family: 'Roboto';
+}
+
+.btn-main{
+	background: #F5811F;
+	color:#000;
+	font-weight: bold;
+}
+
+.table{
+	font-size:13px;
+	vertical-align: middle;
+}
+
+.nav-link{
+	text-decoration: none;
+	color:#FFF;
+}
+
+.nav-link:hover{
+	color:#F5811F;
+	cursor:pointer;
+
+}
+
+.flyer{
+	background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cirular-avatar{
+	width: 4rem;
+	height: 4rem;
+	background: #399CDF;
+	border-radius: 2rem;
+	margin: 0 auto;
+}
+
+.iavatar{
+	text-align: center;
+	display: block;
+}
+
+.iavatar.fa-user::before{
+	margin-top: 1rem;
+	position: absolute;
+	margin-left: -.8rem;
+	color: white;
+}
+
+.data-avatar{
+	padding-inline: 6rem;
+	font-size: 1rem;
+	font-weight: bold;
+	margin-top: 2rem;
+}

@@ -1,0 +1,134 @@
+
+<div ng-include="'comps/common/topbar.html'">
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="showDeudaModal" tabindex="-1" role="dialog" aria-labelledby="showDeudaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
+        <h5 class="modal-title" id="showDeudaModalLabel">VER USUARIO <i class="fas fa-1x fa-user"></i> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		
+		<div class="cirular-avatar">  <i class="iavatar fas fa-2x fa-user"></i> </div>
+		
+		
+		<div class="data-avatar">
+			<form>
+				  <div class="form-group">
+					<label>Nombre</label>
+					<input type="text" ng-model="user_view.name" class="form-control" placeholder="Nombre">
+				  </div>
+				  <div class="form-group">
+              <label>Tipo de usuario</label>
+              <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
+              <select class="form-control form-control-sm" ng-model="user_view.role">
+                <option ng-repeat="type in type_user" value="{{type_user.type}}">
+                  {{type_user.type | uppercase}}
+                </option>
+              </select>
+				  </div>
+				  <div class="form-group">
+					<label>Username</label>
+					<input type="text" ng-model="user_view.username" class="form-control" placeholder="Username">
+				  </div>
+			</form>
+		</div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background: #212529;" data-dismiss="modal"><i class="fas fa-1x fa-times"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
+        <h5 class="modal-title" id="addUserModalLabel">CREAR USUARIO <i class="fas fa-1x fa-user"></i> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" ng-model="user.name" class="form-control" placeholder="Nombre">
+          </div>
+          <div class="form-group">
+            <label>Tipo de usuario</label>
+            <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
+            <select class="form-control form-control-sm" ng-model="user.role">
+              
+              <option ng-repeat="type in type_user" value="{{type.type}}">
+                {{type.type | uppercase}}
+              </option>
+              <option value="" disabled selected>Selecciona un tipo de usuario</option>
+            </select>
+        </div>
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" ng-model="user.username" class="form-control" placeholder="Username">
+          </div>
+        
+        </form>
+      </div>
+      <div class="modal-footer" style="display: block;margin: 0 auto;">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addUser(user);">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container-fluid">
+  <div class="row" style="min-height:80vh">
+
+    <div class="col-md-1 d-none d-sm-block" style="background:#069CDF">
+      <br>
+      <br>
+      <div ng-include="'comps/common/sidebar.html'">
+      </div>
+    </div>
+    <div class="col-md-11 col-sm-12">
+      <br>
+      <h5 class="text-center"> <strong>USUARIOS</strong> </h5>
+      <br>
+      <button class="btn btn-primary" style="font-weight: bold;margin-bottom: 1rem;" data-toggle="modal" data-target="#addUserModal"> <i class="fas fa-pencil"></i> CREAR USUARIO <i class="fas fa-1x fa-user"></i></button>
+      
+      
+
+      <div class="row">
+        <div class="col-md-12">
+         <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
+			</table>
+        
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+
+  
+
+  <div class="row">
+    <div class="col-md-12">
+      <div ng-include="'comps/common/footer.html'">
+
+      </div>
+    </div>
+  </div>
+</div>

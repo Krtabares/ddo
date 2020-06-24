@@ -1,0 +1,8 @@
+{
+  "name": "app",
+  "main": "app.js",
+  "description": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true
+}

@@ -1,0 +1,252 @@
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Extra large modal</button> -->
+
+<div class="modal modalmodorden" tabindex="-1" role="dialog" aria-hidden="true" style="top:10%;">
+  <div class="modal-xl " >
+    <div class="modal-content" >
+      <div class="modal-header" style="background:#333;color:#fff">
+        <h5 class="modal-title" id="exampleModalLabel">MODIFICAR ORDEN</h5>
+        <button type="button" style="color:#fff" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <!-- <table class="table table-sm table-borderless" style="font-weight:bold">
+                <tr>
+                  <td>Nombre de Cliente</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td colspan="2">Nro O/V interno o Nro. O/V SAP</td>
+                </tr>
+                <tr>
+                  <td>Código de cliente</td>
+                  <td colspan="5"></td>
+                </tr>
+                <tr>
+                  <td>RIF de Cliente</td>
+                  <td colspan="10">DIRECCIÓN FISCAL CLIENTE</td>
+                </tr>
+                <tr>
+                  <td>Fecha de Entrega</td>
+                  <td colspan="5"></td>
+                </tr>
+                <tr class="text-center">
+                  <td colspan="10">LUGAR DE ENTREGA (o empresa si pertenece a una familia)</td>
+                </tr>
+              </table> -->
+              <div class="row">
+                <div class="col-md-3">
+                  <p style="font-weight:bold">Nombre de cliente</p>
+                  <h6 class="text-muted">XXXXXXXXXX XX XXXX</h6>
+
+                </div>
+                <div class="col-md-3">
+                  <p style="font-weight:bold">RIF de cliente</p>
+                  <h6 class="text-muted">X-XXXXXXXXXX</h6>
+                </div>
+                <div class="col-md-3">
+                  <p style="font-weight:bold">Número O/V interno o SAP</p>
+                  <h6 class="text-muted">XXXXXXXXXX</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <p style="font-weight:bold">Código de cliente</p>
+                  <h6 class="text-muted">XXXXXXXXXX</h6>
+
+                </div>
+                <div class="col-md-3">
+                  <p style="font-weight:bold">Fecha de Entrega</p>
+                  <h6 class="text-muted">XXXXXXXXXX</h6>
+                </div>
+                <div class="col-md-6">
+                  <p style="font-weight:bold">Dirección Fiscal de cliente</p>
+                  <h6 class="text-muted">XXXXXXXXXX XX XXXX XXX XXXXXXX XXX XX</h6>
+
+                  <!-- <br> -->
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <p style="font-weight:bold">Estado de orden</p>
+                  <!-- <h6 class="text-muted">{{estadoqtal}}</h6> -->
+
+                </div>
+                <div class="col-md-3">
+                  <!-- <p style="font-weight:bold">Estado de orden</p> -->
+                  <h6 class="text-muted"><strong>{{estadoqtal}}</strong></h6>
+
+                </div>
+                <div class="col-md-6">
+                  <p style="font-weight:bold">Lugar de entrega (o empresa si pertenece a una familia)</p>
+                  <h6 class="text-muted">XXXXXXXXXX XXXXXXXX XXX XXXXXXXX XXXX</h6>
+                </div>
+              </div>
+              <br>
+              <table class="table table-sm text-center " style="font-size:12px">
+                <thead class="thead-dark">
+                  <tr >
+                    <th>Código de Producto</th>
+                    <th>Descripción</th>
+                    <th>Cantidad Disponible</th>
+                    <th>Cantidad Solicitada</th>
+                    <!-- <th>Cantidad facturada</th> -->
+                    <!-- <th>Cantidad pendiente por facturar</th> -->
+                    <th>Monto Unitario US$</th>
+                    <th>Monto Total US$</th>
+                    <th>Monto Unitario Bs.</th>
+                    <th>Monto Total Bs.</th>
+                    <th colspan="4">Acción</th>
+                  </tr>
+                </thead>
+                <tr>
+                  <td>XXXXXX</td>
+                  <td>XXXXXXXXXXX</td>
+                  <td>XXX</td>
+                  <td>XXX</td>
+
+                  <td>XXX.XXX,XX</td>
+                  <td>XXX.XXX,XX</td>
+                  <td>XXX.XXX.XXX,XX</td>
+                  <td>XXX.XXX.XXX,XX</td>
+                  <td>
+                    <button title="Ver catálogo de productos" type="button" class="btn btn-success p-0 btn-sm" name="button">
+                      <i class="fas fa-file"></i>
+                    </button>
+                  </td><td>
+                    <button type="button" title="Eliminar producto" class="btn btn-danger p-0 btn-sm" name="button">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td><td>
+                    <button type="button" class="btn btn-primary p-0 btn-sm" title="Editar producto" name="button">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>XXXXXX</td>
+                  <td>XXXXXXXXXXX</td>
+                  <td>XXX</td>
+                  <td>XXX</td>
+                  <td>XXX.XXX,XX</td>
+                  <td>XXX.XXX,XX</td>
+                  <td>XXX.XXX.XXX,XX</td>
+                  <td>XXX.XXX.XXX,XX</td>
+                  <td>
+                    <button title="Ver catálogo de productos" type="button" class="btn btn-success p-0 btn-sm" name="button">
+                      <i class="fas fa-file"></i>
+                    </button>
+                  </td><td>
+                    <button type="button" title="Eliminar producto" class="btn btn-danger p-0 btn-sm" name="button">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td><td>
+                    <button type="button" class="btn btn-primary p-0 btn-sm" title="Editar producto" name="button">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>XXXXXX</td>
+                  <td>XXXXXXXXXXX</td>
+                  <td>XXX</td>
+                  <td>XXX</td>
+                  <td>XXX.XXX,XX</td>
+                  <td>XXX.XXX,XX</td>
+                  <td>XXX.XXX.XXX,XX</td>
+                  <td>XXX.XXX.XXX,XX</td>
+                  <td>
+                    <button title="Ver catálogo de productos" type="button" class="btn btn-success p-0 btn-sm" name="button">
+                      <i class="fas fa-file"></i>
+                    </button>
+                  </td><td>
+                    <button type="button" title="Eliminar producto" class="btn btn-danger p-0 btn-sm" name="button">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td><td>
+                    <button type="button" class="btn btn-primary p-0 btn-sm" title="Editar producto" name="button">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <input type="text" class="form-control form-control-sm" name="" value="">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control form-control-sm" name="" value="">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control form-control-sm" name="" value="">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control form-control-sm" name="" value="">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control form-control-sm" name="" value="">
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" name="" value="">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control form-control-sm" name="" value="">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control form-control-sm" name="" value="">
+                  </td>
+                  <td>
+                    <button title="Ver catálogo de productos" type="button" class="btn btn-success p-0 btn-sm" name="button">
+                      <i class="fas fa-file"></i>
+                    </button>
+                  </td><td>
+                    <button type="button" title="Eliminar producto" class="btn btn-danger p-0 btn-sm" name="button">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td><td>
+                    <button type="button" class="btn btn-primary p-0 btn-sm" title="Editar producto" name="button">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </td><td>
+                    <button type="button" class="btn btn-info p-0 btn-sm" title="Buscar producto" name="button">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="text-center" style="font-weight:bold">
+                  <td colspan="4"></td>
+                  <td></td>
+                  <td colspan="1">US$ XXX.XXX,XX</td>
+                  <td></td>
+                  <td colspan="1">Bs. XXX.XXX.XXX,XX</td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <button type="button" class="btn btn-default btn-sm" style="color:#000;font-weight:bold" name="button"> <i class="fas fa-plus"></i> Adicionar producto</button>
+
+                  </td>
+                  <td colspan="2">
+                    <button type="button" class="btn btn-primary btn-sm" style="color:#fff;font-weight:bold" name="button"> <i class="fas fa-refresh"></i> Registrar orden de venta</button>
+
+                  </td>
+                </tr>
+              </table>
+              <br>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

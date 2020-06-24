@@ -1,0 +1,129 @@
+<div ng-include="'comps/common/topbar.html'">
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="showDeudaModal" tabindex="-1" role="dialog" aria-labelledby="showDeudaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
+        <h5 class="modal-title" id="showDeudaModalLabel">VER DEUDA <i class="fas fa-1x fa-list-alt"></i> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		 <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="row p-1">
+                        <div class="col-md-12">
+                            <img src="img/logoddo.png">
+                        </div>
+                    </div>
+
+                    <div class="row pb-5 pt-1 p-5">
+                        <div class="col-md-12">
+                            <p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Nombre de cliente</span>  :  {{deuda.nombre_cliente}} </p>                                                   
+							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Tipo de pago</span>  :  {{deuda.tipo_pago}} </p>                                                  
+							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Fecha de vencimiento</span>  :  {{deuda.fecha_vencimiento}} </p>                                                  
+							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Monto inicial</span>  :  {{deuda.monto_inicial}} </p>                                                  
+							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Monto actual</span>  :  {{deuda.monto_actual}} </p>                                                  
+							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Fecha de ultimo pago</span>  :  {{deuda.fecha_ultimo_pago}} </p>                                                  
+							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Monto de ultimo pago</span>  :  {{deuda.monto_ultimo_pago}} </p>                                                 
+							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Estatus de deuda</span>  :  {{deuda.estatus_deuda}} </p>                                                 
+						
+						</div>
+                </div>
+            </div>
+        </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background: #212529;" data-dismiss="modal"><i class="fas fa-1x fa-times"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row" style="min-height:80vh">
+
+    <div class="col-md-1 d-none d-sm-block" style="background:#069CDF">
+      <br>
+      <br>
+      <div ng-include="'comps/common/sidebar.html'">
+      </div>
+    </div>
+    <div class="col-md-11 col-sm-12">
+      <br>
+      <h5 class="text-center"> <strong>CLIENTES</strong> </h5>
+      <br>
+
+      <div class="row">
+        <div class="col-md-12">
+		<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
+			</table>
+          <!--<table id="deudas_table" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+              <tr class="text-center">
+                <th>Nombre de cliente</th>
+				<th>Tipo de pago</th>
+                <th>Fecha de vencimiento</th>
+                <th>Monto inicial</th>
+                <th>Monto pendiente</th>
+                <th>Fecha de ultimo pago</th>
+                <th>Monto de ultimo pago</th>
+                <th>Estatus de deuda</th>
+				<th></th>
+              </tr>
+            </thead>
+			<tr class="text-center" ng-repeat="item in listDeuda">
+              <td>{{item.nombre_cliente}}</td>
+              <td>{{item.tipo_pago}}</td>
+              <td>{{item.fecha_vencimiento | date}}</td>
+              <td>{{item.monto_inicial | number}}</td>
+              <td>{{item.monto_pendiente | number}}</td>
+              <td>{{item.fecha_ultimo_pago | date}}</td>
+			  <td>{{item.monto_ultimo_pago | number}}</td>
+			  <td>{{item.estatus_deuda}}</td>
+              <td>
+                <button type="button" class="btn btn-sm btn-primary p-0" name="button" ng-click="showDeuda(item);" title="Ver detalle de deuda" data-toggle="modal" data-target="#showDeudaModal"> <i class="fas fa-eye"></i> </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+		<nav aria-label="Page navigation example" style="margin: 0 auto;">
+          <ul class="pagination">
+            <li class="page-item" ng-click="page('prev')">
+              <a class="page-link" href="" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item" ng-repeat="item in getNumber(aux.totalPages) track by $index" ng-show="$index >= min && $index < max" style="color: #3966C7;"><a class="page-link" ng-click="getSaldo($index + 1)">{{$index + 1}}</a></li>
+            <li class="page-item" ng-click="page('next')">
+              <a class="page-link" href="" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>-->
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div ng-include="'comps/common/footer.html'">
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>

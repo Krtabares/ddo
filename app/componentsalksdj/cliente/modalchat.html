@@ -1,0 +1,54 @@
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Extra large modal</button> -->
+
+<div class="modal modalchat" tabindex="-1" role="dialog" aria-hidden="true" style="top:10%;">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content" >
+      <div class="modal-header" style="background:#333;color:#fff">
+        <h5 class="modal-title" id="exampleModalLabel">CHAT CON VENDEDOR</h5>
+        <button type="button" style="color:#fff" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-10">
+              <h6 class="text-center">ORDEN DE VENTA NRO XXXXXXX</h6>
+              <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="" style="font-size:12px">
+                <div class="alert alert-success" role="alert" style="width:80%;margin-left:20%">
+                  Hola, ¿en qué puedo ayudarle?
+                </div>
+                <div class="alert alert-primary" role="alert" style="width:80%;">
+                  Buenas tardes! Quería saber sobre un producto...
+                </div>
+                <div class="alert alert-success" role="alert" style="width:80%;margin-left:20%">
+                  Por supuesto, ¿qué código tiene?
+                </div>
+                <div class="alert alert-primary" role="alert" style="width:80%;">
+                  E48-88
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="input-group p-1">
+          <input type="text" class="form-control" placeholder="Escriba un mensaje..." ng-model="$root.message" aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-sm btn-success" style="color:white" type="button" id="button-addon2">Enviar</button>
+            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

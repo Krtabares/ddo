@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="app" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="app" class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Droguería del Oeste - Gestión de Órdenes</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <script src="https://kit.fontawesome.com/5cb3b03b01.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link rel="stylesheet" href="bower_components/angular_datatables/plugins/bootstrap/angular-datatables.bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="bower_components/ng-notify/dist/ng-notify.min.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/angular_datatables/css/angular-datatables.css"/>
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <link rel="shortcut icon" type="image/png" href="img/logoddo.png" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- <link rel="stylesheet" href="mobile/homescreen.css"> -->
+  <script src="mobile/homescreen.js" charset="utf-8"></script>
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyCbUsqWucA_IkmqDBCTrnimfulw1LAMxac"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css">
+  <link rel="stylesheet" href="app.css">
+
+</head>
+
+<body>
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+    <div ng-view></div>
+
+  </div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+ 
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-bind-html-compile/angular-bind-html-compile.js"></script>
+
+  <script type="text/javascript" src="bower_components/ng-notify/dist/ng-notify.min.js"></script>
+
+  <script src="bower_components/angular-socket-io/mock/socket-io.js"></script>
+  <script src="bower_components/angular-socket-io/socket.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.js"></script>
+  <script src="bower_components/angular-swx-local-storage/release/swx-local-storage.min.js"></script>
+
+  <script src="app.js"></script>
+
+  <script type="text/javascript" src="bower_components/angular_datatables/angular-datatables.js"></script>
+  
+  <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.colVis.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+  <script src="bower_components/angular_datatables/plugins/buttons/angular-datatables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.bootstrap4.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.js"></script>
+	-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="bower_components/angular_datatables/plugins/bootstrap/angular-datatables.bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="comps/login/login.js"></script>
+  <script type="text/javascript" src="comps/home/home.js"></script>
+  <script type="text/javascript" src="comps/deuda/deuda.js"></script>
+  <script type="text/javascript" src="comps/generar/generar.min.js?v=1.0"></script>
+  <script type="text/javascript" src="comps/consulta/consulta.min.js?v=1.0"></script>
+  <script type="text/javascript" src="comps/usuarios/usuarios.js"></script>
+  <script type="text/javascript" src="comps/config/config.min.js?v=1.0"></script>
+  <script type="text/javascript" src="comps/pedidos/pedidos.js"></script>
+  <script type="text/javascript" src="comps/saldo/saldo.js"></script>
+  <script type="text/javascript" src="comps/clientes/clientes.js"></script>
+
+  <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+  <script src="comps/version/version.js"></script>
+  <script src="comps/version/version-directive.js"></script>
+  <script src="comps/version/interpolate-filter.js"></script>
+
+  <script type="text/javascript">
+    navigator.serviceWorker.register('service-worker.js', {
+        scope: ''
+      })
+      .then(function(registration) {
+        var serviceWorker;
+        if (registration.installing) {
+          serviceWorker = registration.installing;
+        } else if (registration.waiting) {
+          serviceWorker = registration.waiting;
+        } else if (registration.active) {
+          serviceWorker = registration.active;
+        }
+
+        if (serviceWorker) {
+          console.log("ServiceWorker phase:", serviceWorker.state);
+
+          serviceWorker.addEventListener('statechange', function(e) {
+            console.log("ServiceWorker phase:", e.target.state);
+          });
+        }
+      }).catch(function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+  </script>
+</body>
+
+</html>

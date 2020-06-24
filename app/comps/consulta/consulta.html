@@ -1,0 +1,254 @@
+<div ng-include="'comps/common/topbar.html'">
+
+</div>
+<div class="container-fluid">
+  <div class="row" style="min-height:80vh">
+
+    <div class="col-md-1 d-none d-sm-block" style="background:#069CDF">
+      <br>
+      <br>
+      <div ng-include="'comps/common/sidebar.html'">
+      </div>
+    </div>
+    <div class="col-md-11 col-sm-12">
+      <div class="">
+        <br>
+        <h5 class="text-center"> <strong>CONSULTA DE ÓRDENES</strong> </h5>
+
+        <input type="text" placeholder="Buscar..." ng-model="filtro" class="form-control" name="" value="" style="width:40%;font-size:14px">
+        <br>
+        <table class="table table-sm table-responsive-sm table-borderless">
+          <thead class="thead-dark">
+            <tr class="text-center thead-dark" style="font-weight:bold">
+              <th>Orden de Venta</th>
+              <th>Cliente</th>
+              <th>Fecha</th>
+              <th>Monto Bs.</th>
+              <th>ESTADO</th>
+              <th colspan="10"></th>
+            </tr>
+          </thead>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[0] = false" ng-click="mostrarboton[0] = !mostrarboton[0]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[0]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[0]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[0]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[0]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[0]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[1] = false" ng-click="mostrarboton[1] = !mostrarboton[1]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[1]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[1]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[1]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[1]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[1]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[2] = false" ng-click="mostrarboton[2] = !mostrarboton[2]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[2]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[2]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[2]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[2]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[2]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[3] = false" ng-click="mostrarboton[3] = !mostrarboton[3]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[3]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[3]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[3]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[3]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[3]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[4] = false" ng-click="mostrarboton[4] = !mostrarboton[4]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[4]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[4]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[4]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[4]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[4]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[5] = false" ng-click="mostrarboton[5] = !mostrarboton[5]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[5]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[5]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[5]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[5]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[5]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[6] = false" ng-click="mostrarboton[6] = !mostrarboton[6]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[6]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[6]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[6]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[6]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[6]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[7] = false" ng-click="mostrarboton[7] = !mostrarboton[7]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[7]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[7]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[7]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[7]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[7]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[8] = false" ng-click="mostrarboton[8] = !mostrarboton[8]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[8]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[8]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[8]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[8]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[8]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[9] = false" ng-click="mostrarboton[9] = !mostrarboton[9]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[9]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[9]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[9]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[9]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[9]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[9] = false" ng-click="mostrarboton[9] = !mostrarboton[9]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[9]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[9]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[9]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[9]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[9]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[10] = false" ng-click="mostrarboton[10] = !mostrarboton[10]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[10]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[10]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[10]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[10]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[10]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[11] = false" ng-click="mostrarboton[11] = !mostrarboton[11]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[11]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[11]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[11]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[11]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[11]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td class="">
+              </td><td><button type="button" class="p-0 btn btn-sm btn-default" ng-init="mostrarboton[12] = false" ng-click="mostrarboton[12] = !mostrarboton[12]" title="Ver más" name="button"> <i class="fas fa-plus"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[12]" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[12]" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[12]" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[12]" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              </td><td><button type="button" ng-show="mostrarboton[12]" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+
+        </table>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div ng-include="'comps/common/footer.html'">
+
+      </div>
+    </div>
+  </div>
+</div>

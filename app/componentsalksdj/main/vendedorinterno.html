@@ -1,0 +1,491 @@
+<div ng-include="'components/main/modal-detalle-deuda.html'">
+
+</div>
+<div ng-include="'components/main/modaldetalleorden.html'">
+
+</div>
+<div ng-include="'components/main/modalchat.html'">
+
+</div>
+<div ng-include="'components/main/modalmodorden.html'">
+
+</div>
+<div ng-include="'components/main/modalfactura.html'">
+
+</div>
+<div ng-include="'components/main/modalelim.html'">
+
+</div>
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6">
+      <br>
+      <br>
+      <h5 class="text-center"> <strong>DEUDA CARTERA DE CLIENTES</strong> </h5>
+      <br>
+      <table class="table table-sm table-bordered">
+        <!-- <tr class="text-center" style="text-align:center;font-weight:bold">
+          <td colspan="2">Deuda Cartera de Cliente</td>
+          <td colspan="2">Órdenes de venta (Últimos 30 días)</td>
+        </tr> -->
+        <tr class="text-center" style="font-weight:bold">
+          <td>Bs. XXX.XXX.XXX,XX</td>
+          <td>XXX CLIENTES</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-sm table-bordered">
+        <thead class="thead-dark">
+          <tr class="text-center">
+            <th>Código Cliente</th>
+            <th>Nombre Cliente</th>
+            <th>Monto US$</th>
+            <th>Monto Total Facturas</th>
+            <th>IVA</th>
+            <th>Atraso días promedio</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tr class="text-center">
+          <td>XXXXXXXXX</td>
+          <td>XXXXXXXXX XXXXXXX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XX</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-primary p-0" name="button" title="Ver detalle de deuda" data-target=".bd-example-modal-xl" data-toggle="modal"> <i class="fas fa-eye"></i> </button>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td>XXXXXXXXX</td>
+          <td>XXXXXXXXX XXXXXXX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XX</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-primary p-0" name="button" title="Ver detalle de deuda" data-target=".bd-example-modal-xl" data-toggle="modal"> <i class="fas fa-eye"></i> </button>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td>XXXXXXXXX</td>
+          <td>XXXXXXXXX XXXXXXX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XX</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-primary p-0" name="button" title="Ver detalle de deuda" data-target=".bd-example-modal-xl" data-toggle="modal"> <i class="fas fa-eye"></i> </button>
+          </td>
+        </tr>
+        <tr class="text-center">
+          <td>XXXXXXXXX</td>
+          <td>XXXXXXXXX XXXXXXX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XXX.XXX.XXX,XX</td>
+          <td>XX</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-primary p-0" name="button" title="Ver detalle de deuda" data-target=".bd-example-modal-xl" data-toggle="modal"> <i class="fas fa-eye"></i> </button>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+      <button type="button" title="Mostrar Detalle de Órdenes" class="btn btn-block btn-main" ng-init="mostrarodenes=false" ng-click="mostrarodenes=!mostrarodenes" name="button">Detalle de Órdenes de Venta</button>
+      <!-- <h5 class="text-center" > <strong>Detalle de Órdenes de Venta</strong> </h5> -->
+      <div class="" ng-show="mostrarodenes">
+        <br>
+        <input type="text" placeholder="Buscar..." class="form-control" name="" value="" style="width:20%;font-size:14px">
+        <br>
+        <table class="table table-sm table-fluid table-bordered">
+          <thead class="thead-dark">
+
+            <tr class="text-center thead-dark" style="font-weight:bold">
+              <th>Orden de Venta</th>
+              <th>Cliente</th>
+              <th>Fecha</th>
+              <th>Monto Bs.</th>
+              <th>ESTADO</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>EN CONFECCIÓN</td>
+            <td>
+              <button type="button" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='EN CONFECCIÓN'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>PENDIENTE</td>
+            <td>
+              <button type="button" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='PENDIENTE'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>POR APROBAR</td>
+            <td>
+              <button type="button" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='POR APROBAR'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>ENTREGA PARCIAL</td>
+            <td>
+              <button type="button" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='ENTREGA PARCIAL'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td>XXXXXXXX</td>
+            <td>XXXXXXXX</td>
+            <td>DD/MM/AAAA</td>
+            <td>XXX.XXX.XXX,XX</td>
+            <td>CERRADO</td>
+            <td>
+              <button type="button" class="p-0 btn btn-sm btn-primary" title="Ver detalle de orden" ng-click="estadoqtal='CERRADO'" data-toggle="modal" data-target=".modaldetalleorden" name="button"> <i class="fas fa-eye"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-secondary" data-target=".modalmodorden" title="Modificar orden" data-toggle="modal" name="button"> <i class="fas fa-cog"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-info" data-target=".modalchat" data-toggle="modal" name="button" title="Ver chat"> <i class="fas fa-comment"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-warning" data-target=".modalelim" data-toggle="modal" title="Eliminar orden" name="button"> <i class="fas fa-trash"></i> </button>
+              <button type="button" class="p-0 btn btn-sm btn-light" data-toggle="modal" title="Ver comprobante de pedido" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <br>
+      <button type="button" title="Mostrar formulario de generar orden" class="btn btn-block btn-main" ng-init="mostrargenerar=false" ng-click="mostrargenerar=!mostrargenerar" name="button">Generar Órden de Venta</button>
+      <!-- <h5 class="text-center"> <strong>Generar Órden de Venta</strong> </h5> -->
+      <div class="" ng-show="mostrargenerar">
+        <br>
+        <div class="row">
+          <div class="col-md-2">
+            <select class="btn btn-sm btn-success form-control form-control-sm" ng-model="cliente" name="">
+              <option value="cliente">CLIENTE</option>
+              <option value="">FAMILIA</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <input type="text" name="" class="form-control form-control-sm" placeholder="Nombre Cliente" value="">
+          </div>
+          <div class="col-md-2">
+            <input type="text" name="" class="form-control form-control-sm" placeholder="Código Cliente" value="">
+          </div>
+          <div class="col-md-2">
+            <input type="text" name="" class="form-control form-control-sm" placeholder="RIF Cliente" value="">
+          </div>
+          <div class="col-md-3">
+            <input type="text" name="" class="form-control form-control-sm" placeholder="Dirección Cliente" value="">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-2">
+            <select ng-show="cliente=='cliente'" class="btn btn-sm btn-success form-control form-control-sm" name="">
+              <option value="">ENTREGA</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <input type="text" name="" class="form-control form-control-sm" placeholder="Lugar de entrega" value="">
+          </div>
+          <div class="col-md-2">
+            <input type="text" name="" class="form-control form-control-sm" placeholder="Número O/V interno" value="">
+          </div>
+          <div class="col-md-2">
+            <input type="text" name="" class="form-control form-control-sm" placeholder="Número O/V SAP" value="">
+          </div>
+        </div>
+
+
+        <br>
+        <button type="button" title="Mostrar productos" class="btn btn-block btn-main" ng-init="mostrarproducto=false" ng-click="mostrarproducto=!mostrarproducto" name="button">Productos</button>
+
+        <!-- <h5 class="text-center"> <strong>Productos</strong> </h5> -->
+        <div class="" ng-show="mostrarproducto">
+          <br>
+          <input type="text" placeholder="Buscar..." class="form-control" name="" value="" style="width:20%;font-size:14px">
+
+          <table class="table table-sm table-fluid">
+            <thead class="thead-dark">
+              <tr class="text-center thead-dark" style="font-weight:bold">
+                <th>Código de producto</th>
+                <th>Descripción</th>
+                <th>Cantidad Disponible</th>
+                <th>Cantidad Solicitada</th>
+                <th>Monto Unitario US$</th>
+                <th>Monto Total US$</th>
+                <th>Monto Unitario Bs.</th>
+                <th>Monto Total Bs.</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+            <tr class="text-center">
+              <td>XXXXXXXX</td>
+              <td>XXXXXXXXXXX</td>
+              <td>XXX</td>
+              <td>XXX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-light" title="Ver en catálogo de productos" data-toggle="modal" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+              </td>
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-danger" name="button" title="Eliminar producto"> <i class="fas fa-trash"></i> </button>
+              </td>
+            </tr>
+            <tr class="text-center">
+              <td>XXXXXXXX</td>
+              <td>XXXXXXXXXXX</td>
+              <td>XXX</td>
+              <td>XXX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-light" title="Ver en catálogo de productos" data-toggle="modal" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+              </td>
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-danger" name="button" title="Eliminar producto"> <i class="fas fa-trash"></i> </button>
+              </td>
+            </tr>
+            <tr class="text-center">
+              <td>XXXXXXXX</td>
+              <td>XXXXXXXXXXX</td>
+              <td>XXX</td>
+              <td>XXX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-light" title="Ver en catálogo de productos" data-toggle="modal" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+              </td>
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-danger" name="button" title="Eliminar producto"> <i class="fas fa-trash"></i> </button>
+              </td>
+            </tr>
+            <tr class="text-center">
+              <td>XXXXXXXX</td>
+              <td>XXXXXXXXXXX</td>
+              <td>XXX</td>
+              <td>XXX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-light" title="Ver en catálogo de productos" data-toggle="modal" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+              </td>
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-danger" name="button" title="Eliminar producto"> <i class="fas fa-trash"></i> </button>
+              </td>
+            </tr>
+            <tr class="text-center">
+              <td>XXXXXXXX</td>
+              <td>XXXXXXXXXXX</td>
+              <td>XXX</td>
+              <td>XXX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-light" title="Ver en catálogo de productos" data-toggle="modal" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+              </td>
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-danger" name="button" title="Eliminar producto"> <i class="fas fa-trash"></i> </button>
+              </td>
+            </tr>
+            <tr class="text-center" ng-show="mostraradd">
+              <td>
+                <input type="text" class="form-control form-control-sm" name="" value="">
+              </td>
+              <td>
+                <input type="text" class="form-control form-control-sm" name="" value="">
+              </td>
+              <td>
+                <input type="text" class="form-control form-control-sm" name="" value="">
+              </td>
+              <td>
+                <input type="text" class="form-control form-control-sm" name="" value="">
+              </td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <!-- <td>XXXXXXXX</td>
+              <td>XXXXXXXXXXX</td>
+              <td>XXX</td>
+              <td>XXX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td>
+              <td>XXX.XXX.XXX,XX</td> -->
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-light" title="Ver en catálogo de productos" data-toggle="modal" data-target=".modalfactura" name="button"> <i class="fas fa-file"></i> </button>
+              </td>
+              <td>
+                <button type="button" class="p-0 btn btn-sm btn-danger" name="button" title="Eliminar producto"> <i class="fas fa-trash"></i> </button>
+              </td>
+            </tr>
+            <br>
+            <tr class="text-center" style="font-weight:bold">
+              <td colspan="4"></td>
+              <td></td>
+              <td colspan="1">US$ XXX.XXX,XX</td>
+              <td></td>
+              <td colspan="1">Bs. XXX.XXX.XXX,XX</td>
+            </tr>
+
+          </table>
+          <button type="button" title="Agregar un producto" ng-init="mostraradd=false" ng-click="mostraradd=!mostraradd" class="btn btn-sm btn-default" name="button"> <strong>+ Agregar producto</strong> </button>
+          <button type="button" title="Replicar orden"  class="btn btn-sm btn-success" name="button"> <strong>Replicar Orden</strong> </button>
+          <button type="button" title="Generar orden de venta"  class="btn btn-sm btn-danger" name="button"> <strong>Generar Orden de Venta</strong> </button>
+          <div class="row">
+            <div class="col-md-8">
+              <br>
+              <h5 class="text-center">PRODUCTOS SUGERIDOS </h5>
+              <table class="table table-sm text-center">
+                <thead class="thead-dark">
+                  <th>Código de producto</th>
+                  <th>Descripción</th>
+                  <th>Cantidad disponible</th>
+                  <th>Monto unitario US$</th>
+                  <th>Monto unitario Bs.</th>
+                  <th>Acción</th>
+                </thead>
+                <tr class="text-center">
+                  <td>XXXXX</td>
+                  <td>XXXXXXXXXXXX</td>
+                  <td>XXX</td>
+                  <td>XXX.XXX,XX</td>
+                  <td>XXX.XXX.XXX,XX</td>
+                  <td>
+                    <button title="Añadir la recomendación" type="button" class="btn btn-sm p-0 btn-primary" name="button">
+                      <i class="fas fa-plus"></i>
+                      </button>
+                  </td>
+                </tr>
+                <tr class="text-center">
+                  <td>XXXXX</td>
+                  <td>XXXXXXXXXXXX</td>
+                  <td>XXX</td>
+                  <td>XXX.XXX,XX</td>
+                  <td>XXX.XXX.XXX,XX</td>
+                  <td>
+                    <button title="Añadir la recomendación" type="button" class="btn btn-sm p-0 btn-primary" name="button">
+                      <i class="fas fa-plus"></i>
+                      </button>
+                  </td>
+                </tr>
+                <tr class="text-center">
+                  <td>XXXXX</td>
+                  <td>XXXXXXXXXXXX</td>
+                  <td>XXX</td>
+                  <td>XXX.XXX,XX</td>
+                  <td>XXX.XXX.XXX,XX</td>
+                  <td>
+                    <button title="Añadir la recomendación" type="button" class="btn btn-sm p-0 btn-primary" name="button">
+                      <i class="fas fa-plus"></i>
+                      </button>
+                  </td>
+                </tr>
+                <tr class="text-center">
+                  <td>XXXXX</td>
+                  <td>XXXXXXXXXXXX</td>
+                  <td>XXX</td>
+                  <td>XXX.XXX,XX</td>
+                  <td>XXX.XXX.XXX,XX</td>
+                  <td>
+                    <button title="Añadir la recomendación" type="button" class="btn btn-sm p-0 btn-primary" name="button">
+                      <i class="fas fa-plus"></i>
+                      </button>
+                  </td>
+                </tr>
+                <tr class="text-center">
+                  <td>XXXXX</td>
+                  <td>XXXXXXXXXXXX</td>
+                  <td>XXX</td>
+                  <td>XXX.XXX,XX</td>
+                  <td>XXX.XXX.XXX,XX</td>
+                  <td>
+                    <button title="Añadir la recomendación" type="button" class="btn btn-sm p-0 btn-primary" name="button">
+                      <i class="fas fa-plus"></i>
+                      </button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-3" style="font-size:14px">
+              <!-- <table class="table table-sm table-borderless">
+                <tr class="text-center">
+                  <td><strong>SubTotal</strong></td>
+                  <td><strong>Bs. XXX.XXX.XXX.XXX,XX</strong></td>
+                </tr>
+
+                <tr>
+                  <td><strong>TOTAL</strong></td>
+                  <td><strong>Bs. XXX.XXX.XXX.XXX,XX</strong></td>
+                </tr>
+              </table> -->
+              <br>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
