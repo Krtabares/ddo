@@ -11,7 +11,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
   .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
         //init    
-        $scope.pedido = {};
+        $scope.pedido = {
+            'pedido':[]
+        };
+        $scope.articulo = {};
         $scope.clientes = [{}];
         $scope.productos = [{}];
         var ip = "http://192.168.168.170:3500";
@@ -63,7 +66,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
           });
         }
-		
+        $scope.addArtPedido = function(articulo){
+            console.log(articulo);
+            $scope.pedido.pedido.push(articulo)
+          }
+
 		$scope.reset = function(){
 			$scope.pedido = {'no_cia':'',
 						'grupo':'',
@@ -73,7 +80,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 						'cantidad':'',
 						'precio':'',
 						'fecha':'',
-						'observacion':''};
+                        'observacion':'',
+                        'pedido':[],
+                    };
 		}
 
         $scope.getPedidos = function(page){
@@ -176,4 +185,4 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         //$scope.getPedidos_filtering('123');
 		//$scope.getProductos('01');
     }
-]);
+]);s
