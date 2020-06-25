@@ -67,7 +67,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
         $scope.addArtPedido = function(articulo){
-            console.log(articulo);
+            console.log($scope.pedido);
+            $scope.articulo = {};
             $scope.pedido.pedido.push(articulo)
           }
 
