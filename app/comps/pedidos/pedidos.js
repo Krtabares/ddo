@@ -68,8 +68,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
         $scope.addArtPedido = function(articulo){
             console.log($scope.pedido);
+            
+            var existe = false;
+            $scope.pedido.forEach(element => {
+              if(articulo.articulo == element.articulo){
+                 element.cantidad = element.cantidad + articulo.cantidad;
+                 existe = true;
+                return 
+              }
+            });
+
+            if(!existe){
+              $scope.pedido.pedido.push(articulo)
+            }
             $scope.articulo = {};
-            $scope.pedido.pedido.push(articulo)
+            
           }
 
 		$scope.reset = function(){
