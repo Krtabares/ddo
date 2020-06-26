@@ -53,7 +53,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.addPedido = function(pedido){
           console.log(pedido);
           var body = $scope.buildBody();
-          request.post(ip+'/add/pedido', body,{})
+          request.post(ip+'/add/pedido', pedido,{})
           .then(function successCallback(response) {
             console.log(response)
 			$scope.reset();
@@ -173,6 +173,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log(pedido);
           $scope.pedido = pedido;
         }
+
+        $scope.removeArt = function(i){
+          $scope.pedido.pedido.splice( i, 1 );
+        }
+
 		
 		
 		

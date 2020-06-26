@@ -94,6 +94,7 @@
                 <thead>
                     <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Opcion</th>
                     <th scope="col">No_arti</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Precio</th>
@@ -108,9 +109,12 @@
                     </tr> -->
                     <tr ng-repeat="x in pedido.pedido">
                         <th scope="row">{{ $index + 1 }}</td>
-                        <td>{{ x.no_arti }}</td>
-                        <td>{{ x.cantidad }}</td>
-                        <td>{{ x.precio }}</td>
+                        <td>
+                          <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button>
+                        </td>
+                        <td>{{ x.COD_PRODUCTO }}</td>
+                        <td>{{ x.CANTIDAD }}</td>
+                        <td>{{ x.PRECIO }}</td>
                       </tr>
                 </tbody>
                 </table>
