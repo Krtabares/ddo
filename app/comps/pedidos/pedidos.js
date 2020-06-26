@@ -75,8 +75,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                  element.cantidad = element.cantidad + $scope.articulo.cantidad;
                  existe = true;
                 return 
-              }else{
-                existe = false;
               }
             });
 
