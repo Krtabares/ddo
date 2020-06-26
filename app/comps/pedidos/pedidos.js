@@ -71,8 +71,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             
             var existe = false;
             $scope.pedido.pedido.forEach(element => {
-              if($scope.articulo.no_arti == element.no_arti){
-                 element.cantidad = element.cantidad + $scope.articulo.cantidad;
+              if($scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO){
+                 element.CANTIDAD = element.CANTIDAD + $scope.articulo.CANTIDAD;
                  existe = true;
                 return 
               }
@@ -83,6 +83,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
             $scope.articulo = {};
             
+          }
+
+          $scope.buildBody = function(){
+            {
+              "COD_CIA": $scope.pedido.no_cia,
+              "GRUPO_CLIENTE": $scope.pedido.grupo,
+              "COD_CLIENTE": $scope.pedido.no_cliente,
+              "FECHA": $scope.pedido.fecha,
+              "NO_PEDIDO_CODISA": "324",
+              "OBSERVACIONES": $scope.pedido.observacion,
+              "ESTATUS": "0",
+              "pedido": $scope.pedido.pedido
+            }
           }
 
 		$scope.reset = function(){

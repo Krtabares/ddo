@@ -866,7 +866,11 @@ async def procedure(request):
             print(pedido)
             sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO) VALUES ( {ID_PEDIDO}, {COD_PRODUCTO} ,  {CANTIDAD} ,  {PRECIO}  )"""
 
-            c.execute(sql.format(ID_PEDIDO = int(ID), COD_PRODUCTO = str(pedido['COD_PRODUCTO']), CANTIDAD = int(0), PRECIO = int(0)
+            c.execute(sql.format(
+                ID_PEDIDO = int(ID),
+                 COD_PRODUCTO = str(pedido['COD_PRODUCTO']), 
+                 CANTIDAD = int(pedido['CANTIDAD']), 
+                 PRECIO = int(pedido['PRECIO'])
                     ))
 
         db.commit()                                                           
