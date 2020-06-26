@@ -70,7 +70,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log($scope.pedido);
             
             var existe = false;
-            $scope.pedido.forEach(element => {
+            $scope.pedido.pedido.forEach(element => {
               if(articulo.articulo == element.articulo){
                  element.cantidad = element.cantidad + articulo.cantidad;
                  existe = true;
