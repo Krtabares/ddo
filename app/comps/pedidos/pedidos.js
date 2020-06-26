@@ -52,7 +52,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.addPedido = function(pedido){
           console.log(pedido);
-          request.post(ip+'/add/pedido', pedido,{})
+          var body = $scope.buildBody();
+          request.post(ip+'/add/pedido', body,{})
           .then(function successCallback(response) {
             console.log(response)
 			$scope.reset();
@@ -86,7 +87,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
 
           $scope.buildBody = function(){
-            {
+           var body = {
               "COD_CIA": $scope.pedido.no_cia,
               "GRUPO_CLIENTE": $scope.pedido.grupo,
               "COD_CLIENTE": $scope.pedido.no_cliente,
@@ -96,6 +97,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               "ESTATUS": "0",
               "pedido": $scope.pedido.pedido
             }
+            return body
           }
 
 		$scope.reset = function(){
