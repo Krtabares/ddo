@@ -66,20 +66,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
           });
         }
-        $scope.addArtPedido = function(articulo){
-            console.log($scope.pedido);
+        $scope.addArtPedido = function(){
+            console.log($scope.pedido.pedido);
             
             var existe = false;
             $scope.pedido.pedido.forEach(element => {
-              if(articulo.articulo == element.articulo){
-                 element.cantidad = element.cantidad + articulo.cantidad;
+              if($scope.articulo.articulo == element.articulo){
+                 element.cantidad = element.cantidad + $scope.articulo.cantidad;
                  existe = true;
                 return 
+              }else{
+                existe = false;
               }
             });
 
             if(!existe){
-              $scope.pedido.pedido.push(articulo)
+              $scope.pedido.pedido.push($scope.articulo)
             }
             $scope.articulo = {};
             
