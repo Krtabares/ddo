@@ -53,7 +53,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.addPedido = function(pedido){
           console.log(pedido);
           var body = $scope.buildBody();
-          request.post(ip+'/add/pedido', pedido,{})
+          request.post(ip+'/add/pedido', body,{})
           .then(function successCallback(response) {
             console.log(response)
 			$scope.reset();
