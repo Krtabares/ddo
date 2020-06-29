@@ -88,7 +88,7 @@
           </div>
         
         </div>
-        <div class="" style="margin-top: 20px;">
+        <div class="" style="margin-top: 32px;">
 
           <div class="form-group">
             <table class="table">
@@ -106,7 +106,10 @@
                     <tr ng-repeat="x in pedido.pedido">
                         <th scope="row">{{ $index + 1 }}</td>
                         <td>
-                          <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button>
+                          <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
+                          
+                          <i class="fa fa-trash" ng-click="removeArt($index);"></i>
+                          
                         </td>
                         <td>{{ x.COD_PRODUCTO }}</td>
                         <td>{{ x.CANTIDAD }}</td>
