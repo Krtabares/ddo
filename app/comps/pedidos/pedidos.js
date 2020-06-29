@@ -78,7 +78,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 return 
               }
             });
-
+            console.log($scope.articulo)
             if(!existe){
               if($scope.articulo.COD_PRODUCT == "" || 
                   ($scope.articulo.CANTIDAD == "" || $scope.articulo.CANTIDAD < 1 ) 
