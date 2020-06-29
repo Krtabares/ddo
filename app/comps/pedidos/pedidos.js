@@ -83,14 +83,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
             console.log($scope.articulo)
             if(!existe){
-              if(isEmpty( $scope.articulo.COD_PRODUCT ))
-                console.log('¡Complete todos los campos!COD_PRODUCT','error')
-              if($scope.articulo.CANTIDAD == "" || $scope.articulo.CANTIDAD < 1 )
-                console.log('¡Complete todos los campos!CANTIDAD','error')
-              if(isEmpty($scope.articulo.PRECIO) ) 
-                console.log('¡Complete todos los campos!PRECIO','error')
-                
-              $scope.pedido.pedido.push($scope.articulo)
+              if(
+                isEmpty( $scope.articulo.COD_PRODUCT ) || 
+                ( $scope.articulo.CANTIDAD == "" || $scope.articulo.CANTIDAD < 1 ) ||
+                isEmpty($scope.articulo.PRECIO) ) {
+                  console.log('¡Complete todos los campos!CANTIDAD','error')
+                }else
+                $scope.pedido.pedido.push($scope.articulo)
             }
             $scope.articulo = {};
             
