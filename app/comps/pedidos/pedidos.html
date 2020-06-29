@@ -70,7 +70,7 @@
         <div class="container">
           <div class="row">
             <div class="col-3">
-              <label>COD_PRODUCTO</label>
+              <label>COD PRODUCTO</label>
               <input type="text" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
             </div>
             <div class="col-3">
@@ -83,12 +83,12 @@
             </div>
             <div class="col-3">
               <label></label>
-              <button type="button" class="btn btn-success" ng-click="addArtPedido();">Agregar</button>
+              <button type="button" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
             </div>
           </div>
         
         </div>
-          
+        <div class="container">
 
           <div class="form-group">
             <table class="table">
@@ -102,12 +102,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    </tr> -->
+
                     <tr ng-repeat="x in pedido.pedido">
                         <th scope="row">{{ $index + 1 }}</td>
                         <td>
@@ -121,6 +116,10 @@
                 </table>
 
           </div>
+
+        </div>
+
+
 
         </form>
       </div>
