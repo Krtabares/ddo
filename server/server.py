@@ -586,6 +586,8 @@ async def procedure(request):
                                         pCLiente varchar2(50) DEFAULT null;
                                         pNombre varchar2(50) DEFAULT null;
                                         output number DEFAULT 1000000;
+                                        pFechaFactura date
+                                        pFechaPedido date
                                         v_id_deuda varchar2(50);
                                         v_fecha_factura date;
                                         v_nro_pedido varchar2(50);
@@ -614,11 +616,13 @@ async def procedure(request):
                                 pDeuda := {pDeuda};
                                 pCLiente := {pCLiente};
                                 pNombre := {pNombre};
+                                pFechaFactura := {pFechaFactura};
+                                pFechaPedido := {pFechaPedido};
 
 
                                 dbms_output.enable(output);
 
-                                PROCESOSPW.pedidos_facturados (l_cursor, pTotReg, pTotPaginas, pPagina , pLineas,pDeuda, null, null);
+                                PROCESOSPW.pedidos_facturados (l_cursor, pTotReg, pTotPaginas, pPagina , pLineas,pDeuda, pCLiente, pNombre, pFechaFactura, pFechaPedido);
                                     
                             LOOP 
                                 FETCH l_cursor into
@@ -672,7 +676,11 @@ async def procedure(request):
                         pLineas = data['pLineas'],
                         pDeuda = data['pDeuda'],
                         pCLiente = data['pCLiente'],
-                        pNombre = data['pNombre']
+                        pNombre = data['pNombre'],
+                        pFechaFactura = data['pFechaFactura'],
+                        pFechaPedido = data['pFechaPedido']
+
+                        
                     )
                  )
     textVar = c.var(str)
