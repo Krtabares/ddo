@@ -69,6 +69,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
         $scope.addArtPedido = function(){
             console.log($scope.pedido.pedido);
+
+            if(Object.keys($scope.articulo).length === 0)
+              return
             
             var existe = false;
             $scope.pedido.pedido.forEach(element => {
@@ -80,17 +83,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
             console.log($scope.articulo)
             if(!existe){
-              if($scope.articulo.COD_PRODUCT == "")
-                ngNotify.set('¡Complete todos los campos!COD_PRODUCT','error')
+              if(isEmpty( $scope.articulo.COD_PRODUCT ))
+                console.log('¡Complete todos los campos!COD_PRODUCT','error')
               if($scope.articulo.CANTIDAD == "" || $scope.articulo.CANTIDAD < 1 )
-                ngNotify.set('¡Complete todos los campos!CANTIDAD','error')
-              if($scope.articulo.PRECIO == "" || $scope.articulo.PRECIO < 1 ) 
-                ngNotify.set('¡Complete todos los campos!PRECIO','error')
+                console.log('¡Complete todos los campos!CANTIDAD','error')
+              if(isEmpty($scope.articulo.PRECIO) ) 
+                console.log('¡Complete todos los campos!PRECIO','error')
                 
               $scope.pedido.pedido.push($scope.articulo)
             }
             $scope.articulo = {};
             
+          }
+
+          function isEmpty(str) {
+            return (!str || 0 === str.length);
           }
 
           $scope.buildBody = function(){
