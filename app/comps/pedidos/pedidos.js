@@ -80,13 +80,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
             console.log($scope.articulo)
             if(!existe){
-              if($scope.articulo.COD_PRODUCT == "" || 
-                  ($scope.articulo.CANTIDAD == "" || $scope.articulo.CANTIDAD < 1 ) 
-                  ($scope.articulo.PRECIO == "" || $scope.articulo.PRECIO < 1 ) 
-                  ){
-                ngNotify.set('¡Complete todos los campos!','error')
-                return
-              }else
+              if($scope.articulo.COD_PRODUCT == "")
+                ngNotify.set('¡Complete todos los campos!COD_PRODUCT','error')
+              if($scope.articulo.CANTIDAD == "" || $scope.articulo.CANTIDAD < 1 )
+                ngNotify.set('¡Complete todos los campos!CANTIDAD','error')
+              if($scope.articulo.PRECIO == "" || $scope.articulo.PRECIO < 1 ) 
+                ngNotify.set('¡Complete todos los campos!PRECIO','error')
+                
               $scope.pedido.pedido.push($scope.articulo)
             }
             $scope.articulo = {};
