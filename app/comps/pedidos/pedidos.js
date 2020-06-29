@@ -21,7 +21,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         //list pedido
         $scope.listPedido = [];
         
-        getClient();
+        $scope.init = function () {
+          $scope.getClient()
+      }
+
+      $scope.init();
         
         $scope.getFarmacias = function(){
           request.get(ip+'/get/farmacias',{})
