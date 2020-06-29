@@ -22,7 +22,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.listPedido = [];
         
         
-        
         $scope.getFarmacias = function(){
           request.get(ip+'/get/farmacias',{})
           .then(function successCallback(response) {
@@ -81,6 +80,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
 
             if(!existe){
+              if($scope.articulo.COD_PRODUCT == "" || 
+                  ($scope.articulo.CANTIDAD == "" || $scope.articulo.CANTIDAD < 1 ) 
+                  ($scope.articulo.PRECIO == "" || $scope.articulo.PRECIO < 1 ) 
+                  ){
+                ngNotify.set('¡Complete todos los campos!','error')
+                return
+              }else
               $scope.pedido.pedido.push($scope.articulo)
             }
             $scope.articulo = {};
