@@ -87,7 +87,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(!existe){
               if(
                 isEmpty( $scope.articulo.COD_PRODUCT ) || 
-                ( $scope.articulo.CANTIDAD == "" || $scope.articulo.CANTIDAD < 1 ) ||
+                $scope.articulo.CANTIDAD < 1  ||
                 isEmpty($scope.articulo.PRECIO) 
                 ) {
                   console.log('¡Complete todos los campos!CANTIDAD','error')
