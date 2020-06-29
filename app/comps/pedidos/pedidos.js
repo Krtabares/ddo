@@ -89,6 +89,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 isEmpty($scope.articulo.PRECIO) 
                 ) {
                   console.log('¡Complete todos los campos!CANTIDAD','error')
+                  return
                 }else
                 $scope.pedido.pedido.push($scope.articulo)
             }
