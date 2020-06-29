@@ -20,9 +20,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         var ip = "http://192.168.168.170:3500";
         //list pedido
         $scope.listPedido = [];
-         $scope.initModal = function(){
-           $scope.getClient()
-         }
+        
         
         $scope.getFarmacias = function(){
           request.get(ip+'/get/farmacias',{})
@@ -71,7 +69,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
         $scope.addArtPedido = function(){
             console.log($scope.pedido.pedido);
-
             if(Object.keys($scope.articulo).length === 0)
               return
             
@@ -85,15 +82,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
             console.log($scope.articulo)
             if(!existe){
-              if(
-                isEmpty( $scope.articulo.COD_PRODUCT ) || 
-                $scope.articulo.CANTIDAD < 1  ||
-                isEmpty($scope.articulo.PRECIO) 
-                ) {
-                  console.log('¡Complete todos los campos!CANTIDAD','error')
-                  return
-                }else
-                $scope.pedido.pedido.push($scope.articulo)
+              if(isEmpty( $scope.articulo.COD_PRODUCT ))
+                console.log('¡Complete todos los campos!COD_PRODUCT','error')
+              if($scope.articulo.CANTIDAD == "" || $scope.articulo.CANTIDAD < 1 )
+                console.log('¡Complete todos los campos!CANTIDAD','error')
+              if($scope.articulo.PRECIO == "" || $scope.articulo.PRECIO < 1 ) 
+                console.log('¡Complete todos los campos!PRECIO','error')
+                
+              $scope.pedido.pedido.push($scope.articulo)
             }
             $scope.articulo = {};
             
