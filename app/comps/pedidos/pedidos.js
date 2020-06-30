@@ -83,7 +83,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log($scope.articulo)
             if(!existe){
               if(isEmpty( $scope.articulo.COD_PRODUCT )){
-                console.log('¡Complete todos los campos!COD_PRODUCT','error')
+                console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( $scope.articulo.COD_PRODUCT ))
                 return
               }
                 
