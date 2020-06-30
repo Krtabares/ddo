@@ -82,8 +82,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
             console.log($scope.articulo)
             if(!existe){
-              if(isEmpty( $scope.articulo.COD_PRODUCT )){
-                console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( $scope.articulo.COD_PRODUCT ))
+              if(isEmpty( $scope.articulo.COD_PRODUCTO )){
+                console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( $scope.articulo.COD_PRODUCTO ))
                 return
               }
                 
@@ -105,7 +105,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
 
           function isEmpty(str) {
-            return ( 0 === str.length);
+            return (!str || 0 === str.length);
           }
 
           $scope.buildBody = function(){
