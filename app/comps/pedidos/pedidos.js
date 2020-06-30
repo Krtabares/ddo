@@ -105,7 +105,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
 
           function isEmpty(str) {
-            return (!str || 0 === str.length);
+            return ( 0 === str.length);
           }
 
           $scope.buildBody = function(){
