@@ -91,10 +91,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }else if($scope.articulo.PRECIO == "" || $scope.articulo.PRECIO < 1 ){
                 console.log('¡Complete todos los campos!PRECIO','error')
                 return
-              }
-                
-                
-              $scope.pedido.pedido.push($scope.articulo)
+              }else          
+                $scope.pedido.pedido.push($scope.articulo)
             }
             $scope.articulo = {};
             
