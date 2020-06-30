@@ -82,16 +82,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
             console.log($scope.articulo)
             if(!existe){
+              var error=false;
               if(isEmpty( $scope.articulo.COD_PRODUCTO )){
                 console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( $scope.articulo.COD_PRODUCTO ))
-                return
+                error = true;
               }else if($scope.articulo.CANTIDAD == "" || $scope.articulo.CANTIDAD < 1 ){
                 console.log('¡Complete todos los campos!CANTIDAD','error')
-                return
+                 error = true;
               }else if($scope.articulo.PRECIO == "" || $scope.articulo.PRECIO < 1 ){
                 console.log('¡Complete todos los campos!PRECIO','error')
-                return
-              }else          
+                 error = true;
+              }
+              if(!error)          
                 $scope.pedido.pedido.push($scope.articulo)
             }
             $scope.articulo = {};
