@@ -96,7 +96,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               if(!error)          
                 $scope.pedido.pedido.push($scope.articulo)
             }
-            iif(!error)
+            if(!error)
             $scope.articulo = {};
             
           }
