@@ -93,9 +93,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 console.log('¡Complete todos los campos!PRECIO','error')
                  error = true;
               }
+              console.log(error);
               if(!error)          
                 $scope.pedido.pedido.push($scope.articulo)
             }
+           
             if(!error)
             $scope.articulo = {};
             
