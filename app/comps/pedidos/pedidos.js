@@ -80,9 +80,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 return 
               }
             });
-            console.log($scope.articulo)
+            var error=false;
             if(!existe){
-              var error=false;
+              
               if(isEmpty( $scope.articulo.COD_PRODUCTO )){
                 console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( $scope.articulo.COD_PRODUCTO ))
                 error = true;
@@ -96,6 +96,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               if(!error)          
                 $scope.pedido.pedido.push($scope.articulo)
             }
+            iif(!error)
             $scope.articulo = {};
             
           }
