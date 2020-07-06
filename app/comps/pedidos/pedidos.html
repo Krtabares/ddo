@@ -33,7 +33,7 @@
 
           <div class="form-group">
             <label>Fecha</label>
-            <input type="text" ng-model="pedido.fecha" class="form-control" placeholder="fecha">
+            <input type="date" ng-model="pedido.fecha" class="form-control" placeholder="fecha">
           </div>
           <div class="form-group">
             <label>Observacion</label>
@@ -70,7 +70,7 @@
         <div class="container">
           <div class="row">
             <div class="col-3">
-              <label>COD_PRODUCTO</label>
+              <label>COD PRODUCTO</label>
               <input type="text" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
             </div>
             <div class="col-3">
@@ -83,12 +83,16 @@
             </div>
             <div class="col-3">
               <label></label>
+<<<<<<< HEAD
               <button type="button" class="btn btn-success" ng-click="addArtPedido();">Agregar</button>
+=======
+              <button type="button" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
+>>>>>>> 12b6dbfd4fafca736cc19315a5404e9f78ef87d3
             </div>
           </div>
         
         </div>
-          
+        <div class="" style="margin-top: 32px;">
 
           <div class="form-group">
             <table class="table">
@@ -102,16 +106,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    </tr> -->
+
                     <tr ng-repeat="x in pedido.pedido">
                         <th scope="row">{{ $index + 1 }}</td>
                         <td>
-                          <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button>
+                          <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
+                          
+                          <i class="fa fa-trash" ng-click="removeArt($index);"></i>
+                          
                         </td>
                         <td>{{ x.COD_PRODUCTO }}</td>
                         <td>{{ x.CANTIDAD }}</td>
@@ -121,6 +123,10 @@
                 </table>
 
           </div>
+
+        </div>
+
+
 
         </form>
       </div>
@@ -204,7 +210,7 @@
       <br>
       <h5 class="text-center"> <strong>PEDIDOS </strong> </h5>
       <br>
-      <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" data-toggle="modal" data-target="#addPedidoModal"> <i class="fas fa-pencil"></i> CREAR PEDIDO</button>
+      <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();" data-toggle="modal" data-target="#addPedidoModal"> <i class="fas fa-pencil"></i> CREAR PEDIDO</button>
       <table class="table table-sm table-bordered">
         <!-- <tr class="text-center" style="text-align:center;font-weight:bold">
           <td colspan="2">Deuda Cartera de Cliente</td>

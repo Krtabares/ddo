@@ -20,7 +20,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         var ip = "http://192.168.168.170:3500";
         //list pedido
         $scope.listPedido = [];
-		
+        
         
         $scope.getFarmacias = function(){
           request.get(ip+'/get/farmacias',{})
@@ -69,6 +69,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
         $scope.addArtPedido = function(){
             console.log($scope.pedido.pedido);
+            if(Object.keys($scope.articulo).length === 0)
+              return
             
             var existe = false;
             $scope.pedido.pedido.forEach(element => {
@@ -78,12 +80,33 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 return 
               }
             });
-
+            var error=false;
             if(!existe){
-              $scope.pedido.pedido.push($scope.articulo)
+              
+              if(isEmpty( $scope.articulo.COD_PRODUCTO )){
+                console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( $scope.articulo.COD_PRODUCTO ))
+                error = true;
+              }
+               if( isEmpty($scope.articulo.CANTIDAD ) || $scope.articulo.CANTIDAD < 1 ){
+                console.log('¡Complete todos los campos!CANTIDAD','error')
+                 error = true;
+              }
+               if(isEmpty( $scope.articulo.PRECIO ) || $scope.articulo.PRECIO < 1 ){
+                console.log('¡Complete todos los campos!PRECIO','error')
+                 error = true;
+              }
+              console.log(error);
+              if(!error)          
+                $scope.pedido.pedido.push($scope.articulo)
             }
+           
+            if(!error)
             $scope.articulo = {};
             
+          }
+
+          function isEmpty(str) {
+            return (!str || 0 === str.length);
           }
 
           $scope.buildBody = function(){
