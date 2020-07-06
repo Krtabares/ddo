@@ -21,6 +21,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         //list pedido
         $scope.listPedido = [];
         
+        $('.my-select').selectpicker();
+        
         
         $scope.getFarmacias = function(){
           request.get(ip+'/get/farmacias',{})
