@@ -118,7 +118,7 @@ async def procedure(request):
     if not 'pTotPaginas' in data or data['pTotPaginas'] == 0 :
         data['pTotPaginas'] = 100
     
-    if not 'pPagina' in data or data['pPagina'] == 0 :
+    if not 'pPagina' in data  :
         data['pPagina'] = 'null'
 
     if not 'pLineas' in data or data['pLineas'] == 0 :
