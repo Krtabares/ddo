@@ -20,8 +20,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         var ip = "http://192.168.168.170:3500";
         //list pedido
         $scope.listPedido = [];
-        
-        $('.my-select').selectpicker();
+
+        // $('.my-select').selectpicker();
         
         
         $scope.getFarmacias = function(){
