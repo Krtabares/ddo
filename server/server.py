@@ -106,8 +106,25 @@ async def listUser(request, token : Token):
 
 @app.route('/procedure_clientes', ["POST", "GET"])
 async def procedure(request):
+
+    data = request.json
+
     db = get_db()
     c = db.cursor()
+
+    if not 'pTotReg' in data or data['pTotReg'] == 0 :
+        data['pTotReg'] = 100
+
+    if not 'pTotPaginas' in data or data['pTotPaginas'] == 0 :
+        data['pTotPaginas'] = 100
+    
+    if not 'pPagina' in data or data['pPagina'] == 0 :
+        data['pPagina'] = 'null'
+
+    if not 'pLineas' in data or data['pLineas'] == 0 :
+        data['pLineas'] = 100
+
+
     c.callproc("dbms_output.enable")
     c.execute("""
                 DECLARE
@@ -139,6 +156,11 @@ async def procedure(request):
                 v_pagina number;
                 v_linea number;
             BEGIN
+
+                    pTotReg  := {pTotReg};
+                    pTotPaginas  := {pTotPaginas};
+                    pPagina  := {pPagina};
+                    pLineas  := {pLineas};
 
                 dbms_output.enable(output);
                 PROCESOSPW.clientes (l_cursor, pTotReg, pTotPaginas, pPagina, pLineas, null, null, null);
@@ -192,7 +214,12 @@ async def procedure(request):
             END LOOP;
             CLOSE l_cursor;
         END;        
-            """)
+            """.format(
+                        pTotReg = data['pTotReg'],
+                        pTotPaginas = data['pTotPaginas'],
+                        pPagina = data['pPagina'],
+                        pLineas = data['pLineas']
+                    ))
     textVar = c.var(str)
     statusVar = c.var(int)
     list = []
@@ -240,7 +267,7 @@ async def procedure(request , token : Token):
         data['pTotPaginas'] = 100
     
     if not 'pPagina' in data or data['pPagina'] == 0 :
-        data['pPagina'] = 1
+        data['pPagina'] = 'null'
 
     if not 'pLineas' in data or data['pLineas'] == 0 :
         data['pLineas'] = 100
