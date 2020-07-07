@@ -33,7 +33,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         function getClientNew(filter = null) {
           console.log("getClientNew");
           var body = {
-            'pNombre' : filter
+            'pNombre' : filter || null;
           };
           request.post(ip+'/procedure_clientes', body,{})
           .then(function successCallback(response) {
