@@ -35,6 +35,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/procedure_clientes', body,{})
           .then(function successCallback(response) {
             console.log(response)
+
+            $scope.clientes = response.data.obj
 			// $scope.reset();
 			// $scope.getPedidos(1);
             /*if (response.data.exist) {
