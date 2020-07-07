@@ -111,7 +111,7 @@ async def procedure(request):
 
     db = get_db()
     c = db.cursor()
-
+    print(data)
     if not 'pTotReg' in data or data['pTotReg'] == 0 :
         data['pTotReg'] = 100
 
