@@ -30,11 +30,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           
         }
 
-        function getClientNew(filter = null) {
+        function getClientNew(filter = false) {
           console.log("getClientNew");
-          var body = {
-            'pNombre' : filter || null;
-          };
+          var body = {};
+          if(filter){
+            body.pNombre = $scope.nombre_cliente
+          }
           request.post(ip+'/procedure_clientes', body,{})
           .then(function successCallback(response) {
             console.log(response)
