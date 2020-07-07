@@ -22,6 +22,30 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.listPedido = [];
 
         // $('.my-select').selectpicker();
+
+        $scope.initModal = function () {
+          console.log("initmodal")
+          getClientNew();
+          
+        }
+
+        function getClientNew() {
+          console.log("getClientNew");
+          var body = {};
+          request.post(ip+'/procedure_clientes', body,{})
+          .then(function successCallback(response) {
+            console.log(response)
+			// $scope.reset();
+			// $scope.getPedidos(1);
+            /*if (response.data.exist) {
+              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
+            } else if (response.data.email_flag) {
+              ngNotify.set('¡Ya el correo está registrado!','error')
+            }*/
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
         
         
         $scope.getFarmacias = function(){
