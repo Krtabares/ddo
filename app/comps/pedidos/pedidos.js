@@ -15,6 +15,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             'pedido':[]
         };
         $scope.articulo = {};
+        $scope.nombre_cliente = null;
         $scope.clientes = [{}];
         $scope.productos = [{}];
         var ip = "http://192.168.168.170:3500";
@@ -29,9 +30,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           
         }
 
-        function getClientNew() {
+        function getClientNew(filter = null) {
           console.log("getClientNew");
-          var body = {};
+          var body = {
+            'pNombre' : filter
+          };
           request.post(ip+'/procedure_clientes', body,{})
           .then(function successCallback(response) {
             console.log(response)

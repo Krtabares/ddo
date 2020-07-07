@@ -123,6 +123,15 @@ async def procedure(request):
 
     if not 'pLineas' in data or data['pLineas'] == 0 :
         data['pLineas'] = 100
+    
+    if not 'pDireccion' in data :
+        data['pDireccion'] = 'null'
+
+    if not 'pCLiente' in data :
+        data['pCLiente'] = 'null'
+    
+    if not 'pNombre' in data :
+        data['pNombre'] = 'null'
 
 
     c.callproc("dbms_output.enable")
@@ -133,6 +142,9 @@ async def procedure(request):
             pTotPaginas number DEFAULT 100;
             pPagina number DEFAULT 50;
             pLineas number DEFAULT 100;
+            pCLiente varchar2(50) DEFAULT null;
+            pNombre varchar2(50) DEFAULT null;
+            pDireccion varchar2(50) DEFAULT null;
             output number DEFAULT 1000000;
                 v_cod_cia varchar2(2);
                 v_nombre_cia varchar2(100);
@@ -161,9 +173,12 @@ async def procedure(request):
                     pTotPaginas  := {pTotPaginas};
                     pPagina  := {pPagina};
                     pLineas  := {pLineas};
+                    pCLiente := {pCLiente};
+                    pNombre := {pNombre};
+                    pDireccion := {pDireccion};
 
                 dbms_output.enable(output);
-                PROCESOSPW.clientes (l_cursor, pTotReg, pTotPaginas, pPagina, pLineas, null, null, null);
+                PROCESOSPW.clientes (l_cursor, pTotReg, pTotPaginas, pPagina, pLineas, pCLiente, pNombre, pDireccion);
                 
             LOOP 
             FETCH l_cursor into
@@ -218,7 +233,10 @@ async def procedure(request):
                         pTotReg = data['pTotReg'],
                         pTotPaginas = data['pTotPaginas'],
                         pPagina = data['pPagina'],
-                        pLineas = data['pLineas']
+                        pLineas = data['pLineas'],
+                        pDireccion = data['pDireccion'],
+                        pCLiente = data['pCLiente'],
+                        pNombre = data['pNombre'],
                     ))
     textVar = c.var(str)
     statusVar = c.var(int)
