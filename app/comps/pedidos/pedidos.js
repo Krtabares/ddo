@@ -17,7 +17,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.articulo = {};
         $scope.nombre_cliente = null;
         $scope.clientes = [{}];
-        $scope.cliente = {};
+        $scope.client = {};
         $scope.productos = [{}];
         var ip = "http://192.168.168.170:3500";
         //list pedido
@@ -27,7 +27,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.initModal = function () {
           console.log("initmodal")
-          $scope.getClientNew();
+          // $scope.getClientNew();
           
         }
 
