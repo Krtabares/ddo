@@ -13,68 +13,98 @@
       </div>
       <div class="modal-body">
         <form>
+          <div class="container">
 
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="input-group mb-3">
+                  <label for="clientes">Busqueda por cliente</label>
+                  <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Seleccione</label>
+                  <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
+                    <option value="-1">Seleccione un cliente</option>
+                    <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
+                  </select>
+                </div>
+              </div>
+    
+
             </div>
-          </div>
-
-          <!-- <div class="form-group">
-            <label>Busqueda por Cliente</label>
-            <input type="text" ng-model="nombre_cliente" ng-change="getClientNew(true)" class="form-control" placeholder="Cliente">
-          </div> -->
-
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Seleccione</label>
-            <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
-              <option value="-1">Seleccione un cliente</option>
-              <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
-            </select>
-          </div>
-
           
-          <div class="form-group" style="display: none;">
-            <label>No_cia</label>
-            <input type="text" ng-disabled="true" ng-model="pedido.no_cia" class="form-control" placeholder="no_cia">
-          </div>
-
-          <div class="form-group">
-            <label>Grupo</label>
-            <input type="text"  ng-disabled="true" ng-model="pedido.grupo" class="form-control" placeholder="Grupo">
-          </div>
-          <div class="form-group">
-            <label>Cliente</label>
-            <input type="text" ng-disabled="true"  ng-model="pedido.no_cliente" class="form-control" placeholder="no_cliente">
-          </div>
-          <div class="form-group">
-            <label>Factura</label>
-            <input type="text" ng-model="pedido.no_factu" class="form-control" placeholder="no_factura">
-          </div>
-
-          <div class="form-group">
-            <label>Fecha</label>
-            <input type="date" ng-model="pedido.fecha" class="form-control" placeholder="fecha">
-          </div>
-          <div class="form-group">
-            <label>Observacion</label>
-            <input type="text" ng-model="pedido.observacion" class="form-control" placeholder="observacion">
-          </div>
-
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary"  ng-click="getProdNew(true)" type="button">Buscar</button>
+          <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>No_cia</label>
+                <input type="text" ng-disabled="true" ng-model="pedido.no_cia" class="form-control" placeholder="no_cia">
+              </div>
             </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Grupo</label>
+                <input type="text"  ng-disabled="true" ng-model="pedido.grupo" class="form-control" placeholder="Grupo">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Cliente</label>
+                <input type="text" ng-disabled="true"  ng-model="pedido.no_cliente" class="form-control" placeholder="no_cliente">
+              </div>
+            </div>
+            
           </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label>Factura</label>
+                <input type="text" ng-model="pedido.no_factu" class="form-control" placeholder="no_factura">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" ng-model="pedido.fecha" class="form-control" placeholder="fecha">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <div class="form-group">
+                <label>Observacion</label>
+                <input type="text" ng-model="pedido.observacion" class="form-control" placeholder="observacion">
+              </div>
+            </div>
 
-          <div class="form-group">
-            <label for="exampleFormControlSelect2">Seleccione un producto</label>
-            <select class="form-control" ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
-              <option value="-1">Seleccione</option>
-              <option ng-repeat="x in productos" value="{{$index}}">{{x.nombre_producto}}</option>
-            </select>
+
+          </div>
+          
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary"  ng-click="getProdNew(true)" type="button">Buscar</button>
+                </div>
+              </div>
+            
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="exampleFormControlSelect2">Seleccione un producto</label>
+                <select class="form-control" ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
+                  <option value="-1">Seleccione</option>
+                  <option ng-repeat="x in productos" value="{{$index}}">{{x.nombre_producto}}</option>
+                </select>
+              </div>
+            </div>
+
+            
+          </div>
+          
           </div>
 
         <div class="container">
