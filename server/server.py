@@ -126,12 +126,18 @@ async def procedure(request):
     
     if not 'pDireccion' in data :
         data['pDireccion'] = 'null'
+    else:
+        data['pDireccion'] = "'"+data['pDireccion']+"'"
 
     if not 'pCLiente' in data :
         data['pCLiente'] = 'null'
+    else:
+        data['pCLiente'] = "'"+data['pCLiente']+"'"
     
     if not 'pNombre' in data :
         data['pNombre'] = 'null'
+    else:
+        data['pNombre'] = "'"+data['pNombre']+"'"
 
 
     c.callproc("dbms_output.enable")
