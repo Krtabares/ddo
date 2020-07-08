@@ -28,7 +28,7 @@
 
           <div class="form-group">
             <label for="exampleFormControlSelect1">Seleccione</label>
-            <select class="form-control" ng-model="client" id="exampleFormControlSelect1" ng-change="selectCLient()">
+            <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
               <option value="-1">Seleccione</option>
               <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
             </select>
