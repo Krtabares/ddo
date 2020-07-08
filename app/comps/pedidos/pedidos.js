@@ -47,10 +47,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.selectProduct = function(){
           console.log($scope.product )
           // $scope.client = x
-            // $scope.product  = $scope.clientes[ $scope.productIndex ];
-            // $scope.pedido.no_cia = $scope.client.cod_cia;
-            // $scope.pedido.grupo = $scope.client.grupo_cliente
-            // $scope.pedido.no_cliente = $scope.client.cod_cliente
+            $scope.product  = $scope.productos[ $scope.productIndex ];
+            $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
+            $scope.articulo.PRECIO = $scope.product.precio
+            // $scope.articulo.no_cliente = $scope.client.cod_cliente
 
         }
 

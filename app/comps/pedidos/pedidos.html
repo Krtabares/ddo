@@ -71,9 +71,9 @@
 
           <div class="form-group">
             <label for="exampleFormControlSelect2">Seleccione un producto</label>
-            <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelec2" ng-change="selectCLient()">
+            <select class="form-control" ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
               <option value="-1">Seleccione</option>
-              <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
+              <option ng-repeat="x in productos" value="{{$index}}">{{x.nombre_producto}}</option>
             </select>
           </div>
 
@@ -81,7 +81,7 @@
           <div class="row">
             <div class="col-3">
               <label>COD PRODUCTO</label>
-              <input type="text" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
+              <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
             </div>
             <div class="col-3">
               <label>Cantidad</label>
@@ -89,11 +89,11 @@
             </div>
             <div class="col-3">
               <label>Precio</label>
-                <input type="text" ng-model="articulo.PRECIO" class="form-control" placeholder="precio">
+                <input type="text"  ng-disabled="true" ng-model="articulo.PRECIO" class="form-control" placeholder="precio">
             </div>
             <div class="col-3">
               <label></label>
-              <button type="button" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
+              <button type="button"  class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
             </div>
           </div>
         
