@@ -85,7 +85,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
 
-            $scope.clientes = response.data.obj
+            $scope.productos = response.data.obj
 
           }, function errorCallback(response) {
             console.log(response)
