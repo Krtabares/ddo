@@ -30,6 +30,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           
         }
 
+        $scope.selectCLient = function(client){
+          console.log(client)
+            $scope.pedido.no_cia = client.cod_cia;
+            $scope.pedido.grupo = client.grupo_client
+            $scope.pedido.no_cliente = client.cod_cliente
+
+        }
+
         $scope.getClientNew = function (filter = false) {
           console.log("getClientNew");
           var body = {};
