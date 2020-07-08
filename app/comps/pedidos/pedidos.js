@@ -26,7 +26,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.initModal = function () {
           console.log("initmodal")
-          getClientNew();
+          $scope.getClientNew();
           
         }
 
