@@ -30,7 +30,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           
         }
 
-        function getClientNew(filter = false) {
+        $scope.getClientNew = function (filter = false) {
           console.log("getClientNew");
           var body = {};
           if(filter){

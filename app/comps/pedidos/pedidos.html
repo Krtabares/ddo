@@ -28,7 +28,7 @@
 
           <div class="form-group">
             <label for="exampleFormControlSelect1">Seleccione</label>
-            <select class="form-control" id="exampleFormControlSelect1">
+            <select class="form-control" ng-model="pedido.no_cia" id="exampleFormControlSelect1">
               <option ng-repeat="x in clientes" value={{x.cod_cia}}>{{x.nombre_cliente}}</option>
             </select>
           </div>
