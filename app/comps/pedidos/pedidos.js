@@ -17,6 +17,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.articulo = {};
         $scope.nombre_cliente = null;
         $scope.clientes = [{}];
+        $scope.cliente = {};
         $scope.productos = [{}];
         var ip = "http://192.168.168.170:3500";
         //list pedido
@@ -30,11 +31,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           
         }
 
-        $scope.selectCLient = function(client){
-          console.log(client)
-            $scope.pedido.no_cia = client.cod_cia;
-            $scope.pedido.grupo = client.grupo_client
-            $scope.pedido.no_cliente = client.cod_cliente
+        $scope.selectCLient = function(){
+          console.log($scope.client)
+            $scope.pedido.no_cia = $scope.client.cod_cia;
+            $scope.pedido.grupo = $scope.client.grupo_client
+            $scope.pedido.no_cliente = $scope.client.cod_cliente
 
         }
 
