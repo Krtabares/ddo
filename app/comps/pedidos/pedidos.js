@@ -32,7 +32,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.selectCLient = function(){
-          console.log(x)
+          console.log($scope.client )
           // $scope.client = x 
             $scope.pedido.no_cia = $scope.client.cod_cia;
             $scope.pedido.grupo = $scope.client.grupo_client
