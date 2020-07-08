@@ -16,10 +16,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         };
         $scope.articulo = {};
         $scope.nombre_cliente = null;
+        $scope.busqueda_prod = null;
         $scope.clientes = [{}];
         $scope.client = {};
-        $scope.clientIndex = -1
+        $scope.clientIndex = -1;
         $scope.productos = [{}];
+        $scope.product = {};
+        $scope.productIndex = -1;
         var ip = "http://192.168.168.170:3500";
         //list pedido
         $scope.listPedido = [];
@@ -41,6 +44,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.pedido.no_cliente = $scope.client.cod_cliente
 
         }
+        $scope.selectProduct = function(){
+          console.log($scope.product )
+          // $scope.client = x
+            // $scope.product  = $scope.clientes[ $scope.productIndex ];
+            // $scope.pedido.no_cia = $scope.client.cod_cia;
+            // $scope.pedido.grupo = $scope.client.grupo_cliente
+            // $scope.pedido.no_cliente = $scope.client.cod_cliente
+
+        }
 
         $scope.getClientNew = function (filter = false) {
           console.log("getClientNew");
@@ -53,13 +65,28 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
 
             $scope.clientes = response.data.obj
-			// $scope.reset();
-			// $scope.getPedidos(1);
-            /*if (response.data.exist) {
-              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-            } else if (response.data.email_flag) {
-              ngNotify.set('¡Ya el correo está registrado!','error')
-            }*/
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
+
+        $scope.getProdNew = function (filter = false) {
+          console.log("getProdNew");
+          var body = {};
+          if(filter){
+            body.pNombre = $scope.nombre_cliente
+            body.pNoCia = $scope.client.cod_cia
+            body.pNoGrupo = $scope.client.grupo_cliente
+            body.pCliente = $scope.client.cod_cliente
+            body.pBusqueda = $scope.busqueda_prod
+          }
+          request.post(ip+'/procedure_productos', body,{})
+          .then(function successCallback(response) {
+            console.log(response)
+
+            $scope.clientes = response.data.obj
+
           }, function errorCallback(response) {
             console.log(response)
           });
