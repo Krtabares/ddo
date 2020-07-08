@@ -37,7 +37,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // $scope.client = x
             $scope.client  = $scope.clientes[ $scope.clientIndex ];
             $scope.pedido.no_cia = $scope.client.cod_cia;
-            $scope.pedido.grupo = $scope.client.grupo_client
+            $scope.pedido.grupo = $scope.client.grupo_cliente
             $scope.pedido.no_cliente = $scope.client.cod_cliente
 
         }

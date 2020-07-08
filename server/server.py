@@ -467,22 +467,34 @@ async def procedure(request):
         data['pLineas'] = 100
 
     if not 'pNoCia' in data :
-        data['pNoCia'] = '\'01\''
+        data['pNoCia'] = 'null'
+    else:
+        data['pNoCia'] = "'"+data['pNoCia']+"'"
 
     if not 'pNoGrupo' in data :
-        data['pNoGrupo'] = '\'01\''
+        data['pNoGrupo'] = 'null'
+    else:
+        data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
     
     if not 'pCliente' in data :
-        data['pCliente'] = '\'FNUTRY\''
+        data['pCliente'] = 'null'
+    else:
+        data['pCliente'] = "'"+data['pCliente']+"'"
 
     if not 'pMoneda' in data :
         data['pMoneda'] = '\'P\''
+    else:
+        data['pMoneda'] = "'"+data['pMoneda']+"'"
 
     if not 'pBusqueda' in data :
         data['pBusqueda'] = 'null'
+    else:
+        data['pBusqueda'] = "'"+data['pBusqueda']+"'"
 
     if not 'pComponente' in data :
         data['pComponente'] = 'null'
+    else:
+        data['pComponente'] = "'"+data['pComponente']+"'"
 
     db = get_db()
     c = db.cursor()
