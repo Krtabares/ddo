@@ -28,8 +28,8 @@
 
           <div class="form-group">
             <label for="exampleFormControlSelect1">Seleccione</label>
-            <select class="form-control" ng-model="client" id="exampleFormControlSelect1" ng-change="selectCLient($event)">
-              <option ng-repeat="x in clientes" value={{x}}>{{x.nombre_cliente}}</option>
+            <select class="form-control" ng-model="client" id="exampleFormControlSelect1" ng-change="selectCLient()">
+              <option ng-repeat="x in clientes" value="{{x}}">{{x.nombre_cliente}}</option>
             </select>
           </div>
 
