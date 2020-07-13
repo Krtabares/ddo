@@ -327,4 +327,4 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         //$scope.getPedidos_filtering('123');
 		//$scope.getProductos('01');
     }
-]);s
+]);
