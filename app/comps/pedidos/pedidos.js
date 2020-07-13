@@ -17,10 +17,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.articulo = {};
         $scope.nombre_cliente = null;
         $scope.busqueda_prod = null;
-        $scope.clientes = [{}];
+        $scope.clientes = null;
         $scope.client = {};
         $scope.clientIndex = -1;
-        $scope.productos = [{}];
+        $scope.productos = null;
         $scope.product = {};
         $scope.productIndex = -1;
         var ip = "http://192.168.168.170:3500";
