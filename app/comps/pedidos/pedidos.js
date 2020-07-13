@@ -166,7 +166,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
 
               
-               if(isEmpty( $scope.articulo.CANTIDAD > $scope.articulo.existencia  ){
+               if( $scope.articulo.CANTIDAD > $scope.articulo.existencia  ){
                 // console.log('¡Complete todos los campos!PRECIO','error')
                  error = true;
               }
