@@ -941,7 +941,7 @@ async def procedure(request):
                 ID_PEDIDO = int(ID),
                  COD_PRODUCTO = str(pedido['COD_PRODUCTO']), 
                  CANTIDAD = int(pedido['CANTIDAD']), 
-                 PRECIO = float(pedido['PRECIO'].replace(',','.'))
+                 PRECIO = int(float(pedido['PRECIO'].replace(',','.')))
                     ))
 
         db.commit()                                                           
