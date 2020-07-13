@@ -186,12 +186,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
 
           $scope.buildBody = function(){
+           var fecha = new Date( $scope.pedido.fecha)
            var body = {
               "COD_CIA": $scope.pedido.no_cia,
               "GRUPO_CLIENTE": $scope.pedido.grupo,
               "COD_CLIENTE": $scope.pedido.no_cliente,
-              "FECHA": $scope.pedido.fecha,
-              "NO_PEDIDO_CODISA": "324",
+              "FECHA": fecha.getDate()+"-"+ fecha.getMonth()+"-"+ fecha.getFullYear(),
+              "NO_PEDIDO_CODISA": "null",
               "OBSERVACIONES": $scope.pedido.observacion,
               "ESTATUS": "0",
               "pedido": $scope.pedido.pedido
