@@ -171,8 +171,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $scope.pedido.pedido.push($scope.articulo)
             }
            
-            if(!error)
-            $scope.articulo = {};
+            if(!error){
+              $scope.articulo = {};
+              $scope.productIndex = -1
+              $scope.productos = [];
+              $scope.product = {}
+            }
+            
             
           }
 

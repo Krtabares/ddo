@@ -904,10 +904,10 @@ async def procedure(request):
                     s2 number;
                     variable varchar(200);               
                 begin
-                    INSERT INTO PEDIDO (ID, COD_CIA, GRUPO_CLIENTE, 
+                    INSERT INTO PEDIDO ( COD_CIA, GRUPO_CLIENTE, 
                                             COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
                                             OBSERVACIONES, ESTATUS) VALUES 
-                            ( pedido_seq.nextval , :COD_CIA, :GRUPO_CLIENTE, :COD_CLIENTE, :FECHA, :NO_PEDIDO_CODISA, :OBSERVACIONES, :ESTATUS  )
+                            (  :COD_CIA, :GRUPO_CLIENTE, :COD_CLIENTE, :FECHA, :NO_PEDIDO_CODISA, :OBSERVACIONES, :ESTATUS  )
                              returning ID into s2;
                     dbms_output.put_line(s2);
                     IF s2 > 0 THEN
