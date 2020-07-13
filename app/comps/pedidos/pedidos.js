@@ -50,6 +50,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.product  = $scope.productos[ $scope.productIndex ];
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
             $scope.articulo.PRECIO = $scope.product.precio
+            $scope.articulo.existencia =$scope.product.existencia
             // $scope.articulo.no_cliente = $scope.client.cod_cliente
 
         }
@@ -127,8 +128,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/add/pedido', body,{})
           .then(function successCallback(response) {
             console.log(response)
-			$scope.reset();
-			$scope.getPedidos(1);
+              $scope.reset();
+              $scope.getPedidos(1);
             /*if (response.data.exist) {
               ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
             } else if (response.data.email_flag) {
@@ -201,6 +202,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
 
 		$scope.reset = function(){
+      $scope.busqueda_prod = null
+      $scope.productIndex = -1
+      $scope.clientes = null
+      $scope.clientIndex = -1
 			$scope.pedido = {'no_cia':'',
 						'grupo':'',
 						'no_cliente':'',

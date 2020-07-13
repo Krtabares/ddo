@@ -907,7 +907,7 @@ async def procedure(request):
                     INSERT INTO PEDIDO ( COD_CIA, GRUPO_CLIENTE, 
                                             COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
                                             OBSERVACIONES, ESTATUS) VALUES 
-                            (  :COD_CIA, :GRUPO_CLIENTE, :COD_CLIENTE, :FECHA, :NO_PEDIDO_CODISA, :OBSERVACIONES, :ESTATUS  )
+                            (  :COD_CIA, :GRUPO_CLIENTE, :COD_CLIENTE, :FECHA, :NO_PEDIDO_CODISA, \':OBSERVACIONES\', :ESTATUS  )
                              returning ID into s2;
                     dbms_output.put_line(s2);
                     IF s2 > 0 THEN

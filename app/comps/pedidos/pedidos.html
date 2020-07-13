@@ -25,7 +25,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="col-sm-12 col-md-6 col-lg-6" ng-if="clientes.length > 0" >
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Seleccione</label>
                   <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
@@ -93,7 +93,7 @@
               </div>
             
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="col-sm-12 col-md-6 col-lg-6" ng-if="productos.length > 0">
               <div class="form-group">
                 <label for="exampleFormControlSelect2">Seleccione un producto</label>
                 <select class="form-control" ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
@@ -110,19 +110,23 @@
 
         <div class="container">
           <div class="row">
-            <div class="col-3">
+            <div class="col-2">
               <label>COD PRODUCTO</label>
               <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
             </div>
-            <div class="col-3">
+            <div class="col-2">
               <label>Cantidad</label>
-              <input type="number" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad">
+              <input type="number" min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad">
             </div>
-            <div class="col-3">
+            <div class="col-2">
+              <label>Cantidad</label>
+              <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
+            </div>
+            <div class="col-2">
               <label>Precio</label>
                 <input type="text"  ng-disabled="true" ng-model="articulo.PRECIO" class="form-control" placeholder="precio">
             </div>
-            <div class="col-3">
+            <div class="col-4">
               <label></label>
               <button type="button"  class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
             </div>
