@@ -116,7 +116,7 @@
             </div>
             <div class="col-2">
               <label>Cantidad</label>
-              <input type="number" min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad">
+              <input type="number" min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
             <div class="col-2">
               <label>Existencia</label>
