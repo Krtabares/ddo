@@ -902,7 +902,7 @@ async def procedure(request):
         sql = """
                 declare
                     s2 number;
-                    variable varchar(200);               
+                              
                 begin
                     INSERT INTO PEDIDO ( COD_CIA, GRUPO_CLIENTE, 
                                             COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
