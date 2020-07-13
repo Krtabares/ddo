@@ -51,6 +51,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
             $scope.articulo.PRECIO = $scope.product.precio
             $scope.articulo.existencia =$scope.product.existencia
+            $scope.articulo.CANTIDAD = 1
             // $scope.articulo.no_cliente = $scope.client.cod_cliente
 
         }
@@ -163,8 +164,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 console.log('¡Complete todos los campos!CANTIDAD','error')
                  error = true;
               }
-               if(isEmpty( $scope.articulo.PRECIO ) || $scope.articulo.PRECIO < 1 ){
-                console.log('¡Complete todos los campos!PRECIO','error')
+
+              
+               if(isEmpty( $scope.articulo.CANTIDAD > $scope.articulo.existencia  ){
+                // console.log('¡Complete todos los campos!PRECIO','error')
                  error = true;
               }
               console.log(error);
