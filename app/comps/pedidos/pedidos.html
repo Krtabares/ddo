@@ -98,7 +98,7 @@
                 <label for="exampleFormControlSelect2">Seleccione un producto</label>
                 <select class="form-control" ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
                   <option value="-1">Seleccione</option>
-                  <option ng-repeat="x in productos" value="{{$index}}">{{x.nombre_producto}} <small>{{x.princ_activo}}</small> </option>
+                  <option ng-repeat="x in productos" value="{{$index}}">{{x.nombre_producto}} -<sub style="font-size: 6px;">{{x.princ_activo}}</sub> </option>
                 </select>
               </div>
             </div>
