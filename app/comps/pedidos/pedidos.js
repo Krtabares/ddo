@@ -192,7 +192,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               "GRUPO_CLIENTE": $scope.pedido.grupo,
               "COD_CLIENTE": $scope.pedido.no_cliente,
               "FECHA": fecha.getDate()+"-"+ fecha.getMonth()+"-"+ fecha.getFullYear(),
-              "NO_PEDIDO_CODISA": "null",
+              "NO_PEDIDO_CODISA": "123",
               "OBSERVACIONES": $scope.pedido.observacion,
               "ESTATUS": "0",
               "pedido": $scope.pedido.pedido
