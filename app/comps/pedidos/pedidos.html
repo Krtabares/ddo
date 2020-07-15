@@ -22,7 +22,7 @@
         
         <form>
           <div class="container">
-            <div ng-if="!hasClient">
+            <div ng-show="!hasClient">
               <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-6">
                   <label for="clientes">Busqueda por cliente</label>
@@ -76,16 +76,20 @@
                 <input type="text" ng-model="pedido.no_factu" class="form-control" placeholder="no_factura">
               </div>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="col-sm-12 col-md-4 col-lg-4">
               <div class="form-group">
                 <label>Fecha</label>
                 <input type="date" ng-model="pedido.fecha" class="form-control" placeholder="fecha">
               </div>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-12">
-              <div class="form-group">
-                <label>Observacion</label>
-                <input type="text" ng-model="pedido.observacion" class="form-control" placeholder="observacion">
+            <div class="col-sm-12 col-md-8 col-lg-8">
+
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Observacion</span>
+                </div>
+                <textarea class="form-control" ng-model="pedido.observacion" aria-label="With textarea"></textarea>
               </div>
             </div>
 
@@ -187,7 +191,7 @@
     </div>
 
 
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <div class="alert alert-warning alert-dismissible fadeIn show" role="alert">
         <strong>Holy guacamole!</strong> You should check in on some of those fields below.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
