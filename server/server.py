@@ -857,34 +857,51 @@ async def get_farmacias(request):
         
 @app.route('/get/client',["POST","GET"])
 async def info_clientes(request):
+
+     data = request.json
+
+     if not 'pCliente' in data :
+         return response.json({"msg": "Missing username parameter"}, status=400)
+    else:
+        data['pCliente'] = "'"+data['pCliente']+"'"
+
+    
     db = get_db()
     c = db.cursor()
     c.execute(""" SELECT NO_CIA, GRUPO, NO_CLIENTE, 
                 NOMBRE, NOMBRE_COMERCIAL, DIRECCION, 
-                EMAIL1, EMAIL3, TELEFONO, CEDULA
-                FROM PAGINAWEB.ARCCMC_TEMP """)
+                EMAIL1, EMAIL3, TELEFONO, CEDULA, *
+                FROM PAGINAWEB.ARCCMC_TEMP WHERE NO_CLIENTE = {pCliente} """.format(
+                        pCliente = data['pCliente'],
+                        
+                    ))
     list = []
-    for row in c:
-        aux = {}
-        aux = {
-            'no_cia':row[0],
-            'grupo':row[1],
-            'no_cliente':row[2],
-            'nombre':row[3],
-            'nombre_comercial':row[4],
-            'direccion':row[5],
-            'email1':row[6],
-            'email3':row[7],
-            'telefono':row[8],
-            'cedula':row[9]
-        }
-        list.append(row)
-    return response.json(list)  
+    # for row in c:
+    #     aux = {}
+    #     aux = {
+    #         'no_cia':row[0],
+    #         'grupo':row[1],
+    #         'no_cliente':row[2],
+    #         'nombre':row[3],
+    #         'nombre_comercial':row[4],
+    #         'direccion':row[5],
+    #         'email1':row[6],
+    #         'email3':row[7],
+    #         'telefono':row[8],
+    #         'cedula':row[9]
+    #     }
+    #     list.append(row)
+    while True:
+                row = c.fetchone()
+                if row is None:
+                    break
+                print(row)
+    return response.json(row)  
       
 @app.route('/add/pedido',["POST","GET"])
 # @jwt_required
-# async def add_pedido (request, token: Token):
-async def procedure(request):
+async def add_pedido (request, token: Token):
+# async def procedure(request):
     try:
         data = request.json
         print(data)
@@ -904,6 +921,7 @@ async def procedure(request):
                     s2 number;
                               
                 begin
+                    
                     INSERT INTO PEDIDO ( COD_CIA, GRUPO_CLIENTE, 
                                             COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
                                             OBSERVACIONES, ESTATUS) VALUES 
@@ -942,6 +960,100 @@ async def procedure(request):
                  COD_PRODUCTO = str(pedido['COD_PRODUCTO']), 
                  CANTIDAD = int(pedido['CANTIDAD']), 
                  PRECIO = float(pedido['PRECIO'].replace(',','.'))
+                    ))
+
+        db.commit()                                                           
+        return response.json("SUCCESS",200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
+    try:
+        data = request.json
+        print(data)
+        # if not 'COD_PRODUCTO' in data :
+        #     return response.json("ERROR",400)
+        # if not 'CANTIDAD' in data :
+        #     return response.json("ERROR",400)
+        # if not 'PRECIO' in data :
+        #     return response.json("ERROR",400)
+        
+
+        db = get_db()
+        c = db.cursor()
+
+    #   c.callproc("dbms_output.enable")
+    c.execute("""
+
+            DECLARE
+            
+            pNoCia varchar2(10) DEFAULT null;
+            pNoGrupo varchar2(10) DEFAULT null;
+            pCliente varchar2(50) DEFAULT null;
+            pNoArti varchar2(50) DEFAULT null;
+            pCantidad number DEFAULT 0;
+            pPrecio number DEFAULT 0;
+            pMoneda varchar2(10) DEFAULT 'P';
+            pIdPedido number DEFAULT 0;
+            
+            -- output number ;
+
+            BEGIN
+
+                pNoCia  := {pNoCia};
+                pNoGrupo  := {pNoGrupo};
+                pCliente  := {pCliente};
+                pNoArti  := {pNoArti};
+                pCantidad := {pCantidad};
+                pPrecio := {pPrecio};
+                pMoneda := {pMoneda};
+                pBusqueda := {pBusqueda};
+                pIdPedido := {pIdPedido};
+
+                -- dbms_output.enable(output);
+
+                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pMoneda,pBusqueda,pComponente);
+                    
+            LOOP 
+                FETCH l_cursor into
+                V_BODEGA,
+                V_NOMBRE_BODEGA,
+                V_COD_PRODUCTO,
+                V_NOMBRE_PRODUCTO,
+                V_PRINC_ACTIVO,
+                V_EXISTENCIA,
+                V_PRECIO,
+                V_PAGINA,
+                V_LINEA;
+                dbms_output.put_line
+                (
+                    V_BODEGA|| '|'|| 
+                    V_NOMBRE_BODEGA|| '|'|| 
+                    V_COD_PRODUCTO|| '|'|| 
+                    V_NOMBRE_PRODUCTO|| '|'|| 
+                    V_PRINC_ACTIVO|| '|'|| 
+                    V_EXISTENCIA|| '|'|| 
+                    V_PRECIO|| '|'||
+                    V_PAGINA|| '|'||
+                    V_LINEA      
+                );
+                EXIT WHEN l_cursor%NOTFOUND;
+            END LOOP;
+            CLOSE l_cursor;
+            
+            END;
+
+                """.format(
+                        pTotReg = data['pTotReg'],
+                        pTotPaginas = data['pTotPaginas'],
+                        pPagina = data['pPagina'],
+                        pLineas = data['pLineas'],
+                        pNoCia = data['pNoCia'],
+                        pNoGrupo = data['pNoGrupo'],
+                        pCliente = data['pCliente'],
+                        pMoneda = data['pMoneda'],
+                        pBusqueda = data['pBusqueda'],
+                        pComponente = data['pComponente'],
                     ))
 
         db.commit()                                                           

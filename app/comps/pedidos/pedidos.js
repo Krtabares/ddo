@@ -12,6 +12,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
         //init    
         $scope.pedido = {
+            'fecha': new Date(),
             'pedido':[]
         };
         $scope.articulo = {};
@@ -218,7 +219,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   'no_arti':'',
                   'cantidad':'',
                   'precio':'',
-                  'fecha':'',
+                  'fecha':new Date(),
                               'observacion':'',
                               'pedido':[],
                           };
