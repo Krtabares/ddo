@@ -224,16 +224,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                           };
           }
           verificClient()
+
            function verificClient(){
              
             var client = localStorage.getItem('client')
+            console.log(client)
             if( client ==  null){
               $scope.hasClient = false;
             }else{
               $scope.hasClient = true;
               $scope.client = JSON.parse(client);
               
-            }
+            } 
             console.log($scope.client)
           }
 
