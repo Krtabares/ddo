@@ -860,10 +860,10 @@ async def info_clientes(request):
 
     data = request.json
 
-    if not 'pCliente' in data:       
-        return response.json({"msg": "Missing username parameter"}, status=400)
+    # if not 'pCliente' in data:       
+    #     return response.json({"msg": "Missing username parameter"}, status=400)
     
-    else:
+    # else:
         data['pCliente'] = "'"+data['pCliente']+"'"
 
     
