@@ -136,6 +136,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             } else if (response.data.email_flag) {
               ngNotify.set('¡Ya el correo está registrado!','error')
             }*/
+            alert("Guardado con exito!")
           }, function errorCallback(response) {
             console.log(response)
           });
@@ -162,7 +163,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
                if( isEmpty($scope.articulo.CANTIDAD ) || $scope.articulo.CANTIDAD < 1 ){
                 console.log('¡Complete todos los campos!CANTIDAD','error')
-                 error = true;
+                alert("Por favor verifique la cantidad")
+                error = true;
               }
 
               
@@ -204,23 +206,33 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             return body
           }
 
-		$scope.reset = function(){
-      $scope.busqueda_prod = null
-      $scope.productIndex = -1
-      $scope.clientes = null
-      $scope.clientIndex = -1
-			$scope.pedido = {'no_cia':'',
-						'grupo':'',
-						'no_cliente':'',
-						'no_factu':'',
-						'no_arti':'',
-						'cantidad':'',
-						'precio':'',
-						'fecha':'',
-                        'observacion':'',
-                        'pedido':[],
-                    };
-		}
+          $scope.reset = function(){
+            $scope.busqueda_prod = null
+            $scope.productIndex = -1
+            $scope.clientes = null
+            $scope.clientIndex = -1
+            $scope.pedido = {'no_cia':'',
+                  'grupo':'',
+                  'no_cliente':'',
+                  'no_factu':'',
+                  'no_arti':'',
+                  'cantidad':'',
+                  'precio':'',
+                  'fecha':'',
+                              'observacion':'',
+                              'pedido':[],
+                          };
+          }
+
+           function verificClient(){
+            var client = localStorage.getItem('client')
+            if( client ==  null){
+              $scope.hasClient = false;
+            }else{
+              $scope.hasClient = true;
+              $scope.client = JSON.parse(client);
+            }
+          }
 
         $scope.getPedidos = function(page){
           var obj = {'page': page};
