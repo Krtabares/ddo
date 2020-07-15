@@ -858,12 +858,13 @@ async def get_farmacias(request):
 @app.route('/get/client',["POST","GET"])
 async def info_clientes(request):
 
-     data = request.json
+    data = request.json
 
-    if not 'pCliente' in data :
+    if not 'pCliente' in data:       
         return response.json({"msg": "Missing username parameter"}, status=400)
+    
     else:
-            data['pCliente'] = "'"+data['pCliente']+"'"
+        data['pCliente'] = "'"+data['pCliente']+"'"
 
     
     db = get_db()
@@ -983,7 +984,7 @@ async def add_pedido (request, token: Token):
         c = db.cursor()
 
     #   c.callproc("dbms_output.enable")
-    c.execute("""
+        c.execute("""
 
             DECLARE
             
