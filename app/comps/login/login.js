@@ -19,7 +19,8 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         "http://www.del-oeste.com/wp-content/uploads/2017/08/img-about.jpg",
       ]
 	  var ip = "http://192.168.168.170:3500";
-	  $scope.user = {};
+    $scope.user = {};
+    localstorage.clear()
 	
 		
 	  $scope.login = function(){
@@ -27,7 +28,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 		  request.post(ip+'/login', $scope.user ,{})
 		  .then(function successCallback(response) {
         //console.log(response.data.access_token);
-        localstorage.clear()
+       
         localstorage.set('user', response.data.user);
         localstorage.set('token', response.data.access_token);
         
@@ -35,7 +36,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         client.COD_CIA = response.data.user.COD_CIA
         client.GRUPO_CLIENTE = response.data.user.GRUPO_CLIENTE
         client.COD_CLIENTE = response.data.user.COD_CLIENTE
-        
+
         localstorage.set('client',  JSON.stringify(client));
         window.location.href = "#!/home";
         /*if (response.data.exist) {

@@ -143,8 +143,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-        $scope.addPedido = function(pedido){
-          console.log(pedido);
+        $scope.addPedido = function(){
+          // console.log(pedido);
           var body = $scope.buildBody();
           request.post(ip+'/add/pedido', body,{})
           .then(function successCallback(response) {
