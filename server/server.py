@@ -73,7 +73,7 @@ async def login(request):
 
     db = get_mongo_db()
 
-    user = db.user.find_one({'username' : username}, {'_id' : 0})
+    user = await db.user.find_one({'username' : username}, {'_id' : 0})
 
     if user:
         if user['password'] == password:
