@@ -55,7 +55,7 @@ def get_db():
     return conn
 
 def get_mongo_db():
-    mongo_uri = "mongodb://35.221.170.100:27030/ddo"
+    mongo_uri = "mongodb://ddo:1234@35.221.170.100:27030/ddo"
     client = AsyncIOMotorClient(mongo_uri)
     db = client['ddo']
     return db
