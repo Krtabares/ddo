@@ -26,16 +26,17 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 		  //console.log($scope.user);
 		  request.post(ip+'/login', $scope.user ,{})
 		  .then(function successCallback(response) {
-			//console.log(response.data.access_token);
-			localstorage.set('user', response.data.user);
-			localstorage.set('token', response.data.access_token);
-			
-			window.location.href = "#!/home";
-			/*if (response.data.exist) {
-			  ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-			} else if (response.data.email_flag) {
-			  ngNotify.set('¡Ya el correo está registrado!','error')
-			}*/
+        //console.log(response.data.access_token);
+        localstorage.set('user', response.data.user);
+        localstorage.set('token', response.data.access_token);
+        localstorage.set('COD_CIA', response.data.user.COD_CIA);
+        localstorage.set('GRUPO_CLIENTE', response.data.user.GRUPO_CLIENTE);
+        window.location.href = "#!/home";
+        /*if (response.data.exist) {
+          ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
+        } else if (response.data.email_flag) {
+          ngNotify.set('¡Ya el correo está registrado!','error')
+        }*/
 		  }, function errorCallback(response) {
 			console.log(response)
 			if(response.status == 403){
