@@ -37,7 +37,7 @@ users = [{'username':'admin', 'password': 'ddo.admin', 'role': 'admin', 'name': 
 sio = socketio.AsyncServer(async_mode='sanic')
 sio.attach(app)
 handler = CustomHandler()
-app.error_handler = handler
+app.error_handler = handler 
 app.config.JWT_SECRET_KEY = "ef8f6025-ec38-4bf3-b40c-29642ccd6312"
 app.config.JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=120)
 app.config.RBAC_ENABLE = True
