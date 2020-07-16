@@ -95,7 +95,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var body = {};
           if(filter){
             body.pNombre = $scope.nombre_cliente
-            body.pNoCia = $scope.client.c
+            body.pNoCia = $scope.client.COD_CIA
             body.pNoGrupo = $scope.client.GRUPO_CLIENTE
             body.pCliente = $scope.client.COD_CLIENTE
             body.pBusqueda = $scope.busqueda_prod
