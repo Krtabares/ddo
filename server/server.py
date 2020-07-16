@@ -55,7 +55,7 @@ def get_db():
     return conn
 
 def get_mongo_db():
-    mongo_uri = "mongodb://127.0.0.1:27017/ddo"
+    mongo_uri = "mongodb://35.221.170.100:27030/ddo"
     client = AsyncIOMotorClient(mongo_uri)
     db = client['ddo']
     return db
@@ -875,26 +875,26 @@ async def info_clientes(request):
                 FROM PAGINAWEB.ARCCMC_TEMP WHERE NO_CLIENTE = {pCliente} """
     c.execute(sql.format(pCliente = data['pCliente']))
     list = []
-    # for row in c:
-    #     aux = {}
-    #     aux = {
-    #         'no_cia':row[0],
-    #         'grupo':row[1],
-    #         'no_cliente':row[2],
-    #         'nombre':row[3],
-    #         'nombre_comercial':row[4],
-    #         'direccion':row[5],
-    #         'email1':row[6],
-    #         'email3':row[7],
-    #         'telefono':row[8],
-    #         'cedula':row[9]
-    #     }
-    #     list.append(row)
-    while True:
-                row = c.fetchone()
-                if row is None:
-                    break
-                print(row)
+    for row in c:
+        aux = {}
+        aux = {
+            'no_cia':row[0],
+            'grupo':row[1],
+            'no_cliente':row[2],
+            'nombre':row[3],
+            'nombre_comercial':row[4],
+            'direccion':row[5],
+            'email1':row[6],
+            'email3':row[7],
+            'telefono':row[8],
+            'cedula':row[9]
+        }
+        list.append(row)
+    # while True:
+    #             row = c.fetchone()
+    #             if row is None:
+    #                 break
+    #             print(row)
     return response.json(row)
 
 @app.route('/add/pedido',["POST","GET"])
