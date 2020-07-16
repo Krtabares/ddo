@@ -29,8 +29,12 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         //console.log(response.data.access_token);
         localstorage.set('user', response.data.user);
         localstorage.set('token', response.data.access_token);
-        localstorage.set('COD_CIA', response.data.user.COD_CIA);
-        localstorage.set('GRUPO_CLIENTE', response.data.user.GRUPO_CLIENTE);
+        localstorage.clear()
+        var client = {}
+        client.COD_CIA = response.data.user.COD_CIA
+        client.GRUPO_CLIENTE = response.data.user.GRUPO_CLIENTE
+        client.COD_CLIENTE = response.data.user.COD_CLIENTE
+        localstorage.set('client',  JSON.stringify(client));
         window.location.href = "#!/home";
         /*if (response.data.exist) {
           ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
