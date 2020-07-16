@@ -303,15 +303,23 @@ async def procedure(request , token : Token):
 
     if not 'pCLiente' in data :
         data['pCLiente'] = 'null'
+    else:
+        data['pCLiente'] = "'"+data['pCLiente']+"'"
     
     if not 'pNombre' in data :
         data['pNombre'] = 'null'
+    else:
+        data['pNombre'] = "'"+data['pNombre']+"'"
 
     if not 'pTipo' in data :
         data['pTipo'] = 'null'
+    else:
+        data['pTipo'] = "'"+data['pTipo']+"'"
 
     if not 'pEstatus' in data :
         data['pEstatus'] = 'null'
+    else:
+        data['pEstatus'] = "'"+data['pEstatus']+"'"
         
 
     db = get_db()
