@@ -181,6 +181,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                if( isEmpty($scope.articulo.CANTIDAD ) || $scope.articulo.CANTIDAD < 1 ){
                 console.log('¡Complete todos los campos!CANTIDAD','error')
                 alert("Por favor verifique la cantidad")
+                ngNotify.set('¡Por favor verifique la cantidad!','error')
                 error = true;
               }
 
