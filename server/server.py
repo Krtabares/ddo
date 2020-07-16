@@ -871,7 +871,7 @@ async def info_clientes(request):
     c = db.cursor()
     sql =""" SELECT NO_CIA, GRUPO, NO_CLIENTE,
                 NOMBRE, NOMBRE_COMERCIAL, DIRECCION,
-                EMAIL1, EMAIL3, TELEFONO, CEDULA, *
+                EMAIL1, EMAIL3, TELEFONO, CEDULA
                 FROM PAGINAWEB.ARCCMC_TEMP WHERE NO_CLIENTE = {pCliente} """
     c.execute(sql.format(pCliente = data['pCliente']))
     list = []
