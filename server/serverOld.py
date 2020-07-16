@@ -32,8 +32,8 @@ class CustomHandler(ErrorHandler):
 app = Sanic(__name__)
 port = 3500
 users = [{'username':'admin', 'password': 'ddo.admin', 'role': 'admin', 'name': 'admin'},
-{'username':'atia', 'password': 'atia.admin', 'role': 'user', 'name': 'clinica atias', "COD_CIA": "01","GRUPO_CLIENTE": "01",}
-{'username':'bmilag', 'password': 'bmilag.admin', 'role': 'user', 'name': 'fuser', "COD_CIA": "01","GRUPO_CLIENTE": "01",}]
+{'username':'atia', 'password': 'atia.admin', 'role': 'user', 'name': 'clinica atias', 'COD_CIA': '01','GRUPO_CLIENTE': '01',}
+{'username':'bmilag', 'password': 'bmilag.admin', 'role': 'user', 'name': 'fuser', 'COD_CIA': '01','GRUPO_CLIENTE': '01',}]
 sio = socketio.AsyncServer(async_mode='sanic')
 sio.attach(app)
 handler = CustomHandler()
