@@ -183,7 +183,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
                if( isEmpty($scope.articulo.CANTIDAD ) || $scope.articulo.CANTIDAD < 1 ){
                 console.log('¡Complete todos los campos!CANTIDAD','error')
-                alert("Por favor verifique la cantidad")
+                // alert("Por favor verifique la cantidad")
                 ngNotify.set('¡Por favor verifique la cantidad!','error')
                 error = true;
               }
@@ -191,6 +191,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               
                if( $scope.articulo.CANTIDAD > $scope.articulo.existencia  ){
                 // console.log('¡Complete todos los campos!PRECIO','error')
+                  ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
                  error = true;
               }
               console.log(error);
