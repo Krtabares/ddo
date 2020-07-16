@@ -103,8 +103,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/procedure_productos', body,{})
           .then(function successCallback(response) {
             console.log(response)
-
-            $scope.productos = response.data.obj
+            if(response.data.obj.length > 1){
+              $scope.productos = response.data.obj
+            }
 
           }, function errorCallback(response) {
             console.log(response)
