@@ -56,9 +56,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log($scope.client )
           // $scope.client = x
             $scope.client  = $scope.clientes[ $scope.clientIndex ];
-            $scope.pedido.no_cia = $scope.client.cod_cia;
-            $scope.pedido.grupo = $scope.client.grupo_cliente
-            $scope.pedido.no_cliente = $scope.client.cod_cliente
+            $scope.pedido.no_cia = $scope.client.COD_CIA;
+            $scope.pedido.grupo = $scope.client.GRUPO_CLIENTE
+            $scope.pedido.no_cliente = $scope.client.COD_CLIENTE
 
         }
         $scope.selectProduct = function(){
@@ -95,9 +95,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var body = {};
           if(filter){
             body.pNombre = $scope.nombre_cliente
-            body.pNoCia = $scope.client.cod_cia
-            body.pNoGrupo = $scope.client.grupo_cliente
-            body.pCliente = $scope.client.cod_cliente
+            body.pNoCia = $scope.client.c
+            body.pNoGrupo = $scope.client.GRUPO_CLIENTE
+            body.pCliente = $scope.client.COD_CLIENTE
             body.pBusqueda = $scope.busqueda_prod
           }
           request.post(ip+'/procedure_productos', body,{})
