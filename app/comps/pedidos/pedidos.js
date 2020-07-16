@@ -105,6 +105,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
             if(response.data.obj.length > 1){
               $scope.productos = response.data.obj
+            }else{
+              ngNotify.set('¡No se encontraron resultados!', 'warn')
             }
 
           }, function errorCallback(response) {
