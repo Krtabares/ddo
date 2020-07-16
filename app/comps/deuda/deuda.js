@@ -16,6 +16,23 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
       var ip = "http://192.168.168.170:3500";
       $scope.deuda = {};
       $scope.listDeuda = [{}];
+      $scope.hasClient = false;
+      $scope.client = {};
+      verificClient()
+
+      function verificClient(){
+        
+       var client = localStorage.getItem('client')
+       console.log(client)
+       if( client ==  null){
+         $scope.hasClient = false;
+       }else{
+         $scope.hasClient = true;
+         $scope.client = JSON.parse(client);
+         
+       } 
+       console.log($scope.client)
+     }
 	  
 	  $scope.arr_page = new Array(4);
       $scope.max = 4
@@ -73,7 +90,10 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
 	
 	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
         var defer = $q.defer();
-         request.post(ip+'/procedure_deudas', {'page': 1}, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
+        var body = {}
+       body.pCLiente = $scope.client.COD_CLIENTE
+
+         request.post(ip+'/procedure_deudas', body, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response.data)
 			defer.resolve(response.data.obj);

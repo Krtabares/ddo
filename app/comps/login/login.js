@@ -27,13 +27,15 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 		  request.post(ip+'/login', $scope.user ,{})
 		  .then(function successCallback(response) {
         //console.log(response.data.access_token);
+        localstorage.clear()
         localstorage.set('user', response.data.user);
         localstorage.set('token', response.data.access_token);
-        localstorage.clear()
+        
         var client = {}
         client.COD_CIA = response.data.user.COD_CIA
         client.GRUPO_CLIENTE = response.data.user.GRUPO_CLIENTE
         client.COD_CLIENTE = response.data.user.COD_CLIENTE
+        
         localstorage.set('client',  JSON.stringify(client));
         window.location.href = "#!/home";
         /*if (response.data.exist) {
