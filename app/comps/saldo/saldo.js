@@ -21,7 +21,24 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       $scope.max = 4
       $scope.min = 0;
       $scope.aux = {'pages': '01', 'totalPages': 11};
-	  $scope.isOptionsReady = false;
+      $scope.hasClient = false;
+    $scope.isOptionsReady = false;
+    $scope.client = {};
+    verificClient()
+
+    function verificClient(){
+      
+     var client = localStorage.getItem('client')
+     console.log(client)
+     if( client ==  null){
+       $scope.hasClient = false;
+     }else{
+       $scope.hasClient = true;
+       $scope.client = JSON.parse(client);
+       
+     } 
+     console.log($scope.client)
+   }
 	  
       $scope.getNumber = function(num) {
         return new Array(num);   
@@ -69,7 +86,11 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
 	
 	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
         var defer = $q.defer();
-         request.post(ip+'/procedure_productos', {'page': 1}, {'Authorization': 'Bearer ' + localstorage.get('token')})
+        var body = {}
+        body.pNoCia = $scope.client.COD_CIA
+        body.pNoGrupo = $scope.client.GRUPO_CLIENTE
+        body.pCliente = $scope.client.COD_CLIENTE
+         request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
 			defer.resolve(response.data.obj);
