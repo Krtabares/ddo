@@ -892,7 +892,7 @@ async def info_clientes(request):
     #         'cedula':row[9]
     #     }
     #     list.append(row)
-    while True:
+    while True: 
                 row = c.fetchone()
                 if row is None:
                     break
