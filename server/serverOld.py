@@ -677,8 +677,8 @@ async def procedure(request):
                                         pCliente varchar2(50) DEFAULT null;
                                         pNombre varchar2(50) DEFAULT null;
                                         output number DEFAULT 1000000;
-                                        pFechaFactura date
-                                        pFechaPedido date
+                                        pFechaFactura date;
+                                        pFechaPedido date;
                                         v_id_deuda varchar2(50);
                                         v_fecha_factura date;
                                         v_nro_pedido varchar2(50);
