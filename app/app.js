@@ -17,6 +17,7 @@ angular.module('app', [
           'app.usuarios',
           'app.config',
           'app.pedidos',
+          'app.facturado',
      ])
      .factory('request', ['$http','$q', function($http,$q) {
           return {
