@@ -36,6 +36,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           
         }
 
+        $scope.selectCLient = function(){
+          console.log($scope.client )
+          // $scope.client = x
+            $scope.client  = $scope.clientes[ $scope.clientIndex ];
+            $scope.pedido.no_cia = $scope.client.COD_CIA;
+            $scope.pedido.grupo = $scope.client.GRUPO_CLIENTE
+            $scope.pedido.no_cliente = $scope.client.COD_CLIENTE
+
+            console.log($scope.pedido, "pedido select" )  
+
+        }
+
         verificClient()
 
         function verificClient(){
@@ -52,17 +64,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
          console.log($scope.client)
        }
 
-        $scope.selectCLient = function(){
-          console.log($scope.client )
-          // $scope.client = x
-            $scope.client  = $scope.clientes[ $scope.clientIndex ];
-            $scope.pedido.no_cia = $scope.client.COD_CIA;
-            $scope.pedido.grupo = $scope.client.GRUPO_CLIENTE
-            $scope.pedido.no_cliente = $scope.client.COD_CLIENTE
 
-            console.log($scope.pedido, "pedido select" )  
-
-        }
         $scope.selectProduct = function(){
           console.log($scope.product )
           // $scope.client = x
