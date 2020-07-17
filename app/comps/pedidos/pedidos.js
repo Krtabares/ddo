@@ -225,6 +225,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               "ESTATUS": "0",
               "pedido": $scope.pedido.pedido
             }
+            console.log(body,"body")
             return body
           }
 
