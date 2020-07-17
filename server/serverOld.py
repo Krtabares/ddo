@@ -910,7 +910,7 @@ async def info_clientes(request):
     return response.json(row)  
       
 @app.route('/add/pedido',["POST","GET"])
-# @jwt_required
+@jwt_required
 async def add_pedido (request, token: Token):
 # async def procedure(request):
     try:
@@ -979,99 +979,7 @@ async def add_pedido (request, token: Token):
         logger.debug(e)
         return response.json("ERROR",400)
 
-    try:
-        data = request.json
-        print(data)
-        # if not 'COD_PRODUCTO' in data :
-        #     return response.json("ERROR",400)
-        # if not 'CANTIDAD' in data :
-        #     return response.json("ERROR",400)
-        # if not 'PRECIO' in data :
-        #     return response.json("ERROR",400)
-        
-
-        db = get_db()
-        c = db.cursor()
-
-    #   c.callproc("dbms_output.enable")
-        c.execute("""
-
-            DECLARE
-            
-            pNoCia varchar2(10) DEFAULT null;
-            pNoGrupo varchar2(10) DEFAULT null;
-            pCliente varchar2(50) DEFAULT null;
-            pNoArti varchar2(50) DEFAULT null;
-            pCantidad number DEFAULT 0;
-            pPrecio number DEFAULT 0;
-            pMoneda varchar2(10) DEFAULT 'P';
-            pIdPedido number DEFAULT 0;
-            
-            -- output number ;
-
-            BEGIN
-
-                pNoCia  := {pNoCia};
-                pNoGrupo  := {pNoGrupo};
-                pCliente  := {pCliente};
-                pNoArti  := {pNoArti};
-                pCantidad := {pCantidad};
-                pPrecio := {pPrecio};
-                pMoneda := {pMoneda};
-                pBusqueda := {pBusqueda};
-                pIdPedido := {pIdPedido};
-
-                -- dbms_output.enable(output);
-
-                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pMoneda,pBusqueda,pComponente);
-                    
-            LOOP 
-                FETCH l_cursor into
-                V_BODEGA,
-                V_NOMBRE_BODEGA,
-                V_COD_PRODUCTO,
-                V_NOMBRE_PRODUCTO,
-                V_PRINC_ACTIVO,
-                V_EXISTENCIA,
-                V_PRECIO,
-                V_PAGINA,
-                V_LINEA;
-                dbms_output.put_line
-                (
-                    V_BODEGA|| '|'|| 
-                    V_NOMBRE_BODEGA|| '|'|| 
-                    V_COD_PRODUCTO|| '|'|| 
-                    V_NOMBRE_PRODUCTO|| '|'|| 
-                    V_PRINC_ACTIVO|| '|'|| 
-                    V_EXISTENCIA|| '|'|| 
-                    V_PRECIO|| '|'||
-                    V_PAGINA|| '|'||
-                    V_LINEA      
-                );
-                EXIT WHEN l_cursor%NOTFOUND;
-            END LOOP;
-            CLOSE l_cursor;
-            
-            END;
-
-                """.format(
-                        pTotReg = data['pTotReg'],
-                        pTotPaginas = data['pTotPaginas'],
-                        pPagina = data['pPagina'],
-                        pLineas = data['pLineas'],
-                        pNoCia = data['pNoCia'],
-                        pNoGrupo = data['pNoGrupo'],
-                        pCliente = data['pCliente'],
-                        pMoneda = data['pMoneda'],
-                        pBusqueda = data['pBusqueda'],
-                        pComponente = data['pComponente'],
-                    ))
-
-        db.commit()                                                           
-        return response.json("SUCCESS",200)
-    except Exception as e:
-        logger.debug(e)
-        return response.json("ERROR",400)
+   
 
 
 @app.route('/get/pedidos',["POST","GET"])
