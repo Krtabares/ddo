@@ -661,7 +661,7 @@ async def procedure(request):
         data['pFechaPedido'] = 'null'
 
 
-
+    print(data)
     db = get_db()
     c = db.cursor()
     c.callproc("dbms_output.enable")
