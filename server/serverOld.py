@@ -621,7 +621,7 @@ async def procedure(request):
 async def procedure(request):
 
     data = request.json
-   print(data)
+    print(data)
     if not 'pTotReg' in data or data['pTotReg'] == 0 :
         data['pTotReg'] = 100
 
