@@ -47,7 +47,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
          }else{
            $scope.hasClient = true;
            $scope.client = JSON.parse(client);
-           
+           $scope.selectCLient()
          } 
          console.log($scope.client)
        }
