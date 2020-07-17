@@ -52,13 +52,11 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           ])
 
           $scope.dtColumns = [
-            DTColumnBuilder.newColumn('bodega').withTitle('Bodega'),
-            DTColumnBuilder.newColumn('nombre_bodega').withTitle('Nombre de la bodega'),
-            DTColumnBuilder.newColumn('cod_producto').withTitle('Código de producto'),
-			DTColumnBuilder.newColumn('nombre_producto').withTitle('Nombre de producto'),
-			DTColumnBuilder.newColumn('princ_activo').withTitle('Principio activo').withClass('none'),
-			DTColumnBuilder.newColumn('existencia').withTitle('Existencia').withClass('none'),
-            DTColumnBuilder.newColumn('precio').withTitle('Precio')
+            DTColumnBuilder.newColumn('nro_pedido').withTitle('N Pedido'),
+            DTColumnBuilder.newColumn('total_productos').withTitle('Total de Productos'),
+            DTColumnBuilder.newColumn('unidades_facturadas').withTitle('Unidades Facturadas'),
+			      DTColumnBuilder.newColumn('unidades_pedido').withTitle('unidades de pedido'),
+
         ];
 
     }
