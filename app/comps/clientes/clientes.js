@@ -37,8 +37,9 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
 		
         $scope.dtColumns = [
 
-			/*DTColumnBuilder.newColumn('nombre_cliente').withTitle('Nombre'),*/
-			DTColumnBuilder.newColumn('nombre_clientes').withTitle('Cliente'),
+			
+      DTColumnBuilder.newColumn('nombre_cia').withTitle('Cliente'),
+      DTColumnBuilder.newColumn('nombre_cliente').withTitle('Nombre'),
             DTColumnBuilder.newColumn('cod_cliente').withTitle('Codigo'),
 			DTColumnBuilder.newColumn('direccion_cliente').withTitle('Direccion'),
 			DTColumnBuilder.newColumn('cod_cia').withTitle('Código Cia'),
