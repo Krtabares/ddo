@@ -766,7 +766,7 @@ async def procedure(request):
                         pPagina = data['pPagina'],
                         pLineas = data['pLineas'],
                         pDeuda = data['pDeuda'],
-                        pCLiente = data['pCliente'],
+                        pCliente = data['pCliente'],
                         pNombre = data['pNombre'],
                         pFechaFactura = data['pFechaFactura'],
                         pFechaPedido = data['pFechaPedido']
