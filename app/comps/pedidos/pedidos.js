@@ -161,6 +161,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
               $scope.reset();
               // $scope.getPedidos(1);
+              ngNotify.set('¡Pedido generado con exito!','success')
             /*if (response.data.exist) {
               ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
             } else if (response.data.email_flag) {
