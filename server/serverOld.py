@@ -293,7 +293,7 @@ async def procedure(request , token : Token):
         data['pTotPaginas'] = 100
     
     if not 'pPagina' in data or data['pPagina'] == 0 :
-        data['pPagina'] = 'null'
+        data['pPagina'] = 1
 
     if not 'pLineas' in data or data['pLineas'] == 0 :
         data['pLineas'] = 100
@@ -636,12 +636,26 @@ async def procedure(request):
 
     if not 'pDeuda' in data :
         data['pDeuda'] = 'null'
+    else:
+        data['pDeuda'] = "'"+data['pDeuda']+"'"
 
-    if not 'pCLiente' in data :
-        data['pCLiente'] = 'null'
+    if not 'pNoCia' in data :
+        data['pNoCia'] = 'null'
+    else:
+        data['pNoCia'] = "'"+data['pNoCia']+"'"
+
     
-    if not 'pNombre' in data :
-        data['pNombre'] = 'null'
+    if not 'pCliente' in data :
+        data['pCliente'] = 'null'
+    else:
+        data['pCliente'] = "'"+data['pCliente']+"'"
+
+    if not 'pFechaFactura' in data :
+        data['pFechaFactura'] = 'null'
+
+    if not 'pFechaPedido' in data :
+        data['pFechaPedido'] = 'null'
+
 
 
     db = get_db()
