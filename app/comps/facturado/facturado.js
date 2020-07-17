@@ -1,14 +1,14 @@
 'use strict';
 
-angular.module('app.facturaP', ['datatables', 'datatables.buttons', 'datatables.bootstrap','ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
+angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables.bootstrap','ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
   .config(['$routeProvider', function($routeProvider) {
   
-    $routeProvider.when('/facturaP', {
-      templateUrl: 'comps/facturaP/facturaP.html',
-      controller: 'facturaPCtrl'
+    $routeProvider.when('/facturado', {
+      templateUrl: 'comps/facturado/facturado.html',
+      controller: 'facturadoCtrl'
     });
   }])
-  .controller('facturaPCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
+  .controller('facturadoCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
         //init   
         
