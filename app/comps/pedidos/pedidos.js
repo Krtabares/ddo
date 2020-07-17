@@ -213,7 +213,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(!error){
               $scope.articulo = {};
               $scope.productIndex = -1
-              $scope.productos = [];
+              // $scope.productos = [];
               $scope.product = {}
             }
             
