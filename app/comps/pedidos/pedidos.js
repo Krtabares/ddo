@@ -40,9 +40,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log($scope.client )
           // $scope.client = x
             $scope.client  = $scope.clientes[ $scope.clientIndex ];
-            $scope.pedido.no_cia = $scope.client.COD_CIA;
-            $scope.pedido.grupo = $scope.client.GRUPO_CLIENTE
-            $scope.pedido.no_cliente = $scope.client.COD_CLIENTE
+            selectCLientCAP( $scope.client)
+
+        }
+
+        function selectCLientCAP(client){
+
+          $scope.pedido.no_cia = client.COD_CIA;
+            $scope.pedido.grupo = client.GRUPO_CLIENTE
+            $scope.pedido.no_cliente = client.COD_CLIENTE
 
             console.log($scope.pedido, "pedido select" )  
 
@@ -59,7 +65,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
          }else{
            $scope.hasClient = true;
            $scope.client = JSON.parse(client);
-           $scope.selectCLient()
+            selectCLientCAP( $scope.client)
          } 
          console.log($scope.client)
        }
