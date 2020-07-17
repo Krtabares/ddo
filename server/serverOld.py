@@ -644,11 +644,15 @@ async def procedure(request):
     else:
         data['pNoCia'] = "'"+data['pNoCia']+"'"
 
-    
     if not 'pCliente' in data :
         data['pCliente'] = 'null'
     else:
         data['pCliente'] = "'"+data['pCliente']+"'"
+
+    if not 'pNombre' in data :
+        data['pNombre'] = 'null'
+    else:
+        data['pNombre'] = "'"+data['pNombre']+"'"
 
     if not 'pFechaFactura' in data :
         data['pFechaFactura'] = 'null'
