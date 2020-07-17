@@ -60,6 +60,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.pedido.grupo = $scope.client.GRUPO_CLIENTE
             $scope.pedido.no_cliente = $scope.client.COD_CLIENTE
 
+            console.log($scope.pedido, "pedido select" )  
+
         }
         $scope.selectProduct = function(){
           console.log($scope.product )
