@@ -670,7 +670,7 @@ async def procedure(request):
                                         pPagina number DEFAULT 1;
                                         pLineas number DEFAULT 100;
                                         pDeuda number DEFAULT 1363653;
-                                        pCLiente varchar2(50) DEFAULT null;
+                                        pCliente varchar2(50) DEFAULT null;
                                         pNombre varchar2(50) DEFAULT null;
                                         output number DEFAULT 1000000;
                                         pFechaFactura date
@@ -701,7 +701,7 @@ async def procedure(request):
                                 pPagina  := {pPagina};
                                 pLineas  := {pLineas};
                                 pDeuda := {pDeuda};
-                                pCLiente := {pCLiente};
+                                pCliente := {pCliente};
                                 pNombre := {pNombre};
                                 pFechaFactura := {pFechaFactura};
                                 pFechaPedido := {pFechaPedido};
@@ -709,7 +709,7 @@ async def procedure(request):
 
                                 dbms_output.enable(output);
 
-                                PROCESOSPW.pedidos_facturados (l_cursor, pTotReg, pTotPaginas, pPagina , pLineas,pDeuda, pCLiente, pNombre, pFechaFactura, pFechaPedido);
+                                PROCESOSPW.pedidos_facturados (l_cursor, pTotReg, pTotPaginas, pPagina , pLineas,pDeuda, pCliente, pNombre, pFechaFactura, pFechaPedido);
                                     
                             LOOP 
                                 FETCH l_cursor into
@@ -762,7 +762,7 @@ async def procedure(request):
                         pPagina = data['pPagina'],
                         pLineas = data['pLineas'],
                         pDeuda = data['pDeuda'],
-                        pCLiente = data['pCLiente'],
+                        pCLiente = data['pCliente'],
                         pNombre = data['pNombre'],
                         pFechaFactura = data['pFechaFactura'],
                         pFechaPedido = data['pFechaPedido']
