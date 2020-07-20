@@ -396,8 +396,5 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         ];
 		
 
-  
-          return nRow;
-      }
     }
 ]);
