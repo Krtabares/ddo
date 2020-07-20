@@ -662,7 +662,7 @@ async def procedure(request):
         data['pFechaPedido'] = 'null'
 
 
-
+    print(data)
     db = get_db()
     c = db.cursor()
     c.callproc("dbms_output.enable")
@@ -1027,10 +1027,10 @@ async def pedidos (request , token: Token):
                             join PAGINAWEB.DETALLE_PEDIDO t3
                                 on t1.ID = t3.ID_PEDIDO
                             {filter} WHERE COD_CLIENTE = {pCliente} 
-                            GROUP BY COD_CIA, GRUPO_CLIENTE, 
-                            COD_CLIENTE, FECHA, NO_PEDIDO_CODISA,  
-                            OBSERVACIONES,  t2.descripcion
-                            -- ORDER BY ID, FECHA
+                             GROUP BY ID, COD_CIA, GRUPO_CLIENTE, 
+                                   COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
+                                   OBSERVACIONES,  t2.descripcion
+                                 order by ID, Fecha
                             """.format(filter = data['filter'], pCliente = data['pCliente'] ))
         list = []
         for row in c:
