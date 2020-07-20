@@ -353,8 +353,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             DTColumnBuilder.newColumn('grupo').withTitle('Grupo'),
             DTColumnBuilder.newColumn('no_cliente').withTitle('Número cliente'),
 			DTColumnBuilder.newColumn('no_factu').withTitle('Número factura'),
-			DTColumnBuilder.newColumn('no_arti').withTitle('Número articulo'),
-			DTColumnBuilder.newColumn('cantidad').withTitle('Cantidad')
+			DTColumnBuilder.newColumn('estatus').withTitle('Estatus'),
+			DTColumnBuilder.newColumn('precio').withTitle('precio')
         ];
 		
 		/*$('#pedidos_table').DataTable( {
