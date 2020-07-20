@@ -83,7 +83,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             selectCLientCAP( $scope.client)
          } 
 
-         $scope.listarPedidos()
+         listarPedidos()
          console.log($scope.client)
        }
 
