@@ -354,7 +354,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             DTColumnBuilder.newColumn('no_cliente').withTitle('Número cliente'),
 			DTColumnBuilder.newColumn('no_factu').withTitle('Número factura'),
 			DTColumnBuilder.newColumn('estatus').withTitle('Estatus'),
-			DTColumnBuilder.newColumn('precio').withTitle('Precio')
+      DTColumnBuilder.newColumn('precio').withTitle('Precio'),
+      DTColumnBuilder.newColumn('cantidad').withTitle('Cantidad de Productos')
         ];
 		
 		/*$('#pedidos_table').DataTable( {

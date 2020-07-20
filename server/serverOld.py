@@ -1020,7 +1020,7 @@ async def pedidos (request , token: Token):
                              COD_CIA, GRUPO_CLIENTE, 
                             COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
                             OBSERVACIONES,  t2.descripcion, sum(t3.precio)
-                                monto
+                                monto, count(t3.COD_PRODUCTO) producto
                             FROM PAGINAWEB.PEDIDO t1 
                             join PAGINAWEB.ESTATUS t2
                                 on t1.ESTATUS = t2.CODIGO
@@ -1042,10 +1042,10 @@ async def pedidos (request , token: Token):
                     'fecha':row[3],
                     'no_factu':row[4],
                     # 'no_arti':row[4],
-                    # 'cantidad':row[4],
                     'observacion':row[5],
                     'estatus':row[6],
                     'precio':row[7],
+                    'cantidad':row[8],
                     
                     
               }
