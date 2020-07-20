@@ -1026,7 +1026,7 @@ async def update_pedido (request, token: Token):
                         --FECHA            = :FECHA,
                         --NO_PEDIDO_CODISA = :NO_PEDIDO_CODISA,
                         OBSERVACIONES    = :OBSERVACIONES
-                    WHERE  ID               = :ID;
+                    WHERE  ID               = :ID
 
             """
 
