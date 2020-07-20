@@ -231,7 +231,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               "GRUPO_CLIENTE": $scope.pedido.grupo,
               "COD_CLIENTE": $scope.pedido.no_cliente,
               "FECHA": fecha.getDate()+"-"+ fecha.getMonth()+"-"+ fecha.getFullYear(),
-              "NO_PEDIDO_CODISA": "123",
+              "NO_PEDIDO_CODISA": "---",
               "OBSERVACIONES": $scope.pedido.observacion || "",
               "ESTATUS": "0",
               "pedido": $scope.pedido.pedido
@@ -279,8 +279,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       }
 
         $scope.getPedidos_filtering = function(no_client){
-          var obj = {'no_client':no_client};
-          request.post(ip+'/get/pedidos_filtered', obj,{})
+          
+          var body = {}
+          body.pCliente = $scope.client.COD_CLIENTE
+          request.post(ip+'/get/pedidos', obj,{})
           .then(function successCallback(response) {
             console.log(response.data)
 			if(response.data.length > 0){
@@ -328,7 +330,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 		
 		$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
         var defer = $q.defer();
-        request.post(ip+'/get/pedidos', {'page': 1}, {'Authorization': 'Bearer ' + localstorage.get('token')})
+        var body = {}
+        body.pCliente = $scope.client.COD_CLIENTE
+        request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
 			defer.resolve(response.data.data);
