@@ -1092,7 +1092,7 @@ async def pedido (request , token: Token):
               }
             pedidos.append(aux)
 
-        c.execute("""SELECT 
+        c.execute(""" 
                               SELECT 
                                  COD_CIA, GRUPO_CLIENTE, 
                                 COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
