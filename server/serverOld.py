@@ -990,7 +990,7 @@ async def add_pedido (request, token: Token):
                  COD_PRODUCTO = str(pedido['COD_PRODUCTO']), 
                  CANTIDAD = int(pedido['CANTIDAD']), 
                  PRECIO = float(precio).replace(',','.'))
-                    ))
+                    )
 
         db.commit()                                                           
         return response.json("SUCCESS",200)
