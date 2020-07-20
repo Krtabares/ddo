@@ -1040,12 +1040,12 @@ async def update_pedido (request, token: Token):
                         data['ID']
                     ]
                 )
-        
+        print("ejecuto primero")
         c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID""",[data['ID']])
         # row = c.fetchone()
         ID = data['ID']
-
-        # print(data)
+        print("ejecuto segundo")
+        print(data)
         for pedido in data['pedido']:
             print(pedido)
             sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO) VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
