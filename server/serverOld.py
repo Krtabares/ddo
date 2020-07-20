@@ -984,12 +984,12 @@ async def add_pedido (request, token: Token):
         for pedido in data['pedido']:
             print(pedido)
             sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO) VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
-
+            precio =str(pedido['PRECIO']
             c.execute(sql.format(
                 ID_PEDIDO = int(ID),
                  COD_PRODUCTO = str(pedido['COD_PRODUCTO']), 
                  CANTIDAD = int(pedido['CANTIDAD']), 
-                 PRECIO = float(str(pedido['PRECIO']).replace(',','.'))
+                 PRECIO = float(precio).replace(',','.'))
                     ))
 
         db.commit()                                                           
