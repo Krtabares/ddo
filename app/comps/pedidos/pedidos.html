@@ -32,7 +32,7 @@
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Seleccione</label>
                       <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
-                        <option value="-1">Seleccione un cliente</option>
+                        <option value="">Seleccione un cliente</option>
                         <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
                       </select>
                     </div>
@@ -104,7 +104,7 @@
                 <div class="form-group">
                   <label for="exampleFormControlSelect2">Seleccione un producto</label>
                   <select class="form-control" ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
-                    <option value="-1" disabled selected="selected" >Seleccione</option>
+                    <option value="" disabled selected="selected" >Seleccione</option>
                     <option ng-repeat="x in productos" ng-if="!($index==1)" value="{{$index}}">{{x.nombre_producto}} - (<sub style="font-size: 6px;">{{ x.princ_activo.toLowerCase() }}</sub>) </option>
                   </select>
                 </div>
@@ -226,7 +226,7 @@
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Seleccione</label>
                       <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
-                        <option value="-1">Seleccione un cliente</option>
+                        <option value="">Seleccione un cliente</option>
                         <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
                       </select>
                     </div>
@@ -268,7 +268,7 @@
               <div class="col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                   <label>Fecha</label>
-                  <input type="date" disable ng-model="pedido.fecha" class="form-control" placeholder="fecha">
+                  <input type="date" ng-disabled="true" ng-model="pedido.fecha" class="form-control" placeholder="fecha">
                 </div>
               </div>
               <div class="col-sm-12 col-md-8 col-lg-8">
@@ -276,7 +276,7 @@
   
                 <div class="form-group">
                   <label for="comment">Observacion:</label>
-                  <textarea class="form-control" ng-model="pedido.observacion" rows="4" id="comment"></textarea>
+                  <textarea class="form-control" ng-disabled="!editView" ng-model="pedido.observacion" rows="4" id="comment"></textarea>
                 </div>
               </div>
   
@@ -298,7 +298,7 @@
                 <div class="form-group">
                   <label for="exampleFormControlSelect2">Seleccione un producto</label>
                   <select class="form-control" ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
-                    <option value="-1" disabled selected="selected" >Seleccione</option>
+                    <option value="" disabled selected="selected" >Seleccione</option>
                     <option ng-repeat="x in productos" ng-if="!($index==1)" value="{{$index}}">{{x.nombre_producto}} - (<sub style="font-size: 6px;">{{ x.princ_activo.toLowerCase() }}</sub>) </option>
                   </select>
                 </div>
@@ -309,7 +309,7 @@
             
             </div>
   
-          <div class="container">
+          <div class="container"  ng-show="editView" >
             <div class="row">
               <div class="col-2">
                 <label>Codigo</label>

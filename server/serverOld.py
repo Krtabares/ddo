@@ -999,7 +999,7 @@ async def add_pedido (request, token: Token):
         return response.json("ERROR",400)
 
    
-@app.route('/update/pedido',["POST","GET"])
+@app.route('/upd/pedido',["POST","GET"])
 @jwt_required
 async def update_pedido (request, token: Token):
 # async def procedure(request):
