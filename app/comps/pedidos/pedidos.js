@@ -160,7 +160,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
               $scope.reset();
-              // $scope.getPedidos(1);
+              $scope.getPedidos_filtering();
               ngNotify.set('¡Pedido generado con exito!','success')
             /*if (response.data.exist) {
               ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
@@ -282,7 +282,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           
           var body = {}
           body.pCliente = $scope.client.COD_CLIENTE
-          request.post(ip+'/get/pedidos', obj,{})
+          request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
 			if(response.data.length > 0){
@@ -354,7 +354,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             DTColumnBuilder.newColumn('no_cliente').withTitle('Número cliente'),
 			DTColumnBuilder.newColumn('no_factu').withTitle('Número factura'),
 			DTColumnBuilder.newColumn('estatus').withTitle('Estatus'),
-			DTColumnBuilder.newColumn('precio').withTitle('precio')
+			DTColumnBuilder.newColumn('precio').withTitle('Precio')
         ];
 		
 		/*$('#pedidos_table').DataTable( {
