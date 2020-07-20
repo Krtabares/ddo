@@ -263,12 +263,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             
           }
 
+          
+
           function isEmpty(str) {
             return (!str || 0 === str.length);
           }
 
           $scope.buildBody = function(){
            var fecha = new Date( $scope.pedido.fecha)
+           $scope.pedido.pedido.forEach(element => {
+             element.precio = element.precio.toString()
+           });
            var body = {
               "COD_CIA": $scope.pedido.no_cia,
               "GRUPO_CLIENTE": $scope.pedido.grupo,
