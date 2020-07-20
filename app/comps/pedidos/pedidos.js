@@ -67,6 +67,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.client = JSON.parse(client);
             selectCLientCAP( $scope.client)
          } 
+
+         $scope.listarPedidos()
          console.log($scope.client)
        }
 
