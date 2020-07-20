@@ -271,10 +271,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           $scope.buildBody = function(){
            var fecha = new Date( $scope.pedido.fecha)
-           console.log($scope.pedido.pedido)
-           $scope.pedido.pedido.forEach(element => {
-             element.precio = element.precio.toString()
-           });
            var body = {
               "COD_CIA": $scope.pedido.no_cia,
               "GRUPO_CLIENTE": $scope.pedido.grupo,
