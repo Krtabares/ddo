@@ -1097,7 +1097,7 @@ async def pedido (request , token: Token):
         c.execute(""" 
                               SELECT 
                                  COD_CIA, GRUPO_CLIENTE, 
-                                COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
+                                COD_CLIENTE, TO_CHAR(FECHA, 'YYYY-MM-DD'), NO_PEDIDO_CODISA, 
                                 OBSERVACIONES, ESTATUS
                                 FROM PAGINAWEB.PEDIDO WHERE ID = {idPedido} 
                             """.format( idPedido = data['idPedido'] ))
