@@ -265,9 +265,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/get/pedidos', obj, {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODk5Nzk2NTcsIm5iZiI6MTU4OTk3OTY1NywianRpIjoiZGFjNTZjM2QtZjM2ZC00NTRkLTkwNWYtZmZmZjFiYjI2ZTE5IiwiaWRlbnRpdHkiOiJhZG1pbiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Ff_CfwXCIxLGinnAkS8C7vUxColNK_utxy-LzJt0188'})
           .then(function successCallback(response) {
             console.log(response.data)
-			if(response.data.data.length > 0){
-				$scope.listPedido = response.data.data;
-			}
+            if(response.data.data.length > 0){
+              $scope.listPedido = response.data.data;
+            }
             /*if (response.data.exist) {
               ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
             } else if (response.data.email_flag) {
@@ -277,6 +277,26 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
           });
       }
+
+      $scope.getPedido = function(ID){
+        var obj = {'idPedido': ID};
+    // console.log($localStorage.token);
+        request.post(ip+'/get/pedido', obj, {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODk5Nzk2NTcsIm5iZiI6MTU4OTk3OTY1NywianRpIjoiZGFjNTZjM2QtZjM2ZC00NTRkLTkwNWYtZmZmZjFiYjI2ZTE5IiwiaWRlbnRpdHkiOiJhZG1pbiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Ff_CfwXCIxLGinnAkS8C7vUxColNK_utxy-LzJt0188'})
+        .then(function successCallback(response) {
+          console.log(response.data)
+          $scope.showPedido(response.data.obj)
+          if(response.data.data.length > 0){
+            $scope.listPedido = response.data.data;
+          }
+          /*if (response.data.exist) {
+            ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
+          } else if (response.data.email_flag) {
+            ngNotify.set('¡Ya el correo está registrado!','error')
+          }*/
+        }, function errorCallback(response) {
+          console.log(response)
+        });
+    }
 
         $scope.getPedidos_filtering = function(no_client){
           
@@ -317,7 +337,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         $scope.showPedido = function(pedido){
-          console.log(pedido);
+          console.log(ID);
           $scope.pedido = pedido;
         }
 
@@ -325,9 +345,24 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.pedido.pedido.splice( i, 1 );
         }
 
+        
+
 		
 		
-		
+    $scope.listaPedidos=[]
+    
+    $scope.listarPedidos = function(){
+      var body = {}
+        body.pCliente = $scope.client.COD_CLIENTE
+        request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+          .then(function successCallback(response) {
+            console.log(response.data)
+
+            $scope.listaPedidos=response.data.data
+			      // defer.resolve(response.data.data);
+         });
+    }
+
 		$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
         var defer = $q.defer();
         var body = {}
@@ -335,7 +370,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
-			defer.resolve(response.data.data);
+
+
+			      defer.resolve(response.data.data);
          });
 		 
         return defer.promise;
@@ -358,15 +395,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       DTColumnBuilder.newColumn('cantidad').withTitle('Cantidad de Productos')
         ];
 		
-		/*$('#pedidos_table').DataTable( {
-			  buttons: [
-				  'copy', 'excel', 'pdf'
-			  ]
-			});*/
-		
-		//$scope.getPedidos(1);
-		//$scope.getPedidos_filtering("12")
-        //$scope.getPedidos_filtering('123');
-		//$scope.getProductos('01');
+
+  
+          return nRow;
+      }
     }
 ]);

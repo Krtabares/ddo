@@ -1017,10 +1017,11 @@ async def pedidos (request , token: Token):
         db = get_db()
         c = db.cursor()
         c.execute("""SELECT 
+        
                              COD_CIA, GRUPO_CLIENTE, 
                             COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
                             OBSERVACIONES,  t2.descripcion, sum(t3.precio)
-                                monto, count(t3.COD_PRODUCTO) producto
+                                monto, count(t3.COD_PRODUCTO) producto,ID
                             FROM PAGINAWEB.PEDIDO t1 
                             join PAGINAWEB.ESTATUS t2
                                 on t1.ESTATUS = t2.CODIGO
@@ -1046,6 +1047,7 @@ async def pedidos (request , token: Token):
                     'estatus':row[6],
                     'precio':row[7],
                     'cantidad':row[8],
+                    'ID':row[8],
                     
                     
               }
