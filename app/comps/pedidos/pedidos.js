@@ -38,7 +38,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.editPedido= function(){
-          $scope.editPedido = true
+          $scope.editView = true
         }
 
         $scope.selectCLient = function(){
