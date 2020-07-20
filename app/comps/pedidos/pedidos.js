@@ -355,7 +355,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.showPedido = function(pedido){
           console.log(pedido);
-          pedido.fecha = new Date(fecha);
+          pedido.fecha = new Date(pedido.fecha);
           $scope.pedido = pedido;
         }
 
