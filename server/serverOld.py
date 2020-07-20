@@ -1016,11 +1016,7 @@ async def pedidos (request , token: Token):
 
         db = get_db()
         c = db.cursor()
-        c.execute("""SELECT * FROM
-                    (
-                        SELECT a.*, rownum r__
-                        FROM
-                        ( SELECT 
+        c.execute("""SELECT 
                              COD_CIA, GRUPO_CLIENTE, 
                             COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
                             OBSERVACIONES,  t2.descripcion, sum(t3.precio)
@@ -1035,11 +1031,7 @@ async def pedidos (request , token: Token):
                             COD_CLIENTE, FECHA, NO_PEDIDO_CODISA,  
                             OBSERVACIONES,  t2.descripcion
                             ORDER BY ID, FECHA
-                        )
-                    a
-                        WHERE rownum < ((1 * 100) + 1 )
-                    )
-                    WHERE r__ >= (((1-1) * 100) + 1) """.format(filter = data['filter'], pCLiente = data['pCLiente'] ))
+                            """.format(filter = data['filter'], pCLiente = data['pCLiente'] ))
         list = []
         for row in c:
             aux = {}
