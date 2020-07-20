@@ -1031,11 +1031,11 @@ async def update_pedido (request, token: Token):
             """
 
         c.execute(sql, [                        
-                        data['COD_CIA'],
-                        data['GRUPO_CLIENTE'],
-                        data['COD_CLIENTE'],
-                        data['FECHA'],
-                        data['NO_PEDIDO_CODISA'],
+                        # data['COD_CIA'],
+                        # data['GRUPO_CLIENTE'],
+                        # data['COD_CLIENTE'],
+                        # data['FECHA'],
+                        # data['NO_PEDIDO_CODISA'],
                         data['OBSERVACIONES'],
                         data['ID']
                     ]
