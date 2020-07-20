@@ -309,8 +309,8 @@
             
             </div>
   
-          <div class="container"   >
-            <div class="row" ng-show="editView">
+          <div class="container" ng-show="editView"  >
+            <div class="row" >
               <div class="col-2">
                 <label>Codigo</label>
                 <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
@@ -383,7 +383,7 @@
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Cerrar</button>
         <button type="button"  class="btn btn-primary" ng-show="!editView"  ng-click="editPedido();">Editar</button>
-        <button type="button"  class="btn btn-success" ng-show="editView" ng-click="addPedido();">Guardar pedido</button>
+        <button type="button"  class="btn btn-success" ng-show="editView" ng-click="updPedido();">Guardar pedido</button>
       </div>
     </div>
   </div>
@@ -428,7 +428,7 @@
             <th scope="col">Número cliente</th>
             <th scope="col">Número factura</th>
             <th scope="col">Estatus</th>
-            <th scope="col">Precio</th>
+            <th scope="col">Monto</th>
             <th scope="col">Cantidad de Productos</th>
             
             </tr>
