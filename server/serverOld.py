@@ -999,6 +999,71 @@ async def add_pedido (request, token: Token):
         return response.json("ERROR",400)
 
    
+@app.route('/update/pedido',["POST","GET"])
+@jwt_required
+async def update_pedido (request, token: Token):
+# async def procedure(request):
+    try:
+        data = request.json
+        print(data)
+        # if not 'COD_PRODUCTO' in data :
+        #     return response.json("ERROR",400)
+        # if not 'CANTIDAD' in data :
+        #     return response.json("ERROR",400)
+        # if not 'PRECIO' in data :
+        #     return response.json("ERROR",400)
+        
+
+        db = get_db()
+        c = db.cursor()
+
+        sql = """
+                    UPDATE PAGINAWEB.PEDIDO
+                    SET    
+                        COD_CIA          = :COD_CIA,
+                        GRUPO_CLIENTE    = :GRUPO_CLIENTE,
+                        COD_CLIENTE      = :COD_CLIENTE,
+                        FECHA            = :FECHA,
+                        NO_PEDIDO_CODISA = :NO_PEDIDO_CODISA,
+                        OBSERVACIONES    = :OBSERVACIONES
+                    WHERE  ID               = :ID;
+
+            """
+
+        c.execute(sql, [                        
+                        data['COD_CIA'],
+                        data['GRUPO_CLIENTE'],
+                        data['COD_CLIENTE'],
+                        data['FECHA'],
+                        data['NO_PEDIDO_CODISA'],
+                        data['OBSERVACIONES'],
+                        data['ID']
+                    ]
+                )
+        
+        c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID""",[data['ID']])
+        # row = c.fetchone()
+        ID = data['ID']
+
+        # print(data)
+        for pedido in data['pedido']:
+            print(pedido)
+            sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO) VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
+
+            c.execute(sql.format(
+                ID_PEDIDO = int(ID),
+                 COD_PRODUCTO = str(pedido['COD_PRODUCTO']), 
+                 CANTIDAD = int(pedido['CANTIDAD']), 
+                 PRECIO = float(pedido['PRECIO'].replace(',','.'))
+                    ))
+
+        db.commit()                                                           
+        return response.json("SUCCESS",200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
+   
 
 
 @app.route('/get/pedidos',["POST","GET"])

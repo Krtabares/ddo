@@ -15,6 +15,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             'fecha': new Date(),
             'pedido':[]
         };
+        $scope.editView = false;
         $scope.articulo = {};
         $scope.nombre_cliente = null;
         $scope.busqueda_prod = null;
@@ -34,6 +35,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log("initmodal")
           // $scope.getClientNew();
           
+        }
+
+        $scope.editPedido= function(){
+          $scope.editPedido = true
         }
 
         $scope.selectCLient = function(){
@@ -189,6 +194,27 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
           });
         }
+
+        $scope.updPedido = function(){
+          // console.log(pedido);
+          var body = $scope.buildBody();
+          body.ID = $scope.pedido.ID
+          request.post(ip+'/upd/pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+            console.log(response)
+              $scope.reset();
+              $scope.getPedidos_filtering();
+              ngNotify.set('¡Pedido generado con exito!','success')
+            /*if (response.data.exist) {
+              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
+            } else if (response.data.email_flag) {
+              ngNotify.set('¡Ya el correo está registrado!','error')
+            }*/
+            alert("Guardado con exito!")
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
         $scope.addArtPedido = function(){
             console.log($scope.pedido.pedido);
             if(Object.keys($scope.articulo).length === 0)
@@ -248,7 +274,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               "GRUPO_CLIENTE": $scope.pedido.grupo,
               "COD_CLIENTE": $scope.pedido.no_cliente,
               "FECHA": fecha.getDate()+"-"+ fecha.getMonth()+"-"+ fecha.getFullYear(),
-              "NO_PEDIDO_CODISA": "---",
+              "NO_PEDIDO_CODISA":($scope.editView)? $scope.pedido.no_factu:"---",
               "OBSERVACIONES": $scope.pedido.observacion || "",
               "ESTATUS": "0",
               "pedido": $scope.pedido.pedido

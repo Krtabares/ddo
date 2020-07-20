@@ -200,7 +200,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
-        <h5 class="modal-title" id="addPedidoModalLabel">CREAR PEDIDO <i class="fas fa-1x fa-list-alt"></i></h5>
+        <h5 class="modal-title" id="addPedidoModalLabel">VER PEDIDO <i class="fas fa-1x fa-list-alt"></i></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -268,7 +268,7 @@
               <div class="col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                   <label>Fecha</label>
-                  <input type="date" ng-model="pedido.fecha" class="form-control" placeholder="fecha">
+                  <input type="date" disable ng-model="pedido.fecha" class="form-control" placeholder="fecha">
                 </div>
               </div>
               <div class="col-sm-12 col-md-8 col-lg-8">
@@ -283,7 +283,7 @@
   
             </div>
             
-            <div class="row">
+            <div class="row" ng-show="editPedido" >
               <div class="col-sm-12 col-md-6 col-lg-6">
                 <label for="clientes">Busqueda por producto</label>
                 <div class="input-group mb-3">
@@ -382,7 +382,8 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Cerrar</button>
-        <button type="button"  class="btn btn-success"  ng-click="addPedido();">Enviar pedido</button>
+        <button type="button"  class="btn btn-primary" ng-show="!editPedido"  ng-click="editPedido();">Editar</button>
+        <button type="button"  class="btn btn-success" ng-show="editPedido" ng-click="addPedido();">Guardar pedido</button>
       </div>
     </div>
   </div>
