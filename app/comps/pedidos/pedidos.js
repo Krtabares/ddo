@@ -354,7 +354,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         $scope.showPedido = function(pedido){
-          console.log(ID);
+          console.log(pedido);
           $scope.pedido = pedido;
         }
 
