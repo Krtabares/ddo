@@ -1112,7 +1112,7 @@ async def pedido (request , token: Token):
                     'no_factu':row[4],
                     'observacion':row[5],
                     'estatus':row[6],
-                    'pedidos': pedidos,
+                    'pedido': pedidos,
                     
               }
             list.append(aux)
