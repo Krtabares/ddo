@@ -1020,11 +1020,11 @@ async def update_pedido (request, token: Token):
         sql = """
                     UPDATE PAGINAWEB.PEDIDO
                     SET    
-                        COD_CIA          = :COD_CIA,
-                        GRUPO_CLIENTE    = :GRUPO_CLIENTE,
-                        COD_CLIENTE      = :COD_CLIENTE,
-                        FECHA            = :FECHA,
-                        NO_PEDIDO_CODISA = :NO_PEDIDO_CODISA,
+                        --COD_CIA          = :COD_CIA,
+                        --GRUPO_CLIENTE    = :GRUPO_CLIENTE,
+                        --COD_CLIENTE      = :COD_CLIENTE,
+                        --FECHA            = :FECHA,
+                        --NO_PEDIDO_CODISA = :NO_PEDIDO_CODISA,
                         OBSERVACIONES    = :OBSERVACIONES
                     WHERE  ID               = :ID;
 
