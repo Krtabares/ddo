@@ -383,6 +383,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log(pedido);
           pedido.fecha = new Date(pedido.fecha);
           $scope.pedido = pedido;
+          $scope.editView =false;
         }
 
         $scope.removeArt = function(i){
