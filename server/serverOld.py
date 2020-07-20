@@ -1047,7 +1047,7 @@ async def pedidos (request , token: Token):
                     'estatus':row[6],
                     'precio':row[7],
                     'cantidad':row[8],
-                    'ID':row[8],
+                    'ID':row[9],
                     
                     
               }
