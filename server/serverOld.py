@@ -1030,7 +1030,7 @@ async def pedidos (request , token: Token):
                             GROUP BY COD_CIA, GRUPO_CLIENTE, 
                             COD_CLIENTE, FECHA, NO_PEDIDO_CODISA,  
                             OBSERVACIONES,  t2.descripcion
-                            ORDER BY ID, FECHA
+                            -- ORDER BY ID, FECHA
                             """.format(filter = data['filter'], pCLiente = data['pCLiente'] ))
         list = []
         for row in c:
