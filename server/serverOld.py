@@ -1030,7 +1030,7 @@ async def pedidos (request , token: Token):
                              GROUP BY ID, COD_CIA, GRUPO_CLIENTE, 
                                    COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
                                    OBSERVACIONES,  t2.descripcion
-                                 order by ID, Fecha
+                                 order by ID desc
                             """.format(filter = data['filter'], pCliente = data['pCliente'] ))
         list = []
         for row in c:
@@ -1051,7 +1051,7 @@ async def pedidos (request , token: Token):
               }
             list.append(aux)
          
-        c.execute("""select count(1) from arfapedw_test""")
+        c.execute("""select count(1) from PEDIDO""")
         row = c.fetchone()
         totalPages=row[0]/100
         if totalPages < 0.5:
@@ -1059,6 +1059,63 @@ async def pedidos (request , token: Token):
         return response.json({"data":list,
                               "page":'01',
                               "totalPages": round(totalPages)},200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
+
+@app.route('/get/pedido',["POST","GET"])
+@jwt_required
+async def pedido (request , token: Token):
+    try:  
+        data = request.json
+
+        if not 'idPedido' in data or data['idPedido'] == 0 :   
+            return response.json({"msg": "Missing ID parameter"}, status=400)
+
+        db = get_db()
+        c = db.cursor()
+
+        c.execute("""SELECT 
+                         COD_PRODUCTO, CANTIDAD, 
+                        PRECIO
+                        FROM PAGINAWEB.DETALLE_PEDIDO WHERE ID_PEDIDO = {idPedido} """.format( idPedido = data['idPedido'] ))
+
+        pedidos = []
+        for row in c:
+            aux = {}
+            aux = {
+                    'COD_PRODUCTO':row[0],
+                    'CANTIDAD':row[1],
+                    'PRECIO':row[2],
+        
+              }
+            pedidos.append(aux)
+
+        c.execute("""SELECT 
+                              SELECT 
+                                 COD_CIA, GRUPO_CLIENTE, 
+                                COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
+                                OBSERVACIONES, ESTATUS
+                                FROM PAGINAWEB.PEDIDO WHERE ID = {idPedido} 
+                            """.format( idPedido = data['idPedido'] ))
+        list = []
+        for row in c:
+            aux = {}
+            aux = {
+                    'no_cia':row[0],
+                    'grupo':row[1],
+                    'no_cliente':row[2],
+                    'fecha':row[3],
+                    'no_factu':row[4],
+                    'observacion':row[5],
+                    'estatus':row[6],
+                    'pedidos': pedidos,
+                    
+              }
+            list.append(aux)
+         
+        return response.json({"msj": "OK", "obj": list}, 200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
