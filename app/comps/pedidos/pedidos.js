@@ -301,7 +301,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         request.post(ip+'/get/pedido', obj, {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODk5Nzk2NTcsIm5iZiI6MTU4OTk3OTY1NywianRpIjoiZGFjNTZjM2QtZjM2ZC00NTRkLTkwNWYtZmZmZjFiYjI2ZTE5IiwiaWRlbnRpdHkiOiJhZG1pbiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Ff_CfwXCIxLGinnAkS8C7vUxColNK_utxy-LzJt0188'})
         .then(function successCallback(response) {
           console.log(response.data)
-          $scope.showPedido(response.data.obj)
+          $scope.showPedido(response.data.obj[0])
           if(response.data.data.length > 0){
             $scope.listPedido = response.data.data;
           }
