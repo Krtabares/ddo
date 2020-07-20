@@ -52,7 +52,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             console.log($scope.pedido, "pedido select" )  
 
-        }
+        } 
+
+        $scope.listaPedidos=[]
+    
+        function listarPedidos(){
+         var body = {}
+           body.pCliente = $scope.client.COD_CLIENTE
+           request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+             .then(function successCallback(response) {
+               console.log(response.data)
+   
+               $scope.listaPedidos=response.data.data
+               // defer.resolve(response.data.data);
+            });
+       }
+   
 
         verificClient()
 
@@ -351,19 +366,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 		
 		
-    $scope.listaPedidos=[]
-    
-    $scope.listarPedidos = function(){
-      var body = {}
-        body.pCliente = $scope.client.COD_CLIENTE
-        request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
-          .then(function successCallback(response) {
-            console.log(response.data)
-
-            $scope.listaPedidos=response.data.data
-			      // defer.resolve(response.data.data);
-         });
-    }
 
 		$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
         var defer = $q.defer();
