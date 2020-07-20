@@ -1006,18 +1006,40 @@ async def add_pedido (request, token: Token):
 async def pedidos (request , token: Token):
     try:  
         data = request.json
+
+        if not 'pCLiente' in data :
+            data['pCLiente'] = 'null'
+            data['filter'] = '--'
+        else:
+            data['pCLiente'] = "'"+data['pCLiente']+"'"
+            data['filter'] = ''
+
         db = get_db()
         c = db.cursor()
         c.execute("""SELECT * FROM
                     (
                         SELECT a.*, rownum r__
                         FROM
-                        ( SELECT NO_CIA, GRUPO, NO_CLIENTE, NO_FACTU, NO_ARTI, CANTIDAD, PRECIO, TO_CHAR(FECHA, 'YYYY-MM-DD'), OBSERVACION
-                    FROM ARFAPEDW_TEST)
+                        ( SELECT 
+                             COD_CIA, GRUPO_CLIENTE, 
+                            COD_CLIENTE, FECHA, NO_PEDIDO_CODISA, 
+                            OBSERVACIONES,  t2.descripcion, sum(t3.precio)
+                                monto
+                            FROM PAGINAWEB.PEDIDO t1 
+                            join PAGINAWEB.ESTATUS t2
+                                on t1.ESTATUS = t2.CODIGO
+                            join PAGINAWEB.DETALLE_PEDIDO t3
+                                on t1.ID = t3.ID_PEDIDO
+                            {filter} WHERE COD_CLIENTE = {pCLiente} 
+                            GROUP BY COD_CIA, GRUPO_CLIENTE, 
+                            COD_CLIENTE, FECHA, NO_PEDIDO_CODISA,  
+                            OBSERVACIONES,  t2.descripcion
+                            ORDER BY ID, FECHA
+                        )
                     a
                         WHERE rownum < ((1 * 100) + 1 )
                     )
-                    WHERE r__ >= (((1-1) * 100) + 1) """)
+                    WHERE r__ >= (((1-1) * 100) + 1) """.format(filter = data['filter'], pCLiente = data['pCLiente'] ))
         list = []
         for row in c:
             aux = {}
@@ -1025,12 +1047,15 @@ async def pedidos (request , token: Token):
                     'no_cia':row[0],
                     'grupo':row[1],
                     'no_cliente':row[2],
-                    'no_factu':row[3],
-                    'no_arti':row[4],
-                    'cantidad':row[5],
-                    'precio':row[6],
-                    'fecha':row[7],
-                    'observacion':row[8],
+                    'fecha':row[3],
+                    'no_factu':row[4],
+                    # 'no_arti':row[4],
+                    # 'cantidad':row[4],
+                    'observacion':row[5],
+                    'estatus':row[6],
+                    'precio':row[7],
+                    
+                    
               }
             list.append(aux)
          
