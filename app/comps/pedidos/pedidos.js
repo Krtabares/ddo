@@ -49,7 +49,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.nuevoTotal = function (valor) {
           console.log(valor)
-          return formato(2, valor + $scope.totales.bolivares)
+          return $scope.formato(2, valor + $scope.totales.bolivares)
         }
 
         $scope.formato = function(tipo, valor){
