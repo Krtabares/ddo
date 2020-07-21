@@ -106,18 +106,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         function verificClient(){
           
          var client = localStorage.getItem('client')
+         var client_info = localStorage.getItem('client_info')
          console.log(client)
          if( client ==  null){
            $scope.hasClient = false;
          }else{
            $scope.hasClient = true;
            $scope.client = JSON.parse(client);
-           $scope.client_info = localStorage.getItem('client_info')
+           $scope.client_info = JSON.parse(client_info);
             selectCLientCAP( $scope.client)
          } 
 
          listarPedidos()
-         console.log($scope.client)
+         console.log($scope.client_info)
         }
 
 
