@@ -11,6 +11,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
   .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
         //init    
+
+                
+        const formatterVe = new Intl.NumberFormat('es-VE', {
+          style: 'currency',
+          currency: 'VES'
+        })
+        // console.log(formatterVe.format(value))
+		
         $scope.pedido = {
             'fecha': new Date(),
             'pedido':[]
@@ -271,6 +279,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           $scope.buildBody = function(){
            var fecha = new Date( $scope.pedido.fecha)
+            console.log($scope.pedido.pedido)
+             
+
            var body = {
               "COD_CIA": $scope.pedido.no_cia,
               "GRUPO_CLIENTE": $scope.pedido.grupo,
@@ -394,9 +405,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.pedido.pedido.splice( i, 1 );
         }
 
-        
 
-		
 		
 
 		$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
