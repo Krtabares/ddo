@@ -51,8 +51,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log($scope.totales.bolivares)
           console.log( $scope.articulo.PRECIO )
           console.log( $scope.articulo.CANTIDAD)
-          var total = (($scope.totales.bolivares)?  $scope.totales.bolivares:0)
-                                           + parseFloat($scope.articulo.PRECIO * $scope.articulo.CANTIDAD ) 
+          var total =  parseFloat($scope.totales.bolivares)
+                                           + parseFloat($scope.articulo.PRECIO | 0 )* ($scope.articulo.CANTIDAD | 0  )
           return $scope.formato(2, total)
         }
 
