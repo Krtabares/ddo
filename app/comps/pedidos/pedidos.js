@@ -342,9 +342,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         .then(function successCallback(response) {
           console.log(response.data)
           $scope.showPedido(response.data.obj[0])
-          if(response.data.data.length > 0){
-            $scope.listPedido = response.data.data;
-          }
+          
           /*if (response.data.exist) {
             ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
           } else if (response.data.email_flag) {
