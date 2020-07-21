@@ -361,7 +361,8 @@
                       <th scope="col">Opcion</th>
                       <th scope="col">No_arti</th>
                       <th scope="col">Cantidad</th>
-                      <th scope="col">Precio</th>
+                      <th scope="col">Precio por unidad</th>
+                      <th scope="col">Total</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -377,6 +378,7 @@
                           <td>{{ x.COD_PRODUCTO }}</td>
                           <td>{{ x.CANTIDAD }}</td>
                           <td>{{ formato(2,x.PRECIO) }}</td>
+                          <td>{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</td>
                         </tr>
                   </tbody>
                   </table>
