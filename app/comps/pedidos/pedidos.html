@@ -330,9 +330,14 @@
                   <label>Existencia</label>
                   <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
                 </div>
-                <div class="col-2">
-                  <label>Precio</label>
-                  <span ng-if="editView">{{formato(2,articulo.PRECIO)}}</span>
+                <div class="col-3">
+                  <label>Precio por unidad</label>
+                  <span ng-if="editView">{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
+                  <span ng-if="!editView">{{formato(2,0)}}</span>
+                </div>
+                <div class="col-3">
+                  <label>Precio total</label>
+                  <span ng-if="editView">{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
                   <span ng-if="!editView">{{formato(2,0)}}</span>
                 </div>
                 <div class="col-4">
