@@ -1064,6 +1064,26 @@ async def update_pedido (request, token: Token):
         return response.json("ERROR",400)
 
    
+@app.route('/del/pedido',["POST","GET"])
+@jwt_required
+async def update_pedido (request, token: Token):
+# async def procedure(request):
+    try:
+        data = request.json
+        print(data)
+
+        c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID""",[data['ID']])
+
+        c.execute("""DELETE FROM PEDIDO WHERE ID = :ID""",[data['ID']])
+
+        db.commit() 
+
+        return response.json("SUCCESS",200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
+   
 
 
 @app.route('/get/pedidos',["POST","GET"])

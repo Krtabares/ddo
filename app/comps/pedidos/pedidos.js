@@ -230,16 +230,32 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
               $scope.reset();
               $scope.getPedidos_filtering();
-              ngNotify.set('¡Pedido generado con exito!','success')
-            /*if (response.data.exist) {
-              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-            } else if (response.data.email_flag) {
-              ngNotify.set('¡Ya el correo está registrado!','error')
-            }*/
+              ngNotify.set('¡Pedido actualizado con exito!','success')
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
+
+        $scope.delPedido = function(){
+          // console.log(pedido);
+          var body = $scope.buildBody();
+          body.ID = $scope.ID
+          request.post(ip+'/del/pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+            console.log(response)
+              $scope.reset();
+              $scope.getPedidos_filtering();
+              $scope.ID = null;
+              ngNotify.set('¡Pedido eliminado con exito!','success')
             alert("Guardado con exito!")
           }, function errorCallback(response) {
             console.log(response)
           });
+        }
+
+        
+        $scope.confirmModal = function (ID) {
+          $scope.ID = ID
         }
         $scope.addArtPedido = function(){
             console.log($scope.pedido.pedido);
