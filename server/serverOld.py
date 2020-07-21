@@ -1072,6 +1072,9 @@ async def update_pedido (request, token: Token):
         data = request.json
         print(data)
 
+        db = get_db()
+        c = db.cursor()
+
         c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID""",[data['ID']])
 
         c.execute("""DELETE FROM PEDIDO WHERE ID = :ID""",[data['ID']])
