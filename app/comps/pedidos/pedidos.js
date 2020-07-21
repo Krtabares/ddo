@@ -286,7 +286,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log($scope.pedido.pedido)
              var aux = $scope.pedido.pedido
             aux.forEach(element => {
-              element.PRECIO = formatterEuro.format(element.PRECIO)
+              element.PRECIO = formatterVe.format(element.PRECIO)
             });
            var body = {
               "COD_CIA": $scope.pedido.no_cia,
