@@ -34,8 +34,23 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
          $scope.client_info = JSON.parse(client_info);
          
        } 
-       console.log($scope.client)
+       console.log($scope.client_info)
      }
+     const formatterVe = new Intl.NumberFormat('es-VE', {
+      style: 'currency',
+      currency: 'VES'
+    })
+    // console.log(formatterVe.format(value))
+    const formatterVeDECIMAL = new Intl.NumberFormat('es-VE', {
+    })
+    $scope.formato = function(tipo, valor){
+      if(tipo == 1){
+        return formatterVeDECIMAL.format(valor)
+      }
+      if(tipo==2){
+        return formatterVe.format(valor)
+      }
+    }
 	  
 	  $scope.arr_page = new Array(4);
       $scope.max = 4
@@ -60,6 +75,21 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
           }
         }
       }
+      $scope.totales={
+        'bolivares' : 0
+      }
+      function calcularTotales() {
+        $scope.totales.bolivares = 0
+        $scope.listDeuda.forEach(element => {
+          
+          $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
+                                         + (parseFloat(element.monto_actual))
+                                                        
+        });
+        console.log($scope.totales.bolivares)
+        $scope.totales.bolivares = parseFloat($scope.totales.bolivares).toFixed(2)
+      }
+
 
       $scope.getDeuda = function(param){
         console.log(param);
@@ -90,7 +120,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
         console.log(response)
       });
     }
-	
+	$scope.listDeuda=[]
 	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
         var defer = $q.defer();
         var body = {}
@@ -99,6 +129,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
          request.post(ip+'/procedure_deudas', body, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response.data)
+            $scope.listDeuda=response.data.obj
 			defer.resolve(response.data.obj);
          });
         return defer.promise;

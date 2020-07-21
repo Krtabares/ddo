@@ -42,7 +42,21 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
      } 
      console.log($scope.client)
    }
-	  
+   const formatterVe = new Intl.NumberFormat('es-VE', {
+    style: 'currency',
+    currency: 'VES'
+  })
+  // console.log(formatterVe.format(value))
+  const formatterVeDECIMAL = new Intl.NumberFormat('es-VE', {
+  })
+  $scope.formato = function(tipo, valor){
+    if(tipo == 1){
+      return formatterVeDECIMAL.format(valor)
+    }
+    if(tipo==2){
+      return formatterVe.format(valor)
+    }
+  }
       $scope.getNumber = function(num) {
         return new Array(num);   
       }

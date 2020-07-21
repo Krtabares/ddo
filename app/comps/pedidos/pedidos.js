@@ -13,13 +13,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         //init    
 
                 
-        const formatterVe = new Intl.NumberFormat('es-VE', {
-          style: 'currency',
-          currency: 'VES'
-        })
-        // console.log(formatterVe.format(value))
-        const formatterVeDECIMAL = new Intl.NumberFormat('es-VE', {
-       })
+
 		
         $scope.pedido = {
             'fecha': new Date(),
@@ -57,7 +51,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                                            + parseFloat($scope.articulo.PRECIO | 0 )* ($scope.articulo.CANTIDAD | 0  )
           return $scope.formato(2, total)
         }
-
+        const formatterVe = new Intl.NumberFormat('es-VE', {
+          style: 'currency',
+          currency: 'VES'
+        })
+        // console.log(formatterVe.format(value))
+        const formatterVeDECIMAL = new Intl.NumberFormat('es-VE', {
+        })
         $scope.formato = function(tipo, valor){
           if(tipo == 1){
             return formatterVeDECIMAL.format(valor)
