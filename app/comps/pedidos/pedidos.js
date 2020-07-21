@@ -268,7 +268,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                  error = true;
               }
 
-              $scope.articulo.PRECIO = parseFloat($scope.articulo.PRECIO).toFixed(2);
+              // $scope.articulo.PRECIO = parseFloat($scope.articulo.PRECIO).toFixed(2);
               console.log(error);
               if(!error)          
                 $scope.pedido.pedido.push($scope.articulo)
@@ -421,7 +421,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.pedido.pedido.forEach(element => {
             
             $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
-                                           + parseFloat(element.PRECIO)
+                                           + (parseFloat(element.PRECIO) * element.CANTIDAD)
                                                           
           });
           console.log($scope.totales.bolivares)
