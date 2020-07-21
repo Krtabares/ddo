@@ -267,6 +267,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
                  error = true;
               }
+
+              $scope.articulo.PRECIO = parseFloat($scope.articulo.PRECIO).toFixed(2);
               console.log(error);
               if(!error)          
                 $scope.pedido.pedido.push($scope.articulo)
@@ -293,7 +295,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log($scope.pedido.pedido)
              var aux = $scope.pedido.pedido
             aux.forEach(element => {
-              element.PRECIO =parseFloat(element.PRECIO).toFixed(2)
+              element.PRECIO = parseFloat(element.PRECIO).toFixed(2)
 
             });
            var body = {
