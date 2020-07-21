@@ -166,7 +166,7 @@
                   <thead>
                       <tr>
                       <th scope="col"><p class="text-center">#</p></th>
-                      <th ng-if="editView" scope="col"><p class="text-center">Opcion</p></th>
+                      <th  scope="col"><p class="text-center">Opcion</p></th>
                       <th scope="col"><p class="text-center">Codigo de Articulo</p></th>
                       <th scope="col"><p class="text-center">Cantidad</p></th>
                       <th scope="col"><p class="text-center">Precio por unidad</p></th>
@@ -177,7 +177,7 @@
   
                       <tr ng-repeat="x in pedido.pedido">
                           <th scope="row">{{ $index + 1 }}</td>
-                          <td ng-if="editView"> 
+                          <td > 
                             <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
                             <p class="text-center">
                               <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeArt($index);"></i>
@@ -459,7 +459,7 @@
 
         </div> -->
         <div class="col-md-12">
-          <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();" data-toggle="modal" data-target="#showPedidoModal"> <i class="fas fa-pencil"></i> CREAR PEDIDO</button>
+          <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();" data-toggle="modal" data-target="#addPedidoModal"> <i class="fas fa-pencil"></i> CREAR PEDIDO</button>
         </div>
         
         <div class="col-md-12">

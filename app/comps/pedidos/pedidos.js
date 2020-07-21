@@ -409,7 +409,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
           });
         }
-        $scope.totales = {}
+        $scope.totales = {
+          'bolivares':0
+        }
         $scope.showPedido = function(pedido){
           console.log(pedido);
 
