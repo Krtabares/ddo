@@ -277,7 +277,7 @@
 
               <div class="form-group">
                 <label for="comment">Observacion:</label>
-                <textarea class="form-control" ng-disabled="!editView" ng-model="pedido.observacion" rows="4" id="comment"></textarea>
+                <textarea class="form-control" ng-disabled="!editView" ng-model="pedido.observacion" rows="2" id="comment"></textarea>
               </div>
             </div>
 
@@ -332,7 +332,7 @@
                 </div>
                 <div class="col-2">
                   <label>Precio</label>
-                    <input type="text"  ng-disabled="true" ng-model="articulo.PRECIO" value="{{formato(2,articulo.PRECIO)}}" class="form-control" placeholder="precio">
+                  <span>{{formato(2,articulo.PRECIO) | 0}}</span>
                 </div>
                 <div class="col-4">
                   <label></label>
@@ -358,12 +358,12 @@
               <table class="table">
                   <thead>
                       <tr>
-                      <th scope="col">#</th>
-                      <th ng-if="editView" scope="col">Opcion</th>
-                      <th scope="col">No_arti</th>
-                      <th scope="col">Cantidad</th>
-                      <th scope="col">Precio por unidad</th>
-                      <th scope="col">Total</th>
+                      <th scope="col"><p class="text-center">#</p></th>
+                      <th ng-if="editView" scope="col"><p class="text-center">Opcion</p></th>
+                      <th scope="col"><p class="text-center">Codigo de Articulo</p></th>
+                      <th scope="col"><p class="text-center">Cantidad</p></th>
+                      <th scope="col"><p class="text-center">Precio por unidad</p></th>
+                      <th scope="col"><p class="text-center">Total</p></th>
                       </tr>
                   </thead>
                   <tbody>
