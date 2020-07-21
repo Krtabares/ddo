@@ -27,7 +27,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
       console.log("getClientNew");
       var body = {};
 
-        body.pCliente = client
+        body.pCliente = client.COD_CLIENTE
 
       request.post(ip+'/procedure_clientes', body,{})
       .then(function successCallback(response) {
