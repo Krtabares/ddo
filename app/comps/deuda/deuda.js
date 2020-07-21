@@ -18,17 +18,20 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
       $scope.listDeuda = [{}];
       $scope.hasClient = false;
       $scope.client = {};
+      $scope.client_info = {}
       verificClient()
 
       function verificClient(){
         
        var client = localStorage.getItem('client')
+       var client_info = localStorage.getItem('client_info')
        console.log(client)
        if( client ==  null){
          $scope.hasClient = false;
        }else{
          $scope.hasClient = true;
          $scope.client = JSON.parse(client);
+         $scope.client_info = JSON.parse(client_info);
          
        } 
        console.log($scope.client)

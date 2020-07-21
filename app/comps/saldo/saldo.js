@@ -88,6 +88,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
     $scope.busqueda_prod = null 
     $scope.getProdNew = function (filter = false) {
       console.log("getProdNew");
+      var defer = $q.defer();
       var body = {};
       if(filter){
 
@@ -100,7 +101,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       .then(function successCallback(response) {
         console.log(response)
         if(response.data.obj.length > 1){
-          $scope.productos = response.data.obj
+          // $scope.productos = response.data.obj
+          defer.resolve(response.data.obj);
         }else{
           ngNotify.set('¡No se encontraron resultados!', 'warn')
         }

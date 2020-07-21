@@ -60,8 +60,66 @@
     </div>
     <div class="col-md-11 col-sm-12">
       <br>
-      <h5 class="text-center"> <strong>DEUDA CARTERA DE CLIENTES</strong> </h5>
+      <h5 class="text-center"> <strong>DEUDAS </strong> </h5>
       <br>
+
+              <!-- INFO CLIENTE -->
+              <div class="container">
+
+                <form class="needs-validation" >
+                <div class="form-row">
+                  <div class="col-md-4 mb-3">
+                    <label for="validationCustom01">Nombre Cliente:</label>
+                    <input type="text" class="form-control" ng-disabled="true" id="validationCustom01" placeholder="First name" value="{{client_info.nombre_cliente}}" >
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="validationCustom02">Codigo Cliente</label>
+                    <input type="text" class="form-control" ng-disabled="true" id="validationCustom02" placeholder="Last name" value="{{client_info.cod_cliente}}" >
+                    
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="validationCustomUsername">Nro Identificacion Cliente:</label>
+                      
+                      <input type="text" class="form-control" ng-disabled="true" id="validationCustomUsername" placeholder="Username" value="{{client_info.docu_identif_cliente}}" aria-describedby="inputGroupPrepend" >
+                    
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-md-12 mb-3">
+                    <label for="validationCustom03">Direcion Cliente</label>
+                    <input type="text" class="form-control" ng-disabled="true" id="validationCustom03" placeholder="City" value=" {{client_info.direccion_cliente}}">
+        
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <!--<label for="validationCustom04">State</label>
+                      <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
+                    <div class="invalid-feedback">
+                      Please provide a valid state.
+                    </div> -->
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <!-- <label for="validationCustom05">Zip</label>
+                    <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
+                    <div class="invalid-feedback">
+                      Please provide a valid zip.
+                    </div> -->
+                  </div>
+                </div>
+                <div class="form-group">
+                  <!-- <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                      Agree to terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                      You must agree before submitting.
+                    </div>
+                  </div> -->
+                </div>
+              </form>
+          
+              </div> 
+            <!--  END INFO CLIENTE -->
 
       <div class="row">
         <div class="col-md-12">
