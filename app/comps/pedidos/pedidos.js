@@ -18,9 +18,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           currency: 'VES'
         })
         // console.log(formatterVe.format(value))
-        const formatterEuro = new Intl.NumberFormat('de-DE', {
-          style: 'currency',
-          currency: 'EUR'
+        const formatterVeDECIMAL = new Intl.NumberFormat('es-VE', {
        })
 		
         $scope.pedido = {
@@ -286,7 +284,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log($scope.pedido.pedido)
              var aux = $scope.pedido.pedido
             aux.forEach(element => {
-              element.PRECIO = formatterVe.format(element.PRECIO)
+              element.PRECIO = formatterVeDECIMAL.format(element.PRECIO)
             });
            var body = {
               "COD_CIA": $scope.pedido.no_cia,
