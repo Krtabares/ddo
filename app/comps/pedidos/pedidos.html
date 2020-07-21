@@ -332,7 +332,7 @@
                 </div>
                 <div class="col-2">
                   <label>Precio</label>
-                    <input type="text"  ng-disabled="true" ng-model="articulo.PRECIO" value="{{formatterVeDECIMAL.format(articulo.PRECIO)}}" class="form-control" placeholder="precio">
+                    <input type="text"  ng-disabled="true" ng-model="articulo.PRECIO" value="{{formato(1,articulo.PRECIO)}}" class="form-control" placeholder="precio">
                 </div>
                 <div class="col-4">
                   <label></label>
@@ -372,7 +372,7 @@
                           </td>
                           <td>{{ x.COD_PRODUCTO }}</td>
                           <td>{{ x.CANTIDAD }}</td>
-                          <td>{{ formatterVe.format(x.PRECIO) }}</td>
+                          <td>{{ formato(2,x.PRECIO) }}</td>
                         </tr>
                   </tbody>
                   </table>
@@ -460,7 +460,7 @@
                 <td>{{ x.no_cliente }}</td>
                 <td>{{ x.no_factu }}</td>
                 <td>{{ x.estatus }}</td>
-                <td>{{ x.precio }}</td>
+                <td>{{ formato(1,x.precio) }}</td>
                 <td>{{ x.cantidad }}</td>
               </tr>
         </tbody>

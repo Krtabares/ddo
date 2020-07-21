@@ -47,6 +47,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           
         }
 
+        $scope.formato = function(tipo, valor){
+          if(tipo == 1){
+            return formatterVeDECIMAL.format(valor)
+          }
+          if(tipo==2){
+            return formatterVe.format(valor)
+          }
+        }
+
         $scope.editPedido= function(){
           $scope.editView = true
         }
