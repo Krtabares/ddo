@@ -442,64 +442,64 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 		
 
-		$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
-        var defer = $q.defer();
-        var body = {}
-        body.pCliente = $scope.client.COD_CLIENTE
-        request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
-          .then(function successCallback(response) {
-            console.log(response.data)
+		// $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
+    //     var defer = $q.defer();
+    //     var body = {}
+    //     body.pCliente = $scope.client.COD_CLIENTE
+    //     request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+    //       .then(function successCallback(response) {
+    //         console.log(response.data)
 
 
-			      defer.resolve(response.data.data);
-         });
+		// 	      defer.resolve(response.data.data);
+    //      });
 		 
-        return defer.promise;
-		})
-		.withDOM('frtip')
-        .withPaginationType('full_numbers')
-		.withButtons([
-            'colvis',
-            'pdf',
-            'excel'
-        ])
+    //     return defer.promise;
+		// })
+		// .withDOM('frtip')
+    //     .withPaginationType('full_numbers')
+		// .withButtons([
+    //         'colvis',
+    //         'pdf',
+    //         'excel'
+    //     ])
 		
-        $scope.dtColumns = [
-            DTColumnBuilder.newColumn('no_cia').withTitle('Número cia'),
-            DTColumnBuilder.newColumn('grupo').withTitle('Grupo'),
-            DTColumnBuilder.newColumn('no_cliente').withTitle('Número cliente'),
-			DTColumnBuilder.newColumn('no_factu').withTitle('Número factura'),
-			DTColumnBuilder.newColumn('estatus').withTitle('Estatus'),
-      DTColumnBuilder.newColumn('precio').withTitle('Precio'),
-      DTColumnBuilder.newColumn('cantidad').withTitle('Cantidad de Productos')
-        ];
+    //     $scope.dtColumns = [
+    //         DTColumnBuilder.newColumn('no_cia').withTitle('Número cia'),
+    //         DTColumnBuilder.newColumn('grupo').withTitle('Grupo'),
+    //         DTColumnBuilder.newColumn('no_cliente').withTitle('Número cliente'),
+		// 	DTColumnBuilder.newColumn('no_factu').withTitle('Número factura'),
+		// 	DTColumnBuilder.newColumn('estatus').withTitle('Estatus'),
+    //   DTColumnBuilder.newColumn('precio').withTitle('Precio'),
+    //   DTColumnBuilder.newColumn('cantidad').withTitle('Cantidad de Productos')
+    //     ];
 
 
 
 
-        $scope.$on('modal.closing', function(event, reason, closed) {
-          console.log('modal.closing: ' + (closed ? 'close' : 'dismiss') + '(' + reason + ')');
-          var message = "You are about to leave the edit view. Uncaught reason. Are you sure?";
-          switch (reason){
-              // clicked outside
-              case "backdrop click":
-                  message = "Any changes will be lost, are you sure?";
-                  break;
+      //   $scope.$on('modal.closing', function(event, reason, closed) {
+      //     console.log('modal.closing: ' + (closed ? 'close' : 'dismiss') + '(' + reason + ')');
+      //     var message = "You are about to leave the edit view. Uncaught reason. Are you sure?";
+      //     switch (reason){
+      //         // clicked outside
+      //         case "backdrop click":
+      //             message = "Any changes will be lost, are you sure?";
+      //             break;
       
-              // cancel button
-              case "cancel":
-                  message = "Any changes will be lost, are you sure?";
-                  break;
+      //         // cancel button
+      //         case "cancel":
+      //             message = "Any changes will be lost, are you sure?";
+      //             break;
       
-              // escape key
-              case "escape key press":
-                  message = "Any changes will be lost, are you sure?";
-                  break;
-          }
-          if (!confirm(message)) {
-              event.preventDefault();
-          }
-      });
+      //         // escape key
+      //         case "escape key press":
+      //             message = "Any changes will be lost, are you sure?";
+      //             break;
+      //     }
+      //     if (!confirm(message)) {
+      //         event.preventDefault();
+      //     }
+      // });
 		
 
     }

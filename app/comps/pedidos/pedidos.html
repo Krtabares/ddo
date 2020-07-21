@@ -158,7 +158,7 @@
             
             <div class="col-6 col-sm-6 col-md-6 col-lg-6" ng-show="productIndex != -1">
               <label> Total </label>
-              <h4> > {{ nuevoTotal() }}</h4>
+              <h4> {{ nuevoTotal() }}</h4>
             </div>
             
             <div class="form-group">
@@ -376,7 +376,7 @@
               <label>Total (no incluye iva)</label>
               <h4>{{formato(2,totales.bolivares)}}</h4>
             </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-6" ng-show="productIndex != -1">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6" ng-show="productIndex != -1 && editView">
               <label>Nuevo Total </label>
               <h4> > {{ nuevoTotal() }}</h4>
             </div>
