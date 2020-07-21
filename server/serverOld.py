@@ -132,10 +132,10 @@ async def procedure(request):
     else:
         data['pDireccion'] = "'"+data['pDireccion']+"'"
 
-    if not 'pCLiente' in data :
-        data['pCLiente'] = 'null'
+    if not 'pCliente' in data :
+        data['pCliente'] = 'null'
     else:
-        data['pCLiente'] = "'"+data['pCLiente']+"'"
+        data['pCliente'] = "'"+data['pCliente']+"'"
     
     if not 'pNombre' in data :
         data['pNombre'] = 'null'
@@ -151,7 +151,7 @@ async def procedure(request):
             pTotPaginas number DEFAULT 100;
             pPagina number DEFAULT null;
             pLineas number DEFAULT 100;
-            pCLiente varchar2(50) DEFAULT null;
+            pCliente varchar2(50) DEFAULT null;
             pNombre varchar2(50) DEFAULT null;
             pDireccion varchar2(50) DEFAULT null;
             output number DEFAULT 1000000;
@@ -182,12 +182,12 @@ async def procedure(request):
                     pTotPaginas  := {pTotPaginas};
                     pPagina  := {pPagina};
                     pLineas  := {pLineas};
-                    pCLiente := {pCLiente};
+                    pCliente := {pCliente};
                     pNombre := {pNombre};
                     pDireccion := {pDireccion};
 
                 dbms_output.enable(output);
-                PROCESOSPW.clientes (l_cursor, pTotReg, pTotPaginas, pPagina, pLineas, pCLiente, pNombre, pDireccion);
+                PROCESOSPW.clientes (l_cursor, pTotReg, pTotPaginas, pPagina, pLineas, pCliente, pNombre, pDireccion);
                 
             LOOP 
             FETCH l_cursor into
@@ -244,7 +244,7 @@ async def procedure(request):
                         pPagina = data['pPagina'],
                         pLineas = data['pLineas'],
                         pDireccion = data['pDireccion'],
-                        pCLiente = data['pCLiente'],
+                        pCliente = data['pCliente'],
                         pNombre = data['pNombre'],
                     ))
     textVar = c.var(str)
@@ -1085,8 +1085,6 @@ async def update_pedido (request, token: Token):
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
-
-   
 
 
 @app.route('/get/pedidos',["POST","GET"])

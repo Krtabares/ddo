@@ -247,7 +247,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.getPedidos_filtering();
               $scope.ID = null;
               ngNotify.set('¡Pedido eliminado con exito!','success')
-            alert("Guardado con exito!")
           }, function errorCallback(response) {
             console.log(response)
           });
@@ -403,14 +402,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
-            if(response.data.data.length > 0){
+
               $scope.listPedido = response.data.data;
-            }
-            /*if (response.data.exist) {
-              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-            } else if (response.data.email_flag) {
-              ngNotify.set('¡Ya el correo está registrado!','error')
-            }*/
+
           }, function errorCallback(response) {
             console.log(response)
           });

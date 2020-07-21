@@ -21,6 +21,24 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 	  var ip = "http://192.168.168.170:3500";
     $scope.user = {};
     localstorage.clear()
+
+
+    $scope.getClientNew = function (client) {
+      console.log("getClientNew");
+      var body = {};
+
+        body.pCliente = client
+
+      request.post(ip+'/procedure_clientes', body,{})
+      .then(function successCallback(response) {
+        console.log(response)
+
+        // $scope.clientes = response.data.obj
+
+      }, function errorCallback(response) {
+        console.log(response)
+      });
+    }
 	
 		
 	  $scope.login = function(){
@@ -38,6 +56,8 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         client.COD_CLIENTE = response.data.user.COD_CLIENTE
 
         localstorage.set('client',  JSON.stringify(client));
+
+        $scope.getClientNew(client)
         window.location.href = "#!/home";
         /*if (response.data.exist) {
           ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
