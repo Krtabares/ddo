@@ -24,16 +24,19 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       $scope.hasClient = false;
     $scope.isOptionsReady = false;
     $scope.client = {};
+    $scope.client_info = {}
     verificClient()
 
     function verificClient(){
       
      var client = localStorage.getItem('client')
+     var client_info = localStorage.getItem('client_info')
      console.log(client)
      if( client ==  null){
        $scope.hasClient = false;
      }else{
        $scope.hasClient = true;
+       $scope.client_info = JSON.parse(client_info);
        $scope.client = JSON.parse(client);
        
      } 
@@ -81,6 +84,30 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
 			console.log(response)
 		  });
 	  
+    }
+    $scope.busqueda_prod = null 
+    $scope.getProdNew = function (filter = false) {
+      console.log("getProdNew");
+      var body = {};
+      if(filter){
+
+        body.pNoCia = $scope.client.COD_CIA
+        body.pNoGrupo = $scope.client.GRUPO_CLIENTE
+        body.pCliente = $scope.client.COD_CLIENTE
+        body.pBusqueda = $scope.busqueda_prod
+      }
+      request.post(ip+'/procedure_productos', body,{})
+      .then(function successCallback(response) {
+        console.log(response)
+        if(response.data.obj.length > 1){
+          $scope.productos = response.data.obj
+        }else{
+          ngNotify.set('¡No se encontraron resultados!', 'warn')
+        }
+
+      }, function errorCallback(response) {
+        console.log(response)
+      });
     }
 	
 	
