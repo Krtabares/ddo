@@ -420,11 +420,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.pedido.pedido.forEach(element => {
             
             $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
-                                          .toFixed(2) + parseFloat(element.PRECIO)
-                                                          .toFixed(2)
+                                           + parseFloat(element.PRECIO)
+                                                          
           });
           console.log($scope.totales.bolivares)
-          $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
+          $scope.totales.bolivares = parseFloat($scope.totales.bolivares).toFixed(2)
         }
 
 		
