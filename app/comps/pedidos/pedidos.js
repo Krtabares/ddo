@@ -18,6 +18,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           currency: 'VES'
         })
         // console.log(formatterVe.format(value))
+        const formatterEuro = new Intl.NumberFormat('de-DE', {
+          style: 'currency',
+          currency: 'EUR'
+       })
 		
         $scope.pedido = {
             'fecha': new Date(),
@@ -280,8 +284,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.buildBody = function(){
            var fecha = new Date( $scope.pedido.fecha)
             console.log($scope.pedido.pedido)
-             
-
+             var aux = $scope.pedido.pedido
+            aux.forEach(element => {
+              element.PRECIO = formatterEuro.format(element.PRECIO)
+            });
            var body = {
               "COD_CIA": $scope.pedido.no_cia,
               "GRUPO_CLIENTE": $scope.pedido.grupo,
@@ -290,7 +296,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               "NO_PEDIDO_CODISA":($scope.editView)? $scope.pedido.no_factu:"---",
               "OBSERVACIONES": $scope.pedido.observacion || "",
               "ESTATUS": "0",
-              "pedido": $scope.pedido.pedido
+              "pedido": aux
             }
             console.log(body,"body")
             return body
