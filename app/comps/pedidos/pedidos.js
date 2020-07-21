@@ -43,7 +43,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.initModal = function () {
           console.log("initmodal")
-          // $scope.getClientNew();
+          $scope.reset()
           
         }
 
@@ -425,6 +425,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.removeArt = function(i){
           $scope.pedido.pedido.splice( i, 1 );
+          calcularTotales()
         }
         
         function calcularTotales() {
