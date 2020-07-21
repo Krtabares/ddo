@@ -376,11 +376,10 @@
                             <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeArt($index);"></i>
                             
                           </td>
-                          <td>{{ x.COD_PRODUCTO }}</td>
-                          <td ng-if="editView" >{{ x.CANTIDAD }}</td>
-                          <td><input type="number" ng-if="editView" min="1" max="{{x.existencia |x.CANTIDAD }}" ng-model="x.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ></td>
-                          <td>{{ formato(2,x.PRECIO) }}</td>
-                          <td>{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</td>
+                          <td><p class="text-xs-center">{{ x.COD_PRODUCTO }}</p></td>
+                          <td><p class="text-xs-center">{{ x.CANTIDAD }}</p></td>
+                          <td><p class="text-xs-right">{{ formato(2,x.PRECIO) }}</p></td>
+                          <td><p class="text-xs-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
                         </tr>
                   </tbody>
                   </table>
@@ -463,13 +462,13 @@
                   <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeArt(-1);"></i>
                   <i class="fa fa-eye" style="cursor: pointer;" ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal" ></i>
                 </td>
-                <td>{{ x.no_cia }}</td>
-                <td>{{ x.grupo }}</td>
-                <td>{{ x.no_cliente }}</td>
-                <td>{{ x.no_factu }}</td>
-                <td>{{ x.estatus }}</td>
-                <td>{{ formato(2,x.precio) }}</td>
-                <td>{{ x.cantidad }}</td>
+                <td><p class="text-xs-center">{{ x.no_cia }}</p></td>
+                <td><p class="text-xs-center">{{ x.grupo }}</p></td>
+                <td><p class="text-xs-center">{{ x.no_cliente }}</p></td>
+                <td><p class="text-xs-center">{{ x.no_factu }}</p></td>
+                <td><p class="text-xs-center">{{ x.estatus }}</p></td>
+                <td><p class="text-xs-right">{{ formato(2,x.precio) }}</p></td>
+                <td><p class="text-xs-center">{{ x.cantidad }}</p></td>
               </tr>
         </tbody>
         </table>
