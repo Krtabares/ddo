@@ -49,7 +49,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.nuevoTotal = function (valor) {
           console.log(valor)
-          return $scope.formato(2, valor + $scope.totales.bolivares)
+          var total= parseFloat($scope.totales.bolivares)
+                                           + parseFloat(valor) 
+          return $scope.formato(2, total)
         }
 
         $scope.formato = function(tipo, valor){
@@ -95,7 +97,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
         }
    
-
         verificClient()
 
         function verificClient(){
