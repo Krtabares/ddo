@@ -41,8 +41,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         //list pedido
         $scope.listPedido = [];
 
-        // $('.my-select').selectpicker();
-
         $scope.initModal = function () {
           console.log("initmodal")
           // $scope.getClientNew();
