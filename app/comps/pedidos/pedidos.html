@@ -377,7 +377,8 @@
                             
                           </td>
                           <td>{{ x.COD_PRODUCTO }}</td>
-                          <td>{{ x.CANTIDAD }}</td>
+                          <td ng-if="editView" >{{ x.CANTIDAD }}</td>
+                          <td><input type="number" ng-if="editView" min="1" max="{{x.existencia |x.CANTIDAD }}" ng-model="x.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ></td>
                           <td>{{ formato(2,x.PRECIO) }}</td>
                           <td>{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</td>
                         </tr>

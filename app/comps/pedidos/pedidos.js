@@ -374,8 +374,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
-            if(response.data.length > 0){
-              $scope.pedido = response.data;
+            if(response.data.data.length > 0){
+              $scope.listPedido = response.data.data;
             }
             /*if (response.data.exist) {
               ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
