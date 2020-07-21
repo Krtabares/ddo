@@ -48,9 +48,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.nuevoTotal = function () {
-          console.log($scope.totales.bolivares)
-          console.log( $scope.articulo.PRECIO )
-          console.log( $scope.articulo.CANTIDAD)
+          // console.log($scope.totales.bolivares)
+          // console.log( $scope.articulo.PRECIO )
+          // console.log( $scope.articulo.CANTIDAD)
           var total =  parseFloat($scope.totales.bolivares)
                                            + parseFloat($scope.articulo.PRECIO | 0 )* ($scope.articulo.CANTIDAD | 0  )
           return $scope.formato(2, total)

@@ -15,87 +15,89 @@
         <div class="row">
         
           <form>
-            <div class="container">
-  
-              <div ng-show="!hasClient">
-                <div class="row">
-                  <div class="col-sm-12 col-md-6 col-lg-6">
-                    <label for="clientes">Busqueda por cliente</label>
-                    <div class="input-group mb-3">           
-                      <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
-                    <div class="form-group">
-                      <label for="exampleFormControlSelect1">Seleccione</label>
-                      <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
-                        <option value="">Seleccione un cliente</option>
-                        <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
-                      </select>
-                    </div>
-                  </div>
-        
-    
-                </div>
-              
+            
+          <div class="container">
+
+            <div ng-show="!hasClient">
               <div class="row">
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                  <div class="form-group">
-                    <label>No_cia</label>
-                    <input type="text" ng-disabled="true" ng-model="pedido.no_cia" class="form-control" placeholder="no_cia">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                  <label for="clientes">Busqueda por cliente</label>
+                  <div class="input-group mb-3">           
+                    <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+                    </div>
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
                   <div class="form-group">
-                    <label>Grupo</label>
-                    <input type="text"  ng-disabled="true" ng-model="pedido.grupo" class="form-control" placeholder="Grupo">
+                    <label for="exampleFormControlSelect1">Seleccione</label>
+                    <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
+                      <option value="">Seleccione un cliente</option>
+                      <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
+                    </select>
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                  <div class="form-group">
-                    <label>Cliente</label>
-                    <input type="text" ng-disabled="true"  ng-model="pedido.no_cliente" class="form-control" placeholder="no_cliente">
-                  </div>
-                </div>
-                
-              </div>
-              </div>
+      
   
+              </div>
+            
             <div class="row">
-              <div class="col-sm-12 col-md-6 col-lg-6" style="display: none;">
+              <div class="col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
-                  <label>Factura</label>
-                  <input type="text" ng-model="pedido.no_factu" class="form-control" placeholder="no_factura">
+                  <label>No_cia</label>
+                  <input type="text" ng-disabled="true" ng-model="pedido.no_cia" class="form-control" placeholder="no_cia">
                 </div>
               </div>
               <div class="col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
-                  <label>Fecha</label>
-                  <input type="date" ng-model="pedido.fecha" class="form-control" placeholder="fecha">
+                  <label>Grupo</label>
+                  <input type="text"  ng-disabled="true" ng-model="pedido.grupo" class="form-control" placeholder="Grupo">
                 </div>
               </div>
-              <div class="col-sm-12 col-md-8 col-lg-8">
-  
-  
+              <div class="col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
-                  <label for="comment">Observacion:</label>
-                  <textarea class="form-control" ng-model="pedido.observacion" rows="4" id="comment"></textarea>
+                  <label>Cliente</label>
+                  <input type="text" ng-disabled="true"  ng-model="pedido.no_cliente" class="form-control" placeholder="no_cliente">
                 </div>
               </div>
-  
-  
+              
             </div>
+            </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6" style="display: none;">
+              <div class="form-group">
+                <label>Factura</label>
+                <input type="text" ng-model="pedido.no_factu" class="form-control" placeholder="no_factura">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" ng-disabled="true" ng-model="pedido.fecha" class="form-control" placeholder="fecha">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8">
+
+
+              <div class="form-group">
+                <label for="comment">Observacion:</label>
+                <textarea class="form-control" ng-model="pedido.observacion" rows="2" id="comment"></textarea>
+              </div>
+            </div>
+
+
+          </div>
+          
+          <div class="row"  >
             
-            <div class="row">
               <div class="col-sm-12 col-md-6 col-lg-6">
                 <label for="clientes">Busqueda por producto</label>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
+                  <input type="text" class="form-control"  ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary"  ng-click="getProdNew(true)" type="button">Buscar</button>
+                    <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
                   </div>
                 </div>
               
@@ -103,70 +105,90 @@
               <div class="col-sm-12 col-md-6 col-lg-6" ng-show="productos.length > 0">
                 <div class="form-group">
                   <label for="exampleFormControlSelect2">Seleccione un producto</label>
-                  <select class="form-control" ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
+                  <select class="form-control"  ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
                     <option value="" disabled selected="selected" >Seleccione</option>
                     <option ng-repeat="x in productos" ng-if="!($index==1)" value="{{$index}}">{{x.nombre_producto}} - (<sub style="font-size: 6px;">{{ x.princ_activo.toLowerCase() }}</sub>) </option>
                   </select>
                 </div>
               </div>
   
-              
-            </div>
+           
             
-            </div>
-  
-          <div class="container">
-            <div class="row">
-              <div class="col-2">
-                <label>Codigo</label>
-                <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
-              </div>
-              <div class="col-2">
-                <label>Cantidad</label>
-                <input type="number" min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
-              </div>
-              <div class="col-2">
-                <label>Existencia</label>
-                <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
-              </div>
-              <div class="col-2">
-                <label>Precio</label>
-                  <input type="text"  ng-disabled="true" ng-model="articulo.PRECIO" class="form-control" placeholder="precio">
-              </div>
-              <div class="col-4">
-                <label></label>
-                <button type="button"  class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
-              </div>
-  
+
+            
+          </div>
+          
+          </div>
+          <div class="container"   >
+            <div class="row" >
+              
+              
+
+                <div class="col-2">
+                  <label>Codigo</label>
+                  <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
+                </div>
+                <div class="col-2">
+                  <label>Cantidad</label>
+                  <input type="number" " min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                </div>
+                <div class="col-2">
+                  <label>Existencia</label>
+                  <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
+                </div>
+                <div class="col-3">
+                  <label>Precio por unidad</label>
+                  <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
+                  
+                </div>
+                <div class="col-3">
+                  <label>Precio producto total</label>
+                  <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
+                  
+                </div>
+                <div class="col-12">
+                  <label></label>
+                  <button type="button" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
+                </div>
+
             </div>
           
           </div>
           <div class="container" style="margin-top: 32px;">
-  
+            
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6" ng-show="productIndex != -1">
+              <label> Total </label>
+              <h4> > {{ nuevoTotal() }}</h4>
+            </div>
+            
             <div class="form-group">
               <table class="table">
                   <thead>
                       <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Opcion</th>
-                      <th scope="col">No_arti</th>
-                      <th scope="col">Cantidad</th>
-                      <th scope="col">Precio</th>
+                      <th scope="col"><p class="text-center">#</p></th>
+                      <th ng-if="editView" scope="col"><p class="text-center">Opcion</p></th>
+                      <th scope="col"><p class="text-center">Codigo de Articulo</p></th>
+                      <th scope="col"><p class="text-center">Cantidad</p></th>
+                      <th scope="col"><p class="text-center">Precio por unidad</p></th>
+                      <th scope="col"><p class="text-center">Total</p></th>
                       </tr>
                   </thead>
                   <tbody>
   
                       <tr ng-repeat="x in pedido.pedido">
                           <th scope="row">{{ $index + 1 }}</td>
-                          <td> 
+                          <td ng-if="editView"> 
                             <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
+                            <p class="text-center">
+                              <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeArt($index);"></i>
+                            </p>
                             
-                            <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeArt($index);"></i>
                             
                           </td>
-                          <td>{{ x.COD_PRODUCTO }}</td>
-                          <td>{{ x.CANTIDAD }}</td>
-                          <td>{{ x.PRECIO }}</td>
+                          <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td>
+                          <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
+                          <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
+                          <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
                         </tr>
                   </tbody>
                   </table>
@@ -351,11 +373,11 @@
           <div class="container" style="margin-top: 32px;">
             
             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-              <label>Total factura:</label>
+              <label>Total (no incluye iva)</label>
               <h4>{{formato(2,totales.bolivares)}}</h4>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-6" ng-show="productIndex != -1">
-              <label>Nuevo Total factura:</label>
+              <label>Nuevo Total </label>
               <h4> > {{ nuevoTotal() }}</h4>
             </div>
             
