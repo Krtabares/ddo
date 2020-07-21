@@ -115,7 +115,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // $scope.client = x
             $scope.product  = $scope.productos[ $scope.productIndex ];
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
-            $scope.articulo.PRECIO = $scope.product.precio
+            $scope.articulo.PRECIO = $scope.product.precio.replace(",", ".");
+            // $scope.articulo.PRECIO = $scope.product.precio
             $scope.articulo.existencia =$scope.product.existencia
             $scope.articulo.CANTIDAD = 1
             // $scope.articulo.no_cliente = $scope.client.cod_cliente

@@ -332,7 +332,8 @@
                 </div>
                 <div class="col-2">
                   <label>Precio</label>
-                  <span>{{formato(2,articulo.PRECIO)}}</span>
+                  <span ng-if="editView">{{formato(2,articulo.PRECIO)}}</span>
+                  <span ng-if="!editView">{{formato(2,0)}}</span>
                 </div>
                 <div class="col-4">
                   <label></label>
