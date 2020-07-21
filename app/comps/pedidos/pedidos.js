@@ -321,10 +321,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             element.PRECIO = parseFloat(element.PRECIO).toFixed(2)
 
           });
+
+          // $scope.pedido.no_cia = client.COD_CIA;
+          // $scope.pedido.grupo = client.GRUPO_CLIENTE
+          // $scope.pedido.no_cliente = client.COD_CLIENTE
+
           var body = {
-            "COD_CIA": $scope.pedido.no_cia,
-            "GRUPO_CLIENTE": $scope.pedido.grupo,
-            "COD_CLIENTE": $scope.pedido.no_cliente,
+            "COD_CIA": $scope.client.COD_CIA,
+            "GRUPO_CLIENTE": $scope.client.GRUPO_CLIENTE,
+            "COD_CLIENTE": $scope.client.COD_CLIENTE,
             "FECHA": fecha.getDate()+"-"+ fecha.getMonth()+"-"+ fecha.getFullYear(),
             "NO_PEDIDO_CODISA":($scope.editView)? $scope.pedido.no_factu:"---",
             "OBSERVACIONES": $scope.pedido.observacion || "",
