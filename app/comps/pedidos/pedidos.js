@@ -32,11 +32,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.busqueda_prod = null;
         $scope.clientes = null;
         $scope.client = {};
+        $scope.client_info = {}
         $scope.ID = null
         $scope.clientIndex = -1;
         $scope.productos = null;
         $scope.product = {};
         $scope.productIndex = -1;
+
         var ip = "http://192.168.168.170:3500";
         //list pedido
         $scope.listPedido = [];
@@ -110,6 +112,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
          }else{
            $scope.hasClient = true;
            $scope.client = JSON.parse(client);
+           $scope.client_info = localStorage.getItem('client_info')
             selectCLientCAP( $scope.client)
          } 
 

@@ -31,9 +31,11 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 
       request.post(ip+'/procedure_clientes', body,{})
       .then(function successCallback(response) {
-        console.log(response)
-
+        // console.log(response.data.obj[0])
+        localstorage.set('client_info',  JSON.stringify(response.data.obj[0]));
         // $scope.clientes = response.data.obj
+
+        window.location.href = "#!/home";
 
       }, function errorCallback(response) {
         console.log(response)
@@ -58,7 +60,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         localstorage.set('client',  JSON.stringify(client));
 
         $scope.getClientNew(client)
-        window.location.href = "#!/home";
+        ngNotify.set('¡Bienvenido!','success')
         /*if (response.data.exist) {
           ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
         } else if (response.data.email_flag) {
