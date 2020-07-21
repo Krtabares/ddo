@@ -269,7 +269,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
 
               // $scope.articulo.PRECIO = parseFloat($scope.articulo.PRECIO).toFixed(2);
-              console.log(error);
+              console.log($scope.articulo.PRECIO);
               if(!error)          
                 $scope.pedido.pedido.push($scope.articulo)
                 calcularTotales()
