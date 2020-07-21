@@ -418,7 +418,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         function calcularTotales() {
           $scope.totales.bolivares = 0
           $scope.pedido.pedido.forEach(element => {
-            $scope.totales.bolivares = $scope.totales.bolivares + element.PRECIO
+            $scope.totales.bolivares = $scope.totales.bolivares + parseFloat(element.PRECIO).toFixed(2)
           });
         }
 
