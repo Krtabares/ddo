@@ -340,7 +340,7 @@
                   <span ng-if="editView">{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
                   <span ng-if="!editView">{{formato(2,0)}}</span>
                 </div>
-                <div class="col-4">
+                <div class="col-12">
                   <label></label>
                   <button type="button" ng-disabled="!editView" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
                 </div>
