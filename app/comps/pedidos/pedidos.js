@@ -28,9 +28,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.editView = false;
         $scope.articulo = {};
         $scope.nombre_cliente = null;
+        $scope.listaPedidos=[]
         $scope.busqueda_prod = null;
         $scope.clientes = null;
         $scope.client = {};
+        $scope.ID = null
         $scope.clientIndex = -1;
         $scope.productos = null;
         $scope.product = {};
@@ -78,8 +80,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         } 
 
-        $scope.listaPedidos=[]
-    
         function listarPedidos(){
          var body = {}
            body.pCliente = $scope.client.COD_CLIENTE
@@ -90,7 +90,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                $scope.listaPedidos=response.data.data
                // defer.resolve(response.data.data);
             });
-       }
+        }
    
 
         verificClient()
@@ -109,7 +109,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
          listarPedidos()
          console.log($scope.client)
-       }
+        }
 
 
         $scope.selectProduct = function(){
@@ -272,6 +272,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               console.log(error);
               if(!error)          
                 $scope.pedido.pedido.push($scope.articulo)
+                calcularTotales()
             }
            
             if(!error){
@@ -282,55 +283,50 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
             
             
-          }
-
-          
-
-          function isEmpty(str) {
+        }
+        function isEmpty(str) {
             return (!str || 0 === str.length);
+        }
+
+        $scope.buildBody = function(){
+          var fecha = new Date( $scope.pedido.fecha)
+          console.log($scope.pedido.pedido)
+            var aux = $scope.pedido.pedido
+          aux.forEach(element => {
+            element.PRECIO = parseFloat(element.PRECIO).toFixed(2)
+
+          });
+          var body = {
+            "COD_CIA": $scope.pedido.no_cia,
+            "GRUPO_CLIENTE": $scope.pedido.grupo,
+            "COD_CLIENTE": $scope.pedido.no_cliente,
+            "FECHA": fecha.getDate()+"-"+ fecha.getMonth()+"-"+ fecha.getFullYear(),
+            "NO_PEDIDO_CODISA":($scope.editView)? $scope.pedido.no_factu:"---",
+            "OBSERVACIONES": $scope.pedido.observacion || "",
+            "ESTATUS": "0",
+            "pedido": aux
           }
+          console.log(body,"body")
+          return body
+        }
 
-          $scope.buildBody = function(){
-           var fecha = new Date( $scope.pedido.fecha)
-            console.log($scope.pedido.pedido)
-             var aux = $scope.pedido.pedido
-            aux.forEach(element => {
-              element.PRECIO = parseFloat(element.PRECIO).toFixed(2)
-
-            });
-           var body = {
-              "COD_CIA": $scope.pedido.no_cia,
-              "GRUPO_CLIENTE": $scope.pedido.grupo,
-              "COD_CLIENTE": $scope.pedido.no_cliente,
-              "FECHA": fecha.getDate()+"-"+ fecha.getMonth()+"-"+ fecha.getFullYear(),
-              "NO_PEDIDO_CODISA":($scope.editView)? $scope.pedido.no_factu:"---",
-              "OBSERVACIONES": $scope.pedido.observacion || "",
-              "ESTATUS": "0",
-              "pedido": aux
-            }
-            console.log(body,"body")
-            return body
-          }
-
-          $scope.reset = function(){
-            $scope.busqueda_prod = null
-            $scope.productIndex = -1
-            $scope.clientes = null
-            $scope.clientIndex = -1
-            $scope.pedido = {'no_cia':'',
-                  'grupo':'',
-                  'no_cliente':'',
-                  'no_factu':'',
-                  'no_arti':'',
-                  'cantidad':'',
-                  'precio':'',
-                  'fecha':new Date(),
-                              'observacion':'',
-                              'pedido':[],
-                          };
-          }
-
-
+        $scope.reset = function(){
+          $scope.busqueda_prod = null
+          $scope.productIndex = -1
+          $scope.clientes = null
+          $scope.clientIndex = -1
+          $scope.pedido = {'no_cia':'',
+                'grupo':'',
+                'no_cliente':'',
+                'no_factu':'',
+                'no_arti':'',
+                'cantidad':'',
+                'precio':'',
+                'fecha':new Date(),
+                            'observacion':'',
+                            'pedido':[],
+                        };
+        }
         $scope.getPedidos = function(page){
           var obj = {'page': page};
 		  // console.log($localStorage.token);
@@ -348,37 +344,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }, function errorCallback(response) {
             console.log(response)
           });
-      }
-      $scope.ID = null
-      $scope.getPedido = function(ID){
-        var obj = {'idPedido': ID};
-        $scope.ID = ID
-    // console.log($localStorage.token);
-        request.post(ip+'/get/pedido', obj, {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODk5Nzk2NTcsIm5iZiI6MTU4OTk3OTY1NywianRpIjoiZGFjNTZjM2QtZjM2ZC00NTRkLTkwNWYtZmZmZjFiYjI2ZTE5IiwiaWRlbnRpdHkiOiJhZG1pbiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Ff_CfwXCIxLGinnAkS8C7vUxColNK_utxy-LzJt0188'})
-        .then(function successCallback(response) {
-          console.log(response.data)
-          $scope.showPedido(response.data.obj[0])
-          
-          /*if (response.data.exist) {
-            ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-          } else if (response.data.email_flag) {
-            ngNotify.set('¡Ya el correo está registrado!','error')
-          }*/
-        }, function errorCallback(response) {
-          console.log(response)
-        });
-    }
-
-        $scope.getPedidos_filtering = function(no_client){
-          
-          var body = {}
-          body.pCliente = $scope.client.COD_CLIENTE
-          request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+        }
+      
+        $scope.getPedido = function(ID){
+          var obj = {'idPedido': ID};
+          $scope.ID = ID
+      // console.log($localStorage.token);
+          request.post(ip+'/get/pedido', obj, {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODk5Nzk2NTcsIm5iZiI6MTU4OTk3OTY1NywianRpIjoiZGFjNTZjM2QtZjM2ZC00NTRkLTkwNWYtZmZmZjFiYjI2ZTE5IiwiaWRlbnRpdHkiOiJhZG1pbiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Ff_CfwXCIxLGinnAkS8C7vUxColNK_utxy-LzJt0188'})
           .then(function successCallback(response) {
             console.log(response.data)
-			if(response.data.length > 0){
-				$scope.pedido = response.data;
-			}
+            $scope.showPedido(response.data.obj[0])
+            
             /*if (response.data.exist) {
               ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
             } else if (response.data.email_flag) {
@@ -389,7 +365,25 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-        
+        $scope.getPedidos_filtering = function(no_client){
+          
+          var body = {}
+          body.pCliente = $scope.client.COD_CLIENTE
+          request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+          .then(function successCallback(response) {
+            console.log(response.data)
+            if(response.data.length > 0){
+              $scope.pedido = response.data;
+            }
+            /*if (response.data.exist) {
+              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
+            } else if (response.data.email_flag) {
+              ngNotify.set('¡Ya el correo está registrado!','error')
+            }*/
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
 
         $scope.getProductos = function(no_cia){
           var obj = {'no_cia': no_cia};
@@ -405,20 +399,28 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
           });
         }
-
-
+        $scope.totales = {}
         $scope.showPedido = function(pedido){
           console.log(pedido);
+
           $scope.editView =false;
           pedido.fecha = new Date(pedido.fecha);
           $scope.pedido = pedido;
-         
+          
+          
+          calcularTotales()
         }
 
         $scope.removeArt = function(i){
           $scope.pedido.pedido.splice( i, 1 );
         }
-
+        
+        function calcularTotales() {
+          $scope.totales.bolivares = 0
+          $scope.pedido.pedido.forEach(element => {
+            $scope.totales.bolivares = $scope.totales.bolivares + element.PRECIO
+          });
+        }
 
 		
 
