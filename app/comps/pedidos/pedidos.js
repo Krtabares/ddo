@@ -313,6 +313,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.reset = function(){
+          $scope.totales.bolivares = 0
           $scope.busqueda_prod = null
           $scope.productIndex = -1
           $scope.clientes = null
