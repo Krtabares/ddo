@@ -460,7 +460,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
 		
-      $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers')
+      $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withOption('responsive', true).withButtons([
+        'columnsToggle',
+        'colvis',
+        'copy',
+        'print',
+        'excel',
+        ])
       // .withDisplayLength(2);
 
 		// $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
@@ -494,7 +500,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             DTColumnBuilder.newColumn('precio').withTitle('Precio'),
             DTColumnBuilder.newColumn('cantidad').withTitle('Cantidad de Productos')
         ];
-
+       $scope.dtColumnDefs = [
+          DTColumnDefBuilder.newColumnDef(0).notVisible(),
+          DTColumnDefBuilder.newColumnDef(1).notVisible(),
+          DTColumnDefBuilder.newColumnDef(2).notVisible(),
+          DTColumnDefBuilder.newColumnDef(3),
+          DTColumnDefBuilder.newColumnDef(4),
+          DTColumnDefBuilder.newColumnDef(5),
+          DTColumnDefBuilder.newColumnDef(6).notSortable()
+      ];
 
 
 
