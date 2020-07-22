@@ -659,7 +659,7 @@
 			<!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
       </table> -->
       
-      <table class="table" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs">
+      <table class="table" datatable="ng" dt-options="dtOptions">
         <thead>
             <tr>
             <th scope="col">#</th>
@@ -688,10 +688,12 @@
                 <td> 
                   <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
                   
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);" ><i class="fa fa-trash" style="cursor: pointer;"  ></i></button>
+                  <!-- <button type="button" class="btn btn-danger" ></button> -->
+                  <i class="fa fa-trash" style="cursor: pointer;" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
                   
                   
-                  <button type="button" class="btn btn-default"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal" ><i class="fa fa-eye" style="cursor: pointer;" ></i></button>
+                  <button type="button" class="btn btn-default"  ></button>
+                  <i class="fa fa-eye" style="cursor: pointer;" ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
                   
                   
                 </td>
