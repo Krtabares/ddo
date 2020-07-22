@@ -61,11 +61,6 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 
         $scope.getClientNew(client)
         
-        /*if (response.data.exist) {
-          ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-        } else if (response.data.email_flag) {
-          ngNotify.set('¡Ya el correo está registrado!','error')
-        }*/
 		  }, function errorCallback(response) {
 			console.log(response)
 			if(response.status == 403){

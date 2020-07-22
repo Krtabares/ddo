@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.bootstrap', 'ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
+angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.bootstrap', 'ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage','ngResource'])
 
   .config(['$routeProvider', function($routeProvider) {
 
@@ -11,21 +11,22 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
   }])
 
   .controller('saldoCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'NgMap','$localStorage',
-    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, NgMap, $localStorage) {
+    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, NgMap, $localStorage, $resource) {
 
       var ip = "http://192.168.168.170:3500";
       $scope.saldo = {};
       $scope.listDeuda = [{}];
-	  
-	  $scope.arr_page = new Array(4);
+
+      $scope.arr_page = new Array(4);
       $scope.max = 4
       $scope.min = 0;
       $scope.aux = {'pages': '01', 'totalPages': 11};
       $scope.hasClient = false;
-    $scope.isOptionsReady = false;
-    $scope.client = {};
-    $scope.client_info = {}
-    verificClient()
+      $scope.isOptionsReady = false;
+      $scope.client = {};
+      $scope.client_info = {}
+      $scope.dtInstance = {};
+      verificClient() 
 
     function verificClient(){
       
@@ -117,7 +118,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         if(response.data.obj.length > 1){
           // $scope.productos = response.data.obj
           defer.resolve(response.data.obj);
-          $scope.dtOptions.reloadData()
+          // $scope.dtOptions.reloadData()
         }else{
           ngNotify.set('¡No se encontraron resultados!', 'warn')
         }
@@ -125,6 +126,35 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       }, function errorCallback(response) {
         console.log(response)
       });
+    }
+
+    $scope.newPromise = newPromise;
+    function newPromise() {
+      console.log("getProdNew");
+      var defer = $q.defer();
+      var body = {};
+      if(filter){
+
+        body.pNoCia = $scope.client.COD_CIA
+        body.pNoGrupo = $scope.client.GRUPO_CLIENTE
+        body.pCliente = $scope.client.COD_CLIENTE
+        body.pBusqueda = $scope.busqueda_prod
+      }
+      request.post(ip+'/procedure_productos', body,{})
+      .then(function successCallback(response) {
+        console.log(response)
+        if(response.data.obj.length > 1){
+          // $scope.productos = response.data.obj
+          defer.resolve(response.data.obj);
+          // $scope.dtOptions.reloadData()
+        }else{
+          ngNotify.set('¡No se encontraron resultados!', 'warn')
+        }
+
+      }, function errorCallback(response) {
+        console.log(response)
+      });
+        return defer.promise;
     }
 	
 	
@@ -134,6 +164,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         body.pNoCia = $scope.client.COD_CIA
         body.pNoGrupo = $scope.client.GRUPO_CLIENTE
         body.pCliente = $scope.client.COD_CLIENTE
+        body.pBusqueda = null
          request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
@@ -154,9 +185,9 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
             DTColumnBuilder.newColumn('bodega').withTitle('Bodega'),
             DTColumnBuilder.newColumn('nombre_bodega').withTitle('Nombre de la bodega'),
             DTColumnBuilder.newColumn('cod_producto').withTitle('Código de producto'),
-			DTColumnBuilder.newColumn('nombre_producto').withTitle('Nombre de producto'),
-			DTColumnBuilder.newColumn('princ_activo').withTitle('Principio activo').withClass('none'),
-			DTColumnBuilder.newColumn('existencia').withTitle('Existencia').withClass('none'),
+            DTColumnBuilder.newColumn('nombre_producto').withTitle('Nombre de producto'),
+            DTColumnBuilder.newColumn('princ_activo').withTitle('Principio activo').withClass('none'),
+            DTColumnBuilder.newColumn('existencia').withTitle('Existencia').withClass('none'),
             DTColumnBuilder.newColumn('precio').withTitle('Precio')
         ];
   }]);
