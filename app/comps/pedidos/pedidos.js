@@ -8,8 +8,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       controller: 'pedidosCtrl'
     });
   }])
-  .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'NgMap','$localStorage',
-    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnDefBuilder, NgMap, $localStorage) {
+  .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
+    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
         //init    
 
                 
@@ -460,13 +460,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
 		
-      $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withOption('responsive', true).withButtons([
-        'columnsToggle',
-        'colvis',
-        'copy',
-        'print',
-        'excel',
-        ])
+      $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withOption('responsive', true)
       // .withDisplayLength(2);
 
 		// $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
@@ -500,15 +494,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             DTColumnBuilder.newColumn('precio').withTitle('Precio'),
             DTColumnBuilder.newColumn('cantidad').withTitle('Cantidad de Productos')
         ];
-       $scope.dtColumnDefs = [
-          DTColumnDefBuilder.newColumnDef(0).notVisible(),
-          DTColumnDefBuilder.newColumnDef(1).notVisible(),
-          DTColumnDefBuilder.newColumnDef(2).notVisible(),
-          DTColumnDefBuilder.newColumnDef(3),
-          DTColumnDefBuilder.newColumnDef(4),
-          DTColumnDefBuilder.newColumnDef(5),
-          DTColumnDefBuilder.newColumnDef(6).notSortable()
-      ];
+      //  $scope.dtColumnDefs = [
+      //     DTColumnDefBuilder.newColumnDef(0).notVisible(),
+      //     DTColumnDefBuilder.newColumnDef(1).notVisible(),
+      //     DTColumnDefBuilder.newColumnDef(2),
+      //     DTColumnDefBuilder.newColumnDef(3),
+      //     DTColumnDefBuilder.newColumnDef(4),
+      //     DTColumnDefBuilder.newColumnDef(5),
+      //     DTColumnDefBuilder.newColumnDef(6).notSortable()
+      // ];
 
 
 
