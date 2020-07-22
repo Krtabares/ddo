@@ -133,13 +133,13 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       console.log("getProdNew");
       var defer = $q.defer();
       var body = {};
-      if(filter){
+      // if(filter){
 
         body.pNoCia = $scope.client.COD_CIA
         body.pNoGrupo = $scope.client.GRUPO_CLIENTE
         body.pCliente = $scope.client.COD_CLIENTE
         body.pBusqueda = $scope.busqueda_prod
-      }
+      // }
       request.post(ip+'/procedure_productos', body,{})
       .then(function successCallback(response) {
         console.log(response)
@@ -164,7 +164,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         body.pNoCia = $scope.client.COD_CIA
         body.pNoGrupo = $scope.client.GRUPO_CLIENTE
         body.pCliente = $scope.client.COD_CLIENTE
-        body.pBusqueda = null
+        // body.pBusqueda = ''
          request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
