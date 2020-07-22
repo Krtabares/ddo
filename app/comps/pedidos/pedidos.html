@@ -388,29 +388,30 @@
             </div>
             </div>
 
-
-            <div class="col-sm-12 col-md-6 col-lg-6" style="display: none;">
-              <div class="form-group">
-                <label>Factura</label>
-                <input type="text" ng-model="pedido.no_factu" class="form-control" placeholder="no_factura">
+            <div class="row">
+              <div  style="display: none;">
+                <div class="form-group">
+                  <label>Factura</label>
+                  <input type="text" ng-model="pedido.no_factu" class="form-control" placeholder="no_factura">
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                  <label>Fecha</label>
+                  <input type="date" ng-disabled="true" ng-model="pedido.fecha" class="form-control" placeholder="fecha">
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-8 col-lg-8">
+  
+  
+                <div class="form-group">
+                  <label for="comment">Observacion:</label>
+                  <textarea class="form-control" ng-disabled="!editView" ng-model="pedido.observacion" rows="2" id="comment"></textarea>
+                </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
-              <div class="form-group">
-                <label>Fecha</label>
-                <input type="date" ng-disabled="true" ng-model="pedido.fecha" class="form-control" placeholder="fecha">
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-8 col-lg-8">
 
-
-              <div class="form-group">
-                <label for="comment">Observacion:</label>
-                <textarea class="form-control" ng-disabled="!editView" ng-model="pedido.observacion" rows="2" id="comment"></textarea>
-              </div>
-            </div>
-
-
+            
           <!-- </div> -->
           
           <div class="row"  ng-show="editView" >
@@ -435,10 +436,6 @@
                 </div>
               </div>
   
-           
-            
-
-            
           </div>
           
           </div>
@@ -478,10 +475,8 @@
           
           </div>
           <div class="container" style="margin-top: 32px;">
-            
-
-            
-            <div class="form-group">
+                   
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <table class="table">
                   <thead>
                       <tr>
