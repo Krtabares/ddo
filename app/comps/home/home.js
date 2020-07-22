@@ -15,6 +15,27 @@ angular.module('app.home', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-c
 
       // CARGA INICIAL DE CHART
 
+      $scope.client = {};
+      $scope.client_info = {};
+      $scope.hasClient = false;
+      verificClient()
+  
+      function verificClient(){
+        
+        var client = localStorage.getItem('client')
+        var client_info = localStorage.getItem('client_info')
+        console.log(client)
+        if( client ==  null){
+          $scope.hasClient = false;
+        }else{
+          $scope.hasClient = true;
+          $scope.client_info = JSON.parse(client_info);
+          $scope.client = JSON.parse(client);
+          
+        } 
+        console.log($scope.client)
+      }
+
       var ctx = document.getElementById('myChart').getContext('2d');
       var ctx2 = document.getElementById('myChart2').getContext('2d');
       var ctx3 = document.getElementById('myChart3').getContext('2d');

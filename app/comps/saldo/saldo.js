@@ -117,6 +117,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         if(response.data.obj.length > 1){
           // $scope.productos = response.data.obj
           defer.resolve(response.data.obj);
+          $scope.dtOptions.reloadData()
         }else{
           ngNotify.set('¡No se encontraron resultados!', 'warn')
         }
@@ -136,7 +137,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
          request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
-			defer.resolve(response.data.obj);
+      defer.resolve(response.data.obj);
+      
          });
         return defer.promise;
 		})

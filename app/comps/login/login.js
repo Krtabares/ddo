@@ -34,7 +34,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         // console.log(response.data.obj[0])
         localstorage.set('client_info',  JSON.stringify(response.data.obj[0]));
         // $scope.clientes = response.data.obj
-
+        ngNotify.set('¡Bienvenido! '+response.data.obj[0].nombre_cliente ,'success')
         window.location.href = "#!/home";
 
       }, function errorCallback(response) {
@@ -60,7 +60,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         localstorage.set('client',  JSON.stringify(client));
 
         $scope.getClientNew(client)
-        ngNotify.set('¡Bienvenido!','success')
+        
         /*if (response.data.exist) {
           ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
         } else if (response.data.email_flag) {
