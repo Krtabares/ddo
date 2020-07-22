@@ -230,11 +230,11 @@
                           <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
                           <td > 
                             <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
-                            <p class="text-center">
+                            <!-- <p class="text-center">
                               <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeArt($index);"></i>
                             </p>
-                            
-                            
+                             -->
+                             <button type="button" class="btn btn-danger" ng-click="removeArt($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
                           </td>
                         </tr>
                   </tbody>
@@ -504,9 +504,9 @@
                           <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
                           <td ng-if="editView"> 
                             <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
-                            <p class="text-center">
-                              <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeArt($index);"></i>
-                            </p>
+    
+                            
+                            <button type="button" class="btn btn-danger" ng-click="removeArt($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
                             
                             
                           </td>
@@ -688,8 +688,12 @@
                 <td> 
                   <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
                   
-                  <i class="fa fa-trash" style="cursor: pointer;"  data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"></i>
-                  <i class="fa fa-eye" style="cursor: pointer;" ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal" ></i>
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);" ><i class="fa fa-trash" style="cursor: pointer;"  ></i></button>
+                  
+                  
+                  <button type="button" class="btn btn-default"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal" ><i class="fa fa-eye" style="cursor: pointer;" ></i></button>
+                  
+                  
                 </td>
               </tr>
         </tbody>
