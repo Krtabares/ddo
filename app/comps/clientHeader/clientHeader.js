@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('app.myclientHeader', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'ngStorage'])
-.component("myclientHeader", {
+angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'ngStorage'])
+.component("headerClient", {
     templateUrl: "comps/clientHeader/clientHeader.html",
     controller: 'clientHeaderCtrl'
   })
