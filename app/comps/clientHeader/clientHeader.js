@@ -18,18 +18,19 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
         $scope.dtInstance = {};
         verificClient() 
   
-      function verificClient(){
+        function verificClient(){
         
-        var client = localStorage.getItem('client')
-        var client_info = localStorage.getItem('client_info')
-        console.log(client)
-        if( client ==  null){
-            $scope.hasClient = false;
-        }else{
-            $scope.hasClient = true;
-            $scope.client_info = JSON.parse(client_info);
-            $scope.client = JSON.parse(client);
-            
-        } 
+            var client = localStorage.getItem('client')
+            var client_info = localStorage.getItem('client_info')
+            console.log(client)
+            if( client ==  null){
+                $scope.hasClient = false;
+            }else{
+                $scope.hasClient = true;
+                $scope.client_info = JSON.parse(client_info);
+                $scope.client = JSON.parse(client);
+                
+            } 
+        }
     }
   ]);
