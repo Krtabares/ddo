@@ -58,6 +58,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         client.COD_CLIENTE = response.data.user.COD_CLIENTE
 
         localstorage.set('client',  JSON.stringify(client));
+        console.log(response.data.user)
         if(response.data.user.rol=='admin'){
           ngNotify.set('¡Bienvenido! '+response.data.obj[0].nombre_cliente ,'success')
           window.location.href = "#!/home";
