@@ -49,7 +49,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 		  .then(function successCallback(response) {
         //console.log(response.data.access_token);
        
-        localstorage.set('user', response.data.user);
+        localstorage.set('user', JSON.stringify(response.data.user));
         localstorage.set('token', response.data.access_token);
         
         var client = {}

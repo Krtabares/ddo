@@ -11,6 +11,11 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
         console.log("sidebarCtrl entro")
 
         $scope.hasClient = false;
-        $scope.client = {};
+        $scope.user = {};
+
+        function init() {
+          var user = localStorage.getItem('user')
+           $scope.user = JSON.parse(user);
+        }
     }
   ]);
