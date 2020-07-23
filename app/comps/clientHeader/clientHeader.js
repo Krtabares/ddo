@@ -23,8 +23,8 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
             var client = localStorage.getItem('client')
             var client_info = localStorage.getItem('client_info')
             console.log(client)
-            console.log( Object.keys(client).length  )
-           if ( Object.keys(client).length === 0 ){
+            console.log( client=='{}'  )
+             if ( client=='{}' ){
                 $scope.hasClient = false;
             }else{
                 $scope.hasClient = true;

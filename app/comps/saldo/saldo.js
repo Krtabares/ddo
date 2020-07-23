@@ -33,7 +33,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
      var client = localStorage.getItem('client')
      var client_info = localStorage.getItem('client_info')
      console.log(client)
-    if ( Object.keys(client).length === 0 ){
+      if ( client=='{}' ){
        $scope.hasClient = false;
      }else{
        $scope.hasClient = true;

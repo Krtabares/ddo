@@ -25,7 +25,7 @@ angular.module('app.home', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-c
         var client = localStorage.getItem('client')
         var client_info = localStorage.getItem('client_info')
         console.log(client)
-       if ( Object.keys(client).length === 0 ){
+         if ( client=='{}' ){
           $scope.hasClient = false;
         }else{
           $scope.hasClient = true;

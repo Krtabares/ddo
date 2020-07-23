@@ -20,7 +20,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           
          var client = localStorage.getItem('client')
          console.log(client)
-        if ( Object.keys(client).length === 0 ){
+          if ( client=='{}' ){
            $scope.hasClient = false;
          }else{
            $scope.hasClient = true;
