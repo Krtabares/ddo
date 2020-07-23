@@ -9,5 +9,8 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
     function($scope, $rootScope, $routeParams, $interval, $timeout, ngNotify, localstorage, request, NgMap, $localStorage) {
 
         console.log("sidebarCtrl entro")
+
+        $scope.hasClient = false;
+        $scope.client = {};
     }
   ]);
