@@ -60,7 +60,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         localstorage.set('client',  JSON.stringify(client));
         console.log(response.data.user)
         if(response.data.user.role=='admin'){
-          ngNotify.set('¡Bienvenido! '+response.data.obj[0].nombre_cliente ,'success')
+          ngNotify.set('¡Bienvenido! ','success')
           window.location.href = "#!/home";
         }else
           $scope.getClientNew(client)
