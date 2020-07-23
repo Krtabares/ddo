@@ -18,7 +18,7 @@ angular.module('app', [
                'app.config',
                'app.pedidos',
                'app.facturado',
-               'app.sidebar',
+               'app.mySidebar',
      ])
      .factory('request', ['$http','$q', function($http,$q) {
           return {
