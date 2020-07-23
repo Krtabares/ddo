@@ -58,8 +58,11 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         client.COD_CLIENTE = response.data.user.COD_CLIENTE
 
         localstorage.set('client',  JSON.stringify(client));
-
-        $scope.getClientNew(client)
+        if(response.data.user.rol=='admin'){
+          ngNotify.set('¡Bienvenido! '+response.data.obj[0].nombre_cliente ,'success')
+          window.location.href = "#!/home";
+        }else
+          $scope.getClientNew(client)
         
 		  }, function errorCallback(response) {
 			console.log(response)
