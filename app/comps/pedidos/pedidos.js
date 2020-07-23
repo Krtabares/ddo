@@ -108,7 +108,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
          var client = localStorage.getItem('client')
          var client_info = localStorage.getItem('client_info')
          console.log(client)
-         if( client ==  null){
+        if ( Object.keys(client).length === 0 ){
            $scope.hasClient = false;
          }else{
            $scope.hasClient = true;
