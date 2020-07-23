@@ -2,7 +2,7 @@
 
 angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'ngStorage'])
 .component("mySidebar", {
-    templateUrl: "comps/common/sidebar.htmml"
+    templateUrl: "comps/common/sidebar.html"
   })
 
   .controller('sidebarCtrl', ['$scope', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'localstorage', 'request', 'NgMap','$localStorage',
