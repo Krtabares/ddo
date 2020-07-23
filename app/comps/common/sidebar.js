@@ -12,7 +12,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
 
         $scope.hasClient = false;
         $scope.user = {};
-
+        init()
         function init() {
           var user = localStorage.getItem('user')
            $scope.user = JSON.parse(user);
