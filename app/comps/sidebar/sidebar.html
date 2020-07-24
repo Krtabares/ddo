@@ -1,15 +1,67 @@
 <div id="sidebar-wrapper">
 <ul id="sidebar_menu" class="sidebar-nav">
-     <li class="sidebar-brand" ng-show="!side"  ><a id="menu-toggle" ng-click="showSidebar()" >Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
-     <li class="sidebar-brand" ng-show="side"  ><a id="menu-toggle" ng-click="hideSidebar()" >Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+     <li class="sidebar-brand" ng-show="!side"  ><a id="menu-toggle" ng-click="showSidebar()" >Menu<i class="fas fa-bars" style="text-align:center"></i></a></li>
+     <li class="sidebar-brand" ng-show="side"  ><a id="menu-toggle" ng-click="hideSidebar()" >Menu<i class="fas fa-bars" style="text-align:center"></i></a></li>
 </ul>
   <ul class="sidebar-nav" id="sidebar">
-    <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-    <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-    <li class="nav-item" >    
+    <li class="nav-item" >
       <a href="#!/home" class="nav-link">
         Home
         <i class="fas fa-home" style="text-align:center"></i>
+      </a>
+    </li>
+    <li class="nav-item" >
+      <a href="#!/deuda" class="nav-link">
+        Deuda
+        <i class="fas fa-receipt" style="text-align:center"></i>
+      </a>
+    </li>
+    <li class="nav-item" ng-show="user.role == 'admin'" >
+      <a href="#!/generar" class="nav-link">
+        Generar
+        <i class="fas fa-shopping-basket" style="text-align:center"></i>
+      </a>
+    </li>
+    <li class="nav-item" ng-show="user.role == 'admin'"  >
+      <a href="#!/consulta" class="nav-link">
+        Consultar
+        <i class="fas fa-list-alt" style="text-align:center"></i>
+      </a>
+    </li>
+    <li class="nav-item" ng-show="user.role == 'admin'"  >
+      <a href="#!/usuarios" class="nav-link">
+        Usuarios
+        <i class="fas fa-user" style="text-align:center"></i>
+      </a>
+    </li>
+    <li class="nav-item" ng-show="user.role == 'admin'"  >
+      <a href="#!/clientes" class="nav-link">
+        Clientes
+        <i class="fas fa-user" style="text-align:center"></i>
+      </a>
+    </li>
+    <li class="nav-item" >
+      <a href="#!/saldo" class="nav-link">
+        Productos
+        <i class="fas fa-list-alt" style="text-align:center"></i>
+      </a>
+    </li>
+    <li class="nav-item" >
+      <a href="#!/pedidos" class="nav-link">
+        Pedidos
+        <i class="fas fa-list-alt" style="text-align:center"></i>
+      </a>
+    </li>
+    <li class="nav-item" >
+      <a href="#!/facturado" class="nav-link">
+        Facturas
+        <i class="fas fa-list-alt" style="text-align:center"></i>
+      </a>
+    </li>
+    <li class="nav-item"  ng-show="user.role == 'admin'"  >
+      <a href="#!/config" class="nav-link">
+        Config
+        <i class="fas fa-cog" style="text-align:center"></i>
       </a>
     </li>
   </ul>
