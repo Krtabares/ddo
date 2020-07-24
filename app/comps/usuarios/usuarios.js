@@ -75,7 +75,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
         user.COD_CLIENTE = $scope.client.cod_cliente
       }
       console.log(user);
-      request.post(ip+'/add/user', user,{})
+      request.post(ip+'/add/user', user,{'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response)
             if (response.data == "OK") {
