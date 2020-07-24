@@ -23,6 +23,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.client_info = {};
       $scope.hasClient = false;
       $scope.clientes=[];
+      $scope.clientIndex = -1
       verificClient()
 
       function verificClient(){
@@ -42,10 +43,11 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
      }
 
      $scope.selectCLient = function(){
-       console.log($scope.client )
+
        // $scope.client = x
          $scope.client  = $scope.clientes[ $scope.clientIndex ];
          // selectCLientCAP( $scope.client)
+         console.log($scope.client )
 
      }
      $scope.getClientNew = function (filter = false) {
