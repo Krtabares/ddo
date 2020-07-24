@@ -26,7 +26,6 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
             console.log( client=='{}'  )
              if ( client=='{}' ){
                 $scope.hasClient = false;
-                console.log($scope.clientRef)
             }else{
                 $scope.hasClient = true;
                 $scope.client_info = JSON.parse(client_info);
@@ -34,8 +33,5 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
 
             }
         }
-    },
-    bindings: {
-    clientRef: "<"
-  }
+    }
   ]);
