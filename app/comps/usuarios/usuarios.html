@@ -83,17 +83,17 @@
           <div class="row pb-2 p-2" ng-if="client">
               <div class="col-md-6">
                   <p class="font-weight-bold mb-4">Informacion del Cliente </p>
-                  <p class="mb-1" style="text-transform: capitalize;" >{{client.nombre_cliente}}</p>
+                  <p class="mb-1" style="text-transform: capitalize;" >{{client.nombre_cliente.toLowerCase()}}</p>
                   <!-- <p>Acme Inc</p> -->
-                  <p class="mb-1">{{client.direccion_cliente}}</p>
+                  <p class="mb-1">{{client.direccion_cliente.toLowerCase()}}</p>
                   <!-- <p class="mb-1">6781 45P</p> -->
               </div>
 
               <div class="col-md-6 text-right">
-                  <p class="font-weight-bold mb-4">Details</p>
+                  <p class="font-weight-bold mb-4">Detalles</p>
                   <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client.docu_identif_cliente}}</p>
                   <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
-                  <p class="mb-1"><span class="text-muted">Encargado: </span> {{client.nombre_encargado}}</p>
+                  <p class="mb-1"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
               </div>
           </div>
 

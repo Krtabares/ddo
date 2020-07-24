@@ -69,7 +69,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
       $scope.addUser = function(user){
       user.password = "ddo.2017";
-      if($scope.hasClient){
+      if($scope.clientIndex!=-1){
         user.COD_CIA = $scope.client.COD_CIA
         user.GRUPO_CLIENTE = $scope.client.GRUPO_CLIENTE
         user.COD_CLIENTE = $scope.client.COD_CLIENTE
