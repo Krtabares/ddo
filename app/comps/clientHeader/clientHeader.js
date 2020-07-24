@@ -16,22 +16,26 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
         $scope.client = {};
         $scope.client_info = {}
         $scope.dtInstance = {};
-        verificClient() 
-  
+        verificClient()
+
         function verificClient(){
-        
+
             var client = localStorage.getItem('client')
             var client_info = localStorage.getItem('client_info')
             console.log(client)
             console.log( client=='{}'  )
              if ( client=='{}' ){
                 $scope.hasClient = false;
+                console.log($scope.clientRef)
             }else{
                 $scope.hasClient = true;
                 $scope.client_info = JSON.parse(client_info);
                 $scope.client = JSON.parse(client);
-                
-            } 
+
+            }
         }
-    }
+    },
+    bindings: {
+    clientRef: "<"
+  }
   ]);
