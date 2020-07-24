@@ -80,20 +80,20 @@
             </div>
           </div>
 
-          <div class="row pb-2 p-2">
+          <div class="row pb-2 p-2" ng-if="">
               <div class="col-md-6">
-                  <p class="font-weight-bold mb-4">Client Information</p>
-                  <p class="mb-1" style="text-transform: capitalize;" >{{x.nombre_cliente}}</p>
+                  <p class="font-weight-bold mb-4">Informacion del Cliente </p>
+                  <p class="mb-1" style="text-transform: capitalize;" >{{client.nombre_cliente}}</p>
                   <!-- <p>Acme Inc</p> -->
-                  <p class="mb-1">{{x.direccion_cliente}}</p>
-                  <p class="mb-1">6781 45P</p>
+                  <p class="mb-1">{{client.direccion_cliente}}</p>
+                  <!-- <p class="mb-1">6781 45P</p> -->
               </div>
 
               <div class="col-md-6 text-right">
                   <p class="font-weight-bold mb-4">Details</p>
-                  <p class="mb-1"><span class="text-muted">Identificacion: </span> {{x.docu_identif_cliente}}</p>
-                  <p class="mb-1"><span class="text-muted">Codigo: </span> {{x.cod_cliente}}</p>
-                  <p class="mb-1"><span class="text-muted">Encargado: </span> {{x.nombre_encargado}}</p>
+                  <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client.docu_identif_cliente}}</p>
+                  <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
+                  <p class="mb-1"><span class="text-muted">Encargado: </span> {{client.nombre_encargado}}</p>
               </div>
           </div>
 
