@@ -86,8 +86,8 @@ body {
 }
 
 #sidebar-wrapper {
-    margin-left: -150px;
-    left: 70px;
+    margin-left: -155px;
+    left: 60px;
     width: 155px;
     background: #222;
     position: fixed;
@@ -215,7 +215,7 @@ body {
     transition: all .4s ease 0s;
 }
 #sidebar-wrapper {
-    left: 75px;
+    left: 60px;
 }
 #wrapper.active {
     padding-left: 155px;
