@@ -88,7 +88,7 @@ body {
 #sidebar-wrapper {
     margin-left: -150px;
     left: 70px;
-    width: 150px;
+    width: 155px;
     background: #222;
     position: fixed;
     height: 100%;
@@ -127,6 +127,7 @@ body {
 }
 
 #sidebar_menu li a, .sidebar-nav li a {
+		font-size: 14px;
     color: #999;
     display: block;
     float: left;
