@@ -13,19 +13,19 @@
       </div>
       <div class="modal-body">
         <!-- INFO CLIENTE -->
-        <header-client></header-client> 
+        <header-client></header-client>
         <!--  END INFO CLIENTE -->
         <div class="row">
 
           <form>
-            
+
             <div class="container">
 
               <div ng-show="!hasClient">
                 <div class="row">
                   <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="clientes">Busqueda por cliente</label>
-                    <div class="input-group mb-3">           
+                    <div class="input-group mb-3">
                       <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
@@ -41,10 +41,10 @@
                       </select>
                     </div>
                   </div>
-        
-    
+
+
                 </div>
-              
+
               <div class="row">
                 <div class="col-sm-12 col-md-4 col-lg-4">
                   <div class="form-group">
@@ -64,7 +64,7 @@
                     <input type="text" ng-disabled="true"  ng-model="pedido.no_cliente" class="form-control" placeholder="no_cliente">
                   </div>
                 </div>
-                
+
               </div>
               </div>
 
@@ -92,9 +92,9 @@
 
 
             </div>
-            
+
             <div class="row"  >
-              
+
                 <div class="col-sm-12 col-md-6 col-lg-6">
                   <label for="clientes">Busqueda por producto</label>
                   <div class="input-group mb-3">
@@ -103,7 +103,7 @@
                       <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
                     </div>
                   </div>
-                
+
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6" ng-show="productos.length > 0">
                   <div class="form-group">
@@ -115,12 +115,12 @@
                   </div>
                 </div>
             </div>
-            
+
             </div>
             <div class="container"   >
               <div class="row" >
-                
-                
+
+
 
                   <div class="col-2">
                     <label>Codigo</label>
@@ -137,12 +137,12 @@
                   <div class="col-3">
                     <label>Precio por unidad</label>
                     <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
-                    
+
                   </div>
                   <div class="col-3">
                     <label>Precio producto total</label>
                     <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
-                    
+
                   </div>
                   <div class="col-12">
                     <label></label>
@@ -150,11 +150,11 @@
                   </div>
 
               </div>
-            
+
             </div>
             <div class="container" style="margin-top: 32px;">
-              
-              
+
+
               <div class="form-group">
                 <table class="table">
                     <thead>
@@ -168,14 +168,14 @@
                         </tr>
                     </thead>
                     <tbody>
-    
+
                         <tr ng-repeat="x in pedido.pedido">
                             <th scope="row">{{ $index + 1 }}</td>
                             <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td>
                             <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
                             <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
                             <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
-                            <td > 
+                            <td >
                               <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
                               <!-- <p class="text-center">
                                 <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeArt($index);"></i>
@@ -186,22 +186,22 @@
                           </tr>
                     </tbody>
                     </table>
-    
+
               </div>
               <div class="col-6 col-sm-6 col-md-6 col-lg-6" ng-show="productIndex != -1 ||pedido.pedido.length > 0">
                 <label> Total </label>
                 <h4> {{ nuevoTotal() }}</h4>
               </div>
-  <!--   
+  <!--
               <div class="col-4 mb-5">
                 <label></label>
                 <button type="button"  class="btn btn-info" style="margin-top: 32px;" ng-click="addPedido();">Enviar pedido</button>
               </div> -->
-    
+
             </div>
 
           </form>
-  
+
         </div>
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
@@ -227,9 +227,9 @@
         <div class="row">
 
           <header-client></header-client>
-        
+
           <form class="col-sm-12 col-md-12 col-lg-12">
-            
+
           <div class="container">
 
             <div ng-show="!hasClient">
@@ -253,7 +253,7 @@
                   <input type="text" ng-disabled="true"  ng-model="pedido.no_cliente" class="form-control" placeholder="no_cliente">
                 </div>
               </div>
-              
+
             </div>
             </div>
 
@@ -271,8 +271,8 @@
                 </div>
               </div>
               <div class="col-sm-12 col-md-8 col-lg-8">
-  
-  
+
+
                 <div class="form-group">
                   <label for="comment">Observacion:</label>
                   <textarea class="form-control" ng-disabled="!editView" ng-model="pedido.observacion" rows="2" id="comment"></textarea>
@@ -280,14 +280,14 @@
               </div>
             </div>
 
-            
+
           <!-- </div> -->
 
           </div>
           <div class="container" ng-show="editView"  >
 
             <div class="row"  >
-            
+
               <div class="col-sm-12 col-md-6 col-lg-6">
                 <label for="clientes">Busqueda por producto</label>
                 <div class="input-group mb-3">
@@ -296,7 +296,7 @@
                     <button class="btn btn-outline-secondary" ng-disabled="!editView"  ng-click="getProdNew(true)" type="button">Buscar</button>
                   </div>
                 </div>
-              
+
               </div>
               <div class="col-sm-12 col-md-6 col-lg-6" ng-show="productos.length > 0">
                 <div class="form-group">
@@ -307,7 +307,7 @@
                   </select>
                 </div>
               </div>
-  
+
           </div>
             <div class="row" >
 
@@ -339,10 +339,10 @@
                 </div>
 
             </div>
-          
+
           </div>
           <div class="container" style="margin-top: 32px;">
-                   
+
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <table class="table">
                   <thead>
@@ -356,26 +356,26 @@
                       </tr>
                   </thead>
                   <tbody>
-  
+
                       <tr ng-repeat="x in pedido.pedido">
                           <th scope="row">{{ $index + 1 }}</td>
-                         
+
                           <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td>
                           <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
                           <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
                           <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
-                          <td ng-if="editView"> 
+                          <td ng-if="editView">
                             <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
-    
-                            
+
+
                             <button type="button" class="btn btn-danger" ng-click="removeArt($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
-                            
-                            
+
+
                           </td>
                         </tr>
                   </tbody>
                   </table>
-  
+
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <label>Total (no incluye iva)</label>
@@ -386,13 +386,13 @@
               <h4> > {{ nuevoTotal() }}</h4>
             </div>
 
-  
+
           </div>
-  
-  
-  
+
+
+
           </form>
-  
+
         </div>
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
@@ -412,18 +412,18 @@
       <div class="modal-header">
         <h4 class="modal-title">Confirmacion</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        
+
       </div>
       <div class="modal-body">
-        
+
         <div class="container">
-          
+
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <h3><p class="text-center">Desea eliminar el registro?</p></h3>
           </div>
-          
+
         </div>
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -433,92 +433,95 @@
   </div>
 </div>
 
+<div id="wrapper" class="active">
 
-<div class="container-fluid">
-  <div class="row" style="min-height:80vh">
+  <my-sidebar></my-sidebar>
+  <div id="page-content-wrapper" class="container-fluid">
+    <div class="row" style="min-height:80vh">
 
-    <div class="col-md-1 d-none d-sm-block" style="background:#069CDF">
-      <br>
-      <br>
-
-
-      <my-sidebar></my-sidebar>
+      <div class="col-md-1 d-none d-sm-block" style="background:#069CDF">
+        <br>
+        <br>
 
 
-    </div>
-    <div class="col-md-11 col-sm-12">
-      <br>
-      <h5 class="text-center"> <strong>PEDIDOS </strong> </h5>
-      <br>
+        <my-sidebar></my-sidebar>
 
-      <header-client></header-client>
 
-      <div class="row">
-        <!-- <div class="col-sm-12 d-none d-sm-block">
+      </div>
+      <div class="col-md-11 col-sm-12">
+        <br>
+        <h5 class="text-center"> <strong>PEDIDOS </strong> </h5>
+        <br>
 
-        </div> -->
-        <div class="col-md-12">
-          <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();" data-toggle="modal" data-target="#addPedidoModal"> <i class="fas fa-pencil"></i> CREAR PEDIDO</button>
-        </div>
-        
-        <div class="col-md-12">
-			<!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
-      </table> -->
-      
-      <table class="table" datatable="ng" dt-options="dtOptions">
-        <thead>
-            <tr>
-            <th scope="col"><p class="text-center">#</p></th>
-            <th scope="col"><p class="text-center">Número cia</p></th>
-            <th scope="col"><p class="text-center">Grupo</p></th>
-            <th scope="col"><p class="text-center">Número cliente</p></th>
-            <th scope="col"><p class="text-center">Número factura</p></th>
-            <th scope="col"><p class="text-center">Estatus</p></th>
-            <th scope="col"><p class="text-center">Monto</p></th>
-            <th scope="col"><p class="text-center">Cantidad de Productos</p></th>
-            <th scope="col"><p class="text-center">Opciones</p></th>
-            
-            </tr>
-        </thead>
-        <tbody>
+        <header-client></header-client>
 
-            <tr ng-repeat="x in listaPedidos">
-                <th scope="row">{{ $index + 1 }}</td>
-                <td><p class="text-center">{{ x.no_cia }}</p></td>
-                <td><p class="text-center">{{ x.grupo }}</p></td>
-                <td><p class="text-center">{{ x.no_cliente }}</p></td>
-                <td><p class="text-center">{{ x.no_factu }}</p></td>
-                <td><p class="text-center">{{ x.estatus }}</p></td>
-                <td><p class="text-right">{{ formato(2,x.precio) }}</p></td>
-                <td><p class="text-center">{{ x.cantidad }}</p></td>
-                <td> 
-                  <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
-                  
-                  <!-- <button type="button" class="btn btn-danger" ></button> -->
-                  <i class="fa fa-trash" style="cursor: pointer;" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
-                  
-                  
-                  <!-- <button type="button" class="btn btn-default"  ></button> -->
-                  <i class="fa fa-eye" style="cursor: pointer;" ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
-                  
-                  
-                </td>
+        <div class="row">
+          <!-- <div class="col-sm-12 d-none d-sm-block">
+
+          </div> -->
+          <div class="col-md-12">
+            <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();" data-toggle="modal" data-target="#addPedidoModal"> <i class="fas fa-pencil"></i> CREAR PEDIDO</button>
+          </div>
+
+          <div class="col-md-12">
+  			<!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
+        </table> -->
+
+        <table class="table" datatable="ng" dt-options="dtOptions">
+          <thead>
+              <tr>
+              <th scope="col"><p class="text-center">#</p></th>
+              <th scope="col"><p class="text-center">Número cia</p></th>
+              <th scope="col"><p class="text-center">Grupo</p></th>
+              <th scope="col"><p class="text-center">Número cliente</p></th>
+              <th scope="col"><p class="text-center">Número factura</p></th>
+              <th scope="col"><p class="text-center">Estatus</p></th>
+              <th scope="col"><p class="text-center">Monto</p></th>
+              <th scope="col"><p class="text-center">Cantidad de Productos</p></th>
+              <th scope="col"><p class="text-center">Opciones</p></th>
+
               </tr>
-        </tbody>
-        </table>
+          </thead>
+          <tbody>
+
+              <tr ng-repeat="x in listaPedidos">
+                  <th scope="row">{{ $index + 1 }}</td>
+                  <td><p class="text-center">{{ x.no_cia }}</p></td>
+                  <td><p class="text-center">{{ x.grupo }}</p></td>
+                  <td><p class="text-center">{{ x.no_cliente }}</p></td>
+                  <td><p class="text-center">{{ x.no_factu }}</p></td>
+                  <td><p class="text-center">{{ x.estatus }}</p></td>
+                  <td><p class="text-right">{{ formato(2,x.precio) }}</p></td>
+                  <td><p class="text-center">{{ x.cantidad }}</p></td>
+                  <td>
+                    <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
+
+                    <!-- <button type="button" class="btn btn-danger" ></button> -->
+                    <i class="fa fa-trash" style="cursor: pointer;" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
+
+
+                    <!-- <button type="button" class="btn btn-default"  ></button> -->
+                    <i class="fa fa-eye" style="cursor: pointer;" ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
+
+
+                  </td>
+                </tr>
+          </tbody>
+          </table>
+          </div>
         </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div ng-include="'comps/common/footer.html'">
 
       </div>
     </div>
+
+
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-12">
+    <div ng-include="'comps/common/footer.html'">
 
+    </div>
+  </div>
+</div>

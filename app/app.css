@@ -116,10 +116,10 @@ body {
     height: auto;
 }
 #wrapper.active {
-    padding-left: 150px;
+    padding-left: 155px;
 }
 #wrapper.active #sidebar-wrapper {
-    left: 150px;
+    left: 155px;
 }
 
 #page-content-wrapper {
@@ -184,16 +184,16 @@ body {
   background: none;
 }
 
-#main_icon
+.main_icon
 {
     float:right;
-   padding-right: 65px;
+   padding-right: 25px;
    padding-top:20px;
 }
 .sub_icon
 {
     float:right;
-   padding-right: 15px;
+   padding-right: 25px;
    padding-top:10px;
 }
 .content-header {
@@ -214,14 +214,14 @@ body {
     transition: all .4s ease 0s;
 }
 #sidebar-wrapper {
-    left: 70px;
+    left: 75px;
 }
 #wrapper.active {
-    padding-left: 150px;
+    padding-left: 155px;
 }
 #wrapper.active #sidebar-wrapper {
-    left: 150px;
-    width: 150px;
+    left: 155px;
+    width: 155px;
     transition: all .4s ease 0s;
 }
 }
