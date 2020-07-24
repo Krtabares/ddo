@@ -56,14 +56,17 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
         //
         //
         // });
+        $scope.side = true
 
         $scope.showSidebar = function(){
           var myEl = angular.element( document.querySelector( '#wrapper' ) );
               myEl.addClass('active');
+              $scope.side = true
         }
         $scope.hideSidebar = function(){
-          var myEl = angular.element( document.querySelector( '.page-wrapper' ) );
-              myEl.addClass('toggled');
+          var myEl = angular.element( document.querySelector( '#wrapper' ) );
+              myEl.removeClass('active');
+              $scope.side = false
         }
     }
   ]);
