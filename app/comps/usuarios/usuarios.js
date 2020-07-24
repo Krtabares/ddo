@@ -79,7 +79,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
           .then(function successCallback(response) {
             console.log(response)
             if (response.data == "OK") {
-			  $scope.initDatatable();
+			             $scope.initDatatable();
               ngNotify.set('¡Usuario registrado exitosamente!','success')
             } else if (response.data.email_flag) {
               //ngNotify.set('¡Ya el correo está registrado!','error')
@@ -111,7 +111,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
         request.post(ip+'/get/user', {'page': 1}, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response)
-			defer.resolve(response.data);
+			         defer.resolve(response.data);
          });
 
         return defer.promise;

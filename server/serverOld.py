@@ -111,6 +111,10 @@ async def addUser(request, token : Token):
 @jwt_required
 async def listUser(request, token : Token):
     data = request.json
+    db = get_mongo_db()
+
+    user = await db.user.find({'COD_CLIENTE' : data['pcliente']}, {'_id' : 0})
+
     return response.json(users,200)
 
 @app.route('/procedure_clientes', ["POST", "GET"])
