@@ -31,7 +31,7 @@ class CustomHandler(ErrorHandler):
 
 app = Sanic(__name__)
 port = 3500
-users = [{'username':'admin', 'password': 'ddo.admin', 'role': 'admin', 'name': 'admin'}, 
+users = [{'username':'admin', 'password': 'ddo.admin', 'role': 'admin', 'name': 'admin'},
 {'username':'aplaza', 'password': 'pla04.admin', 'role': 'user', 'name': 'automercado Plaza', 'COD_CIA': '01','GRUPO_CLIENTE': '01','COD_CLIENTE': 'PLA04' },
 {'username':'canon', 'password': 'canon.admin', 'role': 'user', 'name': 'automercado Plaza', 'COD_CIA': '01','GRUPO_CLIENTE': '01','COD_CLIENTE': 'CANON' },
 {'username':'atia', 'password': 'atia.admin', 'role': 'user', 'name': 'clinica atias', 'COD_CIA': '01','GRUPO_CLIENTE': '01','COD_CLIENTE': 'ATIA' },
@@ -50,7 +50,7 @@ Compress(app)
 
 
 def get_mongo_db():
-    mongo_uri = "mongodb://localhost:27030/ddo"
+    mongo_uri = "mongodb://127.0.0.1:27017/ddo"
     client = AsyncIOMotorClient(mongo_uri)
     db = client['ddo']
     return db
