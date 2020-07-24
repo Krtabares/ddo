@@ -103,7 +103,7 @@ async def addUser(request, token : Token):
     user = request.json
     db = get_mongo_db()
 
-    db.user.insert_one(user)
+    await db.user.insert_one(user)
 
     return response.json("OK", 200)
 
