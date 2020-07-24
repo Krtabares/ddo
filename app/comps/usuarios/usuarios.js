@@ -56,7 +56,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
        if(filter){
          body.pNombre = $scope.nombre_cliente
        }
-       request.post(ip+'/procedure_clientes', body,{})
+       request.post(ip+'/procedure_clientes', body,{'Authorization': 'Bearer ' + localstorage.get('token')})
        .then(function successCallback(response) {
          console.log(response)
 
