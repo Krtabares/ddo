@@ -1,111 +1,110 @@
 <div ng-include="'comps/common/topbar.html'">
 
 </div>
-<div class="container-fluid">
-  <div class="row" style="min-height:80vh">
 
-    <div class="col-md-1 d-none d-sm-block" style="background:#069CDF">
-      <br>
-      <br>
-      <my-sidebar></my-sidebar>
-    </div>
-    <div class="col-md-11 col-sm-12">
+<div id="wrapper" class="active">
 
-      <br>
-      <h5 class="text-center"> <strong>HOME</strong> </h5>
-      <h2 class="text-center"> <strong>{{client_info.nombre_cliente}}</strong> </h2>
-      <!-- <div ng-include="'comps/common/breadcrumb.html'">
+  <my-sidebar></my-sidebar>
+  <div  id="page-content-wrapper" class="container-fluid">
 
-      </div> -->
-      <!-- <h5 class="text-center">¡Bienvenido nuevamente, Usuario Administrador!</h5> -->
+      <div class="col-md-11 col-sm-12">
 
-      <!-- EDICION PRINCIPAL DE LA VISTA -->
-
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-4">
-            <canvas id="myChart" width="400" height="200"></canvas>
-          </div>
-          <div class="col-md-4">
-            <canvas id="myChart2" width="400" height="200"></canvas>
-          </div>
-          <div class="col-md-4">
-            <canvas id="myChart3" width="400" height="200"></canvas>
-          </div>
-
-        </div>
         <br>
-        <hr>
-        <div class="row">
+        <h5 class="text-center"> <strong>HOME</strong> </h5>
+        <h2 class="text-center"> <strong>{{client_info.nombre_cliente}}</strong> </h2>
+        <!-- <div ng-include="'comps/common/breadcrumb.html'">
 
-          <div class="col-md-4" style="font-size:14px">
-            <br>
-            <br>
-            <div class="card" style="background:#D76F2C;color:#000">
-              <div class="card-body">
-                <i class="fas fa-shopping-bag"></i>
-                Crédito disponible: <span style="font-weight:bold;color:#000">Bs. 165.854.559,00</span>
-              </div>
+        </div> -->
+        <!-- <h5 class="text-center">¡Bienvenido nuevamente, Usuario Administrador!</h5> -->
+
+        <!-- EDICION PRINCIPAL DE LA VISTA -->
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-4">
+              <canvas id="myChart" width="400" height="200"></canvas>
             </div>
-            <br>
-            <div class="card" style="background:#D76F2C;color:#000">
-              <div class="card-body">
-                <i class="fas fa-shopping-bag"></i>
-                Deuda (60 días): <span style="font-weight:bold;color:#000">Bs. 165.854.559,00</span>
-              </div>
+            <div class="col-md-4">
+              <canvas id="myChart2" width="400" height="200"></canvas>
             </div>
-            <br>
-            <div class="card" style="background:#D76F2C;color:#000">
-              <div class="card-body">
-                <i class="fas fa-shopping-bag"></i>
-                Próximo pago: <span style="font-weight:bold;color:#000">15/08/2019 (13 días)</span>
-              </div>
+            <div class="col-md-4">
+              <canvas id="myChart3" width="400" height="200"></canvas>
             </div>
-            <br>
-            <div class="card" style="background:#D76F2C;color:#000">
-              <div class="card-body">
-                <i class="fas fa-shopping-bag"></i>
-                Algo más: <span style="font-weight:bold;color:#000">15/08/2019 (13 días)</span>
-              </div>
-            </div>
+
           </div>
-          <div class="col-md-4">
-            <br>
-            <p class="text-center">Últimos mensajes</p>
-            <table class="table table-sm">
-              <tr style="font-weight:bold;color:#000;background:#D76F2C">
-                <td class="text-center">Orden</td>
-                <td class="text-center">Mensaje</td>
-                <td class="text-center">Emisor</td>
-                <td class="text-center">Estado</td>
-              </tr>
-            </table>
-          </div>
-          <div class="col-md-4">
+          <br>
+          <hr>
+          <div class="row">
+
+            <div class="col-md-4" style="font-size:14px">
               <br>
-            <p class="text-center">Últimos accesos</p>
-            <table class="table table-sm">
-              <tr style="font-weight:bold;color:#000;background:#D76F2C">
-                <td class="text-center">Fecha</td>
-                <td class="text-center">Hora</td>
-                <td class="text-center">Cliente</td>
-              </tr>
-            </table>
+              <br>
+              <div class="card" style="background:#D76F2C;color:#000">
+                <div class="card-body">
+                  <i class="fas fa-shopping-bag"></i>
+                  Crédito disponible: <span style="font-weight:bold;color:#000">Bs. 165.854.559,00</span>
+                </div>
+              </div>
+              <br>
+              <div class="card" style="background:#D76F2C;color:#000">
+                <div class="card-body">
+                  <i class="fas fa-shopping-bag"></i>
+                  Deuda (60 días): <span style="font-weight:bold;color:#000">Bs. 165.854.559,00</span>
+                </div>
+              </div>
+              <br>
+              <div class="card" style="background:#D76F2C;color:#000">
+                <div class="card-body">
+                  <i class="fas fa-shopping-bag"></i>
+                  Próximo pago: <span style="font-weight:bold;color:#000">15/08/2019 (13 días)</span>
+                </div>
+              </div>
+              <br>
+              <div class="card" style="background:#D76F2C;color:#000">
+                <div class="card-body">
+                  <i class="fas fa-shopping-bag"></i>
+                  Algo más: <span style="font-weight:bold;color:#000">15/08/2019 (13 días)</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <br>
+              <p class="text-center">Últimos mensajes</p>
+              <table class="table table-sm">
+                <tr style="font-weight:bold;color:#000;background:#D76F2C">
+                  <td class="text-center">Orden</td>
+                  <td class="text-center">Mensaje</td>
+                  <td class="text-center">Emisor</td>
+                  <td class="text-center">Estado</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-4">
+                <br>
+              <p class="text-center">Últimos accesos</p>
+              <table class="table table-sm">
+                <tr style="font-weight:bold;color:#000;background:#D76F2C">
+                  <td class="text-center">Fecha</td>
+                  <td class="text-center">Hora</td>
+                  <td class="text-center">Cliente</td>
+                </tr>
+              </table>
+            </div>
           </div>
+          <br>
+          <br>
+          <br>
         </div>
-        <br>
-        <br>
-        <br>
+
       </div>
 
-    </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div ng-include="'comps/common/footer.html'">
+<div class="row">
+  <div class="col-md-12">
+    <div ng-include="'comps/common/footer.html'">
 
-      </div>
     </div>
   </div>
 </div>

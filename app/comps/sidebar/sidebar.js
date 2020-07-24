@@ -58,8 +58,8 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
         // });
 
         $scope.showSidebar = function(){
-          var myEl = angular.element( document.querySelector( '.page-wrapper' ) );
-              myEl.addClass('toggled');
+          var myEl = angular.element( document.querySelector( '#wrapper' ) );
+              myEl.addClass('active');
         }
         $scope.hideSidebar = function(){
           var myEl = angular.element( document.querySelector( '.page-wrapper' ) );
