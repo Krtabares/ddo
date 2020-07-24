@@ -1,67 +1,67 @@
 <div id="sidebar-wrapper">
 <ul id="sidebar_menu" class="sidebar-nav">
-     <li class="sidebar-brand" ng-show="!side"  ><a id="menu-toggle" ng-click="showSidebar()" >Menu<i class="fas fa-bars" style="text-align:center"></i></a></li>
-     <li class="sidebar-brand" ng-show="side"  ><a id="menu-toggle" ng-click="hideSidebar()" >Menu<i class="fas fa-bars" style="text-align:center"></i></a></li>
+     <li class="sidebar-brand" ng-show="!side"  ><a id="menu-toggle" ng-click="showSidebar()" >Menu<i class="sub_icon fas fa-bars" style="text-align:center"></i></a></li>
+     <li class="sidebar-brand" ng-show="side"  ><a id="menu-toggle" ng-click="hideSidebar()" >Menu<i class="sub_icon fas fa-bars" style="text-align:center"></i></a></li>
 </ul>
   <ul class="sidebar-nav" id="sidebar">
     <li class="nav-item" >
       <a href="#!/home" class="">
         Home
-        <i class="fas fa-home" style="text-align:center"></i>
+        <i class="sub_icon fas fa-home" style="text-align:center"></i>
       </a>
     </li>
     <li class="nav-item" >
       <a href="#!/deuda" class="">
         Deuda
-        <i class="fas fa-receipt" style="text-align:center"></i>
+        <i class="sub_icon fas fa-receipt" style="text-align:center"></i>
       </a>
     </li>
     <li class="nav-item" ng-show="user.role == 'admin'" >
       <a href="#!/generar" class="">
         Generar
-        <i class="fas fa-shopping-basket" style="text-align:center"></i>
+        <i class="sub_icon fas fa-shopping-basket" style="text-align:center"></i>
       </a>
     </li>
     <li class="nav-item" ng-show="user.role == 'admin'"  >
       <a href="#!/consulta" class="">
         Consultar
-        <i class="fas fa-list-alt" style="text-align:center"></i>
+        <i class="sub_icon fas fa-list-alt" style="text-align:center"></i>
       </a>
     </li>
     <li class="nav-item" ng-show="user.role == 'admin'"  >
       <a href="#!/usuarios" class="">
         Usuarios
-        <i class="fas fa-user" style="text-align:center"></i>
+        <i class="sub_icon fas fa-user" style="text-align:center"></i>
       </a>
     </li>
     <li class="nav-item" ng-show="user.role == 'admin'"  >
       <a href="#!/clientes" class="">
         Clientes
-        <i class="fas fa-user" style="text-align:center"></i>
+        <i class="sub_icon fas fa-user" style="text-align:center"></i>
       </a>
     </li>
     <li class="nav-item" >
       <a href="#!/saldo" class="">
         Productos
-        <i class="fas fa-list-alt" style="text-align:center"></i>
+        <i class="sub_icon fas fa-list-alt" style="text-align:center"></i>
       </a>
     </li>
     <li class="nav-item" >
       <a href="#!/pedidos" class="">
         Pedidos
-        <i class="fas fa-list-alt" style="text-align:center"></i>
+        <i class="sub_icon fas fa-list-alt" style="text-align:center"></i>
       </a>
     </li>
     <li class="nav-item" >
       <a href="#!/facturado" class="">
         Facturas
-        <i class="fas fa-list-alt" style="text-align:center"></i>
+        <i class="sub_icon fas fa-list-alt" style="text-align:center"></i>
       </a>
     </li>
     <li class="nav-item"  ng-show="user.role == 'admin'"  >
       <a href="#!/config" class="">
         Config
-        <i class="fas fa-cog" style="text-align:center"></i>
+        <i class="sub_icon fas fa-cog" style="text-align:center"></i>
       </a>
     </li>
   </ul>
