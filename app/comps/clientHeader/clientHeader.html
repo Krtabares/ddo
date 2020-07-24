@@ -1,6 +1,6 @@
 <div class="container" ng-show="hasClient">
 
-    <form class="needs-validation" >
+    <!-- <form class="needs-validation" >
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label for="validationCustom01">Nombre Cliente:</label>
@@ -9,13 +9,13 @@
       <div class="col-md-4 mb-3">
         <label for="validationCustom02">Codigo Cliente</label>
         <input type="text" class="form-control" ng-disabled="true" id="validationCustom02" placeholder="Last name" value="{{client_info.cod_cliente}}" >
-        
+
       </div>
       <div class="col-md-4 mb-3">
         <label for="validationCustomUsername">Nro Identificacion Cliente:</label>
-          
+
           <input type="text" class="form-control" ng-disabled="true" id="validationCustomUsername" placeholder="Username" value="{{client_info.docu_identif_cliente}}" aria-describedby="inputGroupPrepend" >
-        
+
       </div>
     </div>
     <div class="form-row">
@@ -29,14 +29,14 @@
           <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
         <div class="invalid-feedback">
           Please provide a valid state.
-        </div> -->
+        </div> -
       </div>
       <div class="col-md-3 mb-3">
         <!-- <label for="validationCustom05">Zip</label>
         <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
         <div class="invalid-feedback">
           Please provide a valid zip.
-        </div> -->
+        </div> -
       </div>
     </div>
     <div class="form-group">
@@ -48,8 +48,25 @@
         <div class="invalid-feedback">
           You must agree before submitting.
         </div>
-      </div> -->
+      </div> -
     </div>
-  </form>
+  </form> -->
 
- </div>    
+  <div class="row pb-2 p-2" ng-if="client">
+      <div class="col-md-6">
+          <p class="font-weight-bold mb-4">Informacion del Cliente </p>
+          <p class="mb-1" style="text-transform: capitalize;" >{{client.nombre_cliente.toLowerCase()}}</p>
+          <!-- <p>Acme Inc</p> -->
+          <p class="mb-1">{{client.direccion_cliente.toLowerCase()}}</p>
+          <!-- <p class="mb-1">6781 45P</p> -->
+      </div>
+
+      <div class="col-md-6 text-right">
+          <p class="font-weight-bold mb-4">Detalles</p>
+          <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client.docu_identif_cliente}}</p>
+          <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
+          <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+      </div>
+  </div>
+
+ </div>
