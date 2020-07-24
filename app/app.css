@@ -103,6 +103,8 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+		height: 450px;
+		overflow: scroll;
 }
 #page-content-wrapper {
     padding-left: 0;
