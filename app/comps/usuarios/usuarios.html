@@ -14,10 +14,10 @@
         </button>
       </div>
       <div class="modal-body">
-		
+
 		<div class="cirular-avatar">  <i class="iavatar fas fa-2x fa-user"></i> </div>
-		
-		
+
+
 		<div class="data-avatar">
 			<form>
 				  <div class="form-group">
@@ -39,7 +39,7 @@
 				  </div>
 			</form>
 		</div>
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" style="background: #212529;" data-dismiss="modal"><i class="fas fa-1x fa-times"></i></button>
@@ -59,28 +59,70 @@
         </button>
       </div>
       <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <label for="clientes">Busqueda por cliente</label>
+            <div class="input-group mb-3">
+              <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Seleccione</label>
+              <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
+                <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
+                <option value="" disabled selected>Seleccione un cliente</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row pb-5 p-5">
+              <div class="col-md-6">
+                  <p class="font-weight-bold mb-4">Client Information</p>
+                  <p class="mb-1">John Doe, Mrs Emma Downson</p>
+                  <p>Acme Inc</p>
+                  <p class="mb-1">Berlin, Germany</p>
+                  <p class="mb-1">6781 45P</p>
+              </div>
+
+              <div class="col-md-6 text-right">
+                  <p class="font-weight-bold mb-4">Payment Details</p>
+                  <p class="mb-1"><span class="text-muted">VAT: </span> 1425782</p>
+                  <p class="mb-1"><span class="text-muted">VAT ID: </span> 10253642</p>
+                  <p class="mb-1"><span class="text-muted">Payment Type: </span> Root</p>
+                  <p class="mb-1"><span class="text-muted">Name: </span> John Doe</p>
+              </div>
+          </div>
+
+
+        </div>
         <form>
-          
+
           <div class="form-group">
             <label>Nombre</label>
             <input type="text" ng-model="user.name" class="form-control" placeholder="Nombre">
           </div>
-          <div class="form-group">
+          <div class="form-group" ng-if="!hasClient" >
             <label>Tipo de usuario</label>
             <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
             <select class="form-control form-control-sm" ng-model="user.role">
-              
+
               <option ng-repeat="type in type_user" value="{{type.type}}">
                 {{type.type | uppercase}}
               </option>
               <option value="" disabled selected>Selecciona un tipo de usuario</option>
             </select>
-        </div>
+          </div>
           <div class="form-group">
             <label>Username</label>
             <input type="text" ng-model="user.username" class="form-control" placeholder="Username">
           </div>
-        
+
+
         </form>
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
@@ -92,36 +134,33 @@
 </div>
 
 
+<div id="wrapper" class="active">
+  <my-sidebar></my-sidebar>
+  <div id="page-content-wrapper" class="container-fluid">
+    <div class="row" style="min-height:80vh">
 
-<div class="container-fluid">
-  <div class="row" style="min-height:80vh">
+      <div class="col-md-11 col-sm-12">
+        <br>
+        <h5 class="text-center"> <strong>USUARIOS</strong> </h5>
+        <br>
+        <button class="btn btn-primary" style="font-weight: bold;margin-bottom: 1rem;" data-toggle="modal" data-target="#addUserModal"> <i class="fas fa-pencil"></i> CREAR USUARIO <i class="fas fa-1x fa-user"></i></button>
 
-    <div class="col-md-1 d-none d-sm-block" style="background:#069CDF">
-      <br>
-      <br>
-      <my-sidebar></my-sidebar>
-    </div>
-    <div class="col-md-11 col-sm-12">
-      <br>
-      <h5 class="text-center"> <strong>USUARIOS</strong> </h5>
-      <br>
-      <button class="btn btn-primary" style="font-weight: bold;margin-bottom: 1rem;" data-toggle="modal" data-target="#addUserModal"> <i class="fas fa-pencil"></i> CREAR USUARIO <i class="fas fa-1x fa-user"></i></button>
-      
-      
 
-      <div class="row">
-        <div class="col-md-12">
-         <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
-			</table>
-        
+
+        <div class="row">
+          <div class="col-md-12">
+           <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
+  			</table>
+
+          </div>
+
         </div>
-        
+
       </div>
-
     </div>
-  </div>
 
-  
+  </div>
+</div>
 
   <div class="row">
     <div class="col-md-12">
@@ -130,4 +169,3 @@
       </div>
     </div>
   </div>
-</div>

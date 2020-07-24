@@ -36,8 +36,8 @@
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Seleccione</label>
                       <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
-                        <option value="">Seleccione un cliente</option>
                         <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
+                        <option value="" disabled selected>Seleccione un cliente</option>
                       </select>
                     </div>
                   </div>
@@ -109,8 +109,8 @@
                   <div class="form-group">
                     <label for="exampleFormControlSelect2">Seleccione un producto</label>
                     <select class="form-control"  ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
-                      <option value="" disabled selected="selected" >Seleccione</option>
                       <option ng-repeat="x in productos" ng-if="!($index==1)" value="{{$index}}">{{x.nombre_producto}} - (<sub style="font-size: 6px;">{{ x.princ_activo.toLowerCase() }}</sub>) </option>
+                      <option value="" value="" disabled selected >Seleccione</option>
                     </select>
                   </div>
                 </div>
