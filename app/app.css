@@ -168,7 +168,7 @@ body {
 #show-sidebar {
   position: fixed;
   left: 0;
-  top: 10px;
+  top: 100px;
   border-radius: 0 4px 4px 0px;
   width: 35px;
   transition-delay: 0.3s;
@@ -233,7 +233,7 @@ body {
 
 .sidebar-wrapper .sidebar-header {
   padding: 20px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .sidebar-wrapper .sidebar-header .user-pic {

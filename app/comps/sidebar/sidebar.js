@@ -56,5 +56,14 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
         //
         //
         // });
+
+        $scope.showSidebar = function(){
+          var myEl = angular.element( document.querySelector( '.page-wrapper' ) );
+              myEl.addClass('toggled');
+        }
+        $scope.hideSidebar = function(){
+          var myEl = angular.element( document.querySelector( '.page-wrapper' ) );
+              myEl.addClass('toggled');
+        }
     }
   ]);
