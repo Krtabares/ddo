@@ -212,7 +212,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       // defer.resolve(response.data.obj);
       //
       //    });
-        return defer.promise;
+        // return defer.promise;
 		})
 		.withDOM('frtip')
         .withPaginationType('full_numbers')
