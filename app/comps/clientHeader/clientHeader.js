@@ -11,7 +11,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
 
         console.log("clientHeaderCtrl entro")
 
-        $scope.hasClient = false;
+        $scope.hasUserClient = false;
         $scope.user = {};
         $scope.client = {};
         $scope.client_info = {}
@@ -25,9 +25,9 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
             console.log(client)
             console.log( client=='{}'  )
              if ( client=='{}' ){
-                $scope.hasClient = false;
+                $scope.hasUserClient = false;
             }else{
-                $scope.hasClient = true;
+                $scope.hasUserClient = true;
                 $scope.client_info = JSON.parse(client_info);
                 $scope.client = JSON.parse(client);
 

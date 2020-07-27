@@ -11,7 +11,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
 
         console.log("sidebarCtrl entro")
 
-        $scope.hasClient = false;
+        $scope.hasUserClient = false;
         $scope.user = {};
         init()
         function init() {

@@ -16,7 +16,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
       var ip = "http://192.168.168.170:3500";
       $scope.deuda = {};
       $scope.listDeuda = [{}];
-      $scope.hasClient = false;
+      $scope.hasUserClient = false;
       $scope.client = {};
       $scope.client_info = {}
       verificClient()
@@ -27,9 +27,9 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
        var client_info = localStorage.getItem('client_info')
        console.log(client)
         if ( client=='{}' ){
-         $scope.hasClient = false;
+         $scope.hasUserClient = false;
        }else{
-         $scope.hasClient = true;
+         $scope.hasUserClient = true;
          $scope.client = JSON.parse(client);
          $scope.client_info = JSON.parse(client_info);
 

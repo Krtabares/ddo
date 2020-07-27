@@ -21,7 +21,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.nombre_cliente = null;
       $scope.client = {};
       $scope.client_info = {};
-      $scope.hasClient = false;
+      $scope.hasUserClient = false;
       $scope.clientes=[];
       $scope.clientIndex = -1
       verificClient()
@@ -32,9 +32,9 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
        var client_info = localStorage.getItem('client_info')
        console.log(client)
         if ( client=='{}' ){
-         $scope.hasClient = false;
+         $scope.hasUserClient = false;
        }else{
-         $scope.hasClient = true;
+         $scope.hasUserClient = true;
          $scope.client_info = JSON.parse(client_info);
          $scope.client = JSON.parse(client);
 
@@ -47,7 +47,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
        // $scope.client = x
          $scope.client  = $scope.clientes[ $scope.clientIndex ];
          // selectCLientCAP( $scope.client)
-         $scope.hasClient = true;
+         $scope.hasUserClient = true;
          console.log($scope.client )
 
      }
@@ -58,7 +58,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
        $scope.nombre_cliente = null;
        $scope.client = {};
        $scope.client_info = {};
-       $scope.hasClient = false;
+       $scope.hasUserClient = false;
        $scope.clientes=[];
        $scope.clientIndex = -1
      }

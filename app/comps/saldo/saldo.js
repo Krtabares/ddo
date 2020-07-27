@@ -21,7 +21,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       $scope.max = 4
       $scope.min = 0;
       $scope.aux = {'pages': '01', 'totalPages': 11};
-      $scope.hasClient = false;
+      $scope.hasUserClient = false;
       $scope.isOptionsReady = false;
       $scope.client = {};
       $scope.client_info = {}
@@ -34,9 +34,9 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
      var client_info = localStorage.getItem('client_info')
      console.log(client)
       if ( client=='{}' ){
-       $scope.hasClient = false;
+       $scope.hasUserClient = false;
      }else{
-       $scope.hasClient = true;
+       $scope.hasUserClient = true;
        $scope.client_info = JSON.parse(client_info);
        $scope.client = JSON.parse(client);
 
