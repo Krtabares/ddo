@@ -132,7 +132,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
             console.log(response.data)
             response.data.obj.forEach((item, i) => {
               item.monto_inicial = $scope.formato(2,parseFloat(item.monto_inicial).toFixed(2) )
-              item.monto_actual = $scope.formato(2,item.parseFloat(item.monto_actual).toFixed(2) )
+              item.monto_actual = $scope.formato(2,parseFloat(item.monto_actual).toFixed(2) )
             });
 
             $scope.listDeuda=response.data.obj
