@@ -82,7 +82,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         function selectCLientCAP(client){
 
-          $scope.pedido.no_cia = (client.COD_CIA)?  client.COD_CIA : client.no_cia ;
+          $scope.pedido.no_cia = (client.COD_CIA)?  client.COD_CIA : client.cod_cia ;
             $scope.pedido.grupo = (client.GRUPO_CLIENTE)? client.GRUPO_CLIENTE: client.grupo_cliente;
             $scope.pedido.no_cliente = (client.COD_CLIENTE)? client.COD_CLIENTE: client.cod_cliente;
 
