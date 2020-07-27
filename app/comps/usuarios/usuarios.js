@@ -68,11 +68,9 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
      }
      $scope.usernameValid = false;
      $scope.availableUser = function (filter = false) {
-       console.log("getClientNew");
-       var body = {};
-         body.pNombre = $scope.nombre_cliente
+       console.log("availableUser");
 
-       request.post(ip+'/available/user', user,{'Authorization': 'Bearer ' + localstorage.get('token')})
+       request.post(ip+'/available/user', $scope.user,{'Authorization': 'Bearer ' + localstorage.get('token')})
        .then(function successCallback(response) {
          console.log(response)
 
