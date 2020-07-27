@@ -529,7 +529,7 @@ async def procedure(request):
         data['pComponente'] = 'null'
     else:
         data['pComponente'] = "'"+data['pComponente']+"'"
-
+    print(data)
     db = get_db()
     c = db.cursor()
     c.callproc("dbms_output.enable")
