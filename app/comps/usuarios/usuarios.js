@@ -135,7 +135,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
       function validaForm() {
 
-        if (Object.keys($scope.client).length === 0) {
+        if (!$scope.client || Object.keys($scope.client).length === 0) {
           ngNotify.set('Seleccione un cliente','warn')
           return false;
         }
