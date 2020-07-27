@@ -47,6 +47,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
 
    $scope.clientes = null;
    $scope.nombre_cliente = null;
+
+   
    $scope.selectCLient = function(){
 
      // $scope.client = x
