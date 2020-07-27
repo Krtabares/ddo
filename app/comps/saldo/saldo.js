@@ -175,9 +175,9 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       console.log($scope.client)
       // if(filter){
 
-        body.pNoCia = $scope.client.COD_CIA
-        body.pNoGrupo = $scope.client.GRUPO_CLIENTE
-        body.pCliente = $scope.client.COD_CLIENTE
+      body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+      body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+      body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
         body.pBusqueda = $scope.busqueda_prod
       // }
       console.log(body)
