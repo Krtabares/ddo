@@ -203,16 +203,17 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         console.log($scope.client);
         body.pNoCia = $scope.client.COD_CIA
         body.pNoGrupo = $scope.client.GRUPO_CLIENTE
-        body.pCliente = $scope.client.COD_CLIENTE
+        // body.pCliente = $scope.client.COD_CLIENTE
+        body.pCliente = 'ATIA'
         // body.pBusqueda = ''
         console.log(body);
-      //    request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
-      //     .then(function successCallback(response) {
-      //       console.log(response.data)
-      // defer.resolve(response.data.obj);
-      //
-      //    });
-        // return defer.promise;
+         request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+          .then(function successCallback(response) {
+            console.log(response.data)
+      defer.resolve(response.data.obj);
+
+         });
+        return defer.promise;
 		})
 		.withDOM('frtip')
         .withPaginationType('full_numbers')
