@@ -216,6 +216,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
             console.log(response.data)
 
             response.data.obj.forEach((item, i) => {
+              item.precio = item.precio.replace(",", ".")
               item.precio = $scope.formato(2,  parseFloat(item.PRECIO).toFixed(2) )
 
             });

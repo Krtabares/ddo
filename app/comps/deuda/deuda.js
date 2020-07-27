@@ -131,7 +131,9 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
           .then(function successCallback(response) {
             console.log(response.data)
             response.data.obj.forEach((item, i) => {
+              item.monto_inicial = item.monto_inicial.replace(",", ".")
               item.monto_inicial = $scope.formato(2,parseFloat(item.monto_inicial).toFixed(2) )
+              item.monto_actual = item.monto_actual.replace(",", ".")
               item.monto_actual = $scope.formato(2,parseFloat(item.monto_actual).toFixed(2) )
             });
 
