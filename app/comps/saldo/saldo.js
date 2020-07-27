@@ -48,7 +48,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
    $scope.clientes = null;
    $scope.nombre_cliente = null;
 
-   
+
    $scope.selectCLient = function(){
 
      // $scope.client = x
@@ -61,6 +61,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
        // selectCLientCAP( $scope.client)
 
    }
+
    $scope.getClientNew = function (filter = false) {
      console.log("getClientNew");
      var body = {};
@@ -77,7 +78,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
        console.log(response)
      });
    }
-
+$scope.getClientNew()
    const formatterVe = new Intl.NumberFormat('es-VE', {
     style: 'currency',
     currency: 'VES'
