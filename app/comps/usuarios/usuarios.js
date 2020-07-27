@@ -47,8 +47,20 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
        // $scope.client = x
          $scope.client  = $scope.clientes[ $scope.clientIndex ];
          // selectCLientCAP( $scope.client)
+         $scope.hasClient = true;
          console.log($scope.client )
 
+     }
+
+     $scope.reset = function(){
+       $scope.user = {};
+       $scope.user_view = {};
+       $scope.nombre_cliente = null;
+       $scope.client = {};
+       $scope.client_info = {};
+       $scope.hasClient = false;
+       $scope.clientes=[];
+       $scope.clientIndex = -1
      }
      $scope.getClientNew = function (filter = false) {
        console.log("getClientNew");
