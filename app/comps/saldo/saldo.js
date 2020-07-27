@@ -26,10 +26,10 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       $scope.client = {};
       $scope.client_info = {}
       $scope.dtInstance = {};
-      verificClient() 
+      verificClient()
 
     function verificClient(){
-      
+
      var client = localStorage.getItem('client')
      var client_info = localStorage.getItem('client_info')
      console.log(client)
@@ -39,8 +39,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
        $scope.hasClient = true;
        $scope.client_info = JSON.parse(client_info);
        $scope.client = JSON.parse(client);
-       
-     } 
+
+     }
      console.log($scope.client)
    }
    const formatterVe = new Intl.NumberFormat('es-VE', {
@@ -59,9 +59,9 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
     }
   }
       $scope.getNumber = function(num) {
-        return new Array(num);   
+        return new Array(num);
       }
-      
+
 	  $scope.page = function(param){
         if(param == 'prev'){
           if($scope.min > 0){
@@ -79,7 +79,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       $scope.getDeuda = function(param){
         console.log(param);
       }
-    
+
     $scope.showSaldo = function(saldo){
       console.log(saldo);
       $scope.saldo = saldo;
@@ -98,13 +98,15 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
 		  }, function errorCallback(response) {
 			console.log(response)
 		  });
-	  
+
     }
-    $scope.busqueda_prod = null 
+    $scope.busqueda_prod = null
     $scope.getProdNew = function (filter = false) {
       console.log("getProdNew");
       var defer = $q.defer();
       var body = {};
+
+      console.log($scope.client)
       if(filter){
 
         body.pNoCia = $scope.client.COD_CIA
@@ -112,6 +114,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         body.pCliente = $scope.client.COD_CLIENTE
         body.pBusqueda = $scope.busqueda_prod
       }
+      console.log(body)
       request.post(ip+'/procedure_productos', body,{})
       .then(function successCallback(response) {
         console.log(response)
@@ -156,8 +159,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       });
         return defer.promise;
     }
-	
-	
+
+
 	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
         var defer = $q.defer();
         var body = {}
@@ -169,7 +172,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
           .then(function successCallback(response) {
             console.log(response.data)
       defer.resolve(response.data.obj);
-      
+
          });
         return defer.promise;
 		})
@@ -180,7 +183,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
             'pdf',
             'excel'
         ])
-		
+
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('bodega').withTitle('Bodega'),
             DTColumnBuilder.newColumn('nombre_bodega').withTitle('Nombre de la bodega'),
