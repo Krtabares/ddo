@@ -216,7 +216,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
             console.log(response.data)
 
             response.data.obj.forEach((item, i) => {
-              item.precio = $scope.formato(2,item.precio )
+              item.precio = $scope.formato(2,  parseFloat(item.PRECIO).toFixed(2) )
+
             });
       defer.resolve(response.data.obj);
 
