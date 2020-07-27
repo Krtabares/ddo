@@ -98,10 +98,6 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
      }
 
       $scope.addUser = function(user){
-          if (!validaForm()) {
-            console.log("Se sale");
-            return ;
-          }else{
 
             user.password = "ddo.2017";
             if($scope.clientIndex!=-1 && user.role == 'cliente'){
@@ -123,7 +119,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                   console.log(response)
                 });
 
-          }
+
 
         }
 
@@ -138,43 +134,37 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
           })
         }
 
-      function validaForm() {
+      $scope.validaForm = function () {
 
         if (!$scope.client || Object.keys($scope.client).length === 0) {
-          ngNotify.set('Seleccione un cliente','warn')
+          // ngNotify.set('Seleccione un cliente','warn')
+          console.log('Seleccione un cliente','warn')
           return false;
-        }else{
-          console.log($scope.client, "$scope.client");
         }
         if(!$scope.user_view){
-          ngNotify.set('Seleccione un nombre','warn')
+          // ngNotify.set('Seleccione un nombre','warn')
+          console.log('Seleccione un nombre','warn')
           return false;
-        }else{
-          console.log($scope.user_view, "$scope.cuser_viewlient");
         }
         if($scope.user_view.length < 5){
-          ngNotify.set('Nombre no valido','warn')
+          // ngNotify.set('Nombre no valido','warn')
+          console.log('Nombre no valido','warn')
           return false;
-        }else{
-          console.log($scope.user_view.length, "$scope.user_view.length");
         }
         if($scope.user_view.role){
-          ngNotify.set('Debe seleccionar un tipo','warn')
+          // ngNotify.set('Debe seleccionar un tipo','warn')
+          console.log('Debe seleccionar un tipo','warn')
           return false;
-        }else{
-          console.log($scope.user_view.role, "$scope.user_view.role");
         }
         if(!$scope.user_view){
-          ngNotify.set('Seleccione un nombre de suario','warn')
+          // ngNotify.set('Seleccione un nombre de suario','warn')
+          console.log('Seleccione un nombre de suario','warn')
           return false;
-        }else{
-          console.log($scope.user_view, "$scope.cliuser_viewent");
         }
         if($scope.user_view.length < 4){
-          ngNotify.set('Usuario no valido','warn')
+          // ngNotify.set('Usuario no valido','warn')
+          console.log('Usuario no valido','warn')
           return false;
-        }else{
-          console.log($scope.user_view.length, "$scope.user_view.length");
         }
 
         return true;
