@@ -214,6 +214,10 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
          request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
+
+            response.data.obj.forEach((item, i) => {
+              item.precio = $scope.formato(2,item.precio )
+            });
       defer.resolve(response.data.obj);
 
          });

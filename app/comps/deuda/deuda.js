@@ -22,7 +22,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
       verificClient()
 
       function verificClient(){
-        
+
        var client = localStorage.getItem('client')
        var client_info = localStorage.getItem('client_info')
        console.log(client)
@@ -32,8 +32,8 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
          $scope.hasClient = true;
          $scope.client = JSON.parse(client);
          $scope.client_info = JSON.parse(client_info);
-         
-       } 
+
+       }
        console.log($scope.client_info)
      }
      const formatterVe = new Intl.NumberFormat('es-VE', {
@@ -43,6 +43,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
     // console.log(formatterVe.format(value))
     const formatterVeDECIMAL = new Intl.NumberFormat('es-VE', {
     })
+
     $scope.formato = function(tipo, valor){
       if(tipo == 1){
         return formatterVeDECIMAL.format(valor)
@@ -51,17 +52,17 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
         return formatterVe.format(valor)
       }
     }
-	  
+
 	  $scope.arr_page = new Array(4);
       $scope.max = 4
       $scope.min = 0;
       $scope.aux = {'pages': '01', 'totalPages': 11};
-	  
+
       $scope.getNumber = function(num) {
 		  console.log(num);
-        return new Array(num);   
+        return new Array(num);
       }
-      
+
 	  $scope.page = function(param){
         if(param == 'prev'){
           if($scope.min > 0){
@@ -81,10 +82,10 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
       function calcularTotales() {
         $scope.totales.bolivares = 0
         $scope.listDeuda.forEach(element => {
-          
+
           $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
                                          + (parseFloat(element.monto_actual))
-                                                        
+
         });
         console.log($scope.totales.bolivares)
         $scope.totales.bolivares = parseFloat($scope.totales.bolivares).toFixed(2)
@@ -94,7 +95,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
       $scope.getDeuda = function(param){
         console.log(param);
       }
-    
+
     $scope.showDeuda = function(deuda){
       console.log(deuda);
       $scope.deuda = deuda;
@@ -129,6 +130,11 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
          request.post(ip+'/procedure_deudas', body, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response.data)
+            response.data.obj.forEach((item, i) => {
+              item.monto_inicial = $scope.formato(2,item.monto_inicial )
+              item.monto_actual = $scope.formato(2,item.monto_actual )
+            });
+
             $scope.listDeuda=response.data.obj
 			defer.resolve(response.data.obj);
          });
@@ -142,7 +148,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
             'excel'
         ])
 		.withOption('responsive', true);
-		
+
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('id_deuda').withTitle('ID'),
             DTColumnBuilder.newColumn('codigo_cliente').withTitle('Codigo cliente'),
@@ -157,7 +163,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
 			DTColumnBuilder.newColumn('codigo_tipo_doc').withTitle('Código tipo doc').withClass('none'),
 			DTColumnBuilder.newColumn('nombre_tipo_doc').withTitle('Nombre tipo doc').withClass('none')
         ];
-	
+
 	/*$('#deudas_table').DataTable( {
       dom: 'Bfrtip',
       buttons: [
