@@ -74,8 +74,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.selectCLient = function(){
 
           // $scope.client = x
+          if($scope.clientes.length > 0){
             $scope.client  = $scope.clientes[ $scope.clientIndex ];
               console.log($scope.client,"selectCLient" )
+          }
+
             selectCLientCAP( $scope.client)
 
         }
@@ -163,6 +166,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pCliente = $scope.client.COD_CLIENTE
             body.pBusqueda = $scope.busqueda_prod
           }
+          console.log(body, "body")
           request.post(ip+'/procedure_productos', body,{})
           .then(function successCallback(response) {
             console.log(response)
