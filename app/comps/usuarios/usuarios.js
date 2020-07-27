@@ -101,8 +101,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
           if (!validaForm()) {
             console.log("Se sale");
             return ;
-          }ele{
-            
+          }else{
+
             user.password = "ddo.2017";
             if($scope.clientIndex!=-1 && user.role == 'cliente'){
               user.COD_CIA = $scope.client.cod_cia
