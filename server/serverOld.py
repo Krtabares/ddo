@@ -541,8 +541,8 @@ async def procedure(request):
             pTotPaginas number DEFAULT 100;
             pPagina number DEFAULT 1;
             pLineas number DEFAULT 100;
-            pNoCia varchar2(10) DEFAULT null;
-            pNoGrupo varchar2(10) DEFAULT null;
+            pNoCia varchar2(10) DEFAULT '01';
+            pNoGrupo varchar2(10) DEFAULT '01';
             pCliente varchar2(50) DEFAULT null;
             pMoneda varchar2(10) DEFAULT 'P';
             pBusqueda varchar2(50) DEFAULT null;
