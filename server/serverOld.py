@@ -112,8 +112,20 @@ async def addUser(request, token : Token):
 async def listUser(request, token : Token):
     data = request.json
     db = get_mongo_db()
+    if not 'pCLiente' in data :
+        users = await db.user.find({}, {'_id' : 0})
+    else:
+        users = await db.user.find({'COD_CLIENTE' : data['pcliente']}, {'_id' : 0})
 
-    user = await db.user.find({'COD_CLIENTE' : data['pcliente']}, {'_id' : 0})
+    return response.json(users,200)
+
+@app.route('/available/user', ["POST", "GET"])
+@jwt_required
+async def availableUser(request, token : Token):
+    data = request.json
+    db = get_mongo_db()
+
+    users = await db.user.find_one({'username' : username}, {'_id' : 0})
 
     return response.json(users,200)
 

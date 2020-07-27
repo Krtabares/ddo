@@ -66,6 +66,22 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
          console.log(response)
        });
      }
+     $scope.usernameValid = false;
+     $scope.availableUser = function (filter = false) {
+       console.log("getClientNew");
+       var body = {};
+         body.pNombre = $scope.nombre_cliente
+
+       request.post(ip+'/available/user', user,{'Authorization': 'Bearer ' + localstorage.get('token')})
+       .then(function successCallback(response) {
+         console.log(response)
+
+         // $scope.clientes = response.data.obj
+
+       }, function errorCallback(response) {
+         console.log(response)
+       });
+     }
 
       $scope.addUser = function(user){
       user.password = "ddo.2017";
