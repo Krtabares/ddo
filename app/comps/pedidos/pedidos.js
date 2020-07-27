@@ -159,6 +159,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.getProdNew = function (filter = false) {
           console.log("getProdNew");
           var body = {};
+          console.log($scope.client);
           if(filter){
             body.pNombre = $scope.nombre_cliente
             body.pNoCia = $scope.client.COD_CIA
