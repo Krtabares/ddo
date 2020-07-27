@@ -99,27 +99,32 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
       $scope.addUser = function(user){
           if (!validaForm()) {
+            console.log("Se sale");
             return ;
+          }ele{
+            
+            user.password = "ddo.2017";
+            if($scope.clientIndex!=-1 && user.role == 'cliente'){
+              user.COD_CIA = $scope.client.cod_cia
+              user.GRUPO_CLIENTE = $scope.client.grupo_cliente
+              user.COD_CLIENTE = $scope.client.cod_cliente
+            }
+            console.log(user);
+            request.post(ip+'/add/user', user,{'Authorization': 'Bearer ' + localstorage.get('token')})
+                .then(function successCallback(response) {
+                  console.log(response)
+                  if (response.data == "OK") {
+                         $scope.initDatatable();
+                    ngNotify.set('¡Usuario registrado exitosamente!','success')
+                  } else if (response.data.email_flag) {
+                    //ngNotify.set('¡Ya el correo está registrado!','error')
+                  }
+                }, function errorCallback(response) {
+                  console.log(response)
+                });
+
           }
-          user.password = "ddo.2017";
-          if($scope.clientIndex!=-1 && user.role == 'cliente'){
-            user.COD_CIA = $scope.client.cod_cia
-            user.GRUPO_CLIENTE = $scope.client.grupo_cliente
-            user.COD_CLIENTE = $scope.client.cod_cliente
-          }
-          console.log(user);
-          request.post(ip+'/add/user', user,{'Authorization': 'Bearer ' + localstorage.get('token')})
-              .then(function successCallback(response) {
-                console.log(response)
-                if (response.data == "OK") {
-    			             $scope.initDatatable();
-                  ngNotify.set('¡Usuario registrado exitosamente!','success')
-                } else if (response.data.email_flag) {
-                  //ngNotify.set('¡Ya el correo está registrado!','error')
-                }
-              }, function errorCallback(response) {
-                console.log(response)
-              });
+
         }
 
         $scope.listUser = function(){
