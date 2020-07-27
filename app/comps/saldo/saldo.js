@@ -43,6 +43,39 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
      }
      console.log($scope.client)
    }
+
+
+   $scope.clientes = null;
+   $scope.nombre_cliente = null;
+   $scope.selectCLient = function(){
+
+     // $scope.client = x
+     if($scope.clientes.length > 0){
+       $scope.client  = $scope.clientes[ $scope.clientIndex ];
+         console.log($scope.client,"selectCLient" )
+     }
+
+
+       // selectCLientCAP( $scope.client)
+
+   }
+   $scope.getClientNew = function (filter = false) {
+     console.log("getClientNew");
+     var body = {};
+     if(filter){
+       body.pNombre = $scope.nombre_cliente
+     }
+     request.post(ip+'/procedure_clientes', body,{})
+     .then(function successCallback(response) {
+       console.log(response)
+
+       $scope.clientes = response.data.obj
+
+     }, function errorCallback(response) {
+       console.log(response)
+     });
+   }
+
    const formatterVe = new Intl.NumberFormat('es-VE', {
     style: 'currency',
     currency: 'VES'

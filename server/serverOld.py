@@ -501,12 +501,12 @@ async def procedure(request):
         data['pLineas'] = 100
 
     if not 'pNoCia' in data :
-        data['pNoCia'] = 'null'
+        data['pNoCia'] = '01'
     else:
         data['pNoCia'] = "'"+data['pNoCia']+"'"
 
     if not 'pNoGrupo' in data :
-        data['pNoGrupo'] = 'null'
+        data['pNoGrupo'] = '01'
     else:
         data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
 
