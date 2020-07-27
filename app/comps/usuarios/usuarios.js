@@ -73,7 +73,11 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
        request.post(ip+'/available/user', $scope.user,{'Authorization': 'Bearer ' + localstorage.get('token')})
        .then(function successCallback(response) {
          console.log(response)
-
+         if(response.data != null){
+           $scope.usernameValid = true
+         }else {
+           $scope.usernameValid = false
+         }
          // $scope.clientes = response.data.obj
 
        }, function errorCallback(response) {

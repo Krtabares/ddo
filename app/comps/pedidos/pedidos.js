@@ -2,7 +2,7 @@
 
 angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.bootstrap','ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
   .config(['$routeProvider', function($routeProvider) {
-  
+
     $routeProvider.when('/pedidos', {
       templateUrl: 'comps/pedidos/pedidos.html',
       controller: 'pedidosCtrl'
@@ -10,11 +10,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
   }])
   .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
-        //init    
+        //init
 
-                
 
-		
+
+
         $scope.pedido = {
             'fecha': new Date(),
             'pedido':[]
@@ -40,7 +40,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.initModal = function () {
           console.log("initmodal")
           $scope.reset()
-          
+
         }
 
         $scope.nuevoTotal = function () {
@@ -72,9 +72,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.selectCLient = function(){
-          console.log($scope.client )
+
           // $scope.client = x
             $scope.client  = $scope.clientes[ $scope.clientIndex ];
+              console.log($scope.client,"selectCLient" )
             selectCLientCAP( $scope.client)
 
         }
@@ -85,9 +86,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.pedido.grupo = client.GRUPO_CLIENTE
             $scope.pedido.no_cliente = client.COD_CLIENTE
 
-            console.log($scope.pedido, "pedido select" )  
+            console.log($scope.pedido, "pedido select" )
 
-        } 
+        }
 
         function listarPedidos(){
          var body = {}
@@ -95,16 +96,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
              .then(function successCallback(response) {
                console.log(response.data)
-   
+
                $scope.listaPedidos=response.data.data
                // defer.resolve(response.data.data);
             });
         }
-   
+
         verificClient()
 
         function verificClient(){
-          
+
          var client = localStorage.getItem('client')
          var client_info = localStorage.getItem('client_info')
          console.log(client)
@@ -115,7 +116,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.client = JSON.parse(client);
            $scope.client_info = JSON.parse(client_info);
             selectCLientCAP( $scope.client)
-         } 
+         }
 
          listarPedidos()
          console.log($scope.client_info)
@@ -175,8 +176,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
           });
         }
-        
-        
+
+
         $scope.getFarmacias = function(){
           request.get(ip+'/get/farmacias',{})
           .then(function successCallback(response) {
@@ -256,7 +257,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-        
+
         $scope.confirmModal = function (ID) {
           $scope.ID = ID
         }
@@ -264,18 +265,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log($scope.pedido.pedido);
             if(Object.keys($scope.articulo).length === 0)
               return
-            
+
             var existe = false;
             $scope.pedido.pedido.forEach(element => {
               if($scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO){
                 //  element.CANTIDAD = element.CANTIDAD + $scope.articulo.CANTIDAD;
                  existe = true;
-                return 
+                return
               }
             });
             var error=false;
             if(!existe){
-              
+
               if(isEmpty( $scope.articulo.COD_PRODUCTO )){
                 console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( $scope.articulo.COD_PRODUCTO ))
                 error = true;
@@ -287,7 +288,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 error = true;
               }
 
-              
+
                if( $scope.articulo.CANTIDAD > $scope.articulo.existencia  ){
                 // console.log('¡Complete todos los campos!PRECIO','error')
                   ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
@@ -295,21 +296,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
               $scope.articulo.PRECIO = $scope.articulo.PRECIO.replace(",", ".");
               // $scope.articulo.PRECIO = parseFloat($scope.articulo.PRECIO).toFixed(2);
-               
+
               console.log($scope.articulo.PRECIO);
-              if(!error)          
+              if(!error)
                 $scope.pedido.pedido.push($scope.articulo)
                 calcularTotales()
             }
-           
+
             if(!error){
               $scope.articulo = {};
               $scope.productIndex = -1
               // $scope.productos = [];
               $scope.product = {}
             }
-            
-            
+
+
         }
         function isEmpty(str) {
             return (!str || 0 === str.length);
@@ -320,7 +321,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log($scope.pedido.pedido)
             var aux = $scope.pedido.pedido
           aux.forEach(element => {
-            
+
             element.PRECIO = parseFloat(element.PRECIO).toFixed(2)
 
           });
@@ -379,7 +380,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
           });
         }
-      
+
         $scope.getPedido = function(ID){
           var obj = {'idPedido': ID};
           $scope.ID = ID
@@ -388,7 +389,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response.data)
             $scope.showPedido(response.data.obj[0])
-            
+
             /*if (response.data.exist) {
               ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
             } else if (response.data.email_flag) {
@@ -400,7 +401,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.getPedidos_filtering = function(no_client){
-          
+
           var body = {}
           body.pCliente = $scope.client.COD_CLIENTE
           request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
@@ -437,8 +438,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.editView =false;
           pedido.fecha = new Date(pedido.fecha);
           $scope.pedido = pedido;
-          
-          
+
+
           calcularTotales()
         }
 
@@ -446,20 +447,20 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.pedido.pedido.splice( i, 1 );
           calcularTotales()
         }
-        
+
         function calcularTotales() {
           $scope.totales.bolivares = 0
           $scope.pedido.pedido.forEach(element => {
-            
+
             $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
                                            + (parseFloat(element.PRECIO) * element.CANTIDAD)
-                                                          
+
           });
           console.log($scope.totales.bolivares)
           $scope.totales.bolivares = parseFloat($scope.totales.bolivares).toFixed(2)
         }
 
-		
+
       $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withOption('responsive', true)
       // .withDisplayLength(2);
 
@@ -474,7 +475,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 		// 	      defer.resolve(response.data.data);
     //      });
-		 
+
     //     return defer.promise;
 		// })
 		// .withDOM('frtip')
@@ -484,7 +485,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
     //         'pdf',
     //         'excel'
     //     ])
-		
+
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('no_cia').withTitle('Número cia'),
             DTColumnBuilder.newColumn('grupo').withTitle('Grupo'),
@@ -514,12 +515,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       //         case "backdrop click":
       //             message = "Any changes will be lost, are you sure?";
       //             break;
-      
+
       //         // cancel button
       //         case "cancel":
       //             message = "Any changes will be lost, are you sure?";
       //             break;
-      
+
       //         // escape key
       //         case "escape key press":
       //             message = "Any changes will be lost, are you sure?";
@@ -529,9 +530,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       //         event.preventDefault();
       //     }
       // });
-		
+
 
     }
 ]);
-
-
