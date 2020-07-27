@@ -164,10 +164,12 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
 	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
         var defer = $q.defer();
         var body = {}
+        console.log($scope.client);
         body.pNoCia = $scope.client.COD_CIA
         body.pNoGrupo = $scope.client.GRUPO_CLIENTE
         body.pCliente = $scope.client.COD_CLIENTE
         // body.pBusqueda = ''
+        console.log(body);
          request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
