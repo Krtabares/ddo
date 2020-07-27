@@ -172,6 +172,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       console.log("getProdNew");
       var defer = $q.defer();
       var body = {};
+      console.log($scope.client)
       // if(filter){
 
         body.pNoCia = $scope.client.COD_CIA
@@ -179,6 +180,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         body.pCliente = $scope.client.COD_CLIENTE
         body.pBusqueda = $scope.busqueda_prod
       // }
+      console.log(body)
       request.post(ip+'/procedure_productos', body,{})
       .then(function successCallback(response) {
         console.log(response)
