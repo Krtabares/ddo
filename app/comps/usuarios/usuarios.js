@@ -86,6 +86,9 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
      }
 
       $scope.addUser = function(user){
+      if (!validaForm()) {
+        return ;
+      }
       user.password = "ddo.2017";
       if($scope.clientIndex!=-1 && user.role == 'cliente'){
         user.COD_CIA = $scope.client.cod_cia
@@ -117,6 +120,38 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
             console.log(error);
           })
         }
+
+      function validaForm() {
+
+        if (!$scope.hasClient) {
+          ngNotify.set('Seleccione un cliente','warn')
+          return false;
+        }
+        if(!$scope.user_view){
+          ngNotify.set('Seleccione un nombre','warn')
+          return false;
+        }
+        if($scope.user_view.length < 5){
+          ngNotify.set('Nombre no valido','warn')
+          return false;
+        }
+        if($scope.user_view.role){
+          ngNotify.set('Debe seleccionar un tipo','warn')
+          return false;
+        }
+        if(!$scope.user_view){
+          ngNotify.set('Seleccione un nombre de suario','warn')
+          return false;
+        }
+        if($scope.user_view.length < 4){
+          ngNotify.set('Usuario no valido','warn')
+          return false;
+        }
+
+        return true;
+
+
+      }
 
         $scope.showUser = function(user){
           $scope.user_view = user;
