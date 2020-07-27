@@ -78,7 +78,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
        console.log(response)
      });
    }
-$scope.getClientNew()
+// $scope.getClientNew()
    const formatterVe = new Intl.NumberFormat('es-VE', {
     style: 'currency',
     currency: 'VES'
@@ -206,12 +206,12 @@ $scope.getClientNew()
         body.pCliente = $scope.client.COD_CLIENTE
         // body.pBusqueda = ''
         console.log(body);
-         request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
-          .then(function successCallback(response) {
-            console.log(response.data)
-      defer.resolve(response.data.obj);
-
-         });
+      //    request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+      //     .then(function successCallback(response) {
+      //       console.log(response.data)
+      // defer.resolve(response.data.obj);
+      //
+      //    });
         return defer.promise;
 		})
 		.withDOM('frtip')
