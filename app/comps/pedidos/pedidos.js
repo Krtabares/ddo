@@ -129,7 +129,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.selectProduct = function(value){
           console.log($scope.product )
 
-           var index = ($scope.productIndex != -1)? $scope.productIndex:value
+           var index = (value)? value:$scope.productIndex
             $scope.productIndex = index;
             $scope.product  = $scope.productos[ index ];
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
