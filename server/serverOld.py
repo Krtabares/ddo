@@ -1467,4 +1467,4 @@ async def get_saldo(request, token : Token):
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
-app.run(host='0.0.0.0', port = port, debug = True)
+app.run(host='0.0.0.0', port = port, debug = False)
