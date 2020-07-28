@@ -135,6 +135,9 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
               item.monto_inicial = $scope.formato(2,parseFloat(item.monto_inicial).toFixed(2) )
               item.monto_actual = item.monto_actual.replace(",", ".")
               item.monto_actual = $scope.formato(2,parseFloat(item.monto_actual).toFixed(2) )
+              item.monto_ultimo_pago = item.monto_ultimo_pago.replace(",", ".")
+              item.monto_ultimo_pago = $scope.formato(2,parseFloat(item.monto_ultimo_pago).toFixed(2) )
+
             });
 
             $scope.listDeuda=response.data.obj

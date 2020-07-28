@@ -107,8 +107,8 @@ body {
 }
 #sidebar{
 	height: 450px;
-	overflow: scroll;
-	overflow-x: hidden; 
+	/* overflow: scroll; */
+	/* overflow-x: hidden;  */
 }
 #page-content-wrapper {
     padding-left: 0;
