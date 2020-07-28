@@ -335,11 +335,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // $scope.pedido.no_cia = client.COD_CIA;
           // $scope.pedido.grupo = client.GRUPO_CLIENTE
           // $scope.pedido.no_cliente = client.COD_CLIENTE
+          var body= {}
+          body.cod_cia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+          body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
 
           var body = {
-            "COD_CIA": $scope.client.COD_CIA,
-            "GRUPO_CLIENTE": $scope.client.GRUPO_CLIENTE,
-            "COD_CLIENTE": $scope.client.COD_CLIENTE,
+            "COD_CIA": body.cod_cia,
+            "GRUPO_CLIENTE": body.pNoGrupo,
+            "COD_CLIENTE": body.pCliente,
             "FECHA": fecha.getDate()+"-"+ fecha.getMonth()+"-"+ fecha.getFullYear(),
             "NO_PEDIDO_CODISA":($scope.editView)? $scope.pedido.no_factu:"---",
             "OBSERVACIONES": $scope.pedido.observacion || "",
