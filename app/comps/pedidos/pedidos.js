@@ -467,7 +467,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
 
-      $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withOption('responsive', true)
+      $scope.dtOptions = DTOptionsBuilder.newOptions()
+          .withPaginationType('full_numbers')
+          .withOption('responsive', true)
+          .withDOM('frtip').withPaginationType('full_numbers')
       // .withDisplayLength(2);
 
 		// $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {

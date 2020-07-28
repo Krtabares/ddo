@@ -186,6 +186,11 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         console.log(response)
         if(response.data.obj.length > 1){
           // $scope.productos = response.data.obj
+          response.data.obj.forEach((item, i) => {
+            item.precio = item.precio.replace(",", ".")
+            item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
+
+          });
           defer.resolve(response.data.obj);
           // $scope.dtOptions.reloadData()
         }else{
