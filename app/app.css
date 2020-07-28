@@ -257,3 +257,7 @@ body {
 #sidebar::-webkit-scrollbar-track:active {
   background: #d4d4d4;
 }
+
+.selectedRow{
+	background: aqua !important;
+}

@@ -467,7 +467,7 @@
               </thead>
               <tbody>
 
-                  <tr ng-repeat="x in productos" ng-click="selectProduct($index)" >
+                  <tr ng-repeat="x in productos" ng-click="selectProduct($index)" ng-class="{ selectedRow : $index == productIndex }" >
                       <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                       <td><p class="text-center">{{ x.existencia }}</p></td>
                       <td><p class="text-center">{{ x.princ_activo }}</p></td>
