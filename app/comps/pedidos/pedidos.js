@@ -126,10 +126,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
 
-        $scope.selectProduct = function(){
+        $scope.selectProduct = function(value){
           console.log($scope.product )
+
+           var index = ($scope.productIndex != -1)? $scope.productIndex:value
           // $scope.client = x
-            $scope.product  = $scope.productos[ $scope.productIndex ];
+            $scope.product  = $scope.productos[ index ];
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
             $scope.articulo.PRECIO = $scope.product.precio.replace(",", ".");
             // $scope.articulo.PRECIO = $scope.product.precio
@@ -178,35 +180,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               ngNotify.set('¡No se encontraron resultados!', 'warn')
             }
 
-          }, function errorCallback(response) {
-            console.log(response)
-          });
-        }
-
-
-        $scope.getFarmacias = function(){
-          request.get(ip+'/get/farmacias',{})
-          .then(function successCallback(response) {
-            console.log(response)
-            /*if (response.data.exist) {
-              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-            } else if (response.data.email_flag) {
-              ngNotify.set('¡Ya el correo está registrado!','error')
-            }*/
-          }, function errorCallback(response) {
-            console.log(response)
-          });
-        }
-
-        $scope.getClient = function(){
-          request.get(ip+'/get/client',{})
-          .then(function successCallback(response) {
-            console.log(response)
-            /*if (response.data.exist) {
-              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-            } else if (response.data.email_flag) {
-              ngNotify.set('¡Ya el correo está registrado!','error')
-            }*/
           }, function errorCallback(response) {
             console.log(response)
           });
@@ -263,10 +236,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-
         $scope.confirmModal = function (ID) {
           $scope.ID = ID
         }
+
         $scope.addArtPedido = function(){
             console.log($scope.pedido.pedido);
             if(Object.keys($scope.articulo).length === 0)
@@ -318,6 +291,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         }
+
         function isEmpty(str) {
             return (!str || 0 === str.length);
         }
@@ -372,6 +346,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                             'pedido':[],
                         };
         }
+
         $scope.getPedidos = function(page){
           var obj = {'page': page};
 		  // console.log($localStorage.token);
@@ -543,6 +518,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       //         event.preventDefault();
       //     }
       // });
+
+
+
 
 
     }

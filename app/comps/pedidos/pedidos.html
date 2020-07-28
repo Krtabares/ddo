@@ -91,7 +91,7 @@
 
             </div>
 
-            <div class="row"  >
+            <!-- <div class="row"  >
 
                 <div class="col-sm-12 col-md-6 col-lg-6">
                   <label for="clientes">Busqueda por producto</label>
@@ -112,7 +112,7 @@
                     </select>
                   </div>
                 </div>
-            </div>
+            </div> -->
 
             </div>
             <div class="container"   >
@@ -120,7 +120,7 @@
 
 
 
-                  <div class="col-2">
+                  <!-- <div class="col-2">
                     <label>Codigo</label>
                     <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
                   </div>
@@ -141,10 +141,10 @@
                     <label>Precio producto total</label>
                     <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
 
-                  </div>
+                  </div> -->
                   <div class="col-12">
                     <label></label>
-                    <button type="button" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
+                    <button type="button" class="btn btn-success" style="margin-top: 32px;" data-toggle="modal" data-target="#modalproduct">Agregar Productos</button>
                   </div>
 
               </div>
@@ -168,7 +168,7 @@
                     <tbody>
 
                         <tr ng-repeat="x in pedido.pedido">
-                            <th scope="row">{{ $index + 1 }}</td>
+                            <th scope="row">{{ $index + 1 }}</th>
                             <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td>
                             <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
                             <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
@@ -341,6 +341,7 @@
           </div>
           <div class="container" style="margin-top: 32px;">
 
+
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <table class="table">
                   <thead>
@@ -402,7 +403,94 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalproduct">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Productos</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
+        </div>
+        <div class="modal-body">
+
+          <div class="container">
+
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <label for="clientes">Busqueda por producto</label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control"  ng-keyup="getProdNew(true)" ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
+                </div>
+              </div>
+              <div class="row" >
+
+                  <div class="col-2">
+                    <label>Codigo</label>
+                    <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
+                  </div>
+                  <div class="col-2">
+                    <label>Cantidad</label>
+                    <input type="number" " min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                  </div>
+                  <div class="col-2">
+                    <label>Existencia</label>
+                    <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
+                  </div>
+                  <div class="col-3">
+                    <label>Precio por unidad</label>
+                    <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
+
+                  </div>
+                  <div class="col-3">
+                    <label>Precio producto total</label>
+                    <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
+
+                  </div>
+                  <div class="col-12">
+                    <label></label>
+                    <button type="button" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
+                  </div>
+
+              </div>
+
+            <table class="table" >
+              <thead>
+                  <tr>
+
+                  <th scope="col"><p class="text-center">Nombre Producto</p></th>
+                  <th scope="col"><p class="text-center">Existencia</p></th>
+                  <th scope="col"><p class="text-center">Principio Activo</p></th>
+                  <th scope="col"><p class="text-center">Precio</p></th>
+
+                  </tr>
+              </thead>
+              <tbody>
+
+                  <tr ng-repeat="x in productos">
+                    <div class="" ng-click="selectProduct($index)" >
+                      <td><p class="text-center">{{ x.nombre_producto }}</p></td>
+                      <td><p class="text-center">{{ x.existencia }}</p></td>
+                      <td><p class="text-center">{{ x.princ_activo }}</p></td>
+                      <td><p class="text-right">{{ formato(2,x.precio) }}</p></td>
+
+                    </div>
+
+                    </tr>
+              </tbody>
+              </table>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-danger" ng-click="delPedido()" data-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="modalConfirm">
   <div class="modal-dialog">
@@ -462,8 +550,8 @@
               <th scope="col"><p class="text-center">#</p></th>
               <th scope="col"><p class="text-center">Número cia</p></th>
               <th scope="col"><p class="text-center">Grupo</p></th>
-              <th scope="col"><p class="text-center">Número cliente</p></th>
-              <th scope="col"><p class="text-center">Número factura</p></th>
+              <th scope="col"><p class="text-center">Número Cliente</p></th>
+              <th scope="col"><p class="text-center">Número Pedido</p></th>
               <th scope="col"><p class="text-center">Estatus</p></th>
               <th scope="col"><p class="text-center">Monto</p></th>
               <th scope="col"><p class="text-center">Cantidad de Productos</p></th>
