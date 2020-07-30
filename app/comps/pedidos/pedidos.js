@@ -468,7 +468,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.newPromise = newPromise;
         function newPromise() {
-          console.log("getProdNew");
+          console.log("newPromise");
           var defer = $q.defer();
           var body = {};
           console.log($scope.client)
