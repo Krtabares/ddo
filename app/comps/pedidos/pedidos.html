@@ -357,7 +357,7 @@
                   <tbody>
 
                       <tr ng-repeat="x in pedido.pedido">
-                          <th scope="row">{{ $index + 1 }}</td>
+                          <th scope="row">{{ $index + 1 }}</th>
 
                           <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td>
                           <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
@@ -453,30 +453,32 @@
                   </div>
 
               </div>
+              <div ng-if="client" >
+                <table datatable="" dt-options="dtOptionsProd"  dt-instance="dtInstanceProd" class="table table-striped table-bordered" >
+                  <thead>
+                      <tr>
+                      <th scope="col"><p class="text-center">#</p></th>
+                      <th scope="col"><p class="text-center">Nombre Producto</p></th>
+                      <th scope="col"><p class="text-center">Existencia</p></th>
+                      <th scope="col"><p class="text-center">Principio Activo</p></th>
+                      <th scope="col"><p class="text-center">Precio</p></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <div ng-repeat="x in productos" >
+                      <tr ng-click="selectProduct($index)" ng-class="{ selectedRow : $index == productIndex }" >
+                          <td><p class="text-center">{{ $index + 1 }}</p></td>
+                          <td><p class="text-center">{{ x.nombre_producto }}</p></td>
+                          <td><p class="text-center">{{ x.existencia }}</p></td>
+                          <td><p class="text-center">{{ x.princ_activo }}</p></td>
+                          <td><p class="text-right">{{ formato(2, parseFloat(x.precio).toFixed(2) ) }}</p></td>
+                      </tr>
+                    </div>
 
-            <table datatable="" dt-options="dtOptionsProd"  dt-instance="dtInstanceProd" class="table table-striped table-bordered" >
-              <thead>
-                  <tr>
-                  <th scope="col"><p class="text-center">#</p></th>
-                  <th scope="col"><p class="text-center">Nombre Producto</p></th>
-                  <th scope="col"><p class="text-center">Existencia</p></th>
-                  <th scope="col"><p class="text-center">Principio Activo</p></th>
-                  <th scope="col"><p class="text-center">Precio</p></th>
-                  </tr>
-              </thead>
-              <tbody>
-                <div ng-repeat="x in productos" >
-                  <tr ng-click="selectProduct($index)" ng-class="{ selectedRow : $index == productIndex }" >
-                      <td><p class="text-center">{{ $index + 1 }}</p></td>
-                      <td><p class="text-center">{{ x.nombre_producto }}</p></td>
-                      <td><p class="text-center">{{ x.existencia }}</p></td>
-                      <td><p class="text-center">{{ x.princ_activo }}</p></td>
-                      <td><p class="text-right">{{ formato(2, parseFloat(x.precio).toFixed(2) ) }}</p></td>
-                  </tr>
-                </div>
+                  </tbody>
+                  </table>
+              </div>
 
-              </tbody>
-              </table>
 
           </div>
 
