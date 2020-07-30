@@ -113,30 +113,6 @@
             <div class="container"   >
               <div class="row" >
 
-
-
-                  <!-- <div class="col-2">
-                    <label>Codigo</label>
-                    <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
-                  </div>
-                  <div class="col-2">
-                    <label>Cantidad</label>
-                    <input type="number" " min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
-                  </div>
-                  <div class="col-2">
-                    <label>Existencia</label>
-                    <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
-                  </div>
-                  <div class="col-3">
-                    <label>Precio por unidad</label>
-                    <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
-
-                  </div>
-                  <div class="col-3">
-                    <label>Precio producto total</label>
-                    <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
-
-                  </div> -->
                   <div class="col-12">
                     <label></label>
                     <button type="button" class="btn btn-success" style="margin-top: 32px;" data-toggle="modal" data-target="#modalproduct">Agregar Productos</button>
@@ -536,8 +512,8 @@
           <thead>
               <tr>
               <th scope="col"><p class="text-center">#</p></th>
-              <th scope="col"><p class="text-center">Número cia</p></th>
-              <th scope="col"><p class="text-center">Grupo</p></th>
+              <!-- <th scope="col"><p class="text-center">Número cia</p></th>
+              <th scope="col"><p class="text-center">Grupo</p></th> -->
               <th scope="col"><p class="text-center">Número Cliente</p></th>
               <th scope="col"><p class="text-center">Número Pedido</p></th>
               <th scope="col"><p class="text-center">Estatus</p></th>
@@ -551,8 +527,8 @@
 
               <tr ng-repeat="x in listaPedidos">
                   <th scope="row">{{ $index + 1 }}</th>
-                  <td><p class="text-center">{{ x.no_cia }}</p></td>
-                  <td><p class="text-center">{{ x.grupo }}</p></td>
+                  <!-- <td><p class="text-center">{{ x.no_cia }}</p></td>
+                  <td><p class="text-center">{{ x.grupo }}</p></td> -->
                   <td><p class="text-center">{{ x.no_cliente }}</p></td>
                   <td><p class="text-center">{{ x.no_factu }}</p></td>
                   <td><p class="text-center">{{ x.estatus }}</p></td>

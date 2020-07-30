@@ -282,9 +282,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               // $scope.articulo.PRECIO = parseFloat($scope.articulo.PRECIO).toFixed(2);
 
               console.log($scope.articulo.PRECIO);
-              if(!error)
+              if(!error){
                 $scope.pedido.pedido.push($scope.articulo)
                 calcularTotales()
+                ngNotify.set('¡Producto agregado al pedido!','success')
+              }
             }
 
             if(!error){
@@ -438,16 +440,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
 
-      $scope.dtOptions = DTOptionsBuilder.newOptions()
-          .withPaginationType('full_numbers')
-          .withOption('responsive', true)
-          .withDOM('frtip').withPaginationType('full_numbers')
-      // .withDisplayLength(2);
-      // $scope.dtInstanceProd = {};
-      $scope.dtOptionsProd = DTOptionsBuilder.newOptions()
-          .withPaginationType('full_numbers')
-          .withOption('responsive', true)
-          .withDOM('frtip').withPaginationType('full_numbers')
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withPaginationType('full_numbers')
+            .withOption('responsive', true)
+            .withDOM('frtip').withPaginationType('full_numbers')
+        // .withDisplayLength(2);
+        // $scope.dtInstanceProd = {};
+        $scope.dtOptionsProd = DTOptionsBuilder.newOptions()
+            .withPaginationType('full_numbers')
+            .withOption('responsive', true)
+            .withDOM('frtip').withPaginationType('full_numbers')
 
 
         $scope.dtColumns = [
@@ -471,29 +473,29 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
 
-      //   $scope.$on('modal.closing', function(event, reason, closed) {
-      //     console.log('modal.closing: ' + (closed ? 'close' : 'dismiss') + '(' + reason + ')');
-      //     var message = "You are about to leave the edit view. Uncaught reason. Are you sure?";
-      //     switch (reason){
-      //         // clicked outside
-      //         case "backdrop click":
-      //             message = "Any changes will be lost, are you sure?";
-      //             break;
+        $scope.$on('modal.closing', function(event, reason, closed) {
+          console.log('modal.closing: ' + (closed ? 'close' : 'dismiss') + '(' + reason + ')');
+          var message = "You are about to leave the edit view. Uncaught reason. Are you sure?";
+          switch (reason){
+              // clicked outside
+              case "backdrop click":
+                  message = "Any changes will be lost, are you sure?";
+                  break;
 
-      //         // cancel button
-      //         case "cancel":
-      //             message = "Any changes will be lost, are you sure?";
-      //             break;
+              // cancel button
+              case "cancel":
+                  message = "Any changes will be lost, are you sure?";
+                  break;
 
-      //         // escape key
-      //         case "escape key press":
-      //             message = "Any changes will be lost, are you sure?";
-      //             break;
-      //     }
-      //     if (!confirm(message)) {
-      //         event.preventDefault();
-      //     }
-      // });
+              // escape key
+              case "escape key press":
+                  message = "Any changes will be lost, are you sure?";
+                  break;
+          }
+          if (!confirm(message)) {
+              event.preventDefault();
+          }
+      });
 
 
 
