@@ -180,6 +180,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
             if(response.data.obj.length > 1){
+              response.data.obj.forEach((item, i) => {
+                item.precioFormat = item.precio.replace(",", ".")
+                item.precioFormat = $scope.formato(2,  parseFloat(item.precioFormat).toFixed(2) )
+
+              });
+
+
               $scope.productos = response.data.obj
             }else{
               ngNotify.set('¡No se encontraron resultados!', 'warn')
@@ -473,29 +480,29 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
 
-        $scope.$on('modal.closing', function(event, reason, closed) {
-          console.log('modal.closing: ' + (closed ? 'close' : 'dismiss') + '(' + reason + ')');
-          var message = "You are about to leave the edit view. Uncaught reason. Are you sure?";
-          switch (reason){
-              // clicked outside
-              case "backdrop click":
-                  message = "Any changes will be lost, are you sure?";
-                  break;
-
-              // cancel button
-              case "cancel":
-                  message = "Any changes will be lost, are you sure?";
-                  break;
-
-              // escape key
-              case "escape key press":
-                  message = "Any changes will be lost, are you sure?";
-                  break;
-          }
-          if (!confirm(message)) {
-              event.preventDefault();
-          }
-      });
+      //   $scope.$on('modal.closing', function(event, reason, closed) {
+      //     console.log('modal.closing: ' + (closed ? 'close' : 'dismiss') + '(' + reason + ')');
+      //     var message = "You are about to leave the edit view. Uncaught reason. Are you sure?";
+      //     switch (reason){
+      //         // clicked outside
+      //         case "backdrop click":
+      //             message = "Any changes will be lost, are you sure?";
+      //             break;
+      //
+      //         // cancel button
+      //         case "cancel":
+      //             message = "Any changes will be lost, are you sure?";
+      //             break;
+      //
+      //         // escape key
+      //         case "escape key press":
+      //             message = "Any changes will be lost, are you sure?";
+      //             break;
+      //     }
+      //     if (!confirm(message)) {
+      //         event.preventDefault();
+      //     }
+      // });
 
 
 
