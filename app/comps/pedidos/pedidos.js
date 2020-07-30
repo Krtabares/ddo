@@ -127,7 +127,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         $scope.selectProduct = function(value){
-          console.log($scope.product )
+
 
            var index = (value)? value:$scope.productIndex
             $scope.productIndex = index;
@@ -138,6 +138,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.articulo.existencia =$scope.product.existencia
             $scope.articulo.CANTIDAD = 1
             // $scope.articulo.no_cliente = $scope.client.cod_cliente
+
+            console.log($scope.product )
 
         }
 
