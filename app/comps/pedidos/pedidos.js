@@ -463,7 +463,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
 
                 });
-          defer.resolve([]);
+                defer.resolve(response.data.obj);
 
              });
             return defer.promise;
