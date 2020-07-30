@@ -25,7 +25,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.listaPedidos=[]
         $scope.busqueda_prod = null;
         $scope.clientes = null;
-        $scope.client = {};
+        $scope.client = null;
         $scope.client_info = {}
         $scope.ID = null
         $scope.clientIndex = -1;
@@ -451,18 +451,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
 
             console.log(body);
-             request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
-              .then(function successCallback(response) {
-                console.log(response.data)
+             // request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+             //  .then(function successCallback(response) {
+             //    console.log(response.data)
+             //
+             //    response.data.obj.forEach((item, i) => {
+             //      item.precio = item.precio.replace(",", ".")
+             //      item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
+             //
+             //    });
+          defer.resolve([]);
 
-                response.data.obj.forEach((item, i) => {
-                  item.precio = item.precio.replace(",", ".")
-                  item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
-
-                });
-          defer.resolve(response.data.obj);
-
-             });
+             // });
             return defer.promise;
     		})
 
@@ -480,25 +480,25 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pBusqueda = $scope.busqueda_prod
           // }
           console.log(body)
-          // request.post(ip+'/procedure_productos', body,{})
-          // .then(function successCallback(response) {
-          //   console.log(response)
-          //   if(response.data.obj.length > 1){
-          //     // $scope.productos = response.data.obj
-          //     response.data.obj.forEach((item, i) => {
-          //       item.precio = item.precio.replace(",", ".")
-          //       item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
-          //
-          //     });
-              defer.resolve([]);
-          //     // $scope.dtOptions.reloadData()
-          //   }else{
-          //     ngNotify.set('¡No se encontraron resultados!', 'warn')
-          //   }
-          //
-          // }, function errorCallback(response) {
-          //   console.log(response)
-          // });
+          request.post(ip+'/procedure_productos', body,{})
+          .then(function successCallback(response) {
+            console.log(response)
+            if(response.data.obj.length > 1){
+              // $scope.productos = response.data.obj
+              response.data.obj.forEach((item, i) => {
+                item.precio = item.precio.replace(",", ".")
+                item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
+
+              });
+              defer.resolve(response.data.obj);
+              // $scope.dtOptions.reloadData()
+            }else{
+              ngNotify.set('¡No se encontraron resultados!', 'warn')
+            }
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
             return defer.promise;
         }
 
