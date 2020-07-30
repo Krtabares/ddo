@@ -462,19 +462,19 @@
                   <th scope="col"><p class="text-center">Existencia</p></th>
                   <th scope="col"><p class="text-center">Principio Activo</p></th>
                   <th scope="col"><p class="text-center">Precio</p></th>
-
                   </tr>
               </thead>
               <tbody>
-
-                  <tr ng-repeat="x in productos" ng-click="selectProduct($index)" ng-class="{ selectedRow : $index == productIndex }" >
+                <div ng-repeat="x in productos" >
+                  <tr ng-click="selectProduct($index)" ng-class="{ selectedRow : $index == productIndex }" >
                       <td><p class="text-center">{{ $index + 1 }}</p></td>
                       <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                       <td><p class="text-center">{{ x.existencia }}</p></td>
                       <td><p class="text-center">{{ x.princ_activo }}</p></td>
-                      <td><p class="text-right">{{ formato(2,x.precio) }}</p></td>
-
+                      <td><p class="text-right">{{ formato(2, parseFloat(x.precio).toFixed(2) ) }}</p></td>
                   </tr>
+                </div>
+
               </tbody>
               </table>
 
