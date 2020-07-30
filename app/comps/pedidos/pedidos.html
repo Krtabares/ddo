@@ -454,7 +454,7 @@
 
               </div>
               <div ng-if="showProductTable" >
-                <table datatable="" dt-options="dtOptionsProd"  class="table table-striped table-bordered" >
+                <table datatable="ng" dt-options="dtOptionsProd"  class="table table-striped table-bordered" >
                   <thead>
                       <tr>
                       <th scope="col"><p class="text-center">#</p></th>
@@ -470,7 +470,7 @@
                           <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                           <td><p class="text-center">{{ x.existencia }}</p></td>
                           <td><p class="text-center">{{ x.princ_activo }}</p></td>
-                          <td><p class="text-right">{{ formato(2, parseFloat(x.precio).toFixed(2) ) }}</p></td>
+                          <td><p class="text-right">{{ formato(2, x.precio ) }}</p></td>
                       </tr>
 
                   </tbody>

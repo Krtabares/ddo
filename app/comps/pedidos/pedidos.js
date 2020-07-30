@@ -129,10 +129,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
 
-        $scope.selectProduct = function(value){
+        $scope.selectProduct = function(value = null){
 
 
-           var index = (value)? value:$scope.productIndex
+           var index = (value!=null)? value:$scope.productIndex
             $scope.productIndex = index;
             $scope.product  = $scope.productos[ index ];
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
@@ -443,7 +443,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .withOption('responsive', true)
           .withDOM('frtip').withPaginationType('full_numbers')
       // .withDisplayLength(2);
-      $scope.dtInstanceProd = {};
+      // $scope.dtInstanceProd = {};
       $scope.dtOptionsProd = DTOptionsBuilder.newOptions()
           .withPaginationType('full_numbers')
           .withOption('responsive', true)
