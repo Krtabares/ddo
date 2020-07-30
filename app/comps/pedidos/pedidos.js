@@ -70,13 +70,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.editPedido= function(){
           $scope.editView = true
         }
-
+        $scope.showProductTable = false
         $scope.selectCLient = function(){
 
           // $scope.client = x
           if($scope.clientes.length > 0){
             $scope.client  = $scope.clientes[ $scope.clientIndex ];
               console.log($scope.client,"selectCLient" )
+              $scope.showProductTable = true;
+          }else {
+            $scope.showProductTable = false
           }
 
             selectCLientCAP( $scope.client)
@@ -451,18 +454,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
 
             console.log(body);
-             // request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
-             //  .then(function successCallback(response) {
-             //    console.log(response.data)
-             //
-             //    response.data.obj.forEach((item, i) => {
-             //      item.precio = item.precio.replace(",", ".")
-             //      item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
-             //
-             //    });
+             request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+              .then(function successCallback(response) {
+                console.log(response.data)
+
+                response.data.obj.forEach((item, i) => {
+                  item.precio = item.precio.replace(",", ".")
+                  item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
+
+                });
           defer.resolve([]);
 
-             // });
+             });
             return defer.promise;
     		})
 
