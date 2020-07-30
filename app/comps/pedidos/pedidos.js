@@ -25,7 +25,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.listaPedidos=[]
         $scope.busqueda_prod = null;
         $scope.clientes = null;
-        $scope.client = {};
+        $scope.client = null;
         $scope.client_info = {}
         $scope.ID = null
         $scope.clientIndex = -1;
