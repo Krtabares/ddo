@@ -444,66 +444,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .withDOM('frtip').withPaginationType('full_numbers')
       // .withDisplayLength(2);
       $scope.dtInstanceProd = {};
-      $scope.dtOptionsProd = DTOptionsBuilder.fromFnPromise(function() {
-            var defer = $q.defer();
-            var body = {}
-            console.log($scope.client);
+      $scope.dtOptionsProd = DTOptionsBuilder.newOptions()
+          .withPaginationType('full_numbers')
+          .withOption('responsive', true)
+          .withDOM('frtip').withPaginationType('full_numbers')
 
-            body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
-            body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
-            body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
-
-            console.log(body);
-             request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
-              .then(function successCallback(response) {
-                console.log(response.data)
-
-                response.data.obj.forEach((item, i) => {
-                  item.precio = item.precio.replace(",", ".")
-                  item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
-
-                });
-                defer.resolve(response.data.obj);
-
-             });
-            return defer.promise;
-    		})
-
-        $scope.newPromise = newPromise;
-        function newPromise() {
-          console.log("newPromise");
-          var defer = $q.defer();
-          var body = {};
-          console.log($scope.client)
-          // if(filter){
-
-          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
-          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
-          body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
-            body.pBusqueda = $scope.busqueda_prod
-          // }
-          console.log(body)
-          request.post(ip+'/procedure_productos', body,{})
-          .then(function successCallback(response) {
-            console.log(response)
-            if(response.data.obj.length > 1){
-              // $scope.productos = response.data.obj
-              response.data.obj.forEach((item, i) => {
-                item.precio = item.precio.replace(",", ".")
-                item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
-
-              });
-              defer.resolve(response.data.obj);
-              // $scope.dtOptions.reloadData()
-            }else{
-              ngNotify.set('¡No se encontraron resultados!', 'warn')
-            }
-
-          }, function errorCallback(response) {
-            console.log(response)
-          });
-            return defer.promise;
-        }
 
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('no_cia').withTitle('Número cia'),
