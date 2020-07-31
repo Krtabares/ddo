@@ -261,3 +261,8 @@ body {
 .selectedRow{
 	background: aqua !important;
 }
+
+.modal-body{
+	height: 350px !important;
+	overflow: scroll !important;
+}
