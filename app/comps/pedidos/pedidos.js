@@ -156,7 +156,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
 
-            $scope.clientes = response.data.obj
+            if(response.data.obj.length > 1){
+
+              $scope.clientes = response.data.obj
+
+            }else{
+              ngNotify.set('¡No se encontraron resultados!', 'warn')
+            }
 
           }, function errorCallback(response) {
             console.log(response)
