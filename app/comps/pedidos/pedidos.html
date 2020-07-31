@@ -158,9 +158,23 @@
                     </table>
 
               </div>
-              <div class="col-6 col-sm-6 col-md-6 col-lg-6" ng-show="productIndex != -1 ||pedido.pedido.length > 0">
-                <label> Total </label>
-                <h4> {{ nuevoTotal() }}</h4>
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12" ng-show="productIndex != -1 ||pedido.pedido.length > 0">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                  <label>Total (no incluye iva)</label>
+                  <h4>{{formato(2,totales.bolivares)}}</h4>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                  <label>Total (con iva)</label>
+                  <h4>{{formato(2,totales.bolivares + totales.bsIVA)}}</h4>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                  <label>Total USD (no incluye iva)</label>
+                  <h4>{{formato(3,totales.USD)}}</h4>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                  <label>Total USD (con iva)</label>
+                  <h4>{{formato(3,totales.USDIVA)}}</h4>
+                </div>
               </div>
   <!--
               <div class="col-4 mb-5">
@@ -299,9 +313,21 @@
                   </table>
 
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
               <label>Total (no incluye iva)</label>
               <h4>{{formato(2,totales.bolivares)}}</h4>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+              <label>Total (con iva)</label>
+              <h4>{{formato(2,totales.bolivares + totales.bsIVA)}}</h4>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+              <label>Total USD (no incluye iva)</label>
+              <h4>{{formato(3,totales.USD)}}</h4>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+              <label>Total USD (con iva)</label>
+              <h4>{{formato(3,totales.USDIVA)}}</h4>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12" ng-show="productIndex != -1 && editView">
               <label>Nuevo Total </label>

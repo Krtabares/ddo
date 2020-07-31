@@ -142,6 +142,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            var index = (value!=null)? value:$scope.productIndex
             $scope.productIndex = index;
             $scope.product  = $scope.productos[ index ];
+            $scope.articulo = $scope.product
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
             $scope.articulo.PRECIO = $scope.product.precio_bs.replace(",", ".");
             $scope.articulo.precio_usd = $scope.product.precio_usd.replace(",", ".")
@@ -431,10 +432,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-        $scope.totales = {
-          'bolivares':0
-        }
-
         $scope.showPedido = function(pedido){
           console.log(pedido);
 
@@ -451,16 +448,34 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           calcularTotales()
         }
 
+        $scope.totales = {
+          'bolivares':0
+          'USD':0,
+          'bsIVA':0,
+          'USDIVA':0
+        }
         function calcularTotales() {
-          $scope.totales.bolivares = 0
-          $scope.pedido.pedido.forEach(element => {
+            $scope.totales.bolivares = 0
+            $scope.totales.USD = 0
+            $scope.totales.bsIVA = 0
+            $scope.totales.USDIVA = 0
+            $scope.pedido.pedido.forEach(element => {
 
-            $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
-                                           + (parseFloat(element.PRECIO) * element.CANTIDAD)
+              $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
+                                             + (parseFloat(element.PRECIO) * element.CANTIDAD)
+              $scope.totales.USD = parseFloat($scope.totales.USD)
+                                            + (parseFloat(element.precio_usd) * element.CANTIDAD)
+              $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA)
+                                            + (parseFloat(element.iva_bs) * element.CANTIDAD)
+              $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
+                                            + (parseFloat(element.iva_usd) * element.CANTIDAD)
 
           });
-          console.log($scope.totales.bolivares)
+          console.log($scope.totales)
           $scope.totales.bolivares = parseFloat($scope.totales.bolivares).toFixed(2)
+          $scope.totales.USD = parseFloat($scope.totales.USD).toFixed(2)
+          $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA).toFixed(2)
+          $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA).toFixed(2)
         }
 
 
