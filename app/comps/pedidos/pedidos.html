@@ -348,26 +348,36 @@
               </div>
               <div class="row" >
 
-                  <div class="col-2">
+                  <div class="col-4">
                     <label>Codigo</label>
                     <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
                   </div>
-                  <div class="col-2">
+                  <div class="col-4">
                     <label>Cantidad</label>
                     <input type="number"  min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                   </div>
-                  <div class="col-2">
+                  <div class="col-4">
                     <label>Existencia</label>
                     <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
                   </div>
                   <div class="col-3">
-                    <label>Precio por unidad</label>
+                    <label>Precio por unidad Bs.S</label>
                     <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
 
                   </div>
                   <div class="col-3">
-                    <label>Precio total</label>
+                    <label>Precio total Bs.S</label>
                     <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
+
+                  </div>
+                  <div class="col-3">
+                    <label>Precio por unidad USD</label>
+                    <span >{{formato(2,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
+
+                  </div>
+                  <div class="col-3">
+                    <label>Precio total USD</label>
+                    <span >{{formato(2,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
 
                   </div>
                   <div class="col-12">
@@ -384,7 +394,11 @@
                       <th scope="col"><p class="text-center">Nombre Producto</p></th>
                       <th scope="col"><p class="text-center">Existencia</p></th>
                       <th scope="col"><p class="text-center">Principio Activo</p></th>
-                      <th scope="col"><p class="text-center">Precio</p></th>
+                      <th scope="col"><p class="text-center">Precio Bs.S</p></th>
+                      <th scope="col"><p class="text-center">Iva Bs.S</p></th>
+                      <th scope="col"><p class="text-center">Precio USD</p></th>
+                      <th scope="col"><p class="text-center">Iva USD</p></th>
+                      <th scope="col"><p class="text-center">Proveedor</p></th>
                       </tr>
                   </thead>
                   <tbody>
@@ -393,7 +407,11 @@
                           <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                           <td><p class="text-center">{{ x.existencia }}</p></td>
                           <td><p class="text-center">{{ x.princ_activo }}</p></td>
-                          <td><p class="text-right">{{  x.precioFormat }}</p></td>
+                          <td><p class="text-right">{{  x.precioFormatVE }}</p></td>
+                          <td><p class="text-right">{{  x.iva_bs }}</p></td>
+                          <td><p class="text-right">{{  x.precioFormatUSD }}</p></td>
+                          <td><p class="text-right">{{  x.iva_usd }}</p></td>
+                          <td><p class="text-right">{{  x.proveedor }}</p></td>
                       </tr>
 
                   </tbody>

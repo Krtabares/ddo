@@ -51,6 +51,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                                            + parseFloat($scope.articulo.PRECIO | 0 )* ($scope.articulo.CANTIDAD | 0  )
           return $scope.formato(2, total)
         }
+        const formatterUSD = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD'
+        })
         const formatterVe = new Intl.NumberFormat('es-VE', {
           style: 'currency',
           currency: 'VES'
@@ -64,6 +68,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
           if(tipo==2){
             return formatterVe.format(valor)
+          }
+          if(tipo==3){
+            return formatterUSD.format(valor)
           }
         }
 
@@ -136,8 +143,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.productIndex = index;
             $scope.product  = $scope.productos[ index ];
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
-            $scope.articulo.PRECIO = $scope.product.precio.replace(",", ".");
-            // $scope.articulo.PRECIO = $scope.product.precio
+            $scope.articulo.PRECIO = $scope.product.precio_bs.replace(",", ".");
+            $scope.articulo.precio_usd = $scope.product.precio_usd.replace(",", ".")
             $scope.articulo.existencia =$scope.product.existencia
             $scope.articulo.CANTIDAD = 1
             // $scope.articulo.no_cliente = $scope.client.cod_cliente
@@ -187,8 +194,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
             if(response.data.obj.length > 1){
               response.data.obj.forEach((item, i) => {
-                item.precioFormat = item.precio.replace(",", ".")
-                item.precioFormat = $scope.formato(2,  parseFloat(item.precioFormat).toFixed(2) )
+
+                item.precioFormatVE = item.precio_bs.replace(",", ".")
+                item.precioFormatVE = $scope.formato(2,  parseFloat(item.precioFormatVE).toFixed(2) )
+
+                item.precioFormatUSD = item.precio_usd.replace(",", ".")
+                item.precioFormatUSD = $scope.formato(3,  parseFloat(item.precioFormatUSD).toFixed(2) )
 
               });
 

@@ -770,6 +770,7 @@ async def procedure(request):
                     v_iva_bs|| '|'||
                     v_precio_usd|| '|'||
                     v_iva_usd|| '|'||
+                    v_proveedor|| '|'||
                     V_PAGINA|| '|'||
                     V_LINEA
                 );
@@ -798,20 +799,21 @@ async def procedure(request):
             break
         arr = str(textVar.getvalue()).split("|")
         obj = {
-            'v_cod_producto' : arr[0],
-            'v_nombre_producto' : arr[1],
-            'v_princ_activo' : arr[2],
-            'v_ind_regulado' : arr[3],
-            'v_ind_impuesto' : arr[4],
-            'v_ind_psicotropico' : arr[5],
-            'v_fecha_vence' : arr[6],
-            'v_existencia' : arr[7],
-            'v_precio_bs' : arr[8],
-            'v_iva_bs' : arr[9],
-            'v_precio_usd' : arr[10],
-            'v_iva_usd' : arr[11],
-            'pagina': arr[12],
-            'linea': arr[13]
+            'cod_producto' : arr[0],
+            'nombre_producto' : arr[1],
+            'princ_activo' : arr[2],
+            'ind_regulado' : arr[3],
+            'ind_impuesto' : arr[4],
+            'ind_psicotropico' : arr[5],
+            'fecha_vence' : arr[6],
+            'existencia' : arr[7],
+            'precio_bs' : arr[8],
+            'iva_bs' : arr[9],
+            'precio_usd' : arr[10],
+            'iva_usd' : arr[11],
+            'proveedor' :arr[12]
+            'pagina': arr[13],
+            'linea': arr[14]
         }
         list.append(obj)
     return response.json({ "msg":"OK", "obj": list }, 200)
