@@ -361,7 +361,10 @@
                     <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
                   </div>
                   <div class="row">
-                    <label>Precios</label>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+
+                      <label>Precios</label>
+                    </div>
                     <div class="col-3">
                       <label>Por unidad Bs.S</label>
                       <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
