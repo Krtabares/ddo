@@ -195,7 +195,8 @@ async def procedure(request):
                 v_email2 varchar2(100);
                 v_email3 varchar2(100);
                 v_email4 varchar2(100);
-                v_ind_activo varchar2(1);
+                v_plazo varchar2(100);
+                v_persona_cyc varchar2(100);
                 v_tot number;
                 v_pagina number;
                 v_linea number;
@@ -231,9 +232,11 @@ async def procedure(request):
                 v_email2,
                 v_email3,
                 v_email4,
-                v_ind_activo,
+                v_plazo,
+                v_persona_cyc,
                 v_pagina,
                 v_linea;
+                EXIT WHEN l_cursor%NOTFOUND;
             dbms_output.put_line
                 (
                 v_cod_cia|| '|'||
@@ -253,11 +256,11 @@ async def procedure(request):
                 v_email2|| '|'||
                 v_email3|| '|'||
                 v_email4|| '|'||
-                v_ind_activo|| '|'||
+                v_plazo|| '|'||
+                v_persona_cyc|| '|'||
                 v_pagina|| '|'||
                 v_linea
                 );
-            EXIT WHEN l_cursor%NOTFOUND;
             END LOOP;
             CLOSE l_cursor;
         END;
@@ -414,6 +417,7 @@ async def procedure(request , token : Token):
                         v_grupo,
                         v_pagina,
                         v_linea;
+                        EXIT WHEN l_cursor%NOTFOUND;
                     dbms_output.put_line
                         (
                         v_id_deuda|| '|'||
@@ -433,7 +437,6 @@ async def procedure(request , token : Token):
                         v_pagina|| '|'||
                         v_linea
                         );
-                    EXIT WHEN l_cursor%NOTFOUND;
                     END LOOP;
                 CLOSE l_cursor;
 
@@ -481,8 +484,8 @@ async def procedure(request , token : Token):
         list.append(obj)
     return response.json({"msj":"OK", "obj": list}, 200)
 
-@app.route('/procedure_productos', ["POST", "GET"])
-async def procedure(request):
+@app.route('/procedure_productosOLD', ["POST", "GET"])
+async def procedureOLD(request):
 
     data = request.json
 
@@ -544,7 +547,6 @@ async def procedure(request):
             pNoCia varchar2(10) DEFAULT '01';
             pNoGrupo varchar2(10) DEFAULT '01';
             pCliente varchar2(50) DEFAULT null;
-            pMoneda varchar2(10) DEFAULT 'P';
             pBusqueda varchar2(50) DEFAULT null;
             pComponente varchar2(50) DEFAULT null;
 
@@ -589,6 +591,7 @@ async def procedure(request):
                 V_PRECIO,
                 V_PAGINA,
                 V_LINEA;
+                EXIT WHEN l_cursor%NOTFOUND;
                 dbms_output.put_line
                 (
                     V_BODEGA|| '|'||
@@ -601,7 +604,6 @@ async def procedure(request):
                     V_PAGINA|| '|'||
                     V_LINEA
                 );
-                EXIT WHEN l_cursor%NOTFOUND;
             END LOOP;
             CLOSE l_cursor;
 
@@ -637,6 +639,177 @@ async def procedure(request):
             'precio': arr[6],
             'pagina': arr[7],
             'linea': arr[8]
+        }
+        list.append(obj)
+    return response.json({ "msg":"OK", "obj": list }, 200)
+
+@app.route('/procedure_productos', ["POST", "GET"])
+async def procedure(request):
+
+    data = request.json
+
+    print(data)
+
+    if not 'pTotReg' in data or data['pTotReg'] == 0 :
+        data['pTotReg'] = 100
+
+    if not 'pTotPaginas' in data or data['pTotPaginas'] == 0 :
+        data['pTotPaginas'] = 100
+
+    if not 'pPagina' in data or data['pPagina'] == 0 :
+        data['pPagina'] = 1
+
+    if not 'pLineas' in data or data['pLineas'] == 0 :
+        data['pLineas'] = 100
+
+    if not 'pNoCia' in data :
+        data['pNoCia'] = '01'
+    else:
+        data['pNoCia'] = "'"+data['pNoCia']+"'"
+
+    if not 'pNoGrupo' in data :
+        data['pNoGrupo'] = '01'
+    else:
+        data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
+
+    if not 'pCliente' in data :
+        data['pCliente'] = 'null'
+    else:
+        data['pCliente'] = "'"+data['pCliente']+"'"
+
+    if not 'pBusqueda' in data :
+        data['pBusqueda'] = 'null'
+    else:
+        data['pBusqueda'] = "'"+data['pBusqueda']+"'"
+
+    if not 'pComponente' in data :
+        data['pComponente'] = 'null'
+    else:
+        data['pComponente'] = "'"+data['pComponente']+"'"
+    print(data)
+    db = get_db()
+    c = db.cursor()
+    c.callproc("dbms_output.enable")
+    c.execute("""
+
+            DECLARE
+            l_cursor  SYS_REFCURSOR;
+            pTotReg number DEFAULT 100;
+            pTotPaginas number DEFAULT 100;
+            pPagina number DEFAULT 1;
+            pLineas number DEFAULT 100;
+            pNoCia varchar2(10) DEFAULT '01';
+            pNoGrupo varchar2(10) DEFAULT '01';
+            pCliente varchar2(50) DEFAULT null;
+            pBusqueda varchar2(50) DEFAULT null;
+            pComponente varchar2(50) DEFAULT null;
+
+            output number DEFAULT 1000000;
+
+                v_cod_producto varchar2(100);
+                v_nombre_producto varchar2(100);
+                v_princ_activo varchar2(100);
+                v_ind_regulado varchar2(100);
+                v_ind_impuesto varchar2(100);
+                v_ind_psicotropico varchar2(100);
+                v_fecha_vence date;
+                v_existencia number;
+                v_precio_bs number;
+                v_iva_bs number;
+                v_precio_usd number;
+                v_iva_usd number;
+                v_proveedor varchar2(100);
+                V_PAGINA number;
+                V_LINEA number;
+            BEGIN
+
+                                pTotReg  := {pTotReg};
+                                pTotPaginas  := {pTotPaginas};
+                                pPagina  := {pPagina};
+                                pLineas  := {pLineas};
+                                pNoCia := {pNoCia};
+                                pNoGrupo := {pNoGrupo};
+                                pCliente := {pCliente};
+                                pBusqueda := {pBusqueda};
+                                pComponente := {pComponente};
+
+                dbms_output.enable(output);
+
+                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pMoneda,pBusqueda,pComponente);
+
+            LOOP
+                FETCH l_cursor into
+                v_cod_producto,
+                v_nombre_producto,
+                v_princ_activo,
+                v_ind_regulado,
+                v_ind_impuesto,
+                v_ind_psicotropico,
+                v_fecha_vence,
+                v_existencia,
+                v_precio_bs,
+                v_iva_bs,
+                v_precio_usd,
+                v_iva_usd,
+                V_PAGINA,
+                V_LINEA;
+                EXIT WHEN l_cursor%NOTFOUND;
+                dbms_output.put_line
+                (
+                    v_cod_producto|| '|'||
+                    v_nombre_producto|| '|'||
+                    v_princ_activo|| '|'||
+                    v_ind_regulado|| '|'||
+                    v_ind_impuesto|| '|'||
+                    v_ind_psicotropico|| '|'||
+                    v_fecha_vence|| '|'||
+                    v_existencia|| '|'||
+                    v_precio_bs|| '|'||
+                    v_iva_bs|| '|'||
+                    v_precio_usd|| '|'||
+                    v_iva_usd|| '|'||
+                    V_PAGINA|| '|'||
+                    V_LINEA
+                );
+            END LOOP;
+            CLOSE l_cursor;
+
+            END;
+
+                """.format(
+                        pTotReg = data['pTotReg'],
+                        pTotPaginas = data['pTotPaginas'],
+                        pPagina = data['pPagina'],
+                        pLineas = data['pLineas'],
+                        pNoCia = data['pNoCia'],
+                        pNoGrupo = data['pNoGrupo'],
+                        pCliente = data['pCliente'],
+                        pBusqueda = data['pBusqueda'],
+                        pComponente = data['pComponente'],
+                    ))
+    textVar = c.var(str)
+    statusVar = c.var(int)
+    list = []
+    while True:
+        c.callproc("dbms_output.get_line", (textVar, statusVar))
+        if statusVar.getvalue() != 0:
+            break
+        arr = str(textVar.getvalue()).split("|")
+        obj = {
+            'v_cod_producto' : arr[0],
+            'v_nombre_producto' : arr[1],
+            'v_princ_activo' : arr[2],
+            'v_ind_regulado' : arr[3],
+            'v_ind_impuesto' : arr[4],
+            'v_ind_psicotropico' : arr[5],
+            'v_fecha_vence' : arr[6],
+            'v_existencia' : arr[7],
+            'v_precio_bs' : arr[8],
+            'v_iva_bs' : arr[9],
+            'v_precio_usd' : arr[10],
+            'v_iva_usd' : arr[11],
+            'pagina': arr[12],
+            'linea': arr[13]
         }
         list.append(obj)
     return response.json({ "msg":"OK", "obj": list }, 200)
@@ -759,6 +932,7 @@ async def procedure(request):
                                         v_grupo,
                                         v_pagina,
                                         v_linea;
+                                        EXIT WHEN l_cursor%NOTFOUND;
                                 dbms_output.put_line
                                 (
                                         v_id_deuda|| '|'||
@@ -779,7 +953,6 @@ async def procedure(request):
                                         v_pagina|| '|'||
                                         v_linea
                                 );
-                                EXIT WHEN l_cursor%NOTFOUND;
                             END LOOP;
                             CLOSE l_cursor;
 
@@ -827,7 +1000,6 @@ async def procedure(request):
             }
         list.append(obj)
     return response.json({"msj": "OK", "obj": list}, 200)
-
 
 @app.route('/get/clientes', ["POST", "GET"])
 @jwt_required
@@ -1021,7 +1193,6 @@ async def add_pedido (request, token: Token):
         logger.debug(e)
         return response.json("ERROR",400)
 
-
 @app.route('/upd/pedido',["POST","GET"])
 @jwt_required
 async def update_pedido (request, token: Token):
@@ -1086,7 +1257,6 @@ async def update_pedido (request, token: Token):
         logger.debug(e)
         return response.json("ERROR",400)
 
-
 @app.route('/del/pedido',["POST","GET"])
 @jwt_required
 async def update_pedido (request, token: Token):
@@ -1108,7 +1278,6 @@ async def update_pedido (request, token: Token):
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
-
 
 @app.route('/get/pedidos',["POST","GET"])
 @jwt_required
@@ -1173,7 +1342,6 @@ async def pedidos (request , token: Token):
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
-
 
 @app.route('/get/pedido',["POST","GET"])
 @jwt_required
@@ -1396,8 +1564,6 @@ async def get_deuda(request, token : Token):
         logger.debug(e)
         return response.json("ERROR",400)
 
-
-
 @app.route('/get/saldo', ["POST","GET"])
 @jwt_required
 async def get_saldo(request, token : Token):
@@ -1467,4 +1633,4 @@ async def get_saldo(request, token : Token):
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
-app.run(host='0.0.0.0', port = port, debug = False)
+app.run(host='0.0.0.0', port = port, debug = True)

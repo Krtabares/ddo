@@ -252,57 +252,13 @@
 
             <div class="row"  >
 
-              <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="clientes">Busqueda por producto</label>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" ng-disabled="!editView" ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" ng-disabled="!editView"  ng-click="getProdNew(true)" type="button">Buscar</button>
-                  </div>
-                </div>
-
-              </div>
-              <div class="col-sm-12 col-md-6 col-lg-6" ng-show="productos.length > 0">
-                <div class="form-group">
-                  <label for="exampleFormControlSelect2">Seleccione un producto</label>
-                  <select class="form-control" ng-disabled="!editView" ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
-                    <option value="" disabled selected="selected" >Seleccione</option>
-                    <option ng-repeat="x in productos" ng-if="!($index==1)" value="{{$index}}">{{x.nombre_producto}} - (<sub style="font-size: 6px;">{{ x.princ_activo.toLowerCase() }}</sub>) </option>
-                  </select>
-                </div>
+              <div class="col-12">
+                <label></label>
+                <button type="button" class="btn btn-success" style="margin-top: 32px;" data-toggle="modal" data-target="#modalproduct">Agregar Productos</button>
               </div>
 
           </div>
-            <div class="row" >
 
-                <div class="col-2">
-                  <label>Codigo</label>
-                  <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
-                </div>
-                <div class="col-2">
-                  <label>Cantidad</label>
-                  <input type="number" ng-disabled="!editView" min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
-                </div>
-                <div class="col-2">
-                  <label>Existencia</label>
-                  <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
-                </div>
-                <div class="col-3">
-                  <label>Precio por unidad</label>
-                  <span ng-if="editView">{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
-                  <span ng-if="!editView">{{formato(2,0)}}</span>
-                </div>
-                <div class="col-3">
-                  <label>Precio producto total</label>
-                  <span ng-if="editView">{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
-                  <span ng-if="!editView">{{formato(2,0)}}</span>
-                </div>
-                <div class="col-12">
-                  <label></label>
-                  <button type="button" ng-disabled="!editView" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
-                </div>
-
-            </div>
 
           </div>
           <div class="container" style="margin-top: 32px;">

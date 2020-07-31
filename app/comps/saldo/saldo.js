@@ -208,13 +208,11 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         var defer = $q.defer();
         var body = {}
         console.log($scope.client);
-        // body.pNoCia = $scope.client.COD_CIA
-        // body.pNoGrupo = $scope.client.GRUPO_CLIENTE
-        // body.pCliente = $scope.client.COD_CLIENTE
-        body.pCliente = 'ATIA'
-        body.pNoCia = '01'
-        body.pNoGrupo = '01'
-        // body.pBusqueda = ''
+        
+        body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+        body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+        body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+
         console.log(body);
          request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
@@ -225,7 +223,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
               item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
 
             });
-      defer.resolve(response.data.obj);
+            defer.resolve(response.data.obj);
 
          });
         return defer.promise;
