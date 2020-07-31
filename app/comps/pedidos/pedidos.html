@@ -15,7 +15,7 @@
         <!-- INFO CLIENTE -->
         <header-client></header-client>
         <!--  END INFO CLIENTE -->
-        <div class="row col-sm-12 col-md-12 col-lg-12">
+        <div class="">
 
           <form class="row col-sm-12 col-md-12 col-lg-12" >
 
@@ -47,9 +47,9 @@
                     <div class="col-md-6">
                         <p class="font-weight-bold mb-4">Informacion del Cliente </p>
                         <p class="mb-1" style="text-transform: capitalize;" >{{client.nombre_cliente.toLowerCase()}}</p>
-                        <!-- <p>Acme Inc</p> -->
+                        <p>{{client.telefono1}}</p>
                         <p class="mb-1">{{client.direccion_cliente.toLowerCase()}}</p>
-                        <!-- <p class="mb-1">6781 45P</p> -->
+                        <p class="mb-1"><span class="text-muted">Plazo: </span> {{client.v_plazo}}</p>
                     </div>
 
                     <div class="col-md-6 text-right">
@@ -57,6 +57,7 @@
                         <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client.docu_identif_cliente}}</p>
                         <p class="mb-1"><span class="text-muted">Codigo: </span> {{pedido.no_cliente}}</p>
                         <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                        <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">persona contacto área crédito y cobranzas: </span> {{client.nombre_encargado.toLowerCase()}}</p>
                     </div>
                 </div>
               </div>
