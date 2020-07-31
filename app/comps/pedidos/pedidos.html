@@ -360,25 +360,28 @@
                     <label>Existencia</label>
                     <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
                   </div>
-                  <div class="col-3">
-                    <label>Precio por unidad Bs.S</label>
-                    <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
+                  <div class="row">
+                    <label>Precios</label>
+                    <div class="col-3">
+                      <label>Por unidad Bs.S</label>
+                      <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
 
-                  </div>
-                  <div class="col-3">
-                    <label>Precio total Bs.S</label>
-                    <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
+                    </div>
+                    <div class="col-3">
+                      <label>Total Bs.S</label>
+                      <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
 
-                  </div>
-                  <div class="col-3">
-                    <label>Precio por unidad USD</label>
-                    <span >{{formato(2,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
+                    </div>
+                    <div class="col-3">
+                      <label>Por unidad USD</label>
+                      <span >{{formato(2,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
 
-                  </div>
-                  <div class="col-3">
-                    <label>Precio total USD</label>
-                    <span >{{formato(2,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
+                    </div>
+                    <div class="col-3">
+                      <label>Total USD</label>
+                      <span >{{formato(2,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
 
+                    </div>
                   </div>
                   <div class="col-12">
                     <label></label>
