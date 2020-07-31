@@ -713,7 +713,7 @@ async def procedure(request):
                 v_ind_regulado varchar2(100);
                 v_ind_impuesto varchar2(100);
                 v_ind_psicotropico varchar2(100);
-                v_fecha_vence date;
+                v_fecha_vence varchar2(100);
                 v_existencia number;
                 v_precio_bs number;
                 v_iva_bs number;
@@ -752,6 +752,7 @@ async def procedure(request):
                 v_iva_bs,
                 v_precio_usd,
                 v_iva_usd,
+                v_proveedor,
                 V_PAGINA,
                 V_LINEA;
                 EXIT WHEN l_cursor%NOTFOUND;
