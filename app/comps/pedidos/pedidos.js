@@ -449,7 +449,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.totales = {
-          'bolivares':0
+          'bolivares':0,
           'USD':0,
           'bsIVA':0,
           'USDIVA':0
