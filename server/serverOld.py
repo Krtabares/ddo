@@ -736,7 +736,7 @@ async def procedure(request):
 
                 dbms_output.enable(output);
 
-                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pMoneda,pBusqueda,pComponente);
+                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pBusqueda,pComponente);
 
             LOOP
                 FETCH l_cursor into
