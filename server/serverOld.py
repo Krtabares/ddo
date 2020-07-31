@@ -299,9 +299,10 @@ async def procedure(request):
         'email2': arr[14],
         'email3': arr[15],
         'email4': arr[16],
-        'ind_activo': arr[17],
-        'pagina': arr[18],
-        'linea': arr[19]
+        'v_plazo': arr[17],
+        'v_persona_cyc': arr[18],
+        'pagina': arr[19],
+        'linea': arr[20]
         }
         list.append(obj)
     return response.json({"msj": "OK", "obj": list}, 200)
