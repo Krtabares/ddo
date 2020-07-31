@@ -58,7 +58,7 @@ def get_mongo_db():
 def get_db():
     dsn_tns = cx_Oracle.makedsn('192.168.168.218', '1521', service_name='DELOESTE')
     # if needed, place an 'r' before any parameter in order to address special characters such as '\'.
-    conn = cx_Oracle.connect(user=r'PAGINAWEB', password='paginaweb', dsn=dsn_tns)
+    conn = cx_Oracle.connect(user=r'APLPAGWEB', password='4P1P4GWE3', dsn=dsn_tns)
     #conn = cx_Oracle.connect(user=r'paginaweb', password='paginaweb', dsn=dsn_tns)
     # if needed, place an 'r' before any parameter in order to address special characters such as '\'.
     #For example, if your user name contains '\', you'll need to place 'r' before the user name: user=r'User Name'
