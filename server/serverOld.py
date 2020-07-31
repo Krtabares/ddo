@@ -811,7 +811,7 @@ async def procedure(request):
             'iva_bs' : arr[9],
             'precio_usd' : arr[10],
             'iva_usd' : arr[11],
-            'proveedor' :arr[12]
+            'proveedor' :arr[12],
             'pagina': arr[13],
             'linea': arr[14]
         }
