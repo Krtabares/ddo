@@ -480,16 +480,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA)
                                             + (parseFloat(element.iva_bs) * element.CANTIDAD)
               $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
-                                            + (parseFloat(element.iva_usd).toFixed(2) * element.CANTIDAD)
+                                            + (parseFloat(element.iva_usd) * element.CANTIDAD)
               console.log($scope.totales)
           });
 
-          $scope.totales.bolivares = parseFloat($scope.totales.bolivares).toFixed(2)
-          $scope.totales.USD = parseFloat($scope.totales.USD).toFixed(2)
-          $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA).toFixed(2)
-          $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA).toFixed(2)
-          $scope.totales.bsConIva = parseFloat($scope.totales.bolivares + $scope.totales.bsIVA).toFixed(2)
-          $scope.totales.UsdConIva = parseFloat($scope.totales.USD + $scope.totales.USDIVA).toFixed(2)
+          $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
+          $scope.totales.USD = parseFloat($scope.totales.USD)
+          $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA)
+          $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
+          $scope.totales.bsConIva = parseFloat($scope.totales.bolivares + $scope.totales.bsIVA)
+          $scope.totales.UsdConIva = parseFloat($scope.totales.USD + $scope.totales.USDIVA)
 
           console.log($scope.totales)
         }
