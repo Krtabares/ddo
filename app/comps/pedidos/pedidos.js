@@ -481,11 +481,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                                             + (parseFloat(element.iva_usd).toFixed(2) * element.CANTIDAD)
 
           });
-          console.log($scope.totales)
+
           $scope.totales.bolivares = parseFloat($scope.totales.bolivares).toFixed(2)
           $scope.totales.USD = parseFloat($scope.totales.USD).toFixed(2)
           $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA).toFixed(2)
           $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA).toFixed(2)
+
+          console.log($scope.totales)
         }
 
         $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -498,6 +500,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             .withPaginationType('full_numbers')
             .withOption('responsive', true)
             .withDOM('frtip').withPaginationType('full_numbers')
+
 
 
         $scope.dtColumns = [
