@@ -356,6 +356,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
 
           var body = {
+            "totales" : $scope.totales,
             "COD_CIA": body.cod_cia,
             "GRUPO_CLIENTE": body.pNoGrupo,
             "COD_CLIENTE": body.pCliente,

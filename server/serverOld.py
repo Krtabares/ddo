@@ -1177,7 +1177,7 @@ async def add_pedido (request, token: Token):
 
         c.execute("""select ID from LAST_ID_DETALLE_PEDIDO""")
         row = c.fetchone()
-        ID =row[0]
+        ID = row[0]
 
         # print(data)
         for pedido in data['pedido']:
@@ -1192,6 +1192,12 @@ async def add_pedido (request, token: Token):
                     ))
 
         db.commit()
+
+        mongodb = get_mongo_db()
+        totales = data["totales"]
+        totales["id_pedido"] = ID
+        await mongodb.order.insert_one(totales)
+
         return response.json("SUCCESS",200)
     except Exception as e:
         logger.debug(e)
