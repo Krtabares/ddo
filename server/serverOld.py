@@ -1174,7 +1174,7 @@ async def add_pedido (request, token: Token):
         lineVar = c.var(cx_Oracle.STRING)
 
         while True:
-          curs.callproc("dbms_output.get_line", (lineVar, statusVar))
+          c.callproc("dbms_output.get_line", (lineVar, statusVar))
           if statusVar.getvalue() != 0:
             break
           print(lineVar.getvalue())
