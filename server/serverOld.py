@@ -1133,7 +1133,7 @@ async def add_pedido (request, token: Token):
 # async def procedure(request):
     try:
         data = request.json
-        print(data)
+        # print(data)
         # if not 'COD_PRODUCTO' in data :
         #     return response.json("ERROR",400)
         # if not 'CANTIDAD' in data :
@@ -1175,9 +1175,10 @@ async def add_pedido (request, token: Token):
 
         while True:
           c.callproc("dbms_output.get_line", (lineVar, statusVar))
+          print(lineVar.getvalue())
           if statusVar.getvalue() != 0:
             break
-          print(lineVar.getvalue())
+
 
         # c.execute("""select ID from LAST_ID_DETALLE_PEDIDO""")
         # row = c.fetchone()
