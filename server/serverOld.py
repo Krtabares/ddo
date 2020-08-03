@@ -1144,7 +1144,7 @@ async def add_pedido (request, token: Token):
 
         db = get_db()
         c = db.cursor()
-
+        c.callproc("dbms_output.enable")
         sql = """
                 declare
                     s2 number;
