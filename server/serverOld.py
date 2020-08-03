@@ -1272,6 +1272,12 @@ async def update_pedido (request, token: Token):
                     ))
 
         db.commit()
+
+        mongodb = get_mongo_db()
+        totales = data["totales"]
+        totales["id_pedido"] = ID
+        await mongodb.order.insert_one(totales)
+
         return response.json("SUCCESS",200)
     except Exception as e:
         logger.debug(e)
@@ -1372,6 +1378,12 @@ async def pedido (request , token: Token):
         if not 'idPedido' in data or data['idPedido'] == 0 :
             return response.json({"msg": "Missing ID parameter"}, status=400)
 
+
+        mongodb = get_mongo_db()
+
+        totales = await db.user.find({'id_pedido' : data['idPedido']}, {'_id' : 0}).to_list(length=None)
+
+
         db = get_db()
         c = db.cursor()
 
@@ -1410,6 +1422,7 @@ async def pedido (request , token: Token):
                     'observacion':row[5],
                     'estatus':row[6],
                     'pedido': pedidos,
+                    'totales':totales,
 
               }
             list.append(aux)

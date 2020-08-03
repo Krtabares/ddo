@@ -372,10 +372,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.reset = function(){
           $scope.totales.bolivares = 0
+          $scope.totales.USD = 0
+          $scope.totales.bsIVA = 0
+          $scope.totales.USDIVA = 0
+          $scope.totales.bsConIva = 0
+          $scope.totales.UsdConIva = 0
           $scope.busqueda_prod = null
           $scope.productIndex = -1
           $scope.clientes = null
           $scope.clientIndex = -1
+          $scope.nombre_cliente = null
+          $scope.productos = []
           $scope.pedido = {'no_cia':'',
                 'grupo':'',
                 'no_cliente':'',
@@ -448,9 +455,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.editView =false;
           pedido.fecha = new Date(pedido.fecha);
           $scope.pedido = pedido;
+          $scope.totales = pedido.totales
 
-
-          calcularTotales()
+          // calcularTotales()
         }
 
         $scope.removeArt = function(i){
