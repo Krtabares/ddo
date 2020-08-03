@@ -481,7 +481,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                                             + (parseFloat(element.iva_bs) * element.CANTIDAD)
               $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
                                             + (parseFloat(element.iva_usd).toFixed(2) * element.CANTIDAD)
-
+              console.log($scope.totales)
           });
 
           $scope.totales.bolivares = parseFloat($scope.totales.bolivares).toFixed(2)
