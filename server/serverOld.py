@@ -1157,10 +1157,6 @@ async def add_pedido (request, token: Token):
                             (  :COD_CIA, :GRUPO_CLIENTE, :COD_CLIENTE, :FECHA, :NO_PEDIDO_CODISA, :OBSERVACIONES, :ESTATUS  )
                              returning ID into s2;
                     dbms_output.put_line(s2);
-                    IF s2 > 0 THEN
-                        DELETE FROM LAST_ID_DETALLE_PEDIDO WHERE ID <> s2;
-                        INSERT INTO LAST_ID_DETALLE_PEDIDO (ID) VALUES ( s2 );
-                    END IF;
                 end;
             """
 
@@ -1174,11 +1170,19 @@ async def add_pedido (request, token: Token):
                         data['ESTATUS']
                     ]
                 )
+        statusVar = c.var(cx_Oracle.NUMBER)
+        lineVar = c.var(cx_Oracle.STRING)
 
-        c.execute("""select ID from LAST_ID_DETALLE_PEDIDO""")
-        row = c.fetchone()
-        ID = row[0]
+        while True:
+          curs.callproc("dbms_output.get_line", (lineVar, statusVar))
+          if statusVar.getvalue() != 0:
+            break
+          print(lineVar.getvalue())
 
+        # c.execute("""select ID from LAST_ID_DETALLE_PEDIDO""")
+        # row = c.fetchone()
+        # ID = row[0]
+        return response.json("SUCCESS",200)
         # print(data)
         for pedido in data['pedido']:
             print(pedido)
