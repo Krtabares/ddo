@@ -15,6 +15,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             'fecha': new Date(),
             'pedido':[]
         };
+        $scope.tabs = 1
+        $scope.tabsIndex = 0
         $scope.editView = false;
         $scope.articulo = {};
         $scope.nombre_cliente = null;
@@ -32,6 +34,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         var ip = "http://192.168.168.170:3500";
         //list pedido
         $scope.listPedido = [];
+
+        $scope.nextStep = function () {
+          $scope.goToTab($scope.tabsIndex + 1 );
+        }
+
+        $scope.goToTab = function (index) {
+          if(index <= $scope.tabs )
+            $scope.tabsIndex = index
+        }
 
         $scope.initModal = function () {
           console.log("initmodal")
