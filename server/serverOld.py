@@ -1175,6 +1175,7 @@ async def add_pedido (request, token: Token):
 
         while True:
           c.callproc("dbms_output.get_line", (lineVar, statusVar))
+          print("==========================================================")
           print(lineVar.getvalue())
           if statusVar.getvalue() != 0:
             break
