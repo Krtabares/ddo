@@ -1175,8 +1175,12 @@ async def add_pedido (request, token: Token):
 
         while True:
           c.callproc("dbms_output.get_line", (lineVar, statusVar))
+          if lineVar.getvalue() == None:
+              break
           print("==========================================================")
           print(lineVar.getvalue())
+          ID = lineVar.getvalue()
+
           if statusVar.getvalue() != 0:
             break
 
@@ -1184,7 +1188,7 @@ async def add_pedido (request, token: Token):
         # c.execute("""select ID from LAST_ID_DETALLE_PEDIDO""")
         # row = c.fetchone()
         # ID = row[0]
-        return response.json("SUCCESS",200)
+        # return response.json("SUCCESS",200)
         # print(data)
         for pedido in data['pedido']:
             print(pedido)
