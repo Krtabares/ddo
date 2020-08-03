@@ -461,8 +461,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           'bolivares':0,
           'USD':0,
           'bsIVA':0,
-          'USDIVA':0
-          'bsConIva':0
+          'USDIVA':0,
+          'bsConIva':0,
           'UsdConIva':0
         }
 
@@ -490,7 +490,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA).toFixed(2)
           $scope.totales.bsConIva = parseFloat($scope.totales.bolivares + $scope.totales.bsIVA).toFixed(2)
           $scope.totales.UsdConIva = parseFloat($scope.totales.USD + $scope.totales.USDIVA).toFixed(2)
-          
+
           console.log($scope.totales)
         }
 
