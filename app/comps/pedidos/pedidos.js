@@ -11,10 +11,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
   .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
         //init
-
-
-
-
         $scope.pedido = {
             'fecha': new Date(),
             'pedido':[]
@@ -51,6 +47,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                                            + parseFloat($scope.articulo.PRECIO | 0 )* ($scope.articulo.CANTIDAD | 0  )
           return $scope.formato(2, total)
         }
+
         const formatterUSD = new Intl.NumberFormat('en-US', {
           style: 'currency',
           currency: 'USD'
@@ -59,9 +56,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           style: 'currency',
           currency: 'VES'
         })
-        // console.log(formatterVe.format(value))
         const formatterVeDECIMAL = new Intl.NumberFormat('es-VE', {
         })
+
         $scope.formato = function(tipo, valor){
           if(tipo == 1){
             return formatterVeDECIMAL.format(valor)
@@ -77,7 +74,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.editPedido= function(){
           $scope.editView = true
         }
+
         $scope.showProductTable = false
+
         $scope.selectCLient = function(){
 
           // $scope.client = x
@@ -134,7 +133,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
          listarPedidos()
          console.log($scope.client_info)
         }
-
 
         $scope.selectProduct = function(value = null){
 
@@ -454,6 +452,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           'bsIVA':0,
           'USDIVA':0
         }
+
         function calcularTotales() {
             $scope.totales.bolivares = 0
             $scope.totales.USD = 0
@@ -478,7 +477,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA).toFixed(2)
         }
 
-
         $scope.dtOptions = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
             .withOption('responsive', true)
@@ -500,41 +498,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             DTColumnBuilder.newColumn('precio').withTitle('Precio'),
             DTColumnBuilder.newColumn('cantidad').withTitle('Cantidad de Productos')
         ];
-      //  $scope.dtColumnDefs = [
-      //     DTColumnDefBuilder.newColumnDef(0).notVisible(),
-      //     DTColumnDefBuilder.newColumnDef(1).notVisible(),
-      //     DTColumnDefBuilder.newColumnDef(2),
-      //     DTColumnDefBuilder.newColumnDef(3),
-      //     DTColumnDefBuilder.newColumnDef(4),
-      //     DTColumnDefBuilder.newColumnDef(5),
-      //     DTColumnDefBuilder.newColumnDef(6).notSortable()
-      // ];
-
-
-
-      //   $scope.$on('modal.closing', function(event, reason, closed) {
-      //     console.log('modal.closing: ' + (closed ? 'close' : 'dismiss') + '(' + reason + ')');
-      //     var message = "You are about to leave the edit view. Uncaught reason. Are you sure?";
-      //     switch (reason){
-      //         // clicked outside
-      //         case "backdrop click":
-      //             message = "Any changes will be lost, are you sure?";
-      //             break;
-      //
-      //         // cancel button
-      //         case "cancel":
-      //             message = "Any changes will be lost, are you sure?";
-      //             break;
-      //
-      //         // escape key
-      //         case "escape key press":
-      //             message = "Any changes will be lost, are you sure?";
-      //             break;
-      //     }
-      //     if (!confirm(message)) {
-      //         event.preventDefault();
-      //     }
-      // });
 
 
 
