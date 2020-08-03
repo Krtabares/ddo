@@ -270,7 +270,7 @@ body {
 
 
 
-body {
+/* body {
     background: #ddd;
     min-height: 100vh;
     vertical-align: middle;
@@ -278,13 +278,13 @@ body {
     font-family: sans-serif;
     font-size: 0.8rem;
     font-weight: bold
-}
+} */
 
-.title {
+.order_title {
     margin-bottom: 5vh
 }
 
-.card {
+.order_card {
     margin: auto;
     max-width: 950px;
     width: 90%;
@@ -294,12 +294,12 @@ body {
 }
 
 @media(max-width:767px) {
-    .card {
+    .order_card {
         margin: 3vh auto
     }
 }
 
-.cart {
+.order_cart {
     background-color: #fff;
     padding: 4vh 5vh;
     border-bottom-left-radius: 1rem;
@@ -307,14 +307,14 @@ body {
 }
 
 @media(max-width:767px) {
-    .cart {
+    .order_cart {
         padding: 4vh;
         border-bottom-left-radius: unset;
         border-top-right-radius: 1rem
     }
 }
 
-.summary {
+.order_summary {
     background-color: #ddd;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
@@ -323,29 +323,29 @@ body {
 }
 
 @media(max-width:767px) {
-    .summary {
+    .order_summary {
         border-top-right-radius: unset;
         border-bottom-left-radius: 1rem
     }
 }
 
-.summary .col-2 {
+.order_summary .col-2 {
     padding: 0
 }
 
-.summary .col-10 {
+.order_summary .col-10 {
     padding: 0
 }
 
-.row {
+.order_row {
     margin: 0
 }
 
-.title b {
+.order_title b {
     font-size: 1.5rem
 }
 
-.main {
+.order_main {
     margin: 0;
     padding: 2vh 0;
     width: 100%
@@ -360,7 +360,7 @@ a {
     padding: 0 1vh
 }
 
-.close {
+.order_close {
     margin-left: auto;
     font-size: 0.7rem
 }
@@ -373,7 +373,7 @@ img {
     margin-top: 4.5rem
 }
 
-h5 {
+/* h5 {
     margin-top: 4vh
 }
 
@@ -405,9 +405,9 @@ input {
 
 input:focus::-webkit-input-placeholder {
     color: transparent
-}
+} */
 
-.btn {
+.order_btn {
     background-color: #000;
     border-color: #000;
     color: white;
@@ -418,7 +418,7 @@ input:focus::-webkit-input-placeholder {
     border-radius: 0
 }
 
-.btn:focus {
+.order_btn:focus {
     box-shadow: none;
     outline: none;
     box-shadow: none;
@@ -428,13 +428,11 @@ input:focus::-webkit-input-placeholder {
     transition: none
 }
 
-.btn:hover {
+.order_btn:hover {
     color: white
 }
 
-a {
-    color: black
-}
+
 
 a:hover {
     color: black;
