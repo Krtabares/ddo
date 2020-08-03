@@ -18,7 +18,7 @@
               <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Informacion Cliente <span class="badge badge-secondary">1</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" ng-class="{ active : tabsIndex == 1}" ng-click="goToTab(1)" >Detalle de pedido <span class="badge badge-secondary">2</span></a>
+              <a class="nav-link" ng-class="{ active : tabsIndex == 1 }" ng-disabled="!showProductTable" ng-click="goToTab(1)" >Detalle de pedido <span class="badge badge-secondary">2</span></a>
             </li>
         </ul>
 
@@ -32,7 +32,7 @@
               <header-client></header-client>
               <!--  END INFO CLIENTE -->
               <div ng-show="!hasUserClient">
-                <div class="row">
+                <div class="">
                   <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="clientes">Busqueda por cliente</label>
                     <div class="input-group mb-3">
@@ -97,28 +97,6 @@
 
             </div>
 
-            <!-- <div class="row"  >
-
-                <div class="col-sm-12 col-md-6 col-lg-6">
-                  <label for="clientes">Busqueda por producto</label>
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control"  ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-6" ng-show="productos.length > 0">
-                  <div class="form-group">
-                    <label for="exampleFormControlSelect2">Seleccione un producto</label>
-                    <select class="form-control"  ng-model="productIndex" id="exampleFormControlSelec2" ng-change="selectProduct()">
-                      <option ng-repeat="x in productos" ng-if="!($index==1)" value="{{$index}}">{{x.nombre_producto}} - (<sub style="font-size: 6px;">{{ x.princ_activo.toLowerCase() }}</sub>) </option>
-                      <option value="" value="" disabled selected >Seleccione</option>
-                    </select>
-                  </div>
-                </div>
-            </div> -->
 
             </div>
             <div class="container" ng-if="tabsIndex == 1" >
@@ -460,8 +438,9 @@
                       </tr>
                   </thead>
                   <tbody>
+                    <a href="#infoProduct">
                       <tr ng-repeat="x in productos" ng-click="selectProduct($index)" ng-class="{ selectedRow : $index == productIndex }" >
-                         <a href="#infoProduct">
+
                           <td><p class="text-center">{{ $index + 1 }}</p></td>
                           <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                           <td><p class="text-center">{{ x.existencia }}</p></td>
@@ -471,8 +450,9 @@
                           <td><p class="text-right">{{  x.precioFormatUSD }}</p></td>
                           <td><p class="text-right">{{  x.iva_usd }}</p></td>
                           <td><p class="text-right">{{  x.proveedor }}</p></td>
-                          </a>
+
                       </tr>
+                      </a>
 
                   </tbody>
                   </table>
