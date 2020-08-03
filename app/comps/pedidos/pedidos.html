@@ -177,41 +177,41 @@
                 </div>
               </div> -->
               <div class="row">
-                          <div class="col-lg-4 col-sm-5">
-                            </div>
-                              <div class="col-lg-4 col-sm-5 ml-auto">
-                                  <table class="table table-clear">
-                                      <tbody>
-                                          <tr>
-                                              <td class="left">
-                                                  <strong class="text-dark">Total (no incluye iva)</strong>
-                                              </td>
-                                              <td class="right">{{formato(2,totales.bolivares)}}</td>
-                                          </tr>
-                                          <tr>
-                                              <td class="left">
-                                                  <strong class="text-dark">Total (con iva)</strong>
-                                              </td>
-                                              <td class="right">{{formato(2,totales.bolivares + totales.bsIVA)}}</td>
-                                          </tr>
-                                          <tr>
-                                              <td class="left">
-                                                  <strong class="text-dark">Total USD (no incluye iva)</strong>
-                                              </td>
-                                              <td class="right">{{formato(3,totales.USD)}}</td>
-                                          </tr>
-                                          <tr>
-                                              <td class="left">
-                                                  <strong class="text-dark">Total USD (con iva)</strong> </td>
-                                              <td class="right">
-                                                  <strong class="text-dark">{{formato(3,totales.USDIVA)}}</strong>
-                                              </td>
-                                          </tr>
-                                      </tbody>
-                                  </table>
-                              </div>
-                          </div>
-  <!--
+                <div class="col-lg-2 col-sm-5">
+                  </div>
+                    <div class="col-lg-6 col-sm-6 ml-auto">
+                        <table class="table table-clear">
+                            <tbody>
+                                <tr>
+                                    <td class="left">
+                                        <strong class="text-dark">Total (no incluye iva)</strong>
+                                    </td>
+                                    <td class="right">{{formato(2,totales.bolivares)}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">
+                                        <strong class="text-dark">Total (con iva)</strong>
+                                    </td>
+                                    <td class="right">{{formato(2,totales.bolivares + totales.bsIVA)}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">
+                                        <strong class="text-dark">Total USD (no incluye iva)</strong>
+                                    </td>
+                                    <td class="right">{{formato(3,totales.USD)}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">
+                                        <strong class="text-dark">Total USD (con iva)</strong> </td>
+                                    <td class="right">
+                                        <strong class="text-dark">{{formato(3,totales.USDIVA)}}</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              <!--
               <div class="col-4 mb-5">
                 <label></label>
                 <button type="button"  class="btn btn-info" style="margin-top: 32px;" ng-click="addPedido();">Enviar pedido</button>
