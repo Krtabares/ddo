@@ -1386,7 +1386,7 @@ async def pedido (request , token: Token):
 
         if not 'idPedido' in data or data['idPedido'] == 0 :
             return response.json({"msg": "Missing ID parameter"}, status=400)
-
+        print(data['idPedido'])
 
         mongodb = get_mongo_db()
 
