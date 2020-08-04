@@ -461,7 +461,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.removeArt = function(i){
+
+          console.log($scope.pedido.pedido[i])
+          
           $scope.pedido.pedido.splice( i, 1 );
+
           calcularTotales()
         }
 
