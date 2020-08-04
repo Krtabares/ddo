@@ -51,9 +51,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.nuevoTotal = function () {
-          // console.log($scope.totales.bolivares)
-          // console.log( $scope.articulo.PRECIO )
-          // console.log( $scope.articulo.CANTIDAD)
           var total =  parseFloat($scope.totales.bolivares)
                                            + parseFloat($scope.articulo.PRECIO | 0 )* ($scope.articulo.CANTIDAD | 0  )
           return $scope.formato(2, total)
@@ -347,9 +344,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           });
 
-          // $scope.pedido.no_cia = client.COD_CIA;
-          // $scope.pedido.grupo = client.GRUPO_CLIENTE
-          // $scope.pedido.no_cliente = client.COD_CLIENTE
           var body= {}
           body.cod_cia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
           body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
@@ -535,11 +529,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
           $scope.totales.bsConIva = parseFloat($scope.totales.bolivares + $scope.totales.bsIVA)
           $scope.totales.UsdConIva = parseFloat($scope.totales.USD + $scope.totales.USDIVA)
-
-          // if($scope.editView || type == 1){
-          //   $scope.totales.bsConIva = parseFloat($scope.pedido.totales.bsConIva + $scope.totales.bsConIva);
-          //   $scope.totales.UsdConIva = parseFloat($scope.pedido.totales.UsdConIva + $scope.totales.UsdConIva);
-          // }
 
 
           console.log($scope.totales)
