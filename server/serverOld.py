@@ -1390,7 +1390,7 @@ async def pedido (request , token: Token):
 
         mongodb = get_mongo_db()
 
-        totales = await db.user.find_one({'id_pedido' : data['idPedido']}, {'_id' : 0})
+        totales = await mongodb.orderTotal.find_one({'id_pedido' : data['idPedido']}, {'_id' : 0})
 
 
         db = get_db()
