@@ -457,16 +457,23 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.pedido = pedido;
           // $scope.totales = pedido.totales
 
-          calcularTotales()
+          calcularTotales(1)
         }
 
         $scope.removeArt = function(i){
 
-          console.log($scope.pedido.pedido[i])
-          
+          // console.log($scope.pedido.pedido[i].COD_PRODUCTO)
+
+          $scope.pedido.totales.productos.forEach((item, index) => {
+            if(item.COD_PRODUCTO == $scope.pedido.pedido[i].COD_PRODUCTO){
+              $scope.pedido.totales.bsConIva = $scope.pedido.totales.bsConIva - item.iva_bs
+              $scope.pedido.totales.UsdConIva = $scope.pedido.totales.UsdConIva - item.iva_usd
+            }
+          });
+
           $scope.pedido.pedido.splice( i, 1 );
 
-          calcularTotales()
+          calcularTotales(1)
         }
 
         $scope.totales = {
@@ -478,7 +485,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           'UsdConIva':0
         }
 
-        function calcularTotales() {
+        function calcularTotales(type = 0) {
 
             $scope.totales.bolivares = 0
             $scope.totales.USD = 0
@@ -511,9 +518,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.bsConIva = parseFloat($scope.totales.bolivares + $scope.totales.bsIVA)
           $scope.totales.UsdConIva = parseFloat($scope.totales.USD + $scope.totales.USDIVA)
 
-          if($scope.editView){
-            $scope.totales.bsConIva = $scope.pedido.totales.bsConIva + $scope.totales.bsConIva;
-            $scope.totales.UsdConIva = $scope.pedido.totales.UsdConIva + $scope.totales.UsdConIva;
+          if($scope.editView || type == 1){
+            $scope.totales.bsConIva = parseFloat($scope.pedido.totales.bsConIva + $scope.totales.bsConIva);
+            $scope.totales.UsdConIva = parseFloat($scope.pedido.totales.UsdConIva + $scope.totales.UsdConIva);
           }
 
 
