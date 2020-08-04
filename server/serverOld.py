@@ -1189,24 +1189,28 @@ async def add_pedido (request, token: Token):
         # row = c.fetchone()
         # ID = row[0]
         # return response.json("SUCCESS",200)
-        # print(data)
+        iva_list = []
         for pedido in data['pedido']:
-            print(pedido)
+
+            row = []
             sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO) VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
 
             c.execute(sql.format(
-                ID_PEDIDO = int(ID),
+                 ID_PEDIDO = int(ID),
                  COD_PRODUCTO = str(pedido['COD_PRODUCTO']),
                  CANTIDAD = int(pedido['CANTIDAD']),
                  PRECIO = float(str(pedido['PRECIO']).replace(',','.'))
                     ))
+            iva_list.append({ 'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'] })
 
         db.commit()
 
+        # myObj = {'id_pedido':ID, 'products': iva_list}
         mongodb = get_mongo_db()
         totales = data["totales"]
         totales["id_pedido"] = ID
-        await mongodb.order.insert_one(totales)
+        totales["productos"] = iva_list
+        await mongodb.orderTotal.insert_one(totales)
 
         return response.json("SUCCESS",200)
     except Exception as e:
@@ -1258,6 +1262,7 @@ async def update_pedido (request, token: Token):
         c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID""",[data['ID']])
         # row = c.fetchone()
         ID = data['ID']
+        iva_list = []
         print("ejecuto segundo")
         print(data)
         for pedido in data['pedido']:
@@ -1270,13 +1275,14 @@ async def update_pedido (request, token: Token):
                  CANTIDAD = int(pedido['CANTIDAD']),
                  PRECIO = float(pedido['PRECIO'].replace(',','.'))
                     ))
-
+            iva_list.append({ 'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'] })
         db.commit()
 
         mongodb = get_mongo_db()
         totales = data["totales"]
         totales["id_pedido"] = ID
-        await mongodb.order.insert_one(totales)
+        totales["productos"] = iva_list
+        await mongodb.orderTotal.update({'id_pedido':ID},totales)
 
         return response.json("SUCCESS",200)
     except Exception as e:
@@ -1299,6 +1305,9 @@ async def update_pedido (request, token: Token):
         c.execute("""DELETE FROM PEDIDO WHERE ID = :ID""",[data['ID']])
 
         db.commit()
+
+        mongodb = get_mongo_db()
+        await mongodb.orderTotal.remove({'id_pedido':data['ID']})
 
         return response.json("SUCCESS",200)
     except Exception as e:
@@ -1381,7 +1390,7 @@ async def pedido (request , token: Token):
 
         mongodb = get_mongo_db()
 
-        totales = await db.user.find({'id_pedido' : data['idPedido']}, {'_id' : 0}).to_list(length=None)
+        totales = await db.user.find_one({'id_pedido' : data['idPedido']}, {'_id' : 0})
 
 
         db = get_db()

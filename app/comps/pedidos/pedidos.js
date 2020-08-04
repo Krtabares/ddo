@@ -455,9 +455,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.editView =false;
           pedido.fecha = new Date(pedido.fecha);
           $scope.pedido = pedido;
-          $scope.totales = pedido.totales
+          // $scope.totales = pedido.totales
 
-          // calcularTotales()
+          calcularTotales()
         }
 
         $scope.removeArt = function(i){
@@ -475,22 +475,30 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         function calcularTotales() {
+
             $scope.totales.bolivares = 0
             $scope.totales.USD = 0
             $scope.totales.bsIVA = 0
             $scope.totales.USDIVA = 0
+
             $scope.pedido.pedido.forEach(element => {
 
               $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
                                              + (parseFloat(element.PRECIO) * element.CANTIDAD)
               $scope.totales.USD = parseFloat($scope.totales.USD)
                                             + (parseFloat(element.precio_usd) * element.CANTIDAD)
-              $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA)
-                                            + (parseFloat(element.iva_bs) * element.CANTIDAD)
-              $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
-                                            + (parseFloat(element.iva_usd) * element.CANTIDAD)
-              console.log($scope.totales)
-          });
+
+              if($scope.totales.bsIVA){
+                $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA)
+                + (parseFloat(element.iva_bs) * element.CANTIDAD)
+              }
+
+              if($scope.totales.USDIVA){
+                $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
+                + (parseFloat(element.iva_usd) * element.CANTIDAD)
+              }
+
+            });
 
           $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
           $scope.totales.USD = parseFloat($scope.totales.USD)
@@ -498,6 +506,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
           $scope.totales.bsConIva = parseFloat($scope.totales.bolivares + $scope.totales.bsIVA)
           $scope.totales.UsdConIva = parseFloat($scope.totales.USD + $scope.totales.USDIVA)
+
+          if($scope.editView){
+            $scope.totales.bsConIva = $scope.pedido.totales.bsConIva + $scope.totales.bsConIva;
+            $scope.totales.UsdConIva = $scope.pedido.totales.UsdConIva + $scope.totales.UsdConIva;
+          }
+
 
           console.log($scope.totales)
         }
