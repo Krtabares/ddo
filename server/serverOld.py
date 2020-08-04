@@ -1207,7 +1207,7 @@ async def add_pedido (request, token: Token):
 
         # myObj = {'id_pedido':ID, 'products': iva_list}
         mongodb = get_mongo_db()
-        totales = data["totales"]
+        totales = []
         totales["id_pedido"] = ID
         totales["productos"] = iva_list
         await mongodb.order.insert_one(totales)
@@ -1279,7 +1279,7 @@ async def update_pedido (request, token: Token):
         db.commit()
 
         mongodb = get_mongo_db()
-        totales = data["totales"]
+        totales = []
         totales["id_pedido"] = ID
         totales["productos"] = iva_list
         await mongodb.order.update({'id_pedido':ID},totales)
