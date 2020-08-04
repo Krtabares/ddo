@@ -323,26 +323,42 @@
                   </table>
 
             </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-              <label>Total (no incluye iva)</label>
-              <h4>{{formato(2,totales.bolivares)}}</h4>
-            </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-              <label>Total (con iva)</label>
-              <h4>{{formato(2,totales.bolivares + totales.bsIVA)}}</h4>
-            </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-              <label>Total USD (no incluye iva)</label>
-              <h4>{{formato(3,totales.USD)}}</h4>
-            </div>
-            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-              <label>Total USD (con iva)</label>
-              <h4>{{formato(3,totales.USDIVA)}}</h4>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12" ng-show="productIndex != -1 && editView">
-              <label>Nuevo Total </label>
-              <h4> > {{ nuevoTotal() }}</h4>
-            </div>
+            <div class="row">
+              <div class="col-lg-2 col-sm-5">
+                </div>
+                  <div class="col-lg-6 col-sm-6 ml-auto">
+                      <table class="table table-clear">
+                          <tbody>
+                              <tr>
+                                  <td class="left">
+                                      <strong class="text-dark">Total (no incluye iva)</strong>
+                                  </td>
+                                  <td class="right">{{formato(2,totales.bolivares)}}</td>
+                              </tr>
+                              <tr>
+                                  <td class="left">
+                                      <strong class="text-dark">Total (con iva)</strong>
+                                  </td>
+                                  <td class="right">{{formato(2,totales.bsConIva)}}</td>
+                              </tr>
+                              <tr>
+                                  <td class="left">
+                                      <strong class="text-dark">Total USD (no incluye iva)</strong>
+                                  </td>
+                                  <td class="right">{{formato(3,totales.USD)}}</td>
+                              </tr>
+                              <tr>
+                                  <td class="left">
+                                      <strong class="text-dark">Total USD (con iva)</strong> </td>
+                                  <td class="right">
+                                      <strong class="text-dark">{{formato(3,totales.UsdConIva)}}</strong>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+
 
 
           </div>
