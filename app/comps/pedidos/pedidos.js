@@ -454,7 +454,24 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           $scope.editView =false;
           pedido.fecha = new Date(pedido.fecha);
+          pedido.pedido.forEach((item, i) => {
+
+            pedido.totales.productos.forEach((element, i) => {
+              if(item.COD_PRODUCTO == element.COD_PRODUCTO){
+                item.iva_bs = element.iva_bs
+                item.iva_usd = element.iva_usd
+                item.precio_usd = element.precio_usd
+              }
+            });
+
+          });
+
+
+
+
           $scope.pedido = pedido;
+
+
           // $scope.totales = pedido.totales
 
           calcularTotales(1)
@@ -518,10 +535,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.bsConIva = parseFloat($scope.totales.bolivares + $scope.totales.bsIVA)
           $scope.totales.UsdConIva = parseFloat($scope.totales.USD + $scope.totales.USDIVA)
 
-          if($scope.editView || type == 1){
-            $scope.totales.bsConIva = parseFloat($scope.pedido.totales.bsConIva + $scope.totales.bsConIva);
-            $scope.totales.UsdConIva = parseFloat($scope.pedido.totales.UsdConIva + $scope.totales.UsdConIva);
-          }
+          // if($scope.editView || type == 1){
+          //   $scope.totales.bsConIva = parseFloat($scope.pedido.totales.bsConIva + $scope.totales.bsConIva);
+          //   $scope.totales.UsdConIva = parseFloat($scope.pedido.totales.UsdConIva + $scope.totales.UsdConIva);
+          // }
 
 
           console.log($scope.totales)
