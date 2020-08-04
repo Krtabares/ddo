@@ -1210,7 +1210,7 @@ async def add_pedido (request, token: Token):
         totales = data["totales"]
         totales["id_pedido"] = ID
         totales["productos"] = iva_list
-        await mongodb.orderTotal.insert_one(totales)
+        await mongodb.order.insert_one(totales)
 
         return response.json("SUCCESS",200)
     except Exception as e:
@@ -1282,7 +1282,7 @@ async def update_pedido (request, token: Token):
         totales = data["totales"]
         totales["id_pedido"] = ID
         totales["productos"] = iva_list
-        await mongodb.orderTotal.update({'id_pedido':ID},totales)
+        await mongodb.order.update({'id_pedido':ID},totales)
 
         return response.json("SUCCESS",200)
     except Exception as e:
@@ -1307,7 +1307,7 @@ async def update_pedido (request, token: Token):
         db.commit()
 
         mongodb = get_mongo_db()
-        await mongodb.orderTotal.remove({'id_pedido':data['ID']})
+        await mongodb.order.remove({'id_pedido':data['ID']})
 
         return response.json("SUCCESS",200)
     except Exception as e:
@@ -1390,7 +1390,7 @@ async def pedido (request , token: Token):
 
         mongodb = get_mongo_db()
 
-        totales = await mongodb.orderTotal.find_one({'id_pedido' : data['idPedido']}, {'_id' : 0})
+        totales = await mongodb.order.find_one({'id_pedido' :str(data['idPedido'])}, {'_id' : 0})
         print("=========================================================")
         print(totales)
         db = get_db()
