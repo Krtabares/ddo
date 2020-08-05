@@ -370,7 +370,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
 
               if( !validaCredito(($scope.articulo.precio_bs+$scope.articulo.iva_bs) * $scope.articulo.CANTIDAD)  ){
-               // console.log('¡Complete todos los campos!PRECIO','error')
                  ngNotify.set('¡El precio excede el credito disponible!','error')
                 error = true;
              }
@@ -612,7 +611,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log($scope.totales)
         }
         function validaCredito(valor) {
-
+          console.log(valor);
+          console.log($scope.creditoClient.disp_bs_format - valor);
           if(($scope.creditoClient.disp_bs_format - valor) > 0){
             return true
           }else{
