@@ -471,6 +471,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(!$scope.hasUserClient){
               body.pCliente = response.data.obj[0].no_cliente
               getClientService(body)
+              $scope.showProductTable = true
               body.pNoCia = response.data.obj[0].no_cia
               body.pNoGrupo = response.data.obj[0].grupo
               getClientDispService(body)
