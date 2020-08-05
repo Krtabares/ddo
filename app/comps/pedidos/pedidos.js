@@ -105,14 +105,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           // $scope.client = x
           if($scope.clientes.length > 0){
-            $scope.client  = $scope.clientes[ $scope.clientIndex ];
-              console.log($scope.client,"selectCLient" )
+              $scope.client  = $scope.clientes[ $scope.clientIndex ];
+
               $scope.showProductTable = true;
               var body = {};
               body.pCliente = client.cod_cliente
               body.pNoCia = client.cod_cia
               body.pNoGrupo = client.grupo_cliente
               getClientDispService(body)
+              console.log($scope.client,"selectCLient" )
 
           }else {
             $scope.showProductTable = false
@@ -225,6 +226,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.creditoClient = {}
         function getClientDispService(body) {
+          console.log("getClientDispService");
           request.post(ip+'/disponible_cliente', body,{})
           .then(function successCallback(response) {
             console.log(response)
