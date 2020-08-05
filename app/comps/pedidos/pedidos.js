@@ -204,7 +204,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
 
-            if(response.data.obj.length > 1){
+            if(response.data.obj.length > 0){
 
               $scope.client = response.data.obj[0]
 
@@ -453,8 +453,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response.data)
 
             var body = {};
-            body.pCliente = response.data.obj[0].no_cliente
-            getClientService(body)
+            if(!$scope.hasUserClient){
+              body.pCliente = response.data.obj[0].no_cliente
+              getClientService(body)
+            }
+
             $scope.showPedido(response.data.obj[0])
             /*if (response.data.exist) {
               ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
