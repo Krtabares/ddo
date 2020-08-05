@@ -420,107 +420,111 @@
 
         </div>
         <div class="modal-body">
+          <div class="modal-body-he">
+            <div id="infoProduct" class="row" >
 
-          <div class="container">
 
-            <div class="col-sm-12 col-md-12 col-lg-12">
-              <label for="clientes">Busqueda por producto</label>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control"   ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
+                <div class="col-4">
+                  <label>Codigo</label>
+                  <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
                 </div>
-              </div>
-              <div id="infoProduct" class="row" >
+                <div class="col-4">
+                  <label>Cantidad</label>
+                  <input type="number"  min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                </div>
+                <div class="col-4">
+                  <label>Existencia</label>
+                  <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
+                </div>
 
+                <!-- <div class="col-12">
+                  <label></label>
+                  <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
+                </div> -->
 
-                  <div class="col-4">
-                    <label>Codigo</label>
-                    <input type="text" ng-disabled="true" ng-model="articulo.COD_PRODUCTO" class="form-control" placeholder="no_arti">
+                <div class="row">
+                  <div class="mt-3 col-sm-12 col-md-12 col-lg-12">
+
+                    <label>Precios</label>
                   </div>
-                  <div class="col-4">
-                    <label>Cantidad</label>
-                    <input type="number"  min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                  <div class="col-3">
+                    <label>Por unidad Bs.S</label><br>
+                    <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
+
                   </div>
-                  <div class="col-4">
-                    <label>Existencia</label>
-                    <input type="text"ng-disabled="true" ng-model="articulo.existencia" class="form-control" placeholder="existencia">
+                  <div class="col-3">
+                    <label>Total Bs.S</label><br>
+                    <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
+
                   </div>
+                  <div class="col-3">
+                    <label>Por unidad USD</label><br>
+                    <span >{{formato(2,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
 
-                  <!-- <div class="col-12">
-                    <label></label>
-                    <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
-                  </div> -->
-
-                  <div class="row">
-                    <div class="mt-3 col-sm-12 col-md-12 col-lg-12">
-
-                      <label>Precios</label>
-                    </div>
-                    <div class="col-3">
-                      <label>Por unidad Bs.S</label><br>
-                      <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
-
-                    </div>
-                    <div class="col-3">
-                      <label>Total Bs.S</label><br>
-                      <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
-
-                    </div>
-                    <div class="col-3">
-                      <label>Por unidad USD</label><br>
-                      <span >{{formato(2,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
-
-                    </div>
-                    <div class="col-3">
-                      <label>Total USD</label><br>
-                      <span >{{formato(2,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
-
-                    </div>
                   </div>
+                  <div class="col-3">
+                    <label>Total USD</label><br>
+                    <span >{{formato(2,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
 
-              </div>
-              <div ng-if="showProductTable" >
+                  </div>
+                </div>
 
-                <table datatable="ng" dt-options="dtOptionsProd"  class="table table-striped table-bordered" >
-                  <thead>
-                      <tr>
-                      <th scope="col"><p class="text-center">#</p></th>
-                      <th scope="col"><p class="text-center">Nombre Producto</p></th>
-                      <th scope="col"><p class="text-center">Existencia</p></th>
-                      <th scope="col"><p class="text-center">Principio Activo</p></th>
-                      <th scope="col"><p class="text-center">Precio Bs.S</p></th>
-                      <th scope="col"><p class="text-center">Iva Bs.S</p></th>
-                      <th scope="col"><p class="text-center">Precio USD</p></th>
-                      <th scope="col"><p class="text-center">Iva USD</p></th>
-                      <th scope="col"><p class="text-center">Proveedor</p></th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    <a href="#infoProduct">
-                      <tr ng-repeat="x in productos" ng-click="selectProduct($index)" ng-class="{ selectedRow : $index == productIndex }" >
+            </div>
+            <div class="container">
 
-                          <td><p class="text-center">{{ $index + 1 }}</p></td>
-                          <td><p class="text-center">{{ x.nombre_producto }}</p></td>
-                          <td><p class="text-center">{{ x.existencia }}</p></td>
-                          <td><p class="text-center">{{ x.princ_activo }}</p></td>
-                          <td><p class="text-right">{{  x.precioFormatVE }}</p></td>
-                          <td><p class="text-right">{{  x.iva_bs }}</p></td>
-                          <td><p class="text-right">{{  x.precioFormatUSD }}</p></td>
-                          <td><p class="text-right">{{  x.iva_usd }}</p></td>
-                          <td><p class="text-right">{{  x.proveedor }}</p></td>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <label for="clientes">Busqueda por producto</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control"   ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
+                  </div>
+                </div>
 
-                      </tr>
-                      </a>
+                <div ng-if="showProductTable" >
 
-                  </tbody>
-                  </table>
-              </div>
+                  <table datatable="ng" dt-options="dtOptionsProd"  class="table table-striped table-bordered" >
+                    <thead>
+                        <tr>
+                        <th scope="col"><p class="text-center">#</p></th>
+                        <th scope="col"><p class="text-center">Nombre Producto</p></th>
+                        <th scope="col"><p class="text-center">Existencia</p></th>
+                        <th scope="col"><p class="text-center">Principio Activo</p></th>
+                        <th scope="col"><p class="text-center">Precio Bs.S</p></th>
+                        <th scope="col"><p class="text-center">Iva Bs.S</p></th>
+                        <th scope="col"><p class="text-center">Precio USD</p></th>
+                        <th scope="col"><p class="text-center">Iva USD</p></th>
+                        <th scope="col"><p class="text-center">Proveedor</p></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <a href="#infoProduct">
+                        <tr ng-repeat="x in productos" ng-click="selectProduct($index)" ng-class="{ selectedRow : $index == productIndex }" >
+
+                            <td><p class="text-center">{{ $index + 1 }}</p></td>
+                            <td><p class="text-center">{{ x.nombre_producto }}</p></td>
+                            <td><p class="text-center">{{ x.existencia }}</p></td>
+                            <td><p class="text-center">{{ x.princ_activo }}</p></td>
+                            <td><p class="text-right">{{  x.precioFormatVE }}</p></td>
+                            <td><p class="text-right">{{  x.iva_bs }}</p></td>
+                            <td><p class="text-right">{{  x.precioFormatUSD }}</p></td>
+                            <td><p class="text-right">{{  x.iva_usd }}</p></td>
+                            <td><p class="text-right">{{  x.proveedor }}</p></td>
+
+                        </tr>
+                        </a>
+
+                    </tbody>
+                    </table>
+                </div>
 
 
+            </div>
+
+            </div>
           </div>
 
-          </div>
+
         </div>
         <div class="modal-footer">
 
