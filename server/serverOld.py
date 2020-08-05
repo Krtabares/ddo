@@ -130,7 +130,7 @@ async def availableUser(request, token : Token):
 
     return response.json(users,200)
 
-@app.route('/procedure_clientes', ["POST", "GET"])
+@app.route('/disponible_cliente', ["POST", "GET"])
 async def procedure(request):
 
     data = request.json
@@ -202,7 +202,7 @@ async def procedure(request):
 
     return response.json({"msj": "OK", "obj": obj}, 200)
 
-@app.route('/disponible_clientes', ["POST", "GET"])
+@app.route('/procedure_clientes', ["POST", "GET"])
 async def procedure(request):
 
     data = request.json
