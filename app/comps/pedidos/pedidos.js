@@ -108,12 +108,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.client  = $scope.clientes[ $scope.clientIndex ];
 
               $scope.showProductTable = true;
-              var body = {};
-              body.pCliente = client.cod_cliente
-              body.pNoCia = client.cod_cia
-              body.pNoGrupo = client.grupo_cliente
-              getClientDispService(body)
-              console.log($scope.client,"selectCLient" )
+
 
           }else {
             $scope.showProductTable = false
@@ -125,9 +120,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         function selectCLientCAP(client){
 
-          $scope.pedido.no_cia = (client.COD_CIA)?  client.COD_CIA : client.cod_cia ;
+            $scope.pedido.no_cia = (client.COD_CIA)?  client.COD_CIA : client.cod_cia ;
             $scope.pedido.grupo = (client.GRUPO_CLIENTE)? client.GRUPO_CLIENTE: client.grupo_cliente;
             $scope.pedido.no_cliente = (client.COD_CLIENTE)? client.COD_CLIENTE: client.cod_cliente;
+
+            var body = {};
+            body.pCliente = $scope.pedido.no_cia
+            body.pNoCia = $scope.pedido.grupo
+            body.pNoGrupo = $scope.pedido.no_cliente
+            getClientDispService(body)
+
 
             console.log($scope.pedido, "pedido select" )
 
