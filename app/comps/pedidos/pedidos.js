@@ -216,6 +216,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
           });
         }
+
         $scope.creditoClient = {}
         function getClientDispService(body) {
           request.post(ip+'/disponible_cliente', body,{})
@@ -223,6 +224,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
 
             $scope.creditoClient = response.data.obj
+            $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
+            $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
 
           }, function errorCallback(response) {
             console.log(response)
