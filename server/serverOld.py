@@ -181,7 +181,7 @@ async def procedure(request):
     obj = {}
     while True:
         c.callproc("dbms_output.get_line", (textVar, statusVar))
-        if lineVar.getvalue() == None:
+        if statusVar.getvalue() == None:
             break
         arr = str(textVar.getvalue()).split("|")
         obj = {
