@@ -369,7 +369,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                  error = true;
               }
               console.log($scope.articulo,"$scope.articulo")
-              if( !validaCredito(($scope.articulo.precio_bs+$scope.articulo.iva_bs) * $scope.articulo.CANTIDAD)  ){
+              if( !validaCredito((parseFloat($scope.articulo.precio_bs)+parseFloat($scope.articulo.iva_bs)) * $scope.articulo.CANTIDAD)  ){
                  ngNotify.set('¡El precio excede el credito disponible!','error')
                 error = true;
              }
