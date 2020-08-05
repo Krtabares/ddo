@@ -126,7 +126,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             var body = {};
             body.pCliente = $scope.pedido.no_cliente
-            body.pNoCia =  $scope.pedido.no_cia
+            body.pNoCia = $scope.pedido.no_cia
             body.pNoGrupo =  $scope.pedido.grupo
             getClientDispService(body)
 
@@ -368,6 +368,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
                  error = true;
               }
+
+              if( !validaCredito(($scope.articulo.precio_bs+$scope.articulo.iva_bs) * $scope.articulo.CANTIDAD)  ){
+               // console.log('¡Complete todos los campos!PRECIO','error')
+                 ngNotify.set('¡El precio excede el credito disponible!','error')
+                error = true;
+             }
+
+
               $scope.articulo.PRECIO = $scope.articulo.PRECIO.replace(",", ".");
               // $scope.articulo.PRECIO = parseFloat($scope.articulo.PRECIO).toFixed(2);
 
@@ -602,6 +610,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
           console.log($scope.totales)
+        }
+        function validaCredito(valor) {
+
+          if(($scope.creditoClient.disp_bs_format - valor) > 0){
+            return true
+          }else{
+            return false
+          }
+
         }
 
         $scope.dtOptions = DTOptionsBuilder.newOptions()
