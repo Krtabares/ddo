@@ -139,6 +139,78 @@ async def procedure(request):
     c = db.cursor()
 
     print(data)
+
+
+    if not 'pCliente' in data :
+        data['pCliente'] = 'null'
+    else:
+        data['pCliente'] = "'"+data['pCliente']+"'"
+
+    if not 'pNoCia' in data :
+        data['pNoCia'] = '01'
+    else:
+        data['pNoCia'] = "'"+data['pNoCia']+"'"
+
+    if not 'pNoGrupo' in data :
+        data['pNoGrupo'] = '01'
+    else:
+        data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
+
+
+    c.callproc("dbms_output.enable")
+    c.execute("""
+                DECLARE
+
+                  vdisp_bs NUMBER;
+                  vdisp_usd NUMBER;
+                  pNoCia varchar2(10) DEFAULT '01';
+                  pNoGrupo varchar2(10) DEFAULT '01';
+                  pCliente varchar2(50) DEFAULT null;
+
+                BEGIN
+
+                    pNoCia := {pNoCia};
+                    pNoGrupo := {pNoGrupo};
+                    pCliente := {pCliente};
+
+                    dbms_output.enable(output);
+
+                  PROCESOSPW.disponible_cliente(vdisp_bs, vdisp_usd, pNoCia, pNoGrupo, pCliente);
+
+                  dbms_output.put_line(vdisp_bs|| '|'||vdisp_usd);
+                END;
+            """.format(
+                        pNoCia = data['pNoCia'],
+                        pNoGrupo = data['pNoGrupo'],
+                        pCliente = data['pCliente'],
+                    ))
+    textVar = c.var(str)
+    statusVar = c.var(int)
+    obj = {}
+    while True:
+        c.callproc("dbms_output.get_line", (textVar, statusVar))
+        if lineVar.getvalue() == None:
+            break
+        arr = str(textVar.getvalue()).split("|")
+        obj = {
+        'disp_bs' : arr[0],
+        'disp_usd': arr[1]
+        }
+        if statusVar.getvalue() != 0:
+            break
+
+
+    return response.json({"msj": "OK", "obj": obj}, 200)
+
+@app.route('/disponible_clientes', ["POST", "GET"])
+async def procedure(request):
+
+    data = request.json
+
+    db = get_db()
+    c = db.cursor()
+
+    print(data)
     if not 'pTotReg' in data or data['pTotReg'] == 0 :
         data['pTotReg'] = 100
 
