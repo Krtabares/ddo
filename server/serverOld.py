@@ -166,13 +166,13 @@ async def procedure(request):
                   vdisp_usd NUMBER;
                   pNoCia varchar2(10) DEFAULT '01';
                   pNoGrupo varchar2(10) DEFAULT '01';
-                  pCliente varchar2(50) DEFAULT null;
+                  pCliente varchar2(50) DEFAULT 'BISABE';
 
                 BEGIN
 
-                    pNoCia := {pNoCia};
-                    pNoGrupo := {pNoGrupo};
-                    pCliente := {pCliente};
+                --    pNoCia := {pNoCia};
+                --    pNoGrupo := {pNoGrupo};
+                --    pCliente := {pCliente};
 
 
                     PROCESOSPW.disponible_cliente(vdisp_bs, vdisp_usd, pNoCia, pNoGrupo, pCliente);
