@@ -302,6 +302,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.updPedido = function(){
           // console.log(pedido);
+          if(!validaCreditoContraTotal()){
+            ngNotify.set('¡El precio excede el credito disponible!','error')
+            return;
+          }
           var body = $scope.buildBody();
           body.ID = $scope.ID
           request.post(ip+'/upd/pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
@@ -369,7 +373,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                  error = true;
               }
               console.log($scope.articulo,"$scope.articulo")
-              if( !validaCredito((parseFloat($scope.articulo.precio_bs)+parseFloat($scope.articulo.iva_bs)) * $scope.articulo.CANTIDAD)  ){
+              if( !validaCreditoContraProducto((parseFloat($scope.articulo.precio_bs)+parseFloat($scope.articulo.iva_bs)) * $scope.articulo.CANTIDAD)  ){
                  ngNotify.set('¡El precio excede el credito disponible!','error')
                 error = true;
              }
@@ -610,15 +614,23 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           console.log($scope.totales)
         }
-        function validaCredito(valor) {
-          console.log(valor);
-          console.log($scope.creditoClient.disp_bs_format - valor);
+        function validaCreditoContraProducto(valor) {
+          // console.log(valor);
+          // console.log($scope.creditoClient.disp_bs_format - valor);
           if(($scope.creditoClient.disp_bs_format - valor) > 0){
             return true
           }else{
             return false
           }
 
+        }
+
+        function validaCreditoContraTotal() {
+          if(($scope.creditoClient.disp_bs_format - $scope.totales.bsConIva) > 0){
+            return true
+          }else{
+            return false
+          }
         }
 
         $scope.dtOptions = DTOptionsBuilder.newOptions()
