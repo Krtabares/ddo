@@ -125,9 +125,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.pedido.no_cliente = (client.COD_CLIENTE)? client.COD_CLIENTE: client.cod_cliente;
 
             var body = {};
-            body.pCliente = $scope.pedido.no_cia
-            body.pNoCia = $scope.pedido.grupo
-            body.pNoGrupo = $scope.pedido.no_cliente
+            body.pCliente = $scope.pedido.no_cliente
+            body.pNoCia =  $scope.pedido.no_cia
+            body.pNoGrupo =  $scope.pedido.grupo
             getClientDispService(body)
 
 
