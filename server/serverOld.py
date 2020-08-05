@@ -176,7 +176,7 @@ async def procedure(request):
 
                     PROCESOSPW.disponible_cliente(vdisp_bs, vdisp_usd, pNoCia, pNoGrupo, pCliente);
 
-                  dbms_output.put_line(vdisp_bs|| '|'||vdisp_usd);
+                    dbms_output.put_line(vdisp_bs|| '|'||vdisp_usd);
                 END;
             """.format(
                         pNoCia = data['pNoCia'],
