@@ -181,8 +181,10 @@ async def procedure(request):
     obj = {}
     while True:
         c.callproc("dbms_output.get_line", (textVar, statusVar))
-        if statusVar.getvalue() == None:
+        if textVar.getvalue() == None:
             break
+        print("==========================================================")
+        print(textVar.getvalue())
         arr = str(textVar.getvalue()).split("|")
         obj = {
         'disp_bs' : arr[0],
