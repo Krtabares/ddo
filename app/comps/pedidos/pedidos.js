@@ -108,6 +108,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.client  = $scope.clientes[ $scope.clientIndex ];
               console.log($scope.client,"selectCLient" )
               $scope.showProductTable = true;
+              var body = {};
+              body.pCliente = client.cod_cliente
+              body.pNoCia = client.cod_cia
+              body.pNoGrupo = client.grupo_cliente
+              getClientDispService(body)
+
           }else {
             $scope.showProductTable = false
           }
