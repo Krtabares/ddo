@@ -173,9 +173,8 @@ async def procedure(request):
                     pNoGrupo := {pNoGrupo};
                     pCliente := {pCliente};
 
-                    dbms_output.enable(output);
 
-                  PROCESOSPW.disponible_cliente(vdisp_bs, vdisp_usd, pNoCia, pNoGrupo, pCliente);
+                    PROCESOSPW.disponible_cliente(vdisp_bs, vdisp_usd, pNoCia, pNoGrupo, pCliente);
 
                   dbms_output.put_line(vdisp_bs|| '|'||vdisp_usd);
                 END;
