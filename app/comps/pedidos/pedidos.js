@@ -50,6 +50,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         }
 
+        $scope.validaTabs = function(tab) {
+            switch (tab) {
+              case 1:
+
+                if (Object.keys($scope.client).length == 0) {
+                  return false
+                }
+                if($scope.hasUserClient){
+                  return false
+                }
+                break;
+              default:
+
+            }
+        }
+
         $scope.nuevoTotal = function () {
           var total =  parseFloat($scope.totales.bolivares)
                                            + parseFloat($scope.articulo.PRECIO | 0 )* ($scope.articulo.CANTIDAD | 0  )
@@ -173,6 +189,24 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(response.data.obj.length > 1){
 
               $scope.clientes = response.data.obj
+
+            }else{
+              ngNotify.set('¡No se encontraron resultados!', 'warn')
+            }
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
+
+        function getClientService(body) {
+          request.post(ip+'/procedure_clientes', body,{})
+          .then(function successCallback(response) {
+            console.log(response)
+
+            if(response.data.obj.length > 1){
+
+              $scope.client = response.data.obj[0]
 
             }else{
               ngNotify.set('¡No se encontraron resultados!', 'warn')
@@ -417,8 +451,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/get/pedido', obj, {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODk5Nzk2NTcsIm5iZiI6MTU4OTk3OTY1NywianRpIjoiZGFjNTZjM2QtZjM2ZC00NTRkLTkwNWYtZmZmZjFiYjI2ZTE5IiwiaWRlbnRpdHkiOiJhZG1pbiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Ff_CfwXCIxLGinnAkS8C7vUxColNK_utxy-LzJt0188'})
           .then(function successCallback(response) {
             console.log(response.data)
-            $scope.showPedido(response.data.obj[0])
 
+            var body = {};
+            body.pCliente = response.data.obj[0].no_cliente
+            getClientService(body)
+            $scope.showPedido(response.data.obj[0])
             /*if (response.data.exist) {
               ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
             } else if (response.data.email_flag) {

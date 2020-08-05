@@ -137,6 +137,7 @@ async def procedure(request):
 
     db = get_db()
     c = db.cursor()
+
     print(data)
     if not 'pTotReg' in data or data['pTotReg'] == 0 :
         data['pTotReg'] = 100
@@ -1386,13 +1387,11 @@ async def pedido (request , token: Token):
 
         if not 'idPedido' in data or data['idPedido'] == 0 :
             return response.json({"msg": "Missing ID parameter"}, status=400)
-        print(data['idPedido'])
 
         mongodb = get_mongo_db()
 
         totales = await mongodb.order.find_one({'id_pedido' :str(data['idPedido'])}, {'_id' : 0})
-        print("=========================================================")
-        print(totales)
+
         db = get_db()
         c = db.cursor()
 
@@ -1434,6 +1433,7 @@ async def pedido (request , token: Token):
                     'totales':totales,
 
               }
+
             list.append(aux)
 
         return response.json({"msj": "OK", "obj": list}, 200)
