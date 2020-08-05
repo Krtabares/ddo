@@ -112,17 +112,17 @@
 
             </div>
             <div class="container" ng-show="tabsIndex == 1" style="margin-top: 32px;">
-              <div class="row">
+              <div class="row mt-5 mb-5">
 
                 <div class="col-6">
                   <label>Credito disponible Bs.S</label><br>
-                  <span >{{formato(2,(creditoClient.disp_bs)? creditoClient.disp_bs:0)}}</span>
+                  <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</span>
 
                 </div>
 
                 <div class="col-6">
                   <label>Credito disponible USD</label><br>
-                  <span >{{formato(3,(creditoClient.disp_usd)? creditoClient.disp_usd:0)}}</span>
+                  <span >{{formato(3,(creditoClient.disp_usd_format)? (creditoClient.disp_usd_format - totales.UsdConIva):0)}}</span>
 
                 </div>
 
@@ -132,7 +132,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col"><p class="text-center">#</p></th>
+                        <!-- <th scope="col"><p class="text-center">#</p></th> -->
                         <th scope="col"><p class="text-center">Codigo de Articulo</p></th>
                         <th scope="col"><p class="text-center">Cantidad</p></th>
                         <th scope="col"><p class="text-center">Precio por unidad</p></th>
@@ -143,7 +143,7 @@
                     <tbody>
 
                         <tr ng-repeat="x in pedido.pedido">
-                            <th scope="row">{{ $index + 1 }}</th>
+                            <!-- <th scope="row">{{ $index + 1 }}</th> -->
                             <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td>
                             <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
                             <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
@@ -306,17 +306,17 @@
           </div>
           <div class="container"  style="margin-top: 32px;" ng-show="tabsIndex == 1"  >
 
-            <div class="row">
+            <div class="row mt-5 mb-5">
 
               <div class="col-6">
                 <label>Credito disponible Bs.S</label><br>
-                <span >{{formato(2,(creditoClient.disp_bs_format)? creditoClient.disp_bs_format:0)}}</span>
+                <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</span>
 
               </div>
 
               <div class="col-6">
                 <label>Credito disponible USD</label><br>
-                <span >{{formato(3,(creditoClient.disp_usd_format)? creditoClient.disp_usd_format:0)}}</span>
+                <span >{{formato(3,(creditoClient.disp_usd_format)? (creditoClient.disp_usd_format - totales.UsdConIva):0)}}</span>
 
               </div>
 
