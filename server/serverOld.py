@@ -159,31 +159,23 @@ async def procedure(request):
     print(data)
 
     c.callproc("dbms_output.enable")
-    c.execute("""
+    sql = """
                 DECLARE
 
                   vdisp_bs NUMBER;
                   vdisp_usd NUMBER;
                   pNoCia varchar2(10) DEFAULT '01';
                   pNoGrupo varchar2(10) DEFAULT '01';
-                  pCliente varchar2(50) DEFAULT 'BISABE';
+                  pCliente varchar2(50) DEFAULT null;
 
                 BEGIN
 
-                --    pNoCia := {pNoCia};
-                --    pNoGrupo := {pNoGrupo};
-                --    pCliente := {pCliente};
-
-
-                    PROCESOSPW.disponible_cliente(vdisp_bs, vdisp_usd, pNoCia, pNoGrupo, pCliente);
+                    PROCESOSPW.disponible_cliente(vdisp_bs, vdisp_usd, :pNoCia, :pNoGrupo, :pCliente);
 
                     dbms_output.put_line(vdisp_bs|| '|'||vdisp_usd);
                 END;
-            """.format(
-                        pNoCia = data['pNoCia'],
-                        pNoGrupo = data['pNoGrupo'],
-                        pCliente = data['pCliente'],
-                    ))
+            """
+    c.execute(sql, [data['pNoCia'],data['pNoGrupo'],data['pCliente']])
     textVar = c.var(str)
     statusVar = c.var(int)
     obj = {}
