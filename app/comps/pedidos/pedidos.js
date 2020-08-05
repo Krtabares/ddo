@@ -216,6 +216,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
           });
         }
+        $scope.creditoClient = {}
+        function getClientDispService(body) {
+          request.post(ip+'/disponible_cliente', body,{})
+          .then(function successCallback(response) {
+            console.log(response)
+
+            $scope.creditoClient = response.data.obj
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
 
         $scope.getProdNew = function (filter = false) {
           console.log("getProdNew");
