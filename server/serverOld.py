@@ -143,18 +143,13 @@ async def procedure(request):
 
     if not 'pCliente' in data :
         data['pCliente'] = 'null'
-    # else:
-    #     data['pCliente'] = "'"+data['pCliente']+"'"
 
     if not 'pNoCia' in data :
         data['pNoCia'] = '01'
-    else:
-        data['pNoCia'] = "'"+data['pNoCia']+"'"
-
+    
     if not 'pNoGrupo' in data :
         data['pNoGrupo'] = '01'
-    else:
-        data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
+
 
     print(data)
 
