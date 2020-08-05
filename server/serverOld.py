@@ -138,7 +138,7 @@ async def procedure(request):
     db = get_db()
     c = db.cursor()
 
-    print(data)
+
 
 
     if not 'pCliente' in data :
@@ -156,6 +156,7 @@ async def procedure(request):
     else:
         data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
 
+    print(data)
 
     c.callproc("dbms_output.enable")
     c.execute("""
