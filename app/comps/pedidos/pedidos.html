@@ -70,21 +70,6 @@
                         <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">persona contacto área crédito y cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
                     </div>
                 </div>
-                <div class="row">
-
-                  <div class="col-6">
-                    <label>Credito disponible Bs.S</label><br>
-                    <span >{{formato(2,(creditoClient.disp_bs)? creditoClient.disp_bs:0)}}</span>
-
-                  </div>
-
-                  <div class="col-6">
-                    <label>Credito disponible USD</label><br>
-                    <span >{{formato(3,(creditoClient.disp_usd)? creditoClient.disp_usd:0)}}</span>
-
-                  </div>
-
-                </div>
 
               </div>
 
@@ -127,6 +112,21 @@
 
             </div>
             <div class="container" ng-show="tabsIndex == 1" style="margin-top: 32px;">
+              <div class="row">
+
+                <div class="col-6">
+                  <label>Credito disponible Bs.S</label><br>
+                  <span >{{formato(2,(creditoClient.disp_bs)? creditoClient.disp_bs:0)}}</span>
+
+                </div>
+
+                <div class="col-6">
+                  <label>Credito disponible USD</label><br>
+                  <span >{{formato(3,(creditoClient.disp_usd)? creditoClient.disp_usd:0)}}</span>
+
+                </div>
+
+              </div>
 
               <div class="form-group" >
                 <table class="table">
@@ -260,21 +260,7 @@
                       <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
                   </div>
               </div>
-              <div class="row">
 
-                <div class="col-6">
-                  <label>Credito disponible Bs.S</label><br>
-                  <span >{{formato(2,(creditoClient.disp_bs)? creditoClient.disp_bs:0)}}</span>
-
-                </div>
-
-                <div class="col-6">
-                  <label>Credito disponible USD</label><br>
-                  <span >{{formato(3,(creditoClient.disp_usd)? creditoClient.disp_usd:0)}}</span>
-
-                </div>
-
-              </div>
 
             </div>
 
@@ -320,6 +306,21 @@
           </div>
           <div class="container"  style="margin-top: 32px;" ng-show="tabsIndex == 1"  >
 
+            <div class="row">
+
+              <div class="col-6">
+                <label>Credito disponible Bs.S</label><br>
+                <span >{{formato(2,(creditoClient.disp_bs)? creditoClient.disp_bs:0)}}</span>
+
+              </div>
+
+              <div class="col-6">
+                <label>Credito disponible USD</label><br>
+                <span >{{formato(3,(creditoClient.disp_usd)? creditoClient.disp_usd:0)}}</span>
+
+              </div>
+
+            </div>
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <table class="table">
