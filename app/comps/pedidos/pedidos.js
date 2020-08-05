@@ -368,7 +368,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
                  error = true;
               }
-
+              console.log($scope.articulo,"$scope.articulo")
               if( !validaCredito(($scope.articulo.precio_bs+$scope.articulo.iva_bs) * $scope.articulo.CANTIDAD)  ){
                  ngNotify.set('¡El precio excede el credito disponible!','error')
                 error = true;
