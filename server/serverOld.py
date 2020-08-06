@@ -1253,7 +1253,7 @@ async def add_pedido (request, token: Token):
         # return response.json("SUCCESS",200)
         iva_list = []
         for pedido in data['pedido']:
-
+            print(pedido)
             sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO) VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
 
             c.execute(sql.format(
