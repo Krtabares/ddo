@@ -447,12 +447,12 @@
                 </div>
                 <div class="col-3">
                   <label>Por unidad USD</label><br>
-                  <span >{{formato(2,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
+                  <span >{{formato(3,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
 
                 </div>
                 <div class="col-3">
                   <label>Total USD</label><br>
-                  <span >{{formato(2,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
+                  <span >{{formato(3,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
 
                 </div>
               </div>
