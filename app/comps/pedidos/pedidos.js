@@ -459,7 +459,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                             'observacion':'',
                             'pedido':[],
                         };
-          $scope.creditoClient = {}
+          if(!$scope.hasUserClient)
+            $scope.creditoClient = {}
         }
 
         $scope.getPedidos = function(page){
