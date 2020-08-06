@@ -420,16 +420,16 @@
 
 
                 <div class="col-4">
-                  <label>Codigo</label>
+                  <label>Codigo</label><br>
                   <span >{{articulo.COD_PRODUCTO}}</span>
+                </div>
+                <div class="col-4">
+                  <label>Existencia</label><br>
+                  <span >{{articulo.existencia}}</span>
                 </div>
                 <div class="col-4">
                   <label>Cantidad</label>
                   <input type="number"  min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
-                </div>
-                <div class="col-4">
-                  <label>Existencia</label>
-                  <span >{{articulo.existencia}}</span>
                 </div>
 
                 <!-- <div class="col-12">
@@ -437,8 +437,8 @@
                   <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
                 </div> -->
 
-                <div class="row">
-                  <div class="mt-3 col-sm-12 col-md-12 col-lg-12">
+                <div class="row col-sm-12 col-md-12 col-lg-12">
+                  <div class="mt-3 ">
 
                     <label>Precios</label>
                   </div>
