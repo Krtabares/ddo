@@ -1342,7 +1342,7 @@ async def update_pedido (request, token: Token):
                  PRECIO = float(pedido['PRECIO'].replace(',','.'))
                     ))
             iva_list.append({ 'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'],'nombre_producto':pedido['nombre_producto'] })
-            
+
         db.commit()
 
         mongodb = get_mongo_db()
@@ -1397,7 +1397,7 @@ async def pedidos (request , token: Token):
         c.execute("""SELECT
 
                              COD_CIA, GRUPO_CLIENTE,
-                            COD_CLIENTE, FECHA, NO_PEDIDO_CODISA,
+                            COD_CLIENTE, TO_CHAR(FECHA, 'YYYY-MM-DD'), NO_PEDIDO_CODISA,
                             OBSERVACIONES,  t2.descripcion, (sum(t3.precio * t3.CANTIDAD ))
                                 monto, count(t3.COD_PRODUCTO) producto,ID
                             FROM PAGINAWEB.PEDIDO t1
