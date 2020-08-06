@@ -409,55 +409,58 @@
 
         </div>
         <div class="modal-body">
-          <div id="infoProduct" class="row" >
+          <div class="container">
+            <div id="infoProduct" class="row" >
 
 
-              <div class="col-4">
-                <label>Codigo</label>
-                <span >{{articulo.COD_PRODUCTO}}</span>
-              </div>
-              <div class="col-4">
-                <label>Cantidad</label>
-                <input type="number"  min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
-              </div>
-              <div class="col-4">
-                <label>Existencia</label>
-                <span >{{articulo.existencia}}</span>
-              </div>
-
-              <!-- <div class="col-12">
-                <label></label>
-                <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
-              </div> -->
-
-              <div class="row">
-                <div class="mt-3 col-sm-12 col-md-12 col-lg-12">
-
-                  <label>Precios</label>
+                <div class="col-4">
+                  <label>Codigo</label>
+                  <span >{{articulo.COD_PRODUCTO}}</span>
                 </div>
-                <div class="col-3">
-                  <label>Por unidad Bs.S</label><br>
-                  <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
-
+                <div class="col-4">
+                  <label>Cantidad</label>
+                  <input type="number"  min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                 </div>
-                <div class="col-3">
-                  <label>Total Bs.S</label><br>
-                  <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
-
+                <div class="col-4">
+                  <label>Existencia</label>
+                  <span >{{articulo.existencia}}</span>
                 </div>
-                <div class="col-3">
-                  <label>Por unidad USD</label><br>
-                  <span >{{formato(3,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
 
+                <!-- <div class="col-12">
+                  <label></label>
+                  <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
+                </div> -->
+
+                <div class="row">
+                  <div class="mt-3 col-sm-12 col-md-12 col-lg-12">
+
+                    <label>Precios</label>
+                  </div>
+                  <div class="col-3">
+                    <label>Por unidad Bs.S</label><br>
+                    <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
+
+                  </div>
+                  <div class="col-3">
+                    <label>Total Bs.S</label><br>
+                    <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
+
+                  </div>
+                  <div class="col-3">
+                    <label>Por unidad USD</label><br>
+                    <span >{{formato(3,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
+
+                  </div>
+                  <div class="col-3">
+                    <label>Total USD</label><br>
+                    <span >{{formato(3,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
+
+                  </div>
                 </div>
-                <div class="col-3">
-                  <label>Total USD</label><br>
-                  <span >{{formato(3,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
 
-                </div>
-              </div>
-
+            </div>
           </div>
+
           <div class="modal-body-he">
 
             <div class="container">

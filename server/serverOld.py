@@ -146,7 +146,7 @@ async def procedure(request):
 
     if not 'pNoCia' in data :
         data['pNoCia'] = '01'
-    
+
     if not 'pNoGrupo' in data :
         data['pNoGrupo'] = '01'
 
@@ -1263,7 +1263,7 @@ async def add_pedido (request, token: Token):
                  CANTIDAD = int(pedido['CANTIDAD']),
                  PRECIO = float(str(pedido['PRECIO']).replace(',','.'))
                     ))
-            iva_list.append({ 'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'] })
+            iva_list.append([ 'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'] ])
 
         db.commit()
 
