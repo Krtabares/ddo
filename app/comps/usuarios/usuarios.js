@@ -31,7 +31,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
        var client = localStorage.getItem('client')
        var client_info = localStorage.getItem('client_info')
        console.log(client)
-        if ( client=='{}' ){
+        if ( Object.keys(JSON.parse(client)).length === 0 ){
          $scope.hasUserClient = false;
        }else{
          $scope.hasUserClient = true;
@@ -139,6 +139,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
         if (!$scope.client || Object.keys($scope.client).length === 0) {
           // ngNotify.set('Seleccione un cliente','warn')
+          $scope.hasUserClient = false;
           console.log('Seleccione un cliente','warn')
           return false;
         }
