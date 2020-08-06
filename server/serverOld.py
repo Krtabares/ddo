@@ -1254,7 +1254,6 @@ async def add_pedido (request, token: Token):
         iva_list = []
         for pedido in data['pedido']:
 
-            row = []
             sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO) VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
 
             c.execute(sql.format(
@@ -1263,7 +1262,8 @@ async def add_pedido (request, token: Token):
                  CANTIDAD = int(pedido['CANTIDAD']),
                  PRECIO = float(str(pedido['PRECIO']).replace(',','.'))
                     ))
-            iva_list.append([ 'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'] ])
+            row = {'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd']}
+            iva_list.append(row)
 
         db.commit()
 
