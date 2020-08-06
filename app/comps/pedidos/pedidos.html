@@ -596,6 +596,7 @@
               <th scope="col"><p class="text-center">#</p></th>
               <!-- <th scope="col"><p class="text-center">Número cia</p></th>
               <th scope="col"><p class="text-center">Grupo</p></th> -->
+              <th scope="col"><p class="text-center">Fecha</p></th>
               <th scope="col"><p class="text-center">Número Cliente</p></th>
               <th scope="col"><p class="text-center">Número Pedido</p></th>
               <th scope="col"><p class="text-center">Estatus</p></th>
@@ -611,6 +612,7 @@
                   <th scope="row">{{ $index + 1 }}</th>
                   <!-- <td><p class="text-center">{{ x.no_cia }}</p></td>
                   <td><p class="text-center">{{ x.grupo }}</p></td> -->
+                  <td><p class="text-center">{{ new Date(x.fecha).getDate() }}</p></td>
                   <td><p class="text-center">{{ x.no_cliente }}</p></td>
                   <td><p class="text-center">{{ x.no_factu }}</p></td>
                   <td><p class="text-center">{{ x.estatus }}</p></td>
