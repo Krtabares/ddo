@@ -30,7 +30,7 @@ class CustomHandler(ErrorHandler):
         return response.json('NO',501)
 
 app = Sanic(__name__)
-port = 4500
+port = 3500
 users = [{'username':'admin', 'password': 'ddo.admin', 'role': 'admin', 'name': 'admin'},
 {'username':'aplaza', 'password': 'pla04.admin', 'role': 'user', 'name': 'automercado Plaza', 'COD_CIA': '01','GRUPO_CLIENTE': '01','COD_CLIENTE': 'PLA04' },
 {'username':'canon', 'password': 'canon.admin', 'role': 'user', 'name': 'automercado Plaza', 'COD_CIA': '01','GRUPO_CLIENTE': '01','COD_CLIENTE': 'CANON' },
