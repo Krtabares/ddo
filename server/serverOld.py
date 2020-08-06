@@ -1262,7 +1262,7 @@ async def add_pedido (request, token: Token):
                  CANTIDAD = int(pedido['CANTIDAD']),
                  PRECIO = float(str(pedido['PRECIO']).replace(',','.'))
                     ))
-            row = {'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd']}
+            row = {'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'], 'nombre_producto':pedido['nombre_producto']}
             iva_list.append(row)
 
         db.commit()
@@ -1341,7 +1341,8 @@ async def update_pedido (request, token: Token):
                  CANTIDAD = int(pedido['CANTIDAD']),
                  PRECIO = float(pedido['PRECIO'].replace(',','.'))
                     ))
-            iva_list.append({ 'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'] })
+            iva_list.append({ 'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'],'nombre_producto':pedido['nombre_producto'] })
+            
         db.commit()
 
         mongodb = get_mongo_db()

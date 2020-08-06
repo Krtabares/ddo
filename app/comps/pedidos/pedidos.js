@@ -539,6 +539,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 item.iva_bs = element.iva_bs
                 item.iva_usd = element.iva_usd
                 item.precio_usd = element.precio_usd
+                item.nombre_producto = element.nombre_producto
               }
             });
 
