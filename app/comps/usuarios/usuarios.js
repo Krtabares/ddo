@@ -139,7 +139,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
         if (!$scope.client || Object.keys($scope.client).length === 0) {
           // ngNotify.set('Seleccione un cliente','warn')
-          $scope.hasUserClient = false;
+          // $scope.hasUserClient = false;
           console.log('Seleccione un cliente','warn')
           return false;
         }
