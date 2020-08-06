@@ -531,7 +531,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log(pedido);
 
           $scope.editView =false;
-          pedido.fecha = new Date(pedido.fecha);
+          // pedido.fecha = new Date(pedido.fecha);
           pedido.pedido.forEach((item, i) => {
 
             pedido.totales.productos.forEach((element, i) => {
