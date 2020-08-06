@@ -1351,7 +1351,7 @@ async def update_pedido (request, token: Token):
         #     id_pedido = ID,
         #     productos = iva_list
         # )
-        await mongodb.order.update({'id_pedido':ID},{"$addToSet":{"productos":iva_list }})
+        await mongodb.order.update({'id_pedido':ID},{"$set":{"productos":iva_list }})
 
         return response.json("SUCCESS",200)
     except Exception as e:
