@@ -129,7 +129,7 @@
                     <thead>
                         <tr>
                         <!-- <th scope="col"><p class="text-center">#</p></th> -->
-                        <th scope="col"><p class="text-center">Codigo de Articulo</p></th>
+                        <!-- <th scope="col"><p class="text-center">Codigo de Articulo</p></th> -->
                         <th scope="col"><p class="text-center">Nombre Articulo</p></th>
                         <th scope="col"><p class="text-center">Cantidad</p></th>
                         <th scope="col"><p class="text-center">Precio por unidad</p></th>
@@ -141,7 +141,7 @@
 
                         <tr ng-repeat="x in pedido.pedido">
                             <!-- <th scope="row">{{ $index + 1 }}</th> -->
-                            <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td>
+                            <!-- <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td> -->
                             <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                             <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
                             <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
@@ -323,30 +323,31 @@
               <table class="table">
                   <thead>
                       <tr>
-                      <th scope="col"><p class="text-center">#</p></th>
-                      <th scope="col"><p class="text-center">Codigo de Articulo</p></th>
+                      <!-- <th scope="col"><p class="text-center">#</p></th> -->
+                      <!-- <th scope="col"><p class="text-center">Codigo de Articulo</p></th> -->
+                      <th scope="col"><p class="text-center">Nombre Articulo</p></th>
                       <th scope="col"><p class="text-center">Cantidad</p></th>
                       <th scope="col"><p class="text-center">Precio por unidad</p></th>
                       <th scope="col"><p class="text-center">Total</p></th>
-                      <th ng-if="editView" scope="col"><p class="text-center">Opcion</p></th>
+                      <th scope="col"><p class="text-center">Opcion</p></th>
                       </tr>
                   </thead>
                   <tbody>
 
                       <tr ng-repeat="x in pedido.pedido">
-                          <th scope="row">{{ $index + 1 }}</th>
-
-                          <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td>
+                          <!-- <th scope="row">{{ $index + 1 }}</th> -->
+                          <!-- <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td> -->
+                          <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                           <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
                           <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
                           <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
-                          <td ng-if="editView">
+                          <td >
                             <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
-
-
+                            <!-- <p class="text-center">
+                              <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeArt($index);"></i>
+                            </p>
+                            -->
                             <button type="button" class="btn btn-danger" ng-click="removeArt($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
-
-
                           </td>
                         </tr>
                   </tbody>
