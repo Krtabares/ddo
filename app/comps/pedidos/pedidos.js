@@ -636,6 +636,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
         }
 
+        $scope.formatDate =function(date) {
+          date = new Date(date);
+             return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
+        }
+
         $scope.dtOptions = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
             .withOption('responsive', true)
