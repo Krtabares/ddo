@@ -1266,7 +1266,8 @@ async def add_pedido (request, token: Token):
             iva_list.append(row)
 
         db.commit()
-
+        print("==========================================================")
+        print(iva_list)
         # myObj = {'id_pedido':ID, 'products': iva_list}
         mongodb = get_mongo_db()
         totales = []
