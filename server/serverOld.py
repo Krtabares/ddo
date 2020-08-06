@@ -1343,9 +1343,7 @@ async def update_pedido (request, token: Token):
                     ))
             iva_list.append({ 'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'] })
         db.commit()
-        print("=====================================================================")
-        print(iva_list)
-        print("=====================================================================")
+
         mongodb = get_mongo_db()
 
         await mongodb.order.update({'id_pedido':int(ID)},{"$set":{"productos":iva_list }}, True, True)
@@ -1437,6 +1435,10 @@ async def pedidos (request , token: Token):
         totalPages=row[0]/100
         if totalPages < 0.5:
             totalPages = totalPages + 0.5
+
+        print("=====================================================================")
+        print(list)
+        print("=====================================================================")
         return response.json({"data":list,
                               "page":'01',
                               "totalPages": round(totalPages)},200)
