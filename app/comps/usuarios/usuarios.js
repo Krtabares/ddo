@@ -45,7 +45,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
      $scope.selectCLient = function(){
 
        // $scope.client = x
-       if($scope.clientes.length > 0{
+       if($scope.clientes.length > 0){
          $scope.client  = $scope.clientes[ $scope.clientIndex ];
          // $scope.hasUserClient = true;
          console.log($scope.client )
