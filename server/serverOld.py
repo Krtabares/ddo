@@ -1343,7 +1343,9 @@ async def update_pedido (request, token: Token):
                     ))
             iva_list.append({ 'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'] })
         db.commit()
-
+        print("=====================================================================")
+        print(iva_list)
+        print("=====================================================================")
         mongodb = get_mongo_db()
         totales = dict(
             id_pedido = ID,
