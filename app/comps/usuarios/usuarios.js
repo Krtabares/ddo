@@ -45,10 +45,12 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
      $scope.selectCLient = function(){
 
        // $scope.client = x
+       if($scope.clientes.length > 0{
          $scope.client  = $scope.clientes[ $scope.clientIndex ];
-         // selectCLientCAP( $scope.client)
-         $scope.hasUserClient = true;
+         // $scope.hasUserClient = true;
          console.log($scope.client )
+       }
+
 
      }
 
