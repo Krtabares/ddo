@@ -1271,7 +1271,7 @@ async def add_pedido (request, token: Token):
         # myObj = {'id_pedido':ID, 'products': iva_list}
         mongodb = get_mongo_db()
         totales = dict(
-            id_pedido = ID,
+            id_pedido = int(ID),
             productos = iva_list
         )
         # totales["id_pedido"] = ID
@@ -1347,12 +1347,8 @@ async def update_pedido (request, token: Token):
         print(iva_list)
         print("=====================================================================")
         mongodb = get_mongo_db()
-        # totales = dict(
-        #     id_pedido = ID,
-        #     productos = iva_list
-        # )unset
-        # await mongodb.order.update({'id_pedido':ID},{"$unset":{"productos":'' }})
-        await mongodb.order.update({'id_pedido':ID},{"$set":{"productos":iva_list }}, True, True)
+
+        await mongodb.order.update({'id_pedido':int(ID)},{"$set":{"productos":iva_list }}, True, True)
 
         return response.json("SUCCESS",200)
     except Exception as e:
@@ -1377,7 +1373,7 @@ async def update_pedido (request, token: Token):
         db.commit()
 
         mongodb = get_mongo_db()
-        await mongodb.order.remove({'id_pedido':data['ID']})
+        await mongodb.order.remove({'id_pedido':int(data['ID'])})
 
         return response.json("SUCCESS",200)
     except Exception as e:
@@ -1459,7 +1455,7 @@ async def pedido (request , token: Token):
 
         mongodb = get_mongo_db()
 
-        totales = await mongodb.order.find_one({'id_pedido' :str(data['idPedido'])}, {'_id' : 0})
+        totales = await mongodb.order.find_one({'id_pedido' :int(data['idPedido'])}, {'_id' : 0})
 
         db = get_db()
         c = db.cursor()
