@@ -52,20 +52,20 @@
     </div>
   </form> -->
 
-  <div class="row pb-2 p-2" ng-if="client">
+  <div class="row pb-2 p-2" >
       <div class="col-md-6">
           <p class="font-weight-bold mb-4">Informacion del Cliente </p>
-          <p class="mb-1" style="text-transform: capitalize;" >{{client_info.nombre_cliente.toLowerCase()}}</p>
-          <!-- <p>Acme Inc</p> -->
-          <p class="mb-1">{{client_info.direccion_cliente.toLowerCase()}}</p>
-          <!-- <p class="mb-1">6781 45P</p> -->
+          <p class="mb-1" style="text-transform: capitalize;" >{{client.nombre_cliente.toLowerCase()}}</p>
+          <p>{{client.telefono1}}</p>
+          <p class="mb-1">{{client.direccion_cliente.toLowerCase()}}</p>
       </div>
 
       <div class="col-md-6 text-right">
           <p class="font-weight-bold mb-4">Detalles</p>
-          <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client_info.docu_identif_cliente}}</p>
-          <p class="mb-1"><span class="text-muted">Codigo: </span> {{client_info.cod_cliente}}</p>
-          <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client_info.nombre_encargado.toLowerCase()}}</p>
+          <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client.docu_identif_cliente}}</p>
+          <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
+          <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+          <p class="mb-1"><span class="text-muted">Plazo de pago: </span> {{client.v_plazo}} dias</p>
       </div>
   </div>
 
