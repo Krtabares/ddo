@@ -96,6 +96,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.editPedido= function(){
+          if($scope.pedido.estatus_id == 0){
+            return
+            ngNotify.set('¡Este pedido no puede ser editado!','error')
+          }
           $scope.editView = true
         }
 
