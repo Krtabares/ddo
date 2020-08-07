@@ -1197,23 +1197,23 @@ async def valida_client(request, token : Token):
 
         if not 'pNoCia' in data :
             data['pNoCia'] = '01'
-        else:
-            data['pNoCia'] = "'"+data['pNoCia']+"'"
+        # else:
+        #     data['pNoCia'] = "'"+data['pNoCia']+"'"
 
         if not 'pNoGrupo' in data :
             data['pNoGrupo'] = '01'
-        else:
-            data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
+        # else:
+        #     data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
 
         if not 'pCliente' in data :
             data['pCliente'] = 'null'
-        else:
-            data['pCliente'] = "'"+data['pCliente']+"'"
+        # else:
+        #     data['pCliente'] = "'"+data['pCliente']+"'"
 
         if not 'pMoneda' in data :
                 data['pMoneda'] = '\'P\''
-        else:
-            data['pMoneda'] = "'"+data['pMoneda']+"'"
+        # else:
+        #     data['pMoneda'] = "'"+data['pMoneda']+"'"
 
         db = get_db()
         c = db.cursor()
