@@ -233,6 +233,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.creditoClient = {}
         $scope.clienteValido = true
+        $scope.clientInvalidoMsg = null
         function validaClienteDDO(body) {
           console.log("validaClienteDDO");
           request.post(ip+'/valida/client', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
@@ -243,7 +244,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             // $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
             // $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
             if(response.data.data[0]){
-              ngNotify.set(response.data.data[0],'warn')
+              $scope.clientInvalidoMsg = response.data.data[0]
+              ngNotify.set($scope.clientInvalidoMsg,'warn')
               $scope.clienteValido = false
               $scope.tabsIndex = 0
             }else{
