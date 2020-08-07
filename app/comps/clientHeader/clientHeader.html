@@ -51,7 +51,10 @@
       </div> -
     </div>
   </form> -->
-
+  <div class="alert alert-danger"  ng-show="!clienteValido" role="alert">
+    Advertencia:
+    <strong>{{clientInvalidoMsg}}</strong>
+  </div>
   <div class="row pb-2 p-2" >
       <div class="col-md-6">
           <p class="font-weight-bold mb-4">Informacion del Cliente </p>
