@@ -638,11 +638,11 @@
                     <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
 
                     <!-- <button type="button" class="btn btn-danger" ></button> -->
-                    <i class="fa fa-trash" style="cursor: pointer;" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
+                    <i class="fa fa-trash" style="cursor: pointer;" ng-show="estatus_id==0" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
 
                     <!-- <button type="button" class="btn btn-default"  ></button> -->
-                    <i class="fa fa-eye" style="cursor: pointer;" ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
+                    <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
 
 
                   </td>
