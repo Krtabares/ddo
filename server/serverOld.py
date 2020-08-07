@@ -1456,7 +1456,7 @@ async def pedidos (request , token: Token):
                             {filter} WHERE COD_CLIENTE = {pCliente}
                              GROUP BY ID, COD_CIA, GRUPO_CLIENTE,
                                    COD_CLIENTE, FECHA, NO_PEDIDO_CODISA,
-                                   OBSERVACIONES,  t2.descripcion
+                                   OBSERVACIONES,  t2.descripcion,  t1.ESTATUS
                                  order by ID desc
                             """.format(filter = data['filter'], pCliente = data['pCliente'] ))
         list = []
