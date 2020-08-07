@@ -242,8 +242,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             // $scope.creditoClient = response.data.obj
             // $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
             // $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
-            if(response.data.data != null){
-              ngNotify.set(response.data[0],'warn')
+            if(response.data.data[0]{
+              ngNotify.set(response.data.data[0],'warn')
               $scope.clienteValido = false
               $scope.tabsIndex = 0
             }else{
