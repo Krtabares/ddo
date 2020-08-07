@@ -1483,7 +1483,7 @@ async def pedido (request , token: Token):
                               SELECT
                                  COD_CIA, GRUPO_CLIENTE,
                                 COD_CLIENTE, TO_CHAR(FECHA, 'YYYY-MM-DD'), NO_PEDIDO_CODISA,
-                                OBSERVACIONES, t2.descripcion
+                                OBSERVACIONES, t2.descripcion, ESTATUS
                                 FROM PAGINAWEB.PEDIDO t1
                                 join PAGINAWEB.ESTATUS t2
                                     on t1.ESTATUS = t2.CODIGO
@@ -1500,6 +1500,7 @@ async def pedido (request , token: Token):
                     'no_factu':row[4],
                     'observacion':row[5],
                     'estatus':row[6],
+                    'estatus_id':row[6],
                     'pedido': pedidos,
                     'totales':totales,
 
