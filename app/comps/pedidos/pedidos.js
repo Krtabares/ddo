@@ -109,12 +109,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           // $scope.client = x
           if($scope.clientes.length > 0){
+              var auxCli = $scope.clientes
+              var auxCliIndex = $scope.clientIndex
+              
               $scope.reset()
+
+              $scope.clientes = auxCli
+              $scope.clientIndex = auxCliIndex
               $scope.client  = $scope.clientes[ $scope.clientIndex ];
 
               $scope.showProductTable = true;
 
-              $scope.reset()
           }else {
             $scope.showProductTable = false
           }
