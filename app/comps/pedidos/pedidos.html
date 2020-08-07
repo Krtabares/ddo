@@ -141,8 +141,8 @@
                         <th scope="col"><p class="text-center">Cantidad</p></th>
                         <th scope="col"><p class="text-center">Precio por unidad</p></th>
                         <th scope="col"><p class="text-center">Total</p></th>
-                        <th scope="col"><p class="text-center">Precio por unidad</p></th>
-                        <th scope="col"><p class="text-center">Total</p></th>
+                        <th scope="col"><p class="text-center">Precio USD</p></th>
+                        <th scope="col"><p class="text-center">Total USD</p></th>
                         <th scope="col"><p class="text-center">Opcion</p></th>
                         </tr>
                     </thead>
@@ -155,8 +155,8 @@
                             <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
                             <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
                             <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
-                            <td><p class="text-right">{{ formato(2,x.precio_usd) }}</p></td>
-                            <td><p class="text-right">{{ formato(2,(x.precio_usd * x.CANTIDAD)) }}</p></td>
+                            <td><p class="text-right">{{ formato(3,x.precio_usd) }}</p></td>
+                            <td><p class="text-right">{{ formato(3,(x.precio_usd * x.CANTIDAD)) }}</p></td>
 
                             <td >
                               <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
@@ -342,8 +342,8 @@
                       <th scope="col"><p class="text-center">Cantidad</p></th>
                       <th scope="col"><p class="text-center">Precio por unidad</p></th>
                       <th scope="col"><p class="text-center">Total</p></th>
-                      <th scope="col"><p class="text-center">Precio por unidad</p></th>
-                      <th scope="col"><p class="text-center">Total</p></th>
+                      <th scope="col"><p class="text-center">Precio USD</p></th>
+                      <th scope="col"><p class="text-center">Total USD</p></th>
                       <th scope="col"><p class="text-center">Opcion</p></th>
                       </tr>
                   </thead>
@@ -356,8 +356,8 @@
                           <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
                           <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
                           <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
-                          <td><p class="text-right">{{ formato(2,x.precio_usd) }}</p></td>
-                          <td><p class="text-right">{{ formato(2,(x.precio_usd * x.CANTIDAD)) }}</p></td>
+                          <td><p class="text-right">{{ formato(3,x.precio_usd) }}</p></td>
+                          <td><p class="text-right">{{ formato(3,(x.precio_usd * x.CANTIDAD)) }}</p></td>
 
                           <td >
                             <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->

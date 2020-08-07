@@ -1530,7 +1530,7 @@ async def pedido (request , token: Token):
         c.execute("""
                               SELECT
                                  COD_CIA, GRUPO_CLIENTE,
-                                COD_CLIENTE, TO_CHAR(FECHA, 'YYYY-MM-DD'), NO_PEDIDO_CODISA,
+                                COD_CLIENTE, TO_CHAR(FECHA, 'DD-MM-YYYY'), NO_PEDIDO_CODISA,
                                 OBSERVACIONES, t2.descripcion, ESTATUS
                                 FROM PAGINAWEB.PEDIDO t1
                                 join PAGINAWEB.ESTATUS t2
