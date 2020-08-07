@@ -427,7 +427,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             "COD_CIA": body.cod_cia,
             "GRUPO_CLIENTE": body.pNoGrupo,
             "COD_CLIENTE": body.pCliente,
-            "FECHA": fecha.getDate()+"-"+ fecha.getMonth()+"-"+ fecha.getFullYear(),
+            "FECHA": fecha.getDate()+"-"+ (fecha.getMonth()+1) +"-"+ fecha.getFullYear(),
             "NO_PEDIDO_CODISA":($scope.editView)? $scope.pedido.no_factu:"---",
             "OBSERVACIONES": $scope.pedido.observacion || "",
             "ESTATUS": "0",
