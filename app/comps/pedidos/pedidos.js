@@ -232,7 +232,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.creditoClient = {}
-
+        $scope.clienteValido = true
         function validaClienteDDO(body) {
           console.log("validaClienteDDO");
           request.post(ip+'/valida/client', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
@@ -242,6 +242,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             // $scope.creditoClient = response.data.obj
             // $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
             // $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
+            if(response.data != null){
+              ngNotify.set(response.data[0],'warn')
+              $scope.clienteValido = false
+              $scope.tabsIndex = 0
+            }else{
+              $scope.clienteValido = true
+            }
+
 
           }, function errorCallback(response) {
             console.log(response)
@@ -457,6 +465,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.reset = function(){
+
           $scope.tabsIndex = 0
           $scope.totales.bolivares = 0
           $scope.totales.USD = 0
@@ -481,8 +490,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                             'observacion':'',
                             'pedido':[],
                         };
-          if(!$scope.hasUserClient)
+          if(!$scope.hasUserClient){
+            $scope.clienteValido = true
             $scope.creditoClient = {}
+          }
         }
 
         $scope.getPedidos = function(page){
