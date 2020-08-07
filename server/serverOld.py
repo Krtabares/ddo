@@ -1216,6 +1216,7 @@ async def valida_client(request, token : Token):
             data['pMoneda'] = "'"+data['pMoneda']+"'"
 
         db = get_db()
+        c = db.cursor()
         sql = """select
                     t2.DESCRIPCION
                         from dual
