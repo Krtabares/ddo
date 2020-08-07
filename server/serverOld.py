@@ -1212,8 +1212,8 @@ async def valida_client(request, token : Token):
 
         if not 'pMoneda' in data :
                 data['pMoneda'] = '\'P\''
-            else:
-                data['pMoneda'] = "'"+data['pMoneda']+"'"
+        else:
+            data['pMoneda'] = "'"+data['pMoneda']+"'"
 
         db = get_db()
         sql = """select
