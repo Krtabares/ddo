@@ -228,6 +228,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.creditoClient = {}
+
         function getClientDispService(body) {
           console.log("getClientDispService");
           request.post(ip+'/disponible_cliente', body,{})
@@ -284,21 +285,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.addPedido = function(){
           // console.log(pedido);
           var body = $scope.buildBody();
-          request.post(ip+'/add/pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
-          .then(function successCallback(response) {
-            console.log(response)
-              $scope.reset();
-              $scope.getPedidos_filtering();
-              ngNotify.set('¡Pedido generado con exito!','success')
-            /*if (response.data.exist) {
-              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-            } else if (response.data.email_flag) {
-              ngNotify.set('¡Ya el correo está registrado!','error')
-            }*/
-            alert("Guardado con exito!")
-          }, function errorCallback(response) {
-            console.log(response)
-          });
+          // request.post(ip+'/add/pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          // .then(function successCallback(response) {
+          //   console.log(response)
+          //     $scope.reset();
+          //     $scope.getPedidos_filtering();
+          //     ngNotify.set('¡Pedido generado con exito!','success')
+          //   /*if (response.data.exist) {
+          //     ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
+          //   } else if (response.data.email_flag) {
+          //     ngNotify.set('¡Ya el correo está registrado!','error')
+          //   }*/
+          //   alert("Guardado con exito!")
+          // }, function errorCallback(response) {
+          //   console.log(response)
+          // });
         }
 
         $scope.updPedido = function(){
@@ -406,9 +407,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.buildBody = function(){
+
           var fecha = new Date( $scope.pedido.fecha)
           console.log($scope.pedido.pedido)
-            var aux = $scope.pedido.pedido
+          var aux = $scope.pedido.pedido
           aux.forEach(element => {
 
             element.PRECIO = parseFloat(element.PRECIO).toFixed(2)
@@ -617,6 +619,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           console.log($scope.totales)
         }
+
         function validaCreditoContraProducto(valor) {
           // console.log(valor);
           // console.log($scope.creditoClient.disp_bs_format - valor);
@@ -636,7 +639,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
         }
 
-        $scope.formatDate =function(date) {
+        $scope.formatDate = function(date) {
           date = new Date(date);
              return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
         }
@@ -653,7 +656,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             .withDOM('frtip').withPaginationType('full_numbers')
 
 
-
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('no_cia').withTitle('Número cia'),
             DTColumnBuilder.newColumn('grupo').withTitle('Grupo'),
@@ -663,9 +665,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             DTColumnBuilder.newColumn('precio').withTitle('Precio'),
             DTColumnBuilder.newColumn('cantidad').withTitle('Cantidad de Productos')
         ];
-
-
-
 
 
     }
