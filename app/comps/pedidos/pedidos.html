@@ -12,6 +12,13 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="card-header" ng-show="!clienteValido" >
+          Advertencia:
+          <strong>{{clientInvalidoMsg}}</strong>
+            <!-- <span class="float-right"> <strong>Estatus:</strong> {{pedido.estatus}}</span> -->
+
+          </div>
+
 
         <ul class="nav nav-tabs mb-4">
             <li class="nav-item">
