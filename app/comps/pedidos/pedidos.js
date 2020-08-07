@@ -248,9 +248,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               ngNotify.set($scope.clientInvalidoMsg,'warn')
               $scope.clienteValido = false
               $scope.tabsIndex = 0
-            }else{
-              $scope.clienteValido = true
+              return;
             }
+              $scope.clienteValido = true
+              $scope.clientInvalidoMsg = null
+
 
 
           }, function errorCallback(response) {

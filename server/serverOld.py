@@ -1445,7 +1445,7 @@ async def pedidos (request , token: Token):
         c.execute("""SELECT
 
                              COD_CIA, GRUPO_CLIENTE,
-                            COD_CLIENTE, TO_CHAR(FECHA, 'YYYY-MM-DD'), NO_PEDIDO_CODISA,
+                            COD_CLIENTE, TO_CHAR(FECHA, 'DD-MM-YYYY'), NO_PEDIDO_CODISA,
                             OBSERVACIONES,  t2.descripcion, (sum(t3.precio * t3.CANTIDAD ))
                                 monto, count(t3.COD_PRODUCTO) producto,ID
                             FROM PAGINAWEB.PEDIDO t1
