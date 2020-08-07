@@ -1219,7 +1219,7 @@ async def valida_client(request, token : Token):
         sql = """select
                     t2.DESCRIPCION
                         from dual
-                    join TIPO_ERROR t2 on procesospw.valida_cliente(:pNoCia,:pNoGrupo,:pCliente,:pMoneda,0) = t2.CODIGO""")
+                    join TIPO_ERROR t2 on procesospw.valida_cliente(:pNoCia,:pNoGrupo,:pCliente,:pMoneda,0) = t2.CODIGO"""
         c.execute(sql, [
                         data['pNoCia'],
                         data['pNoGrupo'],
