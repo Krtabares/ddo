@@ -235,7 +235,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         function validaClienteDDO(body) {
           console.log("validaClienteDDO");
-          request.post(ip+'/valida/client', body,{})
+          request.post(ip+'/valida/client', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response)
 
@@ -488,7 +488,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.getPedidos = function(page){
           var obj = {'page': page};
 		  // console.log($localStorage.token);
-          request.post(ip+'/get/pedidos', obj, {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODk5Nzk2NTcsIm5iZiI6MTU4OTk3OTY1NywianRpIjoiZGFjNTZjM2QtZjM2ZC00NTRkLTkwNWYtZmZmZjFiYjI2ZTE5IiwiaWRlbnRpdHkiOiJhZG1pbiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Ff_CfwXCIxLGinnAkS8C7vUxColNK_utxy-LzJt0188'})
+          request.post(ip+'/get/pedidos', obj,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response.data)
             if(response.data.data.length > 0){
@@ -508,7 +508,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var obj = {'idPedido': ID};
           $scope.ID = ID
       // console.log($localStorage.token);
-          request.post(ip+'/get/pedido', obj, {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODk5Nzk2NTcsIm5iZiI6MTU4OTk3OTY1NywianRpIjoiZGFjNTZjM2QtZjM2ZC00NTRkLTkwNWYtZmZmZjFiYjI2ZTE5IiwiaWRlbnRpdHkiOiJhZG1pbiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Ff_CfwXCIxLGinnAkS8C7vUxColNK_utxy-LzJt0188'})
+          request.post(ip+'/get/pedido', obj, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response.data)
 
