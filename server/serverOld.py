@@ -1189,6 +1189,53 @@ async def info_clientes(request):
                 print(row)
     return response.json(row)
 
+@app.route('/valida/client', ["POST", "GET"])
+@jwt_required
+async def valida_client(request, token : Token):
+    try:
+        data = request.json
+
+        if not 'pNoCia' in data :
+            data['pNoCia'] = '01'
+        else:
+            data['pNoCia'] = "'"+data['pNoCia']+"'"
+
+        if not 'pNoGrupo' in data :
+            data['pNoGrupo'] = '01'
+        else:
+            data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
+
+        if not 'pCliente' in data :
+            data['pCliente'] = 'null'
+        else:
+            data['pCliente'] = "'"+data['pCliente']+"'"
+
+        if not 'pMoneda' in data :
+                data['pMoneda'] = '\'P\''
+            else:
+                data['pMoneda'] = "'"+data['pMoneda']+"'"
+
+        db = get_db()
+        sql = """select
+                    t2.DESCRIPCION
+                        from dual
+                    join TIPO_ERROR t2 on procesospw.valida_cliente(:pNoCia,:pNoGrupo,:pCliente,:pMoneda,0) = t2.CODIGO""")
+        c.execute(sql, [
+                        data['pNoCia'],
+                        data['pNoGrupo'],
+                        data['pCliente'],
+                        data['pMoneda']
+                    ])
+        row = c.fetchone()
+
+        # totalPages=row[0]
+
+        return response.json({"data":row},200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
+
 @app.route('/add/pedido',["POST","GET"])
 @jwt_required
 async def add_pedido (request, token: Token):

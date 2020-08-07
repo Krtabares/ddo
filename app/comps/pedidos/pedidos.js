@@ -133,7 +133,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pNoCia = $scope.pedido.no_cia
             body.pNoGrupo =  $scope.pedido.grupo
             getClientDispService(body)
-
+            validaClienteDDO(body)
 
             console.log($scope.pedido, "pedido select" )
 
@@ -232,6 +232,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.creditoClient = {}
+
+        function validaClienteDDO(body) {
+          console.log("validaClienteDDO");
+          request.post(ip+'/valida/client', body,{})
+          .then(function successCallback(response) {
+            console.log(response)
+
+            // $scope.creditoClient = response.data.obj
+            // $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
+            // $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
 
         function getClientDispService(body) {
           console.log("getClientDispService");
@@ -505,6 +520,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               body.pNoCia = response.data.obj[0].no_cia
               body.pNoGrupo = response.data.obj[0].grupo
               getClientDispService(body)
+              validaClienteDDO(body)
             }
 
             $scope.showPedido(response.data.obj[0])
