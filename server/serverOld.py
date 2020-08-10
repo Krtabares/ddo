@@ -1252,8 +1252,8 @@ async def add_pedido (request, token: Token):
         #     return response.json("ERROR",400)
 
 
-        # db = get_db()
-        # c = db.cursor()
+        db = get_db()
+        c = db.cursor()
         # c.callproc("dbms_output.enable")
         # sql = """
         #         declare
@@ -1299,7 +1299,7 @@ async def add_pedido (request, token: Token):
         # row = c.fetchone()
         # ID = row[0]
         # return response.json("SUCCESS",200)
-        ID = crear_pedido(request)
+        ID = await crear_pedido(request)
 
         iva_list = []
         for pedido in data['pedido']:
