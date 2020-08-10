@@ -1252,6 +1252,91 @@ async def add_pedido (request, token: Token):
         #     return response.json("ERROR",400)
 
 
+        # db = get_db()
+        # c = db.cursor()
+        # c.callproc("dbms_output.enable")
+        # sql = """
+        #         declare
+        #             s2 number;
+        #
+        #         begin
+        #
+        #             INSERT INTO PEDIDO ( COD_CIA, GRUPO_CLIENTE,
+        #                                     COD_CLIENTE, FECHA, NO_PEDIDO_CODISA,
+        #                                     OBSERVACIONES, ESTATUS) VALUES
+        #                     (  :COD_CIA, :GRUPO_CLIENTE, :COD_CLIENTE, :FECHA, :NO_PEDIDO_CODISA, :OBSERVACIONES, :ESTATUS  )
+        #                      returning ID into s2;
+        #             dbms_output.put_line(s2);
+        #         end;
+        #     """
+        #
+        # c.execute(sql, [
+        #                 data['COD_CIA'],
+        #                 data['GRUPO_CLIENTE'],
+        #                 data['COD_CLIENTE'],
+        #                 data['FECHA'],
+        #                 data['NO_PEDIDO_CODISA'],
+        #                 data['OBSERVACIONES'],
+        #                 data['ESTATUS']
+        #             ]
+        #         )
+        # statusVar = c.var(cx_Oracle.NUMBER)
+        # lineVar = c.var(cx_Oracle.STRING)
+        #
+        # while True:
+        #   c.callproc("dbms_output.get_line", (lineVar, statusVar))
+        #   if lineVar.getvalue() == None:
+        #       break
+        #   print("==========================================================")
+        #   print(lineVar.getvalue())
+        #   ID = lineVar.getvalue()
+        #
+        #   if statusVar.getvalue() != 0:
+        #     break
+
+
+        # c.execute("""select ID from LAST_ID_DETALLE_PEDIDO""")
+        # row = c.fetchone()
+        # ID = row[0]
+        # return response.json("SUCCESS",200)
+        ID = crear_pedido(request)
+
+        iva_list = []
+        for pedido in data['pedido']:
+            print(pedido)
+            sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO) VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
+
+            c.execute(sql.format(
+                 ID_PEDIDO = int(ID),
+                 COD_PRODUCTO = str(pedido['COD_PRODUCTO']),
+                 CANTIDAD = int(pedido['CANTIDAD']),
+                 PRECIO = float(str(pedido['PRECIO']).replace(',','.'))
+                    ))
+            row = {'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'], 'nombre_producto':pedido['nombre_producto']}
+            iva_list.append(row)
+
+        db.commit()
+        print("==========================================================")
+        print(iva_list)
+
+        mongodb = get_mongo_db()
+        totales = dict(
+            id_pedido = int(ID),
+            productos = iva_list
+        )
+
+        await mongodb.order.insert_one(totales)
+
+        return response.json("SUCCESS",200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
+
+async def crear_pedido(request):
+    try:
+        data = request.json
+
         db = get_db()
         c = db.cursor()
         c.callproc("dbms_output.enable")
@@ -1282,7 +1367,7 @@ async def add_pedido (request, token: Token):
                 )
         statusVar = c.var(cx_Oracle.NUMBER)
         lineVar = c.var(cx_Oracle.STRING)
-
+        ID = None
         while True:
           c.callproc("dbms_output.get_line", (lineVar, statusVar))
           if lineVar.getvalue() == None:
@@ -1293,43 +1378,11 @@ async def add_pedido (request, token: Token):
 
           if statusVar.getvalue() != 0:
             break
-
-
-        # c.execute("""select ID from LAST_ID_DETALLE_PEDIDO""")
-        # row = c.fetchone()
-        # ID = row[0]
-        # return response.json("SUCCESS",200)
-        iva_list = []
-        for pedido in data['pedido']:
-            print(pedido)
-            sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO) VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
-
-            c.execute(sql.format(
-                 ID_PEDIDO = int(ID),
-                 COD_PRODUCTO = str(pedido['COD_PRODUCTO']),
-                 CANTIDAD = int(pedido['CANTIDAD']),
-                 PRECIO = float(str(pedido['PRECIO']).replace(',','.'))
-                    ))
-            row = {'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'], 'nombre_producto':pedido['nombre_producto']}
-            iva_list.append(row)
-
-        db.commit()
-        print("==========================================================")
-        print(iva_list)
-        # myObj = {'id_pedido':ID, 'products': iva_list}
-        mongodb = get_mongo_db()
-        totales = dict(
-            id_pedido = int(ID),
-            productos = iva_list
-        )
-        # totales["id_pedido"] = ID
-        # totales["productos"] = iva_list
-        await mongodb.order.insert_one(totales)
-
-        return response.json("SUCCESS",200)
+        return ID
     except Exception as e:
         logger.debug(e)
-        return response.json("ERROR",400)
+
+
 
 @app.route('/upd/pedido',["POST","GET"])
 @jwt_required
