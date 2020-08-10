@@ -1365,7 +1365,7 @@ async def add_pedidoV2 (request, token: Token):
 
 @app.route('/add/detalle_producto',["POST","GET"])
 @jwt_required
-async def add_pedidoV2 (request, token: Token):
+async def add_detalle_producto (request, token: Token):
 # async def procedure(request):
     try:
         data = request.json
