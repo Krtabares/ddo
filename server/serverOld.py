@@ -1383,7 +1383,7 @@ async def add_pedidoV2 (request, token: Token):
 
 @app.route('/del/detalle_producto',["POST","GET"])
 @jwt_required
-async def add_pedidoV2 (request, token: Token):
+async def del_detalle_producto (request, token: Token):
 # async def procedure(request):
     try:
         data = request.json
@@ -1405,7 +1405,7 @@ async def add_pedidoV2 (request, token: Token):
                                                                     }
                                                                 }, True, True)
 
-        return response.json({"ID":ID},200)
+        return response.json("SUCCESS",200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
