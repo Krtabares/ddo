@@ -1374,7 +1374,7 @@ async def add_pedidoV2 (request, token: Token):
 
         mongodb = get_mongo_db()
 
-        await mongodb.order.update({'id_pedido':int(ID)},{"$addToSet":{"productos":row }}, True, True)
+        await mongodb.order.update({'id_pedido':int(data['ID'])},{"$addToSet":{"productos":row }}, True, True)
 
         return response.json("SUCCESS",200)
     except Exception as e:
