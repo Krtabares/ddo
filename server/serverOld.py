@@ -1350,28 +1350,36 @@ async def add_pedidoV2 (request, token: Token):
 
         ID = await crear_pedido(request)
 
-        iva_list = []
-
-        for pedido in data['pedido']:
-
-            row = await crear_detalle_pedido(pedido, ID)
-            iva_list.append(row)
-
-
         mongodb = get_mongo_db()
+
         totales = dict(
             id_pedido = int(ID),
-            productos = iva_list
+            productos = []
         )
-
         await mongodb.order.insert_one(totales)
 
-        return response.json("SUCCESS",200)
+        return response.json({"ID":ID},200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
 
+@app.route('/add/detalle_producto',["POST","GET"])
+@jwt_required
+async def add_pedidoV2 (request, token: Token):
+# async def procedure(request):
+    try:
+        data = request.json
 
+        row = await crear_detalle_pedido(data['pedido'], data['ID'])
+
+        mongodb = get_mongo_db()
+
+        await mongodb.order.update({'id_pedido':int(ID)},{"$addToSet":{"productos":row }}, True, True)
+
+        return response.json({"ID":ID},200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
 
 
 @app.route('/upd/pedido',["POST","GET"])
