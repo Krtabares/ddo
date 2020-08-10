@@ -1379,6 +1379,7 @@ async def crear_pedido(request):
 
           if statusVar.getvalue() != 0:
             break
+        db.commit()
         return ID
     except Exception as e:
         logger.debug(e)
