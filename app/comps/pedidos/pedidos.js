@@ -42,11 +42,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.goToTab = function (index) {
           if(index <= $scope.tabs )
             $scope.tabsIndex = index
-            $scope.ID = null
+
         }
 
         $scope.initModal = function () {
           console.log("initmodal")
+          $scope.ID = null
           $scope.reset()
 
         }
