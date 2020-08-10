@@ -107,8 +107,14 @@
             </div>
 
             <div class="container" ng-show="tabsIndex == 1" >
+
+
               <div class="row mt-3 mb-5">
 
+                <div class="col-12" ng-show="ID == null">
+                  <label></label>
+                  <button type="button" class="btn btn-info" ng-click="addPedidoV2()"  >Abrir Pedido</button>
+                </div>
 
                 <div class="col-4">
                   <label>Credito disponible Bs.S</label><br>

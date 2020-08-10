@@ -42,6 +42,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.goToTab = function (index) {
           if(index <= $scope.tabs )
             $scope.tabsIndex = index
+            $scope.ID = null
         }
 
         $scope.initModal = function () {
@@ -348,7 +349,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.ID = response.data.ID
             ngNotify.set('¡Pedido abierto con exito!','success')
 
-            alert("Guardado con exito!")
+            // alert("Guardado con exito!")
           }, function errorCallback(response) {
             console.log(response)
           });
@@ -359,9 +360,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var body = {};
 
           body.pedido = articulo
-          if(!$scope.ID){
-            $scope.addPedidoV2()
-          }
+          // if(!$scope.ID){
+          //   $scope.addPedidoV2()
+          // }
           body.ID = $scope.ID
           request.post(ip+'/add/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
