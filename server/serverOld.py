@@ -1393,13 +1393,13 @@ async def add_pedidoV2 (request, token: Token):
 
         c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID AND COD_PRODUCTO = :COD_PRODUCTO""",
             [
-                data['ID'],
+                data['id_pedido'],
                 data['COD_PRODUCTO']
             ])
 
         mongodb = get_mongo_db()
 
-        await mongodb.order.update({'id_pedido':int(ID)},{
+        await mongodb.order.update({'id_pedido':int(data['id_pedido'])},{
                                                             "$pull":{
                                                                         "productos":{"COD_PRODUCTO":data['COD_PRODUCTO'] }
                                                                     }

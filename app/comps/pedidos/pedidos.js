@@ -111,7 +111,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           if($scope.clientes.length > 0){
               var auxCli = $scope.clientes
               var auxCliIndex = $scope.clientIndex
-              
+
               $scope.reset()
 
               $scope.clientes = auxCli
@@ -339,6 +339,58 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
+        $scope.addPedidoV2 = function(){
+          // console.log(pedido);
+          var body = $scope.buildBody();
+          request.post(ip+'/add/pedidoV2', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+            console.log(response)
+            $scope.ID = response.data.ID
+            ngNotify.set('¡Pedido abierto con exito!','success')
+
+            alert("Guardado con exito!")
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
+
+        $scope.addDetalleProducto = function(articulo){
+          // console.log(pedido);
+          var body = {};
+
+          body.pedido = articulo
+          if(!$scope.ID){
+            $scope.addPedidoV2()
+          }
+          body.ID = $scope.ID
+          request.post(ip+'/add/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+            console.log(response)
+
+            $scope.pedido.pedido.push($scope.articulo)
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
+
+        $scope.removeDetalleProducto = function(i){
+          // console.log(pedido);
+          var body = {};
+
+          body.COD_PRODUCTO = $scope.pedido.pedido[i].COD_PRODUCTO;
+          body.id_pedido = $scope.ID
+          request.post(ip+'/del/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+            console.log(response)
+
+            $scope.removeArt(i)
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
+
         $scope.updPedido = function(){
           // console.log(pedido);
           if(!validaCreditoContraTotal()){
@@ -423,7 +475,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               console.log($scope.articulo.PRECIO);
               if(!error){
-                $scope.pedido.pedido.push($scope.articulo)
+                $scope.addDetalleProducto($scope.articulo)
                 calcularTotales()
                 ngNotify.set('¡Producto agregado al pedido!','success')
               }
@@ -602,6 +654,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.removeArt = function(i){
 
           // console.log($scope.pedido.pedido[i].COD_PRODUCTO)
+
+
           if($scope.pedido.totales)
             $scope.pedido.totales.productos.forEach((item, index) => {
               if(item.COD_PRODUCTO == $scope.pedido.pedido[i].COD_PRODUCTO){

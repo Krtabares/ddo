@@ -157,12 +157,12 @@
                             <td><p class="text-right">{{ formato(3,(x.precio_usd * x.CANTIDAD)) }}</p></td>
 
                             <td >
-                              <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
+                              <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
                               <!-- <p class="text-center">
-                                <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeArt($index);"></i>
+                                <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeDetalleProducto($index);"></i>
                               </p>
                               -->
-                              <button type="button" class="btn btn-danger" ng-click="removeArt($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
+                              <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
                             </td>
                           </tr>
                     </tbody>
@@ -216,7 +216,8 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-error" data-dismiss="modal" ng-click="reset();">Cerrar</button>
-        <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1 || !clienteValido" ng-click="addPedido();">Enviar pedido</button>
+        <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Guardar</button>
+        <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar</button>
       </div>
     </div>
   </div>
@@ -358,12 +359,12 @@
                           <td><p class="text-right">{{ formato(3,(x.precio_usd * x.CANTIDAD)) }}</p></td>
 
                           <td >
-                            <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
+                            <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
                             <!-- <p class="text-center">
-                              <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeArt($index);"></i>
+                              <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeDetalleProducto($index);"></i>
                             </p>
                             -->
-                            <button type="button" class="btn btn-danger" ng-click="removeArt($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
+                            <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
                           </td>
                         </tr>
                   </tbody>
@@ -419,7 +420,8 @@
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Cerrar</button>
         <button type="button"  class="btn btn-primary" ng-show="!editView" ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
-        <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1" ng-show="editView" ng-click="updPedido();">Actualizar pedido</button>
+        <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar</button>
+        <!-- <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1" ng-show="editView" ng-click="updPedido();">Actualizar pedido</button> -->
       </div>
     </div>
   </div>
@@ -635,7 +637,7 @@
                   <td><p class="text-right">{{ formato(2,x.precio) }}</p></td>
                   <td><p class="text-center">{{ x.cantidad }}</p></td>
                   <td>
-                    <!-- <button type="button" class="btn btn-danger" ng-click="removeArt($index);">X</button> -->
+                    <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
 
                     <!-- <button type="button" class="btn btn-danger" ></button> -->
                     <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus_id==0" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
