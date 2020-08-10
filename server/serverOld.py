@@ -1236,104 +1236,6 @@ async def valida_client(request, token : Token):
         logger.debug(e)
         return response.json("ERROR",400)
 
-
-@app.route('/add/pedido',["POST","GET"])
-@jwt_required
-async def add_pedido (request, token: Token):
-# async def procedure(request):
-    try:
-        data = request.json
-        # print(data)
-        # if not 'COD_PRODUCTO' in data :
-        #     return response.json("ERROR",400)
-        # if not 'CANTIDAD' in data :
-        #     return response.json("ERROR",400)
-        # if not 'PRECIO' in data :
-        #     return response.json("ERROR",400)
-
-
-        db = get_db()
-        c = db.cursor()
-        # c.callproc("dbms_output.enable")
-        # sql = """
-        #         declare
-        #             s2 number;
-        #
-        #         begin
-        #
-        #             INSERT INTO PEDIDO ( COD_CIA, GRUPO_CLIENTE,
-        #                                     COD_CLIENTE, FECHA, NO_PEDIDO_CODISA,
-        #                                     OBSERVACIONES, ESTATUS) VALUES
-        #                     (  :COD_CIA, :GRUPO_CLIENTE, :COD_CLIENTE, :FECHA, :NO_PEDIDO_CODISA, :OBSERVACIONES, :ESTATUS  )
-        #                      returning ID into s2;
-        #             dbms_output.put_line(s2);
-        #         end;
-        #     """
-        #
-        # c.execute(sql, [
-        #                 data['COD_CIA'],
-        #                 data['GRUPO_CLIENTE'],
-        #                 data['COD_CLIENTE'],
-        #                 data['FECHA'],
-        #                 data['NO_PEDIDO_CODISA'],
-        #                 data['OBSERVACIONES'],
-        #                 data['ESTATUS']
-        #             ]
-        #         )
-        # statusVar = c.var(cx_Oracle.NUMBER)
-        # lineVar = c.var(cx_Oracle.STRING)
-        #
-        # while True:
-        #   c.callproc("dbms_output.get_line", (lineVar, statusVar))
-        #   if lineVar.getvalue() == None:
-        #       break
-        #   print("==========================================================")
-        #   print(lineVar.getvalue())
-        #   ID = lineVar.getvalue()
-        #
-        #   if statusVar.getvalue() != 0:
-        #     break
-
-
-        # c.execute("""select ID from LAST_ID_DETALLE_PEDIDO""")
-        # row = c.fetchone()
-        # ID = row[0]
-        # return response.json("SUCCESS",200)
-        ID = await crear_pedido(request)
-        print("==========================================================")
-        print(ID)
-        iva_list = []
-        for pedido in data['pedido']:
-            # print(pedido)
-            sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO) VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
-
-            c.execute(sql.format(
-                 ID_PEDIDO = int(ID),
-                 COD_PRODUCTO = str(pedido['COD_PRODUCTO']),
-                 CANTIDAD = int(pedido['CANTIDAD']),
-                 PRECIO = float(str(pedido['PRECIO']).replace(',','.'))
-                    ))
-            row = {'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'], 'nombre_producto':pedido['nombre_producto']}
-            iva_list.append(row)
-
-        db.commit()
-        print("==========================================================")
-        print(iva_list)
-
-        mongodb = get_mongo_db()
-        totales = dict(
-            id_pedido = int(ID),
-            productos = iva_list
-        )
-
-        await mongodb.order.insert_one(totales)
-
-        return response.json("SUCCESS",200)
-    except Exception as e:
-        logger.debug(e)
-        return response.json("ERROR",400)
-
-
 async def crear_pedido(request):
     try:
         data = request.json
@@ -1383,6 +1285,92 @@ async def crear_pedido(request):
         return ID
     except Exception as e:
         logger.debug(e)
+
+async def crear_detalle_pedido(detalle, ID):
+
+        db = get_db()
+        c = db.cursor()
+
+        sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO)
+                        VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
+
+        c.execute(sql.format(
+             ID_PEDIDO = int(ID),
+             COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
+             CANTIDAD = int(detalle['CANTIDAD']),
+             PRECIO = float(str(detalle['PRECIO']).replace(',','.'))
+                ))
+
+        db.commit()
+
+        return {
+                    'COD_PRODUCTO':detalle['COD_PRODUCTO'],
+                    'iva_bs':detalle['iva_bs'],
+                    'iva_usd':detalle['iva_usd'],
+                    'precio_usd':detalle['precio_usd'],
+                    'nombre_producto':detalle['nombre_producto']
+                }
+
+@app.route('/add/pedido',["POST","GET"])
+@jwt_required
+async def add_pedido (request, token: Token):
+# async def procedure(request):
+    try:
+        data = request.json
+
+        ID = await crear_pedido(request)
+
+        iva_list = []
+
+        for pedido in data['pedido']:
+
+            row = await crear_detalle_pedido(pedido, ID)
+            iva_list.append(row)
+
+
+        mongodb = get_mongo_db()
+        totales = dict(
+            id_pedido = int(ID),
+            productos = iva_list
+        )
+
+        await mongodb.order.insert_one(totales)
+
+        return response.json("SUCCESS",200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
+@app.route('/add/pedidoV2',["POST","GET"])
+@jwt_required
+async def add_pedidoV2 (request, token: Token):
+# async def procedure(request):
+    try:
+        data = request.json
+
+        ID = await crear_pedido(request)
+
+        iva_list = []
+
+        for pedido in data['pedido']:
+
+            row = await crear_detalle_pedido(pedido, ID)
+            iva_list.append(row)
+
+
+        mongodb = get_mongo_db()
+        totales = dict(
+            id_pedido = int(ID),
+            productos = iva_list
+        )
+
+        await mongodb.order.insert_one(totales)
+
+        return response.json("SUCCESS",200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
 
 
 
