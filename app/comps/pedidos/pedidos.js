@@ -368,7 +368,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
 
-            $scope.pedido.pedido.push($scope.articulo)
+            $scope.pedido.pedido.push(articulo)
 
           }, function errorCallback(response) {
             console.log(response)
