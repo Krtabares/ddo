@@ -1376,6 +1376,35 @@ async def add_pedidoV2 (request, token: Token):
 
         await mongodb.order.update({'id_pedido':int(ID)},{"$addToSet":{"productos":row }}, True, True)
 
+        return response.json("SUCCESS",200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
+@app.route('/del/detalle_producto',["POST","GET"])
+@jwt_required
+async def add_pedidoV2 (request, token: Token):
+# async def procedure(request):
+    try:
+        data = request.json
+
+        db = get_db()
+        c = db.cursor()
+
+        c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID AND COD_PRODUCTO = :COD_PRODUCTO""",
+            [
+                data['ID'],
+                data['COD_PRODUCTO']
+            ])
+
+        mongodb = get_mongo_db()
+
+        await mongodb.order.update({'id_pedido':int(ID)},{
+                                                            "$pull":{
+                                                                        "productos":{"COD_PRODUCTO":data['COD_PRODUCTO'] }
+                                                                    }
+                                                                }, True, True)
+
         return response.json({"ID":ID},200)
     except Exception as e:
         logger.debug(e)
