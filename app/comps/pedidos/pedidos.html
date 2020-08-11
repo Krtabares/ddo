@@ -569,24 +569,24 @@
 
                     <label>Precios</label>
                   </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6">
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                     <label>Por unidad Bs.S</label><br>
-                    <span >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
+                    <span class="text-right" >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
 
                   </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6">
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                     <label>Total Bs.S</label><br>
-                    <span >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
+                    <span class="text-right" >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
 
                   </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6">
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                     <label>Por unidad USD</label><br>
-                    <span >{{formato(3,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
+                    <span  class="text-right" >{{formato(3,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
 
                   </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6">
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                     <label>Total USD</label><br>
-                    <span >{{formato(3,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
+                    <span class="text-right" >{{formato(3,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
 
                   </div>
                 </div>
@@ -598,7 +598,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
+          <button type="button" ng-disabled="productIndex==-1" class="btn btn-success"  ng-click="addArtPedido();">Agregar</button>
         </div>
       </div>
     </div>
