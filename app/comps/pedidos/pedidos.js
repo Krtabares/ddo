@@ -193,7 +193,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.articulo.existencia =$scope.product.existencia
             $scope.articulo.CANTIDAD = 1
             // $scope.articulo.no_cliente = $scope.client.cod_cliente
-
+            angular.element('#btnProductInfo').trigger('click');
             console.log($scope.product )
 
         }
