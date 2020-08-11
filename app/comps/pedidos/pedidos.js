@@ -248,10 +248,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response.data.data)
 
-            // $scope.creditoClient = response.data.obj
-            // $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
-            // $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
-            if(response.data.data[0]){
+            if(response.data.data){
               $scope.clientInvalidoMsg = response.data.data[0]
               ngNotify.set($scope.clientInvalidoMsg,'warn')
               $scope.clienteValido = false
