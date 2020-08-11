@@ -266,3 +266,6 @@ body {
 	height: 450px !important;
 	overflow: scroll !important;
 }
+.modal-90{
+	width: 90%;
+}
