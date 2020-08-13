@@ -442,7 +442,11 @@
         </div>
         <div class="modal-body">
           <div class="container">
-
+            <div class="alert alert-info"  ng-show="!clienteValido && !hasUserClient" role="alert">
+              <i class="fa fa-info" style="cursor: pointer;" ></i>
+              <strong>Informacion :</strong>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
           </div>
 
           <div class="modal-body-he">
@@ -599,7 +603,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <button type="button" ng-disabled="productIndex==-1" class="btn btn-success"  ng-click="addArtPedido();">Agregar</button>
+          <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" data-dismiss="modal" ng-click="addArtPedido();">Agregar</button>
         </div>
       </div>
     </div>
