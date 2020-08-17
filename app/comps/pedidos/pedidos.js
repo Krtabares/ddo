@@ -356,7 +356,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.counter = 0;
         $scope.onTimeout = function(){
-            $scope.counter++;
+            $scope.counter= $scope.counter + 1000;
             mytimeout = $timeout($scope.onTimeout,1000);
         }
         var mytimeout = $timeout($scope.onTimeout,1000);
