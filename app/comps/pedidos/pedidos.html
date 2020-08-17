@@ -446,7 +446,7 @@
             <div class="alert alert-info"  role="alert">
               <i class="fa fa-info" style="cursor: pointer;" ></i>
               <strong>Informacion :</strong>
-              <p>Si desea realizar un pedido de psicotrópicos puede comunicarse a través del correo <strong>correo@email.com</strong></p>
+              <p>Si desea realizar un pedido de psicotrópicos puede comunicarse a través del correo. <strong>correo@email.com</strong></p>
             </div>
           </div>
 
@@ -517,7 +517,6 @@
     </div>
   </div>
 
-
   <div class="modal fade" id="modalInfoProduct">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -549,26 +548,11 @@
             </div>
 
             <div id="infoProduct" class="row" >
-              <!--
 
-
-                <div class="col-4">
-                  <label>Codigo</label><br>
-                  <span >{{articulo.COD_PRODUCTO}}</span>
-                </div>
-                <div class="col-4">
-                  <label>Existencia</label><br>
-                  <span >{{articulo.existencia}}</span>
-                </div> -->
                 <div class="col-6">
                   <label>Cantidad</label>
                   <input type="number"  min="1" max="{{articulo.existencia}}" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                 </div>
-
-                <!-- <div class="col-12">
-                  <label></label>
-                  <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
-                </div> -->
 
                 <div class="row col-sm-12 col-md-12 col-lg-12">
                   <div class="col-sm-12 col-md-12 col-lg-12 mt-3 ">
@@ -610,9 +594,6 @@
     </div>
   </div>
 
-
-
-
 <div class="modal fade" id="modalConfirm">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -648,7 +629,7 @@
 
       <div class="col-md-12 col-sm-12">
         <br>
-        <h5 class="text-center"> <strong>PEDIDOS </strong> </h5>
+        <h5 class="text-center"> <strong>PEDIDOS {{counter}}</strong> </h5>
         <br>
 
         <header-client></header-client>
@@ -672,7 +653,7 @@
               <!-- <th scope="col"><p class="text-center">Número cia</p></th>
               <th scope="col"><p class="text-center">Grupo</p></th> -->
               <th scope="col"><p class="text-center">Fecha</p></th>
-              <th scope="col"><p class="text-center">Número Cliente</p></th>
+              <th ng-show="!hasUserClient" scope="col"><p class="text-center">Número Cliente</p></th>
               <th scope="col"><p class="text-center">Número Pedido</p></th>
               <th scope="col"><p class="text-center">Estatus</p></th>
               <th scope="col"><p class="text-center">Monto</p></th>
@@ -688,7 +669,7 @@
                   <!-- <td><p class="text-center">{{ x.no_cia }}</p></td>
                   <td><p class="text-center">{{ x.grupo }}</p></td> -->
                   <td><p class="text-center">{{  x.fecha }}</p></td>
-                  <td><p class="text-center">{{ x.no_cliente }}</p></td>
+                  <td ng-show="!hasUserClient" ><p class="text-center">{{ x.no_cliente }}</p></td>
                   <td><p class="text-center">{{ x.no_factu }}</p></td>
                   <td><p class="text-center">{{ x.estatus }}</p></td>
                   <td><p class="text-right">{{ formato(2,x.precio) }}</p></td>
