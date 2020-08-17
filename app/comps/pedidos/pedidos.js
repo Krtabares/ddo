@@ -356,11 +356,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.counter = 0;
         $scope.onTimeout = function(){
-            $scope.counter= $scope.counter + 1000;
 
-            if($scope.counter >= 599999){
+            if($scope.counter > 599999){
               $scope.stop()
             }
+            $scope.counter= $scope.counter + 1000;
 
             $scope.mytimeout = $timeout($scope.onTimeout,1000);
 
@@ -371,6 +371,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.mytimeout = null
 
         $scope.stop = function(){
+          console.log("stop");
             $timeout.cancel($scope.mytimeout);
         }
 

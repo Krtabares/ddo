@@ -7,7 +7,7 @@
     <div class="modal-content">
       <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
         <h5 class="modal-title" id="addPedidoModalLabel">CREAR PEDIDO <i class="fas fa-1x fa-list-alt"></i></h5>
-        <span>{{msToTime(counter)}}</span>
+        <span class="text-right"  >{{msToTime(counter)}}</span>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -25,14 +25,14 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="alert alert-warning alert-dismissible fade show" ng-show="counter >= 300000" role="alert">
+          <div class="alert alert-warning alert-dismissible fade show" ng-show="counter > 300000 && counter < 599999" role="alert">
             <strong>Advertencia!</strong> Dispone de menos de 5 minutos para culminar su pedido
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="alert alert-error alert-dismissible fade show" ng-show="counter >= 599999" role="alert">
-            <strong>INFO!</strong> Su tiempo se agotado
+          <div class="alert alert-danger alert-dismissible fade show" ng-show="counter >= 599999" role="alert">
+            <strong>INFO!</strong> Su tiempo para elaborar el pedido se a agotado
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
