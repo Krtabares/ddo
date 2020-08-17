@@ -7,6 +7,7 @@
     <div class="modal-content">
       <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
         <h5 class="modal-title" id="addPedidoModalLabel">CREAR PEDIDO <i class="fas fa-1x fa-list-alt"></i></h5>
+        <span>{{msToTime(counter)}}</span>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -648,7 +649,7 @@
 
       <div class="col-md-12 col-sm-12">
         <br>
-        <h5 class="text-center"> <strong>{{counter}} PEDIDOS {{msToTime(counter)}}</strong> </h5>
+        <h5 class="text-center"> <strong>PEDIDOS </strong> </h5>
         <br>
 
         <header-client></header-client>
