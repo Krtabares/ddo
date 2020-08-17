@@ -346,7 +346,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
             $scope.ID = response.data.ID
             ngNotify.set('¡Pedido abierto con exito!','success')
-
+            $scope.mytimeout = $timeout($scope.onTimeout,1000);
             // alert("Guardado con exito!")
           }, function errorCallback(response) {
             console.log(response)
@@ -357,12 +357,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.counter = 0;
         $scope.onTimeout = function(){
             $scope.counter= $scope.counter + 1000;
-            mytimeout = $timeout($scope.onTimeout,1000);
+
+            if($scope.counter >= 599999){
+              $scope.stop()
+            }
+
+            $scope.mytimeout = $timeout($scope.onTimeout,1000);
+
+
         }
-        var mytimeout = $timeout($scope.onTimeout,1000);
+
+        // var mytimeout = $timeout($scope.onTimeout,1000);
+        $scope.mytimeout = null
 
         $scope.stop = function(){
-            $timeout.cancel(mytimeout);
+            $timeout.cancel($scope.mytimeout);
         }
 
 
@@ -374,7 +383,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var mins = s % 60;
           var hrs = (s - mins) / 60;
 
-          return hrs + ':' + mins + ':' + secs + '.' + ms;
+          return hrs + ':' + mins + ':' + secs;
         }
 
 
