@@ -346,6 +346,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
             $scope.ID = response.data.ID
             ngNotify.set('¡Pedido abierto con exito!','success')
+            $scope.counter = 0;
             $scope.mytimeout = $timeout($scope.onTimeout,1000);
             // alert("Guardado con exito!")
           }, function errorCallback(response) {
