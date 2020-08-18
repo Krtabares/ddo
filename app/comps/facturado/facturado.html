@@ -2,27 +2,23 @@
 
 </div>
 
+<div id="wrapper" class="active">
+  <my-sidebar></my-sidebar>
+  <div id="page-content-wrapper" class="container-fluid">
 
-<div class="container-fluid">
-  <div class="row" style="min-height:80vh">
 
-    <div class="col-md-1 d-none d-sm-block" style="background:#069CDF">
-      <br>
-      <br>
-      <my-sidebar></my-sidebar>
-    </div>
-    <div class="col-md-11 col-sm-12">
+    <div class="col-md-12 col-sm-12">
       <br>
       <!--<h5 class="text-center"> <strong>SALDO DE CLIENTES</strong> </h5>-->
-	  <h5 class="text-center"> <strong>Pedidos Facturados</strong> </h5>
+    <h5 class="text-center"> <strong>Pedidos Facturados</strong> </h5>
       <br>
 
       <div class="row">
         <div class="col-md-12">
-			<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
-			</table>
+      <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
+      </table>
         </div>
-		<!--<nav aria-label="Page navigation example" style="margin: 0 auto;">
+    <!--<nav aria-label="Page navigation example" style="margin: 0 auto;">
           <ul class="pagination">
             <li class="page-item" ng-click="page('prev')">
               <a class="page-link" href="" aria-label="Previous">
@@ -42,16 +38,15 @@
       </div>
 
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div ng-include="'comps/common/footer.html'">
 
-      </div>
-    </div>
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-12">
+    <div ng-include="'comps/common/footer.html'">
 
-
+    </div>
+  </div>
+</div>
