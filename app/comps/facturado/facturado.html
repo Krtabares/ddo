@@ -17,12 +17,12 @@
         <div class="col-md-12">
       <!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
       </table> -->
-          <table datatable="ng" dt-options="dtOptionsProd" >
+          <table datatable="ng" dt-options="dtOptions" >
             <thead>
                 <tr>
                 <!-- <th scope="col"><p class="text-center">#</p></th> -->
                 <!-- <th scope="col"><p class="text-center">Codigo de Articulo</p></th> -->
-                <th scope="col"><p class="text-center">N Pedido</p></th>
+                <!-- <th scope="col"><p class="text-center">N Pedido</p></th> -->
                 <th scope="col"><p class="text-center">fecha factura</p></th>
                 <th scope="col"><p class="text-center">fecha pedido</p></th>
                 <th scope="col"><p class="text-center">nombre producto</p></th>
@@ -34,7 +34,7 @@
             </thead>
               <tbody ng-repeat="fact in facturas">
                   <tr colspan="8">
-                    <td><p class="text-center">{{ fact }}</p></td>
+                    <td><p class="text-center">N Pedido {{ fact }}</p></td>
                   </tr>
                   <tr ng-repeat="x in facturasList[fact]">
                       <td><p class="text-center">{{ x.fecha_factura }}</p></td>
