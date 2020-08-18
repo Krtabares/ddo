@@ -32,9 +32,11 @@
                 <th scope="col"><p class="text-center">nombre vendedor</p></th>
                 </tr>
             </thead>
+          </table>
+            <table>
               <tbody ng-repeat="fact in facturas">
                   <tr colspan="8">
-                    <td><p class="text-center">N Pedido {{ fact }}</p></td>
+                    <p class="text-center">N Pedido {{ fact }}</p>
                   </tr>
                   <tr ng-repeat="x in facturasList[fact]">
                       <td><p class="text-center">{{ fact }}</p></td>
@@ -48,7 +50,7 @@
                   </tr>
 
               </tbody>
-          </table>
+            </table>
         </div>
     <!--<nav aria-label="Page navigation example" style="margin: 0 auto;">
           <ul class="pagination">
