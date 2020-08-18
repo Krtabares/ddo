@@ -729,8 +729,8 @@ def agrupar_facturas(arreglo):
             print(list)
 
             if not row["nro_pedido"] in list :
-                list[row["nro_pedido"]]=[]
-            list[row["nro_pedido"]].append(row)
+                list[int(row["nro_pedido"])]=[]
+            list[int(row["nro_pedido"])].append(row)
 
             print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
         return list
