@@ -36,15 +36,16 @@
                   <!-- <tr colspan="8">
                     <td><p class="text-center">N Pedido {{ fact }}</p></td>
                   </tr> -->
-                  <tr ng-repeat="x in facturasList[fact][0]">
+                  <!-- <tr ng-repeat="x in facturasList[fact][0]"> -->
+                    <tr >
                       <td><p class="text-center">{{ fact }}</p></td>
-                      <td><p class="text-center">{{ x.fecha_factura }}</p></td>
-                      <td><p class="text-center">{{ x.fecha_pedido }}</p></td>
-                      <td><p class="text-center">{{ x.nombre_arti }}</p></td>
-                      <td><p class="text-center">{{ x.total_producto }}</p></td>
-                      <td><p class="text-center">{{ x.unidades_facturadas }}</p></td>
-                      <td><p class="text-center">{{ x.unidades_pedido }}</p></td>
-                      <td><p class="text-center">{{ x.nombre_vendedor }}</p></td>
+                      <td><p class="text-center">{{ facturasList[fact][0].fecha_factura }}</p></td>
+                      <td><p class="text-center">{{ facturasList[fact][0].fecha_pedido }}</p></td>
+                      <td><p class="text-center">{{ facturasList[fact][0].nombre_arti }}</p></td>
+                      <td><p class="text-center">{{ facturasList[fact][0].total_producto }}</p></td>
+                      <td><p class="text-center">{{ facturasList[fact][0].unidades_facturadas }}</p></td>
+                      <td><p class="text-center">{{ facturasList[fact][0].unidades_pedido }}</p></td>
+                      <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td>
                   </tr>
 
               </tbody>
