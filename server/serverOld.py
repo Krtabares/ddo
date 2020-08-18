@@ -723,7 +723,7 @@ async def procedure(request):
 
 def agrupar_facturas(arreglo):
 
-        list = []
+        list = {}
         for row in arreglo:
             print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
             print(list)
