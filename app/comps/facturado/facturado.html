@@ -17,12 +17,12 @@
         <div class="col-md-12">
       <!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
       </table> -->
-          <table >
+          <table datatable="ng" dt-options="dtOptions" >
             <thead>
                 <tr>
                 <!-- <th scope="col"><p class="text-center">#</p></th> -->
                 <!-- <th scope="col"><p class="text-center">Codigo de Articulo</p></th> -->
-                <!-- <th scope="col"><p class="text-center">N Pedido</p></th> -->
+                <th scope="col"><p class="text-center">N Pedido</p></th>
                 <th scope="col"><p class="text-center">fecha factura</p></th>
                 <th scope="col"><p class="text-center">fecha pedido</p></th>
                 <th scope="col"><p class="text-center">nombre producto</p></th>
@@ -32,13 +32,11 @@
                 <th scope="col"><p class="text-center">nombre vendedor</p></th>
                 </tr>
             </thead>
-          </table>
-            <table>
               <tbody ng-repeat="fact in facturas">
-                  <tr colspan="8">
-                    <p class="text-center">N Pedido {{ fact }}</p>
-                  </tr>
-                  <tr ng-repeat="x in facturasList[fact]">
+                  <!-- <tr colspan="8">
+                    <td><p class="text-center">N Pedido {{ fact }}</p></td>
+                  </tr> -->
+                  <tr ng-repeat="x in facturasList[fact][0]">
                       <td><p class="text-center">{{ fact }}</p></td>
                       <td><p class="text-center">{{ x.fecha_factura }}</p></td>
                       <td><p class="text-center">{{ x.fecha_pedido }}</p></td>
@@ -50,7 +48,7 @@
                   </tr>
 
               </tbody>
-            </table>
+          </table>
         </div>
     <!--<nav aria-label="Page navigation example" style="margin: 0 auto;">
           <ul class="pagination">
