@@ -2,7 +2,7 @@
 
 angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables.bootstrap','ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
   .config(['$routeProvider', function($routeProvider) {
-  
+
     $routeProvider.when('/facturado', {
       templateUrl: 'comps/facturado/facturado.html',
       controller: 'facturadoCtrl'
@@ -10,14 +10,14 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
   }])
   .controller('facturadoCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
-        //init   
+        //init
         var ip = "http://192.168.168.170:3500";
         $scope.hasClient = false;
       $scope.client = {};
         verificClient()
 
         function verificClient(){
-          
+
          var client = localStorage.getItem('client')
          console.log(client)
           if ( client=='{}' ){
@@ -25,7 +25,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
          }else{
            $scope.hasClient = true;
            $scope.client = JSON.parse(client);
-         } 
+         }
          console.log($scope.client)
        }
 
@@ -53,9 +53,13 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
           $scope.dtColumns = [
             DTColumnBuilder.newColumn('nro_pedido').withTitle('N Pedido'),
-            DTColumnBuilder.newColumn('total_productos').withTitle('Total de Productos'),
+            DTColumnBuilder.newColumn('fecha_factura').withTitle('fecha factura'),
+            DTColumnBuilder.newColumn('fecha_pedido').withTitle('fecha pedido'),
+            DTColumnBuilder.newColumn('nombre_arti').withTitle('nombre producto'),
+            DTColumnBuilder.newColumn('total_producto').withTitle('Total de Productos'),
             DTColumnBuilder.newColumn('unidades_facturadas').withTitle('Unidades Facturadas'),
 			      DTColumnBuilder.newColumn('unidades_pedido').withTitle('unidades de pedido'),
+            DTColumnBuilder.newColumn('nombre_vendedor').withTitle('nombre vendedor'),
 
         ];
 
