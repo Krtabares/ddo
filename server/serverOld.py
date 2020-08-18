@@ -721,7 +721,7 @@ async def procedure(request):
         list.append(obj)
     return response.json({ "msg":"OK", "obj": list }, 200)
 
-async def agrupar_facturas(arreglo):
+def agrupar_facturas(arreglo):
 
         list = []
         for row in arreglo:
