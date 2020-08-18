@@ -27,6 +27,22 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
            $scope.client = JSON.parse(client);
          }
          console.log($scope.client)
+         facturacion()
+       }
+       $scope.facturas = []
+       $scope.facturasList = []
+       function facturacion() {
+         var body = {}
+         body.pNoCia = $scope.client.COD_CIA
+         body.pNoGrupo = $scope.client.GRUPO_CLIENTE
+         body.pCliente = $scope.client.COD_CLIENTE
+          request.post(ip+'/procedure_facturacion', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+           .then(function successCallback(response) {
+             console.log(response.data)
+             $scope.facturas = Object.keys(response.data.obj)
+             $scope.facturasList= response.data.obj
+
+          });
        }
 
 

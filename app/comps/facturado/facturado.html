@@ -15,8 +15,39 @@
 
       <div class="row">
         <div class="col-md-12">
-      <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
-      </table>
+      <!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
+      </table> -->
+          <table>
+            <thead>
+                <tr>
+                <!-- <th scope="col"><p class="text-center">#</p></th> -->
+                <!-- <th scope="col"><p class="text-center">Codigo de Articulo</p></th> -->
+                <th scope="col"><p class="text-center">N Pedido</p></th>
+                <th scope="col"><p class="text-center">fecha factura</p></th>
+                <th scope="col"><p class="text-center">fecha pedido</p></th>
+                <th scope="col"><p class="text-center">nombre producto</p></th>
+                <th scope="col"><p class="text-center">Total de Productos</p></th>
+                <th scope="col"><p class="text-center">Unidades Facturadas</p></th>
+                <th scope="col"><p class="text-center">unidades de pedido</p></th>
+                <th scope="col"><p class="text-center">nombre vendedor</p></th>
+                </tr>
+            </thead>
+              <tbody ng-repeat="fact in facturas">
+                  <tr colspan="8">
+                    <td><p class="text-center">{{ fact }}</p></td>
+                  </tr>
+                  <tr ng-repeat="x in facturasList[fact]">
+                      <td><p class="text-center">{{ x.fecha_factura }}</p></td>
+                      <td><p class="text-center">{{ x.fecha_pedido }}</p></td>
+                      <td><p class="text-center">{{ x.nombre_arti }}</p></td>
+                      <td><p class="text-center">{{ x.total_producto }}</p></td>
+                      <td><p class="text-center">{{ x.unidades_facturadas }}</p></td>
+                      <td><p class="text-center">{{ x.unidades_pedido }}</p></td>
+                      <td><p class="text-center">{{ x.nombre_vendedor }}</p></td>
+                  </tr>
+
+              </tbody>
+          </table>
         </div>
     <!--<nav aria-label="Page navigation example" style="margin: 0 auto;">
           <ul class="pagination">
