@@ -547,165 +547,6 @@ async def procedure(request , token : Token):
         list.append(obj)
     return response.json({"msj":"OK", "obj": list}, 200)
 
-@app.route('/procedure_productosOLD', ["POST", "GET"])
-async def procedureOLD(request):
-
-    data = request.json
-
-    print(data)
-
-    if not 'pTotReg' in data or data['pTotReg'] == 0 :
-        data['pTotReg'] = 100
-
-    if not 'pTotPaginas' in data or data['pTotPaginas'] == 0 :
-        data['pTotPaginas'] = 100
-
-    if not 'pPagina' in data or data['pPagina'] == 0 :
-        data['pPagina'] = 1
-
-    if not 'pLineas' in data or data['pLineas'] == 0 :
-        data['pLineas'] = 100
-
-    if not 'pNoCia' in data :
-        data['pNoCia'] = '01'
-    else:
-        data['pNoCia'] = "'"+data['pNoCia']+"'"
-
-    if not 'pNoGrupo' in data :
-        data['pNoGrupo'] = '01'
-    else:
-        data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
-
-    if not 'pCliente' in data :
-        data['pCliente'] = 'null'
-    else:
-        data['pCliente'] = "'"+data['pCliente']+"'"
-
-    if not 'pMoneda' in data :
-        data['pMoneda'] = '\'P\''
-    else:
-        data['pMoneda'] = "'"+data['pMoneda']+"'"
-
-    if not 'pBusqueda' in data :
-        data['pBusqueda'] = 'null'
-    else:
-        data['pBusqueda'] = "'"+data['pBusqueda']+"'"
-
-    if not 'pComponente' in data :
-        data['pComponente'] = 'null'
-    else:
-        data['pComponente'] = "'"+data['pComponente']+"'"
-    print(data)
-    db = get_db()
-    c = db.cursor()
-    c.callproc("dbms_output.enable")
-    c.execute("""
-
-            DECLARE
-            l_cursor  SYS_REFCURSOR;
-            pTotReg number DEFAULT 100;
-            pTotPaginas number DEFAULT 100;
-            pPagina number DEFAULT 1;
-            pLineas number DEFAULT 100;
-            pNoCia varchar2(10) DEFAULT '01';
-            pNoGrupo varchar2(10) DEFAULT '01';
-            pCliente varchar2(50) DEFAULT null;
-            pBusqueda varchar2(50) DEFAULT null;
-            pComponente varchar2(50) DEFAULT null;
-
-            output number DEFAULT 1000000;
-                V_BODEGA                       varchar2(02);
-                V_NOMBRE_BODEGA                varchar2(100);
-                V_COD_PRODUCTO                 varchar2(15);
-                V_NOMBRE_PRODUCTO              varchar2(250);
-                V_PRINC_ACTIVO                 varchar2(300);
-                V_EXISTENCIA                   number;
-                V_EXISTENCIA1                  number;
-                V_PRECIO                       number;
-                v_tot                          number;
-                V_PAGINA                       number;
-                V_LINEA                        number;
-
-            BEGIN
-
-                                pTotReg  := {pTotReg};
-                                pTotPaginas  := {pTotPaginas};
-                                pPagina  := {pPagina};
-                                pLineas  := {pLineas};
-                                pNoCia := {pNoCia};
-                                pNoGrupo := {pNoGrupo};
-                                pCliente := {pCliente};
-                                pMoneda := {pMoneda};
-                                pBusqueda := {pBusqueda};
-                                pComponente := {pComponente};
-
-                dbms_output.enable(output);
-
-                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pMoneda,pBusqueda,pComponente);
-
-            LOOP
-                FETCH l_cursor into
-                V_BODEGA,
-                V_NOMBRE_BODEGA,
-                V_COD_PRODUCTO,
-                V_NOMBRE_PRODUCTO,
-                V_PRINC_ACTIVO,
-                V_EXISTENCIA,
-                V_PRECIO,
-                V_PAGINA,
-                V_LINEA;
-                EXIT WHEN l_cursor%NOTFOUND;
-                dbms_output.put_line
-                (
-                    V_BODEGA|| '|'||
-                    V_NOMBRE_BODEGA|| '|'||
-                    V_COD_PRODUCTO|| '|'||
-                    V_NOMBRE_PRODUCTO|| '|'||
-                    V_PRINC_ACTIVO|| '|'||
-                    V_EXISTENCIA|| '|'||
-                    V_PRECIO|| '|'||
-                    V_PAGINA|| '|'||
-                    V_LINEA
-                );
-            END LOOP;
-            CLOSE l_cursor;
-
-            END;
-
-                """.format(
-                        pTotReg = data['pTotReg'],
-                        pTotPaginas = data['pTotPaginas'],
-                        pPagina = data['pPagina'],
-                        pLineas = data['pLineas'],
-                        pNoCia = data['pNoCia'],
-                        pNoGrupo = data['pNoGrupo'],
-                        pCliente = data['pCliente'],
-                        pMoneda = data['pMoneda'],
-                        pBusqueda = data['pBusqueda'],
-                        pComponente = data['pComponente'],
-                    ))
-    textVar = c.var(str)
-    statusVar = c.var(int)
-    list = []
-    while True:
-        c.callproc("dbms_output.get_line", (textVar, statusVar))
-        if statusVar.getvalue() != 0:
-            break
-        arr = str(textVar.getvalue()).split("|")
-        obj = {
-            'bodega': arr[0],
-            'nombre_bodega': arr[1],
-            'cod_producto': arr[2],
-            'nombre_producto': arr[3],
-            'princ_activo': arr[4],
-            'existencia': arr[5],
-            'precio': arr[6],
-            'pagina': arr[7],
-            'linea': arr[8]
-        }
-        list.append(obj)
-    return response.json({ "msg":"OK", "obj": list }, 200)
-
 @app.route('/procedure_productos', ["POST", "GET"])
 async def procedure(request):
 
@@ -880,6 +721,19 @@ async def procedure(request):
         list.append(obj)
     return response.json({ "msg":"OK", "obj": list }, 200)
 
+async def agrupar_facturas(arreglo):
+
+        list = []
+        for row in arreglo:
+            print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+            print(list)
+
+            if not row["nro_pedido"] in list :
+                list[row["nro_pedido"]]=[]
+            list[row["nro_pedido"]].append(row)
+
+            print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        return list
 @app.route('/procedure_facturacion', ["POST", "GET"])
 async def procedure(request):
 
@@ -1149,7 +1003,8 @@ async def procedure(request):
                 'linea': arr[17]
             }
         list.append(obj)
-    return response.json({"msj": "OK", "obj": list}, 200)
+
+    return response.json({"msj": "OK", "obj": agrupar_facturas(list)}, 200)
 
 @app.route('/get/clientes', ["POST", "GET"])
 @jwt_required
@@ -1349,7 +1204,7 @@ async def crear_pedido(request):
                         data['FECHA'],
                         data['NO_PEDIDO_CODISA'],
                         data['OBSERVACIONES'],
-                        data['ESTATUS']
+                        0
                     ]
                 )
         statusVar = c.var(cx_Oracle.NUMBER)
