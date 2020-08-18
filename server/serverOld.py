@@ -928,101 +928,184 @@ async def procedure(request):
     db = get_db()
     c = db.cursor()
     c.callproc("dbms_output.enable")
-    c.execute("""
-
-                     DECLARE
-                                        l_cursor  SYS_REFCURSOR;
-                                        pTotReg number DEFAULT 100;
-                                        pTotPaginas number DEFAULT 100;
-                                        pPagina number DEFAULT 1;
-                                        pLineas number DEFAULT 100;
-                                        pDeuda number DEFAULT 1363653;
-                                        pCliente varchar2(50) DEFAULT null;
-                                        pNombre varchar2(50) DEFAULT null;
-                                        output number DEFAULT 1000000;
-                                        pFechaFactura date;
-                                        pFechaPedido date;
-                                        v_id_deuda varchar2(50);
-                                        v_fecha_factura date;
-                                        v_nro_pedido varchar2(50);
-                                        v_fecha_pedido date;
-                                        v_cod_vendedor varchar2(50);
-                                        v_nombre_vendedor varchar2(150);
-                                        v_email_vendedor varchar2(90);
-                                        v_no_linea number;
-                                        v_no_arti varchar2(50);
-                                        v_nombre_arti varchar2(150);
-                                        v_unidades_pedido number;
-                                        v_unidades_facturadas number;
-                                        v_total_producto number;
-                                        v_tot number;
-                                        v_codigo_compani varchar(10);
-                                        v_grupo varchar(10);
-                                        v_pagina number;
-                                        v_linea number;
-
-                            BEGIN
-
-                                pTotReg  := {pTotReg};
-                                pTotPaginas  := {pTotPaginas};
-                                pPagina  := {pPagina};
-                                pLineas  := {pLineas};
-                                pDeuda := {pDeuda};
-                                pCliente := {pCliente};
-                                pNombre := {pNombre};
-                                pFechaFactura := {pFechaFactura};
-                                pFechaPedido := {pFechaPedido};
+    c.execute("""DECLARE
 
 
-                                dbms_output.enable(output);
 
-                                PROCESOSPW.pedidos_facturados (l_cursor, pTotReg, pTotPaginas, pPagina , pLineas,pDeuda, pCliente, pNombre, pFechaFactura, pFechaPedido);
+      l_cursor  SYS_REFCURSOR;
 
-                            LOOP
-                                FETCH l_cursor into
-                                        v_id_deuda,
-                                        v_fecha_factura,
-                                        v_nro_pedido,
-                                        v_fecha_pedido,
-                                        v_cod_vendedor,
-                                        v_nombre_vendedor,
-                                        v_email_vendedor,
-                                        v_no_linea,
-                                        v_no_arti,
-                                        v_nombre_arti,
-                                        v_unidades_pedido,
-                                        v_unidades_facturadas,
-                                        v_total_producto,
-                                        v_tot,
-                                        v_codigo_compani,
-                                        v_grupo,
-                                        v_pagina,
-                                        v_linea;
-                                        EXIT WHEN l_cursor%NOTFOUND;
-                                dbms_output.put_line
-                                (
-                                        v_id_deuda|| '|'||
-                                        v_fecha_factura|| '|'||
-                                        v_nro_pedido|| '|'||
-                                        v_fecha_pedido|| '|'||
-                                        v_cod_vendedor|| '|'||
-                                        v_nombre_vendedor|| '|'||
-                                        v_email_vendedor|| '|'||
-                                        v_no_linea|| '|'||
-                                        v_no_arti|| '|'||
-                                        v_nombre_arti|| '|'||
-                                        v_unidades_pedido|| '|'||
-                                        v_unidades_facturadas|| '|'||
-                                        v_total_producto|| '|'||
-                                        v_codigo_compani|| '|'||
-                                        v_grupo|| '|'||
-                                        v_pagina|| '|'||
-                                        v_linea
-                                );
-                            END LOOP;
-                            CLOSE l_cursor;
+                pTotReg number DEFAULT 100;
+                pTotPaginas number DEFAULT 100;
+                pPagina number DEFAULT 1;
+                pLineas number DEFAULT 100;
+                pDeuda number DEFAULT null;
+                pCliente varchar2(50) DEFAULT null;
+                pPedido varchar2(50) DEFAULT null;
+                output number DEFAULT 1000000;
+                pFechaFactura date;
+                pFechaPedido date;
 
-                            END;
+                v_id_deuda varchar2(50);
+
+                v_fecha_factura date;
+
+                v_nro_pedido varchar2(50);
+
+                v_fecha_pedido date;
+
+                v_cod_cliente varchar2(50);
+
+                v_cod_vendedor varchar2(50);
+
+                v_nombre_vendedor varchar2(150);
+
+                v_email_vendedor varchar2(90);
+
+                v_no_linea number;
+
+                v_no_arti varchar2(50);
+
+                v_nombre_arti varchar2(150);
+
+                v_unidades_pedido number;
+
+                v_unidades_facturadas number;
+
+                v_total_producto number;
+
+                v_cia        varchar2(2);
+
+                v_grupo      varchar2(2);
+
+                v_pag        number;
+
+                v_lin        number;
+
+                v_totreg     number;
+
+                v_totpag     number;
+
+                v_tot number:=0;
+
+
+
+
+
+    BEGIN
+
+              pTotReg  := {pTotReg};
+              pTotPaginas  := {pTotPaginas};
+              pPagina  := {pPagina};
+              pLineas  := {pLineas};
+              pDeuda := {pDeuda};
+              pCliente := {pCliente};
+              pFechaFactura := {pFechaFactura};
+              pFechaPedido := {pFechaPedido};
+
+
+
+         procesospw.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda, pPedido,pCliente,pFechaFactura,pFechaPedido);
+
+
+
+
+
+      LOOP
+
+        FETCH l_cursor into
+
+                v_id_deuda,
+
+                v_fecha_factura,
+
+                v_nro_pedido,
+
+                v_fecha_pedido,
+
+                v_cod_cliente,
+
+                v_cod_vendedor,
+
+                v_nombre_vendedor,
+
+                v_email_vendedor,
+
+                v_no_linea,
+
+                v_no_arti,
+
+                v_nombre_arti,
+
+                v_unidades_pedido,
+
+                v_unidades_facturadas,
+
+                v_total_producto,
+
+                v_cia,
+
+                v_grupo,
+
+                v_pag,
+
+                v_lin;
+
+        EXIT WHEN l_cursor%NOTFOUND;
+
+        dbms_output.put_line
+
+          (
+
+                v_id_deuda|| '|'||
+
+                v_fecha_factura|| '|'||
+
+                v_nro_pedido|| '|'||
+
+                v_fecha_pedido|| '|'||
+
+                v_cod_cliente || '|'||
+
+                v_cod_vendedor|| '|'||
+
+                v_nombre_vendedor|| '|'||
+
+                v_email_vendedor|| '|'||
+
+                v_no_linea|| '|'||
+
+                v_no_arti|| '|'||
+
+                v_nombre_arti|| '|'||
+
+                v_unidades_pedido|| '|'||
+
+                v_unidades_facturadas|| '|'||
+
+                v_total_producto || '|'||
+
+                v_cia || '|'||
+
+                v_grupo || '|'||
+
+                v_pag|| '|'||
+
+                v_lin
+
+          );
+
+
+
+      END LOOP;
+
+         --v_tot:=l_cursor%rowcount;
+
+         --dbms_output.put_line(v_tot || '|'|| v_totreg || '|'|| v_totpag );
+
+      CLOSE l_cursor;
+
+
+    END;
                 """.format(
                         pTotReg = data['pTotReg'],
                         pTotPaginas = data['pTotPaginas'],
@@ -1046,23 +1129,24 @@ async def procedure(request):
             break
         arr = str(textVar.getvalue()).split("|")
         obj = {
-            'id_deuda': arr[0],
-            'fecha_factura': arr[1],
-            'nro_pedido': arr[2],
-            'fecha_pedido': arr[3],
-            'cod_vendedor': arr[4],
-            'nombre_vendedor': arr[5],
-            'email_vendedor': arr[6],
-            'no_linea': arr[7],
-            'no_arti': arr[8],
-            'nombre_arti': arr[9],
-            'unidades_pedido': arr[10],
-            'unidades_facturadas': arr[11],
-            'total_producto': arr[12],
-            'codigo_compani': arr[13],
-            'grupo': arr[14],
-            'pagina': arr[15],
-            'linea': arr[16]
+                'id_deuda': arr[0],
+                'fecha_factura': arr[1],
+                'nro_pedido': arr[2],
+                'fecha_pedido': arr[3],
+                'cod_cliente': arr[4],
+                'cod_vendedor': arr[5],
+                'nombre_vendedor': arr[6],
+                'email_vendedor': arr[7],
+                'no_linea': arr[8],
+                'no_arti': arr[9],
+                'nombre_arti': arr[10],
+                'unidades_pedido': arr[11],
+                'unidades_facturadas': arr[12],
+                'total_producto': arr[13],
+                'codigo_compani': arr[14],
+                'grupo': arr[15],
+                'pagina': arr[16],
+                'linea': arr[17]
             }
         list.append(obj)
     return response.json({"msj": "OK", "obj": list}, 200)
@@ -1250,9 +1334,9 @@ async def crear_pedido(request):
                 begin
 
                     INSERT INTO PEDIDO ( COD_CIA, GRUPO_CLIENTE,
-                                            COD_CLIENTE, FECHA, NO_PEDIDO_CODISA,
+                                            COD_CLIENTE,  NO_PEDIDO_CODISA,
                                             OBSERVACIONES, ESTATUS) VALUES
-                            (  :COD_CIA, :GRUPO_CLIENTE, :COD_CLIENTE, :FECHA, :NO_PEDIDO_CODISA, :OBSERVACIONES, :ESTATUS  )
+                            (  :COD_CIA, :GRUPO_CLIENTE, :COD_CLIENTE, :NO_PEDIDO_CODISA, :OBSERVACIONES, :ESTATUS  )
                              returning ID into s2;
                     dbms_output.put_line(s2);
                 end;
@@ -1291,7 +1375,7 @@ async def crear_detalle_pedido(detalle, ID):
         db = get_db()
         c = db.cursor()
 
-        sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO)
+        sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO_BRUTO)
                         VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
 
         c.execute(sql.format(
@@ -1303,6 +1387,8 @@ async def crear_detalle_pedido(detalle, ID):
 
         db.commit()
 
+        await upd_estatus_pedido(1,int(ID))
+
         return {
                     'COD_PRODUCTO':detalle['COD_PRODUCTO'],
                     'iva_bs':detalle['iva_bs'],
@@ -1310,6 +1396,30 @@ async def crear_detalle_pedido(detalle, ID):
                     'precio_usd':detalle['precio_usd'],
                     'nombre_producto':detalle['nombre_producto']
                 }
+
+async def upd_estatus_pedido(estatus, ID):
+
+        db = get_db()
+        c = db.cursor()
+
+        sql = """
+                    UPDATE PAGINAWEB.PEDIDO
+                    SET
+                        ESTATUS          = :ESTATUS
+                    WHERE  ID               = :ID
+
+            """
+
+        c.execute(sql, [
+                        estatus,
+                        ID
+                    ]
+                )
+
+        db.commit()
+
+        return
+
 
 @app.route('/add/pedido',["POST","GET"])
 @jwt_required
@@ -1525,7 +1635,7 @@ async def pedidos (request , token: Token):
         c.execute("""SELECT
 
                              COD_CIA, GRUPO_CLIENTE,
-                            COD_CLIENTE, TO_CHAR(FECHA, 'DD-MM-YYYY'), NO_PEDIDO_CODISA,
+                            COD_CLIENTE, TO_CHAR(FECHA_CARGA, 'DD-MM-YYYY'), NO_PEDIDO_CODISA,
                             OBSERVACIONES,  t2.descripcion, (sum(t3.precio * t3.CANTIDAD ))
                                 monto, count(t3.COD_PRODUCTO) producto,ID, t1.ESTATUS
                             FROM PAGINAWEB.PEDIDO t1
@@ -1535,7 +1645,7 @@ async def pedidos (request , token: Token):
                                 on t1.ID = t3.ID_PEDIDO
                             {filter} WHERE COD_CLIENTE = {pCliente}
                              GROUP BY ID, COD_CIA, GRUPO_CLIENTE,
-                                   COD_CLIENTE, FECHA, NO_PEDIDO_CODISA,
+                                   COD_CLIENTE, FECHA_CARGA, NO_PEDIDO_CODISA,
                                    OBSERVACIONES,  t2.descripcion,  t1.ESTATUS
                                  order by ID desc
                             """.format(filter = data['filter'], pCliente = data['pCliente'] ))
