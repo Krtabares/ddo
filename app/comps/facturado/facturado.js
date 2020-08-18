@@ -69,7 +69,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
           $scope.dtOptions = DTOptionsBuilder.newOptions()
               .withPaginationType('full_numbers')
-              .withOption('responsive', true)
+              .withOption('rowGroup': {'dataSrc': [  1 ]})
               .withDOM('frtip').withPaginationType('full_numbers')
 
           $scope.dtColumns = [

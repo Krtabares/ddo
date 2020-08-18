@@ -37,6 +37,7 @@
                     <td><p class="text-center">N Pedido {{ fact }}</p></td>
                   </tr>
                   <tr ng-repeat="x in facturasList[fact]">
+                      <td><p class="text-center">{{ fact }}</p></td>
                       <td><p class="text-center">{{ x.fecha_factura }}</p></td>
                       <td><p class="text-center">{{ x.fecha_pedido }}</p></td>
                       <td><p class="text-center">{{ x.nombre_arti }}</p></td>
