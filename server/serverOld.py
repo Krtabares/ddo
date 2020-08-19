@@ -1387,6 +1387,8 @@ async def add_detalle_producto (request, token: Token):
         row = await crear_detalle_pedido(data['pedido'], data['ID'])
 
         valid = await valida_art("01", data['pedido']['COD_PRODUCTO'])
+        print("=====================================================================")
+        print(valid)
 
         msg = 0
 
