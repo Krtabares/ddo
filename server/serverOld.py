@@ -1298,7 +1298,7 @@ async def valida_art(cia, arti):
                         arti
                     ])
         row = c.fetchone()
-        return row
+        return row[0]
     except Exception as e:
         logger.debug(e)
 
@@ -1392,7 +1392,7 @@ async def add_detalle_producto (request, token: Token):
 
         msg = 0
 
-        if data['pedido']['CANTIDAD'] < vaild[0]:
+        if data['pedido']['CANTIDAD'] < valid:
             msg = 1
 
         mongodb = get_mongo_db()
