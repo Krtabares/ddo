@@ -1565,7 +1565,7 @@ async def pedido (request , token: Token):
 
         c.execute("""SELECT
                          COD_PRODUCTO, CANTIDAD,
-                        PRECIO
+                        PRECIO_BRUTO, TIPO_CAMBIO, BODEGA
                         FROM PAGINAWEB.DETALLE_PEDIDO WHERE ID_PEDIDO = {idPedido} """.format( idPedido = data['idPedido'] ))
 
         pedidos = []
@@ -1575,6 +1575,8 @@ async def pedido (request , token: Token):
                     'COD_PRODUCTO':row[0],
                     'CANTIDAD':row[1],
                     'PRECIO':row[2],
+                    'TIPO_CAMBIO':row[3],
+                    'BODEGA':row[4],
 
               }
             pedidos.append(aux)
@@ -1582,7 +1584,7 @@ async def pedido (request , token: Token):
         c.execute("""
                               SELECT
                                  COD_CIA, GRUPO_CLIENTE,
-                                COD_CLIENTE, TO_CHAR(FECHA, 'DD-MM-YYYY'), NO_PEDIDO_CODISA,
+                                COD_CLIENTE, TO_CHAR(FECHA_CARGA, 'DD-MM-YYYY'), NO_PEDIDO_CODISA,
                                 OBSERVACIONES, t2.descripcion, ESTATUS
                                 FROM PAGINAWEB.PEDIDO t1
                                 join PAGINAWEB.ESTATUS t2
