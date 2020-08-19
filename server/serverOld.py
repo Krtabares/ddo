@@ -1385,11 +1385,14 @@ async def add_detalle_producto (request, token: Token):
 # async def procedure(request):
     try:
         data = request.json
-
+        print("=====================================================================")
+        print("crea detalle")
         row = await crear_detalle_pedido(data['pedido'], data['ID'])
-
+        print("=====================================================================")
+        print("valida product")
         valid = await valida_art("01", data['pedido']['COD_PRODUCTO'])
-
+        print("=====================================================================")
+        print("monog")
         mongodb = get_mongo_db()
         await mongodb.order.update({'id_pedido':int(data['ID'])},{"$addToSet":{"productos":row }}, True, True)
 
