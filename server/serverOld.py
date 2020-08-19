@@ -1315,7 +1315,7 @@ async def valida_articulo(request, token : Token):
         if not 'pArti' in data :
             data['pArti'] = 'null'
 
-        row = valida_art(data['pNoCia'], data['pArti'])
+        row = await valida_art(data['pNoCia'], data['pArti'])
 
         print(row)
 
