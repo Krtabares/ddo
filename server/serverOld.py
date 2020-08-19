@@ -1294,8 +1294,8 @@ async def valida_art(cia, arti):
         sql = """select procesospw.existencia_disponible(:pNoCia,:pArti)
                         from dual"""
         c.execute(sql, [
-                        data['pNoCia'],
-                        data['pArti']
+                        cia,
+                        arti
                     ])
         row = c.fetchone()
         return row
