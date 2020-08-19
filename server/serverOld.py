@@ -726,7 +726,7 @@ async def procedure(request):
             'iva_usd' : arr[12],
             'tipo_cambio' : arr[13],
             'proveedor' :arr[14],
-            'v_bodega' :arr[15],
+            'bodega' :arr[15],
             'pagina': arr[16],
             'linea': arr[17]
         }
@@ -1242,14 +1242,17 @@ async def crear_detalle_pedido(detalle, ID):
         db = get_db()
         c = db.cursor()
 
-        sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO_BRUTO)
-                        VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
+        sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO_BRUTO, TIPO_CAMBIO, BODEGA)
+                        VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, {BODEGA} )"""
 
         c.execute(sql.format(
-             ID_PEDIDO = int(ID),
-             COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
-             CANTIDAD = int(detalle['CANTIDAD']),
-             PRECIO = float(str(detalle['PRECIO']).replace(',','.'))
+                     ID_PEDIDO = int(ID),
+                     COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
+                     CANTIDAD = int(detalle['CANTIDAD']),
+                     PRECIO = float(str(detalle['PRECIO']).replace(',','.')),
+                     CANTIDAD = int(detalle['CANTIDAD']),
+                     TIPO_CAMBIO = detalle['tipo_cambio'],
+                     BODEGA = detalle['bodega']
                 ))
 
         db.commit()
@@ -1387,6 +1390,10 @@ async def add_detalle_producto (request, token: Token):
         row = await crear_detalle_pedido(data['pedido'], data['ID'])
 
         valid = await valida_art("01", data['pedido']['COD_PRODUCTO'])
+
+        mongodb = get_mongo_db()
+        await mongodb.order.update({'id_pedido':int(data['ID'])},{"$addToSet":{"productos":row }}, True, True)
+
         print("=====================================================================")
         print(valid)
 
@@ -1395,9 +1402,9 @@ async def add_detalle_producto (request, token: Token):
         if data['pedido']['CANTIDAD'] > valid:
             msg = 1
 
-        mongodb = get_mongo_db()
 
-        await mongodb.order.update({'id_pedido':int(data['ID'])},{"$addToSet":{"productos":row }}, True, True)
+
+
 
         return response.json({"msg": msg },200)
     except Exception as e:
@@ -1419,6 +1426,7 @@ async def del_detalle_producto (request, token: Token):
                 data['id_pedido'],
                 data['COD_PRODUCTO']
             ])
+        db.commit()
 
         mongodb = get_mongo_db()
 
