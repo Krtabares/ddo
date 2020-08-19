@@ -618,10 +618,12 @@ async def procedure(request):
                 v_ind_psicotropico varchar2(100);
                 v_fecha_vence varchar2(100);
                 v_existencia number;
-                v_precio_bs number;
+                v_precio_bruto_bs number;
+                v_precio_neto_bs number;
                 v_iva_bs number;
                 v_precio_usd number;
                 v_iva_usd number;
+                v_tipo_cambio number;
                 v_proveedor varchar2(100);
                 V_PAGINA number;
                 V_LINEA number;
@@ -651,10 +653,12 @@ async def procedure(request):
                 v_ind_psicotropico,
                 v_fecha_vence,
                 v_existencia,
-                v_precio_bs,
+                v_precio_bruto_bs,
+                v_precio_neto_bs,
                 v_iva_bs,
                 v_precio_usd,
                 v_iva_usd,
+                v_tipo_cambio,
                 v_proveedor,
                 V_PAGINA,
                 V_LINEA;
@@ -669,10 +673,12 @@ async def procedure(request):
                     v_ind_psicotropico|| '|'||
                     v_fecha_vence|| '|'||
                     v_existencia|| '|'||
-                    v_precio_bs|| '|'||
+                    v_precio_bruto_bs|| '|'||
+                    v_precio_neto_bs|| '|'||
                     v_iva_bs|| '|'||
                     v_precio_usd|| '|'||
                     v_iva_usd|| '|'||
+                    v_tipo_cambio|| '|'||
                     v_proveedor|| '|'||
                     V_PAGINA|| '|'||
                     V_LINEA
@@ -710,13 +716,15 @@ async def procedure(request):
             'ind_psicotropico' : arr[5],
             'fecha_vence' : arr[6],
             'existencia' : arr[7],
-            'precio_bs' : arr[8],
-            'iva_bs' : arr[9],
-            'precio_usd' : arr[10],
-            'iva_usd' : arr[11],
-            'proveedor' :arr[12],
-            'pagina': arr[13],
-            'linea': arr[14]
+            'precio_bruto_bs' : arr[8],
+            'precio_neto_bs' : arr[9],
+            'iva_bs' : arr[10],
+            'precio_usd' : arr[11],
+            'iva_usd' : arr[12],
+            'tipo_cambio' : arr[13],
+            'proveedor' :arr[14],
+            'pagina': arr[15],
+            'linea': arr[15]
         }
         list.append(obj)
     return response.json({ "msg":"OK", "obj": list }, 200)
@@ -732,6 +740,7 @@ def agrupar_facturas(arreglo):
             list[int(row["nro_pedido"])].append(row)
 
         return list
+
 @app.route('/procedure_facturacion', ["POST", "GET"])
 async def procedure(request):
 
@@ -1493,7 +1502,7 @@ async def pedidos (request , token: Token):
                             FROM PAGINAWEB.PEDIDO t1
                             join PAGINAWEB.ESTATUS t2
                                 on t1.ESTATUS = t2.CODIGO
-                            join PAGINAWEB.DETALLE_PEDIDO t3
+                            left join PAGINAWEB.DETALLE_PEDIDO t3
                                 on t1.ID = t3.ID_PEDIDO
                             {filter} WHERE COD_CLIENTE = {pCliente}
                              GROUP BY ID, COD_CIA, GRUPO_CLIENTE,
