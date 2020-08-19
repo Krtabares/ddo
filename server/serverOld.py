@@ -1287,6 +1287,43 @@ async def upd_estatus_pedido(estatus, ID):
 
         return
 
+async def valida_art(cia, arti):
+    try:
+        db = get_db()
+        c = db.cursor()
+        sql = """select procesospw.existencia_disponible(:pNoCia,:pArti)
+                        from dual"""
+        c.execute(sql, [
+                        data['pNoCia'],
+                        data['pArti']
+                    ])
+        row = c.fetchone()
+        return row
+    except Exception as e:
+        logger.debug(e)
+
+
+@app.route('/valida/articulo', ["POST", "GET"])
+@jwt_required
+async def valida_articulo(request, token : Token):
+    try:
+        data = request.json
+
+        if not 'pNoCia' in data :
+            data['pNoCia'] = '01'
+
+        if not 'pArti' in data :
+            data['pArti'] = 'null'
+
+        row = valida_art(data['pNoCia'], data['pArti'])
+
+        print(row)
+
+        return response.json({"data":row},200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
 
 @app.route('/add/pedido',["POST","GET"])
 @jwt_required
@@ -1349,11 +1386,18 @@ async def add_detalle_producto (request, token: Token):
 
         row = await crear_detalle_pedido(data['pedido'], data['ID'])
 
+        valid = valida_art("01", data['pedido']['COD_PRODUCTO'])
+
+        msg = 0
+
+        if data['pedido']['CANTIDAD'] < vaild[0]:
+            msg = 1
+
         mongodb = get_mongo_db()
 
         await mongodb.order.update({'id_pedido':int(data['ID'])},{"$addToSet":{"productos":row }}, True, True)
 
-        return response.json("SUCCESS",200)
+        return response.json({"msg": msg },200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
