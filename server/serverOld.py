@@ -1199,12 +1199,13 @@ async def crear_pedido(request):
                         data['COD_CIA'],
                         data['GRUPO_CLIENTE'],
                         data['COD_CLIENTE'],
-                        data['FECHA'],
                         data['NO_PEDIDO_CODISA'],
                         data['OBSERVACIONES'],
                         0
                     ]
                 )
+        print("========================================================================")
+        print("ejecuto el query")
         statusVar = c.var(cx_Oracle.NUMBER)
         lineVar = c.var(cx_Oracle.STRING)
         ID = None
