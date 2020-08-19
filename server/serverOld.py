@@ -625,6 +625,7 @@ async def procedure(request):
                 v_iva_usd number;
                 v_tipo_cambio number;
                 v_proveedor varchar2(100);
+                v_bodega varchar2(2);
                 V_PAGINA number;
                 V_LINEA number;
             BEGIN
@@ -660,6 +661,7 @@ async def procedure(request):
                 v_iva_usd,
                 v_tipo_cambio,
                 v_proveedor,
+                v_bodega,
                 V_PAGINA,
                 V_LINEA;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -680,6 +682,7 @@ async def procedure(request):
                     v_iva_usd|| '|'||
                     v_tipo_cambio|| '|'||
                     v_proveedor|| '|'||
+                    v_bodega|| '|'||
                     V_PAGINA|| '|'||
                     V_LINEA
                 );
@@ -723,8 +726,9 @@ async def procedure(request):
             'iva_usd' : arr[12],
             'tipo_cambio' : arr[13],
             'proveedor' :arr[14],
-            'pagina': arr[15],
-            'linea': arr[15]
+            'v_bodega' :arr[15],
+            'pagina': arr[16],
+            'linea': arr[17]
         }
         list.append(obj)
     return response.json({ "msg":"OK", "obj": list }, 200)
