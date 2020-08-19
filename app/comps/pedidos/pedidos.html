@@ -8,7 +8,7 @@
       <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
         <h5 class="modal-title" id="addPedidoModalLabel">CREAR PEDIDO <i class="fas fa-1x fa-list-alt"></i></h5>
 
-      
+
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -31,13 +31,13 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="alert alert-warning alert-dismissible fade show" ng-show="counter > 300000 && counter < 599999" role="alert">
+          <div class="alert alert-warning alert-dismissible fade show" ng-show="counter > 300000 && counter < timeLimit" role="alert">
             <strong>Advertencia!</strong> Dispone de menos de 5 minutos para culminar su pedido
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="alert alert-danger alert-dismissible fade show" ng-show="counter >= 599999" role="alert">
+          <div class="alert alert-danger alert-dismissible fade show" ng-show="counter >= timeLimit" role="alert">
             <strong>INFO!</strong> Su tiempo para elaborar el pedido se a agotado
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -58,7 +58,7 @@
 
           <form class="row col-sm-12 col-md-12 col-lg-12" >
 
-            <div class="container" ng-show="tabsIndex == 0" >
+            <div class="" ng-show="tabsIndex == 0" >
               <!-- INFO CLIENTE -->
               <header-client></header-client>
               <!--  END INFO CLIENTE -->
@@ -132,7 +132,7 @@
 
             </div>
 
-            <div class="container" ng-show="tabsIndex == 1" >
+            <div class="" ng-show="tabsIndex == 1" >
 
 
               <div class="row mt-3 mb-5" >
@@ -156,7 +156,7 @@
                 <div class="col-4">
                   <label></label>
                   <button type="button" class="btn btn-info" ng-click="addPedidoV2()" ng-show="ID == null"  >Abrir Pedido</button>
-                  <button type="button" class="btn btn-success"  ng-show="ID != null" data-toggle="modal" data-target="#modalproduct">Agregar Productos</button>
+                  <button type="button" class="btn btn-success"  ng-show="ID != null &&  counter < 600000" data-toggle="modal" data-target="#modalproduct">Agregar Productos</button>
                 </div>
 
               </div>
@@ -248,8 +248,11 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-error" data-dismiss="modal" ng-click="reset();">Cerrar</button>
-        <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Guardar</button>
-        <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar</button>
+
+          <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Guardar</button>
+          <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar</button>
+
+
       </div>
     </div>
   </div>
@@ -470,8 +473,14 @@
           <div class="container">
             <div class="alert alert-info"  role="alert">
               <i class="fa fa-info" style="cursor: pointer;" ></i>
-              <strong>Informacion :</strong>
-              <p>Si desea realizar un pedido de psicotrópicos puede comunicarse a través del correo. <strong>correo@email.com</strong></p>
+              <p style='margin: 0cm 0cm 0.0001pt;font-style: normal;font-weight: 400;text-align: start;text-indent: 0px;background-color: rgb(255, 255, 255);font-size:16px;font-family: "Times New Roman", serif;color: rgb(34, 34, 34);'><strong><span style="font-size: 13px; font-family: Arial, sans-serif; color: rgb(0, 0, 0);">Requisitos para solicitud de psicotr&oacute;picos</span></strong></p>
+  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px; background-color: rgb(255, 255, 255); margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">Enviar al siguiente correo <a href="mailto:regencia@del-oeste.com" style="color: rgb(17, 85, 204);" target="_blank">regencia@del-oeste.com</a>. :</span></strong></span></p>
+  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px; background-color: rgb(255, 255, 255); margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">C&eacute;dula de identidad del regente.</span></strong></span></p>
+  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px; background-color: rgb(255, 255, 255); margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">T&iacute;tulo del Farmac&eacute;utico.</span></strong></span></p>
+  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px; background-color: rgb(255, 255, 255); margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">Permiso de Funcionamientos actualizado.</span></strong></span></p>
+  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px; background-color: rgb(255, 255, 255); margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">&Uacute;ltima Relaci&oacute;n de psicotr&oacute;picos firmada y sellada, si es enviada por correo, copia de env&iacute;o y acuse de haber sido recibida &nbsp;por parte de la Contralor&iacute;a Sanitaria.</span></strong></span></p>
+  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px; background-color: rgb(255, 255, 255); margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">Planilla de solicitud de productos psicotr&oacute;picos firmada por el regente y sellada por la farmacia, con fecha actual, es exigido por Sanidad (ver anexo).</span></strong></span></p>
+  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px; background-color: rgb(255, 255, 255); margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif; color: rgb(0, 0, 0);">Todos los documentos deben ser enviados en un mismo correo</span></strong></p>
             </div>
           </div>
 

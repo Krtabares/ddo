@@ -1385,28 +1385,19 @@ async def add_detalle_producto (request, token: Token):
 # async def procedure(request):
     try:
         data = request.json
-        print("=====================================================================")
-        print("crea detalle")
+
         row = await crear_detalle_pedido(data['pedido'], data['ID'])
-        print("=====================================================================")
-        print("valida product")
+
         valid = await valida_art("01", data['pedido']['COD_PRODUCTO'])
-        print("=====================================================================")
-        print("monog")
+
         mongodb = get_mongo_db()
         await mongodb.order.update({'id_pedido':int(data['ID'])},{"$addToSet":{"productos":row }}, True, True)
 
-        print("=====================================================================")
-        print(valid)
 
         msg = 0
 
         if data['pedido']['CANTIDAD'] > valid:
             msg = 1
-
-
-
-
 
         return response.json({"msg": msg },200)
     except Exception as e:
@@ -1606,6 +1597,99 @@ async def pedidos (request , token: Token):
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
+
+async def procedure_pedidos(idPedido):
+    try:
+
+        db = get_db()
+        c = db.cursor()
+        c.callproc("dbms_output.enable")
+        c.execute("""DECLARE
+
+            l_cursor  SYS_REFCURSOR;
+
+            v_id_pedido number;
+            v_nombre_producto varchar2(80);
+            v_princ_activo varchar2(200);
+            v_unidades NUMBER;
+            v_precio_neto_bs number;
+            v_iva_bs number;
+            v_precio_neto_usd number;
+            v_iva_usd number;
+
+
+          BEGIN
+
+
+              Procesospw.detalle_pedidos_cargados (l_cursor ,{idPedido})
+
+
+            LOOP
+
+              FETCH l_cursor into
+
+                      v_id_pedido ,
+                      v_nombre_producto ,
+                      v_princ_activo ,
+                      v_unidades ,
+                      v_precio_neto_bs ,
+                      v_iva_bs ,
+                      v_precio_neto_usd ,
+                      v_iva_usd;
+
+              EXIT WHEN l_cursor%NOTFOUND;
+
+              dbms_output.put_line
+
+                (
+
+
+                      v_id_pedido|| '|'||
+                      v_nombre_producto|| '|'||
+                      v_princ_activo|| '|'||
+                      v_unidades|| '|'||
+                      v_precio_neto_bs|| '|'||
+                      v_iva_bs|| '|'||
+                      v_precio_neto_usd|| '|'||
+                      v_iva_usd
+
+
+                );
+
+
+
+            END LOOP;
+
+
+            CLOSE l_cursor;
+
+
+          END;""".format(idPedido = idPedido))
+        textVar = c.var(str)
+        statusVar = c.var(int)
+        list = []
+        while True:
+            c.callproc("dbms_output.get_line", (textVar, statusVar))
+            if statusVar.getvalue() != 0:
+                break
+            arr = str(textVar.getvalue()).split("|")
+            obj = {
+                  'id_pedido': arr[0],
+                  'nombre_producto': arr[1],
+                  'princ_activo': arr[2],
+                  'unidades': arr[3],
+                  'precio_neto_bs': arr[4],
+                  'iva_bs': arr[5],
+                  'precio_neto_usd': arr[6],
+                  'iva_usd': arr[7]
+            }
+            list.append(obj)
+
+        return lsit
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
 
 @app.route('/get/pedido',["POST","GET"])
 @jwt_required
