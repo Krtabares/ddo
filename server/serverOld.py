@@ -1392,7 +1392,7 @@ async def add_detalle_producto (request, token: Token):
 
         msg = 0
 
-        if data['pedido']['CANTIDAD'] < valid:
+        if data['pedido']['CANTIDAD'] > valid:
             msg = 1
 
         mongodb = get_mongo_db()
