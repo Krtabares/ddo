@@ -188,7 +188,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.product  = $scope.productos[ index ];
             $scope.articulo = $scope.product
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
-            $scope.articulo.PRECIO = $scope.product.precio_bs.replace(",", ".");
+            $scope.articulo.PRECIO = $scope.product.precio_bruto_bs.replace(",", ".");
             $scope.articulo.precio_usd = $scope.product.precio_usd.replace(",", ".")
             $scope.articulo.existencia =$scope.product.existencia
             $scope.articulo.CANTIDAD = 1
@@ -299,7 +299,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(response.data.obj.length > 1){
               response.data.obj.forEach((item, i) => {
 
-                item.precioFormatVE = item.precio_bs.replace(",", ".")
+                item.precioFormatVE = item.precio_bruto_bs.replace(",", ".")
                 item.precioFormatVE = $scope.formato(2,  parseFloat(item.precioFormatVE).toFixed(2) )
 
                 item.precioFormatUSD = item.precio_usd.replace(",", ".")
@@ -501,7 +501,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                  error = true;
               }
               console.log($scope.articulo,"$scope.articulo")
-              if( !validaCreditoContraProducto((parseFloat($scope.articulo.precio_bs)+parseFloat($scope.articulo.iva_bs)) * $scope.articulo.CANTIDAD)  ){
+              if( !validaCreditoContraProducto((parseFloat($scope.articulo.precio_bruto_bs)+parseFloat($scope.articulo.iva_bs)) * $scope.articulo.CANTIDAD)  ){
                  ngNotify.set('¡El precio excede el credito disponible!','error')
                 error = true;
              }
