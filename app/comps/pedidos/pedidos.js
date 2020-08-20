@@ -248,6 +248,26 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
+        $scope.finalizar_pedido =function () {
+          var body = {}
+          body.ID = $scope.ID
+          request.post(ip+'/finalizar_pedido', body,{})
+          .then(function successCallback(response) {
+            console.log(response)
+
+            if(response.data.obj.length > 0){
+
+              $scope.client = response.data.obj[0]
+
+            }else{
+              ngNotify.set('¡No se encontraron resultados!', 'warn')
+            }
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
+
         $scope.creditoClient = {}
         $scope.clienteValido = true
         $scope.clientInvalidoMsg = null
