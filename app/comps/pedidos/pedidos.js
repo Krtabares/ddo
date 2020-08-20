@@ -335,7 +335,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.productos = response.data.obj
 
-              $scope.refreshProduct()
+              if($scope.interval != null){
+
+                $scope.refreshProduct()
+              }
+
             }else{
               ngNotify.set('¡No se encontraron resultados!', 'warn')
             }
