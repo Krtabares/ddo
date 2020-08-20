@@ -1681,6 +1681,7 @@ async def procedure_detalle_pedidos(idPedido):
                   'princ_activo': arr[3],
                   'CANTIDAD': arr[4],
                   'precio_neto_bs': arr[5],
+                  'PRECIO': arr[5],
                   'iva_bs': arr[6],
                   'precio_neto_usd': arr[7],
                   'iva_usd': arr[8]
