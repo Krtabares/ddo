@@ -373,7 +373,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.openModalProducts = function () {
-          scope.endRefresh = false;
+          $scope.endRefresh = false;
           $scope.interval = null
           $(function(){
             $("#modalproduct").modal({
