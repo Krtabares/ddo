@@ -352,7 +352,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.refreshProduct = function() {
 
           $scope.countRefresh++;
-
+          console.log($scope.countRefresh);
           if($scope.countRefresh <= 3){
             $scope.interval = $interval(function() {
               if(!$scope.endRefresh){
@@ -360,7 +360,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $scope.getProdNew(true)
               }
               alert("recargo")
-            }, 108000);
+            }, 36000);
           }else{
             alert("termino")
           }
@@ -438,6 +438,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if($scope.counter > $scope.timeLimit){
               $scope.stop()
               $scope.delPedido()
+              $(function(){
+                $("#addPedidoModal").modal("hide");
+                $("#modalproduct").modal("hide");
+                $("#modalInfoProduct").modal("hide");
+              })
               window.location.href = "#!/";
 
               return;
