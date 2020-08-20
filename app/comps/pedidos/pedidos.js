@@ -335,10 +335,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.productos = response.data.obj
 
-              if(!$scope.endRefresh){
-
-                $scope.refreshProduct()
-              }
+              $scope.refreshProduct()
 
             }else{
               ngNotify.set('¡No se encontraron resultados!', 'warn')
@@ -350,14 +347,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.interval = null
+        $scope.endRefresh = false;
+
         $scope.refreshProduct = function() {
           $scope.interval = setInterval(function () {
-            $scope.getProdNew(true)
+            if(!$scope.endRefresh){
+
+              $scope.getProdNew(true)
+            }
             alert("recargo")
           }, 36000);
         }
 
-        $scope.endRefresh = false;
+
         $scope.stopRefresh = function () {
             $scope.endRefresh = true;
           console.log($scope.interval);
