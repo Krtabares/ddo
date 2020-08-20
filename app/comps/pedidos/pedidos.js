@@ -255,8 +255,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
 
-
-              ngNotify.set('¡Cerrado!', 'success')
+              $scope.getPedidos_filtering();
+              ngNotify.set('¡Cerrado con exito! ', 'success')
 
           }, function errorCallback(response) {
             console.log(response)
@@ -305,6 +305,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.getProdNew = function (filter = false) {
+
           console.log("getProdNew");
           var body = {};
           console.log($scope.client);
@@ -333,6 +334,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
               $scope.productos = response.data.obj
+
+              $scope.refreshProduct()
             }else{
               ngNotify.set('¡No se encontraron resultados!', 'warn')
             }
@@ -340,6 +343,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }, function errorCallback(response) {
             console.log(response)
           });
+        }
+
+
+        $scope.refreshProduct = function() {
+          setInterval(function () {
+            $scope.getProdNew(true)
+          }, 150000);
         }
 
         $scope.addPedido = function(){
@@ -417,7 +427,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           return hrs + ':' + mins + ':' + secs;
         }
 
-
         $scope.addDetalleProducto = function(articulo){
           // console.log(pedido);
           var body = {};
@@ -430,7 +439,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/add/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response)
-            // articulo.CANTIDAD =
+            if(response.data.reserved < articulo.CANTIDAD ){
+              articulo.CANTIDAD = response.data.reserved
+              articulo.alert = true
+            }else{
+              articulo.alert = false
+            }
             $scope.pedido.pedido.push(articulo)
 
           }, function errorCallback(response) {

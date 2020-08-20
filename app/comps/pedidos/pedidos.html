@@ -173,7 +173,9 @@
                         <th scope="col"><p class="text-center">Total</p></th>
                         <th scope="col"><p class="text-center">Precio USD</p></th>
                         <th scope="col"><p class="text-center">Total USD</p></th>
+                        <th scope="col"><p class="text-center">Estatus</p></th>
                         <th scope="col"><p class="text-center">Opcion</p></th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -186,8 +188,8 @@
                             <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
                             <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
                             <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
+                            <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-check"></i>  </p></td>
                             <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
-
                             <td >
                               <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
                               <!-- <p class="text-center">
@@ -247,10 +249,8 @@
         </div>
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
-        <button type="button" class="btn btn-error" data-dismiss="modal" ng-click="reset();">Cerrar</button>
-
-          <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Guardar</button>
-          <button type="button"  class="btn btn-success" ng-click="finalizar_pedido()" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar</button>
+        <button type="button" class="btn btn-error" data-dismiss="modal" ng-show="ID == null" ng-click="reset()">Cerrar</button>
+          <button type="button"  class="btn btn-success" data-dismiss="modal" ng-click="finalizar_pedido();stop();" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar</button>
 
 
       </div>
