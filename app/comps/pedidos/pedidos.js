@@ -349,7 +349,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.refreshProduct = function() {
           setInterval(function () {
             $scope.getProdNew(true)
-          }, 150000);
+            alert("recargo")
+          }, 36000);
         }
 
         $scope.addPedido = function(){
@@ -414,7 +415,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log("stop");
             $timeout.cancel($scope.mytimeout);
         }
-
 
         $scope.msToTime =  function(s) {
           var ms = s % 1000;
