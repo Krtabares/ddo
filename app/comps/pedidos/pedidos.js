@@ -350,7 +350,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.endRefresh = false;
 
         $scope.refreshProduct = function() {
-          $scope.interval = setInterval(function () {
+          $scope.interval = setInterval( () => {
             if(!$scope.endRefresh){
 
               $scope.getProdNew(true)
