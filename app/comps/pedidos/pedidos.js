@@ -360,6 +360,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             if($scope.counter > $scope.timeLimit){
               $scope.stop()
+              $scope.delPedido()
+              window.location.href = "#!/";
+
               return;
             }
 
@@ -523,6 +526,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.productIndex = -1
               // $scope.productos = [];
               $scope.product = {}
+              $scope.counter = 0;
             }
 
 

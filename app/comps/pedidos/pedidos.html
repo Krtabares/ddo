@@ -26,7 +26,7 @@
           </div>
 
           <div class="alert alert-info alert-dismissible fade show" ng-show="counter >= 0" role="alert">
-            <strong>Informacion!</strong> Dispone de 10 minutos para culminar su pedido
+            <strong>Informacion!</strong> Dispone de 10 minutos de inactividad para culminar su pedido
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -377,7 +377,7 @@
                       <th scope="col"><p class="text-center">Total</p></th>
                       <th scope="col"><p class="text-center">Precio USD</p></th>
                       <th scope="col"><p class="text-center">Total USD</p></th>
-                      <th scope="col"><p class="text-center">Opcion</p></th>
+                      <th ng-show="editView" scope="col"><p class="text-center">Opcion</p></th>
                       </tr>
                   </thead>
                   <tbody>
@@ -392,13 +392,13 @@
                           <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
                           <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
 
-                          <td >
+                          <td ng-show="editView" >
                             <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
                             <!-- <p class="text-center">
                               <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeDetalleProducto($index);"></i>
                             </p>
                             -->
-                            <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
+                            <button type="button" class="btn btn-danger"  ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
                           </td>
                         </tr>
                   </tbody>
@@ -453,8 +453,8 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Cerrar</button>
-        <button type="button"  class="btn btn-primary" ng-show="!editView" ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
-        <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar</button>
+        <button type="button"  class="btn btn-primary" ng-show="!editView && pedido.ESTATUS < 2"   ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
+        <button type="button"  class="btn btn-success" ng-show="pedido.ESTATUS < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar</button>
         <!-- <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1" ng-show="editView" ng-click="updPedido();">Actualizar pedido</button> -->
       </div>
     </div>
@@ -712,7 +712,7 @@
                     <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
 
                     <!-- <button type="button" class="btn btn-danger" ></button> -->
-                    <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus_id==0" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
+                    <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus_id < 2" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
 
                     <!-- <button type="button" class="btn btn-default"  ></button> -->

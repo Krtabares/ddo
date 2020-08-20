@@ -1325,6 +1325,19 @@ async def valida_articulo(request, token : Token):
         logger.debug(e)
         return response.json("ERROR",400)
 
+@app.route('/finalizar_pedido', ["POST", "GET"])
+@jwt_required
+async def finaliza_pedido(request, token : Token):
+    try:
+        data = request.json
+
+        await upd_estatus_pedido(2,data['ID'])
+
+        return response.json("success",200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
 
 @app.route('/add/pedido',["POST","GET"])
 @jwt_required
