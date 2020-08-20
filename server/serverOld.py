@@ -1398,7 +1398,7 @@ async def add_detalle_producto (request, token: Token):
         if data['pedido']['CANTIDAD'] > valid:
             msg = 1
 
-        return response.json({"msg": msg },200)
+        return response.json({"msg": msg, "reserved":valid },200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
@@ -1704,7 +1704,7 @@ async def pedido (request , token: Token):
 
         mongodb = get_mongo_db()
 
-        totales = await mongodb.order.find_one({'id_pedido' :int(data['idPedido'])}, {'_id' : 0})
+        # totales = await mongodb.order.find_one({'id_pedido' :int(data['idPedido'])}, {'_id' : 0})
 
         db = get_db()
         c = db.cursor()
@@ -1751,7 +1751,7 @@ async def pedido (request , token: Token):
                     'estatus':row[6],
                     'estatus_id':row[6],
                     'pedido': pedidos,
-                    'totales':totales,
+                    # 'totales':totales,
               }
 
             list.append(aux)
