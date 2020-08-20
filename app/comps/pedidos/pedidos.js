@@ -346,48 +346,45 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-        $scope.interval = null
-        $scope.endRefresh = false;
-        $scope.countRefresh = 0
-        $scope.refreshProduct = function() {
+      var refreshCount = 0
+      var stop
 
-          $scope.countRefresh++;
-          console.log($scope.countRefresh);
-          if($scope.countRefresh <= 3){
-            $scope.interval = $interval(function() {
-              if(!$scope.endRefresh){
+      $scope.refreshProduct = function() {
 
-                $scope.getProdNew(true)
-              }
-              alert("recargo")
-            }, 36000);
-          }else{
-            alert("termino")
-            $scope.stopRefresh()
-          }
+        refreshCount++
+
+        if ( angular.isDefined(stop) ) return;
+
+        stop = $interval(function() {
+            if (refreshCount <= 3) {
+              $scope.getProdNew(true)
+            } else {
+              $scope.stopFight();
+            }
+          }, 100);
+        };
 
 
+      }
+
+      $scope.stopFight = function() {
+        if (angular.isDefined(stop)) {
+          $interval.cancel(stop);
+          stop = undefined;
         }
+      };
 
 
-        $scope.stopRefresh = function () {
-            $scope.endRefresh = true;
-          console.log($scope.interval);
-          // clearInterval($scope.interval);
-          $interval.cancel($scope.interval);
-        }
+
 
         $scope.closeModalProducts = function () {
-
-          $scope.stopRefresh()
           $(function(){
             $("#modalproduct").modal("hide");
           })
         }
 
         $scope.openModalProducts = function () {
-          $scope.endRefresh = false;
-          $scope.interval = null
+
           $(function(){
             $("#modalproduct").modal({
                 backdrop: 'static',
