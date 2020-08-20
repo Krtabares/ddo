@@ -1728,15 +1728,14 @@ async def pedido (request , token: Token):
 
         pedidos = await procedure_detalle_pedidos(int(data['idPedido']))
 
-        c.execute("""
-                              SELECT
-                                 COD_CIA, GRUPO_CLIENTE,
-                                COD_CLIENTE, TO_CHAR(FECHA_CARGA, 'DD-MM-YYYY'), NO_PEDIDO_CODISA,
-                                OBSERVACIONES, t2.descripcion, ESTATUS
-                                FROM PAGINAWEB.PEDIDO t1
-                                join PAGINAWEB.ESTATUS t2
-                                    on t1.ESTATUS = t2.CODIGO
-                                WHERE ID = {idPedido}
+        c.execute("""SELECT
+                         COD_CIA, GRUPO_CLIENTE,
+                        COD_CLIENTE, TO_CHAR(FECHA_CARGA, 'DD-MM-YYYY'), NO_PEDIDO_CODISA,
+                        OBSERVACIONES, t2.descripcion, ESTATUS
+                        FROM PAGINAWEB.PEDIDO t1
+                        join PAGINAWEB.ESTATUS t2
+                            on t1.ESTATUS = t2.CODIGO
+                        WHERE ID = {idPedido}
                             """.format( idPedido = data['idPedido'] ))
         list = []
         for row in c:
@@ -1752,7 +1751,6 @@ async def pedido (request , token: Token):
                     'estatus_id':row[6],
                     'pedido': pedidos,
                     'totales':totales,
-
               }
 
             list.append(aux)
