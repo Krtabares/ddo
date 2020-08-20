@@ -362,7 +362,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           $scope.stopRefresh()
           $(function(){
-            $("#addPedidoModal").modal("hide");
+            $("#modalproduct").modal("hide");
           })
         }
 
