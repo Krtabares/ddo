@@ -348,15 +348,24 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.interval = null
         $scope.endRefresh = false;
-
+        $scope.countRefresh = 0
         $scope.refreshProduct = function() {
-          $scope.interval = $interval(function() {
-            if(!$scope.endRefresh){
 
-              $scope.getProdNew(true)
-            }
-            alert("recargo")
-          }, 36000);
+          $scope.countRefresh++;
+
+          if($scope.countRefresh <= 3){
+            $scope.interval = $interval(function() {
+              if(!$scope.endRefresh){
+
+                $scope.getProdNew(true)
+              }
+              alert("recargo")
+            }, 108000);
+          }else{
+            alert("termino")
+          }
+
+
         }
 
 
