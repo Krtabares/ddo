@@ -335,7 +335,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.productos = response.data.obj
 
-              if($scope.interval != null){
+              if(!$scope.endRefresh){
 
                 $scope.refreshProduct()
               }
@@ -357,9 +357,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }, 36000);
         }
 
-
+        $scope.endRefresh = false;
         $scope.stopRefresh = function () {
-
+            $scope.endRefresh = true;
           console.log($scope.interval);
           clearInterval($scope.interval);
         }
@@ -373,6 +373,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.openModalProducts = function () {
+          scope.endRefresh = false;
           $scope.interval = null
           $(function(){
             $("#modalproduct").modal({
