@@ -320,7 +320,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log(body, "body")
           request.post(ip+'/procedure_productos', body,{})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
             if(response.data.obj.length > 1){
               response.data.obj.forEach((item, i) => {
 
@@ -358,14 +358,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         stop = $interval(function() {
             if (refreshCount <= 3) {
               $scope.getProdNew(true)
+              console.log("recargo")
             } else {
               $scope.stopFight();
+              console.log("se detuvo")
             }
-          }, 100);
+          }, 36000);
         };
 
 
-      }
+
 
       $scope.stopFight = function() {
         if (angular.isDefined(stop)) {
