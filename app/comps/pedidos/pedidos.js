@@ -301,7 +301,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
                 item.precioFormatVE = item.precio_bruto_bs.replace(",", ".")
                 item.precioFormatVE = $scope.formato(2,  parseFloat(item.precioFormatVE).toFixed(2) )
-
+                // item.precio_neto_usd =
                 item.precioFormatUSD = item.precio_neto_usd.replace(",", ".")
                 item.precioFormatUSD = $scope.formato(3,  parseFloat(item.precioFormatUSD).toFixed(2) )
 
@@ -406,7 +406,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/add/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response)
-
+            // articulo.CANTIDAD =
             $scope.pedido.pedido.push(articulo)
 
           }, function errorCallback(response) {

@@ -1239,32 +1239,36 @@ async def crear_pedido(request):
 
 async def crear_detalle_pedido(detalle, ID):
 
-        db = get_db()
-        c = db.cursor()
+        try:
+            db = get_db()
+            c = db.cursor()
 
-        sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO_BRUTO, TIPO_CAMBIO, BODEGA)
-                        VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, {BODEGA} )"""
+            sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO_BRUTO, TIPO_CAMBIO, BODEGA)
+                            VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, {BODEGA} )"""
 
-        c.execute(sql.format(
-                     ID_PEDIDO = int(ID),
-                     COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
-                     CANTIDAD = int(detalle['CANTIDAD']),
-                     PRECIO = float(str(detalle['PRECIO']).replace(',','.')),
-                     TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
-                     BODEGA = detalle['bodega']
-                ))
+            c.execute(sql.format(
+                         ID_PEDIDO = int(ID),
+                         COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
+                         CANTIDAD = int(detalle['CANTIDAD']),
+                         PRECIO = float(str(detalle['PRECIO']).replace(',','.')),
+                         TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
+                         BODEGA = detalle['bodega']
+                    ))
 
-        db.commit()
+            db.commit()
 
-        await upd_estatus_pedido(1,int(ID))
+            await upd_estatus_pedido(1,int(ID))
 
-        return {
-                    'COD_PRODUCTO':detalle['COD_PRODUCTO'],
-                    'iva_bs':detalle['iva_bs'],
-                    'iva_usd':detalle['iva_usd'],
-                    'precio_usd':detalle['precio_usd'],
-                    'nombre_producto':detalle['nombre_producto']
-                }
+            # return {
+            #             'COD_PRODUCTO':detalle['COD_PRODUCTO'],
+            #             'iva_bs':detalle['iva_bs'],
+            #             'iva_usd':detalle['iva_usd'],
+            #             'precio_usd':detalle['precio_neto_usd'],
+            #             'nombre_producto':detalle['nombre_producto']
+            #         }
+
+        except Exception as e:
+            logger.debug(e)
 
 async def upd_estatus_pedido(estatus, ID):
 
@@ -1398,12 +1402,12 @@ async def add_detalle_producto (request, token: Token):
     try:
         data = request.json
 
-        row = await crear_detalle_pedido(data['pedido'], data['ID'])
+        await crear_detalle_pedido(data['pedido'], data['ID'])
 
         valid = await valida_art("01", data['pedido']['COD_PRODUCTO'])
 
-        mongodb = get_mongo_db()
-        await mongodb.order.update({'id_pedido':int(data['ID'])},{"$addToSet":{"productos":row }}, True, True)
+        # mongodb = get_mongo_db()
+        # await mongodb.order.update({'id_pedido':int(data['ID'])},{"$addToSet":{"productos":row }}, True, True)
 
 
         msg = 0
