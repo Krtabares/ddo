@@ -1637,6 +1637,103 @@ async def procedure_detalle_pedidos(idPedido):
                       BEGIN
 
 
+                          Procesospw.detalle_pedidos_cargados (l_cursor ,:idPedido);
+
+
+                        LOOP
+
+                          FETCH l_cursor into
+
+                                  v_id_pedido ,
+                                  v_cod_producto ,
+                                  v_nombre_producto ,
+                                  v_princ_activo ,
+                                  v_unidades ,
+                                  v_precio_neto_bs ,
+                                  v_iva_bs ,
+                                  v_precio_neto_usd ,
+                                  v_iva_usd;
+
+                          EXIT WHEN l_cursor%NOTFOUND;
+
+                          dbms_output.put_line
+
+                            (
+
+
+                                  v_id_pedido|| '|'||
+                                  v_cod_producto|| '|'||
+                                  v_nombre_producto|| '|'||
+                                  v_princ_activo|| '|'||
+                                  v_unidades|| '|'||
+                                  v_precio_neto_bs|| '|'||
+                                  v_iva_bs|| '|'||
+                                  v_precio_neto_usd|| '|'||
+                                  v_iva_usd
+
+
+                            );
+
+
+
+                        END LOOP;
+
+
+                        CLOSE l_cursor;
+
+
+  END;""".format(idPedido = idPedido))
+        textVar = c.var(str)
+        statusVar = c.var(int)
+        list = []
+        while True:
+            c.callproc("dbms_output.get_line", (textVar, statusVar))
+            if statusVar.getvalue() != 0:
+                break
+            arr = str(textVar.getvalue()).split("|")
+            obj = {
+                  'id_pedido': arr[0],
+                  'COD_PRODUCTO': arr[1],
+                  'nombre_producto': arr[2],
+                  'princ_activo': arr[3],
+                  'CANTIDAD': arr[4],
+                  'precio_neto_bs': arr[5],
+                  'PRECIO': arr[5],
+                  'iva_bs': arr[6],
+                  'precio_neto_usd': arr[7],
+                  'iva_usd': arr[8]
+            }
+            list.append(obj)
+
+        return list
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
+async def procedure_pedidos(idPedido):
+    try:
+
+        db = get_db()
+        c = db.cursor()
+        c.callproc("dbms_output.enable")
+        c.execute("""DECLARE
+
+                        l_cursor  SYS_REFCURSOR;
+
+                        v_id_pedido number;
+                        v_cod_producto varchar2(15);
+                        v_nombre_producto varchar2(80);
+                        v_princ_activo varchar2(200);
+                        v_unidades NUMBER;
+                        v_precio_neto_bs number;
+                        v_iva_bs number;
+                        v_precio_neto_usd number;
+                        v_iva_usd number;
+
+
+                      BEGIN
+
+
                           Procesospw.detalle_pedidos_cargados (l_cursor ,174);
 
 
