@@ -49,12 +49,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log("initmodal")
           $scope.ID = null
           $scope.reset()
-          $(function(){
-            $("#addPedidoModal").modal({
-                backdrop: 'static',
-                keyboard: false
-            });
-          })
+
         }
 
         $scope.validaTabs = function(tab) {
@@ -183,6 +178,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
          listarPedidos()
          console.log($scope.client_info)
+
+         $(function(){
+           $("#addPedidoModal").modal({
+               backdrop: 'static',
+               keyboard: false
+           });
+         })
         }
 
         $scope.selectProduct = function(value = null){
