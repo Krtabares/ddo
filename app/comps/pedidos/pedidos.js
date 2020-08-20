@@ -345,12 +345,34 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-
+        $scope.interval = null
         $scope.refreshProduct = function() {
-          setInterval(function () {
+          $scope.interval = setInterval(function () {
             $scope.getProdNew(true)
             alert("recargo")
           }, 36000);
+        }
+
+
+        $scope.stopRefresh = function () {
+          clearInterval($scope.interval);
+        }
+
+        $scope.closeModalProducts = function () {
+
+          $scope.stopRefresh()
+          $(function(){
+            $("#addPedidoModal").modal("hide");
+          })
+        }
+
+        $scope.openModalProducts = function () {
+          $(function(){
+            $("#modalproduct").modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+          })
         }
 
         $scope.addPedido = function(){

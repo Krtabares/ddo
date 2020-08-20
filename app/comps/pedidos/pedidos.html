@@ -156,7 +156,7 @@
                 <div class="col-4">
                   <label></label>
                   <button type="button" class="btn btn-info" ng-click="addPedidoV2()" ng-show="ID == null"  >Abrir Pedido</button>
-                  <button type="button" class="btn btn-success"  ng-show="ID != null &&  counter < 600000" data-toggle="modal" data-target="#modalproduct">Agregar Productos</button>
+                  <button type="button" class="btn btn-success"  ng-show="ID != null &&  counter < 600000" ng-click="openModalProducts()" >Agregar Productos</button>
                 </div>
 
               </div>
@@ -544,7 +544,7 @@
         </div>
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-error" data-dismiss="modal" ng-click="closeModalProducts()" >Cerrar</button>
 
         </div>
       </div>
