@@ -350,7 +350,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.endRefresh = false;
 
         $scope.refreshProduct = function() {
-          $scope.interval = setInterval( () => {
+          $scope.interval = $interval(function() {
             if(!$scope.endRefresh){
 
               $scope.getProdNew(true)
@@ -363,7 +363,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.stopRefresh = function () {
             $scope.endRefresh = true;
           console.log($scope.interval);
-          clearInterval($scope.interval);
+          // clearInterval($scope.interval);
+          $interval.cancel($scope.interval);
         }
 
         $scope.closeModalProducts = function () {
