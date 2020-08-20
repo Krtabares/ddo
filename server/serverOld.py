@@ -1304,7 +1304,6 @@ async def valida_art(cia, arti):
     except Exception as e:
         logger.debug(e)
 
-
 @app.route('/valida/articulo', ["POST", "GET"])
 @jwt_required
 async def valida_articulo(request, token : Token):
@@ -1433,7 +1432,6 @@ async def del_detalle_producto (request, token: Token):
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
-
 
 @app.route('/upd/pedido',["POST","GET"])
 @jwt_required
@@ -1598,7 +1596,7 @@ async def pedidos (request , token: Token):
         logger.debug(e)
         return response.json("ERROR",400)
 
-async def procedure_pedidos(idPedido):
+async def procedure_detalle_pedidos(idPedido):
     try:
 
         db = get_db()
@@ -1606,65 +1604,68 @@ async def procedure_pedidos(idPedido):
         c.callproc("dbms_output.enable")
         c.execute("""DECLARE
 
-            l_cursor  SYS_REFCURSOR;
+                        l_cursor  SYS_REFCURSOR;
 
-            v_id_pedido number;
-            v_nombre_producto varchar2(80);
-            v_princ_activo varchar2(200);
-            v_unidades NUMBER;
-            v_precio_neto_bs number;
-            v_iva_bs number;
-            v_precio_neto_usd number;
-            v_iva_usd number;
-
-
-          BEGIN
+                        v_id_pedido number;
+                        v_cod_producto varchar2(15);
+                        v_nombre_producto varchar2(80);
+                        v_princ_activo varchar2(200);
+                        v_unidades NUMBER;
+                        v_precio_neto_bs number;
+                        v_iva_bs number;
+                        v_precio_neto_usd number;
+                        v_iva_usd number;
 
 
-              Procesospw.detalle_pedidos_cargados (l_cursor ,{idPedido})
+                      BEGIN
 
 
-            LOOP
-
-              FETCH l_cursor into
-
-                      v_id_pedido ,
-                      v_nombre_producto ,
-                      v_princ_activo ,
-                      v_unidades ,
-                      v_precio_neto_bs ,
-                      v_iva_bs ,
-                      v_precio_neto_usd ,
-                      v_iva_usd;
-
-              EXIT WHEN l_cursor%NOTFOUND;
-
-              dbms_output.put_line
-
-                (
+                          Procesospw.detalle_pedidos_cargados (l_cursor ,174);
 
 
-                      v_id_pedido|| '|'||
-                      v_nombre_producto|| '|'||
-                      v_princ_activo|| '|'||
-                      v_unidades|| '|'||
-                      v_precio_neto_bs|| '|'||
-                      v_iva_bs|| '|'||
-                      v_precio_neto_usd|| '|'||
-                      v_iva_usd
+                        LOOP
+
+                          FETCH l_cursor into
+
+                                  v_id_pedido ,
+                                  v_cod_producto ,
+                                  v_nombre_producto ,
+                                  v_princ_activo ,
+                                  v_unidades ,
+                                  v_precio_neto_bs ,
+                                  v_iva_bs ,
+                                  v_precio_neto_usd ,
+                                  v_iva_usd;
+
+                          EXIT WHEN l_cursor%NOTFOUND;
+
+                          dbms_output.put_line
+
+                            (
 
 
-                );
+                                  v_id_pedido|| '|'||
+                                  v_cod_producto|| '|'||
+                                  v_nombre_producto|| '|'||
+                                  v_princ_activo|| '|'||
+                                  v_unidades|| '|'||
+                                  v_precio_neto_bs|| '|'||
+                                  v_iva_bs|| '|'||
+                                  v_precio_neto_usd|| '|'||
+                                  v_iva_usd
+
+
+                            );
 
 
 
-            END LOOP;
+                        END LOOP;
 
 
-            CLOSE l_cursor;
+                        CLOSE l_cursor;
 
 
-          END;""".format(idPedido = idPedido))
+  END;""".format(idPedido = idPedido))
         textVar = c.var(str)
         statusVar = c.var(int)
         list = []
@@ -1675,13 +1676,14 @@ async def procedure_pedidos(idPedido):
             arr = str(textVar.getvalue()).split("|")
             obj = {
                   'id_pedido': arr[0],
-                  'nombre_producto': arr[1],
-                  'princ_activo': arr[2],
-                  'unidades': arr[3],
-                  'precio_neto_bs': arr[4],
-                  'iva_bs': arr[5],
-                  'precio_neto_usd': arr[6],
-                  'iva_usd': arr[7]
+                  'COD_PRODUCTO': arr[1],
+                  'nombre_producto': arr[2],
+                  'princ_activo': arr[3],
+                  'CANTIDAD': arr[4],
+                  'precio_neto_bs': arr[5],
+                  'iva_bs': arr[6],
+                  'precio_neto_usd': arr[7],
+                  'iva_usd': arr[8]
             }
             list.append(obj)
 
@@ -1689,7 +1691,6 @@ async def procedure_pedidos(idPedido):
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
-
 
 @app.route('/get/pedido',["POST","GET"])
 @jwt_required
@@ -1703,27 +1704,29 @@ async def pedido (request , token: Token):
         mongodb = get_mongo_db()
 
         totales = await mongodb.order.find_one({'id_pedido' :int(data['idPedido'])}, {'_id' : 0})
+        #
+        # db = get_db()
+        # c = db.cursor()
+        #
+        # c.execute("""SELECT
+        #                  COD_PRODUCTO, CANTIDAD,
+        #                 PRECIO_BRUTO, TIPO_CAMBIO, BODEGA
+        #                 FROM PAGINAWEB.DETALLE_PEDIDO WHERE ID_PEDIDO = {idPedido} """.format( idPedido = data['idPedido'] ))
+        #
+        # pedidos = []
+        # for row in c:
+        #     aux = {}
+        #     aux = {
+        #             'COD_PRODUCTO':row[0],
+        #             'CANTIDAD':row[1],
+        #             'PRECIO':row[2],
+        #             'TIPO_CAMBIO':row[3],
+        #             'BODEGA':row[4],
+        #
+        #       }
+        #     pedidos.append(aux)
 
-        db = get_db()
-        c = db.cursor()
-
-        c.execute("""SELECT
-                         COD_PRODUCTO, CANTIDAD,
-                        PRECIO_BRUTO, TIPO_CAMBIO, BODEGA
-                        FROM PAGINAWEB.DETALLE_PEDIDO WHERE ID_PEDIDO = {idPedido} """.format( idPedido = data['idPedido'] ))
-
-        pedidos = []
-        for row in c:
-            aux = {}
-            aux = {
-                    'COD_PRODUCTO':row[0],
-                    'CANTIDAD':row[1],
-                    'PRECIO':row[2],
-                    'TIPO_CAMBIO':row[3],
-                    'BODEGA':row[4],
-
-              }
-            pedidos.append(aux)
+        pedidos = await procedure_detalle_pedidos(int(data['idPedido']))
 
         c.execute("""
                               SELECT
