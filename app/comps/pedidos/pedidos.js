@@ -355,6 +355,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         $scope.stopRefresh = function () {
+
+          console.log($scope.interval);
           clearInterval($scope.interval);
         }
 
@@ -367,6 +369,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.openModalProducts = function () {
+          $scope.interval = null
           $(function(){
             $("#modalproduct").modal({
                 backdrop: 'static',
