@@ -722,7 +722,7 @@ async def procedure(request):
             'precio_bruto_bs' : arr[8],
             'precio_neto_bs' : arr[9],
             'iva_bs' : arr[10],
-            'precio_usd' : arr[11],
+            'precio_neto_usd' : arr[11],
             'iva_usd' : arr[12],
             'tipo_cambio' : arr[13],
             'proveedor' :arr[14],
