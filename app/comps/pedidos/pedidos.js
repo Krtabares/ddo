@@ -251,17 +251,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.finalizar_pedido =function () {
           var body = {}
           body.ID = $scope.ID
-          request.post(ip+'/finalizar_pedido', body,{})
+          request.post(ip+'/finalizar_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response)
 
-            if(response.data.obj.length > 0){
 
-              $scope.client = response.data.obj[0]
-
-            }else{
-              ngNotify.set('¡No se encontraron resultados!', 'warn')
-            }
+              ngNotify.set('¡Cerrado!', 'success')
 
           }, function errorCallback(response) {
             console.log(response)
