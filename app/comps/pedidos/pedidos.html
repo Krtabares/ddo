@@ -188,8 +188,8 @@
                             <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
                             <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
                             <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
-                            <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td>
                             <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
+                            <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td>
                             <td >
                               <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
                               <!-- <p class="text-center">
