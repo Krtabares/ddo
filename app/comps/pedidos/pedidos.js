@@ -189,7 +189,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.articulo = $scope.product
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
             $scope.articulo.PRECIO = $scope.product.precio_bruto_bs.replace(",", ".");
-            $scope.articulo.precio_usd = $scope.product.precio_usd.replace(",", ".")
+            $scope.articulo.precio_neto_usd = $scope.product.precio_neto_usd.replace(",", ".")
             $scope.articulo.existencia =$scope.product.existencia
             $scope.articulo.CANTIDAD = 1
             // $scope.articulo.no_cliente = $scope.client.cod_cliente
@@ -302,7 +302,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 item.precioFormatVE = item.precio_bruto_bs.replace(",", ".")
                 item.precioFormatVE = $scope.formato(2,  parseFloat(item.precioFormatVE).toFixed(2) )
 
-                item.precioFormatUSD = item.precio_usd.replace(",", ".")
+                item.precioFormatUSD = item.precio_neto_usd.replace(",", ".")
                 item.precioFormatUSD = $scope.formato(3,  parseFloat(item.precioFormatUSD).toFixed(2) )
 
               });
@@ -354,11 +354,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-
+        $scope.timeLimit = 599999
         $scope.counter = 0;
         $scope.onTimeout = function(){
 
-            if($scope.counter > 599999){
+            if($scope.counter > $scope.timeLimit){
               $scope.stop()
               return;
             }
@@ -662,18 +662,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.showPedido = function(pedido){
           console.log(pedido);
 
-          $scope.editView =false;
+          $scope.editView = false;
           // pedido.fecha = new Date(pedido.fecha);
           pedido.pedido.forEach((item, i) => {
 
-            pedido.totales.productos.forEach((element, i) => {
-              if(item.COD_PRODUCTO == element.COD_PRODUCTO){
-                item.iva_bs = element.iva_bs
-                item.iva_usd = element.iva_usd
-                item.precio_usd = element.precio_usd
-                item.nombre_producto = element.nombre_producto
-              }
-            });
+            // pedido.totales.productos.forEach((element, i) => {
+            //   if(item.COD_PRODUCTO == element.COD_PRODUCTO){
+                item.iva_bs = item.iva_bs.replace(",", ".")
+                item.iva_usd = item.iva_usd.replace(",", ".")
+                item.precio_neto_usd = item.precio_neto_usd.replace(",", ".")
+                // item.nombre_producto = element.nombre_producto
+              // }
+            // });
 
           });
 
@@ -727,7 +727,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
                                              + (parseFloat(element.PRECIO) * element.CANTIDAD)
               $scope.totales.USD = parseFloat($scope.totales.USD)
-                                            + (parseFloat(element.precio_usd) * element.CANTIDAD)
+                                            + (parseFloat(element.precio_neto_usd) * element.CANTIDAD)
 
               if($scope.totales.bsIVA){
                 $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA)

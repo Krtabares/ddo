@@ -185,8 +185,8 @@
                             <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
                             <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
                             <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
-                            <td><p class="text-right">{{ formato(3,x.precio_usd) }}</p></td>
-                            <td><p class="text-right">{{ formato(3,(x.precio_usd * x.CANTIDAD)) }}</p></td>
+                            <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
+                            <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
 
                             <td >
                               <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
@@ -389,8 +389,8 @@
                           <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
                           <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
                           <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
-                          <td><p class="text-right">{{ formato(3,x.precio_usd) }}</p></td>
-                          <td><p class="text-right">{{ formato(3,(x.precio_usd * x.CANTIDAD)) }}</p></td>
+                          <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
+                          <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
 
                           <td >
                             <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
@@ -605,12 +605,12 @@
                   </div>
                   <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                     <label>Por unidad USD</label><br>
-                    <span  class="text-right" >{{formato(3,(articulo.precio_usd)? articulo.precio_usd:0)}}</span>
+                    <span  class="text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
 
                   </div>
                   <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                     <label>Total USD</label><br>
-                    <span class="text-right" >{{formato(3,(articulo.precio_usd)? (articulo.precio_usd  * articulo.CANTIDAD):0)}}</span>
+                    <span class="text-right" >{{formato(3,(articulo.precio_neto_usd)? (articulo.precio_neto_usd  * articulo.CANTIDAD):0)}}</span>
 
                   </div>
                 </div>
