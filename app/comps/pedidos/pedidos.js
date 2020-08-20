@@ -363,6 +363,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }, 36000);
           }else{
             alert("termino")
+            $scope.stopRefresh()
           }
 
 
