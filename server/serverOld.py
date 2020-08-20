@@ -1637,7 +1637,7 @@ async def procedure_detalle_pedidos(idPedido):
                       BEGIN
 
 
-                          Procesospw.detalle_pedidos_cargados (l_cursor ,:idPedido);
+                          Procesospw.detalle_pedidos_cargados (l_cursor ,{idPedido});
 
 
                         LOOP
