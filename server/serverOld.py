@@ -1687,7 +1687,7 @@ async def procedure_detalle_pedidos(idPedido):
             }
             list.append(obj)
 
-        return lsit
+        return list
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
@@ -1704,9 +1704,9 @@ async def pedido (request , token: Token):
         mongodb = get_mongo_db()
 
         totales = await mongodb.order.find_one({'id_pedido' :int(data['idPedido'])}, {'_id' : 0})
-        #
-        # db = get_db()
-        # c = db.cursor()
+
+        db = get_db()
+        c = db.cursor()
         #
         # c.execute("""SELECT
         #                  COD_PRODUCTO, CANTIDAD,
