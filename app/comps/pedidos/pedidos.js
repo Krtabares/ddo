@@ -812,7 +812,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.totales.USD = 0
             $scope.totales.bsIVA = 0
             $scope.totales.USDIVA = 0
-            console.
+            console.log($scope.pedido.pedido)
             $scope.pedido.pedido.forEach(element => {
 
               $scope.totales.bolivares += parseFloat($scope.totales.bolivares)
