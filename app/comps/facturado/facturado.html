@@ -98,8 +98,8 @@
             </thead>
             <tbody>
               <a href="#infoProduct">
-                <tr  ng-repeat="fact in facturas"  ng-click="selectFactura(facturasList[fact])" ng-class="{ selectedRow : $index == productIndex } >
-
+                <tr  ng-repeat="fact in facturas"  ng-click="selectFactura(facturasList[fact])" ng-class="{ selectedRow : $index == productIndex }" >
+""
                   <td><p class="text-center">{{ fact }}</p></td>
                   <td><p class="text-center">{{ facturasList[fact][0].fecha_factura }}</p></td>
                   <td><p class="text-center">{{ facturasList[fact][0].fecha_pedido }}</p></td>
