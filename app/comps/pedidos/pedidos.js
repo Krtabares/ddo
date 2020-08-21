@@ -489,6 +489,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
             $scope.getPedidos_filtering();
+            $scope.getProdNew();
             if(response.data.reserved < articulo.CANTIDAD ){
               articulo.CANTIDAD = response.data.reserved
               articulo.alert = true
@@ -512,8 +513,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/del/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response)
-            $scope.getPedidos_filtering();
-
+            // $scope.getPedidos_filtering();
+            $scope.getProdNew(true)
             $scope.removeArt(i)
 
           }, function errorCallback(response) {
