@@ -275,7 +275,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filtering();
               $scope.editView = true
-              $scope.pedido.ESTATUS = response.data.estatus
+              $scope.pedido.estatus = response.data.estatus
               ngNotify.set('Pedido en construccion! ', 'success')
 
           }, function errorCallback(response) {
