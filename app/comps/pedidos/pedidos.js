@@ -512,7 +512,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
             $scope.getPedidos_filtering();
             $scope.getProdNew(true);
-            if(response.data.reserved < articulo.CANTIDAD ){
+            if(response.data.reserved < articulo.CANTIDAD && 1==2){
               articulo.CANTIDAD = response.data.reserved
               articulo.alert = true
             }else{
@@ -612,10 +612,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               console.log("$scope.articulo.CANTIDAD", $scope.articulo.CANTIDAD);
               console.log(" $scope.articulo.existencia",  $scope.articulo.existencia);
-               if( $scope.articulo.CANTIDAD > parseInt($scope.articulo.existencia)  ){
-                  ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
-                 error = true;
-              }
+              //  if( $scope.articulo.CANTIDAD > parseInt($scope.articulo.existencia)  ){
+              //     ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
+              //    error = true;
+              // }
               console.log($scope.articulo,"$scope.articulo")
 
               if( !validaCreditoContraProducto((parseFloat($scope.articulo.precio_bruto_bs)+parseFloat($scope.articulo.iva_bs)) * $scope.articulo.CANTIDAD)  ){
