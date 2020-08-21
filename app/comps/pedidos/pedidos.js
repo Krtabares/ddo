@@ -489,7 +489,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
             $scope.getPedidos_filtering();
-            $scope.getProdNew();
+            $scope.getProdNew(true);
             if(response.data.reserved < articulo.CANTIDAD ){
               articulo.CANTIDAD = response.data.reserved
               articulo.alert = true
