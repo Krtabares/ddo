@@ -54,22 +54,12 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
               .withPaginationType('full_numbers')
               .withOption('responsive', true)
               .withDOM('frtip').withPaginationType('full_numbers')
+
         $scope.dtOptionsFact = DTOptionsBuilder.newOptions()
                   .withPaginationType('full_numbers')
                   .withOption('responsive', true)
                   .withDOM('frtip').withPaginationType('full_numbers')
 
-          $scope.dtColumns = [
-            DTColumnBuilder.newColumn('nro_pedido').withTitle('N Pedido'),
-            DTColumnBuilder.newColumn('fecha_factura').withTitle('fecha factura'),
-            DTColumnBuilder.newColumn('fecha_pedido').withTitle('fecha pedido'),
-            DTColumnBuilder.newColumn('nombre_arti').withTitle('nombre producto'),
-            DTColumnBuilder.newColumn('total_producto').withTitle('Total de Productos'),
-            DTColumnBuilder.newColumn('unidades_facturadas').withTitle('Unidades Facturadas'),
-			      DTColumnBuilder.newColumn('unidades_pedido').withTitle('unidades de pedido'),
-            DTColumnBuilder.newColumn('nombre_vendedor').withTitle('nombre vendedor'),
-
-        ];
 
     }
 ]);
