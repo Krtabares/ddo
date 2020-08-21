@@ -44,28 +44,11 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
           });
        }
-
-
-      //   $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
-      //     var defer = $q.defer();
-      //     var body = {}
-      //     body.pNoCia = $scope.client.COD_CIA
-      //     body.pNoGrupo = $scope.client.GRUPO_CLIENTE
-      //     body.pCliente = $scope.client.COD_CLIENTE
-      //      request.post(ip+'/procedure_facturacion', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
-      //       .then(function successCallback(response) {
-      //         console.log(response.data)
-      //   defer.resolve(response.data.obj);
-      //      });
-      //     return defer.promise;
-      // })
-      // .withDOM('frtip')
-      //     .withPaginationType('full_numbers')
-      // .withButtons([
-      //         'colvis',
-      //         'pdf',
-      //         'excel'
-      //     ])
+          $scope.factura = []
+          $scope.selectFactura = function (fact) {
+            $scope.factura = fact
+              angular.element('#btnfacturaInfo').trigger('click');
+          }
 
           $scope.dtOptions = DTOptionsBuilder.newOptions()
               .withPaginationType('full_numbers')

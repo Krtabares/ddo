@@ -621,8 +621,8 @@ async def procedure(request):
                 v_precio_bruto_bs number;
                 v_precio_neto_bs number;
                 v_iva_bs number;
-                v_precio_usd number;
-                v_iva_usd number;
+                v_precio_usd varchar2(10);
+                v_iva_usd varchar2(10);
                 v_tipo_cambio number;
                 v_proveedor varchar2(100);
                 v_bodega varchar2(2);
