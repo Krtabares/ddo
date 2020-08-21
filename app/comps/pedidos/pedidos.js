@@ -820,15 +820,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.totales.USD = parseFloat($scope.totales.USD)
                                             + (parseFloat(element.precio_neto_usd) * element.CANTIDAD)
 
-              if($scope.totales.bsIVA){
+
                 $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA)
                 + (parseFloat(element.iva_bs) * element.CANTIDAD)
-              }
 
-              if($scope.totales.USDIVA){
+
+
                 $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
                 + (parseFloat(element.iva_usd) * element.CANTIDAD)
-              }
+              
 
             });
 
