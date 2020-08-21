@@ -276,7 +276,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.getPedidos_filtering();
               $scope.editView = true
               $scope.pedido.estatus = response.data.estatus
-              $scope.pedido.estatus_id = 1 
+              $scope.pedido.estatus_id = 1
               ngNotify.set('Pedido en construccion! ', 'success')
               $scope.mytimeout = $timeout($scope.onTimeout,1000);
 
@@ -634,6 +634,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               if(!error){
                 $scope.addDetalleProducto($scope.articulo)
                 calcularTotales()
+                $(function(){
+                  $("#modalInfoProduct").modal('hide');
+                })
                 ngNotify.set('¡Producto agregado al pedido!','success')
               }
             }
