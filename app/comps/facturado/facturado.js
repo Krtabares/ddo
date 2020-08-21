@@ -47,7 +47,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           $scope.factura = []
           $scope.selectFactura = function (fact) {
             $scope.factura = fact
-              angular.element('#btnfacturaInfo').trigger('click');
+              // angular.element('#btnfacturaInfo').trigger('click');
           }
 
           $scope.dtOptions = DTOptionsBuilder.newOptions()
