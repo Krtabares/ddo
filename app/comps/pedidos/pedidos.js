@@ -386,7 +386,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.openModalProducts = function () {
-
+          $scope.busqueda_prod = null
+          $scope.productIndex = -1
+          $scope.productos = []
           $(function(){
             $("#modalproduct").modal({
                 backdrop: 'static',
