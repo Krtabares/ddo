@@ -159,7 +159,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         function listarPedidos(){
          var body = {}
-           body.pCliente = $scope.client.COD_CLIENTE
+           body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+           body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+           body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
            request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
              .then(function successCallback(response) {
                console.log(response.data)
@@ -168,7 +170,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                // defer.resolve(response.data.data);
             });
 
-            $scope.getPedidos_filteringV2()
+            request.post(ip+'/get/pedidosV2', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+              .then(function successCallback(response) {
+                console.log(response.data)
+
+                $scope.listaPedidosV2=response.data.data
+                // defer.resolve(response.data.data);
+             });
+
+            // $scope.getPedidos_filteringV2()
         }
 
         verificClient()
