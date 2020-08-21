@@ -308,7 +308,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           console.log("getProdNew");
           var body = {};
-          console.log($scope.client);
+          // console.log($scope.client);
 
           if(filter){
             body.pNombre = $scope.nombre_cliente
@@ -317,7 +317,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
             body.pBusqueda = $scope.busqueda_prod
           }
-          console.log(body, "body")
+          // console.log(body, "body")
           request.post(ip+'/procedure_productos', body,{})
           .then(function successCallback(response) {
             // console.log(response)
@@ -358,12 +358,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         stop = $interval(function() {
             if (refreshCount <= 3) {
               $scope.getProdNew(true)
-              console.log("recargo")
+              // console.log("recargo")
             } else {
               $scope.stopFight();
-              console.log("se detuvo")
+              // console.log("se detuvo")
             }
-          }, 36000);
+          }, 108000);
         };
 
 
@@ -378,8 +378,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
 
-
         $scope.closeModalProducts = function () {
+          $scope.stopFight()
           $(function(){
             $("#modalproduct").modal("hide");
           })
@@ -582,13 +582,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 error = true;
               }
 
-
+              console.log("$scope.articulo.CANTIDAD", $scope.articulo.CANTIDAD);
+              console.log(" $scope.articulo.existencia",  $scope.articulo.existencia);
                if( $scope.articulo.CANTIDAD > $scope.articulo.existencia  ){
                 // console.log('¡Complete todos los campos!PRECIO','error')
                   ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
                  error = true;
               }
               console.log($scope.articulo,"$scope.articulo")
+
               if( !validaCreditoContraProducto((parseFloat($scope.articulo.precio_bruto_bs)+parseFloat($scope.articulo.iva_bs)) * $scope.articulo.CANTIDAD)  ){
                  ngNotify.set('¡El precio excede el credito disponible!','error')
                 error = true;
