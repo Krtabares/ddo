@@ -812,21 +812,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.totales.USD = 0
             $scope.totales.bsIVA = 0
             $scope.totales.USDIVA = 0
-
+            console.
             $scope.pedido.pedido.forEach(element => {
 
-              $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
+              $scope.totales.bolivares += parseFloat($scope.totales.bolivares)
                                              + (parseFloat(element.PRECIO) * element.CANTIDAD)
-              $scope.totales.USD = parseFloat($scope.totales.USD)
+              $scope.totales.USD += parseFloat($scope.totales.USD)
                                             + (parseFloat(element.precio_neto_usd) * element.CANTIDAD)
 
               if($scope.totales.bsIVA){
-                $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA)
+                $scope.totales.bsIVA += parseFloat($scope.totales.bsIVA)
                 + (parseFloat(element.iva_bs) * element.CANTIDAD)
               }
 
               if($scope.totales.USDIVA){
-                $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
+                $scope.totales.USDIVA += parseFloat($scope.totales.USDIVA)
                 + (parseFloat(element.iva_usd) * element.CANTIDAD)
               }
 
