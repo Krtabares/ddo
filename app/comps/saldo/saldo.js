@@ -238,7 +238,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
 
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('bodega').withTitle('Bodega'),
-            DTColumnBuilder.newColumn('nombre_bodega').withTitle('Nombre de la bodega'),
+            DTColumnBuilder.newColumn('fecha_vence').withTitle('Fecha vencimiento'),
             DTColumnBuilder.newColumn('cod_producto').withTitle('Código de producto'),
             DTColumnBuilder.newColumn('nombre_producto').withTitle('Nombre de producto'),
             DTColumnBuilder.newColumn('princ_activo').withTitle('Principio activo').withClass('none'),
