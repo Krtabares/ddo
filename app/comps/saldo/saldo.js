@@ -208,7 +208,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         var defer = $q.defer();
         var body = {}
         console.log($scope.client);
-        
+
         body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
         body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
         body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
@@ -219,7 +219,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
             console.log(response.data)
 
             response.data.obj.forEach((item, i) => {
-              item.precio = item.precio.replace(",", ".")
+              item.precio = item.precio_bruto_bs.replace(",", ".")
               item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
 
             });
