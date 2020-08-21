@@ -584,8 +584,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               console.log("$scope.articulo.CANTIDAD", $scope.articulo.CANTIDAD);
               console.log(" $scope.articulo.existencia",  $scope.articulo.existencia);
-               if( $scope.articulo.CANTIDAD > $scope.articulo.existencia  ){
-                // console.log('¡Complete todos los campos!PRECIO','error')
+               if( $scope.articulo.CANTIDAD > parseInt($scope.articulo.existencia)  ){
                   ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
                  error = true;
               }
