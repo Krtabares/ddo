@@ -277,6 +277,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.editView = true
               $scope.pedido.estatus = response.data.estatus
               ngNotify.set('Pedido en construccion! ', 'success')
+              $scope.mytimeout = $timeout($scope.onTimeout,1000);
 
           }, function errorCallback(response) {
             console.log(response)
