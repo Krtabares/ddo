@@ -474,7 +474,7 @@
         </div>
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Cerrar</button>{{pedido.estatus_id}}
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Cerrar</button>estatus {{pedido.estatus_id}}
         <button type="button"  class="btn btn-primary" ng-show="!editView && pedido.estatus_id < 3"   ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
         <button type="button"  class="btn btn-success" ng-show="pedido.ESTATUS < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="finalizar_pedido();stop();" >Finalizar</button>
         <!-- <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1" ng-show="editView" ng-click="updPedido();">Actualizar pedido</button> -->
