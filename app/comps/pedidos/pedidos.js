@@ -486,6 +486,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/add/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response)
+            $scope.getPedidos_filtering();
             if(response.data.reserved < articulo.CANTIDAD ){
               articulo.CANTIDAD = response.data.reserved
               articulo.alert = true
@@ -494,6 +495,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
             $scope.pedido.pedido.push(articulo)
             calcularTotales()
+
           }, function errorCallback(response) {
             console.log(response)
           });
@@ -508,6 +510,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/del/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response)
+            $scope.getPedidos_filtering();
 
             $scope.removeArt(i)
 
@@ -828,7 +831,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
                 $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
                 + (parseFloat(element.iva_usd) * element.CANTIDAD)
-              
+
 
             });
 

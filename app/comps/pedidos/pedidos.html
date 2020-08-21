@@ -466,7 +466,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Productos</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModalProducts()" >&times;</button>
 
         </div>
         <div class="modal-body">
@@ -622,7 +622,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" data-dismiss="modal" ng-click="addArtPedido();">Agregar</button>
+          <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" data-dismiss="modal" data ng-click="addArtPedido();">Agregar</button>
         </div>
       </div>
     </div>
