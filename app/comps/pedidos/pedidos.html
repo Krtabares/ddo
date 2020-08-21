@@ -425,7 +425,7 @@
                                   <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeDetalleProducto($index);"></i>
                                 </p>
                                 -->
-                                <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
+                                <button type="button" class="btn btn-danger" ng-disabled="!editView" ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
                               </td>
                             </tr>
                       </tbody>
