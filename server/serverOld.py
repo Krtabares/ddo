@@ -1878,7 +1878,7 @@ async def pedido (request , token: Token):
                     'no_factu':row[4],
                     'observacion':row[5],
                     'estatus':row[6],
-                    'estatus_id':row[6],
+                    'estatus_id':row[7],
                     'pedido': pedidos,
                     # 'totales':totales,
               }
