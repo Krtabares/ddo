@@ -1504,23 +1504,23 @@ async def pedidosV2 (request , token: Token):
     try:
         data = request.json
 
-    if not 'pNoCia' in data :
-        data['pNoCia'] = '01'
-    else:
-        data['pNoCia'] = "'"+data['pNoCia']+"'"
+        if not 'pNoCia' in data :
+            data['pNoCia'] = '01'
+        else:
+            data['pNoCia'] = "'"+data['pNoCia']+"'"
 
-    if not 'pNoGrupo' in data :
-        data['pNoGrupo'] = '01'
-    else:
-        data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
+        if not 'pNoGrupo' in data :
+            data['pNoGrupo'] = '01'
+        else:
+            data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
 
-    if not 'pCliente' in data :
-        data['pCliente'] = 'null'
-    else:
-        data['pCliente'] = "'"+data['pCliente']+"'"
+        if not 'pCliente' in data :
+            data['pCliente'] = 'null'
+        else:
+            data['pCliente'] = "'"+data['pCliente']+"'"
 
 
-    list = await procedure_pedidos(data['pNoCia'],data['pNoGrupo'],data['pCliente'])
+        list = await procedure_pedidos(data['pNoCia'],data['pNoGrupo'],data['pCliente'])
 
 
 
