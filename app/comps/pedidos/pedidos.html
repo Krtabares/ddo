@@ -173,14 +173,14 @@
                         <th scope="col"><p class="text-center">Total</p></th>
                         <th scope="col"><p class="text-center">Precio USD</p></th>
                         <th scope="col"><p class="text-center">Total USD</p></th>
-                        <th scope="col"><p class="text-center">Estatus</p></th>
+                        <!-- <th scope="col"><p class="text-center">Estatus</p></th> -->
                         <th scope="col"><p class="text-center">Opcion</p></th>
 
                         </tr>
                     </thead>
                     <tbody>
 
-                        <tr ng-repeat="x in pedido.pedido">
+                        <tr ng-repeat="x in pedido.pedido" ng-class="{ incideRow : x.alert }" >
                             <!-- <th scope="row">{{ $index + 1 }}</th> -->
                             <!-- <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td> -->
                             <td><p class="text-center">{{ x.nombre_producto }}</p></td>
@@ -189,7 +189,7 @@
                             <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
                             <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
                             <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
-                            <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td>
+                            <!-- <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td> -->
                             <td >
                               <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
                               <!-- <p class="text-center">
