@@ -1244,7 +1244,7 @@ async def crear_detalle_pedido(detalle, ID):
             c = db.cursor()
 
             sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO_BRUTO, TIPO_CAMBIO, BODEGA)
-                            VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, {BODEGA} )"""
+                            VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, \'{BODEGA}\' )"""
 
             c.execute(sql.format(
                          ID_PEDIDO = int(ID),
@@ -1734,7 +1734,7 @@ async def procedure_pedidos(idPedido):
                       BEGIN
 
 
-                          Procesospw.detalle_pedidos_cargados (l_cursor ,174);
+                          Procesospw.pedidos_cargados (l_cursor ,174);
 
 
                         LOOP
