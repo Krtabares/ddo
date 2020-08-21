@@ -105,9 +105,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.editPedido= function(){
-          if($scope.pedido.estatus_id >= 2){
-            return
+          if($scope.pedido.estatus_id >= 3){
+
             ngNotify.set('¡Este pedido no puede ser editado!','error')
+            return
           }else{
             $scope.edit_pedido();
           }
@@ -612,10 +613,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               console.log("$scope.articulo.CANTIDAD", $scope.articulo.CANTIDAD);
               console.log(" $scope.articulo.existencia",  $scope.articulo.existencia);
-              //  if( $scope.articulo.CANTIDAD > parseInt($scope.articulo.existencia)  ){
-              //     ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
-              //    error = true;
-              // }
+               if( $scope.articulo.CANTIDAD > parseInt($scope.articulo.existencia)  ){
+                  ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
+                 error = true;
+              }
               console.log($scope.articulo,"$scope.articulo")
 
               if( !validaCreditoContraProducto((parseFloat($scope.articulo.precio_bruto_bs)+parseFloat($scope.articulo.iva_bs)) * $scope.articulo.CANTIDAD)  ){
