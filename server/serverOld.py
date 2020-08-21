@@ -1017,127 +1017,6 @@ async def procedure(request):
 
     return response.json({"msj": "OK", "obj": agrupar_facturas(list)}, 200)
 
-@app.route('/get/clientes', ["POST", "GET"])
-@jwt_required
-async def transfer(request, token : Token):
-    db = get_db()
-    c = db.cursor()
-    c.execute("""
-                    select  no_cia,
-                            grupo,
-                            no_cliente,
-                            nombre,
-                            nombre_comercial,
-                            direccion,
-                            email1,
-                            email2,
-                            telefono,
-                            cedula
-                     from paginaweb.arccmc_temp WHERE ROWNUM <= 150
-                    """)
-
-    list = []
-    for row in c:
-        aux = {}
-        aux = {
-            'no_cia' : row[0],
-            'grupo' : row[1],
-            'no_cliente' : row[2],
-            'nombre' : row[3],
-            'nombre_comercial' : row[4],
-            'direccion' : row[5],
-            'email1' : row[6],
-            'email2' : row[7],
-            'telefono' : row[8],
-            'cedula' : row[9]
-        }
-        list.append(aux)
-    # TESTING
-    return response.json(list)
-
-@app.route('/get/farmacias', ["POST","GET"])
-async def get_farmacias(request):
-    try:
-        db = get_db()
-        c = db.cursor()
-        c.execute("""
-                    select
-                    NOMBRE, USA_ORDEN, INTERESES, EXCENTO_IMP, LIMITE_CREDI,
-                    F_ULT_PAGO, F_CIERRE, MOTIVO, PLAZO, DESC_PRONTO_PAGO, VENDEDOR,
-                    MTO_COMP, TIPOPRECIO, CLASE, OFERTA, PLAZO, DIA_TRAMITE, DIA_CORTE
-                    FROM PAGINAWEB.ARCCMC_TEMP """)
-        list=[]
-        for row in c:
-            aux = {}
-            aux = {
-                'NOMBRE' : row[0],
-                'USA_ORDEN' : row[1],
-                'INTERESES' : row[2],
-                'EXCENTO_IMP' : row[3],
-                'LIMITE_CREDI' : row[4],
-                'F_ULT_PAGO' : row[5],
-                'F_CIERRE' : row[6],
-                'MOTIVO' : row[7],
-                'PLAZO' : row[8],
-                'DESC_PRONTO_PAGO' : row[9],
-                'VENDEDOR':row[10],
-                'MTO_COMP':row[11],
-                'TIPOPRECIO':row[12],
-                'CLASE':row[13],
-                'OFERTA':row[14],
-                'PLAZO':row[15],
-                'DIA_TRAMITE':row[16],
-                'DIA_CORTE':row[17],
-            }
-            list.append(aux)
-        return response.json(list)
-    except Exception as e:
-        logger.debug(traceback.format_exc())
-        return response.json("ERROR",400)
-
-@app.route('/get/client',["POST","GET"])
-async def info_clientes(request):
-
-    data = request.json
-
-    if not 'pCliente' in data:
-        return response.json({"msg": "Missing username parameter"}, status=400)
-
-    else:
-        data['pCliente'] = "'"+data['pCliente']+"'"
-
-
-    db = get_db()
-    c = db.cursor()
-    c.execute(""" SELECT NO_CIA, GRUPO, NO_CLIENTE,
-                NOMBRE, NOMBRE_COMERCIAL, DIRECCION,
-                EMAIL1, EMAIL3, TELEFONO, CEDULA, *
-                FROM PAGINAWEB.ARCCMC_TEMP WHERE NO_CLIENTE = {pCliente} """.format(
-                        pCliente = data['pCliente'],
-
-                    ))
-    list = []
-    # for row in c:
-    #     aux = {}
-    #     aux = {
-    #         'no_cia':row[0],
-    #         'grupo':row[1],
-    #         'no_cliente':row[2],
-    #         'nombre':row[3],
-    #         'nombre_comercial':row[4],
-    #         'direccion':row[5],
-    #         'email1':row[6],
-    #         'email3':row[7],
-    #         'telefono':row[8],
-    #         'cedula':row[9]
-    #     }
-    #     list.append(row)
-    while True:
-                row = c.fetchone()
-                if row is None:
-                    break
-                print(row)
-    return response.json(row)
 
 @app.route('/valida/client', ["POST", "GET"])
 @jwt_required
@@ -1579,7 +1458,7 @@ async def pedidos (request , token: Token):
         c.execute("""SELECT COD_CIA, GRUPO_CLIENTE,
                             COD_CLIENTE, TO_CHAR(FECHA_CARGA, 'DD-MM-YYYY'), NO_PEDIDO_CODISA,
                             OBSERVACIONES,  t2.descripcion, (sum(t3.PRECIO_BRUTO * t3.CANTIDAD ))
-                                monto, count(t3.COD_PRODUCTO) producto,ID, t1.ESTATUS
+                                monto, count(t3.COD_PRODUCTO) producto,ID, t1.ESTATUS, TO_CHAR(FECHA_ESTATUS, 'DD-MM-YYYY')
                             FROM PAGINAWEB.PEDIDO t1
                             join PAGINAWEB.ESTATUS t2
                                 on t1.ESTATUS = t2.CODIGO
@@ -1606,24 +1485,46 @@ async def pedidos (request , token: Token):
                     'precio':row[7],
                     'cantidad':row[8],
                     'ID':row[9],
-                    'estatus_id':row[10]
+                    'estatus_id':row[10],
+                    'fecha_estatus':row[11]
 
 
               }
             list.append(aux)
 
-        c.execute("""select count(1) from PEDIDO""")
-        row = c.fetchone()
-        totalPages=row[0]/100
-        if totalPages < 0.5:
-            totalPages = totalPages + 0.5
 
-        print("=====================================================================")
-        print(list)
-        print("=====================================================================")
-        return response.json({"data":list,
-                              "page":'01',
-                              "totalPages": round(totalPages)},200)
+        return response.json({"data":list},200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
+@app.route('/get/pedidosV2',["POST","GET"])
+@jwt_required
+async def pedidosV2 (request , token: Token):
+    try:
+        data = request.json
+
+    if not 'pNoCia' in data :
+        data['pNoCia'] = '01'
+    else:
+        data['pNoCia'] = "'"+data['pNoCia']+"'"
+
+    if not 'pNoGrupo' in data :
+        data['pNoGrupo'] = '01'
+    else:
+        data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
+
+    if not 'pCliente' in data :
+        data['pCliente'] = 'null'
+    else:
+        data['pCliente'] = "'"+data['pCliente']+"'"
+
+
+    list = await procedure_pedidos(data['pNoCia'],data['pNoGrupo'],data['pCliente'])
+
+
+
+        return response.json({"data":list},200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
@@ -1725,7 +1626,7 @@ async def procedure_detalle_pedidos(idPedido):
         logger.debug(e)
         return response.json("ERROR",400)
 
-async def procedure_pedidos(idPedido):
+async def procedure_pedidos(cia,grupo,cliente):
     try:
 
         db = get_db()
@@ -1734,59 +1635,58 @@ async def procedure_pedidos(idPedido):
         c.execute("""DECLARE
 
                         l_cursor  SYS_REFCURSOR;
-
                         v_id_pedido number;
-                        v_cod_producto varchar2(15);
-                        v_nombre_producto varchar2(80);
-                        v_princ_activo varchar2(200);
-                        v_unidades NUMBER;
-                        v_precio_neto_bs number;
-                        v_iva_bs number;
-                        v_precio_neto_usd number;
-                        v_iva_usd number;
-
+                        v_nombre_cliente varchar2(40);
+                        v_direccion_cliente varchar2(200);
+                        v_fecha_creacion DATE;
+                        v_estatus varchar2(80);
+                        v_fecha_estatus DATE;
+                        pNoCia varchar2(10) DEFAULT '01';
+                        pNoGrupo varchar2(10) DEFAULT '01';
+                        pCliente varchar2(50) DEFAULT null;
 
                       BEGIN
 
+                          pNoCia := {pNoCia};
+                          pNoGrupo := {pNoGrupo};
+                          pCliente := {pCliente};
 
-                          Procesospw.pedidos_cargados (l_cursor ,174);
-
+                          Procesospw.pedidos_cargados (l_cursor ,pNoCia, pNoGrupo,pCliente);
 
                         LOOP
 
                           FETCH l_cursor into
+                                  v_id_pedido,
 
-                                  v_id_pedido ,
-                                  v_cod_producto ,
-                                  v_nombre_producto ,
-                                  v_princ_activo ,
-                                  v_unidades ,
-                                  v_precio_neto_bs ,
-                                  v_iva_bs ,
-                                  v_precio_neto_usd ,
-                                  v_iva_usd;
+                                  v_nombre_cliente,
+
+                                  v_direccion_cliente,
+
+                                  v_fecha_creacion,
+
+                                  v_estatus,
+
+                                  v_fecha_estatus;
 
                           EXIT WHEN l_cursor%NOTFOUND;
 
                           dbms_output.put_line
 
                             (
-
-
                                   v_id_pedido|| '|'||
-                                  v_cod_producto|| '|'||
-                                  v_nombre_producto|| '|'||
-                                  v_princ_activo|| '|'||
-                                  v_unidades|| '|'||
-                                  v_precio_neto_bs|| '|'||
-                                  v_iva_bs|| '|'||
-                                  v_precio_neto_usd|| '|'||
-                                  v_iva_usd
+
+                                  v_nombre_cliente|| '|'||
+
+                                  v_direccion_cliente|| '|'||
+
+                                  v_fecha_creacion|| '|'||
+
+                                  v_estatus|| '|'||
+
+                                  v_fecha_estatus
 
 
                             );
-
-
 
                         END LOOP;
 
@@ -1794,7 +1694,13 @@ async def procedure_pedidos(idPedido):
                         CLOSE l_cursor;
 
 
-  END;""".format(idPedido = idPedido))
+                      END;
+        """.format(
+                    pNoCia = cia,
+                    pNoGrupo = grupo,
+                    pCliente = cliente
+                )
+            )
         textVar = c.var(str)
         statusVar = c.var(int)
         list = []
@@ -1804,16 +1710,12 @@ async def procedure_pedidos(idPedido):
                 break
             arr = str(textVar.getvalue()).split("|")
             obj = {
-                  'id_pedido': arr[0],
-                  'COD_PRODUCTO': arr[1],
-                  'nombre_producto': arr[2],
-                  'princ_activo': arr[3],
-                  'CANTIDAD': arr[4],
-                  'precio_neto_bs': arr[5],
-                  'PRECIO': arr[5],
-                  'iva_bs': arr[6],
-                  'precio_neto_usd': arr[7],
-                  'iva_usd': arr[8]
+                  'ID': arr[0],
+                  'nombre_cliente': arr[1],
+                  'direccion_cliente': arr[2],
+                  'fecha_creacion': arr[3],
+                  'estatus': arr[4],
+                  'fecha_estatus': arr[5]
             }
             list.append(obj)
 
@@ -1833,28 +1735,8 @@ async def pedido (request , token: Token):
 
         mongodb = get_mongo_db()
 
-        # totales = await mongodb.order.find_one({'id_pedido' :int(data['idPedido'])}, {'_id' : 0})
-
         db = get_db()
         c = db.cursor()
-        #
-        # c.execute("""SELECT
-        #                  COD_PRODUCTO, CANTIDAD,
-        #                 PRECIO_BRUTO, TIPO_CAMBIO, BODEGA
-        #                 FROM PAGINAWEB.DETALLE_PEDIDO WHERE ID_PEDIDO = {idPedido} """.format( idPedido = data['idPedido'] ))
-        #
-        # pedidos = []
-        # for row in c:
-        #     aux = {}
-        #     aux = {
-        #             'COD_PRODUCTO':row[0],
-        #             'CANTIDAD':row[1],
-        #             'PRECIO':row[2],
-        #             'TIPO_CAMBIO':row[3],
-        #             'BODEGA':row[4],
-        #
-        #       }
-        #     pedidos.append(aux)
 
         pedidos = await procedure_detalle_pedidos(int(data['idPedido']))
 
@@ -1890,238 +1772,6 @@ async def pedido (request , token: Token):
         logger.debug(e)
         return response.json("ERROR",400)
 
-@app.route('/get/pedidos_filtered',["POST","GET","OPTIONS"])
-async def pedidos_filter(request):
-    try:
 
-        data = request.json
-        db = get_db()
-        c = db.cursor()
 
-        #c.prepare("""SELECT NO_CIA, GRUPO, NO_CLIENTE, NO_FACTU, NO_ARTI, CANTIDAD, PRECIO, FECHA, OBSERVACION
-        #            FROM ARFAPEDW
-        #            WHERE NO_CLIENTE = :client""")
-        #c.execute(None, {'client':'123'})
-        #c.execute("select * from ARFAPEDW_TEST")
-        #rows = c.fetchall()
-        #list = []
-        #for row in rows:
-        #    print(row)
-        #    list.append(row)
-        #statement = "SELECT * FROM ARFAPEDW"
-        #c.execute(statement)
-        #res = c.fetchall()
-        #print(res)
-
-        c.prepare("""SELECT NO_CIA, GRUPO, NO_CLIENTE, NO_FACTU, NO_ARTI, CANTIDAD, PRECIO, FECHA, OBSERVACION
-                    FROM ARFAPEDW_TEST
-                    WHERE NO_CLIENTE = :client""")
-        c.execute(None, {'client': data['no_client']})
-        print(c)
-        list = []
-        for row in c:
-            print(row)
-            aux = {}
-            aux = {
-                    'no_cia':row[0],
-                    'grupo':row[1],
-                    'no_cliente':row[2],
-                    'no_factu':row[3],
-                    'no_arti':row[4],
-                    'cantidad':row[5],
-                    'precio':row[6],
-                    'fecha':row[7],
-                    'observacion':row[8],
-              }
-            list.append(aux)
-        return response.json(list)
-    except Exception as e:
-        logger.debug(e)
-        return response.json("ERROR",400)
-
-@app.route('/get/productos',["POST","GET"])
-async def get_productos(request):
-    try:
-        data = request.json
-        # print("qlq")
-        db = get_db()
-        c = db.cursor()
-        c.prepare("""SELECT * FROM
-                        (SELECT a.* , rownum r__
-                        FROM(
-                        select arccmc_temp.no_cia, arinlo_temp.bodega,
-                        arinda_temp.grupo, arinda_temp.moneda_preciobase, arccmc_temp.no_cliente
-                        from arccmc_temp
-                        inner join arinda_temp on arccmc_temp.no_cia = arinda_temp.no_cia
-                        inner join arinlo_temp on arccmc_temp.no_cia = arinlo_temp.no_cia
-                        where arccmc_temp.no_cia =: min) a
-                        WHERE rownum < ((1 * 100) + 1 ))
-                     WHERE r__ >= (((1-1) * 100) + 1)""")
-
-        c.execute(None, {'min':'01'})
-        #c.execute("""select arccmc_temp.no_cia, arinlo_temp.bodega,
-        #           arinda_temp.grupo, arinda_temp.moneda_preciobase, arccmc_temp.no_cliente
-        #          from arccmc_temp
-        #            inner join arinda_temp on arccmc_temp.no_cia = arinda_temp.no_cia
-        #            inner join arinlo_temp on arccmc_temp.no_cia = arinlo_temp.no_cia
-        #            where arccmc_temp.no_cia = '01'""")
-        # print("qlq2")
-        list = []
-        totalPages=0
-        for row in c:
-            aux = {}
-            # print("qlq3")
-            aux = {
-                    'no_cia':row[0],
-                    'bodega':row[1],
-                    'grupo':row[2],
-                    'moneda_preciobase':row[3],
-                    'no_cliente':row[4],
-              }
-
-            # print("qlq4")
-            list.append(aux)
-            # print("qlq5")
-
-        c.execute("""select count(1) from arccmc_temp""")
-        row = c.fetchone()
-        print(row)
-        totalPages=row[0]/100
-        if totalPages < 0.5:
-            totalPages = totalPages + 0.5
-        return response.json({"data":list,
-                              "pageNumber":'01',
-                              "totalPages":totalPages})
-    except Exception as e:
-        logger.debug(traceback.format_exc())
-        return response.json("ERROR",400)
-
-@app.route('/get/deuda', ["POST", "GET"])
-@jwt_required
-async def get_deuda(request, token : Token):
-    try:
-        data = request.json
-        db = get_db()
-        c = db.cursor()
-        c.execute("""SELECT * FROM
-                    (
-                        SELECT a.*, rownum r__
-                        FROM
-                        ( SELECT ID_DEUDA,
-                            CODIGO_CLIENTE,
-                            NOMBRE_CLIENTE,
-                            TIPO_PAGO,
-                            TO_CHAR(FECHA_VENCIMIENTO, 'YYYY-MM-DD'),
-                            MONTO_INICIAL,
-                            MONTO_ACTUAL,
-                            TO_CHAR(FECHA_ULTIMO_PAGO, 'YYYY-MM-DD'),
-                            MONTO_ULTIMO_PAGO,
-                            ESTATUS_DEUDA,
-                            CODIGO_TIPO_DOC,
-                            NOMBRE_TIPO_DOC
-                          FROM ARCCDEUDAS_WEB) a
-                        WHERE rownum < (({page} * 100) + 1 ))
-                     WHERE r__ >= ((({page}-1) * 100) + 1)""".format(page=data['page']))
-
-        list = []
-        for row in c:
-            aux = {}
-            aux = {
-                    'id_deuda': row[0],
-                    'codigo_cliente':row[1],
-                    'nombre_cliente':row[2],
-                    'tipo_pago':row[3],
-                    'fecha_vencimiento':row[4],
-                    'monto_inicial':row[5],
-                    'monto_actual':row[6],
-                    'monto_pendiente': row[5] + row[6],
-                    'fecha_ultimo_pago':row[7],
-                    'monto_ultimo_pago':row[8],
-                    'estatus_deuda':row[9],
-                    'codigo_tipo_doc':row[10],
-                    'nombre_tipo_doc':row[11]
-              }
-            list.append(aux)
-
-        c.execute("""select count(1) from ARCCDEUDAS_WEB""")
-        row = c.fetchone()
-        totalPages=row[0]/100
-        if totalPages < 0.5:
-            totalPages = totalPages + 0.5
-        return response.json({"data":list,
-                              "page":'01',
-                              "totalPages": round(totalPages)},200)
-    except Exception as e:
-        logger.debug(e)
-        return response.json("ERROR",400)
-
-@app.route('/get/saldo', ["POST","GET"])
-@jwt_required
-async def get_saldo(request, token : Token):
-    try:
-        data = request.json
-        db = get_db()
-        c = db.cursor()
-        c.execute("""SELECT * FROM
-                        (SELECT a.* , rownum r__
-                        FROM(
-                           SELECT
-                            NO_CIA, BODEGA, CLASE,
-                               CATEGORIA, NO_ARTI, NO_LOTE,
-                               UBICACION, SALDO_UNIDAD, SALDO_CONTABLE,
-                               SALDO_MONTO, SALIDA_PEND, COSTOUNI_LOTE,
-                               TO_CHAR(FECHA_ENTRADA, 'YYYY-MM-DD'), TO_CHAR(FECHA_VENCE, 'YYYY-MM-DD'), TO_CHAR(FECHA_FIN_CUARENTENA, 'YYYY-MM-DD'),
-                               PROCESO_TOMA, EXIST_PREP, COSTO_PREP,
-                               NO_CONTEO, IND_FACTURABLE, RESERV_UN,
-                               PORC_DESC, USUARIO_BLOQUEO, TO_CHAR(FECHA_BLOQUEO, 'YYYY-MM-DD'),
-                               COSTOUNI_REAL, BLOQUEADO_ANT_BLOQUEO_GENERAL, PRECIO_PVP,
-                               COSTOUNI_MOV, USUARIO_ING, TO_CHAR(FECHA_ING, 'YYYY-MM-DD'),
-                               USUARIO_MODIF, TO_CHAR(FECHA_MODIF, 'YYYY-MM-DD')
-                            FROM PAGINAWEB.ARINLO_TEMP) a
-                        WHERE rownum < (({page} * 100) + 1 ))
-                     WHERE r__ >= ((({page}-1) * 100) + 1)""".format(page=data['page']))
-        list = []
-        for row in c:
-            aux = {}
-            aux = {
-                    'no_cia':row[0],
-                    'bodega':row[1],
-                    'clase':row[2],
-                    'categoria':row[3],
-                    'no_arti':row[4],
-                    'no_lote':row[5],
-                    'ubicacion':row[6],
-                    'saldo_unidad':row[7],
-                    'saldo_contable':row[8],
-                    'saldo_monto':row[9],
-                    'salida_pend':row[10],
-                    'costouni_lote':row[11],
-                    'fecha_entrada':row[12],
-                    'fecha_vence':row[13],
-                    'fecha_fin_cuarentena':row[14],
-                    'proceso_toma':row[15],
-                    'exist_prep':row[16],
-                    'costo_prep':row[17],
-                    'no_conteo':row[18],
-                    'ind_facturable':row[19],
-                    'reserv_un':row[19],
-                    'porc_desc':row[20],
-                    'usuario_bloqueo':row[21],
-                    'fecha_bloqueo':row[22],
-                    'costouni_real':row[23],
-                    'bloqueado_ant_bloqueo_general':row[24],
-                    'precio_pvp':row[25],
-                    'costouni_mov':row[26],
-                    'usuario_ing':row[27],
-                    'fecha_ing':row[28],
-                    'usuario_modif':row[29],
-                    'fecha_modif':row[30],
-              }
-            list.append(aux)
-        return response.json({"data":list,
-        "page":data['page'],
-        "totalPages":'100'},200)
-    except Exception as e:
-        logger.debug(e)
-        return response.json("ERROR",400)
 app.run(host='0.0.0.0', port = port, debug = True)

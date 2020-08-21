@@ -167,6 +167,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                $scope.listaPedidos=response.data.data
                // defer.resolve(response.data.data);
             });
+
+            $scope.getPedidos_filteringV2()
         }
 
         verificClient()
@@ -259,6 +261,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
 
               $scope.getPedidos_filtering();
+              $scope.getPedidos_filteringV2();
               ngNotify.set('¡Cerrado con exito! ', 'success')
 
           }, function errorCallback(response) {
@@ -274,6 +277,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
 
               $scope.getPedidos_filtering();
+              $scope.getPedidos_filteringV2();
               $scope.editView = true
               $scope.pedido.estatus = response.data.estatus
               $scope.pedido.estatus_id = 1
@@ -368,10 +372,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-      var refreshCount = 0
-      var stop
+        var refreshCount = 0
+        var stop
 
-      $scope.refreshProduct = function() {
+        $scope.refreshProduct = function() {
 
         refreshCount++
 
@@ -388,17 +392,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }, 108000);
         };
 
-
-
-
-      $scope.stopFight = function() {
+        $scope.stopFight = function() {
         if (angular.isDefined(stop)) {
           $interval.cancel(stop);
           stop = undefined;
         }
       };
-
-
 
         $scope.closeModalProducts = function () {
           $scope.stopFight()
@@ -427,6 +426,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
               $scope.reset();
               $scope.getPedidos_filtering();
+              $scope.getPedidos_filteringV2();
               ngNotify.set('¡Pedido generado con exito!','success')
             /*if (response.data.exist) {
               ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
@@ -514,6 +514,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
             $scope.getPedidos_filtering();
+            $scope.getPedidos_filteringV2();
             $scope.getProdNew(true);
             if(response.data.reserved < articulo.CANTIDAD && 1==2){
               articulo.CANTIDAD = response.data.reserved
@@ -539,6 +540,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
             // $scope.getPedidos_filtering();
+            $scope.getPedidos_filteringV2();
             $scope.getProdNew(true)
             $scope.removeArt(i)
 
@@ -560,6 +562,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
               $scope.reset();
               $scope.getPedidos_filtering();
+              $scope.getPedidos_filteringV2();
               ngNotify.set('¡Pedido actualizado con exito!','success')
           }, function errorCallback(response) {
             console.log(response)
@@ -575,6 +578,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
               $scope.reset();
               $scope.getPedidos_filtering();
+              $scope.getPedidos_filteringV2();
               $scope.ID = null;
               ngNotify.set('¡Pedido eliminado con exito!','success')
           }, function errorCallback(response) {
@@ -738,6 +742,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
+
         $scope.getPedido = function(ID){
           var obj = {'idPedido': ID};
           $scope.ID = ID
@@ -777,6 +782,23 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response.data)
 
               $scope.listaPedidos = response.data.data;
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
+        $scope.listaPedidosV2=[]
+        $scope.getPedidos_filteringV2 = function(no_client){
+
+          var body = {}
+          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+          body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+          request.post(ip+'/get/pedidosV2', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+          .then(function successCallback(response) {
+            console.log(response.data)
+
+              $scope.listaPedidosV2 = response.data.data;
 
           }, function errorCallback(response) {
             console.log(response)
