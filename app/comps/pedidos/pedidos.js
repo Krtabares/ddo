@@ -775,17 +775,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.getPedidos_filtering = function(no_client){
 
-          var body = {}
-          body.pCliente = $scope.client.COD_CLIENTE
-          request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
-          .then(function successCallback(response) {
-            console.log(response.data)
-
-              $scope.listaPedidos = response.data.data;
-
-          }, function errorCallback(response) {
-            console.log(response)
-          });
+          // var body = {}
+          // body.pCliente = $scope.client.COD_CLIENTE
+          // request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+          // .then(function successCallback(response) {
+          //   console.log(response.data)
+          //
+          //     $scope.listaPedidos = response.data.data;
+          //
+          // }, function errorCallback(response) {
+          //   console.log(response)
+          // });
         }
         $scope.listaPedidosV2=[]
         $scope.getPedidos_filteringV2 = function(no_client){
