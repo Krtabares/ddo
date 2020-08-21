@@ -105,11 +105,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.editPedido= function(){
-          if($scope.pedido.estatus_id == 0){
+          if($scope.pedido.estatus_id >= 2){
             return
             ngNotify.set('¡Este pedido no puede ser editado!','error')
+          }else{
+            $scope.edit_pedido();
           }
-          $scope.editView = true
+
         }
 
         $scope.showProductTable = false
@@ -257,6 +259,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filtering();
               ngNotify.set('¡Cerrado con exito! ', 'success')
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
+
+        $scope.edit_pedido =function () {
+          var body = {}
+          body.ID = $scope.ID
+          request.post(ip+'/editar_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+            console.log(response)
+
+              $scope.getPedidos_filtering();
+              $scope.editView = true
+              ngNotify.set('Pedido en construccion! ', 'success')
 
           }, function errorCallback(response) {
             console.log(response)
@@ -439,7 +457,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             if($scope.counter > $scope.timeLimit){
               $scope.stop()
-              $scope.delPedido()
+              if(!$scope.editView){
+                $scope.delPedido()
+              }
+
               $(function(){
                 $("#addPedidoModal").modal("hide");
                 $("#modalproduct").modal("hide");
@@ -660,7 +681,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.reset = function(){
-
+          $scope.counter = 0;
           $scope.tabsIndex = 0
           $scope.totales.bolivares = 0
           $scope.totales.USD = 0

@@ -1283,13 +1283,15 @@ async def upd_estatus_pedido(estatus, ID):
 
             """
 
-        c.execute(sql, [
-                        estatus,
-                        ID
-                    ]
-                )
+        c.execute(sql, [estatus,ID])
 
         db.commit()
+
+        sql = """select descripcion
+                        from ESTATUS where codigo = :estatus"""
+        c.execute(sql, [estatus])
+        row = c.fetchone()
+        return row[0]
 
         return
 
@@ -1338,6 +1340,19 @@ async def finaliza_pedido(request, token : Token):
         await upd_estatus_pedido(2,data['ID'])
 
         return response.json("success",200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
+@app.route('/editar_pedido', ["POST", "GET"])
+@jwt_required
+async def editar_pedido(request, token : Token):
+    try:
+        data = request.json
+
+        estatus = await upd_estatus_pedido(1,data['ID'])
+
+        return response.json({"estatus" : estatus},200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)

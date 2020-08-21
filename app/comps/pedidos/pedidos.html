@@ -273,7 +273,31 @@
         <div class="card-header">
           Fecha:
           <strong>{{pedido.fecha}}</strong>
-            <span class="float-right"> <strong>Estatus:</strong> {{pedido.estatus}}</span>
+          <span class="float-right"> <strong>tiempo:</strong> {{msToTime(counter)}}</span>
+          <span class="float-right"> <strong>Estatus:</strong> {{pedido.estatus}}</span>
+          </div>
+          <div class="alert alert-danger"  ng-show="!clienteValido && !hasUserClient" role="alert">
+            Advertencia:
+            <strong>{{clientInvalidoMsg}}</strong>
+          </div>
+
+          <div class="alert alert-info alert-dismissible fade show" ng-show="counter >= 0" role="alert">
+            <strong>Informacion!</strong> Dispone de 10 minutos de inactividad
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="alert alert-warning alert-dismissible fade show" ng-show="counter > 300000 && counter < timeLimit" role="alert">
+            <strong>Advertencia!</strong> Dispone de menos de 5 minutos de inactividad
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="alert alert-danger alert-dismissible fade show" ng-show="counter >= timeLimit" role="alert">
+            <strong>INFO!</strong> Su tiempo para elaborar el pedido se a agotado
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         <ul class="nav nav-tabs mb-4">
             <li class="nav-item">
@@ -360,50 +384,52 @@
 
                 <div class="col-4">
                   <label></label>
-                  <button type="button" ng-show="editView" class="btn btn-success" style="margin-top: 32px;" data-toggle="modal" data-target="#modalproduct">Agregar Productos</button>
+                  <button type="button" ng-show="editView" class="btn btn-success" style="margin-top: 32px;"ng-click="openModalProducts()">Agregar Productos</button>
                 </div>
 
               </div>
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-              <table class="table">
-                  <thead>
-                      <tr>
-                      <!-- <th scope="col"><p class="text-center">#</p></th> -->
-                      <!-- <th scope="col"><p class="text-center">Codigo de Articulo</p></th> -->
-                      <th scope="col"><p class="text-center">Nombre Articulo</p></th>
-                      <th scope="col"><p class="text-center">Cantidad</p></th>
-                      <th scope="col"><p class="text-center">Precio por unidad</p></th>
-                      <th scope="col"><p class="text-center">Total</p></th>
-                      <th scope="col"><p class="text-center">Precio USD</p></th>
-                      <th scope="col"><p class="text-center">Total USD</p></th>
-                      <th ng-show="editView" scope="col"><p class="text-center">Opcion</p></th>
-                      </tr>
-                  </thead>
-                  <tbody>
 
-                      <tr ng-repeat="x in pedido.pedido">
-                          <!-- <th scope="row">{{ $index + 1 }}</th> -->
-                          <!-- <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td> -->
-                          <td><p class="text-center">{{ x.nombre_producto }}</p></td>
-                          <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
-                          <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
-                          <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
-                          <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
-                          <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
+                  <table class="table">
+                      <thead>
+                          <tr>
+                          <!-- <th scope="col"><p class="text-center">#</p></th> -->
+                          <!-- <th scope="col"><p class="text-center">Codigo de Articulo</p></th> -->
+                          <th scope="col"><p class="text-center">Nombre Articulo</p></th>
+                          <th scope="col"><p class="text-center">Cantidad</p></th>
+                          <th scope="col"><p class="text-center">Precio por unidad</p></th>
+                          <th scope="col"><p class="text-center">Total</p></th>
+                          <th scope="col"><p class="text-center">Precio USD</p></th>
+                          <th scope="col"><p class="text-center">Total USD</p></th>
+                          <!-- <th scope="col"><p class="text-center">Estatus</p></th> -->
+                          <th scope="col"><p class="text-center">Opcion</p></th>
 
-                          <td ng-show="editView" >
-                            <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
-                            <!-- <p class="text-center">
-                              <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeDetalleProducto($index);"></i>
-                            </p>
-                            -->
-                            <button type="button" class="btn btn-danger"  ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
-                          </td>
-                        </tr>
-                  </tbody>
-                  </table>
+                          </tr>
+                      </thead>
+                      <tbody>
 
+                          <tr ng-repeat="x in pedido.pedido" ng-class="{ incideRow : x.alert }" >
+                              <!-- <th scope="row">{{ $index + 1 }}</th> -->
+                              <!-- <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td> -->
+                              <td><p class="text-center">{{ x.nombre_producto }}</p></td>
+                              <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
+                              <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
+                              <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
+                              <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
+                              <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
+                              <!-- <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td> -->
+                              <td >
+                                <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
+                                <!-- <p class="text-center">
+                                  <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeDetalleProducto($index);"></i>
+                                </p>
+                                -->
+                                <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
+                              </td>
+                            </tr>
+                      </tbody>
+                      </table>
             </div>
             <div class="row">
               <div class="col-lg-2 col-sm-5">
@@ -462,18 +488,18 @@
 </div>
 
 <div class="modal fade" id="modalproduct">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Productos</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModalProducts()" >&times;</button>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Productos</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModalProducts()" >&times;</button>
 
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div class="alert alert-info"  role="alert">
-              <i class="fa fa-info" style="cursor: pointer;" ></i>
-              <p style='margin: 0cm 0cm 0.0001pt;font-style: normal;font-weight: 400;text-align: start;text-indent: 0px;font-size:16px;font-family: "Times New Roman", serif;color: rgb(34, 34, 34);'><strong><span style="font-size: 13px; font-family: Arial, sans-serif; color: rgb(0, 0, 0);  rgb(209, 236, 241);"> Requisitos para solicitud de psicotr&oacute;picos</span></strong></p>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="alert alert-info"  role="alert">
+            <i class="fa fa-info" style="cursor: pointer;" ></i>
+            <p style='margin: 0cm 0cm 0.0001pt;font-style: normal;font-weight: 400;text-align: start;text-indent: 0px;font-size:16px;font-family: "Times New Roman", serif;color: rgb(34, 34, 34);'><strong><span style="font-size: 13px; font-family: Arial, sans-serif; color: rgb(0, 0, 0);  rgb(209, 236, 241);"> Requisitos para solicitud de psicotr&oacute;picos</span></strong></p>
 <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">Enviar al siguiente correo <a href="mailto:regencia@del-oeste.com" style="color: rgb(17, 85, 204);" target="_blank">regencia@del-oeste.com</a>. :</span></strong></span></span></p>
 <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">C&eacute;dula de identidad del regente.</span></strong></span></span></p>
 <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">T&iacute;tulo del Farmac&eacute;utico.</span></strong></span></span></p>
@@ -481,152 +507,152 @@
 <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">&Uacute;ltima Relaci&oacute;n de psicotr&oacute;picos firmada y sellada, si es enviada por correo, copia de env&iacute;o y acuse de haber sido recibida &nbsp;por parte de la Contralor&iacute;a Sanitaria.</span></strong></span></span></p>
 <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;"><a target="_self" href="/ddo/app/assets/planilla.doc" download="planilla.doc">Planilla de solicitud </a> de productos psicotr&oacute;picos firmada por el regente y sellada por la farmacia, con fecha actual, es exigido por Sanidad (ver anexo).</span></strong></span></span></p>
 <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span></span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif; color: rgb(0, 0, 0);  rgb(209, 236, 241);">Todos los documentos deben ser enviados en un mismo correo</span></strong></p>
-            </div>
           </div>
-
-          <div class="modal-body-he">
-            <button id="btnProductInfo" style="display:none" data-toggle="modal" data-target="#modalInfoProduct"></button>
-            <div class="container">
-
-              <div class="col-sm-12 col-md-12 col-lg-12">
-                <label for="clientes">Busqueda por producto</label>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control"   ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
-                  </div>
-                </div>
-
-                <div ng-if="showProductTable" >
-
-                  <table datatable="ng" dt-options="dtOptionsProd"  class="table table-striped table-bordered" >
-                    <thead>
-                        <tr>
-                        <th scope="col"><p class="text-center">#</p></th>
-                        <th scope="col"><p class="text-center">Nombre Producto</p></th>
-                        <th scope="col"><p class="text-center">Existencia</p></th>
-                        <th scope="col"><p class="text-center">Principio Activo</p></th>
-                        <th scope="col"><p class="text-center">Precio Bs.S</p></th>
-                        <th scope="col"><p class="text-center">Iva Bs.S</p></th>
-                        <th scope="col"><p class="text-center">Precio USD</p></th>
-                        <th scope="col"><p class="text-center">Iva USD</p></th>
-                        <th scope="col"><p class="text-center">Proveedor</p></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <a href="#infoProduct">
-                        <tr ng-repeat="x in productos" ng-click="selectProduct($index)" ng-class="{ selectedRow : $index == productIndex }" >
-
-                            <td><p class="text-center">{{ $index + 1 }}</p></td>
-                            <td><p class="text-center">{{ x.nombre_producto }}</p></td>
-                            <td><p class="text-center">{{ x.existencia }}</p></td>
-                            <td><p class="text-center">{{ x.princ_activo }}</p></td>
-                            <td><p class="text-right">{{  x.precioFormatVE }}</p></td>
-                            <td><p class="text-right">{{  x.iva_bs }}</p></td>
-                            <td><p class="text-right">{{  x.precioFormatUSD }}</p></td>
-                            <td><p class="text-right">{{  x.iva_usd }}</p></td>
-                            <td><p class="text-right">{{  x.proveedor }}</p></td>
-
-                        </tr>
-                        </a>
-
-                    </tbody>
-                    </table>
-                </div>
-
-
-            </div>
-
-            </div>
-          </div>
-
-
         </div>
-        <div class="modal-footer">
 
-          <button type="button" class="btn btn-error" data-dismiss="modal" ng-click="closeModalProducts()" >Cerrar</button>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="modalInfoProduct">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" style="text-transform: capitalize;" >{{articulo.nombre_producto.toLowerCase()}}</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
-        </div>
-        <div class="modal-body">
-
+        <div class="modal-body-he">
+          <button id="btnProductInfo" style="display:none" data-toggle="modal" data-target="#modalInfoProduct"></button>
           <div class="container">
-            <div class="row pb-2 p-2" >
-                <div class="col-md-6">
-                  <p class="font-weight-bold mb-4">Informacion</p>
-                  <p class="mb-1"><span class="text-muted">Principal Activo: </span> {{articulo.princ_activo}}</p>
-                  <p class="mb-1"><span class="text-muted">Codigo: </span> {{articulo.cod_producto}}</p>
-                  <p class="mb-1"><span class="text-muted">Fecha Vencimiento: </span> {{articulo.fecha_vence}}</p>
+
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <label for="clientes">Busqueda por producto</label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control"   ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
+                </div>
+              </div>
+
+              <div ng-if="showProductTable" >
+
+                <table datatable="ng" dt-options="dtOptionsProd"  class="table table-striped table-bordered" >
+                  <thead>
+                      <tr>
+                      <th scope="col"><p class="text-center">#</p></th>
+                      <th scope="col"><p class="text-center">Nombre Producto</p></th>
+                      <th scope="col"><p class="text-center">Existencia</p></th>
+                      <th scope="col"><p class="text-center">Principio Activo</p></th>
+                      <th scope="col"><p class="text-center">Precio Bs.S</p></th>
+                      <th scope="col"><p class="text-center">Iva Bs.S</p></th>
+                      <th scope="col"><p class="text-center">Precio USD</p></th>
+                      <th scope="col"><p class="text-center">Iva USD</p></th>
+                      <th scope="col"><p class="text-center">Proveedor</p></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <a href="#infoProduct">
+                      <tr ng-repeat="x in productos" ng-click="selectProduct($index)" ng-class="{ selectedRow : $index == productIndex }" >
+
+                          <td><p class="text-center">{{ $index + 1 }}</p></td>
+                          <td><p class="text-center">{{ x.nombre_producto }}</p></td>
+                          <td><p class="text-center">{{ x.existencia }}</p></td>
+                          <td><p class="text-center">{{ x.princ_activo }}</p></td>
+                          <td><p class="text-right">{{  x.precioFormatVE }}</p></td>
+                          <td><p class="text-right">{{  x.iva_bs }}</p></td>
+                          <td><p class="text-right">{{  x.precioFormatUSD }}</p></td>
+                          <td><p class="text-right">{{  x.iva_usd }}</p></td>
+                          <td><p class="text-right">{{  x.proveedor }}</p></td>
+
+                      </tr>
+                      </a>
+
+                  </tbody>
+                  </table>
+              </div>
+
+
+          </div>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-error" data-dismiss="modal" ng-click="closeModalProducts()" >Cerrar</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalInfoProduct">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="text-transform: capitalize;" >{{articulo.nombre_producto.toLowerCase()}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+      </div>
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row pb-2 p-2" >
+              <div class="col-md-6">
+                <p class="font-weight-bold mb-4">Informacion</p>
+                <p class="mb-1"><span class="text-muted">Principal Activo: </span> {{articulo.princ_activo}}</p>
+                <p class="mb-1"><span class="text-muted">Codigo: </span> {{articulo.cod_producto}}</p>
+                <p class="mb-1"><span class="text-muted">Fecha Vencimiento: </span> {{articulo.fecha_vence}}</p>
+
+              </div>
+
+              <div class="col-md-6 text-right">
+                  <p class="font-weight-bold mb-4">Detalles</p>
+                  <p class="mb-1"><span class="text-muted">Proveedor: </span> {{articulo.proveedor}}</p>
+                  <p class="mb-1"><span class="text-muted">Regulado: </span> {{articulo.ind_regulado}}</p>
+                  <p class="mb-1"><span class="text-muted">Impuesto: </span> {{articulo.ind_impuesto}}</p>
+                  <p class="mb-1"><span class="text-muted">Psicotropico: </span> {{articulo.ind_psicotropico}}</p>
+                  <p class="mb-1"><span class="text-muted">Existencia: </span> {{articulo.existencia}}</p>
+              </div>
+          </div>
+
+          <div id="infoProduct" class="row" >
+
+              <div class="col-6">
+                <label>Cantidad</label>
+                <input type="number"  min="1" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+              </div>
+
+              <div class="row col-sm-12 col-md-12 col-lg-12">
+                <div class="col-sm-12 col-md-12 col-lg-12 mt-3 ">
+
+                  <label>Precios</label>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
+                  <label>Por unidad Bs.S</label><br>
+                  <span class="text-right" >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
 
                 </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
+                  <label>Total Bs.S</label><br>
+                  <span class="text-right" >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
 
-                <div class="col-md-6 text-right">
-                    <p class="font-weight-bold mb-4">Detalles</p>
-                    <p class="mb-1"><span class="text-muted">Proveedor: </span> {{articulo.proveedor}}</p>
-                    <p class="mb-1"><span class="text-muted">Regulado: </span> {{articulo.ind_regulado}}</p>
-                    <p class="mb-1"><span class="text-muted">Impuesto: </span> {{articulo.ind_impuesto}}</p>
-                    <p class="mb-1"><span class="text-muted">Psicotropico: </span> {{articulo.ind_psicotropico}}</p>
-                    <p class="mb-1"><span class="text-muted">Existencia: </span> {{articulo.existencia}}</p>
                 </div>
-            </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
+                  <label>Por unidad USD</label><br>
+                  <span  class="text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
 
-            <div id="infoProduct" class="row" >
-
-                <div class="col-6">
-                  <label>Cantidad</label>
-                  <input type="number"  min="1" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                 </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
+                  <label>Total USD</label><br>
+                  <span class="text-right" >{{formato(3,(articulo.precio_neto_usd)? (articulo.precio_neto_usd  * articulo.CANTIDAD):0)}}</span>
 
-                <div class="row col-sm-12 col-md-12 col-lg-12">
-                  <div class="col-sm-12 col-md-12 col-lg-12 mt-3 ">
-
-                    <label>Precios</label>
-                  </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                    <label>Por unidad Bs.S</label><br>
-                    <span class="text-right" >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
-
-                  </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                    <label>Total Bs.S</label><br>
-                    <span class="text-right" >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
-
-                  </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                    <label>Por unidad USD</label><br>
-                    <span  class="text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
-
-                  </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                    <label>Total USD</label><br>
-                    <span class="text-right" >{{formato(3,(articulo.precio_neto_usd)? (articulo.precio_neto_usd  * articulo.CANTIDAD):0)}}</span>
-
-                  </div>
                 </div>
-
-            </div>
+              </div>
 
           </div>
 
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" data-dismiss="modal" data ng-click="addArtPedido();">Agregar</button>
-        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" data-dismiss="modal" data ng-click="addArtPedido();">Agregar</button>
       </div>
     </div>
   </div>
+</div>
 
 <div class="modal fade" id="modalConfirm">
   <div class="modal-dialog">

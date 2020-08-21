@@ -279,3 +279,7 @@ body {
   width: 100%;
 
 }
+.wrapper{
+	overflow: scroll;
+	height: 600px;
+}
