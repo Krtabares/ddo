@@ -420,11 +420,7 @@
                               <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
                               <!-- <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td> -->
                               <td >
-                                <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
-                                <!-- <p class="text-center">
-                                  <i class="fa fa-trash" style="cursor: pointer;" ng-click="removeDetalleProducto($index);"></i>
-                                </p>
-                                -->
+
                                 <button type="button" class="btn btn-danger" ng-disabled="!editView" ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
                               </td>
                             </tr>
