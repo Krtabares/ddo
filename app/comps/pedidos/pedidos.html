@@ -49,7 +49,7 @@
               <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Informacion Cliente <span class="badge badge-secondary">1</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" ng-class="{ active : tabsIndex == 1, disabled: !clienteValido  }" ng-disabled="!showProductTable || !clienteValido" ng-click="goToTab(1)" >Detalle de pedido <span class="badge badge-secondary">2</span></a>
+              <a class="nav-link" ng-class="{ active : tabsIndex == 1, disabled: !clienteValido  }" ng-disabled=" !clienteValido" ng-click="goToTab(1)" >Detalle de pedido <span class="badge badge-secondary">2</span></a>
             </li>
         </ul>
 
@@ -715,7 +715,7 @@
             Advertencia:
             <strong>{{clientInvalidoMsg}}</strong>
           </div>
-          <div class="row pb-2 p-2" ng-if="clientIndex != -1">
+          <div class="row pb-2 p-2" ng-if="clientIndex != null">
               <div class="col-md-6">
                   <p class="font-weight-bold mb-4">Informacion del Cliente </p>
                   <p class="mb-1" style="text-transform: capitalize;" >{{client.nombre_cliente.toLowerCase()}}</p>
@@ -791,7 +791,7 @@
           </tbody>
           </table>
 
-          <table class="table" ng-show="showProductTable || hasUserClient"  datatable="ng" dt-options="dtOptions">
+          <table class="table"  datatable="ng" dt-options="dtOptions">
             <thead>
                 <tr>
                 <th scope="col"><p class="text-center">#</p></th>
