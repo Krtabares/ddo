@@ -174,8 +174,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               .then(function successCallback(response) {
                 console.log(response.data)
 
-                $scope.listaPedidosV2=response.data.data
-                // defer.resolve(response.data.data);
+                $scope.listaPedidosV2 = response.data.data.sort(function(a, b) {
+                  var keyA = new Date(a.updated_at),
+                    keyB = new Date(b.updated_at);
+                  // Compare the 2 dates
+                  if (keyA < keyB) return -1;
+                  if (keyA > keyB) return 1;
+                  return 0;
+                });
              });
 
             // $scope.getPedidos_filteringV2()
@@ -808,7 +814,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response.data)
 
-              $scope.listaPedidosV2 = response.data.data;
+            $scope.listaPedidosV2 = response.data.data.sort(function(a, b) {
+              var keyA = new Date(a.updated_at),
+                keyB = new Date(b.updated_at);
+              // Compare the 2 dates
+              if (keyA < keyB) return -1;
+              if (keyA > keyB) return 1;
+              return 0;
+            });
+
+              // $scope.listaPedidosV2 = response.data.data;
 
           }, function errorCallback(response) {
             console.log(response)
