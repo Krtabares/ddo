@@ -736,7 +736,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                         };
           if(!$scope.hasUserClient){
             $scope.clienteValido = true
-            $scope.creditoClient = {}
+            // $scope.creditoClient = {}
           }
         }
 
