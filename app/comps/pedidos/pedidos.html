@@ -711,7 +711,7 @@
               </div>
             </div>
           </div>
-          <div class="alert alert-danger"  ng-show="!clienteValido && !hasUserClient" role="alert">
+          <div class="alert alert-danger"  ng-show="!clienteValido && !hasUserClient && clientInvalidoMsg==null" role="alert">
             Advertencia:
             <strong>{{clientInvalidoMsg}}</strong>
           </div>
