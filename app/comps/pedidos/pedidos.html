@@ -690,6 +690,51 @@
 
         <header-client></header-client>
 
+        <div ng-show="!hasUserClient">
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <label for="clientes">Busqueda por cliente</label>
+              <div class="input-group mb-3">
+                <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Seleccione</label>
+                <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
+                  <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
+                  <option value="" disabled selected>Seleccione un cliente</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="alert alert-danger"  ng-show="!clienteValido && !hasUserClient" role="alert">
+            Advertencia:
+            <strong>{{clientInvalidoMsg}}</strong>
+          </div>
+          <div class="row pb-2 p-2" ng-if="clientIndex != -1">
+              <div class="col-md-6">
+                  <p class="font-weight-bold mb-4">Informacion del Cliente </p>
+                  <p class="mb-1" style="text-transform: capitalize;" >{{client.nombre_cliente.toLowerCase()}}</p>
+                  <p>{{client.telefono1}}</p>
+                  <p class="mb-1">{{client.direccion_cliente.toLowerCase()}}</p>
+              </div>
+
+              <div class="col-md-6 text-right">
+                  <p class="font-weight-bold mb-4">Detalles</p>
+                  <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client.docu_identif_cliente}}</p>
+                  <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
+                  <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                  <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">persona contacto área crédito y cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
+                  <p class="mb-1"><span class="text-muted">Plazo de pago: </span> {{client.v_plazo}} dias</p>
+              </div>
+          </div>
+
+        </div>
+
         <div class="row">
           <!-- <div class="col-sm-12 d-none d-sm-block">
 
@@ -702,7 +747,7 @@
   			<!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
         </table> -->
 
-        <table class="table" ng-if="2==1" datatable="ng" dt-options="dtOptions">
+        <table class="table" ng-if="showProductTable || hasUserClient" datatable="ng" dt-options="dtOptions">
           <thead>
               <tr>
               <th scope="col"><p class="text-center">#</p></th>
@@ -746,7 +791,7 @@
           </tbody>
           </table>
 
-          <table class="table" datatable="ng" dt-options="dtOptions">
+          <table class="table" ng-show="client"  datatable="ng" dt-options="dtOptions">
             <thead>
                 <tr>
                 <th scope="col"><p class="text-center">#</p></th>

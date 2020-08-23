@@ -137,6 +137,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
 
             selectCLientCAP( $scope.client)
+            $scope.getPedidos_filteringV2()
 
         }
 

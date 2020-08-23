@@ -16,7 +16,7 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
       var ip = "http://192.168.168.170:3500";
       $scope.deuda = {};
       $scope.listDeuda = [{}];
-	 
+
 	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
         var defer = $q.defer();
          request.post(ip+'/procedure_clientes', {'page': 1}, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
@@ -34,10 +34,10 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
             'excel'
         ])
 		.withOption('responsive', true);
-		
+
         $scope.dtColumns = [
 
-			
+
       DTColumnBuilder.newColumn('nombre_cia').withTitle('Cliente'),
       DTColumnBuilder.newColumn('nombre_cliente').withTitle('Nombre'),
             DTColumnBuilder.newColumn('cod_cliente').withTitle('Codigo'),
@@ -56,8 +56,8 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
             DTColumnBuilder.newColumn('email2').withTitle('email2').withClass('none'),
             DTColumnBuilder.newColumn('email3').withTitle('email3').withClass('none'),
             DTColumnBuilder.newColumn('email4').withTitle('email4').withClass('none'),
-            DTColumnBuilder.newColumn('ind_activo').withTitle('ind_activo').withClass('none')	
+            DTColumnBuilder.newColumn('v_persona_cyc').withTitle('Credito y cobranzas').withClass('none')	
         ];
-	
+
 
   }]);
