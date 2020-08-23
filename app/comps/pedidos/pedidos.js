@@ -307,7 +307,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.creditoClient = {}
-        $scope.clienteValido = true
+        $scope.clienteValido = false
         $scope.clientInvalidoMsg = null
         function validaClienteDDO(body) {
           console.log("validaClienteDDO");
