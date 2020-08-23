@@ -62,7 +62,7 @@
               <!-- INFO CLIENTE -->
               <header-client></header-client>
               <!--  END INFO CLIENTE -->
-              <div ng-show="!hasUserClient">
+              <!-- <div ng-show="!hasUserClient">
                 <div class="row">
                   <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="clientes">Busqueda por cliente</label>
@@ -82,7 +82,7 @@
                       </select>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <div class="row pb-2 p-2" ng-if="clientIndex != -1">
                     <div class="col-md-6">
@@ -691,7 +691,7 @@
         <header-client></header-client>
 
         <div ng-show="!hasUserClient">
-          <!-- <div class="row">
+          <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6">
               <label for="clientes">Busqueda por cliente</label>
               <div class="input-group mb-3">
@@ -710,7 +710,7 @@
                 </select>
               </div>
             </div>
-          </div> -->
+          </div>
           <div class="alert alert-danger"  ng-show="!clienteValido && !hasUserClient" role="alert">
             Advertencia:
             <strong>{{clientInvalidoMsg}}</strong>
