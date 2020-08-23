@@ -25,7 +25,7 @@
             <strong>{{clientInvalidoMsg}}</strong>
           </div>
 
-          <div class="alert alert-info alert-dismissible fade show" ng-show="counter >= 0" role="alert">
+          <div class="alert alert-info alert-dismissible fade show" ng-show="counter >= 1" role="alert">
             <strong>Informacion!</strong> Dispone de 10 minutos de inactividad
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -63,26 +63,6 @@
               <header-client></header-client>
               <!--  END INFO CLIENTE -->
               <div ng-show="!hasUserClient">
-                <!-- <div class="row">
-                  <div class="col-sm-12 col-md-6 col-lg-6">
-                    <label for="clientes">Busqueda por cliente</label>
-                    <div class="input-group mb-3">
-                      <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
-                    <div class="form-group">
-                      <label for="exampleFormControlSelect1">Seleccione</label>
-                      <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
-                        <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
-                        <option value="" disabled selected>Seleccione un cliente</option>
-                      </select>
-                    </div>
-                  </div>
-                </div> -->
 
                 <div class="row pb-2 p-2" ng-if="clientIndex != -1">
                     <div class="col-md-6">
@@ -493,6 +473,16 @@
       </div>
       <div class="modal-body">
         <div class="container">
+
+          <div class="card" tabindex="0">
+            <span class="card__infoicon">
+              <i class="fa fa-info"></i>
+            </span>
+            <h1 class="card__title">This is a title</h1>
+            <p class="card__description">Lorem ipsum dolor sit amet and this is all the lorem ipsum text I remember</p>
+
+            <p class="card__credits">Thanks <a class="card__reference" href="https://www.youtube.com/channel/UCVyRiMvfUNMA1UPlDPzG5Ow">Gary Simon</a> for the inspiration</p>
+          </div>
           <div class="alert alert-info"  role="alert">
             <i class="fa fa-info" style="cursor: pointer;" ></i>
             <p style='margin: 0cm 0cm 0.0001pt;font-style: normal;font-weight: 400;text-align: start;text-indent: 0px;font-size:16px;font-family: "Times New Roman", serif;color: rgb(34, 34, 34);'><strong><span style="font-size: 13px; font-family: Arial, sans-serif; color: rgb(0, 0, 0);  rgb(209, 236, 241);"> Requisitos para solicitud de psicotr&oacute;picos</span></strong></p>
@@ -503,6 +493,9 @@
 <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">&Uacute;ltima Relaci&oacute;n de psicotr&oacute;picos firmada y sellada, si es enviada por correo, copia de env&iacute;o y acuse de haber sido recibida &nbsp;por parte de la Contralor&iacute;a Sanitaria.</span></strong></span></span></p>
 <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;"><a target="_self" href="/ddo/app/assets/planilla.doc" download="planilla.doc">Planilla de solicitud </a> de productos psicotr&oacute;picos firmada por el regente y sellada por la farmacia, con fecha actual, es exigido por Sanidad (ver anexo).</span></strong></span></span></p>
 <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span></span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif; color: rgb(0, 0, 0);  rgb(209, 236, 241);">Todos los documentos deben ser enviados en un mismo correo</span></strong></p>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
           </div>
         </div>
 
