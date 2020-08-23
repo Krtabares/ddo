@@ -475,7 +475,7 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Cerrar</button>
-        <button type="button"  class="btn btn-primary" ng-show="!editView && pedido.estatus_id < 3"   ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
+        <button type="button"  class="btn btn-primary" ng-show="!editView && pedido.estatus_id < 3 "   ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
         <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="finalizar_pedido();stop();" data-dismiss="modal" >Finalizar</button>
         <!-- <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1" ng-show="editView" ng-click="updPedido();">Actualizar pedido</button> -->
       </div>
@@ -768,7 +768,7 @@
                     <td><p class="text-center">{{ x.estatus }}</p></td>
                     <td><p class="text-center">{{ x.fecha_estatus }}</p></td>
                     <td>
-                      <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus < 3" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
+                      <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus < 'PEDIDO EN CONSTRUCCION'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
 
                       <!-- <button type="button" class="btn btn-default"  ></button> -->
