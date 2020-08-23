@@ -768,7 +768,7 @@
                     <td><p class="text-center">{{ x.estatus }}</p></td>
                     <td><p class="text-center">{{ x.fecha_estatus }}</p></td>
                     <td>
-                      <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus < 'PEDIDO EN CONSTRUCCION'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
+                      <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
 
                       <!-- <button type="button" class="btn btn-default"  ></button> -->
