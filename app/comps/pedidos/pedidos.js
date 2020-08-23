@@ -175,8 +175,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 console.log(response.data)
 
                 $scope.listaPedidosV2 = response.data.data.sort(function(a, b) {
-                  var keyA = new Date(a.updated_at),
-                    keyB = new Date(b.updated_at);
+                  var keyA = new Date(a.fecha_creacion),
+                    keyB = new Date(b.fecha_creacion);
                   // Compare the 2 dates
                   if (keyA < keyB) return -1;
                   if (keyA > keyB) return 1;
