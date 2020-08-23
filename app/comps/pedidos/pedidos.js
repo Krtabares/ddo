@@ -178,8 +178,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   var keyA = a.ID,
                     keyB = b.ID;
                   // Compare the 2 dates
-                  if (keyA < keyB) return -1;
-                  if (keyA > keyB) return 1;
+                  if (keyA < keyB) return 1;
+                  if (keyA > keyB) return -1;
                   return 0;
                 });
              });
@@ -815,11 +815,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response.data)
 
             $scope.listaPedidosV2 = response.data.data.sort(function(a, b) {
-              var keyA = new Date(a.updated_at),
-                keyB = new Date(b.updated_at);
+              var keyA = a.ID,
+                keyB = b.ID;
               // Compare the 2 dates
-              if (keyA < keyB) return -1;
-              if (keyA > keyB) return 1;
+              if (keyA < keyB) return 1;
+              if (keyA > keyB) return -1;
               return 0;
             });
 
