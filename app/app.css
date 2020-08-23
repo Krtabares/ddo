@@ -291,6 +291,7 @@ body {
   clip-path: circle(5% at 95% 11%);
   transition: all ease-in-out 0.3s;
   background-color: #ffffff;
+	height: 0px;
 }
 .card__infoicon {
   position: absolute;
@@ -326,6 +327,7 @@ body {
   border-bottom-color: #0099ff;
 }
 .card:hover, .card:focus {
+	height: 200px;
   clip-path: circle(75%);
   border-radius: 20px;
   box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.12), 0px 3px 18px rgba(0, 0, 0, 0.08);
