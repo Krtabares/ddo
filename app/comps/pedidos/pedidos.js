@@ -719,9 +719,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.UsdConIva = 0
           $scope.busqueda_prod = null
           $scope.productIndex = -1
-          $scope.clientes = null
-          $scope.clientIndex = -1
-          $scope.nombre_cliente = null
+          // $scope.clientes = null
+          // $scope.clientIndex = -1
+          // $scope.nombre_cliente = null
           $scope.productos = []
           $scope.pedido = {'no_cia':'',
                 'grupo':'',
