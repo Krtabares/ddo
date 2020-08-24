@@ -628,7 +628,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           articulo.CANTIDAD = parseInt(articulo.CANTIDAD )
 
-          if(validacionesArticulo(articulo)){
+          if(!validacionesArticulo(articulo)){
             $scope.updDetalleProducto(articulo)
 
             $scope.pedido.pedido[$scope.editRowIndex] = articulo
