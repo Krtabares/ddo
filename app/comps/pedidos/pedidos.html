@@ -695,12 +695,12 @@
                 <td><p class="text-center">{{ editArticulo.nombre_producto }}</p></td>
                 <td>
                   <input  type="number"
-                          min="1" max="{{parseInt(existenciaEdit) + parseInt(cantidadAux)}}"
+                          min="1" max="{{existenciaEdit + cantidadAux}}"
                           ng-model="editArticulo.CANTIDAD" class="form-control"
                           placeholder="cantidad"
                           onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                 </td>
-                <td><p class="text-center">{{parseInt(existenciaEdit) + parseInt(cantidadAux)  }}</p></td>
+                <td><p class="text-center">{{ existenciaEdit + cantidadAux }}</p></td>
                 <td><p class="text-right">{{ formato(2,editArticulo.PRECIO) }}</p></td>
                 <td><p class="text-right">{{ formato(2,(editArticulo.PRECIO * editArticulo.CANTIDAD)) }}</p></td>
                 <td><p class="text-right">{{ formato(3,editArticulo.precio_neto_usd) }}</p></td>
