@@ -371,7 +371,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // console.log($scope.client);
 
           if(filter){
-            body.pNombre = $scope.nombre_cliente
+            // body.pNombre = $scope.nombre_cliente
             body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
             body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
             body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
@@ -675,6 +675,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.editRow = function (articulo, i) {
 
+          articulo.precio_bruto_bs = articulo.PRECIO
+
           validaDisponibilidadDDO(articulo.COD_PRODUCTO)
 
           $scope.cantidadAux = parseInt(articulo.CANTIDAD)
@@ -682,6 +684,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.editRowIndex = i
 
           $scope.editArticulo = articulo
+
 
           $(function(){
             $("#modalEditDetalle").modal({
