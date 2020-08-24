@@ -1123,6 +1123,9 @@ async def update_detalle_pedido(detalle, ID):
             db = get_db()
             c = db.cursor()
 
+            print("+===================================================")
+            print("update_detalle_pedido")
+
             c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID AND COD_PRODUCTO = :COD_PRODUCTO""",[ID,detalle['COD_PRODUCTO']])
 
             reservado = await crear_detalle_pedido(detalle, ID)
@@ -1140,8 +1143,9 @@ async def upd_detalle_producto_serv (request, token: Token):
 # async def procedure(request):
     try:
         data = request.json
-
-        print(data)
+        print("+===================================================")
+        print("upd_detalle_producto_serv")
+        # print(data)
 
         reservado = await update_detalle_pedido(data['pedido'], data['ID'])
 
@@ -1158,6 +1162,9 @@ async def upd_detalle_producto_serv (request, token: Token):
 async def crear_detalle_pedido(detalle, ID):
 
         try:
+            print("+===================================================")
+            print("crear_detalle_pedido")
+
             cantidad = 0
             disponible = await valida_art("01", detalle['pedido']['COD_PRODUCTO'])
 
@@ -1218,6 +1225,8 @@ async def upd_estatus_pedido(estatus, ID):
 
 async def valida_art(cia, arti):
     try:
+        print("+===================================================")
+        print("valida_art")
         db = get_db()
         c = db.cursor()
         sql = """select procesospw.existencia_disponible(:pNoCia,:pArti)
