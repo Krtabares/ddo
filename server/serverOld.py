@@ -1159,7 +1159,7 @@ async def crear_detalle_pedido(detalle, ID):
 
         try:
             cantidad = 0
-            disponible = await valida_art("01", data['pedido']['COD_PRODUCTO'])
+            disponible = await valida_art("01", detalle['pedido']['COD_PRODUCTO'])
 
             if int(detalle['CANTIDAD']) > disponible :
                 cantidad = disponible
