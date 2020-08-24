@@ -700,7 +700,7 @@
                           placeholder="cantidad"
                           onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                 </td>
-                <td><p class="text-center">{{ existenciaEdit + cantidadAux }}</p></td>
+                <td><p class="text-center">{{parseInt(existenciaEdit) + parseInt(cantidadAux)  }}</p></td>
                 <td><p class="text-right">{{ formato(2,editArticulo.PRECIO) }}</p></td>
                 <td><p class="text-right">{{ formato(2,(editArticulo.PRECIO * editArticulo.CANTIDAD)) }}</p></td>
                 <td><p class="text-right">{{ formato(3,editArticulo.precio_neto_usd) }}</p></td>
@@ -715,7 +715,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" ng-click="updDetalleProductoTable(editArticulo);" data-dismiss="modal" ><i class="fa fa-save" style="cursor: pointer;" ></i>Aceptar</button>
+        <button type="button" class="btn btn-success" ng-click="updDetalleProductoTable(editArticulo);" data-dismiss="modal" >Aceptar</button>
       </div>
     </div>
   </div>
