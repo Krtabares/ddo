@@ -12,23 +12,29 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
         //init
         var ip = "http://192.168.168.170:3500";
-        $scope.hasClient = false;
-      $scope.client = {};
+
+        $scope.hasUserClient = false;
+        $scope.client = {};
+        $scope.client_info = {}
+
         verificClient()
 
         function verificClient(){
 
          var client = localStorage.getItem('client')
+         var client_info = localStorage.getItem('client_info')
          console.log(client)
           if ( client=='{}' ){
-           $scope.hasClient = false;
+           $scope.hasUserClient = false;
          }else{
-           $scope.hasClient = true;
+           $scope.hasUserClient = true;
+           $scope.client_info = JSON.parse(client_info);
            $scope.client = JSON.parse(client);
+           facturacion()
          }
          console.log($scope.client)
-         facturacion()
        }
+
        $scope.facturas = []
        $scope.facturasList = []
        function facturacion() {
@@ -48,6 +54,40 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           $scope.selectFactura = function (fact) {
             $scope.factura = fact
               // angular.element('#btnfacturaInfo').trigger('click');
+          }
+          $scope.clientes = null;
+          $scope.nombre_cliente = null;
+
+
+          $scope.selectCLient = function(){
+
+            // $scope.client = x
+            if($scope.clientes.length > 0){
+              $scope.client  = $scope.clientes[ $scope.clientIndex ];
+                console.log($scope.client,"selectCLient" )
+                facturacion()
+            }
+
+
+              // selectCLientCAP( $scope.client)
+
+          }
+
+          $scope.getClientNew = function (filter = false) {
+            console.log("getClientNew");
+            var body = {};
+            if(filter){
+              body.pNombre = $scope.nombre_cliente
+            }
+            request.post(ip+'/procedure_clientes', body,{})
+            .then(function successCallback(response) {
+              console.log(response)
+
+              $scope.clientes = response.data.obj
+
+            }, function errorCallback(response) {
+              console.log(response)
+            });
           }
 
           $scope.dtOptions = DTOptionsBuilder.newOptions()
