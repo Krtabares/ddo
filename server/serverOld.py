@@ -590,6 +590,7 @@ async def procedure(request):
         data['pComponente'] = 'null'
     else:
         data['pComponente'] = "'"+data['pComponente']+"'"
+
     print(data)
     db = get_db()
     c = db.cursor()
@@ -1124,7 +1125,7 @@ async def update_detalle_pedido(detalle, ID):
 
             c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID AND COD_PRODUCTO = :COD_PRODUCTO""",[data['ID'],detalle['COD_PRODUCTO']])
 
-            reservado await crear_detalle_pedido(detalle, ID)
+            reservado = await crear_detalle_pedido(detalle, ID)
 
             db.commit()
 
