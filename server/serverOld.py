@@ -1141,6 +1141,8 @@ async def add_detalle_producto (request, token: Token):
     try:
         data = request.json
 
+        print(data)
+
         reservado = await update_detalle_pedido(data['pedido'], data['ID'])
 
         msg = 0
