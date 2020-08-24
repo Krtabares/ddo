@@ -626,6 +626,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.updDetalleProductoTable = function (articulo) {
 
+          articulo.CANTIDAD = parseInt(articulo.CANTIDAD ) 
+
           if(validacionesArticulo(articulo)){
             $scope.updDetalleProducto(articulo)
 
