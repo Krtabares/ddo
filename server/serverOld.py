@@ -1136,7 +1136,7 @@ async def update_detalle_pedido(detalle, ID):
 
 @app.route('/upd/detalle_producto',["POST","GET"])
 @jwt_required
-async def add_detalle_producto (request, token: Token):
+async def upd_detalle_producto_serv (request, token: Token):
 # async def procedure(request):
     try:
         data = request.json
