@@ -342,7 +342,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response.data.data)
 
-            $scope.existenciaEdit = response.data.data
+            $scope.existenciaEdit = parseInt(response.data.data)
 
           }, function errorCallback(response) {
             console.log(response)
@@ -626,7 +626,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.updDetalleProductoTable = function (articulo) {
 
-          articulo.CANTIDAD = parseInt(articulo.CANTIDAD ) 
+          articulo.CANTIDAD = parseInt(articulo.CANTIDAD )
 
           if(validacionesArticulo(articulo)){
             $scope.updDetalleProducto(articulo)
@@ -677,7 +677,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           validaDisponibilidadDDO(articulo.COD_PRODUCTO)
 
-          $scope.cantidadAux = articulo.CANTIDAD
+          $scope.cantidadAux = parseInt(articulo.CANTIDAD)
 
           $scope.editRowIndex = i
 
