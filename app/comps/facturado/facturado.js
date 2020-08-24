@@ -39,9 +39,9 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
        $scope.facturasList = []
        function facturacion() {
          var body = {}
-         body.pNoCia = $scope.client.COD_CIA
-         body.pNoGrupo = $scope.client.GRUPO_CLIENTE
-         body.pCliente = $scope.client.COD_CLIENTE
+         body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+         body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+         body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
           request.post(ip+'/procedure_facturacion', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
            .then(function successCallback(response) {
              console.log(response.data)
