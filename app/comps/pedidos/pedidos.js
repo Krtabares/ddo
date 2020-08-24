@@ -642,7 +642,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.updDetalleProducto = function(articulo){
-          // console.log(pedido);
+          console.log('updDetalleProducto');
           var body = {};
 
           body.pedido = articulo
