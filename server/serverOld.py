@@ -1123,7 +1123,7 @@ async def update_detalle_pedido(detalle, ID):
             db = get_db()
             c = db.cursor()
 
-            c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID AND COD_PRODUCTO = :COD_PRODUCTO""",[data['ID'],detalle['COD_PRODUCTO']])
+            c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID AND COD_PRODUCTO = :COD_PRODUCTO""",[ID,detalle['COD_PRODUCTO']])
 
             reservado = await crear_detalle_pedido(detalle, ID)
 

@@ -754,7 +754,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
              return  true;
           }
-
+          console.log(articulo);
           if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)  ){
              ngNotify.set('¡El precio excede el credito disponible!','error')
             return  true;
