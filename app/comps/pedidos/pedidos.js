@@ -277,7 +277,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
 
-              $scope.getPedidos_filtering();
+              //$scope.getPedidos_filtering();
               $scope.getPedidos_filteringV2();
               ngNotify.set('¡Cerrado con exito! ', 'success')
 
@@ -293,7 +293,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
 
-              $scope.getPedidos_filtering();
+              //$scope.getPedidos_filtering();
               $scope.getPedidos_filteringV2();
               $scope.editView = true
               $scope.pedido.estatus = response.data.estatus
@@ -326,6 +326,23 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.clientInvalidoMsg = null
 
 
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
+
+
+        function validaDisponibilidadDDO(arti) {
+          console.log("validaDisponibilidadDDO");
+          var body = {}
+          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+          body.pArti = arti
+          request.post(ip+'/valida/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+            console.log(response.data.data)
+
+            $scope.existenciaEdit = response.data.data
 
           }, function errorCallback(response) {
             console.log(response)
@@ -442,7 +459,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
               $scope.reset();
-              $scope.getPedidos_filtering();
+              //$scope.getPedidos_filtering();
               $scope.getPedidos_filteringV2();
               ngNotify.set('¡Pedido generado con exito!','success')
             /*if (response.data.exist) {
@@ -530,7 +547,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/add/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response)
-            $scope.getPedidos_filtering();
+            //$scope.getPedidos_filtering();
             $scope.getPedidos_filteringV2();
             $scope.getProdNew(true);
             if(response.data.reserved < articulo.CANTIDAD && 1==2){
@@ -556,7 +573,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/del/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response)
-            // $scope.getPedidos_filtering();
+            // //$scope.getPedidos_filtering();
             $scope.getPedidos_filteringV2();
             $scope.getProdNew(true)
             $scope.removeArt(i)
@@ -578,7 +595,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
               $scope.reset();
-              $scope.getPedidos_filtering();
+              //$scope.getPedidos_filtering();
               $scope.getPedidos_filteringV2();
               ngNotify.set('¡Pedido actualizado con exito!','success')
           }, function errorCallback(response) {
@@ -594,7 +611,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response)
               $scope.reset();
-              $scope.getPedidos_filtering();
+              //$scope.getPedidos_filtering();
               $scope.getPedidos_filteringV2();
               $scope.ID = null;
               ngNotify.set('¡Pedido eliminado con exito!','success')
@@ -607,51 +624,97 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.ID = ID
         }
 
+        $scope.updDetalleProductoTable = function (articulo) {
+
+          if(validacionesArticulo(articulo)){
+            $scope.updDetalleProducto(articulo)
+
+            $scope.pedido.pedido[$scope.editRowIndex] = articulo
+
+            $scope.existenciaEdit = 0
+            $scope.editRowIndex = -1
+            $scope.editArticulo = null
+            $scope.cantidadAux = 0
+          }
+
+        }
+
+        $scope.updDetalleProducto = function(articulo){
+          // console.log(pedido);
+          var body = {};
+
+          body.pedido = articulo
+          body.ID = $scope.ID
+
+          request.post(ip+'/upd/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+            console.log(response)
+            //$scope.getPedidos_filtering();
+            $scope.getPedidos_filteringV2();
+            $scope.getProdNew(true);
+            if(response.data.reserved < articulo.CANTIDAD ){
+              articulo.CANTIDAD = response.data.reserved
+              articulo.alert = true
+            }else{
+              articulo.alert = false
+            }
+            // $scope.pedido.pedido.push(articulo)
+            calcularTotales()
+
+          }, function errorCallback(response) {
+            console.log(response)
+          });
+        }
+
+        $scope.existenciaEdit = 0
+        $scope.cantidadAux = 0
+        $scope.editRowIndex = -1
+        $scope.editArticulo = null
+
+        $scope.editRow = function (articulo, i) {
+
+          validaDisponibilidadDDO(articulo.COD_PRODUCTO)
+
+          $scope.cantidadAux = articulo.CANTIDAD
+
+          $scope.editRowIndex = i
+
+          $scope.editArticulo = articulo
+
+          $(function(){
+            $("#modalEditDetalle").modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+          })
+
+        }
+
         $scope.addArtPedido = function(){
             console.log($scope.pedido.pedido);
             if(Object.keys($scope.articulo).length === 0)
               return
 
             var existe = false;
-            $scope.pedido.pedido.forEach(element => {
+            $scope.pedido.pedido.forEach((element,i) => {
               if($scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO){
                 //  element.CANTIDAD = element.CANTIDAD + $scope.articulo.CANTIDAD;
+                $scope.articulo.CANTIDAD += element.CANTIDAD
+                $scope.updDetalleProducto($scope.articulo)
                  existe = true;
                 return
               }
             });
             var error=false;
+
             if(!existe){
 
-              if(isEmpty( $scope.articulo.COD_PRODUCTO )){
-                console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( $scope.articulo.COD_PRODUCTO ))
-                error = true;
-              }
-               if( isEmpty($scope.articulo.CANTIDAD ) || $scope.articulo.CANTIDAD < 1 ){
-                console.log('¡Complete todos los campos!CANTIDAD','error')
-                // alert("Por favor verifique la cantidad")
-                ngNotify.set('¡Por favor verifique la cantidad!','error')
-                error = true;
-              }
-
-              console.log("$scope.articulo.CANTIDAD", $scope.articulo.CANTIDAD);
-              console.log(" $scope.articulo.existencia",  $scope.articulo.existencia);
-               if( $scope.articulo.CANTIDAD > parseInt($scope.articulo.existencia)  ){
-                  ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
-                 error = true;
-              }
-              console.log($scope.articulo,"$scope.articulo")
-
-              if( !validaCreditoContraProducto((parseFloat($scope.articulo.precio_bruto_bs)+parseFloat($scope.articulo.iva_bs)) * $scope.articulo.CANTIDAD)  ){
-                 ngNotify.set('¡El precio excede el credito disponible!','error')
-                error = true;
-             }
-
+              error = validacionesArticulo($scope.articulo)
 
               $scope.articulo.PRECIO = $scope.articulo.PRECIO.replace(",", ".");
-              // $scope.articulo.PRECIO = parseFloat($scope.articulo.PRECIO).toFixed(2);
 
               console.log($scope.articulo.PRECIO);
+
               if(!error){
                 $scope.addDetalleProducto($scope.articulo)
                 calcularTotales()
@@ -670,6 +733,30 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.counter = 0;
             }
 
+
+        }
+
+        function validacionesArticulo(articulo) {
+
+
+          if(isEmpty( articulo.COD_PRODUCTO )){
+            console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( articulo.COD_PRODUCTO ))
+            return  true;
+          }
+           if( isEmpty(articulo.CANTIDAD ) || articulo.CANTIDAD < 1 ){
+            ngNotify.set('¡Por favor verifique la cantidad!','error')
+            return  true;
+          }
+
+           if( articulo.CANTIDAD > parseInt(articulo.existencia)  ){
+              ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
+             return  true;
+          }
+
+          if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)  ){
+             ngNotify.set('¡El precio excede el credito disponible!','error')
+            return  true;
+          }
 
         }
 

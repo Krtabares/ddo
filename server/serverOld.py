@@ -1116,9 +1116,53 @@ async def crear_pedido(request):
     except Exception as e:
         logger.debug(e)
 
+async def update_detalle_pedido(detalle, ID):
+    try:
+
+            db = get_db()
+            c = db.cursor()
+
+            c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID AND COD_PRODUCTO = :COD_PRODUCTO""",[data['ID'],detalle['COD_PRODUCTO']])
+
+            reservado await crear_detalle_pedido(detalle, ID)
+
+            db.commit()
+
+            return reservado
+
+    except Exception as e:
+        logger.debug(e)
+
+@app.route('/upd/detalle_producto',["POST","GET"])
+@jwt_required
+async def add_detalle_producto (request, token: Token):
+# async def procedure(request):
+    try:
+        data = request.json
+
+        reservado = await update_detalle_pedido(data['pedido'], data['ID'])
+
+        msg = 0
+
+        if data['pedido']['CANTIDAD'] > reservado:
+            msg = 1
+
+        return response.json({"msg": msg, "reserved":reservado },200)
+    except Exception as e:
+        logger.debug(e)
+        return response.json("ERROR",400)
+
 async def crear_detalle_pedido(detalle, ID):
 
         try:
+            cantidad = 0
+            disponible = await valida_art("01", data['pedido']['COD_PRODUCTO'])
+
+            if int(detalle['CANTIDAD']) > disponible :
+                cantidad = disponible
+            else:
+                cantidad = detalle['CANTIDAD']
+
             db = get_db()
             c = db.cursor()
 
@@ -1128,7 +1172,7 @@ async def crear_detalle_pedido(detalle, ID):
             c.execute(sql.format(
                          ID_PEDIDO = int(ID),
                          COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
-                         CANTIDAD = int(detalle['CANTIDAD']),
+                         CANTIDAD = int(cantidad),
                          PRECIO = float(str(detalle['PRECIO']).replace(',','.')),
                          TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
                          BODEGA = detalle['bodega']
@@ -1138,13 +1182,7 @@ async def crear_detalle_pedido(detalle, ID):
 
             await upd_estatus_pedido(1,int(ID))
 
-            # return {
-            #             'COD_PRODUCTO':detalle['COD_PRODUCTO'],
-            #             'iva_bs':detalle['iva_bs'],
-            #             'iva_usd':detalle['iva_usd'],
-            #             'precio_usd':detalle['precio_neto_usd'],
-            #             'nombre_producto':detalle['nombre_producto']
-            #         }
+            return cantidad
 
         except Exception as e:
             logger.debug(e)
@@ -1297,20 +1335,14 @@ async def add_detalle_producto (request, token: Token):
     try:
         data = request.json
 
-        await crear_detalle_pedido(data['pedido'], data['ID'])
-
-        valid = await valida_art("01", data['pedido']['COD_PRODUCTO'])
-
-        # mongodb = get_mongo_db()
-        # await mongodb.order.update({'id_pedido':int(data['ID'])},{"$addToSet":{"productos":row }}, True, True)
-
+        reservado = await crear_detalle_pedido(data['pedido'], data['ID'])
 
         msg = 0
 
-        if data['pedido']['CANTIDAD'] > valid:
+        if data['pedido']['CANTIDAD'] > reservado:
             msg = 1
 
-        return response.json({"msg": msg, "reserved":valid },200)
+        return response.json({"msg": msg, "reserved":reservado },200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
