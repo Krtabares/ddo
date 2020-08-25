@@ -645,10 +645,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.updDetalleProducto = function(articulo){
           console.log('updDetalleProducto');
           var body = {};
+          var result
 
           body.pedido = articulo
           body.ID = $scope.ID
-
           request.post(ip+'/upd/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response)
@@ -663,10 +663,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
             // $scope.pedido.pedido.push(articulo)
             calcularTotales()
-            return articulo
+            result = articulo
           }, function errorCallback(response) {
             console.log(response)
           });
+
+          return result
         }
 
         $scope.existenciaEdit = null
@@ -715,7 +717,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 error = validacionesArticulo($scope.articulo)
 
                 if(!error){
-                  
+
                   console.log($scope.updDetalleProducto($scope.articulo));
 
                 }
