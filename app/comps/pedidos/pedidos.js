@@ -785,7 +785,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             ngNotify.set('¡Por favor verifique la cantidad!','error')
             return  true;
           }
-
+          console.log(articulo.existencia,articulo.CANTIDAD );
            if( articulo.CANTIDAD > parseInt(articulo.existencia)  ){
               ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
              return  true;
