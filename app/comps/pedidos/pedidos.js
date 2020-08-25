@@ -710,7 +710,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               if($scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO){
                 //  element.CANTIDAD = element.CANTIDAD + $scope.articulo.CANTIDAD;
                 $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt(element.CANTIDAD)
-                $scope.existencia += parseInt($scope.articulo.CANTIDAD)
+                $scope.articulo.existencia += parseInt($scope.articulo.CANTIDAD)
                 error = validacionesArticulo($scope.articulo)
                 if(!error){
                   $scope.updDetalleProducto($scope.articulo)
@@ -765,7 +765,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         function validacionesArticulo(articulo) {
 
-
+          console.log(articulo);
           if(isEmpty( articulo.COD_PRODUCTO )){
             console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( articulo.COD_PRODUCTO ))
             return  true;
