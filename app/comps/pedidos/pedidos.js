@@ -742,14 +742,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               var existenciaAux = $scope.articulo.existencia
 
               $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt($scope.pedido.pedido[i].CANTIDAD)
-              
+
               $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
 
               $scope.pedido.pedido.splice( i, 1 );
 
               calcularTotales()
 
-              error = validacionesArticulo($scope.articulo, existenciaAux)
+              error = validacionesArticulo($scope.articulo)
 
               if(!error){
 
