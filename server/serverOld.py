@@ -1251,8 +1251,7 @@ async def upd_estatus_pedido(estatus, ID):
 
 async def valida_art(cia, arti):
     try:
-        print("+===================================================")
-        print("valida_art")
+
         db = get_db()
         c = db.cursor()
         sql = """select procesospw.existencia_disponible(:pNoCia,:pArti)
@@ -1262,6 +1261,9 @@ async def valida_art(cia, arti):
                         arti
                     ])
         row = c.fetchone()
+        print("+===================================================")
+        print(row[0])
+        print('row[0]')
         return row[0]
     except Exception as e:
         logger.debug(e)
