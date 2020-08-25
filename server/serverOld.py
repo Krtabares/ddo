@@ -1168,7 +1168,7 @@ async def upd_detalle_producto_serv (request, token: Token):
         msg = 0
 
         print("+===================================================")
-        print(detalle['CANTIDAD'])
+        print(data['pedido']['CANTIDAD'])
         print(reservado)
         print("+===================================================")
 
