@@ -21,6 +21,11 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 	  var ip = "http://192.168.168.170:3500";
     $scope.user = {};
     localstorage.clear()
+    function initModal() {
+      $(function(){
+        $('.modal-backdrop').remove();
+      })
+    }
 
 
     $scope.getClientNew = function (client) {
@@ -41,17 +46,17 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         console.log(response)
       });
     }
-	
-		
+
+
 	  $scope.login = function(){
 		  //console.log($scope.user);
 		  request.post(ip+'/login', $scope.user ,{})
 		  .then(function successCallback(response) {
         //console.log(response.data.access_token);
-       
+
         localstorage.set('user', JSON.stringify(response.data.user));
         localstorage.set('token', response.data.access_token);
-        
+
         var client = {}
         client.COD_CIA = response.data.user.COD_CIA
         client.GRUPO_CLIENTE = response.data.user.GRUPO_CLIENTE
@@ -64,13 +69,13 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
           window.location.href = "#!/home";
         }else
           $scope.getClientNew(client)
-        
+
 		  }, function errorCallback(response) {
 			console.log(response)
 			if(response.status == 403){
 				ngNotify.set('¡Credenciales erróneas!','error')
 			}
-			 
+
 		  });
     }
 

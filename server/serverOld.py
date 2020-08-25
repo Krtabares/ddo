@@ -1126,13 +1126,29 @@ async def update_detalle_pedido(detalle, ID):
             print("+===================================================")
             print("update_detalle_pedido")
 
-            c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID AND COD_PRODUCTO = :COD_PRODUCTO""",[ID,detalle['COD_PRODUCTO']])
+            cantidad = 0
+            disponible = await valida_art("01", detalle['COD_PRODUCTO'])
 
-            reservado = await crear_detalle_pedido(detalle, ID)
+            if int(detalle['CANTIDAD']) > disponible :
+                cantidad = disponible
+            else:
+                cantidad = detalle['CANTIDAD']
 
+            c.execute("""UPDATE PAGINAWEB.DETALLE_PEDIDO
+                            SET
+                                   CANTIDAD     = :CANTIDAD,
+                                   PRECIO_BRUTO = :PRECIO_BRUTO
+                            WHERE  ID_PEDIDO    = :ID_PEDIDO
+                            AND    COD_PRODUCTO = :COD_PRODUCTO""",
+                            [
+                                cantidad,
+                                detalle['PRECIO'],
+                                ID,
+                                detalle['COD_PRODUCTO']
+                            ])
             db.commit()
 
-            return reservado
+            return cantidad
 
     except Exception as e:
         logger.debug(e)

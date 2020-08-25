@@ -695,7 +695,7 @@
                 <td><p class="text-center">{{ editArticulo.nombre_producto }}</p></td>
                 <td>
                   <input  type="number"
-                          min="1" max="{{existenciaEdit + cantidadAux}}"
+                          min="1" 
                           ng-model="editArticulo.CANTIDAD" class="form-control"
                           placeholder="cantidad"
                           onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
