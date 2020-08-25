@@ -663,7 +663,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
             // $scope.pedido.pedido.push(articulo)
             calcularTotales()
-
+            return articulo
           }, function errorCallback(response) {
             console.log(response)
           });
@@ -709,14 +709,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.pedido.pedido.forEach((element,i) => {
               if($scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO){
                 //  element.CANTIDAD = element.CANTIDAD + $scope.articulo.CANTIDAD;
+                var existenciaAux = $scope.articulo.existencia
                 $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt(element.CANTIDAD)
                 $scope.articulo.existencia += parseInt($scope.articulo.CANTIDAD)
                 error = validacionesArticulo($scope.articulo)
+
                 if(!error){
-                  $scope.updDetalleProducto($scope.articulo)
+                  
+                  console.log($scope.updDetalleProducto($scope.articulo));
+
                 }
 
                  existe = true;
+                 $scope.articulo.existencia = existenciaAux
                 return
               }
             });
