@@ -1128,7 +1128,10 @@ async def update_detalle_pedido(detalle, ID):
 
             cantidad = 0
             disponible = await valida_art("01", detalle['COD_PRODUCTO'])
-
+            print("+===================================================")
+            print(detalle['CANTIDAD'])
+            print(disponible)
+            print("+===================================================")
             if int(detalle['CANTIDAD']) > disponible :
                 cantidad = disponible
             else:
