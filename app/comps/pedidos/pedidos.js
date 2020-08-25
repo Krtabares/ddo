@@ -685,7 +685,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.cantidadAux = parseInt(articulo.CANTIDAD)
 
           $scope.editRowIndex = i
-
+          articulo.CANTIDAD = parseInt(articulo.CANTIDAD)
           $scope.editArticulo = articulo
 
           console.log(articulo)
