@@ -688,6 +688,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           $scope.editArticulo = articulo
 
+          console.log(articulo)
 
           $(function(){
             $("#modalEditDetalle").modal({
