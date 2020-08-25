@@ -21,11 +21,12 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 	  var ip = "http://192.168.168.170:3500";
     $scope.user = {};
     localstorage.clear()
-    function initModal() {
+    function init() {
       $(function(){
         $('.modal-backdrop').remove();
       })
     }
+    init()
 
 
     $scope.getClientNew = function (client) {
