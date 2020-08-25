@@ -1128,10 +1128,7 @@ async def update_detalle_pedido(detalle, ID):
 
             cantidad = 0
             disponible = await valida_art("01", detalle['COD_PRODUCTO'])
-            print("+===================================================")
-            print(detalle['CANTIDAD'])
-            print(disponible)
-            print("+===================================================")
+
             if int(detalle['CANTIDAD']) > disponible :
                 cantidad = disponible
             else:
@@ -1169,6 +1166,11 @@ async def upd_detalle_producto_serv (request, token: Token):
         reservado = await update_detalle_pedido(data['pedido'], data['ID'])
 
         msg = 0
+
+        print("+===================================================")
+        print(detalle['CANTIDAD'])
+        print(disponible)
+        print("+===================================================")
 
         if data['pedido']['CANTIDAD'] > reservado:
             msg = 1
