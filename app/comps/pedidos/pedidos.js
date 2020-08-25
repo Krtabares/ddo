@@ -710,6 +710,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               if($scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO){
                 //  element.CANTIDAD = element.CANTIDAD + $scope.articulo.CANTIDAD;
                 $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt(element.CANTIDAD)
+                $scope.existencia += parseInt($scope.articulo.CANTIDAD)
                 error = validacionesArticulo($scope.articulo)
                 if(!error){
                   $scope.updDetalleProducto($scope.articulo)
@@ -739,6 +740,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
 
             }else{
+
               if(!error){
                 calcularTotales()
                 $(function(){
