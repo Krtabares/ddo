@@ -1143,8 +1143,8 @@ async def update_detalle_pedido(detalle, ID):
                             WHERE  ID_PEDIDO    = :ID_PEDIDO
                             AND    COD_PRODUCTO = :COD_PRODUCTO""",
                             [
-                                cantidad,
-                                detalle['PRECIO'],
+                                int(cantidad),
+                                float(str(detalle['PRECIO']).replace(',','.')),
                                 ID,
                                 detalle['COD_PRODUCTO']
                             ])
@@ -1161,9 +1161,6 @@ async def upd_detalle_producto_serv (request, token: Token):
 # async def procedure(request):
     try:
         data = request.json
-        print("+===================================================")
-        print("upd_detalle_producto_serv")
-        # print(data)
 
         reservado = await update_detalle_pedido(data['pedido'], data['ID'])
 
