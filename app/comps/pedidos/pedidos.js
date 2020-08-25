@@ -745,7 +745,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
 
-              $scope.pedido.pedido.splice( i, 1 );
+              $scope.pedido.pedido.splice( indexArticulo, 1 );
 
               calcularTotales()
 
@@ -754,8 +754,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               if(!error){
 
                 $scope.updDetalleProducto($scope.articulo);
-
-                $scope.pedido.pedido.splice( i, 1 );
 
                 $scope.pedido.pedido.push($scope.articulo)
 
