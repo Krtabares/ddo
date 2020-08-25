@@ -493,7 +493,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.onTimeout = function(){
 
             if($scope.counter > $scope.timeLimit){
-              $scope.stop()
+              $scope.stopTimeout()
               if(!$scope.editView){
                 $scope.delPedido()
               }
@@ -518,9 +518,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         // var mytimeout = $timeout($scope.onTimeout,1000);
         $scope.mytimeout = null
 
-        $scope.stop = function(){
+        $scope.stopTimeout = function(){
           console.log("stop");
             $timeout.cancel($scope.mytimeout);
+            $scope.counter = 0;
         }
 
         $scope.msToTime =  function(s) {

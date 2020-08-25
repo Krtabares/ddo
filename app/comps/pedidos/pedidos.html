@@ -233,8 +233,8 @@
         </div>
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
-        <button type="button" class="btn btn-error" data-dismiss="modal" ng-show="ID == null" ng-click="reset()">Cerrar</button>
-        <button type="button"  class="btn btn-success" data-dismiss="modal" ng-click="finalizar_pedido();stop();" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar</button>
+        <button type="button" class="btn btn-error" data-dismiss="modal" ng-show="ID == null" ng-click="reset();stopTimeout()">Cerrar</button>
+        <button type="button"  class="btn btn-success" data-dismiss="modal" ng-click="finalizar_pedido();stopTimeout();" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar</button>
 
 
       </div>
@@ -459,9 +459,9 @@
         </div>
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();stopTimeout()">Cerrar</button>
         <button type="button"  class="btn btn-primary" ng-show="!editView && pedido.estatus_id < 3 "   ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
-        <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="finalizar_pedido();stop();" data-dismiss="modal" >Finalizar</button>
+        <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="finalizar_pedido();stopTimeout();" data-dismiss="modal" >Finalizar</button>
         <!-- <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1" ng-show="editView" ng-click="updPedido();">Actualizar pedido</button> -->
       </div>
     </div>
@@ -695,7 +695,7 @@
                 <td><p class="text-center">{{ editArticulo.nombre_producto }}</p></td>
                 <td>
                   <input  type="number"
-                          min="1" 
+                          min="1"
                           ng-model="editArticulo.CANTIDAD" class="form-control"
                           placeholder="cantidad"
                           onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
