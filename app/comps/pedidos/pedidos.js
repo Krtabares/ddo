@@ -709,7 +709,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.pedido.pedido.forEach((element,i) => {
               if($scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO){
                 //  element.CANTIDAD = element.CANTIDAD + $scope.articulo.CANTIDAD;
-                $scope.articulo.CANTIDAD += element.CANTIDAD
+                $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt(element.CANTIDAD)
                 error = validacionesArticulo($scope.articulo)
                 if(!error){
                   $scope.updDetalleProducto($scope.articulo)
