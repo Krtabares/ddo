@@ -180,7 +180,7 @@
                             <td >
 
                               <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
-                              <button type="button" class="btn btn-success" ng-click="editRow(x, $index);" ><i class="fa fa-pencil" style="cursor: pointer;" ></i></button>
+                              <button type="button" class="btn btn-success" ng-click="editRow(x, $index);" ><i class="fa fa-edit" style="cursor: pointer;" ></i></button>
                             </td>
                           </tr>
                     </tbody>
@@ -406,7 +406,7 @@
                               <td >
 
                                 <button type="button" class="btn btn-danger" ng-disabled="!editView" ng-show="editView"  ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
-                                <button type="button" class="btn btn-success" ng-disabled="!editView" ng-show="editView" ng-click="editRow(x, $index);" ><i class="fa fa-pencil" style="cursor: pointer;" ></i></button>
+                                <button type="button" class="btn btn-success" ng-disabled="!editView" ng-show="editView" ng-click="editRow(x, $index);" ><i class="fa fa-edit" style="cursor: pointer;" ></i></button>
                               </td>
                             </tr>
                       </tbody>
@@ -786,7 +786,7 @@
 
           </div> -->
           <div class="col-md-12">
-            <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();" ng-disabled="!clienteValido" ng-show="showProductTable || hasUserClient"  > <i class="fas fa-pencil"></i> CREAR PEDIDO</button>
+            <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();" ng-disabled="!clienteValido" ng-show="showProductTable || hasUserClient"  > <i class="fa fa-edit"></i> CREAR PEDIDO</button>
           </div>
 
           <div class="col-md-12">
