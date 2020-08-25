@@ -342,7 +342,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             console.log(response.data.data)
 
-            $scope.existenciaEdit += parseInt(response.data.data)
+            $scope.existenciaEdit = parseInt(response.data.data)
 
           }, function errorCallback(response) {
             console.log(response)
@@ -634,7 +634,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             $scope.pedido.pedido[$scope.editRowIndex] = articulo
 
-            $scope.existenciaEdit = 0
+            $scope.existenciaEdit = null
             $scope.editRowIndex = -1
             $scope.editArticulo = null
             $scope.cantidadAux = 0
@@ -669,14 +669,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-        $scope.existenciaEdit = 0
+        $scope.existenciaEdit = null
         $scope.cantidadAux = 0
         $scope.editRowIndex = -1
         $scope.editArticulo = null
 
         $scope.editRow = function (articulo, i) {
 
-          $scope.existenciaEdit = parseInt(articulo.CANTIDAD)
+          // $scope.existenciaEdit = parseInt(articulo.CANTIDAD)
 
           articulo.precio_bruto_bs = articulo.PRECIO
 
