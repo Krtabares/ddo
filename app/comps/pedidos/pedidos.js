@@ -708,26 +708,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             var error=false;
             var existe = false;
+            var indexArticulo = null
             $scope.pedido.pedido.forEach((element,i) => {
               if($scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO){
-                //  element.CANTIDAD = element.CANTIDAD + $scope.articulo.CANTIDAD;
-                var existenciaAux = $scope.articulo.existencia
-                $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt(element.CANTIDAD)
-                $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
-                error = validacionesArticulo($scope.articulo, existenciaAux)
 
-                if(!error){
+                indexArticulo = i
+                existe = true;
 
-                  $scope.updDetalleProducto($scope.articulo);
-
-                  $scope.pedido.pedido.splice( i, 1 );
-
-                  $scope.pedido.pedido.push($scope.articulo)
-
-                }
-
-                 existe = true;
-                 $scope.articulo.existencia = existenciaAux
                 return
               }
             });
@@ -752,8 +739,31 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             }else{
 
+              var existenciaAux = $scope.articulo.existencia
+
+              $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt($scope.pedido.pedido[i].CANTIDAD)
+              
+              $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
+
+              $scope.pedido.pedido.splice( i, 1 );
+
+              calcularTotales()
+
+              error = validacionesArticulo($scope.articulo, existenciaAux)
+
               if(!error){
-                // calcularTotales()
+
+                $scope.updDetalleProducto($scope.articulo);
+
+                $scope.pedido.pedido.splice( i, 1 );
+
+                $scope.pedido.pedido.push($scope.articulo)
+
+              }
+              $scope.articulo.existencia = existenciaAux
+
+              if(!error){
+                calcularTotales()
                 $(function(){
                   $("#modalInfoProduct").modal('hide');
                 })
