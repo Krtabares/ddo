@@ -278,6 +278,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
 
               //$scope.getPedidos_filtering();
+              $scope.stopTimeout()
               $scope.getPedidos_filteringV2();
               ngNotify.set('¡Cerrado con exito! ', 'success')
 
@@ -802,6 +803,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.reset = function(){
+          $scope.stopTimeout()
           $scope.counter = 0;
           $scope.tabsIndex = 0
           $scope.totales.bolivares = 0
