@@ -904,11 +904,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
 
             $scope.showPedido(response.data.obj[0])
-            /*if (response.data.exist) {
-              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-            } else if (response.data.email_flag) {
-              ngNotify.set('¡Ya el correo está registrado!','error')
-            }*/
+
           }, function errorCallback(response) {
             console.log(response)
           });
@@ -982,7 +978,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           // $scope.totales = pedido.totales
 
-          calcularTotales(1)
+          calcularTotales()
         }
 
         $scope.removeArt = function(i){
@@ -1018,6 +1014,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.totales.USD = 0
             $scope.totales.bsIVA = 0
             $scope.totales.USDIVA = 0
+            $scope.totales.bsConIva = 0
+            $scope.totales.UsdConIva = 0
             console.log($scope.pedido.pedido)
             $scope.pedido.pedido.forEach(element => {
 
