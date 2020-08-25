@@ -332,7 +332,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-
         function validaDisponibilidadDDO(arti) {
           console.log("validaDisponibilidadDDO");
           var body = {}
@@ -653,7 +652,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(response)
             //$scope.getPedidos_filtering();
             $scope.getPedidos_filteringV2();
-            $scope.getProdNew(true);
+            // $scope.getProdNew(true);
             if(response.data.reserved < articulo.CANTIDAD ){
               articulo.CANTIDAD = response.data.reserved
               articulo.alert = true
