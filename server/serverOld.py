@@ -1123,11 +1123,13 @@ async def update_detalle_pedido(detalle, ID):
             db = get_db()
             c = db.cursor()
 
-            print("+===================================================")
-            print("update_detalle_pedido")
 
             cantidad = 0
             disponible = await valida_art("01", detalle['COD_PRODUCTO'])
+
+            print("+===================================================")
+            print("update_detalle_pedido")
+
 
             if int(detalle['CANTIDAD']) > disponible :
                 cantidad = disponible
