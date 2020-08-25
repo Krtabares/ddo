@@ -1164,6 +1164,9 @@ async def crear_detalle_pedido(detalle, ID):
         try:
             print("+===================================================")
             print("crear_detalle_pedido")
+            print(detalle)
+            print("+===================================================")
+
 
             cantidad = 0
             disponible = await valida_art("01", detalle['COD_PRODUCTO'])
