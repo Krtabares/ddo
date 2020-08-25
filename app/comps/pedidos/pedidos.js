@@ -662,7 +662,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               articulo.alert = false
             }
             // $scope.pedido.pedido.push(articulo)
-            calcularTotales()
+            // calcularTotales()
             result = articulo
           }, function errorCallback(response) {
             console.log(response)
@@ -753,7 +753,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }else{
 
               if(!error){
-                calcularTotales()
+                // calcularTotales()
                 $(function(){
                   $("#modalInfoProduct").modal('hide');
                 })
