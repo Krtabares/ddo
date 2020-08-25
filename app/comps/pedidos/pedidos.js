@@ -714,7 +714,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 var existenciaAux = $scope.articulo.existencia
                 $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt(element.CANTIDAD)
                 $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
-                error = validacionesArticulo($scope.articulo)
+                error = validacionesArticulo($scope.articulo, existenciaAux)
 
                 if(!error){
 
@@ -774,7 +774,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         }
 
-        function validacionesArticulo(articulo) {
+        function validacionesArticulo(articulo , existenciaAux = null) {
 
           console.log(articulo);
           if(isEmpty( articulo.COD_PRODUCTO )){
@@ -792,10 +792,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
           console.log("validacionesArticulo")
           console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
-          if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)  ){
-             ngNotify.set('¡El precio excede el credito disponible!','error')
-            return  true;
-          }
+
+          if(existenciaAux){
+            if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux))  ){
+               ngNotify.set('¡El precio excede el credito disponible!','error')
+              return  true;
+            }
+          }else
+              if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)  ){
+                ngNotify.set('¡El precio excede el credito disponible!','error')
+                return  true;
+              }
+
 
         }
 
@@ -865,25 +873,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.clienteValido = true
             // $scope.creditoClient = {}
           }
-        }
-
-        $scope.getPedidos = function(page){
-          var obj = {'page': page};
-		  // console.log($localStorage.token);
-          request.post(ip+'/get/pedidos', obj,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
-          .then(function successCallback(response) {
-            console.log(response.data)
-            if(response.data.data.length > 0){
-              $scope.listaPedidos = response.data.data;
-            }
-            /*if (response.data.exist) {
-              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-            } else if (response.data.email_flag) {
-              ngNotify.set('¡Ya el correo está registrado!','error')
-            }*/
-          }, function errorCallback(response) {
-            console.log(response)
-          });
         }
 
 
