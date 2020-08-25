@@ -1169,7 +1169,7 @@ async def upd_detalle_producto_serv (request, token: Token):
 
         print("+===================================================")
         print(detalle['CANTIDAD'])
-        print(disponible)
+        print(reservado)
         print("+===================================================")
 
         if data['pedido']['CANTIDAD'] > reservado:
