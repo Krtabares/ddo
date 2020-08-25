@@ -704,17 +704,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(Object.keys($scope.articulo).length === 0)
               return
 
+            var error=false;
             var existe = false;
             $scope.pedido.pedido.forEach((element,i) => {
               if($scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO){
                 //  element.CANTIDAD = element.CANTIDAD + $scope.articulo.CANTIDAD;
                 $scope.articulo.CANTIDAD += element.CANTIDAD
-                $scope.updDetalleProducto($scope.articulo)
+                error = validacionesArticulo($scope.articulo)
+                if(!error){
+                  $scope.updDetalleProducto($scope.articulo)
+                }
+
                  existe = true;
                 return
               }
             });
-            var error=false;
+
 
             if(!existe){
 
@@ -732,6 +737,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 })
                 ngNotify.set('¡Producto agregado al pedido!','success')
               }
+
+            }else{
+              if(!error){
+                calcularTotales()
+                $(function(){
+                  $("#modalInfoProduct").modal('hide');
+                })
+                ngNotify.set('¡Producto agregado al pedido!','success')
+              }
+
+              return
             }
 
             if(!error){
