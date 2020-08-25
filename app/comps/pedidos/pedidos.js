@@ -1056,7 +1056,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log(valor);
           console.log($scope.creditoClient.disp_bs_format );
           console.log($scope.creditoClient.disp_bs_format - valor);
-          console.console.log($scope.totales.bsConIva);
+          console.log($scope.totales);
           if(($scope.creditoClient.disp_bs_format - $scope.totales.bsConIva - valor) >= 0){
             return true
           }else{
