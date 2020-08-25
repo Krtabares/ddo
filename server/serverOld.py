@@ -1123,13 +1123,23 @@ async def update_detalle_pedido(detalle, ID):
             db = get_db()
             c = db.cursor()
 
+            c.execute("""UPDATE PAGINAWEB.DETALLE_PEDIDO
+                            SET
+                                   CANTIDAD     = :CANTIDAD,
+                                   PRECIO_BRUTO = :PRECIO_BRUTO
+                            WHERE  ID_PEDIDO    = :ID_PEDIDO
+                            AND    COD_PRODUCTO = :COD_PRODUCTO""",
+                            [
+                                int(0),
+                                0,
+                                ID,
+                                detalle['COD_PRODUCTO']
+                            ])
+            db.commit()
+
 
             cantidad = 0
             disponible = await valida_art("01", detalle['COD_PRODUCTO'])
-
-            print("+===================================================")
-            print("update_detalle_pedido")
-
 
             if int(detalle['CANTIDAD']) > disponible :
                 cantidad = disponible
