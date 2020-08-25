@@ -718,7 +718,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
                 if(!error){
 
-                  console.log($scope.updDetalleProducto($scope.articulo));
+                  $scope.updDetalleProducto($scope.articulo);
+
+                  $scope.pedido.pedido.splice( i, 1 );
+
+                  $scope.pedido.pedido.push($scope.articulo)
 
                 }
 
