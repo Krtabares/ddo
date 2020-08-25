@@ -676,7 +676,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.editRow = function (articulo, i) {
 
-          $scope.existenciaEdit = arseInt(articulo.CANTIDAD)
+          $scope.existenciaEdit = parseInt(articulo.CANTIDAD)
 
           articulo.precio_bruto_bs = articulo.PRECIO
 
