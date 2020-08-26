@@ -219,7 +219,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.product  = $scope.productos[ index ];
             $scope.articulo = $scope.product
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
-            $scope.articulo.PRECIO = $scope.product.precio_bruto_bs.replace(",", ".");
+            $scope.articulo.PRECIO = $scope.product.precio_neto_usd.replace(",", ".");
             $scope.articulo.precio_neto_usd = $scope.product.precio_neto_usd.replace(",", ".")
             $scope.articulo.existencia =$scope.product.existencia
             $scope.articulo.CANTIDAD = 1
@@ -638,6 +638,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.editRowIndex = -1
             $scope.editArticulo = null
             $scope.cantidadAux = 0
+            calcularTotales()
           }
 
         }
