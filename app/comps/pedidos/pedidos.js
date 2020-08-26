@@ -639,6 +639,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.editArticulo = null
             $scope.cantidadAux = 0
             calcularTotales()
+          }else{
+            articulo.CANTIDAD = parseInt($scope.cantidadAux )
           }
 
         }
