@@ -240,7 +240,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             // console.log(response)
             $scope.clientes = null
             $scope.clientIndex = null
-            // $scope.nombre_cliente = null
+            $scope.showProductTable = null
 
             if(response.data.obj.length > 0){
 
