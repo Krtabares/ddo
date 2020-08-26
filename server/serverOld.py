@@ -1154,7 +1154,7 @@ async def update_detalle_pedido(detalle, ID):
                             AND    COD_PRODUCTO = :COD_PRODUCTO""",
                             [
                                 int(cantidad),
-                                float(str(detalle['PRECIO']).replace(',','.')),
+                                float(str(detalle['precio_bruto_bs']).replace(',','.')),
                                 ID,
                                 detalle['COD_PRODUCTO']
                             ])
