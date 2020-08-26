@@ -692,7 +692,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           // $scope.existenciaEdit = parseInt(articulo.CANTIDAD)
 
-          articulo.precio_bruto_bs = articulo.PRECIO
+          // articulo.precio_bruto_bs = articulo.PRECIO
 
           validaDisponibilidadDDO(articulo.COD_PRODUCTO)
 
@@ -1042,12 +1042,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                                             + (parseFloat(element.precio_neto_usd) * element.CANTIDAD)
 
 
-                $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA)
+              $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA)
                 + (parseFloat(element.iva_bs) * element.CANTIDAD)
 
 
 
-                $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
+              $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
                 + (parseFloat(element.iva_usd) * element.CANTIDAD)
 
 
