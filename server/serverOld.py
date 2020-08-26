@@ -224,8 +224,8 @@ async def procedure(request):
 
     if not 'pNombre' in data :
         data['pNombre'] = 'null'
-    else:
-        data['pNombre'] = "'"+data['pNombre']+"'"
+    # else:
+    #     data['pNombre'] = "'"+data['pNombre']+"'"
 
 
     c.callproc("dbms_output.enable")
