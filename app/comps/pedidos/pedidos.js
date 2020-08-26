@@ -46,7 +46,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.initModal = function () {
-          console.log("initmodal")
+          // console.log("initmodal")
           $scope.ID = null
           $scope.reset()
 
@@ -154,7 +154,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             getClientDispService(body)
             validaClienteDDO(body)
 
-            console.log($scope.pedido, "pedido select" )
+            // console.log($scope.pedido, "pedido select" )
 
         }
 
@@ -165,7 +165,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
            request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
              .then(function successCallback(response) {
-               console.log(response.data)
+               // console.log(response.data)
 
                $scope.listaPedidos=response.data.data
                // defer.resolve(response.data.data);
@@ -173,7 +173,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             request.post(ip+'/get/pedidosV2', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
               .then(function successCallback(response) {
-                console.log(response.data)
+                // console.log(response.data)
 
                 $scope.listaPedidosV2 = response.data.data.sort(function(a, b) {
                   var keyA = a.ID,
@@ -194,7 +194,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
          var client = localStorage.getItem('client')
          var client_info = localStorage.getItem('client_info')
-         console.log(client)
+         // console.log(client)
           if ( client=='{}' ){
            $scope.hasUserClient = false;
          }else{
@@ -206,7 +206,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
          }
 
          listarPedidos()
-         console.log($scope.client_info)
+         // console.log($scope.client_info)
 
 
         }
@@ -225,19 +225,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.articulo.CANTIDAD = 1
             // $scope.articulo.no_cliente = $scope.client.cod_cliente
             angular.element('#btnProductInfo').trigger('click');
-            console.log($scope.product )
+            // console.log($scope.product )
 
         }
 
         $scope.getClientNew = function (filter = false) {
-          console.log("getClientNew");
+          // console.log("getClientNew");
           var body = {};
           if(filter){
             body.pNombre = $scope.nombre_cliente
           }
           request.post(ip+'/procedure_clientes', body,{})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
 
             if(response.data.obj.length > 1){
 
@@ -248,14 +248,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
         function getClientService(body) {
           request.post(ip+'/procedure_clientes', body,{})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
 
             if(response.data.obj.length > 0){
 
@@ -266,7 +266,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
@@ -275,7 +275,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           body.ID = $scope.ID
           request.post(ip+'/finalizar_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
 
               //$scope.getPedidos_filtering();
               $scope.stopTimeout()
@@ -283,7 +283,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               ngNotify.set('¡Cerrado con exito! ', 'success')
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
@@ -292,7 +292,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           body.ID = $scope.ID
           request.post(ip+'/editar_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
 
               //$scope.getPedidos_filtering();
               $scope.getPedidos_filteringV2();
@@ -303,7 +303,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.mytimeout = $timeout($scope.onTimeout,1000);
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
@@ -311,10 +311,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.clienteValido = false
         $scope.clientInvalidoMsg = null
         function validaClienteDDO(body) {
-          console.log("validaClienteDDO");
+          // console.log("validaClienteDDO");
           request.post(ip+'/valida/client', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response.data.data)
+            // console.log(response.data.data)
 
             if(response.data.data){
               $scope.clientInvalidoMsg = response.data.data[0]
@@ -329,46 +329,46 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
         function validaDisponibilidadDDO(arti) {
-          console.log("validaDisponibilidadDDO");
+          // console.log("validaDisponibilidadDDO");
           var body = {}
           body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
           body.pArti = arti
           request.post(ip+'/valida/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response.data.data)
+            // console.log(response.data.data)
 
             $scope.existenciaEdit = parseInt(response.data.data)
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
         function getClientDispService(body) {
-          console.log("getClientDispService");
+          // console.log("getClientDispService");
           request.post(ip+'/disponible_cliente', body,{})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
 
             $scope.creditoClient = response.data.obj
             $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
             $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
         $scope.getProdNew = function (filter = false) {
 
-          console.log("getProdNew");
+          // console.log("getProdNew");
           var body = {};
-          // console.log($scope.client);
+          // // console.log($scope.client);
 
           if(filter){
             // body.pNombre = $scope.nombre_cliente
@@ -377,10 +377,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
             body.pBusqueda = $scope.busqueda_prod
           }
-          // console.log(body, "body")
+          // // console.log(body, "body")
           request.post(ip+'/procedure_productos', body,{})
           .then(function successCallback(response) {
-            // console.log(response)
+            // // console.log(response)
             if(response.data.obj.length > 1){
               response.data.obj.forEach((item, i) => {
 
@@ -402,7 +402,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
@@ -418,10 +418,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         stop = $interval(function() {
             if (refreshCount <= 3) {
               $scope.getProdNew(true)
-              // console.log("recargo")
+              // // console.log("recargo")
             } else {
               $scope.stopFight();
-              // console.log("se detuvo")
+              // // console.log("se detuvo")
             }
           }, 108000);
         };
@@ -453,11 +453,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.addPedido = function(){
-          // console.log(pedido);
+          // // console.log(pedido);
           var body = $scope.buildBody();
           request.post(ip+'/add/pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
               $scope.reset();
               //$scope.getPedidos_filtering();
               $scope.getPedidos_filteringV2();
@@ -469,23 +469,23 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }*/
             alert("Guardado con exito!")
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
         $scope.addPedidoV2 = function(){
-          // console.log(pedido);
+          // // console.log(pedido);
           var body = $scope.buildBody();
           request.post(ip+'/add/pedidoV2', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
             $scope.ID = response.data.ID
             ngNotify.set('¡Pedido abierto con exito!','success')
             $scope.counter = 0;
             $scope.mytimeout = $timeout($scope.onTimeout,1000);
             // alert("Guardado con exito!")
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
@@ -520,7 +520,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.mytimeout = null
 
         $scope.stopTimeout = function(){
-          console.log("stop");
+          // console.log("stop");
             $timeout.cancel($scope.mytimeout);
             $scope.counter = 0;
         }
@@ -537,7 +537,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.addDetalleProducto = function(articulo){
-          // console.log(pedido);
+          // // console.log(pedido);
           var body = {};
 
           body.pedido = articulo
@@ -547,7 +547,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           body.ID = $scope.ID
           request.post(ip+'/add/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
             //$scope.getPedidos_filtering();
             $scope.getPedidos_filteringV2();
             $scope.getProdNew(true);
@@ -561,31 +561,31 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             calcularTotales()
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
         $scope.removeDetalleProducto = function(i){
-          // console.log(pedido);
+          // // console.log(pedido);
           var body = {};
 
           body.COD_PRODUCTO = $scope.pedido.pedido[i].COD_PRODUCTO;
           body.id_pedido = $scope.ID
           request.post(ip+'/del/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
             // //$scope.getPedidos_filtering();
             $scope.getPedidos_filteringV2();
             $scope.getProdNew(true)
             $scope.removeArt(i)
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
         $scope.updPedido = function(){
-          // console.log(pedido);
+          // // console.log(pedido);
           if(!validaCreditoContraTotal()){
             ngNotify.set('¡El precio excede el credito disponible!','error')
             return;
@@ -594,30 +594,30 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           body.ID = $scope.ID
           request.post(ip+'/upd/pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
               $scope.reset();
               //$scope.getPedidos_filtering();
               $scope.getPedidos_filteringV2();
               ngNotify.set('¡Pedido actualizado con exito!','success')
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
         $scope.delPedido = function(){
-          // console.log(pedido);
+          // // console.log(pedido);
           var body = $scope.buildBody();
           body.ID = $scope.ID
           request.post(ip+'/del/pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
               $scope.reset();
               //$scope.getPedidos_filtering();
               $scope.getPedidos_filteringV2();
               $scope.ID = null;
               ngNotify.set('¡Pedido eliminado con exito!','success')
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
@@ -643,7 +643,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.updDetalleProducto = function(articulo){
-          console.log('updDetalleProducto');
+          // console.log('updDetalleProducto');
           var body = {};
           var result
 
@@ -651,7 +651,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           body.ID = $scope.ID
           request.post(ip+'/upd/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response)
+            // console.log(response)
             //$scope.getPedidos_filtering();
             $scope.getPedidos_filteringV2();
             // $scope.getProdNew(true);
@@ -665,7 +665,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             // calcularTotales()
             result = articulo
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
 
           return result
@@ -690,7 +690,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           articulo.CANTIDAD = parseInt(articulo.CANTIDAD)
           $scope.editArticulo = articulo
 
-          console.log(articulo)
+          // console.log(articulo)
 
           $(function(){
             $("#modalEditDetalle").modal({
@@ -702,7 +702,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.addArtPedido = function(){
-            console.log($scope.pedido.pedido);
+            // console.log($scope.pedido.pedido);
             if(Object.keys($scope.articulo).length === 0)
               return
 
@@ -726,7 +726,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.articulo.PRECIO = $scope.articulo.PRECIO.replace(",", ".");
 
-              console.log($scope.articulo.PRECIO);
+              // console.log($scope.articulo.PRECIO);
 
               if(!error){
                 $scope.addDetalleProducto($scope.articulo)
@@ -784,22 +784,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         function validacionesArticulo(articulo , existenciaAux = null) {
 
-          console.log(articulo);
+          // console.log(articulo);
           if(isEmpty( articulo.COD_PRODUCTO )){
-            console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( articulo.COD_PRODUCTO ))
+            // console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( articulo.COD_PRODUCTO ))
             return  true;
           }
            if( isEmpty(articulo.CANTIDAD ) || articulo.CANTIDAD < 1 ){
             ngNotify.set('¡Por favor verifique la cantidad!','error')
             return  true;
           }
-          console.log(articulo.existencia,articulo.CANTIDAD );
+          // console.log(articulo.existencia,articulo.CANTIDAD );
            if( articulo.CANTIDAD > parseInt(articulo.existencia)  ){
               ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
              return  true;
           }
-          console.log("validacionesArticulo")
-          console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
+          // console.log("validacionesArticulo")
+          // console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
 
           if(existenciaAux){
             if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux))  ){
@@ -822,7 +822,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.buildBody = function(){
 
           var fecha = new Date( $scope.pedido.fecha)
-          console.log($scope.pedido.pedido)
+          // console.log($scope.pedido.pedido)
           var aux = $scope.pedido.pedido
           aux.forEach(element => {
 
@@ -846,7 +846,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             "ESTATUS": "0",
             "pedido": aux
           }
-          console.log(body,"body")
+          // console.log(body,"body")
           return body
         }
 
@@ -887,10 +887,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.getPedido = function(ID){
           var obj = {'idPedido': ID};
           $scope.ID = ID
-      // console.log($localStorage.token);
+      // // console.log($localStorage.token);
           request.post(ip+'/get/pedido', obj, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response.data)
+            // console.log(response.data)
 
             var body = {};
             if(!$scope.hasUserClient){
@@ -906,7 +906,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.showPedido(response.data.obj[0])
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
@@ -916,12 +916,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // body.pCliente = $scope.client.COD_CLIENTE
           // request.post(ip+'/get/pedidos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           // .then(function successCallback(response) {
-          //   console.log(response.data)
+          //   // console.log(response.data)
           //
           //     $scope.listaPedidos = response.data.data;
           //
           // }, function errorCallback(response) {
-          //   console.log(response)
+          //   // console.log(response)
           // });
         }
         $scope.listaPedidosV2=[]
@@ -933,7 +933,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
           request.post(ip+'/get/pedidosV2', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
-            console.log(response.data)
+            // console.log(response.data)
 
             $scope.listaPedidosV2 = response.data.data.sort(function(a, b) {
               var keyA = a.ID,
@@ -947,12 +947,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               // $scope.listaPedidosV2 = response.data.data;
 
           }, function errorCallback(response) {
-            console.log(response)
+            // console.log(response)
           });
         }
 
         $scope.showPedido = function(pedido){
-          console.log(pedido);
+          // console.log(pedido);
 
           $scope.editView = false;
           // pedido.fecha = new Date(pedido.fecha);
@@ -983,7 +983,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.removeArt = function(i){
 
-          // console.log($scope.pedido.pedido[i].COD_PRODUCTO)
+          // // console.log($scope.pedido.pedido[i].COD_PRODUCTO)
 
 
           if($scope.pedido.totales)
@@ -1016,7 +1016,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.totales.USDIVA = 0
             $scope.totales.bsConIva = 0
             $scope.totales.UsdConIva = 0
-            console.log($scope.pedido.pedido)
+            // console.log($scope.pedido.pedido)
             $scope.pedido.pedido.forEach(element => {
 
               $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
@@ -1044,14 +1044,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.UsdConIva = parseFloat($scope.totales.USD + $scope.totales.USDIVA)
 
 
-          console.log($scope.totales)
+          // console.log($scope.totales)
         }
 
         function validaCreditoContraProducto(valor) {
-          console.log(valor);
-          console.log($scope.creditoClient.disp_bs_format );
-          console.log($scope.creditoClient.disp_bs_format - valor);
-          console.log($scope.totales);
+          // console.log(valor);
+          // console.log($scope.creditoClient.disp_bs_format );
+          // console.log($scope.creditoClient.disp_bs_format - valor);
+          // console.log($scope.totales);
           if(($scope.creditoClient.disp_bs_format - $scope.totales.bsConIva - valor) >= 0){
             return true
           }else{
