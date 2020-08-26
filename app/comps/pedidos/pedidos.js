@@ -242,6 +242,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(response.data.obj.length > 0){
 
               $scope.clientes = response.data.obj
+              $scope.clientes = null
+              $scope.clientIndex = -1
+              // $scope.nombre_cliente = null
 
             }else{
               ngNotify.set('¡No se encontraron resultados!', 'warn')
