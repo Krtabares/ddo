@@ -1149,12 +1149,12 @@ async def update_detalle_pedido(detalle, ID):
             c.execute("""UPDATE PAGINAWEB.DETALLE_PEDIDO
                             SET
                                    CANTIDAD     = :CANTIDAD,
-                                   PRECIO_BRUTO = :PRECIO_BRUTO
+                                   -- PRECIO_BRUTO = :PRECIO_BRUTO
                             WHERE  ID_PEDIDO    = :ID_PEDIDO
                             AND    COD_PRODUCTO = :COD_PRODUCTO""",
                             [
                                 int(cantidad),
-                                float(str(detalle['precio_bruto_bs']).replace(',','.')),
+                                # -float(str(detalle['precio_bruto_bs']).replace(',','.')),
                                 ID,
                                 detalle['COD_PRODUCTO']
                             ])
