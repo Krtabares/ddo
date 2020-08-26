@@ -629,6 +629,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           articulo.CANTIDAD = parseInt(articulo.CANTIDAD )
 
+          $scope.pedido.pedido.splice( $scope.editRowIndex, 1 );
+
+          calcularTotales()
+
           if(!validacionesArticulo(articulo)){
             $scope.updDetalleProducto(articulo)
 
@@ -638,10 +642,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.editRowIndex = -1
             $scope.editArticulo = null
             $scope.cantidadAux = 0
-            calcularTotales()
+
+
           }else{
             articulo.CANTIDAD = parseInt($scope.cantidadAux )
           }
+
+          $scope.pedido.pedido.push(articulo)
+
+          calcularTotales()
 
         }
 
@@ -801,8 +810,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
              return  true;
           }
-          // console.log("validacionesArticulo")
-          // console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
+          console.log("validacionesArticulo")
+          console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
 
           if(existenciaAux){
             if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux))  ){
