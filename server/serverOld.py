@@ -224,8 +224,8 @@ async def procedure(request):
 
     if not 'pNombre' in data :
         data['pNombre'] = 'null'
-    else:
-        data['pNombre'] = "'"+data['pNombre']+"'"
+    # else:
+    #     data['pNombre'] = "'"+data['pNombre']+"'"
 
     print(data)
     c.callproc("dbms_output.enable")
@@ -269,7 +269,7 @@ async def procedure(request):
                     pPagina  := {pPagina};
                     pLineas  := {pLineas};
                     pCliente := {pCliente};
-                    pNombre := {pNombre};
+                    pNombre := \'{pNombre}\';
                     pDireccion := {pDireccion};
 
                 dbms_output.enable(output);
