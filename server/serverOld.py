@@ -1216,7 +1216,7 @@ async def crear_detalle_pedido(detalle, ID):
                          ID_PEDIDO = int(ID),
                          COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
                          CANTIDAD = int(cantidad),
-                         PRECIO = float(str(detalle['PRECIO']).replace(',','.')),
+                         PRECIO = float(str(detalle['precio_bruto_bs']).replace(',','.')),
                          TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
                          BODEGA = detalle['bodega']
                     ))
