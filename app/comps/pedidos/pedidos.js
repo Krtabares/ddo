@@ -629,9 +629,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           articulo.CANTIDAD = parseInt(articulo.CANTIDAD )
 
-          $scope.pedido.pedido.splice( $scope.editRowIndex, 1 );
+          // $scope.pedido.pedido.splice( $scope.editRowIndex, 1 );
 
-          calcularTotales()
+          calcularTotales($scope.editRowIndex)
 
           if(!validacionesArticulo(articulo)){
             $scope.updDetalleProducto(articulo)
@@ -648,7 +648,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             articulo.CANTIDAD = parseInt($scope.cantidadAux )
           }
 
-          $scope.pedido.pedido.push(articulo)
+          // $scope.pedido.pedido.push(articulo)
 
           calcularTotales()
 
@@ -1008,7 +1008,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           $scope.pedido.pedido.splice( i, 1 );
 
-          calcularTotales(1)
+          calcularTotales()
         }
 
         $scope.totales = {
@@ -1020,7 +1020,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           'UsdConIva':0
         }
 
-        function calcularTotales(type = 0) {
+        function calcularTotales(editIndex = null) {
 
             $scope.totales.bolivares = 0
             $scope.totales.USD = 0
@@ -1029,10 +1029,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.totales.bsConIva = 0
             $scope.totales.UsdConIva = 0
             // console.log($scope.pedido.pedido)
-            $scope.pedido.pedido.forEach(element => {
+            $scope.pedido.pedido.forEach((element, i )=> {
+
+              if(editIndex && editIndex == i){
+                return;
+              }
 
               $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
                                              + (parseFloat(element.PRECIO) * element.CANTIDAD)
+
               $scope.totales.USD = parseFloat($scope.totales.USD)
                                             + (parseFloat(element.precio_neto_usd) * element.CANTIDAD)
 
