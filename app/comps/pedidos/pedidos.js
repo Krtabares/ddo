@@ -1028,7 +1028,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         function calcularTotales(editIndex = null) {
-
+            console.log("calcularTotales");
             $scope.totales.bolivares = 0
             $scope.totales.USD = 0
             $scope.totales.bsIVA = 0
@@ -1039,6 +1039,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.pedido.pedido.forEach((element, i )=> {
 
               if(editIndex && editIndex == i){
+                console.log("editIndex", editIndex);
                 return;
               }
 
