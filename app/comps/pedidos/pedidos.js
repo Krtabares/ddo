@@ -697,6 +697,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.editRow = function (articulo, i) {
 
           // $scope.existenciaEdit = parseInt(articulo.CANTIDAD)
+          console.log("editRow", i);
 
           calcularTotales(i)
 
