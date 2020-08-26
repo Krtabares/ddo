@@ -639,7 +639,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           calcularTotales($scope.editRowIndex)
 
-          if(!validacionesArticulo(articulo)){
+          if(!validacionesArticulo(articulo, $scope.existenciaEdit)){
             $scope.updDetalleProducto(articulo)
 
             $scope.pedido.pedido[$scope.editRowIndex] = articulo
@@ -818,15 +818,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
              return  true;
           }
-          console.log("validacionesArticulo")
-          console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
-
+          // console.log("validacionesArticulo")
+          // console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
+          var valor = 0
           if(existenciaAux){
-            if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux))  ){
+            valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux))
+            console.log(valor);
+            if( !validaCreditoContraProducto(valor)  ){
                ngNotify.set('¡El precio excede el credito disponible!','error')
               return  true;
             }
           }else
+              console.log(valor);
+              valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)
               if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)  ){
                 ngNotify.set('¡El precio excede el credito disponible!','error')
                 return  true;
