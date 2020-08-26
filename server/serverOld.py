@@ -1411,13 +1411,6 @@ async def del_detalle_producto (request, token: Token):
             ])
         db.commit()
 
-        mongodb = get_mongo_db()
-
-        await mongodb.order.update({'id_pedido':int(data['id_pedido'])},{
-                                                            "$pull":{
-                                                                        "productos":{"COD_PRODUCTO":data['COD_PRODUCTO'] }
-                                                                    }
-                                                                }, True, True)
 
         return response.json("SUCCESS",200)
     except Exception as e:
