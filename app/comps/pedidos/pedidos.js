@@ -698,13 +698,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           // $scope.existenciaEdit = parseInt(articulo.CANTIDAD)
 
-          // articulo.precio_bruto_bs = articulo.PRECIO
+          calcularTotales(i)
 
           validaDisponibilidadDDO(articulo.COD_PRODUCTO)
 
           $scope.cantidadAux = parseInt(articulo.CANTIDAD)
 
           $scope.editRowIndex = i
+
           articulo.CANTIDAD = parseInt(articulo.CANTIDAD)
           $scope.editArticulo = articulo
 
