@@ -238,12 +238,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/procedure_clientes', body,{})
           .then(function successCallback(response) {
             // console.log(response)
+            $scope.clientes = null
+            $scope.clientIndex = -1
+            // $scope.nombre_cliente = null
 
             if(response.data.obj.length > 0){
 
               $scope.clientes = response.data.obj
-              $scope.clientes = null
-              $scope.clientIndex = -1
+              // $scope.clientes = null
+              // $scope.clientIndex = -1
               // $scope.nombre_cliente = null
 
             }else{
