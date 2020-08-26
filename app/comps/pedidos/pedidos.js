@@ -1039,7 +1039,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             // console.log($scope.pedido.pedido)
             $scope.pedido.pedido.forEach((element, i )=> {
 
-              if(editIndex && editIndex == i){
+              if(editIndex != null && editIndex == i){
                 console.log("editIndex", editIndex);
                 return;
               }
