@@ -239,7 +239,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             // console.log(response)
 
-            if(response.data.obj.length > 1){
+            if(response.data.obj.length > 0){
 
               $scope.clientes = response.data.obj
 
