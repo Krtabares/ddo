@@ -155,18 +155,18 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
 		.withOption('responsive', true);
 
         $scope.dtColumns = [
-            DTColumnBuilder.newColumn('id_deuda').withTitle('ID'),
-            DTColumnBuilder.newColumn('codigo_cliente').withTitle('Codigo cliente'),
-            DTColumnBuilder.newColumn('nombre_cliente').withTitle('Nombre cliente'),
+            DTColumnBuilder.newColumn('id_deuda').withTitle('N° de documento'),
+            // DTColumnBuilder.newColumn('codigo_cliente').withTitle('Codigo cliente'),
+            // DTColumnBuilder.newColumn('nombre_cliente').withTitle('Nombre cliente'),
 			DTColumnBuilder.newColumn('fecha_vencimiento').withTitle('Fecha de vencimiento'),
 			DTColumnBuilder.newColumn('tipo_pago').withTitle('Tipo de pago'),
-			DTColumnBuilder.newColumn('monto_inicial').withTitle('Monto inicial'),
+			// DTColumnBuilder.newColumn('monto_inicial').withTitle('Monto inicial'),
 			DTColumnBuilder.newColumn('monto_actual').withTitle('Monto actual'),
-			DTColumnBuilder.newColumn('fecha_ultimo_pago').withTitle('Fecha de ultimo pago').withClass('none'),
-			DTColumnBuilder.newColumn('monto_ultimo_pago').withTitle('Monto de ultimo pago').withClass('none'),
+			// DTColumnBuilder.newColumn('fecha_ultimo_pago').withTitle('Fecha de ultimo pago').withClass('none'),
+			// DTColumnBuilder.newColumn('monto_ultimo_pago').withTitle('Monto de ultimo pago').withClass('none'),
 			DTColumnBuilder.newColumn('estatus_deuda').withTitle('Estatus deuda').withClass('none'),
 			DTColumnBuilder.newColumn('codigo_tipo_doc').withTitle('Código tipo doc').withClass('none'),
-			DTColumnBuilder.newColumn('nombre_tipo_doc').withTitle('Nombre tipo doc').withClass('none')
+			DTColumnBuilder.newColumn('nombre_tipo_doc').withTitle('Nombre tipo doc')
         ];
 
 	/*$('#deudas_table').DataTable( {
