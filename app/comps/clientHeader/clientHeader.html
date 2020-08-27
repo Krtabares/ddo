@@ -7,17 +7,17 @@
   <div class="row pb-2 p-2" >
       <div class="col-md-6">
           <p class="font-weight-bold mb-4">Informacion del Cliente </p>
-          <p class="mb-1" style="text-transform: capitalize;" >{{client_info.nombre_cliente.toLowerCase()}}</p>
-          <p>{{client_info.telefono1}}</p>
-          <p class="mb-1">{{client_info.direccion_cliente.toLowerCase()}}</p>
+          <p class="mb-1" style="text-transform: capitalize;"> <span class="text-muted">Razon Social: </span>{{client_info.nombre_cliente.toLowerCase()}}</p>
+          <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client_info.docu_identif_cliente}}</p>
+          <p class="mb-1"><span class="text-muted">Telefono: </span>{{client_info.telefono1}}</p>
+          <p class="mb-1"> <span class="text-muted">Direccion: </span> {{client_info.direccion_cliente.toLowerCase()}}</p>
       </div>
 
-      <div class="col-md-6 text-right">
+      <div class="col-md-6">
           <p class="font-weight-bold mb-4">Detalles</p>
-          <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client_info.docu_identif_cliente}}</p>
           <p class="mb-1"><span class="text-muted">Codigo: </span> {{client_info.cod_cliente}}</p>
           <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client_info.nombre_encargado.toLowerCase()}}</p>
-          <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">persona contacto área crédito y cobranzas: </span> {{client_info.v_persona_cyc.toLowerCase()}}</p>
+          <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">per. crédito y cobranzas: </span> {{client_info.v_persona_cyc.toLowerCase()}}</p>
           <p class="mb-1"><span class="text-muted">Plazo de pago: </span> {{client_info.v_plazo}} dias</p>
       </div>
   </div>
