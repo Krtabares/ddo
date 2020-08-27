@@ -237,12 +237,13 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         ])
 
         $scope.dtColumns = [
-            DTColumnBuilder.newColumn('bodega').withTitle('Bodega'),
-            DTColumnBuilder.newColumn('fecha_vence').withTitle('Fecha vencimiento'),
-            DTColumnBuilder.newColumn('cod_producto').withTitle('Código de producto'),
+            // DTColumnBuilder.newColumn('bodega').withTitle('Bodega'),
             DTColumnBuilder.newColumn('nombre_producto').withTitle('Nombre de producto'),
+            DTColumnBuilder.newColumn('fecha_vence').withTitle('Fecha vencimiento'),
+            DTColumnBuilder.newColumn('proveedor').withTitle('Proveedor'),
+            // DTColumnBuilder.newColumn('cod_producto').withTitle('Código de producto'),
             DTColumnBuilder.newColumn('princ_activo').withTitle('Principio activo').withClass('none'),
             DTColumnBuilder.newColumn('existencia').withTitle('Existencia').withClass('none'),
-            DTColumnBuilder.newColumn('precio').withTitle('Precio')
+            // DTColumnBuilder.newColumn('precio').withTitle('Precio')
         ];
   }]);
