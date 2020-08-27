@@ -814,7 +814,7 @@
               <tr ng-repeat="x in listaPedidos">
                   <th scope="row">{{ $index + 1 }}</th>
                   <!-- <td><p class="text-center">{{ x.no_cia }}</p></td> -->
-                  <td><p class="text-center">ORD-{{ x.ID }}-WEB</p></td> 
+                  <td><p class="text-center">ORD-{{ x.ID }}-WEB</p></td>
                   <td><p class="text-center">{{  x.fecha }}</p></td>
                   <td ng-show="!hasUserClient" ><p class="text-center">{{ x.no_cliente }}</p></td>
                   <td><p class="text-center">{{ x.no_factu }}</p></td>
@@ -841,6 +841,7 @@
             <thead>
                 <tr>
                 <th scope="col"><p class="text-center">#</p></th>
+                <th scope="col"><p class="text-center">N pedido</p></th>
                 <th scope="col"><p class="text-center">Fecha creacion</p></th>
                 <th  ng-show="!hasUserClient" scope="col"><p class="text-center">Nombre Cliente</p></th>
                 <th scope="col"><p class="text-center">Direcion</p></th>
@@ -853,6 +854,7 @@
 
                 <tr ng-repeat="x in listaPedidosV2">
                     <th scope="row">{{ $index + 1 }}</th>
+                    <td><p class="text-center">ORD-{{ x.ID }}-WEB</p></td> 
                     <td><p class="text-center">{{  x.fecha_creacion }}</p></td>
                     <td ng-show="!hasUserClient" ><p class="text-center">{{ x.nombre_cliente }}</p></td>
                     <td><p class="text-center">{{ x.direccion_cliente }}</p></td>
