@@ -268,7 +268,7 @@ async def procedure(request):
                     pTotPaginas  := {pTotPaginas};
                     pPagina  := {pPagina};
                     pLineas  := {pLineas};
-                    pCliente := {pCliente};
+                    pCliente := \'{pCliente}\';
                     pNombre := \'{pNombre}\';
                     pDireccion := {pDireccion};
 
