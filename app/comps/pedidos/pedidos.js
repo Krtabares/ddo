@@ -30,6 +30,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.productos = null;
         $scope.product = {};
         $scope.productIndex = -1;
+        $scope.infoPsico = false;
 
         var ip = "http://192.168.168.170:3500";
         //list pedido
