@@ -822,7 +822,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
           var valor = 0
           if(existenciaAux){
-            valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux))
+            valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux)
             console.log(valor);
             if( !validaCreditoContraProducto(valor)  ){
                ngNotify.set('¡El precio excede el credito disponible!','error')
