@@ -797,8 +797,8 @@
           <thead>
               <tr>
               <th scope="col"><p class="text-center">#</p></th>
-              <!-- <th scope="col"><p class="text-center">Número cia</p></th>
-              <th scope="col"><p class="text-center">Grupo</p></th> -->
+              <!-- <th scope="col"><p class="text-center">Número cia</p></th> -->
+              <th scope="col"><p class="text-center">N pedido</p></th>
               <th scope="col"><p class="text-center">Fecha</p></th>
               <th ng-show="!hasUserClient" scope="col"><p class="text-center">Número Cliente</p></th>
               <th scope="col"><p class="text-center">Número Pedido</p></th>
@@ -813,8 +813,8 @@
 
               <tr ng-repeat="x in listaPedidos">
                   <th scope="row">{{ $index + 1 }}</th>
-                  <!-- <td><p class="text-center">{{ x.no_cia }}</p></td>
-                  <td><p class="text-center">{{ x.grupo }}</p></td> -->
+                  <!-- <td><p class="text-center">{{ x.no_cia }}</p></td> -->
+                  <td><p class="text-center">ORD-{{ x.ID }}-WEB</p></td> 
                   <td><p class="text-center">{{  x.fecha }}</p></td>
                   <td ng-show="!hasUserClient" ><p class="text-center">{{ x.no_cliente }}</p></td>
                   <td><p class="text-center">{{ x.no_factu }}</p></td>
