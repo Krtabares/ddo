@@ -646,7 +646,7 @@ async def procedure(request):
                                 pCliente := {pCliente};
                                 pBusqueda := {pBusqueda};
                                 pComponente := {pComponente};
-                                pArticulo := {pArticulo}
+                                pArticulo := {pArticulo};
 
                 dbms_output.enable(output);
 
