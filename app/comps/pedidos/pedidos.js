@@ -739,6 +739,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.articulo = response.data.obj[0]
 
+              console.log($scope.articulo);
+
             }else{
               ngNotify.set('¡No se encontraron resultados!', 'warn')
             }
