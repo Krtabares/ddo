@@ -1712,6 +1712,7 @@ async def procedure_pedidos(cia,grupo,cliente):
                         v_nombre_cliente varchar2(40);
                         v_direccion_cliente varchar2(200);
                         v_fecha_creacion DATE;
+                        v_cod_estatus number
                         v_estatus varchar2(80);
                         v_fecha_estatus DATE;
                         pNoCia varchar2(10) DEFAULT '01';
@@ -1737,6 +1738,8 @@ async def procedure_pedidos(cia,grupo,cliente):
 
                                   v_fecha_creacion,
 
+                                  v_cod_estatus,
+
                                   v_estatus,
 
                                   v_fecha_estatus;
@@ -1753,6 +1756,8 @@ async def procedure_pedidos(cia,grupo,cliente):
                                   v_direccion_cliente|| '|'||
 
                                   v_fecha_creacion|| '|'||
+
+                                  v_cod_estatus|| '|'||
 
                                   v_estatus|| '|'||
 
@@ -1787,8 +1792,9 @@ async def procedure_pedidos(cia,grupo,cliente):
                   'nombre_cliente': arr[1],
                   'direccion_cliente': arr[2],
                   'fecha_creacion': arr[3],
-                  'estatus': arr[4],
-                  'fecha_estatus': arr[5]
+                  'cod_estatus': arr[4],
+                  'estatus': arr[5],
+                  'fecha_estatus': arr[6]
             }
             list.append(obj)
 
