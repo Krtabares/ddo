@@ -594,8 +594,8 @@ async def procedure(request):
     if not 'pArticulo' in data :
         data['pArticulo'] = 'null'
         data['haveArt'] = '--'
-    # else:
-    #     data['pArticulo'] = ""+data['pBusqueda']+"'"
+    else:
+        data['haveArt'] = ""
 
     print(data)
     db = get_db()
