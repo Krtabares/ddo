@@ -1728,7 +1728,7 @@ async def procedure_pedidos(cia,grupo,cliente):
                         v_nombre_cliente varchar2(40);
                         v_direccion_cliente varchar2(200);
                         v_fecha_creacion DATE;
-                        v_cod_estatus number
+                        v_cod_estatus number;
                         v_estatus varchar2(80);
                         v_fecha_estatus DATE;
                         pNoCia varchar2(10) DEFAULT '01';
