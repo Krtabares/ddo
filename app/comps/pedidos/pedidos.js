@@ -371,7 +371,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-        $scope.getProdNew = function (filter = false) {
+        $scope.getProdNew = function (filter = false, articulo = false) {
 
           // console.log("getProdNew");
           var body = {};
@@ -382,7 +382,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
             body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
             body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
-            body.pBusqueda = $scope.busqueda_prod
+            if(articulo){
+              body.pArticulo = $scope.pArticulo
+            }else{
+              body.pBusqueda = $scope.busqueda_prod
+            }
+
+
           }
           // // console.log(body, "body")
           request.post(ip+'/procedure_productos', body,{})
@@ -708,13 +714,45 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           $scope.editRowIndex = i
 
-          articulo.CANTIDAD = parseInt(articulo.CANTIDAD)
-          $scope.editArticulo = articulo
+          var body = {}
+
+          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+          body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+          body.pArticulo = articulo.COD_PRODUCTO
+
+
+          request.post(ip+'/procedure_productos', body,{})
+          .then(function successCallback(response) {
+            // // console.log(response)
+            if(response.data.obj.length > 1){
+              response.data.obj.forEach((item, i) => {
+
+                item.precioFormatVE = item.precio_bruto_bs.replace(",", ".")
+                item.precioFormatVE = $scope.formato(2,  parseFloat(item.precioFormatVE).toFixed(2) )
+                // item.precio_neto_usd =
+                item.precioFormatUSD = item.precio_neto_usd.replace(",", ".")
+                item.precioFormatUSD = $scope.formato(3,  parseFloat(item.precioFormatUSD).toFixed(2) )
+
+              });
+
+
+              $scope.articulo = response.data.obj[0]
+
+            }else{
+              ngNotify.set('¡No se encontraron resultados!', 'warn')
+            }
+
+          }, function errorCallback(response) {
+            // console.log(response)
+          });
+
+          // $scope.articulo = articulo
 
           // console.log(articulo)
 
           $(function(){
-            $("#modalEditDetalle").modal({
+            $("#modalInfoProduct").modal({
                 backdrop: 'static',
                 keyboard: false
             });
@@ -762,7 +800,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               var existenciaAux = $scope.articulo.existencia
 
-              $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt($scope.pedido.pedido[indexArticulo].CANTIDAD)
+              if(parseInt($scope.articulo.CANTIDAD) > parseInt($scope.pedido.pedido[indexArticulo].CANTIDAD) )
+
+                $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt($scope.pedido.pedido[indexArticulo].CANTIDAD)
 
               $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
 
