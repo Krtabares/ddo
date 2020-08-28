@@ -613,7 +613,7 @@ async def procedure(request):
             pCliente varchar2(50) DEFAULT null;
             pBusqueda varchar2(50) DEFAULT null;
             pComponente varchar2(50) DEFAULT null;
-            pArticulo varcahr2(50) default null;
+            pArticulo varchar2(50) default null;
 
             output number DEFAULT 1000000;
 
