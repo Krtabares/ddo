@@ -593,6 +593,7 @@ async def procedure(request):
 
     if not 'pArticulo' in data :
         data['pArticulo'] = 'null'
+        data['haveArt'] = '--'
     # else:
     #     data['pArticulo'] = ""+data['pBusqueda']+"'"
 
@@ -647,7 +648,7 @@ async def procedure(request):
                                 pCliente := {pCliente};
                                 pBusqueda := {pBusqueda};
                                 pComponente := {pComponente};
-                                pArticulo := \'{pArticulo}\';
+            {haveArt}         pArticulo := \'{pArticulo}\';
 
                 dbms_output.enable(output);
 
@@ -710,7 +711,8 @@ async def procedure(request):
                         pCliente = data['pCliente'],
                         pBusqueda = data['pBusqueda'],
                         pComponente = data['pComponente'],
-                        pArticulo = data['pArticulo']
+                        pArticulo = data['pArticulo'],
+                        haveArt = data['haveArt']
                     ))
     textVar = c.var(str)
     statusVar = c.var(int)
