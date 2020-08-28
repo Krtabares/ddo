@@ -725,7 +725,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/procedure_productos', body,{})
           .then(function successCallback(response) {
             // // console.log(response)
-            if(response.data.obj.length > 1){
+            if(response.data.obj.length > 0){
               response.data.obj.forEach((item, i) => {
 
                 item.precioFormatVE = item.precio_bruto_bs.replace(",", ".")
