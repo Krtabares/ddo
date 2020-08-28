@@ -33,7 +33,7 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
             'pdf',
             'excel'
         ])
-		// .withOption('responsive', true);
+		.withOption('responsive', true);
 
         $scope.dtColumns = [
 
