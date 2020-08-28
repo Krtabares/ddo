@@ -1617,6 +1617,8 @@ async def procedure_detalle_pedidos(idPedido):
                         v_nombre_producto varchar2(80);
                         v_princ_activo varchar2(200);
                         v_unidades NUMBER;
+                        v_precio_bruto_bs number;
+                        v_precio_bruto_usd number;
                         v_precio_neto_bs number;
                         v_iva_bs number;
                         v_precio_neto_usd number;
@@ -1638,6 +1640,8 @@ async def procedure_detalle_pedidos(idPedido):
                                   v_nombre_producto ,
                                   v_princ_activo ,
                                   v_unidades ,
+                                  v_precio_bruto_bs ,
+                                  v_precio_bruto_usd ,
                                   v_precio_neto_bs ,
                                   v_iva_bs ,
                                   v_precio_neto_usd ,
@@ -1655,6 +1659,8 @@ async def procedure_detalle_pedidos(idPedido):
                                   v_nombre_producto|| '|'||
                                   v_princ_activo|| '|'||
                                   v_unidades|| '|'||
+                                  v_precio_bruto_bs|| '|'||
+                                  v_precio_bruto_usd|| '|'||
                                   v_precio_neto_bs|| '|'||
                                   v_iva_bs|| '|'||
                                   v_precio_neto_usd|| '|'||
@@ -1686,11 +1692,13 @@ async def procedure_detalle_pedidos(idPedido):
                   'nombre_producto': arr[2],
                   'princ_activo': arr[3],
                   'CANTIDAD': arr[4],
-                  'precio_neto_bs': arr[5],
-                  'PRECIO': arr[5],
-                  'iva_bs': arr[6],
-                  'precio_neto_usd': arr[7],
-                  'iva_usd': arr[8]
+                  'precio_bruto_bs' : arr[5],
+                  'precio_bruto_usd' : arr[6],
+                  'precio_neto_bs': arr[7],
+                  'PRECIO': arr[8],
+                  'iva_bs': arr[9],
+                  'precio_neto_usd': arr[10],
+                  'iva_usd': arr[11]
             }
             list.append(obj)
 
