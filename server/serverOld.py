@@ -1626,7 +1626,7 @@ async def procedure_detalle_pedidos(idPedido):
                         v_princ_activo varchar2(200);
                         v_unidades NUMBER;
                         v_precio_bruto_bs number;
-                        v_precio_bruto_usd number;
+                        v_precio_bruto_usd varchar(10);
                         v_precio_neto_bs number;
                         v_iva_bs number;
                         v_precio_neto_usd number;
