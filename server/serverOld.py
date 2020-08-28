@@ -1703,10 +1703,10 @@ async def procedure_detalle_pedidos(idPedido):
                   'precio_bruto_bs' : arr[5],
                   'precio_bruto_usd' : arr[6],
                   'precio_neto_bs': arr[7],
-                  'PRECIO': arr[8],
-                  'iva_bs': arr[9],
-                  'precio_neto_usd': arr[10],
-                  'iva_usd': arr[11]
+                  'PRECIO': arr[5],
+                  'iva_bs': arr[8],
+                  'precio_neto_usd': arr[9],
+                  'iva_usd': arr[10]
             }
             list.append(obj)
 
