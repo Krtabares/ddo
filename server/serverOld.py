@@ -599,6 +599,7 @@ async def procedure(request):
     print(data)
     db = get_db()
     c = db.cursor()
+    print(data)
     c.callproc("dbms_output.enable")
     c.execute("""
 
