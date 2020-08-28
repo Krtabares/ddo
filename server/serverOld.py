@@ -591,6 +591,11 @@ async def procedure(request):
     else:
         data['pComponente'] = "'"+data['pComponente']+"'"
 
+    if not 'pArticulo' in data :
+        data['pArticulo'] = 'null'
+    else:
+        data['pArticulo'] = "'"+data['pBusqueda']+"'"
+
     print(data)
     db = get_db()
     c = db.cursor()
@@ -608,6 +613,7 @@ async def procedure(request):
             pCliente varchar2(50) DEFAULT null;
             pBusqueda varchar2(50) DEFAULT null;
             pComponente varchar2(50) DEFAULT null;
+            pArticulo varcahr2(50) default null;
 
             output number DEFAULT 1000000;
 
@@ -640,10 +646,11 @@ async def procedure(request):
                                 pCliente := {pCliente};
                                 pBusqueda := {pBusqueda};
                                 pComponente := {pComponente};
+                                pArticulo := {pArticulo}
 
                 dbms_output.enable(output);
 
-                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pBusqueda,pComponente);
+                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pBusqueda,pComponente, pArticulo);
 
             LOOP
                 FETCH l_cursor into
@@ -702,6 +709,7 @@ async def procedure(request):
                         pCliente = data['pCliente'],
                         pBusqueda = data['pBusqueda'],
                         pComponente = data['pComponente'],
+                        pArticulo = data['pArticulo']
                     ))
     textVar = c.var(str)
     statusVar = c.var(int)
