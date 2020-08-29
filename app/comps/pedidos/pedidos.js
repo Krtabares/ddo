@@ -805,17 +805,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               console.log("existe");
               var existenciaAux = $scope.articulo.existencia
 
-              // if(parseInt($scope.articulo.CANTIDAD) > parseInt($scope.pedido.pedido[indexArticulo].CANTIDAD) )
-              //
-              //   $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt($scope.pedido.pedido[indexArticulo].CANTIDAD)
-
               $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
 
               $scope.pedido.pedido.splice( indexArticulo, 1 );
 
               calcularTotales()
 
-              error = validacionesArticulo($scope.articulo)
+              error = validacionesArticulo($scope.articulo, existenciaAux)
+              console.log("error", error)
 
               if(!error){
 
