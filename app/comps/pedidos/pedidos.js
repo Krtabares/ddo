@@ -773,6 +773,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             var existe = false;
             var indexArticulo = null
             $scope.pedido.pedido.forEach((element,i) => {
+              console.log($scope.articulo);
               if($scope.articulo.cod_producto == element.COD_PRODUCTO){
 
                 indexArticulo = i
