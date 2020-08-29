@@ -765,20 +765,20 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.addArtPedido = function(){
-            console.log($scope.articulo);
             if(Object.keys($scope.articulo).length === 0)
               return
 
+            console.log($scope.articulo);
             var error=false;
             var existe = false;
             var indexArticulo = null
             $scope.pedido.pedido.forEach((element,i) => {
-              if($scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO){
+              if($scope.articulo.cod_producto == element.COD_PRODUCTO){
 
                 indexArticulo = i
                 existe = true;
                 console.log("existe", existe);
-                
+
               }
             });
 
