@@ -777,8 +777,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
                 indexArticulo = i
                 existe = true;
-
-                return
+                console.log("existe", existe);
+                
               }
             });
 
