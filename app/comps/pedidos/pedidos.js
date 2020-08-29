@@ -849,15 +849,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           // console.log(articulo);
           if(isEmpty( articulo.COD_PRODUCTO )){
-            // console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( articulo.COD_PRODUCTO ))
+            console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( articulo.COD_PRODUCTO ))
             return  true;
           }
            if( isEmpty(articulo.CANTIDAD ) || articulo.CANTIDAD < 1 ){
+             console.log("Por favor verifique la cantidad!");
             ngNotify.set('¡Por favor verifique la cantidad!','error')
             return  true;
           }
           // console.log(articulo.existencia,articulo.CANTIDAD );
            if( articulo.CANTIDAD > parseInt(articulo.existencia)  ){
+              console.log("¡La cantidad no puede ser mayor a la existencia!");
               ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
              return  true;
           }
@@ -868,6 +870,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux)
             console.log(valor);
             if( !validaCreditoContraProducto(valor)  ){
+              console.log("El precio excede el credito disponible!");
                ngNotify.set('¡El precio excede el credito disponible!','error')
               return  true;
             }
@@ -875,6 +878,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log(valor);
             valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD
             if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)  ){
+              console.log("¡El precio excede el credito disponible! !existenciaaux");
               ngNotify.set('¡El precio excede el credito disponible!','error')
               return  true;
             }
