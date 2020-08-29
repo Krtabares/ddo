@@ -765,7 +765,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.addArtPedido = function(){
-            // console.log($scope.pedido.pedido);
+            console.log($scope.articulo);
             if(Object.keys($scope.articulo).length === 0)
               return
 
@@ -801,12 +801,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
 
             }else{
-
+              console.log("existe");
               var existenciaAux = $scope.articulo.existencia
 
-              if(parseInt($scope.articulo.CANTIDAD) > parseInt($scope.pedido.pedido[indexArticulo].CANTIDAD) )
-
-                $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt($scope.pedido.pedido[indexArticulo].CANTIDAD)
+              // if(parseInt($scope.articulo.CANTIDAD) > parseInt($scope.pedido.pedido[indexArticulo].CANTIDAD) )
+              //
+              //   $scope.articulo.CANTIDAD = parseInt($scope.articulo.CANTIDAD) + parseInt($scope.pedido.pedido[indexArticulo].CANTIDAD)
 
               $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
 
