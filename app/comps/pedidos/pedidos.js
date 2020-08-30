@@ -874,6 +874,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var valor = 0
           if(existenciaAux){
             console.log(parseFloat(articulo.precio_bruto_bs));
+            console.log(parseFloat(articulo.iva_bs));
+            console.log(articulo.CANTIDAD - existenciaAux);
             valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux)
 
             console.log(valor);
