@@ -810,7 +810,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               // $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
 
-              $scope.pedido.pedido.splice( indexArticulo, 1 );
+
 
               calcularTotales(indexArticulo)
 
@@ -823,6 +823,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $scope.updDetalleProducto($scope.articulo);
 
                 $scope.pedido.pedido.push($scope.articulo)
+
+                $scope.pedido.pedido.splice( indexArticulo, 1 );
 
               }else{
                 $scope.pedido.pedido = listAux
