@@ -872,26 +872,31 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // console.log("validacionesArticulo")
           console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
           var valor = 0
-          if(existenciaAux){
-            console.log(parseFloat(articulo.precio_bruto_bs));
-            console.log(parseFloat(articulo.iva_bs));
-            console.log(articulo.CANTIDAD - existenciaAux);
-            valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux)
+          // if(existenciaAux){
+          //   console.log(parseFloat(articulo.precio_bruto_bs));
+          //   console.log(parseFloat(articulo.iva_bs));
+          //   console.log( existenciaAux - articulo.CANTIDAD );
+          //   valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux)
+          //
+          //   console.log(valor);
+          //   if( !validaCreditoContraProducto(valor)  ){
+          //     console.log("El precio excede el credito disponible!");
+          //      ngNotify.set('¡El precio excede el credito disponible!','error')
+          //     return  true;
+          //   }
+          // }else{
+          // }
+          console.log(parseFloat(articulo.precio_bruto_bs));
+          console.log(parseFloat(articulo.iva_bs));
+          console.log( existenciaAux - articulo.CANTIDAD );
+          valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux)
 
-            console.log(valor);
-            if( !validaCreditoContraProducto(valor)  ){
-              console.log("El precio excede el credito disponible!");
-               ngNotify.set('¡El precio excede el credito disponible!','error')
-              return  true;
-            }
-          }else{
-            console.log(valor);
-            valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD
-            if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)  ){
-              console.log("¡El precio excede el credito disponible! !existenciaaux");
-              ngNotify.set('¡El precio excede el credito disponible!','error')
-              return  true;
-            }
+          console.log(valor);
+          valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD
+          if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)  ){
+            console.log("¡El precio excede el credito disponible! !existenciaaux");
+            ngNotify.set('¡El precio excede el credito disponible!','error')
+            return  true;
           }
 
           return false
