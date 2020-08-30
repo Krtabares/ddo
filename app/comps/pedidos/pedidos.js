@@ -1133,10 +1133,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         function validaCreditoContraProducto(valor) {
-          // console.log(valor);
-          // console.log($scope.creditoClient.disp_bs_format );
-          // console.log($scope.creditoClient.disp_bs_format - valor);
-          // console.log($scope.totales);
+          console.log(valor);
+          console.log($scope.creditoClient.disp_bs_format );
+          console.log($scope.creditoClient.disp_bs_format - valor);
+          console.log($scope.totales);
           if(($scope.creditoClient.disp_bs_format - $scope.totales.bsConIva - valor) >= 0){
             return true
           }else{
