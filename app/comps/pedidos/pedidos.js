@@ -732,7 +732,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 item.precioFormatVE = $scope.formato(2,  parseFloat(item.precioFormatVE).toFixed(2) )
                 item.PRECIO = item.precio_bruto_bs.replace(",", ".");
                 item.CANTIDAD = $scope.cantidadAux;
-                item.existencia = $scope.cantidadAux + item.existencia
+                item.existencia = parseInt($scope.cantidadAux) + parseInt(item.existencia)
                 item.precioFormatUSD = item.precio_neto_usd.replace(",", ".")
                 item.precioFormatUSD = $scope.formato(3,  parseFloat(item.precioFormatUSD).toFixed(2) )
                 $scope.productIndex = i
