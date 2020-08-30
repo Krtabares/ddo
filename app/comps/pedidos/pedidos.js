@@ -803,17 +803,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
 
             }else{
-              console.log("existe");
+              // console.log("existe");
+              var listAux = $scope.pedido.pedido
+
               var existenciaAux = $scope.articulo.existencia
 
               // $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
 
-              // $scope.pedido.pedido.splice( indexArticulo, 1 );
+              $scope.pedido.pedido.splice( indexArticulo, 1 );
 
               calcularTotales(indexArticulo)
 
               error = validacionesArticulo($scope.articulo, existenciaAux)
-              
+
               console.log("error", error)
 
               if(!error){
@@ -822,6 +824,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
                 $scope.pedido.pedido.push($scope.articulo)
 
+              }else{
+                $scope.pedido.pedido = listAux
               }
               $scope.articulo.existencia = existenciaAux
 
