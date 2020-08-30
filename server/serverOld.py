@@ -1133,7 +1133,7 @@ async def update_detalle_pedido(detalle, ID):
 
             db = get_db()
             c = db.cursor()
-
+            print(detalle)
             c.execute("""UPDATE PAGINAWEB.DETALLE_PEDIDO
                             SET
                                    CANTIDAD     = :CANTIDAD,
