@@ -848,7 +848,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         function validacionesArticulo(articulo , existenciaAux = null) {
 
           // console.log(articulo);
-          if(isEmpty( articulo.COD_PRODUCTO )){
+          if(isEmpty( articulo.COD_PRODUCTO ) && isEmpty( articulo.cod_producto )){
             console.log('¡Complete todos los campos!COD_PRODUCT',isEmpty( articulo.COD_PRODUCTO ))
             return  true;
           }
