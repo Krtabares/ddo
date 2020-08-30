@@ -806,7 +806,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               console.log("existe");
               var existenciaAux = $scope.articulo.existencia
 
-              $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
+              // $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
 
               $scope.pedido.pedido.splice( indexArticulo, 1 );
 
