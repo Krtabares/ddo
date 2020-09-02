@@ -743,7 +743,7 @@ async def procedure(request):
             'linea': arr[17]
         }
 
-        if data['pArticulo'] == 'null' and  :
+        if data['pArticulo'] == 'null'  :
             if int(arr[7]) > 0 :
                 list.append(obj)
         else:
