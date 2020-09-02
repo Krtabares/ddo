@@ -872,28 +872,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
              return  true;
           }
           // console.log("validacionesArticulo")
-          console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
+          // console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
           var valor = 0
-          // if(existenciaAux){
-          //   console.log(parseFloat(articulo.precio_bruto_bs));
-          //   console.log(parseFloat(articulo.iva_bs));
-          //   console.log( existenciaAux - articulo.CANTIDAD );
-          //   valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux)
-          //
-          //   console.log(valor);
-          //   if( !validaCreditoContraProducto(valor)  ){
-          //     console.log("El precio excede el credito disponible!");
-          //      ngNotify.set('¡El precio excede el credito disponible!','error')
-          //     return  true;
-          //   }
-          // }else{
-          // }
-          console.log(parseFloat(articulo.precio_bruto_bs));
-          console.log(parseFloat(articulo.iva_bs));
-          console.log( existenciaAux - articulo.CANTIDAD );
+
+          // console.log(parseFloat(articulo.precio_bruto_bs));
+          // console.log(parseFloat(articulo.iva_bs));
+          // console.log( existenciaAux - articulo.CANTIDAD );
           valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux)
 
-          console.log(valor);
+          // console.log(valor);
           valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD
           if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)  ){
             console.log("¡El precio excede el credito disponible! !existenciaaux");
@@ -1144,10 +1131,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         function validaCreditoContraProducto(valor) {
-          console.log(valor);
-          console.log($scope.creditoClient.disp_bs_format );
-          console.log($scope.creditoClient.disp_bs_format - valor);
-          console.log($scope.totales);
+          // console.log(valor);
+          // console.log($scope.creditoClient.disp_bs_format );
+          // console.log($scope.creditoClient.disp_bs_format - valor);
+          // console.log($scope.totales);
           if(($scope.creditoClient.disp_bs_format - $scope.totales.bsConIva - valor) >= 0){
             return true
           }else{

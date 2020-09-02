@@ -48,7 +48,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
           console.log("validaClienteDDO");
           request.post(ip+'/valida/client', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            console.log(response.data.data)
+            // console.log(response.data.data)
 
             // $scope.creditoClient = response.data.obj
             // $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
