@@ -742,10 +742,12 @@ async def procedure(request):
             'pagina': arr[16],
             'linea': arr[17]
         }
-        
-        if data['pArticulo'] == 'null' and int(arr[7]) > 0 :
-            list.append(obj)
 
+        if data['pArticulo'] == 'null' and  :
+            if int(arr[7]) > 0 :
+                list.append(obj)
+        else:
+            list.append(obj)
     return response.json({ "msg":"OK", "obj": list }, 200)
 
 def agrupar_facturas(arreglo):
