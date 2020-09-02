@@ -956,7 +956,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                         };
           if(!$scope.hasUserClient){
             $scope.clienteValido = true
-            // $scope.creditoClient = {}
           }
         }
 
@@ -1074,6 +1073,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.pedido.pedido.splice( i, 1 );
 
           calcularTotales()
+          $scope.counter = 0;
         }
 
         $scope.totales = {
