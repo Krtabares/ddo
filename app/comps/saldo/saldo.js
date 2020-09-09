@@ -207,7 +207,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         // return defer.promise;
     }
 
-    newPromise();
+    // newPromise();
 
 
 	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
