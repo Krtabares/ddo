@@ -204,7 +204,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       }, function errorCallback(response) {
         console.log(response)
       });
-        return defer.promise;
+        // return defer.promise;
     }
 
     newPromise();
