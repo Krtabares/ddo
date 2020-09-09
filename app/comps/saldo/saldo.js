@@ -79,24 +79,24 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
      });
    }
 // $scope.getClientNew()
-   const formatterVe = new Intl.NumberFormat('es-VE', {
-    style: 'currency',
-    currency: 'VES'
-  })
-  // console.log(formatterVe.format(value))
-  const formatterVeDECIMAL = new Intl.NumberFormat('es-VE', {
-  })
-  $scope.formato = function(tipo, valor){
-    if(tipo == 1){
-      return formatterVeDECIMAL.format(valor)
-    }
-    if(tipo==2){
-      return formatterVe.format(valor)
-    }
-  }
-      $scope.getNumber = function(num) {
-        return new Array(num);
+    const formatterVe = new Intl.NumberFormat('es-VE', {
+      style: 'currency',
+      currency: 'VES'
+    })
+    // console.log(formatterVe.format(value))
+    const formatterVeDECIMAL = new Intl.NumberFormat('es-VE', {
+    })
+    $scope.formato = function(tipo, valor){
+      if(tipo == 1){
+        return formatterVeDECIMAL.format(valor)
       }
+      if(tipo==2){
+        return formatterVe.format(valor)
+      }
+    }
+    $scope.getNumber = function(num) {
+      return new Array(num);
+    }
 
 	  $scope.page = function(param){
         if(param == 'prev'){
@@ -112,9 +112,9 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         }
       }
 
-      $scope.getDeuda = function(param){
-        console.log(param);
-      }
+    $scope.getDeuda = function(param){
+      console.log(param);
+    }
 
     $scope.showSaldo = function(saldo){
       console.log(saldo);
@@ -139,7 +139,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
     $scope.busqueda_prod = null
     $scope.getProdNew = function (filter = false) {
       console.log("getProdNew");
-      var defer = $q.defer();
+      // var defer = $q.defer();
       var body = {};
 
       console.log($scope.client)
@@ -156,7 +156,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         console.log(response)
         if(response.data.obj.length > 1){
           // $scope.productos = response.data.obj
-          defer.resolve(response.data.obj);
+          // defer.resolve(response.data.obj);
+            $scope.listaProd = response.data.obj;
           // $scope.dtOptions.reloadData()
         }else{
           ngNotify.set('¡No se encontraron resultados!', 'warn')
@@ -167,10 +168,12 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       });
     }
 
+    $scope.listaPro=[];
     $scope.newPromise = newPromise;
+
     function newPromise() {
       console.log("getProdNew");
-      var defer = $q.defer();
+      // var defer = $q.defer();
       var body = {};
       console.log($scope.client)
       // if(filter){
@@ -191,7 +194,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
             item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
 
           });
-          defer.resolve(response.data.obj);
+          $scope.listaProd = response.data.obj;
+          // defer.resolve(response.data.obj);
           // $scope.dtOptions.reloadData()
         }else{
           ngNotify.set('¡No se encontraron resultados!', 'warn')
@@ -202,6 +206,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       });
         return defer.promise;
     }
+
+    newPromise();
 
 
 	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {

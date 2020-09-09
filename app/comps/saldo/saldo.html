@@ -50,7 +50,7 @@
       <div class="input-group mb-3">
         <input type="text" class="form-control"  ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary"   ng-click="dtInstance.changeData(newPromise)" type="button">Buscar</button>
+          <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
         </div>
       </div>
 
@@ -60,8 +60,33 @@
 
   </div>
   <div ng-if="clientIndex != -1" >
-    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="table table-striped table-bordered">
-    </table>
+    <!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="table table-striped table-bordered">
+    </table> -->
+
+    <table class="table"  datatable="ng" dt-options="dtOptions">
+      <thead>
+          <tr>
+          <th scope="col"><p class="text-center">#</p></th>
+          <th scope="col"><p class="text-center">Nombre de producto</p></th>
+          <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
+          <th scope="col"><p class="text-center">Proveedor</p></th>
+          <th scope="col"><p class="text-center">Principio activo</p></th>
+          <th scope="col"><p class="text-center">Existencia</p></th>
+          </tr>
+      </thead>
+      <tbody>
+
+          <tr ng-repeat="x in listaProd">
+              <th scope="row">{{ $index + 1 }}</th>
+              <td><p class="text-center">{{ x.nombre_producto }}</p></td>
+              <td><p class="text-center">{{ x.fecha_vence }}</p></td>
+              <td><p class="text-center">{{ x.proveedor }}</p></td>
+              <td><p class="text-center">{{ x.princ_activo }}</p></td>
+              <td><p class="text-center">{{ x.existencia }}</p></td>
+
+            </tr>
+      </tbody>
+      </table>
 
   </div>
 
