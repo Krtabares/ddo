@@ -111,7 +111,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             ngNotify.set('¡Este pedido no puede ser editado!','error')
             return
           }else{
-            $scope.edit_pedido();
+
+            body.pCliente = $scope.pedido.no_cliente
+            body.pNoCia = $scope.pedido.no_cia
+            body.pNoGrupo =  $scope.pedido.grupo
+            getClientDispService(body)
+
+
+            console.log($scope.creditoClient);
+
+            // $scope.edit_pedido();
+
+            //// TODO:
           }
 
         }
