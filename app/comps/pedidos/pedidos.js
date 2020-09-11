@@ -51,6 +51,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.ID = null
           $scope.reset()
 
+          var body={}
+          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+          body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+
+          getClientDispService(body)
+
           $(function(){
             $("#addPedidoModal").modal({
                 backdrop: 'static',
@@ -59,6 +66,27 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           })
 
         }
+        $scope.unicOrderID = null
+        $scope.oneOrder = function(){
+          $scope.listaPedidosV2.forEach((item, i) => {
+
+              if( item.cod_estatus == 0  ){
+                $scope.unicOrderID = item.ID
+                return
+              }
+              if( item.cod_estatus == 1  ){
+                $scope.unicOrderID = item.ID
+                return
+              }
+              if( item.cod_estatus == 2  ){
+                $scope.unicOrderID = item.ID
+                return
+              }
+
+          });
+
+        }
+
 
         $scope.validaTabs = function(tab) {
             switch (tab) {
@@ -112,15 +140,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             return
           }else{
 
-            body.pCliente = $scope.pedido.no_cliente
-            body.pNoCia = $scope.pedido.no_cia
-            body.pNoGrupo =  $scope.pedido.grupo
+            var body = {}
+            body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+            body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+            body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
             getClientDispService(body)
 
 
             console.log($scope.creditoClient);
 
-            // $scope.edit_pedido();
+            $scope.edit_pedido();
 
             //// TODO:
           }
@@ -195,6 +224,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   if (keyA > keyB) return -1;
                   return 0;
                 });
+
+                $scope.oneOrder();
              });
 
             // $scope.getPedidos_filteringV2()
@@ -1032,6 +1063,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
 
               // $scope.listaPedidosV2 = response.data.data;
+              $scope.oneOrder();
 
           }, function errorCallback(response) {
             // console.log(response)

@@ -168,9 +168,7 @@
                         <tr ng-repeat="x in pedido.pedido" ng-class="{ incideRow : x.alert }" >
                             <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                             <td>
-                              <p ng-if="editRowIndex != $index" class="text-center">{{ x.CANTIDAD }}</p>
-                              <input type="number"  min="1" ng-model="articulo.CANTIDAD" ng-if="editRowIndex == $index" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
-                              <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
+                              <p class="text-center">{{ x.CANTIDAD }}</p>
                             </td>
                             <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
                             <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
@@ -351,23 +349,28 @@
 
           <div class="col-sm-12 col-md-12 col-lg-12"  style="margin-top: 32px;" ng-show="tabsIndex == 1"  >
 
-              <div class="row mt-5 mb-5">
+              <div class="row mt-5 mb-5" ng-show="editView" >
 
-                <div class="col-4">
+                <div class="col-3">
                   <label>Credito disponible Bs.S</label><br>
                   <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</span>
 
                 </div>
 
-                <div class="col-4">
+                <div class="col-3">
                   <label>Credito disponible USD</label><br>
                   <span >{{formato(3,(creditoClient.disp_usd_format)? (creditoClient.disp_usd_format - totales.UsdConIva):0)}}</span>
 
                 </div>
 
-                <div class="col-4">
+                <div class="col-3">
                   <label></label>
-                  <button type="button" ng-show="editView" class="btn btn-success" style="margin-top: 32px;"ng-click="openModalProducts()">Agregar Productos</button>
+                  <button type="button" ng-show="editView" class="btn btn-info" ng-click="openModalProducts()">Agregar Productos</button>
+                </div>
+
+                <div class="col-3">
+                  <label></label>
+                  <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="finalizar_pedido()" data-dismiss="modal" >Finalizar pedido</button>
                 </div>
 
               </div>
@@ -460,7 +463,7 @@
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Cerrar</button>
         <button type="button"  class="btn btn-primary" ng-show="!editView && pedido.estatus_id < 3 "   ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
-        <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="finalizar_pedido()" data-dismiss="modal" >Finalizar</button>
+
         <!-- <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1" ng-show="editView" ng-click="updPedido();">Actualizar pedido</button> -->
       </div>
     </div>
@@ -476,28 +479,25 @@
 
       </div>
       <div class="modal-body">
-        <div id="card__infoicon">
-          <span>
-            <a class="nav-link" ng-click="infoPsico = true" ><i class="fa fa-info"> <p>Requisitos para solicitud de psicotr&oacute;picos</p> </i></a>
-          </span>
+        <div class="col-12">
+          <button type="button" class="btn " ng-click="infoPsico = true" ><i class="fa fa-info"> <p>Requisitos para solicitud de psicotr&oacute;picos</p></button>
 
+        </div>
+        <div id="card__infoicon">
           <div class="alert alert-info alert-dismissible fade show" ng-show="infoPsico" role="alert">
             <div>
-  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">Enviar al siguiente correo <a href="mailto:regencia@del-oeste.com" style="color: rgb(17, 85, 204);" target="_blank">regencia@del-oeste.com</a>. :</span></strong></span></span></p>
-  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">C&eacute;dula de identidad del regente.</span></strong></span></span></p>
-  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">T&iacute;tulo del Farmac&eacute;utico.</span></strong></span></span></p>
-  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">Permiso de Funcionamientos actualizado.</span></strong></span></span></p>
-  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">&Uacute;ltima Relaci&oacute;n de psicotr&oacute;picos firmada y sellada, si es enviada por correo, copia de env&iacute;o y acuse de haber sido recibida &nbsp;por parte de la Contralor&iacute;a Sanitaria.</span></strong></span></span></p>
-  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;"><a target="_self" href="/ddo/app/assets/planilla.doc" download="planilla.doc">Planilla de solicitud </a> de productos psicotr&oacute;picos firmada por el regente y sellada por la farmacia, con fecha actual, es exigido por Sanidad (ver anexo).</span></strong></span></span></p>
-  <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span></span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif; color: rgb(0, 0, 0);  rgb(209, 236, 241);">Todos los documentos deben ser enviados en un mismo correo</span></strong></p>
+                <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">Enviar al siguiente correo <a href="mailto:regencia@del-oeste.com" style="color: rgb(17, 85, 204);" target="_blank">regencia@del-oeste.com</a>. :</span></strong></span></span></p>
+                <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">C&eacute;dula de identidad del regente.</span></strong></span></span></p>
+                <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">T&iacute;tulo del Farmac&eacute;utico.</span></strong></span></span></p>
+                <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">Permiso de Funcionamientos actualizado.</span></strong></span></span></p>
+                <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">&Uacute;ltima Relaci&oacute;n de psicotr&oacute;picos firmada y sellada, si es enviada por correo, copia de env&iacute;o y acuse de haber sido recibida &nbsp;por parte de la Contralor&iacute;a Sanitaria.</span></strong></span></span></p>
+                <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;"><a target="_self" href="/ddo/app/assets/planilla.doc" download="planilla.doc">Planilla de solicitud </a> de productos psicotr&oacute;picos firmada por el regente y sellada por la farmacia, con fecha actual, es exigido por Sanidad (ver anexo).</span></strong></span></span></p>
+                <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span></span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif; color: rgb(0, 0, 0);  rgb(209, 236, 241);">Todos los documentos deben ser enviados en un mismo correo</span></strong></p>
             </div>
             <button type="button" class="close"  ng-click="infoPsico = false" >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-
-
-
         </div>
 
         <div class="modal-body-he">
@@ -507,7 +507,12 @@
             <div class="col-sm-12 col-md-12 col-lg-12">
               <label for="clientes">Busqueda por producto</label>
               <div class="input-group mb-3">
-                <input type="text" class="form-control"   ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
+                <input type="text" class="form-control"
+                ng-model="busqueda_prod"
+                ng-keydown="$event.keyCode === 13 && getProdNew(true)"
+                placeholder="Busqueda por Producto"
+                aria-label="Busqueda por Producto"
+                aria-describedby="basic-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
                 </div>
@@ -568,7 +573,7 @@
 </div>
 
 <div class="modal fade" id="modalInfoProduct">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" style="text-transform: capitalize;" >{{articulo.nombre_producto.toLowerCase()}}</h4>
@@ -584,12 +589,12 @@
                 <p class="mb-1"><span class="text-muted">Principal Activo: </span> {{articulo.princ_activo}}</p>
                 <p class="mb-1"><span class="text-muted">Codigo: </span> {{articulo.cod_producto}}</p>
                 <p class="mb-1"><span class="text-muted">Fecha Vencimiento: </span> {{articulo.fecha_vence}}</p>
-
+                <p class="mb-1"><span class="text-muted">Proveedor: </span> {{articulo.proveedor}}</p>
               </div>
 
-              <div class="col-md-6 text-right">
+              <div class="col-md-6 ">
                   <p class="font-weight-bold mb-4">Detalles</p>
-                  <p class="mb-1"><span class="text-muted">Proveedor: </span> {{articulo.proveedor}}</p>
+
                   <p class="mb-1"><span class="text-muted">Regulado: </span> {{articulo.ind_regulado}}</p>
                   <p class="mb-1"><span class="text-muted">Impuesto: </span> {{articulo.ind_impuesto}}</p>
                   <p class="mb-1"><span class="text-muted">Psicotropico: </span> {{articulo.ind_psicotropico}}</p>
@@ -671,60 +676,6 @@
   </div>
 </div>
 
-<div class="modal fade" id="modalEditDetalle">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Editar producto</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
-      </div>
-      <div class="modal-body">
-
-        <div class="container">
-
-          <table class="table" ng-show="editArticulo && existenciaEdit != null" >
-            <thead>
-              <tr>
-                <th scope="col"><p class="text-center">Nombre Articulo</p></th>
-                <th scope="col"><p class="text-center">Cantidad</p></th>
-                <th scope="col"><p class="text-center">Existencia</p></th>
-                <th scope="col"><p class="text-center">Precio por unidad</p></th>
-                <th scope="col"><p class="text-center">Total</p></th>
-                <th scope="col"><p class="text-center">Precio USD</p></th>
-                <th scope="col"><p class="text-center">Total USD</p></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><p class="text-center">{{ editArticulo.nombre_producto }}</p></td>
-                <td>
-                  <input  type="number"
-                          min="1"
-                          ng-model="editArticulo.CANTIDAD" class="form-control"
-                          placeholder="cantidad"
-                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
-                </td>
-                <td><p class="text-center">{{ existenciaEdit + cantidadAux }}</p></td>
-                <td><p class="text-right">{{ formato(2,editArticulo.PRECIO) }}</p></td>
-                <td><p class="text-right">{{ formato(2,(editArticulo.PRECIO * editArticulo.CANTIDAD)) }}</p></td>
-                <td><p class="text-right">{{ formato(3,editArticulo.precio_neto_usd) }}</p></td>
-                <td><p class="text-right">{{ formato(3,(editArticulo.precio_neto_usd * editArticulo.CANTIDAD)) }}</p></td>
-
-              </tr>
-            </tbody>
-          </table>
-
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" ng-click="updDetalleProductoTable(editArticulo);" data-dismiss="modal" >Aceptar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -746,7 +697,13 @@
             <div class="col-sm-12 col-md-6 col-lg-6">
               <label for="clientes">Busqueda por cliente</label>
               <div class="input-group mb-3">
-                <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
+                <input type="text" id="clientes"
+                class="form-control"
+                ng-keydown="$event.keyCode === 13 && getClientNew(true)"
+                ng-model="nombre_cliente"
+                placeholder="Busqueda por Cliente"
+                aria-label="Busqueda por Cliente"
+                aria-describedby="basic-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
                 </div>
@@ -790,8 +747,10 @@
           <!-- <div class="col-sm-12 d-none d-sm-block">
 
           </div> -->
-          <div class="col-md-12">
-            <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();" ng-disabled="!clienteValido" ng-show="showProductTable || hasUserClient"  > <i class="fa fa-edit"></i> CREAR PEDIDO</button>
+          <div class="col-md-12" ng-show="showProductTable || hasUserClient"  >
+            <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();" ng-disabled="!clienteValido" ng-show="!unicOrderID"  > <i class="fa fa-edit"></i> Crear pedido</button>
+            <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="getPedido(unicOrderID);" ng-disabled="!clienteValido" ng-show="unicOrderID" data-toggle="modal" data-target="#showPedidoModal"  > <i class="fa fa-edit"></i>Continuar Pedido</button>
+
           </div>
 
           <div class="col-md-12">
