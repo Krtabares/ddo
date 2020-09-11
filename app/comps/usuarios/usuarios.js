@@ -17,7 +17,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.user = {};
       $scope.user_view = {};
       $scope.type_user = [{'id': 1, type : "vendedor"},{'id': 2, type : "cliente"}];
-      var ip = "http://192.168.168.170:3500";
+      //var ip = "http://192.168.168.170:3500";
+var ip = "http://10.212.134.200:3500";
       $scope.nombre_cliente = null;
       $scope.client = {};
       $scope.client_info = {};

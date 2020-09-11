@@ -13,7 +13,8 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
   .controller('clientesCtrl', ['$scope', '$q', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'localstorage', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
     function($scope, $q, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, localstorage, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
-      var ip = "http://192.168.168.170:3500";
+      //var ip = "http://192.168.168.170:3500";
+var ip = "http://10.212.134.200:3500";
       $scope.deuda = {};
       $scope.listDeuda = [{}];
 
