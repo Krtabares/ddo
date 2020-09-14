@@ -672,6 +672,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.getPedidos_filteringV2();
               $scope.ID = null;
               ngNotify.set('¡Pedido eliminado con exito!','success')
+              $scope.oneOrder()
           }, function errorCallback(response) {
             // console.log(response)
           });
