@@ -77,10 +77,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }else if( item.cod_estatus == 1  ){
                 $scope.unicOrderID = item.ID
                 return
-              }
-              if( item.cod_estatus == 2  ){
+              }else if( item.cod_estatus == 2  ){
                 $scope.unicOrderID = item.ID
                 return
+              }else{
+                $scope.unicOrderID = null
               }
 
 
