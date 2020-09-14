@@ -11,8 +11,8 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
   .controller('facturadoCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
         //init
-        //var ip = "http://192.168.168.170:3500";
-var ip = "http://10.212.134.200:3500";
+        var ip = "http://192.168.168.170:3500";
+ 
 
         $scope.hasUserClient = false;
         $scope.client = {};

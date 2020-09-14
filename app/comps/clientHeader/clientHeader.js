@@ -16,8 +16,8 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
         $scope.client = {};
         $scope.client_info = {}
         $scope.dtInstance = {};
-        //var ip = "http://192.168.168.170:3500";
-var ip = "http://10.212.134.200:3500";
+        var ip = "http://192.168.168.170:3500";
+ 
         $scope.clienteValido = true
         $scope.clientInvalidoMsg = null
         verificClient()

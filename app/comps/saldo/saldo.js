@@ -13,8 +13,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
   .controller('saldoCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, NgMap, $localStorage) {
 
-      //var ip = "http://192.168.168.170:3500";
-var ip = "http://10.212.134.200:3500";
+      var ip = "http://192.168.168.170:3500";
+ 
       $scope.saldo = {};
       $scope.listDeuda = [{}];
 
