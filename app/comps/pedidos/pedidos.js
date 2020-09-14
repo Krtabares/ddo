@@ -69,6 +69,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
         $scope.unicOrderID = null
         $scope.oneOrder = function(){
+          $scope.unicOrderID = null
           $scope.listaPedidosV2.forEach((item, i) => {
 
               if( item.cod_estatus == 0  ){
@@ -80,8 +81,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }else if( item.cod_estatus == 2  ){
                 $scope.unicOrderID = item.ID
                 return
-              }else{
-                $scope.unicOrderID = null
               }
           });
 
