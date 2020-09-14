@@ -677,6 +677,34 @@
 </div>
 
 
+<div class="modal fade" id="modalConfirmDynamic">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ modalDynTitle }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+      </div>
+      <div class="modal-body">
+
+        <div class="container">
+
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <h3><p class="text-center">{{ modalDynMsg }}</p></h3>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancelModalDyn(context, contextId)" >Cerrar</button>
+        <button type="button" class="btn btn-danger" ng-click="cancelModalDyn(context, contextId)" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 <div id="wrapper" class="active">

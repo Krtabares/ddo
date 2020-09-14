@@ -83,9 +83,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }else{
                 $scope.unicOrderID = null
               }
-
-
           });
+
+          console.log($scope.unicOrderID);
 
         }
 
