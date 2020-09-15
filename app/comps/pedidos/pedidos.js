@@ -236,6 +236,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pNoGrupo =  $scope.pedido.grupo
             getClientDispService(body)
             validaClienteDDO(body)
+            client.monto_minimo = parseFloat(client.monto_minimo)  
 
             // console.log($scope.pedido, "pedido select" )
 
