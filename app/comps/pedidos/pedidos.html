@@ -145,7 +145,7 @@
 
                 <div class="col-3">
                   <label></label>
-                  <button type="button"  class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>                </div>
+                  <button type="button"  class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
 
               </div>
 
@@ -240,7 +240,7 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-error" data-dismiss="modal" ng-show="ID == null" ng-click="reset();">Cerrar</button>
-        <button type="button"  class="btn btn-success" data-dismiss="modal" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
+        <button type="button"  class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
 
 
       </div>
@@ -384,7 +384,7 @@
 
                 <div class="col-3">
                   <label></label>
-                  <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="finalizar_pedido()" data-dismiss="modal" >Finalizar pedido</button>
+                  <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="openModalDyn(0,ID)" data-dismiss="modal" >Finalizar pedido</button>
                 </div>
 
 
