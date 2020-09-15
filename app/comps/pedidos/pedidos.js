@@ -93,39 +93,65 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.modalDynMsg = null;
         $scope.modalDynContext = null;
         $scope.modalDynContextId = null;
-        $scope.typeContext={
-          "finish":{
+        $scope.typeContext=[
+          {
+
             "title": "Finalizar pedido",
             "msg" : "Desea finalizar este pedido",
             "color": "success"
           },
-          "edit":{
+          {
             "title": "Editar pedido",
             "msg" : "Desea editar este pedido",
             "color": "info"
           },
-          "delete":{
+          {
             "title": "Eliminar pedido",
             "msg" : "Desea eliminar este pedido",
             "color": "danger"
           }
-        }
+        ]
         $scope.aceptModalDyn = function () {
 
           switch ($scope.modalDynContext) {
-            case 1:
+            case 0:
                 if($scope.totales.bsConIva > $scope.client.monto_minimo){
                   $scope.finalizar_pedido()
                 }else{
                   ngNotify.set('¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ),'warn')
-
                 }
+              break;
+            default:
 
+          }
+
+        }
+
+        $scope.cancelModalDyn = function() {
+          switch ($scope.modalDynContext) {
+            case 0:
 
               break;
             default:
 
           }
+        }
+
+
+        $scope.openModalDyn = function(type, contextId) {
+
+          $scope.modalDynTitle = $scope.typeContext[type].title;
+          $scope.modalDynMsg = $scope.typeContext[type].msg;
+          $scope.modalDynContext = type;
+          $scope.modalDynContextId = contextId;
+
+          $(function(){
+            $("#modalConfirmDynamic").modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+          })
+
 
         }
 
@@ -288,8 +314,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.client = JSON.parse(client);
            $scope.client_info = JSON.parse(client_info);
            $scope.client.monto_minimo = parseFloat($scope.client_info.monto_minimo)
-            selectCLientCAP( $scope.client_info)
-            $scope.showProductTable = true
+           selectCLientCAP( $scope.client_info)
+           $scope.showProductTable = true
          }
 
          listarPedidos()
