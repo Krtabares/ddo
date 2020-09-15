@@ -93,6 +93,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.modalDynMsg = null;
         $scope.modalDynContext = null;
         $scope.modalDynContextId = null;
+        $scope.modalDynColor = null;
         $scope.typeContext=[
           {
 
@@ -144,6 +145,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.modalDynMsg = $scope.typeContext[type].msg;
           $scope.modalDynContext = type;
           $scope.modalDynContextId = contextId;
+          $scope.modalDynColor = $scope.typeContext[type].color;
 
           $(function(){
             $("#modalConfirmDynamic").modal({
