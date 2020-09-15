@@ -260,6 +260,9 @@ async def procedure(request):
                 v_plazo varchar2(100);
                 v_persona_cyc varchar2(100);
                 v_zona varchar2(25);
+                v_tot number;
+                v_pagina number;
+                v_linea number;
             BEGIN
 
                     pTotReg  := {pTotReg};
@@ -294,7 +297,9 @@ async def procedure(request):
                 v_email4,
                 v_plazo,
                 v_persona_cyc,
-                v_zona;
+                v_zona,
+                v_pagina,
+                v_linea;
                 EXIT WHEN l_cursor%NOTFOUND;
             dbms_output.put_line
                 (
@@ -318,6 +323,8 @@ async def procedure(request):
                 v_plazo|| '|'||
                 v_persona_cyc|| '|'||
                 v_zona|| '|'||
+                v_pagina|| '|'||
+                v_linea
                 );
             END LOOP;
             CLOSE l_cursor;
@@ -359,7 +366,9 @@ async def procedure(request):
         'email4': arr[16],
         'v_plazo': arr[17],
         'v_persona_cyc': arr[18],
-        'zona': arr[19]
+        'zona': arr[19],
+        'pagina': arr[20],
+        'linea': arr[21]
         }
         list.append(obj)
     return response.json({"msj": "OK", "obj": list}, 200)
