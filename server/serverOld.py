@@ -259,6 +259,7 @@ async def procedure(request):
                 v_email4 varchar2(100);
                 v_plazo varchar2(100);
                 v_persona_cyc varchar2(100);
+                v_zona varchar2(25);
                 v_tot number;
                 v_pagina number;
                 v_linea number;
@@ -296,6 +297,7 @@ async def procedure(request):
                 v_email4,
                 v_plazo,
                 v_persona_cyc,
+                v_zona,
                 v_pagina,
                 v_linea;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -320,6 +322,7 @@ async def procedure(request):
                 v_email4|| '|'||
                 v_plazo|| '|'||
                 v_persona_cyc|| '|'||
+                v_zona|| '|'||
                 v_pagina|| '|'||
                 v_linea
                 );
@@ -363,8 +366,9 @@ async def procedure(request):
         'email4': arr[16],
         'v_plazo': arr[17],
         'v_persona_cyc': arr[18],
-        'pagina': arr[19],
-        'linea': arr[20]
+        'zona': arr[19],
+        'pagina': arr[20],
+        'linea': arr[21]
         }
         list.append(obj)
     return response.json({"msj": "OK", "obj": list}, 200)
