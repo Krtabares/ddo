@@ -236,7 +236,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pNoGrupo =  $scope.pedido.grupo
             getClientDispService(body)
             validaClienteDDO(body)
-            client.monto_minimo = parseFloat(client.monto_minimo)
+
 
             // console.log($scope.pedido, "pedido select" )
 
@@ -287,6 +287,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.hasUserClient = true;
            $scope.client = JSON.parse(client);
            $scope.client_info = JSON.parse(client_info);
+           $scope.client.monto_minimo = parseFloat($scope.client_info.monto_minimo)
             selectCLientCAP( $scope.client_info)
             $scope.showProductTable = true
          }
