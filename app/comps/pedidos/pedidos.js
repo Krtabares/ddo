@@ -114,6 +114,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           switch ($scope.modalDynContext) {
             case 1:
+                if($scope.totales.bsConIva > $scope.client.monto_minimo){
+                  $scope.finalizar_pedido()
+                }else{
+                  ngNotify.set('¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ),'warn')
+
+                }
+
 
               break;
             default:
@@ -354,7 +361,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-        $scope.finalizar_pedido =function () {
+        $scope.finalizar_pedido = function () {
           var body = {}
           body.ID = $scope.ID
           request.post(ip+'/finalizar_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
