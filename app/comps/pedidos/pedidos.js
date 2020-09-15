@@ -89,6 +89,40 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
 
+        $scope.modalDynTitle = null;
+        $scope.modalDynMsg = null;
+        $scope.modalDynContext = null;
+        $scope.modalDynContextId = null;
+        $scope.typeContext={
+          "finish":{
+            "title": "Finalizar pedido",
+            "msg" : "Desea finalizar este pedido",
+            "color": "success"
+          },
+          "edit":{
+            "title": "Editar pedido",
+            "msg" : "Desea editar este pedido",
+            "color": "info"
+          },
+          "delete":{
+            "title": "Eliminar pedido",
+            "msg" : "Desea eliminar este pedido",
+            "color": "danger"
+          }
+        }
+        $scope.aceptModalDyn = function () {
+
+          switch ($scope.modalDynContext) {
+            case 1:
+
+              break;
+            default:
+
+          }
+
+        }
+
+
         $scope.validaTabs = function(tab) {
             switch (tab) {
               case 1:
