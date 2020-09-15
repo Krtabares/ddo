@@ -260,6 +260,7 @@ async def procedure(request):
                 v_plazo varchar2(100);
                 v_persona_cyc varchar2(100);
                 v_zona varchar2(25);
+                v_monto_minimo number;
                 v_tot number;
                 v_pagina number;
                 v_linea number;
@@ -298,6 +299,7 @@ async def procedure(request):
                 v_plazo,
                 v_persona_cyc,
                 v_zona,
+                v_monto_minimo,
                 v_pagina,
                 v_linea;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -323,6 +325,7 @@ async def procedure(request):
                 v_plazo|| '|'||
                 v_persona_cyc|| '|'||
                 v_zona|| '|'||
+                v_monto_minimo|| '|'||
                 v_pagina|| '|'||
                 v_linea
                 );
@@ -367,8 +370,9 @@ async def procedure(request):
         'v_plazo': arr[17],
         'v_persona_cyc': arr[18],
         'zona': arr[19],
-        'pagina': arr[20],
-        'linea': arr[21]
+        'monto_minimo':arr[20],
+        'pagina': arr[21],
+        'linea': arr[22]
         }
         list.append(obj)
     return response.json({"msj": "OK", "obj": list}, 200)
@@ -751,11 +755,11 @@ async def procedure(request):
             'linea': arr[18]
         }
 
-        if data['pArticulo'] == 'null'  :
-            if int(arr[7]) > 0 :
-                list.append(obj)
-        else:
-            list.append(obj)
+        # if data['pArticulo'] == 'null'  :
+        #     if int(arr[7]) > 0 :
+        #         list.append(obj)
+        # else:
+        list.append(obj)
     return response.json({ "msg":"OK", "obj": list }, 200)
 
 def agrupar_facturas(arreglo):
