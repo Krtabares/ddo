@@ -639,6 +639,7 @@ async def procedure(request):
                 v_tipo_cambio number;
                 v_proveedor varchar2(100);
                 v_bodega varchar2(2);
+                v_categoria varchar2(30);
                 V_PAGINA number;
                 V_LINEA number;
             BEGIN
@@ -676,6 +677,7 @@ async def procedure(request):
                 v_tipo_cambio,
                 v_proveedor,
                 v_bodega,
+                v_categoria,
                 V_PAGINA,
                 V_LINEA;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -697,6 +699,7 @@ async def procedure(request):
                     v_tipo_cambio|| '|'||
                     v_proveedor|| '|'||
                     v_bodega|| '|'||
+                    v_categoria|| '|'||
                     V_PAGINA|| '|'||
                     V_LINEA
                 );
@@ -743,8 +746,9 @@ async def procedure(request):
             'tipo_cambio' : arr[13],
             'proveedor' :arr[14],
             'bodega' :arr[15],
-            'pagina': arr[16],
-            'linea': arr[17]
+            'categoria': arr[16],
+            'pagina': arr[17],
+            'linea': arr[18]
         }
 
         if data['pArticulo'] == 'null'  :
