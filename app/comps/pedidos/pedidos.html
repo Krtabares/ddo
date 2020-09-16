@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="col-3">
-                  <label></label>
+                  <label> Acciones</label>
                   <button type="button"  class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
                 </div>
               </div>
@@ -234,7 +234,7 @@
         </div>
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
-        <button type="button" class="btn btn-error" data-dismiss="modal" ng-show="ID == null" ng-click="reset();">Cerrar</button>
+        <button type="button" class="btn btn-error" data-dismiss="modal" ng-show="ID == null" ng-click="reset();">Regresar</button>
         <button type="button"  class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
 
 
@@ -249,9 +249,10 @@
     <div class="modal-content">
       <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
         <h5 class="modal-title" id="addPedidoModalLabel">VER PEDIDO <i class="fas fa-1x fa-list-alt"></i></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Regresar</button> -->
       </div>
       <div class="modal-body">
         <div class="card-header">
@@ -472,7 +473,7 @@
         </div>
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Regresar</button>
         <button type="button"  class="btn btn-primary" ng-show="!editView && pedido.estatus_id < 3 "   ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
 
         <!-- <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1" ng-show="editView" ng-click="updPedido();">Actualizar pedido</button> -->
@@ -578,7 +579,7 @@
       </div>
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-error" data-dismiss="modal" ng-click="closeModalProducts()" >Cerrar</button>
+        <button type="button" class="btn btn-error" data-dismiss="modal" ng-click="closeModalProducts()" >Regresar</button>
 
       </div>
     </div>
@@ -658,7 +659,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">Regresar</button>
       </div>
     </div>
   </div>
@@ -684,7 +685,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">Regresar</button>
         <button type="button" class="btn btn-danger" ng-click="delPedido()" data-dismiss="modal">Aceptar</button>
       </div>
     </div>
@@ -712,7 +713,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancelModalDyn()" >Cancelar</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="cancelModalDyn()" >Cancelar</button>
         <button type="button" class="btn btn-{{modalDynColor}}" ng-click="aceptModalDyn()" data-dismiss="modal">Aceptar</button>
       </div>
     </div>
@@ -833,7 +834,7 @@
                     <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus_id < 3" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
 
-                    <!-- <button type="button" class="btn btn-default"  ></button> -->
+                    <!-- <button type="button" class="btn btn-info"  ></button> -->
                     <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
 
 
@@ -869,7 +870,7 @@
                       <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
 
-                      <!-- <button type="button" class="btn btn-default"  ></button> -->
+                      <!-- <button type="button" class="btn btn-info"  ></button> -->
                       <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
 
 

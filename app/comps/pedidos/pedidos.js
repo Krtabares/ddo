@@ -613,13 +613,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             ngNotify.set('¡Pedido abierto con exito!','success')
             $scope.counter = 0;
             $scope.mytimeout = $timeout($scope.onTimeout,1000);
+            $scope.getPedidos_filteringV2()
             // alert("Guardado con exito!")
           }, function errorCallback(response) {
             // console.log(response)
           });
         }
 
-        $scope.timeLimit = 599999
+        $scope.timeLimit = 899999
         $scope.counter = 0;
         $scope.onTimeout = function(){
 
