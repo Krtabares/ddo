@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="col-3">
-                  <label> Acciones</label>
+                  <label></label>
                   <button type="button"  class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
                 </div>
               </div>
@@ -380,7 +380,7 @@
 
                 <div class="col-3">
                   <label></label>
-                  <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="openModalDyn(0,ID)" data-dismiss="modal" >Finalizar pedido</button>
+                  <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="openModalDyn(0,ID)" >Finalizar pedido</button>
                 </div>
 
 
@@ -475,6 +475,7 @@
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Regresar</button>
         <button type="button"  class="btn btn-primary" ng-show="!editView && pedido.estatus_id < 3 "   ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
+        <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="openModalDyn(0,ID)" >Finalizar pedido</button>
 
         <!-- <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1" ng-show="editView" ng-click="updPedido();">Actualizar pedido</button> -->
       </div>
@@ -623,7 +624,7 @@
                 <input type="number"  min="1" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
               </div>
               <div class="col-6">
-                <label></label>
+                <label>Acciones</label>
                 <button type="button" ng-disabled="productIndex==-1" class="btn btn-success"  ng-click="addArtPedido();">Agregar</button>
               </div>
               <div class="row col-sm-12 col-md-12 col-lg-12">

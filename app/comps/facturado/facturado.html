@@ -28,8 +28,8 @@
                         <th scope="col"><p class="text-center">Nombre articulo</p></th>
                         <th scope="col"><p class="text-center">Unidades pedido</p></th>
                         <th scope="col"><p class="text-center">Unidades facturadas</p></th>
-                        <th scope="col"><p class="text-center">Nombre Vendedor</p></th>
-                        <th scope="col"><p class="text-center">Email Vendedor</p></th>
+                        <!-- <th scope="col"><p class="text-center">Nombre Vendedor</p></th>
+                        <th scope="col"><p class="text-center">Email Vendedor</p></th> -->
                         <th scope="col"><p class="text-center">Fecha factura</p></th>
                         <th scope="col"><p class="text-center">Fecha pedido</p></th>
                         </tr>
@@ -42,8 +42,8 @@
                             <td><p class="text-center">{{ x.nombre_arti }}</p></td>
                             <td><p class="text-center">{{ x.unidades_pedido }}</p></td>
                             <td><p class="text-center">{{ x.unidades_facturadas }}</p></td>
-                            <td><p class="text-right">{{  x.nombre_vendedor }}</p></td>
-                            <td><p class="text-right">{{  x.email_vendedor }}</p></td>
+                            <!-- <td><p class="text-right">{{  x.nombre_vendedor }}</p></td>
+                            <td><p class="text-right">{{  x.email_vendedor }}</p></td> -->
                             <td><p class="text-right">{{  x.fecha_factura }}</p></td>
                             <td><p class="text-right">{{  x.fecha_pedido }}</p></td>
                         </tr>
@@ -121,6 +121,7 @@
                   <th scope="col"><p class="text-center">Fecha factura</p></th>
                   <th scope="col"><p class="text-center">Fecha pedido</p></th>
                   <th scope="col"><p class="text-center">Nombre vendedor</p></th>
+                  <th scope="col"><p class="text-center">Email vendedor</p></th>
                   <th scope="col"><p class="text-center">Opciones</p></th>
                 </tr>
             </thead>
@@ -132,6 +133,7 @@
                   <td><p class="text-center">{{ facturasList[fact][0].fecha_factura }}</p></td>
                   <td><p class="text-center">{{ facturasList[fact][0].fecha_pedido }}</p></td>
                   <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td>
+                  <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td>
                   <td>
                     <i class="fa fa-eye" style="cursor: pointer;"   ng-click="selectFactura(facturasList[fact])"  data-toggle="modal" data-target="#modalFactura"  ></i>
                   </td>
