@@ -17,7 +17,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
         $scope.client_info = {}
         $scope.dtInstance = {};
         var ip = "http://192.168.168.170:3500";
- 
+
         $scope.clienteValido = true
         $scope.clientInvalidoMsg = null
         verificClient()
@@ -34,6 +34,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
                 $scope.hasUserClient = true;
                 $scope.client_info = JSON.parse(client_info);
                 $scope.client = JSON.parse(client);
+                $scope.client_info.limite_credito = $scope.client.limite_credito = parseFloat($scope.client_info.limite_credito)
                 var body = {}
                 body.pCliente = $scope.client_info.cod_cliente
                 body.pNoCia = $scope.client_info.cod_cia
@@ -65,14 +66,32 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
               return;
             }
 
-
-
-
-
-
           }, function errorCallback(response) {
             console.log(response)
           });
+        }
+
+        const formatterUSD = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD'
+        })
+        const formatterVe = new Intl.NumberFormat('es-VE', {
+          style: 'currency',
+          currency: 'VES'
+        })
+        const formatterVeDECIMAL = new Intl.NumberFormat('es-VE', {
+        })
+
+        $scope.formato = function(tipo, valor){
+          if(tipo == 1){
+            return formatterVeDECIMAL.format(valor)
+          }
+          if(tipo==2){
+            return formatterVe.format(valor)
+          }
+          if(tipo==3){
+            return formatterUSD.format(valor)
+          }
         }
     }
   ]);
