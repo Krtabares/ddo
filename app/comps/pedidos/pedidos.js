@@ -508,6 +508,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/procedure_productos', body,{})
           .then(function successCallback(response) {
             // // console.log(response)
+
             if(response.data.obj.length > 1){
               response.data.obj.forEach((item, i) => {
 
@@ -523,6 +524,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.productos = response.data.obj
 
               $scope.refreshProduct()
+
+              $scope.busqueda_prod = null;
 
             }else{
               ngNotify.set('¡No se encontraron resultados!', 'warn')

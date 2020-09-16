@@ -261,6 +261,9 @@ async def procedure(request):
                 v_persona_cyc varchar2(100);
                 v_zona varchar2(25);
                 v_monto_minimo number;
+                v_tipo_venta varchar2(100);
+                v_limite_credito number;
+                v_vendedor varchar2(100);
                 v_tot number;
                 v_pagina number;
                 v_linea number;
@@ -300,6 +303,9 @@ async def procedure(request):
                 v_persona_cyc,
                 v_zona,
                 v_monto_minimo,
+                v_tipo_venta,
+                v_limite_credito,
+                v_vendedor,
                 v_pagina,
                 v_linea;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -326,6 +332,9 @@ async def procedure(request):
                 v_persona_cyc|| '|'||
                 v_zona|| '|'||
                 v_monto_minimo|| '|'||
+                v_tipo_venta|| '|'||
+                v_limite_credito|| '|'||
+                v_vendedor|| '|'||
                 v_pagina|| '|'||
                 v_linea
                 );
@@ -371,8 +380,11 @@ async def procedure(request):
         'v_persona_cyc': arr[18],
         'zona': arr[19],
         'monto_minimo':arr[20],
-        'pagina': arr[21],
-        'linea': arr[22]
+        'tipo_venta':arr[21],
+        'limite_credito':arr[22],
+        'vendedor':arr[23],
+        'pagina': arr[24],
+        'linea': arr[25]
         }
         list.append(obj)
     return response.json({"msj": "OK", "obj": list}, 200)
