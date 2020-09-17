@@ -502,7 +502,7 @@ async def procedure(request , token : Token):
                                   v_serie_fisico,
                                   v_fecha_documento,
                                   v_pagina,
-                                  v_lineaA;
+                                  v_linea;
                                       EXIT WHEN l_cursor%NOTFOUND;
                                   dbms_output.put_line
                                       (
