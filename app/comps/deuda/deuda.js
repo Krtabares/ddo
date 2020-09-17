@@ -14,7 +14,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
       var ip = "http://192.168.168.170:3500";
- 
+
       $scope.deuda = {};
       $scope.listDeuda = [{}];
       $scope.hasUserClient = false;
@@ -156,18 +156,32 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
 		.withOption('responsive', true);
 
         $scope.dtColumns = [
-            DTColumnBuilder.newColumn('id_deuda').withTitle('N° de documento'),
-            // DTColumnBuilder.newColumn('codigo_cliente').withTitle('Codigo cliente'),
-            // DTColumnBuilder.newColumn('nombre_cliente').withTitle('Nombre cliente'),
-			DTColumnBuilder.newColumn('fecha_vencimiento').withTitle('Fecha de vencimiento'),
-			DTColumnBuilder.newColumn('tipo_pago').withTitle('Tipo de pago'),
-			// DTColumnBuilder.newColumn('monto_inicial').withTitle('Monto inicial'),
-			DTColumnBuilder.newColumn('monto_actual').withTitle('Monto actual'),
-			// DTColumnBuilder.newColumn('fecha_ultimo_pago').withTitle('Fecha de ultimo pago').withClass('none'),
-			// DTColumnBuilder.newColumn('monto_ultimo_pago').withTitle('Monto de ultimo pago').withClass('none'),
-			DTColumnBuilder.newColumn('estatus_deuda').withTitle('Estatus deuda').withClass('none'),
-			DTColumnBuilder.newColumn('codigo_tipo_doc').withTitle('Código tipo doc').withClass('none'),
-			DTColumnBuilder.newColumn('nombre_tipo_doc').withTitle('Nombre tipo doc')
+            // DTColumnBuilder.newColumn('no_fisico').withTitle('N° de documento'),
+            // DTColumnBuilder.newColumn('fecha_vencimiento').withTitle('Fecha de vencimiento'),
+            // DTColumnBuilder.newColumn('tipo_venta').withTitle('Tipo de venta'),
+            // DTColumnBuilder.newColumn('monto_actual').withTitle('Monto actual'),
+            // DTColumnBuilder.newColumn('estatus_deuda').withTitle('Estatus deuda').withClass('none'),
+            // DTColumnBuilder.newColumn('codigo_tipo_doc').withTitle('Código tipo doc').withClass('none'),
+            // DTColumnBuilder.newColumn('nombre_tipo_doc').withTitle('Nombre tipo doc')
+            DTColumnBuilder.newColumn('no_fisico'),
+            DTColumnBuilder.newColumn('codigo_cliente'),
+            DTColumnBuilder.newColumn('nombre_cliente'),
+            DTColumnBuilder.newColumn('tipo_venta'),
+            DTColumnBuilder.newColumn('fecha_vencimiento'),
+            DTColumnBuilder.newColumn('monto_inicial'),
+            DTColumnBuilder.newColumn('monto_actual'),
+            DTColumnBuilder.newColumn('fecha_ultimo_pago'),
+            DTColumnBuilder.newColumn('monto_ultimo_pago'),
+            DTColumnBuilder.newColumn('estatus_deuda'),
+            DTColumnBuilder.newColumn('codigo_tipo_doc'),
+            DTColumnBuilder.newColumn('nombre_tipo_doc'),
+            DTColumnBuilder.newColumn('cia'),
+            DTColumnBuilder.newColumn('grupo'),
+            DTColumnBuilder.newColumn('tipo_cambio'),
+            DTColumnBuilder.newColumn('fecha_aviso'),
+            DTColumnBuilder.newColumn('docu_aviso'),
+            DTColumnBuilder.newColumn('serie_fisico'),
+            DTColumnBuilder.newColumn('fecha_documento')
         ];
 
 	/*$('#deudas_table').DataTable( {
