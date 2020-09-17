@@ -179,7 +179,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
             DTColumnBuilder.newColumn('fecha_aviso').withTitle('Fecha aviso'),
             DTColumnBuilder.newColumn('docu_aviso').withTitle('Documento aviso'),
             DTColumnBuilder.newColumn('serie_fisico').withTitle('Serie'),
-            DTColumnBuilder.newColumn('fecha_documento'.withTitle('Fecha documento')
+            DTColumnBuilder.newColumn('fecha_documento').withTitle('Fecha documento')
         ];
 
 	/*$('#deudas_table').DataTable( {
