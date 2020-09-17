@@ -435,103 +435,114 @@ async def procedure(request , token : Token):
     db = get_db()
     c = db.cursor()
     c.callproc("dbms_output.enable")
+
     c.execute("""
 
-                              DECLARE
-                              l_cursor  SYS_REFCURSOR;
-                                  pTotReg number DEFAULT 100;
-                                  pTotPaginas number DEFAULT 100;
-                                  pPagina number DEFAULT 1;
-                                  pLineas number DEFAULT 100;
-                                  pDeuda varchar2(50) DEFAULT null;
-                                  pCLiente varchar2(50) DEFAULT 'AHINOA';
-                                  pNombre varchar2(50) DEFAULT null;
-                                  pTipo varchar2(50) DEFAULT null;
-                                  pEstatus varchar2(50) DEFAULT null;
-                                  output number DEFAULT 1000000;
-                                  v_no_fisico number;
-                                  v_codigo_cliente varchar2(50);
-                                  v_nombre_cliente varchar2(50);
-                                  v_tipo_venta varchar2(50);
-                                  v_fecha_vencimiento varchar2(50);
-                                  v_monto_inicial number;
-                                  v_monto_actual number;
-                                  v_fecha_ultimo_pago date;
-                                  v_monto_ultimo_pago number;
-                                  v_estatus_deuda varchar2(50);
-                                  v_codigo_tipo_doc number;
-                                  v_nombre_tipo_doc varchar2(50);
-                                  v_cia varchar(2);
-                                  v_grupo varchar2(2);
-                                  v_tipo_cambio number;
-                                  v_fecha_aviso date ;
-                                  v_docu_aviso number;
-                                  v_serie_fisico varchar2(15);
-                                  v_fecha_documento date;
-                                  v_tot number;
-                                  v_codigo_compani varchar(10);
-                                  v_pagina number;
-                                  v_linea number;
-
-                              BEGIN
 
 
-                                  dbms_output.enable(output);
+                                DECLARE
+                                l_cursor  SYS_REFCURSOR;
+                                    pTotReg number DEFAULT 100;
+                                    pTotPaginas number DEFAULT 100;
+                                    pPagina number DEFAULT 1;
+                                    pLineas number DEFAULT 100;
+                                    pDeuda varchar2(50) DEFAULT null;
+                                    pCLiente varchar2(50) DEFAULT 'AHINOA';
+                                    pNombre varchar2(50) DEFAULT null;
+                                    pTipo varchar2(50) DEFAULT null;
+                                    pEstatus varchar2(50) DEFAULT null;
+                                    output number DEFAULT 1000000;
+                                    v_no_fisico number;
+                                    v_codigo_cliente varchar2(50);
+                                    v_nombre_cliente varchar2(50);
+                                    v_tipo_venta varchar2(50);
+                                    v_fecha_vencimiento varchar2(50);
+                                    v_monto_inicial number;
+                                    v_monto_actual number;
+                                    v_fecha_ultimo_pago date;
+                                    v_monto_ultimo_pago number;
+                                    v_estatus_deuda varchar2(50);
+                                    v_codigo_tipo_doc number;
+                                    v_nombre_tipo_doc varchar2(50);
+                                    v_cia varchar(2);
+                                    v_grupo varchar2(2);
+                                    v_tipo_cambio number;
+                                    v_fecha_aviso date ;
+                                    v_docu_aviso number;
+                                    v_serie_fisico varchar2(15);
+                                    v_fecha_documento date;
+                                    v_tot number;
+                                    v_codigo_compani varchar(10);
+                                    v_pagina number;
+                                    v_linea number;
 
-                                  PROCESOSPW.deudas (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pDeuda , pCLiente , pNombre, pTipo, pEstatus);
+                                BEGIN
 
-                                  LOOP
-                                  FETCH l_cursor into
-                                  v_no_fisico,
-                                  v_codigo_cliente,
-                                  v_nombre_cliente,
-                                  v_tipo_venta,
-                                  v_fecha_vencimiento,
-                                  v_monto_inicial,
-                                  v_monto_actual,
-                                  v_fecha_ultimo_pago,
-                                  v_monto_ultimo_pago,
-                                  v_estatus_deuda,
-                                  v_codigo_tipo_doc,
-                                  v_nombre_tipo_doc,
-                                  v_cia,
-                                  v_grupo,
-                                  v_tipo_cambio,
-                                  v_fecha_aviso,
-                                  v_docu_aviso,
-                                  v_serie_fisico,
-                                  v_fecha_documento,
-                                  v_pagina,
-                                  v_linea;
-                                      EXIT WHEN l_cursor%NOTFOUND;
-                                  dbms_output.put_line
-                                      (
+                                    pTotReg  := {pTotReg};
+                                    pTotPaginas  := {pTotPaginas};
+                                    pPagina  := {pPagina};
+                                    pLineas  := {pLineas};
+                                    pDeuda := {pDeuda};
+                                    pCLiente := {pCLiente};
+                                    pNombre := {pNombre};
+                                    pTipo := {pTipo};
+                                    pEstatus := {pEstatus};
 
-                                      v_no_fisico|| '|'||
-                                      v_codigo_cliente|| '|'||
-                                      v_nombre_cliente|| '|'||
-                                      v_tipo_venta|| '|'||
-                                      v_fecha_vencimiento|| '|'||
-                                      v_monto_inicial|| '|'||
-                                      v_monto_actual|| '|'||
-                                      v_fecha_ultimo_pago|| '|'||
-                                      v_monto_ultimo_pago|| '|'||
-                                      v_estatus_deuda|| '|'||
-                                      v_codigo_tipo_doc|| '|'||
-                                      v_nombre_tipo_doc|| '|'||
-                                      v_cia|| '|'||
-                                      v_grupo|| '|'||
-                                      v_tipo_cambio|| '|'||
-                                      v_fecha_aviso|| '|'||
-                                      v_docu_aviso|| '|'||
-                                      v_serie_fisico|| '|'||
-                                      v_fecha_documento
-                                      );
-                                  END LOOP;
-                              CLOSE l_cursor;
+                                    dbms_output.enable(output);
 
-                              END;
+                                    PROCESOSPW.deudas (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pDeuda , pCLiente , pNombre, pTipo, pEstatus);
 
+                                    LOOP
+                                    FETCH l_cursor into
+                                    v_no_fisico,
+                                    v_codigo_cliente,
+                                    v_nombre_cliente,
+                                    v_tipo_venta,
+                                    v_fecha_vencimiento,
+                                    v_monto_inicial,
+                                    v_monto_actual,
+                                    v_fecha_ultimo_pago,
+                                    v_monto_ultimo_pago,
+                                    v_estatus_deuda,
+                                    v_codigo_tipo_doc,
+                                    v_nombre_tipo_doc,
+                                    v_cia,
+                                    v_grupo,
+                                    v_tipo_cambio,
+                                    v_fecha_aviso,
+                                    v_docu_aviso,
+                                    v_serie_fisico,
+                                    v_fecha_documento,
+                                    v_pagina,
+                                    v_linea;
+                                        EXIT WHEN l_cursor%NOTFOUND;
+                                    dbms_output.put_line
+                                        (
+
+                                        v_no_fisico|| '|'||
+                                        v_codigo_cliente|| '|'||
+                                        v_nombre_cliente|| '|'||
+                                        v_tipo_venta|| '|'||
+                                        v_fecha_vencimiento|| '|'||
+                                        v_monto_inicial|| '|'||
+                                        v_monto_actual|| '|'||
+                                        v_fecha_ultimo_pago|| '|'||
+                                        v_monto_ultimo_pago|| '|'||
+                                        v_estatus_deuda|| '|'||
+                                        v_codigo_tipo_doc|| '|'||
+                                        v_nombre_tipo_doc|| '|'||
+                                        v_cia|| '|'||
+                                        v_grupo|| '|'||
+                                        v_tipo_cambio|| '|'||
+                                        v_fecha_aviso|| '|'||
+                                        v_docu_aviso|| '|'||
+                                        v_serie_fisico|| '|'||
+                                        v_fecha_documento
+                                        );
+                                    END LOOP;
+                                CLOSE l_cursor;
+
+                                END;
 
             """.format(
                         pTotReg = data['pTotReg'],
