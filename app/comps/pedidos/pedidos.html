@@ -24,12 +24,12 @@
           </div>
 
           <div class="alert alert-info alert-dismissible fade show" ng-show="counter >= 1" role="alert">
-            <strong>Informacion!</strong> Dispone de 10 minutos de inactividad
+            <strong>Informacion!</strong> Dispone de 15 minutos de inactividad
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="alert alert-warning alert-dismissible fade show" ng-show="counter > 300000 && counter < timeLimit" role="alert">
+          <div class="alert alert-warning alert-dismissible fade show" ng-show="counter > 600000 && counter < timeLimit" role="alert">
             <strong>Advertencia!</strong> Dispone de menos de 5 minutos de inactividad
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -267,12 +267,12 @@
           </div>
 
           <div class="alert alert-info alert-dismissible fade show" ng-show="counter >= 1" role="alert">
-            <strong>Informacion!</strong> Dispone de 10 minutos de inactividad
+            <strong>Informacion!</strong> Dispone de 15 minutos de inactividad
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="alert alert-warning alert-dismissible fade show" ng-show="counter > 300000 && counter < timeLimit" role="alert">
+          <div class="alert alert-warning alert-dismissible fade show" ng-show="counter > 600000 && counter < timeLimit" role="alert">
             <strong>Advertencia!</strong> Dispone de menos de 5 minutos de inactividad
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -580,7 +580,7 @@
       </div>
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-error" data-dismiss="modal" ng-click="closeModalProducts()" >Regresar</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeModalProducts()" >Regresar</button>
 
       </div>
     </div>
@@ -624,7 +624,9 @@
                 <input type="number"  min="1" ng-model="articulo.CANTIDAD" class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
               </div>
               <div class="col-6">
-                <label>Acciones</label>
+                <div class="col-12">
+
+                </div>
                 <div class="col-12">
 
                   <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="" ng-click="addArtPedido();">Agregar</button>
@@ -696,7 +698,6 @@
   </div>
 </div>
 
-
 <div class="modal fade" id="modalConfirmDynamic">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -710,7 +711,7 @@
         <div class="container">
 
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h3><p class="text-center">{{ modalDynMsg }}</p></h3>
+              <h5><p class="text-center">{{ modalDynMsg }}</p></h5>
           </div>
 
         </div>
@@ -723,7 +724,6 @@
     </div>
   </div>
 </div>
-
 
 <div id="wrapper" class="active">
 
