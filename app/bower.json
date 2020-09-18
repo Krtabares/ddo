@@ -4,5 +4,8 @@
   "description": "",
   "license": "MIT",
   "homepage": "",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "angular-notify": "^2.5.1"
+  }
 }

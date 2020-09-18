@@ -7,6 +7,7 @@ angular.module('app', [
                'ngStorage',
                'angular-bind-html-compile',
                'ngNotify',
+               'cgNotify',
                'app.login',
                'app.home',
                'app.deuda',

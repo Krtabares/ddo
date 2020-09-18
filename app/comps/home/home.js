@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.home', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'ngStorage'])
+angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-compile', 'ngStorage'])
 
   .config(['$routeProvider', function($routeProvider) {
 
@@ -10,8 +10,8 @@ angular.module('app.home', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-c
     });
   }])
 
-  .controller('homeCtrl', ['$scope', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'NgMap', 'localstorage', '$localStorage', '$sessionStorage',
-    function($scope, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, NgMap, localstorage, $localStorage, $sessionStorage) {
+  .controller('homeCtrl', ['$scope', '$rootScope', '$routeParams', '$interval', '$timeout', 'notify', 'request', 'NgMap', 'localstorage', '$localStorage', '$sessionStorage',
+    function($scope, $rootScope, $routeParams, $interval, $timeout, notify, request, NgMap, localstorage, $localStorage, $sessionStorage) {
 
       // CARGA INICIAL DE CHART
 
@@ -21,7 +21,7 @@ angular.module('app.home', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-c
       verificClient()
 
       function verificClient(){
-
+        notify('Your notification message');
         var client = localStorage.getItem('client')
         var client_info = localStorage.getItem('client_info')
         console.log(client)
