@@ -98,7 +98,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           {
 
             "title": "Finalizar pedido",
-            "msg" : "Desea finalizar este pedido",
+            "msg" : "¿Está seguro de finalizar su pedido?",
             "color": "success"
           },
           {
