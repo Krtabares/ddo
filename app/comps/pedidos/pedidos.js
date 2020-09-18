@@ -118,6 +118,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             case 0:
                 if($scope.totales.bsConIva > $scope.client.monto_minimo){
                   $scope.finalizar_pedido()
+                  $(function(){
+                    $("#addPedidoModal").modal("hide");
+                    $("#showPedidoModal").modal("hide");
+                    $('.modal-backdrop').remove();
+                  })
                 }else{
                   ngNotify.set('¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ),'warn')
                 }
@@ -316,7 +321,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.client = JSON.parse(client);
            $scope.client_info = JSON.parse(client_info);
            $scope.client.monto_minimo = parseFloat($scope.client_info.monto_minimo)
-           
+
            selectCLientCAP( $scope.client_info)
            $scope.showProductTable = true
          }
