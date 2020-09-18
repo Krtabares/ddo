@@ -19,6 +19,7 @@ angular.module('app', [
                'app.pedidos',
                'app.facturado',
                'app.mySidebar',
+               'app.myFooter',
                'app.headerClient',
      ])
      .factory('request', ['$http','$q', function($http,$q) {

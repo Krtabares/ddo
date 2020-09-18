@@ -36,6 +36,8 @@ angular.module('app.home', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-c
         console.log($scope.client)
       }
 
+
+
       var ctx = document.getElementById('myChart').getContext('2d');
       var ctx2 = document.getElementById('myChart2').getContext('2d');
       var ctx3 = document.getElementById('myChart3').getContext('2d');
