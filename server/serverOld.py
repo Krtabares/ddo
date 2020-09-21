@@ -445,7 +445,7 @@ async def procedure(request , token : Token):
     db = get_db()
     c = db.cursor()
     c.callproc("dbms_output.enable")
-
+    print(data)
     c.execute("""DECLARE
                 l_cursor  SYS_REFCURSOR;
                     pTotReg number DEFAULT 100;
