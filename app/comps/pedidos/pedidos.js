@@ -560,11 +560,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.refreshProduct()
 
               $scope.busqueda_prod = null;
-              $scope.loading = false
 
             }else{
               notify({ message:'¡No se encontraron resultados!', position:'right', duration:10000, classes:'alert-warning'});
             }
+            $scope.loading = false
 
           }, function errorCallback(response) {
             // console.log(response)
