@@ -20,12 +20,14 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
 
         $scope.clienteValido = true
         $scope.clientInvalidoMsg = null
+        $scope.creditoClient = null
         verificClient()
 
         function verificClient(){
 
             var client = localStorage.getItem('client')
             var client_info = localStorage.getItem('client_info')
+            $scope.creditoClient = localStorage.getItem('creditoClient')
             console.log(client)
             console.log( client=='{}'  )
              if ( client=='{}' ){
@@ -45,6 +47,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
 
             }
         }
+
 
         function validaClienteDDO(body) {
           console.log("validaClienteDDO");

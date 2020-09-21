@@ -19,7 +19,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         "http://www.del-oeste.com/wp-content/uploads/2017/08/img-about.jpg",
       ]
 	  var ip = "http://192.168.168.170:3500";
- 
+    $scope.loading = false
     $scope.user = {};
     localstorage.clear()
     function init() {
@@ -29,16 +29,48 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
     }
     init()
 
+    $scope.creditoClient = {}
+    function getClientDispService(body) {
+      $scope.loading = true
+      request.post(ip+'/disponible_cliente', body,{})
+      .then(function successCallback(response) {
+        // console.log(response)
+
+        $scope.creditoClient = response.data.obj
+        $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
+        $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
+        $scope.loading = false
+
+      }, function errorCallback(response) {
+        // console.log(response)
+        $scope.loading = false
+      });
+    }
+
 
     $scope.getClientNew = function (client) {
       console.log("getClientNew");
-      var body = {};
 
-        body.pCliente = client.COD_CLIENTE
+
+
+      var body = {}
+      body.pNoCia = client.COD_CIA
+      body.pNoGrupo = client.GRUPO_CLIENTE
+      body.pCliente = client.COD_CLIENTE
+
+      getClientDispService(body)
+
+       body = {};
+
+      body.pCliente = client.COD_CLIENTE
+
+
+
 
       request.post(ip+'/procedure_clientes', body,{})
       .then(function successCallback(response) {
-        // console.log(response.data.obj[0])
+        // response.data.obj[0].creditoClient = $scope.creditoClient.disp_bs_format
+        localstorage.set('creditoClient',  JSON.stringify($scope.creditoClient.disp_bs_format));
         localstorage.set('client_info',  JSON.stringify(response.data.obj[0]));
         // $scope.clientes = response.data.obj
         ngNotify.set('¡Bienvenido! '+response.data.obj[0].nombre_cliente ,'success')

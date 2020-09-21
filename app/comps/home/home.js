@@ -21,7 +21,7 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
       verificClient()
 
       function verificClient(){
-        notify({ message:'My message', position:'right', duration:10000, classes:'alert-danger'});
+        notify({ message:'My message', position:'right', duration:100000, classes:'alert-danger'});
         var client = localStorage.getItem('client')
         var client_info = localStorage.getItem('client_info')
         console.log(client)

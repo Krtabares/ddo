@@ -21,6 +21,7 @@ angular.module('app', [
                'app.facturado',
                'app.mySidebar',
                'app.myFooter',
+               'app.myLoading',
                'app.headerClient',
      ])
      .factory('request', ['$http','$q', function($http,$q) {

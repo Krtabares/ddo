@@ -63,21 +63,26 @@
               <div ng-show="!hasUserClient">
 
                 <div class="row pb-2 p-2" ng-if="clientIndex != -1" >
-                    <div class="col-md-6">
-                        <p class="font-weight-bold mb-4">Informacion del Cliente </p>
-                        <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client.nombre_cliente}}</p>
-                        <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client.docu_identif_cliente}}</p>
-                        <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
-                        <p class="mb-1"> <span class="text-muted">Direccion: </span> {{client.direccion_cliente.toLowerCase()}}</p>
-                    </div>
+                  <div class="col-md-6">
+                      <p class="font-weight-bold mb-4">Informacion del Cliente </p>
+                      <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client.nombre_cliente}}</p>
+                      <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
+                      <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
+                      <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
+                      <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
+                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                  </div>
 
-                    <div class="col-md-6">
-                        <p class="font-weight-bold mb-4">Detalles</p>
-                        <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
-                        <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
-                        <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">contacto crédito y cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
-                        <p class="mb-1"><span class="text-muted">Plazo de pago: </span> {{client.v_plazo}} dias</p>
-                    </div>
+                  <div class="col-md-6">
+                      <p class="font-weight-bold mb-4">Detalles</p>
+                      <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
+                      <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client.tipo_venta}}</p>
+                      <p class="mb-1"><span class="text-muted">Plazo: </span> {{client.v_plazo}} dias</p>
+                      <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client.limite_credito)}}</p>
+                      <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</p>
+                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Vendedor: </span> {{client.vendedor.toLowerCase()}}</p>
+                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Analista de cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
+                  </div>
                 </div>
 
               </div>
@@ -303,21 +308,26 @@
             <div ng-show="!hasUserClient">
 
               <div class="row pb-2 p-2"  >
-                  <div class="col-md-6">
-                      <p class="font-weight-bold mb-4">Informacion del Cliente </p>
-                      <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client.nombre_cliente}}</p>
-                      <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client.docu_identif_cliente}}</p>
-                      <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
-                      <p class="mb-1"> <span class="text-muted">Direccion: </span> {{client.direccion_cliente.toLowerCase()}}</p>
-                  </div>
+                <div class="col-md-6">
+                    <p class="font-weight-bold mb-4">Informacion del Cliente </p>
+                    <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client.nombre_cliente}}</p>
+                    <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
+                    <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
+                    <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
+                    <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
+                    <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                </div>
 
-                  <div class="col-md-6">
-                      <p class="font-weight-bold mb-4">Detalles</p>
-                      <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
-                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
-                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">contacto crédito y cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
-                      <p class="mb-1"><span class="text-muted">Plazo de pago: </span> {{client.v_plazo}} dias</p>
-                  </div>
+                <div class="col-md-6">
+                    <p class="font-weight-bold mb-4">Detalles</p>
+                    <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
+                    <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client.tipo_venta}}</p>
+                    <p class="mb-1"><span class="text-muted">Plazo: </span> {{client.v_plazo}} dias</p>
+                    <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client.limite_credito)}}</p>
+                    <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</p>
+                    <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Vendedor: </span> {{client.vendedor.toLowerCase()}}</p>
+                    <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Analista de cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
+                </div>
               </div>
 
 
@@ -494,9 +504,7 @@
       <div class="modal-body">
 
         <div id="card__infoicon">
-          <span>
-            <a class="nav-link" ng-click="infoPsico = true" ><i class="fa fa-info"> <p>Requisitos para solicitud de psicotr&oacute;picos</p> </i></a>
-          </span>
+
           <div class="alert alert-info alert-dismissible fade show" ng-show="infoPsico" role="alert">
             <div>
                 <p style='font-style: normal; font-weight: 400; text-align: start; text-indent: 0px;  margin: 0cm 0cm 0.0001pt 8px; font-size: 16px; font-family: "Times New Roman", serif; color: rgb(34, 34, 34);'><span style=" rgb(209, 236, 241);"><span style="color: rgb(0, 0, 0);"><span style="font-size: 13px; font-family: Symbol;">&middot;<span style='font-size:9px;line-height: normal;font-family: "Times New Roman";'>&nbsp; &nbsp; &nbsp; &nbsp;</span></span><strong><span style="font-size: 13px; font-family: Arial, sans-serif;">Enviar al siguiente correo <a href="mailto:regencia@del-oeste.com" style="color: rgb(17, 85, 204);" target="_blank">regencia@del-oeste.com</a>. :</span></strong></span></span></p>
@@ -518,6 +526,7 @@
           <div class="">
 
             <div class="col-sm-12 col-md-12 col-lg-12">
+              <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="infoPsico = true;" ng-show="!infoPsico"  > <i class="fa fa-info"></i> Requisitos para Psicotropicos</button>
               <label for="clientes">Busqueda por producto</label>
               <div class="input-group mb-3">
                 <input type="text" class="form-control"
@@ -629,7 +638,7 @@
                 </div>
                 <div class="col-12">
 
-                  <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="" ng-click="addArtPedido();">Agregar</button>
+                  <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 30px;" ng-click="addArtPedido();">Agregar</button>
                 </div>
               </div>
               <div class="row col-sm-12 col-md-12 col-lg-12">
@@ -773,17 +782,22 @@
             <div class="col-md-6">
                 <p class="font-weight-bold mb-4">Informacion del Cliente </p>
                 <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client.nombre_cliente}}</p>
-                <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client.docu_identif_cliente}}</p>
+                <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
+                <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
+                <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
                 <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
-                <p class="mb-1"> <span class="text-muted">Direccion: </span> {{client.direccion_cliente.toLowerCase()}}</p>
+                <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
             </div>
 
             <div class="col-md-6">
                 <p class="font-weight-bold mb-4">Detalles</p>
                 <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
-                <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
-                <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">contacto crédito y cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
-                <p class="mb-1"><span class="text-muted">Plazo de pago: </span> {{client.v_plazo}} dias</p>
+                <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client.tipo_venta}}</p>
+                <p class="mb-1"><span class="text-muted">Plazo: </span> {{client.v_plazo}} dias</p>
+                <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client.limite_credito)}}</p>
+                <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</p>
+                <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Vendedor: </span> {{client.vendedor.toLowerCase()}}</p>
+                <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Analista de cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
             </div>
           </div>
 
@@ -892,3 +906,6 @@
   </div>
 </div>
 <my-footer></my-footer>
+<div ng-show="loading">
+  <my-loading></my-loading>
+</div>
