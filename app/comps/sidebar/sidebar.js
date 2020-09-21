@@ -68,5 +68,34 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
               myEl.removeClass('active');
               $scope.side = false
         }
+
+
+        $scope.trigger = angular.element('.hamburger')
+        $scope.overlay = angular.element('.overlay')
+        $scope.isClosed = false;
+
+        $scope.hamburger_cross = function () {
+            console.log("hamburger_cross");
+
+            if ($scope.isClosed == true) {
+              // $scope.overlay.hide();
+              $scope.trigger.removeClass('is-open');
+              $scope.trigger.addClass('is-closed');
+              $scope.isClosed = false;
+            } else {
+              // $scope.overlay.show();
+              $scope.trigger.removeClass('is-closed');
+              $scope.trigger.addClass('is-open');
+              $scope.isClosed = true;
+            }
+
+
+            $(function(){
+              // $('[data-toggle="offcanvas"]').click(function () {
+                    $('#wrapper').toggleClass('toggled');
+              // });
+            })
+        }
+
     }
   ]);

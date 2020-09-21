@@ -21,7 +21,7 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
       verificClient()
 
       function verificClient(){
-        notify('Your notification message');
+        notify({ message:'My message', position:'right', duration:10000, classes:'alert-danger'});
         var client = localStorage.getItem('client')
         var client_info = localStorage.getItem('client_info')
         console.log(client)
@@ -41,7 +41,7 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
       var ctx = document.getElementById('myChart').getContext('2d');
       var ctx2 = document.getElementById('myChart2').getContext('2d');
       var ctx3 = document.getElementById('myChart3').getContext('2d');
-	  //$scope.$storage = $localStorage;
+	  $scope.$storage = $localStorage;
 
 	  console.log(localstorage.get('token', ''));
 
@@ -156,6 +156,9 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
           }
         }
       });
+
+
+
 
     }
   ]);
