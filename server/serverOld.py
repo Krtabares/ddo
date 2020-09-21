@@ -421,10 +421,10 @@ async def procedure(request , token : Token):
     else:
         data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
 
-    if not 'pCliente' in data :
-        data['pCliente'] = 'null'
+    if not 'pCLiente' in data :
+        data['pCLiente'] = 'null'
     else:
-        data['pCliente'] = "'"+data['pCliente']+"'"
+        data['pCLiente'] = "'"+data['pCLiente']+"'"
 
     if not 'pNombre' in data :
         data['pNombre'] = 'null'
