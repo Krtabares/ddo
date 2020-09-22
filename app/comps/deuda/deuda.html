@@ -56,16 +56,49 @@
 
 
       <div class="col-md-12 col-sm-12">
-        <br>
-        <h5 class="text-center"> <strong>DEUDAS </strong> </h5>
-        <br>
-
+        <nav aria-label="breadcrumb" role="navigation">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a class="text-success" >servidor.com</a></li>
+            <li class="breadcrumb-item"><a class="text-info" href="#!/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Deudas</li>
+          </ol>
+        </nav>
         <header-client></header-client>
 
         <div class="row">
           <div class="col-md-12">
   		        <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
   			</table>
+
+        <!-- <table datatable="ng" dt-options="dtOptions"  class="table table-striped table-bordered" >
+          <thead>
+              <tr>
+                <th scope="col"><p class="text-center">#</p></th>
+                <th scope="col"><p class="text-center">N° Pedido</p></th>
+                <th scope="col"><p class="text-center">Fecha factura</p></th>
+                <th scope="col"><p class="text-center">Fecha pedido</p></th>
+                <th scope="col"><p class="text-center">Nombre vendedor</p></th>
+                <th scope="col"><p class="text-center">Email vendedor</p></th>
+                <th scope="col"><p class="text-center">Opciones</p></th>
+              </tr>
+          </thead>
+          <tbody>
+
+              <tr  ng-repeat="fact in facturas"  ng-click="selectFactura(facturasList[fact])" ng-class="{ selectedRow : $index == productIndex }" >
+                <td><p class="text-center">{{ $index + 1 }}</p></td>
+                <td><p class="text-center">{{ fact }}</p></td>
+                <td><p class="text-center">{{ facturasList[fact][0].fecha_factura }}</p></td>
+                <td><p class="text-center">{{ facturasList[fact][0].fecha_pedido }}</p></td>
+                <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td>
+                <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td>
+                <td>
+                  <i class="fa fa-eye" style="cursor: pointer;"   ng-click="selectFactura(facturasList[fact])"  data-toggle="modal" data-target="#modalFactura"  ></i>
+                </td>
+              </tr>
+
+
+          </tbody>
+          </table> -->
 
         </div>
 
