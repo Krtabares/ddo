@@ -14,7 +14,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, NgMap, $localStorage) {
 
       var ip = "http://192.168.168.170:3500";
- 
+      $scope.loading = false
       $scope.saldo = {};
       $scope.listDeuda = [{}];
 
@@ -64,6 +64,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
    }
 
    $scope.getClientNew = function (filter = false) {
+     $scope.loading = true
      console.log("getClientNew");
      var body = {};
      if(filter){
@@ -74,9 +75,11 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
        console.log(response)
 
        $scope.clientes = response.data.obj
+       $scope.loading = false
 
      }, function errorCallback(response) {
        console.log(response)
+       $scope.loading = false
      });
    }
 // $scope.getClientNew()
@@ -139,6 +142,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
     }
     $scope.busqueda_prod = null
     $scope.getProdNew = function (filter = false) {
+      $scope.loading = true
       console.log("getProdNew");
       // var defer = $q.defer();
       var body = {};
@@ -146,9 +150,9 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       console.log($scope.client)
       if(filter){
 
-        body.pNoCia = $scope.client.COD_CIA
-        body.pNoGrupo = $scope.client.GRUPO_CLIENTE
-        body.pCliente = $scope.client.COD_CLIENTE
+        body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+        body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+        body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
         body.pBusqueda = $scope.busqueda_prod
       }
       console.log(body)
@@ -163,9 +167,10 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         }else{
           ngNotify.set('¡No se encontraron resultados!', 'warn')
         }
-
+        $scope.loading = false
       }, function errorCallback(response) {
         console.log(response)
+        $scope.loading = false
       });
     }
 

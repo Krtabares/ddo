@@ -1,30 +1,45 @@
 <div class="" ng-show="hasUserClient">
 
+<div class="col-md-12">
+
   <div class="alert alert-danger"  ng-show="!clienteValido" role="alert">
     Advertencia:
     <strong>{{clientInvalidoMsg}}</strong>
   </div>
-  <div class="row pb-2 p-2" >
-      <div class="col-md-6">
-          <p class="font-weight-bold mb-4">Informacion del Cliente </p>
-          <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client_info.nombre_cliente}}</p>
-          <p class="mb-1"><span class="text-muted">RIF: </span> {{client_info.docu_identif_cliente}}</p>
-          <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client_info.direccion_cliente.toLowerCase()}}</p>
-          <p class="mb-1"><span class="text-muted">Zona: </span>{{client_info.zona}}</p>
-          <p class="mb-1"><span class="text-muted">Telefono: </span>{{client_info.telefono1}}</p>
-          <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client_info.nombre_encargado.toLowerCase()}}</p>
-      </div>
+</div>
+
+  <div class="row " style="margin-bottom: 15px;" >
 
       <div class="col-md-6">
-          <p class="font-weight-bold mb-4">Detalles</p>
-          <p class="mb-1"><span class="text-muted">Codigo: </span> {{client_info.cod_cliente}}</p>
-          <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client_info.tipo_venta}}</p>
-          <p class="mb-1"><span class="text-muted">Plazo: </span> {{client_info.v_plazo}} dias</p>
-          <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client_info.limite_credito)}}</p>
-          <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,creditoClient)}}</p>
-          <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Vendedor: </span> {{client_info.vendedor.toLowerCase()}}</p>
-          <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Analista de cobranzas: </span> {{client_info.v_persona_cyc.toLowerCase()}}</p>
+        <div class="card " >
+          <div class="card-body">
+            <h5 class="card-title">Informacion del Cliente </h5>
+            <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client_info.nombre_cliente}}</p>
+            <p class="mb-1"><span class="text-muted">RIF: </span> {{client_info.docu_identif_cliente}}</p>
+            <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client_info.direccion_cliente.toLowerCase()}}</p>
+            <p class="mb-1"><span class="text-muted">Zona: </span>{{client_info.zona}}</p>
+            <p class="mb-1"><span class="text-muted">Telefono: </span>{{client_info.telefono1}}</p>
+            <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client_info.nombre_encargado.toLowerCase()}}</p>
+          </div>
+        </div>
       </div>
+      <div class="col-md-6">
+
+        <div class="card " >
+          <div class="card-body">
+            <h5 class="card-title">Detalles</h5>
+            <p class="mb-1"><span class="text-muted">Codigo: </span> {{client_info.cod_cliente}}</p>
+            <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client_info.tipo_venta}}</p>
+            <p class="mb-1"><span class="text-muted">Plazo: </span> {{client_info.v_plazo}} dias</p>
+            <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client_info.limite_credito)}}</p>
+            <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,creditoClient)}}</p>
+            <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Vendedor: </span> {{client_info.vendedor.toLowerCase()}}</p>
+            <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Analista de cobranzas: </span> {{client_info.v_persona_cyc.toLowerCase()}}</p>
+          </div>
+        </div>
+      </div>
+
+
   </div>
 
 

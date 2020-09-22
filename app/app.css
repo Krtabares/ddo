@@ -264,7 +264,10 @@ body {
 
 .modal-body-he{
 	height: 450px !important;
-	overflow: scroll !important;
+  overflow-y: scroll !important;
+  padding-top: 15px;
+	/* background-color: #dcdcdd; */
+	overflow-x: hidden !important;
 }
 .modal-90{
 	width: 90%;
@@ -630,7 +633,7 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
   height: 4px;
   left: 0;
   position: absolute;
-  width: 100%;
+  width: 60%;
 }
 .hamburger.is-open .hamb-top {
   -webkit-transform: rotate(45deg);
@@ -764,4 +767,29 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
   background-color: #f2dede;
   border-color: #ebcccc;
   color: #a94442;
+}
+.card, .alert{
+	border: 0;
+  box-shadow: 0 1px 1px 0 rgba(60,75,100,.14), 0 2px 1px -1px rgba(60,75,100,.12), 0 1px 3px 0 rgba(60,75,100,.2);
+}
+ #wrapper{
+	 background-color: #dcdcdd;
+ }
+
+#page-content-wrapper{
+	padding-right: 0px !important;
+  padding-bottom: 15px;
+}
+.breadcrumb{
+	padding-left: 55px;
+	background-color: #dcdcdd;
+    border: none;
+}
+td p {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+.table {
+	font-size: 13px
 }

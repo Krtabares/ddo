@@ -62,26 +62,34 @@
               <!--  END INFO CLIENTE -->
               <div ng-show="!hasUserClient">
 
-                <div class="row pb-2 p-2" ng-if="clientIndex != -1" >
+                <div class="row " ng-if="clientIndex != -1" >
                   <div class="col-md-6">
-                      <p class="font-weight-bold mb-4">Informacion del Cliente </p>
-                      <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client.nombre_cliente}}</p>
-                      <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
-                      <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
-                      <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
-                      <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
-                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                    <div class="card " >
+                      <div class="card-body">
+                        <h5 class="card-title">Informacion del Cliente </h5>
+                        <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client.nombre_cliente}}</p>
+                        <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
+                        <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
+                        <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
+                        <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
+                        <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                      </div>
+                    </div>
                   </div>
-
                   <div class="col-md-6">
-                      <p class="font-weight-bold mb-4">Detalles</p>
-                      <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
-                      <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client.tipo_venta}}</p>
-                      <p class="mb-1"><span class="text-muted">Plazo: </span> {{client.v_plazo}} dias</p>
-                      <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client.limite_credito)}}</p>
-                      <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</p>
-                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Vendedor: </span> {{client.vendedor.toLowerCase()}}</p>
-                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Analista de cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
+
+                    <div class="card " >
+                      <div class="card-body">
+                        <h5 class="card-title">Detalles</h5>
+                        <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
+                        <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client.tipo_venta}}</p>
+                        <p class="mb-1"><span class="text-muted">Plazo: </span> {{client.v_plazo}} dias</p>
+                        <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client.limite_credito)}}</p>
+                        <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</p>
+                        <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Vendedor: </span> {{client.vendedor.toLowerCase()}}</p>
+                        <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Analista de cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -307,26 +315,34 @@
             <header-client></header-client>
             <div ng-show="!hasUserClient">
 
-              <div class="row pb-2 p-2"  >
+              <div class="row "  >
                 <div class="col-md-6">
-                    <p class="font-weight-bold mb-4">Informacion del Cliente </p>
-                    <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client.nombre_cliente}}</p>
-                    <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
-                    <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
-                    <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
-                    <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
-                    <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                  <div class="card " >
+                    <div class="card-body">
+                      <h5 class="card-title">Informacion del Cliente </h5>
+                      <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client.nombre_cliente}}</p>
+                      <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
+                      <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
+                      <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
+                      <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
+                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                    </div>
+                  </div>
                 </div>
-
                 <div class="col-md-6">
-                    <p class="font-weight-bold mb-4">Detalles</p>
-                    <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
-                    <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client.tipo_venta}}</p>
-                    <p class="mb-1"><span class="text-muted">Plazo: </span> {{client.v_plazo}} dias</p>
-                    <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client.limite_credito)}}</p>
-                    <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</p>
-                    <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Vendedor: </span> {{client.vendedor.toLowerCase()}}</p>
-                    <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Analista de cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
+
+                  <div class="card " >
+                    <div class="card-body">
+                      <h5 class="card-title">Detalles</h5>
+                      <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
+                      <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client.tipo_venta}}</p>
+                      <p class="mb-1"><span class="text-muted">Plazo: </span> {{client.v_plazo}} dias</p>
+                      <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client.limite_credito)}}</p>
+                      <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</p>
+                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Vendedor: </span> {{client.vendedor.toLowerCase()}}</p>
+                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Analista de cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -741,162 +757,160 @@
     <div class="row" style="min-height:80vh">
 
       <div class="col-md-12 col-sm-12">
-        <br>
+        <!-- <br>
         <h5 class="text-center"> <strong>PEDIDOS </strong> </h5>
-        <br>
+        <br> -->
+
+        <nav aria-label="breadcrumb" role="navigation">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a class="text-success" >getbootstrap.com</a></li>
+            <li class="breadcrumb-item"><a class="text-info" href="#!/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Pedidos</li>
+          </ol>
+        </nav>
 
         <header-client></header-client>
 
         <div ng-show="!hasUserClient">
-          <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <label for="clientes">Busqueda por cliente</label>
-              <div class="input-group mb-3">
-                <input type="text" id="clientes"
-                class="form-control"
-                ng-keydown="$event.keyCode === 13 && getClientNew(true)"
-                ng-model="nombre_cliente"
-                placeholder="Busqueda por Cliente"
-                aria-label="Busqueda por Cliente"
-                aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+          <div class="row" style="margin-bottom: 15px;">
+            <div class="col-md-12">
+              <div class="card " >
+                <div class="card-body">
+                  <h5 class="card-title">Busqueda por cliente </h5>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                      <!-- <label for="clientes">Busqueda por cliente</label> -->
+                      <div class="input-group mb-3">
+                        <input type="text" id="clientes"
+                        class="form-control"
+                        ng-keydown="$event.keyCode === 13 && getClientNew(true)"
+                        ng-model="nombre_cliente"
+                        placeholder="Busqueda por Cliente"
+                        aria-label="Busqueda por Cliente"
+                        aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
+                      <div class="form-group">
+                        <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                        <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
+                          <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
+                          <option value="" disabled selected>Seleccione un cliente</option>
+                        </select>
+                      </div>
+                    </div>
+
+                  </div>
+
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
-              <div class="form-group">
-                <label for="exampleFormControlSelect1">Seleccione</label>
-                <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
-                  <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
-                  <option value="" disabled selected>Seleccione un cliente</option>
-                </select>
+
+          </div>
+
+          <div class="col-md-12">
+
+            <div class="alert alert-danger"  ng-show="!clienteValido && !hasUserClient && clientInvalidoMsg != null" role="alert">
+              Advertencia:
+              <strong>{{clientInvalidoMsg}}</strong>
+            </div>
+          </div>
+          <div class="row " style="margin-bottom: 15px;" ng-if="clientIndex != null">
+            <div class="col-md-6">
+              <div class="card " >
+                <div class="card-body">
+                  <h5 class="card-title">Informacion del Cliente </h5>
+                  <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client.nombre_cliente}}</p>
+                  <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
+                  <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
+                  <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
+                  <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
+                  <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="alert alert-danger"  ng-show="!clienteValido && !hasUserClient && clientInvalidoMsg != null" role="alert">
-            Advertencia:
-            <strong>{{clientInvalidoMsg}}</strong>
-          </div>
-          <div class="row pb-2 p-2" ng-if="clientIndex != null">
             <div class="col-md-6">
-                <p class="font-weight-bold mb-4">Informacion del Cliente </p>
-                <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client.nombre_cliente}}</p>
-                <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
-                <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
-                <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
-                <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
-                <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
-            </div>
 
-            <div class="col-md-6">
-                <p class="font-weight-bold mb-4">Detalles</p>
-                <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
-                <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client.tipo_venta}}</p>
-                <p class="mb-1"><span class="text-muted">Plazo: </span> {{client.v_plazo}} dias</p>
-                <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client.limite_credito)}}</p>
-                <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</p>
-                <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Vendedor: </span> {{client.vendedor.toLowerCase()}}</p>
-                <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Analista de cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
+              <div class="card " >
+                <div class="card-body">
+                  <h5 class="card-title">Detalles</h5>
+                  <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
+                  <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client.tipo_venta}}</p>
+                  <p class="mb-1"><span class="text-muted">Plazo: </span> {{client.v_plazo}} dias</p>
+                  <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client.limite_credito)}}</p>
+                  <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</p>
+                  <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Vendedor: </span> {{client.vendedor.toLowerCase()}}</p>
+                  <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Analista de cobranzas: </span> {{client.v_persona_cyc.toLowerCase()}}</p>
+                </div>
+              </div>
             </div>
           </div>
 
         </div>
 
-        <div class="row">
+        <div class="">
           <!-- <div class="col-sm-12 d-none d-sm-block">
 
           </div> -->
-          <div class="col-md-12" ng-show="showProductTable || hasUserClient"  >
-            <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();" ng-disabled="!clienteValido" ng-show="!unicOrderID"  > <i class="fa fa-edit"></i> Crear pedido</button>
-            <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="getPedido(unicOrderID);" ng-disabled="!clienteValido" ng-show="unicOrderID" data-toggle="modal" data-target="#showPedidoModal"  > <i class="fa fa-edit"></i>Continuar Pedido</button>
 
+          <div class="col-md-12 mt-10 mb-10">
+            <div class="card " >
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12" ng-show="showProductTable || hasUserClient"  >
+                    <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();" ng-disabled="!clienteValido" ng-show="!unicOrderID"  > <i class="fa fa-edit"></i> Crear pedido</button>
+                    <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="getPedido(unicOrderID);" ng-disabled="!clienteValido" ng-show="unicOrderID" data-toggle="modal" data-target="#showPedidoModal"  > <i class="fa fa-edit"></i>Continuar Pedido</button>
+
+                  </div>
+
+                  <div class="col-md-12">
+
+                    <table class="table table-striped table-bordered"  datatable="ng" dt-options="dtOptions">
+                      <thead>
+                        <tr>
+                          <th scope="col"><p class="text-center">#</p></th>
+                          <th scope="col"><p class="text-center">N pedido</p></th>
+                          <th scope="col"><p class="text-center">Fecha creacion</p></th>
+                          <th  ng-show="!hasUserClient" scope="col"><p class="text-center">Nombre Cliente</p></th>
+                          <!-- <th scope="col"><p class="text-center">Direcion</p></th> -->
+                          <th scope="col"><p class="text-center">Estatus</p></th>
+                          <th scope="col"><p class="text-center">Fecha actualizado</p></th>
+                          <th scope="col"><p class="text-center">Opciones</p></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr ng-repeat="x in listaPedidosV2">
+                          <th scope="row">{{ $index + 1 }}</th>
+                          <td><p class="text-center">ORD-{{ x.ID }}-WEB</p></td>
+                          <td><p class="text-center">{{  x.fecha_creacion }}</p></td>
+                          <td ng-show="!hasUserClient" ><p class="text-center">{{ x.nombre_cliente }}</p></td>
+                          <!-- <td><p class="text-center">{{ x.direccion_cliente }}</p></td> -->
+                          <td><p class="text-center">{{ x.estatus }}</p></td>
+                          <td><p class="text-center">{{ x.fecha_estatus }}</p></td>
+                          <td>
+                            <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
+
+
+                            <!-- <button type="button" class="btn btn-info"  ></button> -->
+                            <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
+
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
           </div>
 
-          <div class="col-md-12">
-  			<!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
-        </table> -->
-
-        <table class="table " ng-if="1 == 2 " datatable="ng" dt-options="dtOptions">
-          <thead>
-              <tr>
-              <th scope="col"><p class="text-center">#</p></th>
-              <!-- <th scope="col"><p class="text-center">Número cia</p></th> -->
-              <th scope="col"><p class="text-center">N pedido</p></th>
-              <th scope="col"><p class="text-center">Fecha</p></th>
-              <th ng-show="!hasUserClient" scope="col"><p class="text-center">Número Cliente</p></th>
-              <th scope="col"><p class="text-center">Número Pedido</p></th>
-              <th scope="col"><p class="text-center">Estatus</p></th>
-              <th scope="col"><p class="text-center">Monto</p></th>
-              <th scope="col"><p class="text-center">Cantidad de Productos</p></th>
-              <th scope="col"><p class="text-center">Opciones</p></th>
-
-              </tr>
-          </thead>
-          <tbody>
-
-              <tr ng-repeat="x in listaPedidos">
-                  <th scope="row">{{ $index + 1 }}</th>
-                  <!-- <td><p class="text-center">{{ x.no_cia }}</p></td> -->
-                  <td><p class="text-center">ORD-{{ x.ID }}-WEB</p></td>
-                  <td><p class="text-center">{{  x.fecha }}</p></td>
-                  <td ng-show="!hasUserClient" ><p class="text-center">{{ x.no_cliente }}</p></td>
-                  <td><p class="text-center">{{ x.no_factu }}</p></td>
-                  <td><p class="text-center">{{ x.estatus }}</p></td>
-                  <td><p class="text-right">{{ formato(2,x.precio) }}</p></td>
-                  <td><p class="text-center">{{ x.cantidad }}</p></td>
-                  <td>
-                    <!-- <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);">X</button> -->
-
-                    <!-- <button type="button" class="btn btn-danger" ></button> -->
-                    <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus_id < 3" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
-
-
-                    <!-- <button type="button" class="btn btn-info"  ></button> -->
-                    <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
-
-
-                  </td>
-                </tr>
-          </tbody>
-          </table>
-
-          <table class="table"  datatable="ng" dt-options="dtOptions">
-            <thead>
-                <tr>
-                <th scope="col"><p class="text-center">#</p></th>
-                <th scope="col"><p class="text-center">N pedido</p></th>
-                <th scope="col"><p class="text-center">Fecha creacion</p></th>
-                <th  ng-show="!hasUserClient" scope="col"><p class="text-center">Nombre Cliente</p></th>
-                <!-- <th scope="col"><p class="text-center">Direcion</p></th> -->
-                <th scope="col"><p class="text-center">Estatus</p></th>
-                <th scope="col"><p class="text-center">Fecha actualizado</p></th>
-                <th scope="col"><p class="text-center">Opciones</p></th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr ng-repeat="x in listaPedidosV2">
-                    <th scope="row">{{ $index + 1 }}</th>
-                    <td><p class="text-center">ORD-{{ x.ID }}-WEB</p></td>
-                    <td><p class="text-center">{{  x.fecha_creacion }}</p></td>
-                    <td ng-show="!hasUserClient" ><p class="text-center">{{ x.nombre_cliente }}</p></td>
-                    <!-- <td><p class="text-center">{{ x.direccion_cliente }}</p></td> -->
-                    <td><p class="text-center">{{ x.estatus }}</p></td>
-                    <td><p class="text-center">{{ x.fecha_estatus }}</p></td>
-                    <td>
-                      <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
-
-
-                      <!-- <button type="button" class="btn btn-info"  ></button> -->
-                      <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
-
-
-                    </td>
-                  </tr>
-            </tbody>
-            </table>
-          </div>
         </div>
 
       </div>

@@ -9,11 +9,14 @@
     <div class="row" style="min-height:80vh">
 
       <div class="col-md-12 col-sm-12">
-        <br>
-        <!--<h5 class="text-center"> <strong>SALDO DE CLIENTES</strong> </h5>-->
-  	  <h5 class="text-center"> <strong>PRODUCTOS</strong> </h5>
-        <br>
 
+        <nav aria-label="breadcrumb" role="navigation">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a class="text-success" >getbootstrap.com</a></li>
+            <li class="breadcrumb-item"><a class="text-info" href="#!/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Productos</li>
+          </ol>
+        </nav>
           <!-- INFO CLIENTE -->
           <header-client></header-client>
         <!--  END INFO CLIENTE -->
@@ -44,39 +47,43 @@
 
       </div>
   </div>
-  <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-6">
-      <label for="clientes">Busqueda por producto</label>
-      <div class="input-group mb-3">
-        <input type="text" class="form-control"  ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
+<div class="col-md-12 mt-10 mb-10">
+  <div class="card " >
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <label for="clientes">Busqueda por producto</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control"  ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
+            </div>
+          </div>
+
         </div>
+        <div class="col-md-12">
+        </div>
+
       </div>
+      <div ng-if="clientIndex != -1" >
+        <!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="table table-striped table-bordered">
+        </table> -->
 
-    </div>
-    <div class="col-md-12">
-    </div>
+        <table class="table table-striped table-bordered"  datatable="ng" dt-options="dtOptions">
+          <thead>
+            <tr>
+              <th scope="col"><p class="text-center">#</p></th>
+              <th scope="col"><p class="text-center">Nombre de producto</p></th>
+              <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
+              <th scope="col"><p class="text-center">Proveedor</p></th>
+              <th scope="col"><p class="text-center">Principio activo</p></th>
+              <th scope="col"><p class="text-center">Existencia</p></th>
+            </tr>
+          </thead>
+          <tbody>
 
-  </div>
-  <div ng-if="clientIndex != -1" >
-    <!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="table table-striped table-bordered">
-    </table> -->
-
-    <table class="table table-striped table-bordered"  datatable="ng" dt-options="dtOptions">
-      <thead>
-          <tr>
-          <th scope="col"><p class="text-center">#</p></th>
-          <th scope="col"><p class="text-center">Nombre de producto</p></th>
-          <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
-          <th scope="col"><p class="text-center">Proveedor</p></th>
-          <th scope="col"><p class="text-center">Principio activo</p></th>
-          <th scope="col"><p class="text-center">Existencia</p></th>
-          </tr>
-      </thead>
-      <tbody>
-
-          <tr ng-repeat="x in listaProd">
+            <tr ng-repeat="x in listaProd">
               <th scope="row">{{ $index + 1 }}</th>
               <td><p class="text-center">{{ x.nombre_producto }}</p></td>
               <td><p class="text-center">{{ x.fecha_vence }}</p></td>
@@ -85,10 +92,15 @@
               <td><p class="text-center">{{ x.existencia }}</p></td>
 
             </tr>
-      </tbody>
-      </table>
+          </tbody>
+        </table>
 
+      </div>
+
+    </div>
   </div>
+</div>
+
 
 
       </div>
@@ -100,3 +112,6 @@
   </div>
 </div>
 <my-footer></my-footer>
+<div ng-show="loading">
+  <my-loading></my-loading>
+</div>
