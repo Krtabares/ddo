@@ -14,7 +14,7 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
     function($scope, $q, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, localstorage, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
       var ip = "http://192.168.168.170:3500";
- 
+
       $scope.deuda = {};
       $scope.listDeuda = [{}];
 
@@ -43,8 +43,8 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
             DTColumnBuilder.newColumn('cod_cliente').withTitle('Codigo'),
             DTColumnBuilder.newColumn('nombre_cliente').withTitle('Nombre'),
             DTColumnBuilder.newColumn('docu_identif_cliente').withTitle('Documento de identificación'),
+            DTColumnBuilder.newColumn('zona').withTitle('Ciudad'),
             DTColumnBuilder.newColumn('direccion_cliente').withTitle('Direccion'),
-            // DTColumnBuilder.newColumn('cod_cia').withTitle('Código Cia'),
             /*DTColumnBuilder.newColumn('nombre_cia').withTitle('Nombre Cia'),*/
             // DTColumnBuilder.newColumn('grupo_cliente').withTitle('Grupo del cliente'),
             DTColumnBuilder.newColumn('nombre_encargado').withTitle('Nombre del encargado').withClass('none'),
