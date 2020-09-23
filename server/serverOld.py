@@ -706,43 +706,45 @@ async def procedure(request , token : Token):
     #                 )
     #             )
     #
-    # textVar = c.var(str)
-    # statusVar = c.var(int)
-    # list = []
-    # while True:
-    #     c.callproc("dbms_output.get_line", (textVar, statusVar))
-    #     if statusVar.getvalue() != 0:
-    #         break
-    #     arr = str(textVar.getvalue()).split("|")
-    #     obj = {
-    #         'no_fisico' :arr[0],
-    #         'codigo_cliente' :arr[1],
-    #         'nombre_cliente' :arr[2],
-    #         'tipo_venta' :arr[3],
-    #         'fecha_vencimiento' :arr[4],
-    #         'monto_inicial' :arr[5],
-    #         'monto_actual' :arr[6],
-    #         'monto_inicial_usd' :arr[7],
-    #         'monto_actual_usd' :arr[8],
-    #         'fecha_ultimo_pago' :arr[9],
-    #         'monto_ultimo_pago' :arr[10],
-    #         'estatus_deuda' :arr[11],
-    #         'codigo_tipo_doc' :arr[12],
-    #         'nombre_tipo_doc' :arr[13],
-    #         'cia' :arr[14],
-    #         'grupo' :arr[15],
-    #         'tipo_cambio' :arr[16],
-    #         'fecha_aviso' :arr[17],
-    #         'docu_aviso' :arr[18],
-    #         'serie_fisico' :arr[19],
-    #         'fecha_documento' :arr[20],
-    #         'aplica_corte' :arr[21],
-    #
-    #     }
-    #     list.append(obj)
-    # return response.json({"msj":"OK", "obj": list}, 200)
     print(sql)
-    return response.json({"msj":"OK"}, 200)
+    c.execute(sql)
+    textVar = c.var(str)
+    statusVar = c.var(int)
+    list = []
+    while True:
+        c.callproc("dbms_output.get_line", (textVar, statusVar))
+        if statusVar.getvalue() != 0:
+            break
+        arr = str(textVar.getvalue()).split("|")
+        obj = {
+            'no_fisico' :arr[0],
+            'codigo_cliente' :arr[1],
+            'nombre_cliente' :arr[2],
+            'tipo_venta' :arr[3],
+            'fecha_vencimiento' :arr[4],
+            'monto_inicial' :arr[5],
+            'monto_actual' :arr[6],
+            'monto_inicial_usd' :arr[7],
+            'monto_actual_usd' :arr[8],
+            'fecha_ultimo_pago' :arr[9],
+            'monto_ultimo_pago' :arr[10],
+            'estatus_deuda' :arr[11],
+            'codigo_tipo_doc' :arr[12],
+            'nombre_tipo_doc' :arr[13],
+            'cia' :arr[14],
+            'grupo' :arr[15],
+            'tipo_cambio' :arr[16],
+            'fecha_aviso' :arr[17],
+            'docu_aviso' :arr[18],
+            'serie_fisico' :arr[19],
+            'fecha_documento' :arr[20],
+            'aplica_corte' :arr[21],
+
+        }
+        list.append(obj)
+    return response.json({"msj":"OK", "obj": list}, 200)
+
+    # return response.json({"msj":"OK"}, 200)
 
 @app.route('/procedure_productos', ["POST", "GET"])
 async def procedure(request):
