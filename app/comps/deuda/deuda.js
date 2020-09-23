@@ -146,39 +146,10 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
       });
     }
 	$scope.listDeuda=[]
-	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
-        var defer = $q.defer();
-        var body = {}
-       body.pCLiente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
-       body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
-       body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
-
-         request.post(ip+'/procedure_deudas', body, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
-          .then(function successCallback(response) {
-            console.log(response.data)
-            response.data.obj.forEach((item, i) => {
-              item.monto_inicial = item.monto_inicial.replace(",", ".")
-              item.monto_inicial = $scope.formato(2,parseFloat(item.monto_inicial).toFixed(2) )
-              item.monto_actual = item.monto_actual.replace(",", ".")
-              item.monto_actual = $scope.formato(2,parseFloat(item.monto_actual).toFixed(2) )
-              item.monto_ultimo_pago = item.monto_ultimo_pago.replace(",", ".")
-              item.monto_ultimo_pago = $scope.formato(2,parseFloat(item.monto_ultimo_pago).toFixed(2) )
-
-            });
-
-            $scope.listDeuda=response.data.obj
-			defer.resolve(response.data.obj);
-         });
-        return defer.promise;
-		})
-		.withDOM('frtip')
-        .withPaginationType('full_numbers')
-		.withButtons([
-            'colvis',
-            'pdf',
-            'excel'
-        ])
-		.withOption('responsive', true);
+  $scope.dtOptions = DTOptionsBuilder.newOptions()
+      .withPaginationType('full_numbers')
+      .withOption('responsive', true)
+      .withDOM('frtip').withPaginationType('full_numbers')
 
         $scope.dtColumns = [
             // DTColumnBuilder.newColumn('no_fisico').withTitle('N° de documento'),
