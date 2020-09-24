@@ -306,6 +306,9 @@
             <li class="nav-item">
               <a class="nav-link" ng-class="{ active : tabsIndex == 1 }" ng-disabled="!showProductTable || !clienteValido" ng-click="goToTab(1)" >Detalle de pedido <span class="badge badge-secondary">2</span></a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" ng-class="{ active : tabsIndex == 2 }" ng-disabled="!showProductTable || !clienteValido" ng-click="goToTab(2)" >Detalle de pedido <span class="badge badge-secondary">2</span></a>
+            </li>
         </ul>
 
         <div class="modal-body-he">
@@ -492,6 +495,36 @@
               </div>
 
 
+
+          </div>
+
+          <div class="col-sm-12 col-md-12 col-lg-12" ng-show="tabsIndex == 2"  >
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+                  <table class="table">
+                      <thead>
+                          <tr>
+                          <!-- <th scope="col"><p class="text-center">#</p></th> -->
+                          <!-- <th scope="col"><p class="text-center">Codigo de Articulo</p></th> -->
+                          <th scope="col"><p class="text-center">Descripcion</p></th>
+                          <th scope="col"><p class="text-center">Fecha</p></th>
+
+
+                          </tr>
+                      </thead>
+                      <tbody>
+
+                          <tr ng-repeat="x in pedido.errores" ng-class="{ incideRow : x.alert }" >
+                              <!-- <th scope="row">{{ $index + 1 }}</th> -->
+                              <!-- <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td> -->
+                              <td><p class="text-center">{{ x.DESCRIPCION }}</p></td>
+                              <td><p class="text-center">{{ x.FECHA }}</p></td>
+
+                            </tr>
+                      </tbody>
+                      </table>
+            </div>
 
           </div>
 

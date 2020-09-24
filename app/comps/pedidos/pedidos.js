@@ -16,7 +16,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             'fecha': new Date(),
             'pedido':[]
         };
-        $scope.tabs = 1
+        $scope.tabs = 2
         $scope.tabsIndex = 0
         $scope.editView = false;
         $scope.articulo = {};
