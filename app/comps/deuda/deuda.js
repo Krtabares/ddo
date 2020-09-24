@@ -65,7 +65,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
 
               $scope.listAvisos = {}
               //Recorremos el arreglo
-              response.obj.forEach( x => {
+              response.data.obj.forEach( x => {
                 if( !$scope.listAvisos.hasOwnProperty(x.docu_aviso)){
                   $scope.listAvisos[x.docu_aviso] = {
                     facturas: [],
