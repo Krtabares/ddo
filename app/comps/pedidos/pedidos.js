@@ -339,18 +339,40 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.selectProduct = function(value = null){
+          //TODO
+
+
 
 
            var index = (value!=null)? value:$scope.productIndex
             $scope.productIndex = index;
             $scope.product  = $scope.productos[ index ];
             $scope.articulo = $scope.product
+
+            var existe = false;
+            var cantidadAux = 0;
+            $scope.pedido.pedido.forEach((element,i) => {
+              console.log($scope.articulo);
+              if($scope.articulo.cod_producto == element.COD_PRODUCTO){
+                existe = true;
+                console.log("existe", existe);
+                cantidadAux = parseInt(articulo.CANTIDAD)
+                return
+              }
+            });
+
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
             $scope.articulo.PRECIO = $scope.product.precio_bruto_bs.replace(",", ".");
             $scope.articulo.precio_neto_usd = $scope.product.precio_neto_usd.replace(",", ".")
             $scope.articulo.existencia =$scope.product.existencia
-            $scope.articulo.CANTIDAD = 1
-            // $scope.articulo.no_cliente = $scope.client.cod_cliente
+
+            if(!existe){
+
+              $scope.articulo.CANTIDAD = 1
+              // $scope.articulo.no_cliente = $scope.client.cod_cliente
+            }else{
+              scope.articulo.CANTIDAD = cantidadAux
+            }
             angular.element('#btnProductInfo').trigger('click');
             console.log($scope.product )
 
