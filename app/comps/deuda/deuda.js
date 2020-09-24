@@ -16,11 +16,27 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
       var ip = "http://192.168.168.170:3500";
 
       $scope.deuda = {};
+      $scope.tabsIndex = 0
+      $scope.tabs = 1
       $scope.listDeuda = [{}];
       $scope.hasUserClient = false;
       $scope.client = {};
       $scope.client_info = {}
+      $scope.listFact = []
+      $scope.response = {"msj":"OK","obj":[{"no_fisico":"1366482","codigo_cliente":"COLI","nombre_cliente":"FARMACIA EL COLIBRI, C.A.","tipo_venta":"CREDITO","fecha_vencimiento":"03\/07\/20","monto_inicial":"68907665.01","monto_actual":"68907665.01","monto_inicial_usd":"340.49","monto_actual_usd":"340.49","fecha_ultimo_pago":"","monto_ultimo_pago":"","estatus_deuda":"VENCIDA","codigo_tipo_doc":"01","nombre_tipo_doc":"FACTURA","cia":"01","grupo":"01","tipo_cambio":"202375.99","fecha_aviso":"26\/06\/20","docu_aviso":"245571","serie_fisico":"0","fecha_documento":"19\/06\/20","aplica_corte":"S"},{"no_fisico":"1366817","codigo_cliente":"COLI","nombre_cliente":"FARMACIA EL COLIBRI, C.A.","tipo_venta":"CREDITO","fecha_vencimiento":"07\/07\/20","monto_inicial":"76754812.85","monto_actual":"76754812.85","monto_inicial_usd":"380.63","monto_actual_usd":"380.63","fecha_ultimo_pago":"","monto_ultimo_pago":"","estatus_deuda":"VENCIDA","codigo_tipo_doc":"01","nombre_tipo_doc":"FACTURA","cia":"01","grupo":"01","tipo_cambio":"201651.62","fecha_aviso":"","docu_aviso":"","serie_fisico":"0","fecha_documento":"29\/06\/20","aplica_corte":"S"},{"no_fisico":"1366818","codigo_cliente":"COLI","nombre_cliente":"FARMACIA EL COLIBRI, C.A.","tipo_venta":"CREDITO","fecha_vencimiento":"07\/07\/20","monto_inicial":"33609580.12","monto_actual":"33609580.12","monto_inicial_usd":"166.67","monto_actual_usd":"166.67","fecha_ultimo_pago":"","monto_ultimo_pago":"","estatus_deuda":"VENCIDA","codigo_tipo_doc":"01","nombre_tipo_doc":"FACTURA","cia":"01","grupo":"01","tipo_cambio":"201651.62","fecha_aviso":"","docu_aviso":"","serie_fisico":"0","fecha_documento":"29\/06\/20","aplica_corte":"S"},{"no_fisico":"1366834","codigo_cliente":"COLI","nombre_cliente":"FARMACIA EL COLIBRI, C.A.","tipo_venta":"CREDITO","fecha_vencimiento":"07\/07\/20","monto_inicial":"9026992.51","monto_actual":"9026992.51","monto_inicial_usd":"44.61","monto_actual_usd":"44.61","fecha_ultimo_pago":"","monto_ultimo_pago":"","estatus_deuda":"VENCIDA","codigo_tipo_doc":"01","nombre_tipo_doc":"FACTURA","cia":"01","grupo":"01","tipo_cambio":"202331.51","fecha_aviso":"","docu_aviso":"","serie_fisico":"0","fecha_documento":"29\/06\/20","aplica_corte":"S"},{"no_fisico":"1366927","codigo_cliente":"COLI","nombre_cliente":"FARMACIA EL COLIBRI, C.A.","tipo_venta":"CREDITO","fecha_vencimiento":"07\/07\/20","monto_inicial":"90945304.13","monto_actual":"90945304.13","monto_inicial_usd":"449.49","monto_actual_usd":"449.49","fecha_ultimo_pago":"","monto_ultimo_pago":"","estatus_deuda":"VENCIDA","codigo_tipo_doc":"01","nombre_tipo_doc":"FACTURA","cia":"01","grupo":"01","tipo_cambio":"202331.51","fecha_aviso":"","docu_aviso":"","serie_fisico":"0","fecha_documento":"30\/06\/20","aplica_corte":"S"},{"no_fisico":"185190","codigo_cliente":"COLI","nombre_cliente":"FARMACIA EL COLIBRI, C.A.","tipo_venta":"CREDITO","fecha_vencimiento":"","monto_inicial":"8414010.00","monto_actual":"-8414010.00","monto_inicial_usd":"41.73","monto_actual_usd":"-41.73","fecha_ultimo_pago":"","monto_ultimo_pago":"","estatus_deuda":"POR VENCER","codigo_tipo_doc":"04","nombre_tipo_doc":"NOTA CREDITO","cia":"01","grupo":"01","tipo_cambio":"201651.62","fecha_aviso":"","docu_aviso":"","serie_fisico":"00-","fecha_documento":"26\/06\/20","aplica_corte":"S"}]}
+      $scope.aplica_corte = false
+      $scope.listAvisos = [];
 
+
+      $scope.nextStep = function () {
+        $scope.goToTab($scope.tabsIndex + 1 );
+      }
+
+      $scope.goToTab = function (index) {
+        if(index <= $scope.tabs )
+          $scope.tabsIndex = index
+
+      }
 
       $scope.getDeudas = function(){
         var body = {}
@@ -28,21 +44,54 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
        body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
        body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
 
-         request.post(ip+'/procedure_deudas', body, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
-          .then(function successCallback(response) {
-            console.log(response.data)
-            response.data.obj.forEach((item, i) => {
-              item.monto_inicial = item.monto_inicial.replace(",", ".")
-              item.monto_inicial = $scope.formato(2,parseFloat(item.monto_inicial).toFixed(2) )
-              item.monto_actual = item.monto_actual.replace(",", ".")
-              item.monto_actual = $scope.formato(2,parseFloat(item.monto_actual).toFixed(2) )
-              item.monto_ultimo_pago = item.monto_ultimo_pago.replace(",", ".")
-              item.monto_ultimo_pago = $scope.formato(2,parseFloat(item.monto_ultimo_pago).toFixed(2) )
+         // request.post(ip+'/procedure_deudas', body, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
+         //  .then(function successCallback(response) {
+            // console.log(response.data)
+            var response = $scope.response
+            console.log(response)
+            response.obj.forEach((item, i) => {
+
+              if(1==2 && item.aplica_corte=="S"){
+                $scope.aplica_corte = true
+                return
+              }else{
+                  $scope.listFact = response.obj;
+                  return;
+              }
 
             });
+            // console.log($scope.listFact)
+            if($scope.aplica_corte){
 
-            $scope.listDeuda = response.data.obj
-         });
+              $scope.listAvisos = {}
+              //Recorremos el arreglo
+              response.obj.forEach( x => {
+                if( !$scope.listAvisos.hasOwnProperty(x.docu_aviso)){
+                  $scope.listAvisos[x.docu_aviso] = {
+                    facturas: [],
+                    fecha_aviso: x.fecha_aviso,
+                    docu_aviso: x.docu_aviso,
+                    saldo: 0
+                  }
+                }
+
+                $scope.listAvisos[x.docu_aviso].facturas.push(x)
+                $scope.listAvisos[x.docu_aviso].saldo += parseFloat(x.monto_actual)
+              })
+
+            }
+
+            // $scope.listDeuda = response.data.obj
+
+         // });
+      }
+      $scope.avisoAct = {}
+      $scope.selectAviso=function (row) {
+
+          $scope.listFact = row.facturas;
+          $scope.avisoAct.fecha_aviso= row.fecha_aviso
+
+
       }
 
       verificClient()
@@ -155,6 +204,11 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
       .withOption('responsive', true)
       .withDOM('frtip').withPaginationType('full_numbers')
 
+  $scope.dtOptionsAviso = DTOptionsBuilder.newOptions()
+      .withPaginationType('full_numbers')
+      .withOption('responsive', true)
+      .withDOM('frtip').withPaginationType('full_numbers')
+
         $scope.dtColumns = [
             // DTColumnBuilder.newColumn('no_fisico').withTitle('N° de documento'),
             // DTColumnBuilder.newColumn('fecha_vencimiento').withTitle('Fecha de vencimiento'),
@@ -181,6 +235,9 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
             DTColumnBuilder.newColumn('serie_fisico').withTitle('Serie'),
             DTColumnBuilder.newColumn('fecha_documento').withTitle('Fecha documento')
         ];
+
+
+
 
 	/*$('#deudas_table').DataTable( {
       dom: 'Bfrtip',

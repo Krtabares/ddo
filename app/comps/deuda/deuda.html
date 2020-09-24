@@ -4,7 +4,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="showDeudaModal" tabindex="-1" role="dialog" aria-labelledby="showDeudaModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog mw-100 modal-90" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
         <h5 class="modal-title" id="showDeudaModalLabel">VER DEUDA <i class="fas fa-1x fa-list-alt"></i> </h5>
@@ -13,33 +13,60 @@
         </button>
       </div>
       <div class="modal-body">
-		 <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body p-0">
-                    <div class="row p-1">
-                        <div class="col-md-12">
-                            <img src="img/logoddo.png">
-                        </div>
-                    </div>
+        <p class="mb-1"><span class="text-muted">Fecha de Entrega: </span> {{avisoAct.fecha_aviso}}</p>
+        <table datatable="ng" dt-options="dtOptionsAviso"  class="table table-striped table-bordered" >
+          <thead>
+            <tr>
+                <th scope="col"><p class="text-center">Tipo documento</p></th>
+                <th scope="col"><p class="text-center">Documento aviso</p></th>
+                <th scope="col"><p class="text-center">N° Fisico</p></th>
+                <th scope="col"><p class="text-center">Serie</p></th>
+                <th scope="col"><p class="text-center">Fecha documento</p></th>
+                <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
+                <th scope="col"><p class="text-center">Monto inicial</p></th>
+                <th scope="col"><p class="text-center">Monto actual</p></th>
 
-                    <div class="row pb-5 pt-1 p-5">
-                        <div class="col-md-12">
-                            <p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Nombre de cliente</span>  :  {{deuda.nombre_cliente}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Tipo de pago</span>  :  {{deuda.tipo_pago}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Fecha de vencimiento</span>  :  {{deuda.fecha_vencimiento}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Monto inicial</span>  :  {{deuda.monto_inicial}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Monto actual</span>  :  {{deuda.monto_actual}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Fecha de ultimo pago</span>  :  {{deuda.fecha_ultimo_pago}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Monto de ultimo pago</span>  :  {{deuda.monto_ultimo_pago}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Estatus de deuda</span>  :  {{deuda.estatus_deuda}} </p>
+                <!-- <th scope="col"><p class="text-center">Fecha aviso</p></th>
+                <th scope="col"><p class="text-center">Saldo</p></th>
+                <th scope="col"><p class="text-center">Tipo venta</p></th>
+                <th scope="col"><p class="text-center">Fecha ultimo pago</p></th>
+                <th scope="col"><p class="text-center">Monto ultimo pago</p></th>
+                <th scope="col"><p class="text-center">Estatus</p></th>
+                <th scope="col"><p class="text-center">codio</p></th>
+                <th scope="col"><p class="text-center">Tipo cambio</p></th>
+                <th scope="col"><p class="text-center">Opciones</p></th> -->
+              </tr>
+            </thead>
+            <tbody>
 
-						</div>
-                </div>
-            </div>
-        </div>
-    </div>
-      </div>
+              <tr  ng-repeat="x in listFact"   >
+                <td><p class="text-center">{{ x.codigo_tipo_doc }}</p></td>
+                <td><p class="text-center">{{ x.no_fisico }}</p></td>
+                <td><p class="text-center">{{ x.docu_aviso }}</p></td>
+                <td><p class="text-center">{{ x.serie_fisico }}</p></td>
+                <td><p class="text-center">{{ x.fecha_documento }}</p></td>
+                <td><p class="text-center">{{ x.fecha_vencimiento }}</p></td>
+                <td><p class="text-center">{{ formato(2,x.monto_inicial) }}</p></td>
+                <td><p class="text-center">{{ formato(2,x.monto_actual) }}</p></td>
+
+                <!-- <td><p class="text-center">{{ x.fecha_aviso }}</p></td>
+                <td><p class="text-center">{{ formato(2,x.saldo) }}</p></td>
+                <td><p class="text-center">{{ x.tipo_venta }}</p></td>
+                <td><p class="text-center">{{ x.fecha_ultimo_pago }}</p></td>
+                <td><p class="text-center">{{ x.monto_ultimo_pago }}</p></td>
+                <td><p class="text-center">{{ x.estatus_deuda }}</p></td>
+                <td><p class="text-center">{{ x.nombre_tipo_doc }}</p></td>
+                <td><p class="text-center">{{ x.tipo_cambio }}</p></td> -->
+
+                <!-- <td>
+                  <i class="fa fa-eye" style="cursor: pointer;"   ng-click=""  data-toggle="modal" data-target="#modalFactura"  ></i>
+                </td> -->
+              </tr>
+
+
+            </tbody>
+          </table>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" style="background: #212529;" data-dismiss="modal"><i class="fas fa-1x fa-times"></i></button>
       </div>
@@ -69,19 +96,16 @@
         <div class="card " >
           <div class="card-body">
             <div class="row">
-              <div class="col-md-12">
-                <!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
-                </table> -->
+              <div class="col-md-6">
 
-                <table datatable="ng" dt-options="dtOptions"  class="table table-striped table-bordered" >
+              </div>
+              <div class="col-md-12">
+
+
+                <!-- <table datatable="ng" dt-options="dtOptions"  class="table table-striped table-bordered" >
                   <thead>
                     <tr>
-                      <!-- <th scope="col"><p class="text-center">#</p></th>
-                        <th scope="col"><p class="text-center">N° Pedido</p></th>
-                        <th scope="col"><p class="text-center">Fecha factura</p></th>
-                        <th scope="col"><p class="text-center">Fecha pedido</p></th>
-                        <th scope="col"><p class="text-center">Nombre vendedor</p></th>
-                        <th scope="col"><p class="text-center">Email vendedor</p></th> -->
+
 
                         <th scope="col"><p class="text-center">N° de documento</p></th>
                         <th scope="col"><p class="text-center">Tipo venta</p></th>
@@ -127,7 +151,153 @@
 
 
                     </tbody>
-                  </table>
+                  </table> -->
+                  <div ng-if="!aplica_corte">
+
+                    <ul class="nav nav-tabs mb-4">
+                        <li class="nav-item">
+                          <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Detalle<span class="badge badge-secondary">1</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" ng-class="{ active : tabsIndex == 1  }" ng-click="goToTab(1)" >Vencimiento<span class="badge badge-secondary">2</span></a>
+                        </li>
+                    </ul>
+                    <div ng-show="tabsIndex == 0"  class="">
+
+                      <table datatable="ng"  class="table table-striped table-bordered" >
+                        <thead>
+                          <tr>
+
+
+                            <th scope="col"><p class="text-center">N° de fisico</p></th>
+                            <th scope="col"><p class="text-center">Fecha documento</p></th>
+                            <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
+                            <th scope="col"><p class="text-center">Monto actual</p></th>
+                            <!-- <th scope="col"><p class="text-center">Tipo venta</p></th>
+                              <th scope="col"><p class="text-center">Monto inicial</p></th>
+                              <th scope="col"><p class="text-center">Fecha ultimo pago</p></th>
+                              <th scope="col"><p class="text-center">Monto ultimo pago</p></th>
+                              <th scope="col"><p class="text-center">Estatus</p></th>
+                              <th scope="col"><p class="text-center">codio</p></th>
+                              <th scope="col"><p class="text-center">Tipo documento</p></th>
+                              <th scope="col"><p class="text-center">Tipo cambio</p></th>
+                              <th scope="col"><p class="text-center">Fecha aviso</p></th>
+                              <th scope="col"><p class="text-center">Documento aviso</p></th>
+                              <th scope="col"><p class="text-center">Serie</p></th>
+                              <th scope="col"><p class="text-center">Opciones</p></th> -->
+                            </tr>
+                          </thead>
+                          <tbody>
+
+                            <tr  ng-repeat="x in listFact"   >
+                              <td><p class="text-center">{{ x.no_fisico }}</p></td>
+                              <td><p class="text-center">{{ x.fecha_documento }}</p></td>
+                              <td><p class="text-center">{{ x.fecha_vencimiento }}</p></td>
+                              <td><p class="text-center">{{ x.monto_actual }}</p></td>
+                              <!-- <td><p class="text-center">{{ x.tipo_venta }}</p></td>
+                                <td><p class="text-center">{{ x.monto_inicial }}</p></td>
+                                <td><p class="text-center">{{ x.fecha_ultimo_pago }}</p></td>
+                                <td><p class="text-center">{{ x.monto_ultimo_pago }}</p></td>
+                                <td><p class="text-center">{{ x.estatus_deuda }}</p></td>
+                                <td><p class="text-center">{{ x.codigo_tipo_doc }}</p></td>
+                                <td><p class="text-center">{{ x.nombre_tipo_doc }}</p></td>
+                                <td><p class="text-center">{{ x.tipo_cambio }}</p></td>
+                                <td><p class="text-center">{{ x.fecha_aviso }}</p></td>
+                                <td><p class="text-center">{{ x.docu_aviso }}</p></td>
+                                <td><p class="text-center">{{ x.serie_fisico }}</p></td> -->
+
+                                <!-- <td>
+                                  <i class="fa fa-eye" style="cursor: pointer;"   ng-click="selectFactura(facturasList[fact])"  data-toggle="modal" data-target="#modalFactura"  ></i>
+                                </td> -->
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+                    </div>
+
+                    <div  ng-show="tabsIndex == 1"   >
+                      <table datatable="ng"  class="table table-striped table-bordered" >
+                        <thead>
+                          <tr>
+
+
+                            <th scope="col"><p class="text-center">N° de documento</p></th>
+                            <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
+                            <th scope="col"><p class="text-center">Monto actual</p></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr  ng-repeat="x in listFact"   >
+                            <td><p class="text-center">{{ x.no_fisico }}</p></td>
+                            <td><p class="text-center">{{ x.fecha_vencimiento }}</p></td>
+                            <td><p class="text-center">{{ formato(2,x.monto_actual) }}</p></td>
+                          </tr>
+
+
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+
+                  <div ng-if="aplica_corte">
+                    <table datatable="ng"  dt-options="dtOptions"  class="table table-striped table-bordered" >
+                      <thead>
+                        <tr>
+
+                          <th scope="col"><p class="text-center">Documento aviso</p></th>
+                          <th scope="col"><p class="text-center">Fecha aviso</p></th>
+                          <th scope="col"><p class="text-center">Saldo</p></th>
+                          <!-- <th scope="col"><p class="text-center">N° de documento</p></th>
+                            <th scope="col"><p class="text-center">Tipo venta</p></th>
+                            <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
+                            <th scope="col"><p class="text-center">Monto inicial</p></th>
+                            <th scope="col"><p class="text-center">Monto actual</p></th>
+                            <th scope="col"><p class="text-center">Fecha ultimo pago</p></th>
+                            <th scope="col"><p class="text-center">Monto ultimo pago</p></th>
+                            <th scope="col"><p class="text-center">Estatus</p></th>
+                            <th scope="col"><p class="text-center">codio</p></th>
+                            <th scope="col"><p class="text-center">Tipo documento</p></th>
+                            <th scope="col"><p class="text-center">Tipo cambio</p></th>
+                            <th scope="col"><p class="text-center">Serie</p></th>
+                            <th scope="col"><p class="text-center">Fecha documento</p></th> -->
+                            <th scope="col"><p class="text-center">Opciones</p></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr  ng-repeat="x in listAvisos"   >
+                            <td><p class="text-center">{{ x.docu_aviso }}</p></td>
+                            <td><p class="text-center">{{ x.fecha_aviso }}</p></td>
+                            <td><p class="text-center">{{ formato(2,x.saldo) }}</p></td>
+                            <!-- <td><p class="text-center">{{ x.no_fisico }}</p></td>
+                              <td><p class="text-center">{{ x.tipo_venta }}</p></td>
+                              <td><p class="text-center">{{ x.fecha_vencimiento }}</p></td>
+                              <td><p class="text-center">{{ x.monto_inicial }}</p></td>
+                              <td><p class="text-center">{{ x.monto_actual }}</p></td>
+                              <td><p class="text-center">{{ x.fecha_ultimo_pago }}</p></td>
+                              <td><p class="text-center">{{ x.monto_ultimo_pago }}</p></td>
+                              <td><p class="text-center">{{ x.estatus_deuda }}</p></td>
+                              <td><p class="text-center">{{ x.codigo_tipo_doc }}</p></td>
+                              <td><p class="text-center">{{ x.nombre_tipo_doc }}</p></td>
+                              <td><p class="text-center">{{ x.tipo_cambio }}</p></td>
+                              <td><p class="text-center">{{ x.serie_fisico }}</p></td>
+                              <td><p class="text-center">{{ x.fecha_documento }}</p></td> -->
+
+                              <td>
+                                <i class="fa fa-eye" style="cursor: pointer;"   ng-click="selectAviso(x)"  data-toggle="modal" data-target="#showDeudaModal"  ></i>
+                              </td>
+                            </tr>
+
+
+                          </tbody>
+                        </table>
+
+
+                  </div>
+
 
                 </div>
 
