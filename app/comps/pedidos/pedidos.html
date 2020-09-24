@@ -174,6 +174,7 @@
                         <th scope="col"><p class="text-center">Total</p></th>
                         <th scope="col"><p class="text-center">Precio USD</p></th>
                         <th scope="col"><p class="text-center">Total USD</p></th>
+                        <th scope="col"><p class="text-center">Fecha Vencimiento</p></th>
                         <!-- <th scope="col"><p class="text-center">Estatus</p></th> -->
                         <th scope="col"><p class="text-center">Opcion</p></th>
 
@@ -190,11 +191,12 @@
                             <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
                             <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
                             <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
+                            <td><p class="text-right">{{ x.fecha_vence}}</p></td>
                             <!-- <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td> -->
                             <td >
 
                               <button type="button" class="btn btn-danger" ng-click="removeDetalleProducto($index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
-                              <!-- <button type="button" class="btn btn-success" ng-click="editRow(x, $index);" ><i class="fa fa-edit" style="cursor: pointer;" ></i></button> -->
+                              <button type="button" class="btn btn-success" ng-click="editRow(x, $index);" ><i class="fa fa-edit" style="cursor: pointer;" ></i></button>
                             </td>
                           </tr>
                     </tbody>
@@ -426,7 +428,7 @@
                           <th scope="col"><p class="text-center">Total</p></th>
                           <th scope="col"><p class="text-center">Precio USD</p></th>
                           <th scope="col"><p class="text-center">Total USD</p></th>
-                          <!-- <th scope="col"><p class="text-center">Estatus</p></th> -->
+                          <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
                           <th scope="col"><p class="text-center">Opcion</p></th>
 
                           </tr>
@@ -442,6 +444,7 @@
                               <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
                               <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
                               <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
+                              <td><p class="text-center">{{ x.fecha_vence }}</p></td>
                               <!-- <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td> -->
                               <td >
 

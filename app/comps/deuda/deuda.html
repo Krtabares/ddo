@@ -223,20 +223,20 @@
 
 
                             <th scope="col"><p class="text-center">N° de documento</p></th>
-                            <th scope="col"><p class="text-center">Tipo documento</p></th>
                             <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
                             <th scope="col"><p class="text-center">Saldo BS</p></th>
                             <th scope="col"><p class="text-center">Saldo Usd</p></th>
+                            <th scope="col"><p class="text-center">Tipo documento</p></th>
                           </tr>
                         </thead>
                         <tbody>
 
                           <tr  ng-repeat="x in listFact"   >
                             <td><p class="text-center">{{ x.no_fisico }}</p></td>
-                            <td><p class="text-center">{{ x.nombre_tipo_doc }}</p></td>
                             <td><p class="text-center">{{ x.fecha_vencimiento }}</p></td>
                             <td><p class="text-center">{{ formato(2,x.monto_actual) }}</p></td>
                             <td><p class="text-center">{{ formato(1,x.monto_actual_usd) }}</p></td>
+                            <td><p class="text-center">{{ x.nombre_tipo_doc }}</p></td>
                           </tr>
 
 
