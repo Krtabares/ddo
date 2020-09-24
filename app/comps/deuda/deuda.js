@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.bootstrap', 'ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
+angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.bootstrap', 'ngRoute', 'ngNotify','cgNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
 
   .config(['$routeProvider', function($routeProvider) {
 
@@ -10,11 +10,11 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
     });
   }])
 
-  .controller('deudaCtrl', ['$scope', '$q', 'localstorage','$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
-    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
+  .controller('deudaCtrl', ['$scope', '$q', 'localstorage','$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify','notify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
+    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify,notify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
       var ip = "http://192.168.168.170:3500";
-
+      $scope.loading = false
       $scope.deuda = {};
       $scope.tabsIndex = 0
       $scope.tabs = 1
@@ -39,6 +39,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
       }
 
       $scope.getDeudas = function(){
+        $scope.loading = true
         var body = {}
        body.pCLiente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
        body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
@@ -82,7 +83,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
             }
 
             // $scope.listDeuda = response.data.obj
-
+            $scope.loading = false
          });
       }
       $scope.avisoAct = {}
