@@ -169,11 +169,11 @@
                           <tr>
 
 
-                            <th scope="col"><p class="text-center">N° de fisico</p></th>
+                            <th scope="col"><p class="text-center">N° Fisico</p></th>
                             <th scope="col"><p class="text-center">Tipo documento</p></th>
-                            <th scope="col"><p class="text-center">Fecha documento</p></th>
                             <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
                             <th scope="col"><p class="text-center">Monto actual</p></th>
+                            <th scope="col"><p class="text-center">Fecha documento</p></th>
                             <!-- <th scope="col"><p class="text-center">Tipo venta</p></th>
                               <th scope="col"><p class="text-center">Monto inicial</p></th>
                               <th scope="col"><p class="text-center">Fecha ultimo pago</p></th>
@@ -191,10 +191,10 @@
 
                             <tr  ng-repeat="x in listFact"   >
                               <td><p class="text-center">{{ x.no_fisico }}</p></td>
-                              <td><p class="text-center">{{ x.nombre_tipo_doc }}</p></td>
                               <td><p class="text-center">{{ x.fecha_documento }}</p></td>
                               <td><p class="text-center">{{ x.fecha_vencimiento }}</p></td>
                               <td><p class="text-center">{{ formato(2,x.monto_actual) }}</p></td>
+                              <td><p class="text-center">{{ x.nombre_tipo_doc }}</p></td>
                               <!-- <td><p class="text-center">{{ x.tipo_venta }}</p></td>
                                 <td><p class="text-center">{{ x.monto_inicial }}</p></td>
                                 <td><p class="text-center">{{ x.fecha_ultimo_pago }}</p></td>
@@ -225,7 +225,8 @@
                             <th scope="col"><p class="text-center">N° de documento</p></th>
                             <th scope="col"><p class="text-center">Tipo documento</p></th>
                             <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
-                            <th scope="col"><p class="text-center">Monto actual</p></th>
+                            <th scope="col"><p class="text-center">Saldo BS</p></th>
+                            <th scope="col"><p class="text-center">Saldo Usd</p></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -235,6 +236,7 @@
                             <td><p class="text-center">{{ x.nombre_tipo_doc }}</p></td>
                             <td><p class="text-center">{{ x.fecha_vencimiento }}</p></td>
                             <td><p class="text-center">{{ formato(2,x.monto_actual) }}</p></td>
+                            <td><p class="text-center">{{ formato(1,x.monto_actual_usd) }}</p></td>
                           </tr>
 
 
@@ -249,12 +251,12 @@
                       <thead>
                         <tr>
 
+                          <th scope="col"><p class="text-center">Fecha </p></th>
+                          <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
                           <th scope="col"><p class="text-center">Documento aviso</p></th>
-                          <th scope="col"><p class="text-center">Fecha aviso</p></th>
                           <th scope="col"><p class="text-center">Saldo</p></th>
                           <!-- <th scope="col"><p class="text-center">N° de documento</p></th>
                             <th scope="col"><p class="text-center">Tipo venta</p></th>
-                            <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
                             <th scope="col"><p class="text-center">Monto inicial</p></th>
                             <th scope="col"><p class="text-center">Monto actual</p></th>
                             <th scope="col"><p class="text-center">Fecha ultimo pago</p></th>
@@ -271,12 +273,12 @@
                         <tbody>
 
                           <tr  ng-repeat="x in listAvisos"   >
-                            <td><p class="text-center">{{ x.docu_aviso }}</p></td>
                             <td><p class="text-center">{{ x.fecha_aviso }}</p></td>
+                            <td><p class="text-center">{{ x.fecha_vencimiento }}</p></td>
+                            <td><p class="text-center">{{ x.docu_aviso }}</p></td>
                             <td><p class="text-center">{{ formato(2,x.saldo) }}</p></td>
                             <!-- <td><p class="text-center">{{ x.no_fisico }}</p></td>
                               <td><p class="text-center">{{ x.tipo_venta }}</p></td>
-                              <td><p class="text-center">{{ x.fecha_vencimiento }}</p></td>
                               <td><p class="text-center">{{ x.monto_inicial }}</p></td>
                               <td><p class="text-center">{{ x.monto_actual }}</p></td>
                               <td><p class="text-center">{{ x.fecha_ultimo_pago }}</p></td>
