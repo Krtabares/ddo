@@ -51,7 +51,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
             // console.log(response)
             response.data.obj.forEach((item, i) => {
 
-              if(1==2 && item.aplica_corte=="S"){
+              if(item.aplica_corte=="S"){
                 $scope.aplica_corte = true
                 return
               }else{
