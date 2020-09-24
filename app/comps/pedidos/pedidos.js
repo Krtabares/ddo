@@ -353,7 +353,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             var cantidadAux = 0;
             $scope.pedido.pedido.forEach((element,i) => {
               console.log($scope.articulo);
-              if($scope.articulo.cod_producto == element.COD_PRODUCTO){
+              if($scope.articulo.cod_producto == element.COD_PRODUCTO || $scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO ){
                 existe = true;
                 console.log("existe", existe);
                 cantidadAux = parseInt(articulo.CANTIDAD)
