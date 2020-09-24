@@ -83,7 +83,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
 
             // $scope.listDeuda = response.data.obj
 
-         // });
+         });
       }
       $scope.avisoAct = {}
       $scope.selectAviso=function (row) {
