@@ -55,7 +55,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
                 $scope.aplica_corte = true
                 return
               }else{
-                  $scope.listFact = response.obj;
+                  $scope.listFact = response.data.obj;
                   return;
               }
 
