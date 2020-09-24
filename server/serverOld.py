@@ -1908,13 +1908,13 @@ async def pedido (request , token: Token):
         if not 'idPedido' in data or data['idPedido'] == 0 :
             return response.json({"msg": "Missing ID parameter"}, status=400)
 
-        mongodb = get_mongo_db()
+        # mongodb = get_mongo_db()
 
         db = get_db()
         c = db.cursor()
 
         pedidos = await procedure_detalle_pedidos(int(data['idPedido']))
-
+        errores = await log_errores(int(data['idPedido']))
         c.execute("""SELECT
                          COD_CIA, GRUPO_CLIENTE,
                         COD_CLIENTE, TO_CHAR(FECHA_CARGA, 'DD-MM-YYYY'), NO_PEDIDO_CODISA,
@@ -1937,6 +1937,7 @@ async def pedido (request , token: Token):
                     'estatus':row[6],
                     'estatus_id':row[7],
                     'pedido': pedidos,
+                    'errores':errores,
                     # 'totales':totales,
               }
 
@@ -1947,6 +1948,37 @@ async def pedido (request , token: Token):
         logger.debug(e)
         return response.json("ERROR",400)
 
+
+
+async def log_errores(idPedido):
+    try:
+        data = request.json
+
+            db = get_db()
+            c = db.cursor()
+
+            c.execute("""SELECT
+                                 COD_PRODUCTO, FECHA,
+                                   t2.DESCRIPCION
+                                FROM PAGINAWEB.REGISTRO_ERROR t1
+                                JOIN TIPO_ERROR t2 on t1.COD_ERROR = t2.CODIGO
+                                WHERE t1.ID_PEDIDO = {idPedido}
+                                """.format( idPedido = idPedido ))
+            list = []
+            for row in c:
+                aux = {}
+                aux = {
+                        'COD_PRODUCTO':row[0],
+                        'FECHA':row[1],
+                        'DESCRIPCION':row[2]
+                  }
+
+                list.append(aux)
+
+        return list
+    except Exception as e:
+        logger.debug(e)
+        return e
 
 
 app.run(host='0.0.0.0', port = port, debug = True)
