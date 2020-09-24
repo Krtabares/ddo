@@ -371,7 +371,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.articulo.CANTIDAD = 1
               // $scope.articulo.no_cliente = $scope.client.cod_cliente
             }else{
-              scope.articulo.CANTIDAD = cantidadAux
+              $scope.articulo.CANTIDAD = cantidadAux
             }
             angular.element('#btnProductInfo').trigger('click');
             console.log($scope.product )
