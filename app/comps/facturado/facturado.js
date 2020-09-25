@@ -95,6 +95,29 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
           }
 
+          const formatterUSD = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+          })
+          const formatterVe = new Intl.NumberFormat('es-VE', {
+            style: 'currency',
+            currency: 'VES'
+          })
+          const formatterVeDECIMAL = new Intl.NumberFormat('es-VE', {
+          })
+
+          $scope.formato = function(tipo, valor){
+            if(tipo == 1){
+              return formatterVeDECIMAL.format(valor)
+            }
+            if(tipo==2){
+              return formatterVe.format(valor)
+            }
+            if(tipo==3){
+              return formatterUSD.format(valor)
+            }
+          }
+
           $scope.getClientNew = function (filter = false) {
             console.log("getClientNew");
             var body = {};
