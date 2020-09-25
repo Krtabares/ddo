@@ -26,9 +26,9 @@
                         <tr>
                         <th scope="col"><p class="text-center">#</p></th>
                         <th scope="col"><p class="text-center">Nombre articulo</p></th>
-                        <th scope="col"><p class="text-center">Unidades pedido</p></th>
                         <th scope="col"><p class="text-center">Fecha pedido</p></th>
                         <th scope="col"><p class="text-center">Fecha factura</p></th>
+                        <th scope="col"><p class="text-center">Unidades pedido</p></th>
                         <th scope="col"><p class="text-center">Unidades facturadas</p></th>
                         <!-- <th scope="col"><p class="text-center">Nombre Vendedor</p></th>
                         <th scope="col"><p class="text-center">Email Vendedor</p></th> -->
@@ -49,8 +49,8 @@
                             <!-- <td><p class="text-right">{{  x.nombre_vendedor }}</p></td>
                             <td><p class="text-right">{{  x.email_vendedor }}</p></td> -->
 
-                            <td><p class="text-center">{{ x.total_producto }}</p></td>
-                            <td><p class="text-center">{{ x.total_producto_usd }}</p></td>
+                            <td><p class="text-center">{{ x.total_producto * x.unidades_facturadas  }}</p></td>
+                            <td><p class="text-center">{{ x.total_producto_usd * x.unidades_facturadas }}</p></td>
                         </tr>
 
 
