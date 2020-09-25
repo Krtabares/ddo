@@ -118,8 +118,11 @@
                 <tr>
                   <th scope="col"><p class="text-center">#</p></th>
                   <th scope="col"><p class="text-center">N° Pedido</p></th>
-                  <th scope="col"><p class="text-center">Fecha factura</p></th>
                   <th scope="col"><p class="text-center">Fecha pedido</p></th>
+                  <th scope="col"><p class="text-center">Fecha factura</p></th>
+                  <th scope="col"><p class="text-center">Monto</p></th>
+                  <th scope="col"><p class="text-center">Monto usd</p></th>
+                  <th scope="col"><p class="text-center">Tipo pedido</p></th>
                   <th scope="col"><p class="text-center">Nombre vendedor</p></th>
                   <th scope="col"><p class="text-center">Email vendedor</p></th>
                   <th scope="col"><p class="text-center">Opciones</p></th>
@@ -130,8 +133,11 @@
                 <tr  ng-repeat="fact in facturas"  ng-click="selectFactura(facturasList[fact])" ng-class="{ selectedRow : $index == productIndex }" >
                   <td><p class="text-center">{{ $index + 1 }}</p></td>
                   <td><p class="text-center">{{ fact }}</p></td>
-                  <td><p class="text-center">{{ facturasList[fact][0].fecha_factura }}</p></td>
                   <td><p class="text-center">{{ facturasList[fact][0].fecha_pedido }}</p></td>
+                  <td><p class="text-center">{{ facturasList[fact][0].fecha_factura }}</p></td>
+                  <td><p class="text-center">{{ facturasList[fact][0].total_producto }}</p></td>
+                  <td><p class="text-center">{{ facturasList[fact][0].total_producto_usd }}</p></td>
+                  <td><p class="text-center">{{ facturasList[fact][0].tipo_pedido }}</p></td>
                   <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td>
                   <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td>
                   <td>
