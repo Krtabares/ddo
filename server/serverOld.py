@@ -1952,7 +1952,6 @@ async def pedido (request , token: Token):
 
 async def log_errores(idPedido):
     try:
-        data = request.json
 
         db = get_db()
         c = db.cursor()
