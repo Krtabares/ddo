@@ -883,7 +883,7 @@ async def procedure(request):
     db = get_db()
     c = db.cursor()
     c.callproc("dbms_output.enable")
-    c.execute("""DECLARE
+    sql = """DECLARE
 
       l_cursor  SYS_REFCURSOR;
 
@@ -1080,6 +1080,8 @@ async def procedure(request):
 
                     )
                  )
+    print(sql)
+    c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)
     list = []
