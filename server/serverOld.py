@@ -859,8 +859,8 @@ async def procedure(request):
 
     if not 'pNoCia' in data :
         data['pNoCia'] = 'null'
-    else:
-        data['pNoCia'] = "'"+data['pNoCia']+"'"
+    # else:
+    #     data['pNoCia'] = "'"+data['pNoCia']+"'"
 
     if not 'pNoCia' in data :
         data['pNoCia'] = '01'
