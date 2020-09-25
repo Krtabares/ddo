@@ -1107,7 +1107,8 @@ async def procedure(request):
             break
         arr = str(textVar.getvalue()).split("|")
         obj = {
-                'id_deuda': arr[0],
+
+                'nro_factura': arr[0],
                 'fecha_factura': arr[1],
                 'nro_pedido': arr[2],
                 'fecha_pedido': arr[3],
