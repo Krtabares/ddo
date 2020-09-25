@@ -111,6 +111,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             "title": "Eliminar pedido",
             "msg" : "Desea eliminar este pedido",
             "color": "danger"
+          },
+          {
+            "title": "Eliminar producto",
+            "msg" : "¿Desea eliminar este producto?",
+            "color": "danger"
           }
         ]
         $scope.aceptModalDyn = function () {
@@ -130,6 +135,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'right', duration:10000, classes:'alert-warning'});
                 }
               break;
+              case 3:
+                $scope.removeDetalleProducto($scope.modalDynContextId);
+                break;
             default:
 
           }
