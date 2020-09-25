@@ -1079,7 +1079,7 @@ async def procedure(request):
 
 
                     )
-                 )
+                 
     print(sql)
     c.execute(sql)
     textVar = c.var(str)
