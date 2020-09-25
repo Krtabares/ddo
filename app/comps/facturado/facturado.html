@@ -49,8 +49,8 @@
                             <!-- <td><p class="text-right">{{  x.nombre_vendedor }}</p></td>
                             <td><p class="text-right">{{  x.email_vendedor }}</p></td> -->
 
-                            <td><p class="text-center">{{ x.total_producto * x.unidades_facturadas  }}</p></td>
-                            <td><p class="text-center">{{ x.total_producto_usd * x.unidades_facturadas }}</p></td>
+                            <td><p class="text-center">{{ formato(2,parseFloat(x.total_producto) * parseInt(x.unidades_facturadas) ) }}</p></td>
+                            <td><p class="text-center">{{ formato(2,parseFloat(x.total_producto_usd) * parseInt(x.unidades_facturadas) ) }}</p></td>
                         </tr>
 
 
