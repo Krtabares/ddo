@@ -72,6 +72,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
                     facturas: [],
                     fecha_aviso: x.fecha_aviso,
                     docu_aviso: x.docu_aviso,
+                    fecha_vencimiento: x.fecha_vencimiento,
                     saldo: 0
                   }
                 }
