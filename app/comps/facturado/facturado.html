@@ -76,10 +76,13 @@
 
 
     <div class="col-md-12 col-sm-12">
-      <br>
-      <!--<h5 class="text-center"> <strong>SALDO DE CLIENTES</strong> </h5>-->
-    <h5 class="text-center"> <strong>Pedidos Facturados</strong> </h5>
-      <br>
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><a class="text-success" >servidor.com</a></li>
+          <li class="breadcrumb-item"><a class="text-info" href="#!/home">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Pedidos facturados</li>
+        </ol>
+      </nav>
 <header-client></header-client>
 
 <div ng-show="!hasUserClient">
