@@ -50,9 +50,9 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
              $scope.facturas = Object.keys(response.data.obj)
              $scope.facturasList = response.data.obj
 
-            // $scope.facturas.forEach((item, i) => {
+            $scope.facturas.forEach((item, i) => {
 
-              $scope.facturasList.forEach((element, j) => {
+              $scope.facturasList[item].forEach((element, j) => {
 
                 if( !$scope.facturasTotales.hasOwnProperty(element.nro_pedido)){
                   $scope.facturasTotales[element.nro_pedido] = {
@@ -67,7 +67,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
               });
               console.log($scope.facturasTotales);
 
-            // });
+            });
 
 
           });
