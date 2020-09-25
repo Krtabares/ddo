@@ -506,7 +506,7 @@
                       <thead>
                           <tr>
                           <!-- <th scope="col"><p class="text-center">#</p></th> -->
-                          <!-- <th scope="col"><p class="text-center">Codigo de Articulo</p></th> -->
+                          <th scope="col"><p class="text-center">Codigo de Articulo</p></th>
                           <th scope="col"><p class="text-center">Descripcion</p></th>
                           <th scope="col"><p class="text-center">Fecha</p></th>
 
@@ -517,7 +517,7 @@
 
                           <tr ng-repeat="x in pedido.errores" ng-class="{ incideRow : x.alert }" >
                               <!-- <th scope="row">{{ $index + 1 }}</th> -->
-                              <!-- <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td> -->
+                              <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td>
                               <td><p class="text-center">{{ x.DESCRIPCION }}</p></td>
                               <td><p class="text-center">{{ x.FECHA }}</p></td>
 
