@@ -898,7 +898,7 @@ async def procedure(request):
                 pFechaFactura date;
                 pFechaPedido date;
 
-                v_id_deuda varchar2(50);
+                v_nro_factura varchar2(50);
 
                 v_fecha_factura date;
 
@@ -924,19 +924,21 @@ async def procedure(request):
 
                 v_unidades_facturadas number;
 
-                v_total_producto number;
+                v_total_producto_bs varchar2(20);
+
+                v_total_producto_usd varchar2(20);
 
                 v_cia        varchar2(2);
 
                 v_grupo      varchar2(2);
+
+                v_tipo_pedido varchar2(15);
 
                 v_pag        number;
 
                 v_lin        number;
 
                 v_totreg     number;
-
-                v_totpag     number;
 
                 v_tot number:=0;
 
@@ -964,7 +966,7 @@ async def procedure(request):
 
         FETCH l_cursor into
 
-                v_id_deuda,
+                v_nro_factura,
 
                 v_fecha_factura,
 
@@ -990,11 +992,15 @@ async def procedure(request):
 
                 v_unidades_facturadas,
 
-                v_total_producto,
+                v_total_producto_bs,
+
+                v_total_producto_usd,
 
                 v_cia,
 
                 v_grupo,
+
+                v_tipo_pedido,
 
                 v_pag,
 
@@ -1006,7 +1012,7 @@ async def procedure(request):
 
           (
 
-                v_id_deuda|| '|'||
+                v_nro_factura|| '|'||
 
                 v_fecha_factura|| '|'||
 
@@ -1032,11 +1038,15 @@ async def procedure(request):
 
                 v_unidades_facturadas|| '|'||
 
-                v_total_producto || '|'||
+                v_total_producto_bs|| '|'||
+
+                v_total_producto_usd|| '|'||
 
                 v_cia || '|'||
 
                 v_grupo || '|'||
+
+                v_tipo_pedido|| '|'||
 
                 v_pag|| '|'||
 
