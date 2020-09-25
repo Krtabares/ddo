@@ -1954,26 +1954,26 @@ async def log_errores(idPedido):
     try:
         data = request.json
 
-            db = get_db()
-            c = db.cursor()
+        db = get_db()
+        c = db.cursor()
 
-            c.execute("""SELECT
-                                 COD_PRODUCTO, FECHA,
-                                   t2.DESCRIPCION
-                                FROM PAGINAWEB.REGISTRO_ERROR t1
-                                JOIN TIPO_ERROR t2 on t1.COD_ERROR = t2.CODIGO
-                                WHERE t1.ID_PEDIDO = {idPedido}
-                                """.format( idPedido = idPedido ))
-            list = []
-            for row in c:
-                aux = {}
-                aux = {
-                        'COD_PRODUCTO':row[0],
-                        'FECHA':row[1],
-                        'DESCRIPCION':row[2]
-                  }
+        c.execute("""SELECT
+                         COD_PRODUCTO, FECHA,
+                           t2.DESCRIPCION
+                        FROM PAGINAWEB.REGISTRO_ERROR t1
+                        JOIN TIPO_ERROR t2 on t1.COD_ERROR = t2.CODIGO
+                        WHERE t1.ID_PEDIDO = {idPedido}
+                        """.format( idPedido = idPedido ))
+        list = []
+        for row in c:
+            aux = {}
+            aux = {
+                    'COD_PRODUCTO':row[0],
+                    'FECHA':row[1],
+                    'DESCRIPCION':row[2]
+              }
 
-                list.append(aux)
+            list.append(aux)
 
         return list
     except Exception as e:
