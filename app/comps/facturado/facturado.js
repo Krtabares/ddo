@@ -12,7 +12,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
         //init
         var ip = "http://192.168.168.170:3500";
- 
+
 
         $scope.hasUserClient = false;
         $scope.client = {};
@@ -37,6 +37,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
        }
 
        $scope.facturas = []
+       $scope.facturasTotales = []
        $scope.facturasList = []
        function facturacion() {
          var body = {}
@@ -47,7 +48,27 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
            .then(function successCallback(response) {
              console.log(response.data)
              $scope.facturas = Object.keys(response.data.obj)
-             $scope.facturasList= response.data.obj
+             $scope.facturasList = response.data.obj
+
+            // $scope.facturas.forEach((item, i) => {
+
+              $scope.facturasList,forEach((element, j) => {
+
+                if( !$scope.facturasTotales.hasOwnProperty(element.nro_pedido)){
+                  $scope.facturasTotales[element.nro_pedido] = {
+                    total_bs: 0,
+                    total_usd:0
+                  }
+                }
+
+
+                $scope.facturasTotales[element.nro_pedido].total_bs = element.total_producto * element.unidades_facturadas
+                $scope.facturasTotales[element.nro_pedido].total_bs = element.total_producto_usd * element.unidades_facturadas
+              });
+
+
+            // });
+
 
           });
        }
