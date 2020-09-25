@@ -862,6 +862,16 @@ async def procedure(request):
     else:
         data['pNoCia'] = "'"+data['pNoCia']+"'"
 
+    if not 'pNoCia' in data :
+        data['pNoCia'] = '01'
+    else:
+        data['pNoCia'] = "'"+data['pNoCia']+"'"
+
+    if not 'pNoGrupo' in data :
+        data['pNoGrupo'] = '01'
+    else:
+        data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
+
     if not 'pCliente' in data :
         data['pCliente'] = 'null'
     else:
@@ -892,6 +902,8 @@ async def procedure(request):
                 pPagina number DEFAULT 1;
                 pLineas number DEFAULT 100;
                 pDeuda number DEFAULT null;
+                pNoCia varchar2(10) DEFAULT '01';
+                pNoGrupo varchar2(10) DEFAULT '01';
                 pCliente varchar2(50) DEFAULT null;
                 pPedido varchar2(50) DEFAULT null;
                 output number DEFAULT 1000000;
@@ -950,13 +962,15 @@ async def procedure(request):
               pPagina  := {pPagina};
               pLineas  := {pLineas};
               pDeuda := {pDeuda};
+              pNoCia := {pNoCia};
+              pNoGrupo := {pNoGrupo};
               pCliente := {pCliente};
               pFechaFactura := {pFechaFactura};
               pFechaPedido := {pFechaPedido};
 
 
 
-         procesospw.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda, pPedido,pCliente,pFechaFactura,pFechaPedido);
+         procesospw.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda, pPedido, pNoCia, pNoGrupo,pCliente,pFechaFactura,pFechaPedido);
 
 
 
@@ -1072,6 +1086,8 @@ async def procedure(request):
                         pPagina = data['pPagina'],
                         pLineas = data['pLineas'],
                         pDeuda = data['pDeuda'],
+                        pNoCia = data['pNoCia'],
+                        pNoGrupo = data['pNoGrupo'],
                         pCliente = data['pCliente'],
                         pNombre = data['pNombre'],
                         pFechaFactura = data['pFechaFactura'],
@@ -1079,7 +1095,7 @@ async def procedure(request):
 
 
                     )
-                 
+
     print(sql)
     c.execute(sql)
     textVar = c.var(str)
