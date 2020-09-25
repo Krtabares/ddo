@@ -1124,8 +1124,8 @@ async def procedure(request):
                 'total_producto_usd': arr[14],
                 'codigo_compani': arr[14],
                 'grupo': arr[15],
-                'tipo_pedido': arr[16],
-                'linea': arr[17]
+                'tipo_pedido': arr[16]
+                # 'linea': arr[17]
             }
         list.append(obj)
 
