@@ -1957,7 +1957,7 @@ async def log_errores(idPedido):
         c = db.cursor()
 
         c.execute("""SELECT
-                         COD_PRODUCTO, FECHA,
+                         COD_PRODUCTO, TO_CHAR(FECHA, 'DD-MM-YYYY'),
                            t2.DESCRIPCION
                         FROM PAGINAWEB.REGISTRO_ERROR t1
                         JOIN TIPO_ERROR t2 on t1.COD_ERROR = t2.CODIGO
