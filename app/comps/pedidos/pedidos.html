@@ -71,8 +71,8 @@
                         <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
                         <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
                         <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
-                        <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
-                        <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                        <!-- <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p> -->
+                        <!-- <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p> -->
                       </div>
                     </div>
                   </div>
@@ -187,8 +187,8 @@
                             <td>
                               <p class="text-center">{{ x.CANTIDAD }}</p>
                             </td>
-                            <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
-                            <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
+                            <td><p class="text-right">{{ formato(2,x.precio_neto_bs) }}</p></td>
+                            <td><p class="text-right">{{ formato(2,(x.precio_neto_bs * x.CANTIDAD)) }}</p></td>
                             <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
                             <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
                             <td><p class="text-right">{{ x.fecha_vence}}</p></td>
@@ -329,8 +329,8 @@
                       <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
                       <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
                       <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
-                      <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
-                      <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                      <!-- <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p> -->
+                      <!-- <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p> -->
                     </div>
                   </div>
                 </div>
@@ -443,8 +443,8 @@
                               <!-- <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td> -->
                               <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                               <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
-                              <td><p class="text-right">{{ formato(2,x.PRECIO) }}</p></td>
-                              <td><p class="text-right">{{ formato(2,(x.PRECIO * x.CANTIDAD)) }}</p></td>
+                              <td><p class="text-right">{{ formato(2,x.precio_neto_bs) }}</p></td>
+                              <td><p class="text-right">{{ formato(2,(x.precio_neto_bs * x.CANTIDAD)) }}</p></td>
                               <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
                               <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
                               <td><p class="text-center">{{ x.fecha_vence }}</p></td>
@@ -649,7 +649,7 @@
 </div>
 
 <div class="modal fade" id="modalInfoProduct">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog ">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" style="text-transform: capitalize;" >{{articulo.nombre_producto.toLowerCase()}}</h4>
@@ -700,12 +700,12 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                   <label>Por unidad Bs.S</label><br>
-                  <span class="text-right" >{{formato(2,(articulo.PRECIO)? articulo.PRECIO:0)}}</span>
+                  <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</span>
 
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                   <label>Total Bs.S</label><br>
-                  <span class="text-right" >{{formato(2,(articulo.PRECIO)? (articulo.PRECIO  * articulo.CANTIDAD):0)}}</span>
+                  <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? (articulo.precio_neto_bs  * articulo.CANTIDAD):0)}}</span>
 
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
@@ -863,8 +863,8 @@
                   <p class="mb-1"><span class="text-muted">RIF: </span> {{client.docu_identif_cliente}}</p>
                   <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client.direccion_cliente.toLowerCase()}}</p>
                   <p class="mb-1"><span class="text-muted">Zona: </span>{{client.zona}}</p>
-                  <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p>
-                  <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
+                  <!-- <p class="mb-1"><span class="text-muted">Telefono: </span>{{client.telefono1}}</p> -->
+                  <!-- <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p> -->
                 </div>
               </div>
             </div>

@@ -37,7 +37,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
        }
 
        $scope.facturas = []
-       $scope.facturasTotales = []
+       $scope.facturasTotales = {}
        $scope.facturasList = []
        function facturacion() {
          var body = {}
@@ -49,11 +49,11 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
              console.log(response.data)
              $scope.facturas = Object.keys(response.data.obj)
              $scope.facturasList = response.data.obj
-
+            console.log($scope.facturas);
             $scope.facturas.forEach((item, i) => {
-
+              // console.log($scope.facturasList[item]);
               $scope.facturasList[item].forEach((element, j) => {
-
+                console.log(element);
                 if( !$scope.facturasTotales.hasOwnProperty(element.nro_pedido)){
                   $scope.facturasTotales[element.nro_pedido] = {
                     total_bs: 0,
@@ -116,6 +116,13 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
             if(tipo==3){
               return formatterUSD.format(valor)
             }
+          }
+
+          $scope.calculaMontoLinea=function (monto, cantidad, tipo) {
+
+              // monto = 
+
+              return $scope.formato(tipo, parseFloat(monto.replace(",", ".")) * parseInt(cantidad))
           }
 
           $scope.getClientNew = function (filter = false) {

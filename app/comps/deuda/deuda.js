@@ -37,7 +37,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
           $scope.tabsIndex = index
 
       }
-
+      $scope.vencimiento = []
       $scope.getDeudas = function(){
         $scope.loading = true
         var body = {}
@@ -81,6 +81,24 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
                 $scope.listAvisos[x.docu_aviso].saldo += parseFloat(x.monto_actual)
               })
 
+            }else{
+              $scope.listFact.forEach( x => {
+                if( !$scope.vencimiento.hasOwnProperty(x.fecha_vencimiento)){
+                  $scope.vencimiento[x.fecha_vencimiento] = {
+                    fecha_vencimiento: x.fecha_vencimiento,
+                    no_fisico : x.no_fisico,
+                    saldo: 0,
+                    saldo_usd:0
+                  }
+                }
+
+
+                $scope.vencimiento[x.fecha_vencimiento].saldo += parseFloat(x.monto_actual)
+                $scope.vencimiento[x.fecha_vencimiento].saldo += parseFloat(x.monto_actual_usd)
+
+              })
+
+              console.log($scope.vencimiento);
             }
 
             // $scope.listDeuda = response.data.obj

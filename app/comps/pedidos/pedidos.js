@@ -192,7 +192,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.nuevoTotal = function () {
           var total =  parseFloat($scope.totales.bolivares)
-                                           + parseFloat($scope.articulo.PRECIO | 0 )* ($scope.articulo.CANTIDAD | 0  )
+                                           + parseFloat($scope.articulo.precio_bruto | 0 )* ($scope.articulo.CANTIDAD | 0  )
           return $scope.formato(2, total)
         }
 
@@ -370,8 +370,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
 
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
-            $scope.articulo.PRECIO = $scope.product.precio_bruto_bs.replace(",", ".");
+            $scope.articulo.precio_bruto = $scope.product.precio_bruto_bs.replace(",", ".");
             $scope.articulo.precio_neto_usd = $scope.product.precio_neto_usd.replace(",", ".")
+            $scope.articulo.precio_neto_bs = $scope.product.precio_neto_bs.replace(",", ".")
             $scope.articulo.existencia =$scope.product.existencia
 
             if(!existe){
@@ -908,7 +909,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
                 item.precioFormatVE = item.precio_bruto_bs.replace(",", ".")
                 item.precioFormatVE = $scope.formato(2,  parseFloat(item.precioFormatVE).toFixed(2) )
-                item.PRECIO = item.precio_bruto_bs.replace(",", ".");
+                item.precio_bruto = item.precio_bruto_bs.replace(",", ".");
+                item.precio_neto_bs = item.precio_neto_bs.replace(",", ".");
                 item.CANTIDAD = $scope.cantidadAux;
                 item.existencia = parseInt($scope.cantidadAux) + parseInt(item.existencia)
                 item.precioFormatUSD = item.precio_neto_usd.replace(",", ".")
@@ -967,9 +969,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               error = validacionesArticulo($scope.articulo)
 
-              $scope.articulo.PRECIO = $scope.articulo.PRECIO.replace(",", ".");
+              $scope.articulo.precio_bruto = $scope.articulo.precio_bruto.replace(",", ".");
+              $scope.articulo.precio_neto_bs = $scope.articulo.precio_neto_bs.replace(",", ".");
 
-              // console.log($scope.articulo.PRECIO);
+              // console.log($scope.articulo.precio_bruto);
 
               if(!error){
                 $scope.addDetalleProducto($scope.articulo)
@@ -1084,7 +1087,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var aux = $scope.pedido.pedido
           aux.forEach(element => {
 
-            element.PRECIO = parseFloat(element.PRECIO).toFixed(2)
+            element.precio_bruto = parseFloat(element.precio_bruto).toFixed(2)
 
           });
 
@@ -1226,7 +1229,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 item.iva_bs = item.iva_bs.replace(",", ".")
                 item.iva_usd = item.iva_usd.replace(",", ".")
                 item.precio_neto_usd = item.precio_neto_usd.replace(",", ".")
-                item.PRECIO = item.PRECIO.replace(",", ".")
+                item.precio_bruto = item.precio_bruto_bs.replace(",", ".")
+                item.precio_neto_bs = item.precio_neto_bs.replace(",", ".")
                 // item.nombre_producto = element.nombre_producto
               // }
             // });
@@ -1289,7 +1293,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
 
               $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
-                                             + (parseFloat(element.PRECIO) * element.CANTIDAD)
+                                             + (parseFloat(element.precio_neto_bs) * element.CANTIDAD)
 
               $scope.totales.USD = parseFloat($scope.totales.USD)
                                             + (parseFloat(element.precio_neto_usd) * element.CANTIDAD)
