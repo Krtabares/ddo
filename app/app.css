@@ -383,7 +383,7 @@ body {
 }
 
 #site-footer {
-	padding: 25px 0;
+	padding: 0;
 	font-size: 85%;
 	background-color: #2A2A2A;
 	position: fixed;
@@ -777,7 +777,10 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
   box-shadow: 0 1px 1px 0 rgba(60,75,100,.14), 0 2px 1px -1px rgba(60,75,100,.12), 0 1px 3px 0 rgba(60,75,100,.2);
 }
 .card-min{
-	min-height: 300px;
+	/* min-height: 200px; */
+}
+.card-body > p{
+	font-size: 12px !important;
 }
  #wrapper{
 	 background-color: #dcdcdd;
@@ -802,4 +805,15 @@ td p {
 }
 .badge{
 	margin-left: 10px !important
+}
+
+.btn{
+	box-shadow: 0 1px 1px 0 rgba(60,75,100,.14), 0 2px 1px -1px rgba(60,75,100,.12), 0 1px 3px 0 rgba(60,75,100,.2);
+}
+.card-info-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid;
+    background-color: #fff;
+    border-color: #d8dbe0;
 }

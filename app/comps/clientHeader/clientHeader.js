@@ -3,13 +3,17 @@
 angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'ngStorage'])
 .component("headerClient", {
     templateUrl: "comps/clientHeader/clientHeader.html",
-    controller: 'clientHeaderCtrl'
+    controller: 'clientHeaderCtrl',
+    bindings: {
+      numero: "="
+    }
   })
 
   .controller('clientHeaderCtrl', ['$scope', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'localstorage', 'request', 'NgMap','$localStorage',
-    function($scope, $rootScope, $routeParams, $interval, $timeout, ngNotify, localstorage, request, NgMap, $localStorage) {
+    function($scope, $rootScope, $routeParams, $interval, $timeout, ngNotify, localstorage, request, NgMap, $localStorage, $element) {
 
         console.log("clientHeaderCtrl entro")
+        // var test = mini;
 
         $scope.hasUserClient = false;
         $scope.user = {};
@@ -21,6 +25,15 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
         $scope.clienteValido = true
         $scope.clientInvalidoMsg = null
         $scope.creditoClient = null
+
+        var $ctrl = this;
+        $ctrl.$onInit = function () {}
+
+        $ctrl.onChanges = function (changes) {
+          console.log("esto es lo que cambio",obj);
+
+          }
+
         verificClient()
 
         function verificClient(){
@@ -32,6 +45,8 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
             console.log( client=='{}'  )
              if ( client=='{}' ){
                 $scope.hasUserClient = false;
+
+
             }else{
                 $scope.hasUserClient = true;
                 $scope.client_info = JSON.parse(client_info);

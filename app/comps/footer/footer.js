@@ -48,7 +48,7 @@ angular.module('app.myFooter', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-ht
                 console.log('Footer Width = ' + siteFooterWidth + 'px');
 
                 siteContent.css({
-                  "margin-bottom" : siteFooterHeight + 50
+                  "margin-bottom" : siteFooterHeight 
                 });
                 // sitemyOverlay.css({
                 //   "margin-bottom" : siteFooterHeight + 50

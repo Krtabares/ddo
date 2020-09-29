@@ -18,10 +18,17 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
       $scope.client = {};
       $scope.client_info = {};
       $scope.hasUserClient = false;
+      // $scope.numero = 0
+      //
+      // $scope.numeroChang = function () {
+      //   $scope.numero++
+      //   console.log("numeroChang"+ $scope.numero);
+      // }
+
       verificClient()
 
       function verificClient(){
-        notify({ message:'My message', position:'right', duration:100000, classes:'alert-danger'});
+        // notify({ message:'My message', position:'right', duration:100000, classes:'alert-danger'});
         var client = localStorage.getItem('client')
         var client_info = localStorage.getItem('client_info')
         console.log(client)

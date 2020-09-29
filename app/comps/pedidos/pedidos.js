@@ -11,6 +11,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
   .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify','notify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
         //init
+
+
         $scope.loading = true
         $scope.pedido = {
             'fecha': new Date(),
@@ -1347,15 +1349,48 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
              return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
         }
 
+        var language = {
+          "sProcessing":     "Procesando...",
+          "sLengthMenu":     "Mostrar _MENU_ registros",
+          "sZeroRecords":    "No se encontraron resultados",
+          "sEmptyTable":     "Ningún dato disponible en esta tabla",
+          "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+          "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+          "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+          "sInfoPostFix":    "",
+          "sSearch":         "Buscar:",
+          "sUrl":            "",
+          "sInfoThousands":  ",",
+          "sLoadingRecords": "Cargando...",
+          "oPaginate": {
+            "sFirst":    "Primero",
+            "sLast":     "Último",
+            "sNext":     "Siguiente",
+            "sPrevious": "Anterior"
+          },
+          "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+          },
+          "buttons": {
+            "copy": "Copiar",
+            "colvis": "Visibilidad"
+          }
+        }
+
         $scope.dtOptions = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
             .withOption('responsive', true)
-            .withDOM('frtip').withPaginationType('full_numbers')
+            .withDOM('frtip')
+            .withPaginationType('full_numbers')
+            .withLanguage(language)
+            .withDisplayLength(15)
         // .withDisplayLength(2);
         // $scope.dtInstanceProd = {};
         $scope.dtOptionsProd = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
             .withDOM('frtip').withPaginationType('full_numbers')
+            .withLanguage(language)
 
 
         $scope.dtColumns = [
@@ -1367,6 +1402,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             DTColumnBuilder.newColumn('precio').withTitle('Precio'),
             DTColumnBuilder.newColumn('cantidad').withTitle('Cantidad de Productos')
         ];
+
+
 
 
     }
