@@ -1,4 +1,4 @@
-<div class="" ng-show="hasUserClient">
+<div class="" ng-show="hasUserClient || inputClient">
 
 <div class="col-md-12">
   <div class="user" >
@@ -15,7 +15,7 @@
 
   <div class="row " style="margin-bottom: 15px;" >
 
-      <div class="col-md-6">
+      <div class="col-md-6" style="padding-left: 0px !important;">
         <div class="card card-min " >
           <div class="card-info-header">
             Informacion del Cliente
@@ -27,16 +27,16 @@
           <div class="card-body collapse" id="collapseInfo"  >
 
             <!-- <h6 class="card-title">Informacion del Cliente </h6> -->
-            <p class="mb-1"> <span class="text-muted">Razon Social: </span>{{client_info.nombre_cliente}}</p>
+            <p class="mb-1"><span class="text-muted">Razon Social: </span>{{client_info.nombre_cliente}}</p>
             <p class="mb-1"><span class="text-muted">RIF: </span> {{client_info.docu_identif_cliente}}</p>
-            <p class="mb-1"> <span class="text-muted">Direccion Fiscal: </span> {{client_info.direccion_cliente.toLowerCase()}}</p>
+            <p class="mb-1"><span class="text-muted">Direccion Fiscal: </span> {{client_info.direccion_cliente.toLowerCase()}}</p>
             <!-- <p class="mb-1"><span class="text-muted">Zona: </span>{{client_info.zona}}</p> -->
             <!-- <p class="mb-1"><span class="text-muted">Telefono: </span>{{client_info.telefono1}}</p> -->
             <!-- <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client_info.nombre_encargado.toLowerCase()}}</p> -->
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" style="padding-right: 0px !important;" >
 
         <div class="card card-min" >
           <div class="card-info-header">

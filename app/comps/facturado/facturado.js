@@ -13,7 +13,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
         //init
         var ip = "http://192.168.168.170:3500";
 
-
+        $scope.loading = true;
         $scope.hasUserClient = false;
         $scope.client = {};
         $scope.client_info = {}
@@ -40,6 +40,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
        $scope.facturasTotales = {}
        $scope.facturasList = []
        function facturacion() {
+         $scope.loading = true
          var body = {}
          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
@@ -69,7 +70,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
             });
 
-
+            $scope.loading = false
           });
        }
           $scope.factura = []
@@ -88,6 +89,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
               $scope.client  = $scope.clientes[ $scope.clientIndex ];
                 console.log($scope.client,"selectCLient" )
                 facturacion()
+                angular.element('#clientes').focus();
             }
 
 
@@ -120,12 +122,13 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
           $scope.calculaMontoLinea=function (monto, cantidad, tipo) {
 
-              // monto = 
+              // monto =
 
               return $scope.formato(tipo, parseFloat(monto.replace(",", ".")) * parseInt(cantidad))
           }
 
           $scope.getClientNew = function (filter = false) {
+            $scope.loading = true
             console.log("getClientNew");
             var body = {};
             if(filter){
@@ -136,9 +139,11 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
               console.log(response)
 
               $scope.clientes = response.data.obj
+              $scope.loading = false
 
             }, function errorCallback(response) {
               console.log(response)
+              $scope.loading = false
             });
           }
 
@@ -146,11 +151,13 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                     .withPaginationType('full_numbers')
                     .withOption('responsive', true)
                     .withDOM('frtip').withPaginationType('full_numbers')
+                    .withLanguage(DATATABLE_LANGUAGE_ES)
 
         $scope.dtOptionsFact = DTOptionsBuilder.newOptions()
                   .withPaginationType('full_numbers')
                   .withOption('responsive', true)
                   .withDOM('frtip').withPaginationType('full_numbers')
+                  .withLanguage(DATATABLE_LANGUAGE_ES)
 
 
     }

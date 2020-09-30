@@ -241,12 +241,13 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         return defer.promise;
 		})
 		.withDOM('frtip')
-        .withPaginationType('full_numbers')
+    .withPaginationType('full_numbers')
 		.withButtons([
-            'colvis',
+            
             'pdf',
             'excel'
         ])
+    .withLanguage(DATATABLE_LANGUAGE_ES)
 
         $scope.dtColumns = [
             // DTColumnBuilder.newColumn('bodega').withTitle('Bodega'),

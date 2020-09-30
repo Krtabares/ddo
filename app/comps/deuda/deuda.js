@@ -98,7 +98,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
 
 
                 aux[x.fecha_vencimiento].saldo += parseFloat(x.monto_actual.replace(",", "."))
-                aux[x.fecha_vencimiento].saldo += parseFloat(x.monto_actual_usd.replace(",", "."))
+                aux[x.fecha_vencimiento].saldo_usd += parseFloat(x.monto_actual_usd.replace(",", "."))
 
               })
 
@@ -121,6 +121,46 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
           $scope.listFact = row.facturas;
           $scope.avisoAct.fecha_aviso= row.fecha_aviso
 
+
+      }
+
+      $scope.getClientNew = function (filter = false) {
+        $scope.loading = true
+        console.log("getClientNew");
+        var body = {};
+        if(filter){
+          body.pNombre = $scope.nombre_cliente
+        }
+        request.post(ip+'/procedure_clientes', body,{})
+        .then(function successCallback(response) {
+          console.log(response)
+
+          $scope.clientes = response.data.obj
+          $scope.loading = false
+
+        }, function errorCallback(response) {
+          console.log(response)
+          $scope.loading = false
+        });
+      }
+
+
+      $scope.clientes = null;
+      $scope.nombre_cliente = null;
+
+
+      $scope.selectCLient = function(){
+
+        // $scope.client = x
+        if($scope.clientes.length > 0){
+          $scope.client  = $scope.clientes[ $scope.clientIndex ];
+            console.log($scope.client,"selectCLient" )
+            $scope.getDeudas();
+            angular.element('#clientes').focus();
+        }
+
+
+          // selectCLientCAP( $scope.client)
 
       }
 
@@ -207,37 +247,18 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
     }
 
 
-
-    $scope.getDeudas = function(page){
-    var obj = {'page': page};
-    //console.log(obj);
-      request.post(ip+'/get/deuda', obj ,{'Authorization': 'Bearer ' + localstorage.get('token')})
-      .then(function successCallback(response) {
-        console.log(response);
-    if(response.data.data.length > 0){
-      $scope.listDeuda = response.data.data;
-      $scope.aux.totalPages = 100;
-      //console.log($scope.listDeuda);
-    }
-        /*if (response.data.exist) {
-          ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-        } else if (response.data.email_flag) {
-          ngNotify.set('¡Ya el correo está registrado!','error')
-        }*/
-      }, function errorCallback(response) {
-        console.log(response)
-      });
-    }
 	$scope.listDeuda=[]
   $scope.dtOptions = DTOptionsBuilder.newOptions()
       .withPaginationType('full_numbers')
       .withOption('responsive', true)
       .withDOM('frtip').withPaginationType('full_numbers')
+      .withLanguage(DATATABLE_LANGUAGE_ES)
 
   $scope.dtOptionsAviso = DTOptionsBuilder.newOptions()
       .withPaginationType('full_numbers')
       .withOption('responsive', true)
       .withDOM('frtip').withPaginationType('full_numbers')
+      .withLanguage(DATATABLE_LANGUAGE_ES)
 
         $scope.dtColumns = [
             // DTColumnBuilder.newColumn('no_fisico').withTitle('N° de documento'),

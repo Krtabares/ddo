@@ -54,7 +54,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // console.log("initmodal")
           $scope.ID = null
           $scope.reset()
-
+          $scope.tabsIndex = 1
           var body={}
           body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
           body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
@@ -268,7 +268,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             selectCLientCAP( $scope.client)
             $scope.getPedidos_filteringV2()
-
+            angular.element('#clientes').focus();
         }
 
         function selectCLientCAP(client){
@@ -281,7 +281,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pCliente = $scope.pedido.no_cliente
             body.pNoCia = $scope.pedido.no_cia
             body.pNoGrupo =  $scope.pedido.grupo
-            getClientDispService(body)
+            // getClientDispService(body)
             validaClienteDDO(body)
 
 
@@ -391,6 +391,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.getClientNew = function (filter = false) {
           // console.log("getClientNew");
+          $scope.listaPedidosV2 = []
           $scope.loading = true
           var body = {};
           if(filter){
@@ -1223,6 +1224,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // console.log(pedido);
 
           $scope.editView = false;
+          $scope.tabsIndex = 1;
           // pedido.fecha = new Date(pedido.fecha);
           pedido.pedido.forEach((item, i) => {
 
@@ -1239,12 +1241,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           });
 
-
-
-
           $scope.pedido = pedido;
-
-
           // $scope.totales = pedido.totales
 
           calcularTotales()
@@ -1349,48 +1346,20 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
              return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
         }
 
-        var language = {
-          "sProcessing":     "Procesando...",
-          "sLengthMenu":     "Mostrar _MENU_ registros",
-          "sZeroRecords":    "No se encontraron resultados",
-          "sEmptyTable":     "Ningún dato disponible en esta tabla",
-          "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-          "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-          "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-          "sInfoPostFix":    "",
-          "sSearch":         "Buscar:",
-          "sUrl":            "",
-          "sInfoThousands":  ",",
-          "sLoadingRecords": "Cargando...",
-          "oPaginate": {
-            "sFirst":    "Primero",
-            "sLast":     "Último",
-            "sNext":     "Siguiente",
-            "sPrevious": "Anterior"
-          },
-          "oAria": {
-            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-          },
-          "buttons": {
-            "copy": "Copiar",
-            "colvis": "Visibilidad"
-          }
-        }
 
         $scope.dtOptions = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
             .withOption('responsive', true)
             .withDOM('frtip')
             .withPaginationType('full_numbers')
-            .withLanguage(language)
+            .withLanguage(DATATABLE_LANGUAGE_ES)
             .withDisplayLength(15)
         // .withDisplayLength(2);
         // $scope.dtInstanceProd = {};
         $scope.dtOptionsProd = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
             .withDOM('frtip').withPaginationType('full_numbers')
-            .withLanguage(language)
+            .withLanguage(DATATABLE_LANGUAGE_ES)
 
 
         $scope.dtColumns = [

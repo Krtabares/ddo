@@ -5,7 +5,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
     templateUrl: "comps/clientHeader/clientHeader.html",
     controller: 'clientHeaderCtrl',
     bindings: {
-      numero: "="
+      cliente: "="
     }
   })
 
@@ -25,16 +25,45 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
         $scope.clienteValido = true
         $scope.clientInvalidoMsg = null
         $scope.creditoClient = null
+        $scope.inputClient = false;
 
         var $ctrl = this;
-        $ctrl.$onInit = function () {}
+        var entrada = {}
+        $ctrl.$onInit = function () {
+          // $ctrl.cliente
+          console.log($ctrl.cliente);
+          if($ctrl.cliente){
+            $scope.inputClient = true;
+            entrada =  $ctrl.cliente
+          }
+
+          verificClient()
+        }
 
         $ctrl.onChanges = function (changes) {
           console.log("esto es lo que cambio",obj);
 
           }
+          $scope.creditoClient={}
+          function getClientDispService(body) {
+            // console.log("getClientDispService");
+            // $scope.loading = true
+            request.post(ip+'/disponible_cliente', body,{})
+            .then(function successCallback(response) {
+              // console.log(response)
 
-        verificClient()
+              $scope.creditoClient = response.data.obj
+              $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
+              $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
+              localstorage.set('creditoClient',  JSON.stringify($scope.creditoClient.disp_bs_format));
+              $scope.loading = false
+
+            }, function errorCallback(response) {
+              // console.log(response)
+              // $scope.loading = false
+            });
+          }
+
 
         function verificClient(){
 
@@ -45,20 +74,27 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
             console.log( client=='{}'  )
              if ( client=='{}' ){
                 $scope.hasUserClient = false;
-
+                console.log($scope.inputClient);
+                if($scope.inputClient){
+                  $scope.client_info = entrada
+                  $scope.inputClient = true;
+                  console.log($scope.client_info);
+                }
 
             }else{
                 $scope.hasUserClient = true;
                 $scope.client_info = JSON.parse(client_info);
                 $scope.client = JSON.parse(client);
                 $scope.client_info.limite_credito = $scope.client.limite_credito = parseFloat($scope.client_info.limite_credito)
-                var body = {}
-                body.pCliente = $scope.client_info.cod_cliente
-                body.pNoCia = $scope.client_info.cod_cia
-                body.pNoGrupo =  $scope.client_info.grupo_cliente
+            }
 
-                validaClienteDDO(body)
-
+            if (Object.keys($scope.client_info).length > 0) {
+              var body = {}
+              body.pCliente = $scope.client_info.cod_cliente
+              body.pNoCia = $scope.client_info.cod_cia
+              body.pNoGrupo =  $scope.client_info.grupo_cliente
+              getClientDispService(body)
+              validaClienteDDO(body)
 
             }
         }

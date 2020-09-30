@@ -18,13 +18,27 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.user_view = {};
       $scope.type_user = [{'id': 1, type : "vendedor"},{'id': 2, type : "cliente"}];
       var ip = "http://192.168.168.170:3500";
- 
+
       $scope.nombre_cliente = null;
       $scope.client = {};
       $scope.client_info = {};
       $scope.hasUserClient = false;
       $scope.clientes=[];
       $scope.clientIndex = -1
+      $scope.usuarios=[]
+
+
+      $scope.getUsers = function () {
+        body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+        body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+        body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+         request.post(ip+'/procedure_facturacion', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+          .then(function successCallback(response) {
+            console.log(response.data)
+            $scope.usuarios = response.data
+         });
+      }
+
       verificClient()
 
       function verificClient(){
@@ -38,7 +52,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
          $scope.hasUserClient = true;
          $scope.client_info = JSON.parse(client_info);
          $scope.client = JSON.parse(client);
-
+         $scope.getUsers()
        }
        console.log($scope.client)
      }
@@ -71,7 +85,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
        if(filter){
          body.pNombre = $scope.nombre_cliente
        }
-       request.post(ip+'/procedure_clientes', body,{'Authorization': 'Bearer ' + localstorage.get('token')})
+       request.post(ip+'/get/user', body,{'Authorization': 'Bearer ' + localstorage.get('token')})
        .then(function successCallback(response) {
          console.log(response)
 
@@ -181,28 +195,38 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
           $scope.user_view = user;
         }
 
-		$scope.initDatatable = function(){
-		$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
-        var defer = $q.defer();
+		// $scope.initDatatable = function(){
+		// $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
+    //     var defer = $q.defer();
+    //
+    //     request.post(ip+'/get/user', {'page': 1}, {'Authorization': 'Bearer ' + localstorage.get('token')})
+    //       .then(function successCallback(response) {
+    //         console.log(response)
+		// 	         defer.resolve(response.data);
+    //      });
+    //
+    //     return defer.promise;
+		// })
+		// .withDOM('frtip')
+    //     .withPaginationType('full_numbers')
+		// .withButtons([
+    //
+    //         'pdf',
+    //         'excel'
+    //     ])
+    // .withLanguage(DATATABLE_LANGUAGE_ES)
+    //
+		// }
+    //
+		// $scope.initDatatable();
 
-        request.post(ip+'/get/user', {'page': 1}, {'Authorization': 'Bearer ' + localstorage.get('token')})
-          .then(function successCallback(response) {
-            console.log(response)
-			         defer.resolve(response.data);
-         });
-
-        return defer.promise;
-		})
-		.withDOM('frtip')
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withPaginationType('full_numbers')
-		.withButtons([
-            'colvis',
-            'pdf',
-            'excel'
-        ])
-		}
-
-		$scope.initDatatable();
+        .withOption('responsive', true)
+        .withDOM('frtip')
+        .withPaginationType('full_numbers')
+        .withLanguage(DATATABLE_LANGUAGE_ES)
+        .withDisplayLength(15)
 
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('name').withTitle('Nombre'),

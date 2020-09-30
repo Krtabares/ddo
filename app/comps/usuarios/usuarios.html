@@ -157,6 +157,37 @@
            <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
   			</table>
 
+
+                          <table datatable="ng" dt-options="dtOptions"  class="table table-striped table-bordered" >
+                            <thead>
+                              <tr>
+                                <th scope="col"><p class="text-center">#</p></th>
+                                <th scope="col"><p class="text-center">Usuario</p></th>
+                                <th scope="col"><p class="text-center">Estatus</p></th>
+
+                                <!-- <th scope="col"><p class="text-center">Nombre vendedor</p></th> -->
+                                <!-- <th scope="col"><p class="text-center">Email vendedor</p></th> -->
+                                <th scope="col"><p class="text-center">Opciones</p></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr  ng-repeat="fact in facturas"  >
+                                <td><p class="text-center">{{ $index + 1 }}</p></td>
+                                <td><p class="text-center">{{ fact }}</p></td>
+                                <td><p class="text-center">{{ facturasList[fact][0].fecha_pedido }}</p></td>
+
+                                <!-- <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td> -->
+                                <!-- <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td> -->
+                                <td>
+                                  <i class="fa fa-eye" style="cursor: pointer;"    data-toggle="modal" data-target="#addUserModal"  ></i>
+                                </td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+
           </div>
 
         </div>

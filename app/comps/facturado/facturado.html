@@ -26,8 +26,8 @@
                         <tr>
                         <th scope="col"><p class="text-center">#</p></th>
                         <th scope="col"><p class="text-center">Nombre articulo</p></th>
-                        <th scope="col"><p class="text-center">Fecha pedido</p></th>
-                        <th scope="col"><p class="text-center">Fecha factura</p></th>
+                        <!-- <th scope="col"><p class="text-center">Fecha pedido</p></th> -->
+                        <!-- <th scope="col"><p class="text-center">Fecha factura</p></th> -->
                         <th scope="col"><p class="text-center">Unidades pedido</p></th>
                         <th scope="col"><p class="text-center">Unidades facturadas</p></th>
                         <!-- <th scope="col"><p class="text-center">Nombre Vendedor</p></th>
@@ -42,8 +42,8 @@
 
                             <td><p class="text-center">{{ $index + 1 }}</p></td>
                             <td><p class="text-center">{{ x.nombre_arti }}</p></td>
-                            <td><p class="text-right">{{  x.fecha_pedido }}</p></td>
-                            <td><p class="text-right">{{  x.fecha_factura }}</p></td>
+                            <!-- <td><p class="text-right">{{  x.fecha_pedido }}</p></td> -->
+                            <!-- <td><p class="text-right">{{  x.fecha_factura }}</p></td> -->
                             <td><p class="text-center">{{ x.unidades_pedido }}</p></td>
                             <td><p class="text-center">{{ x.unidades_facturadas }}</p></td>
                             <!-- <td><p class="text-right">{{  x.nombre_vendedor }}</p></td>
@@ -94,28 +94,51 @@
 <header-client></header-client>
 
 <div ng-show="!hasUserClient">
-  <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-6">
-      <label for="clientes">Busqueda por cliente</label>
-      <div class="input-group mb-3">
-        <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+  <div class="row" style="margin-bottom: 15px;">
+    <div class="col-md-12">
+      <div class="card " >
+        <div class="card-body">
+          <h5 class="card-title">Busqueda por cliente </h5>
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <!-- <label for="clientes">Busqueda por cliente</label> -->
+              <div class="input-group mb-3">
+                <input type="text" id="clientes"
+                class="form-control"
+                ng-keydown="$event.keyCode === 13 && getClientNew(true)"
+                ng-model="nombre_cliente"
+                placeholder="Busqueda por Cliente"
+                aria-label="Busqueda por Cliente"
+                aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
+              <div class="form-group">
+                <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-focus="clientIndex = null" ng-change="selectCLient()">
+                  <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
+                  <option value="" disabled selected>Seleccione un cliente</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">Seleccione</label>
-        <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
-          <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
-          <option value="" disabled selected>Seleccione un cliente</option>
-        </select>
-      </div>
-    </div>
-
 
   </div>
+
+  <div ng-if="clientIndex != null">
+    <header-client cliente="client" ></header-client>
+  </div>
+
+
+
 </div>
 
       <div class="row">
@@ -139,7 +162,7 @@
                         <th scope="col"><p class="text-center">Monto</p></th>
                         <th scope="col"><p class="text-center">Monto usd</p></th>
                         <th scope="col"><p class="text-center">Tipo pedido</p></th>
-                        <th scope="col"><p class="text-center">Nombre vendedor</p></th>
+                        <!-- <th scope="col"><p class="text-center">Nombre vendedor</p></th> -->
                         <!-- <th scope="col"><p class="text-center">Email vendedor</p></th> -->
                         <th scope="col"><p class="text-center">Opciones</p></th>
                       </tr>
@@ -155,7 +178,7 @@
                         <td><p class="text-center">{{ formato(2,facturasTotales[fact].total_bs) }}</p></td>
                         <td><p class="text-center">{{ formato(3,facturasTotales[fact].total_usd) }}</p></td>
                         <td><p class="text-center">{{ facturasList[fact][0].tipo_pedido }}</p></td>
-                        <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td>
+                        <!-- <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td> -->
                         <!-- <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td> -->
                         <td>
                           <i class="fa fa-eye" style="cursor: pointer;"   ng-click="selectFactura(facturasList[fact])"  data-toggle="modal" data-target="#modalFactura"  ></i>
@@ -182,3 +205,7 @@
 </div>
 
 <my-footer></my-footer>
+
+<div ng-show="loading">
+  <my-loading></my-loading>
+</div>
