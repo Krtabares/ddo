@@ -31,7 +31,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.clientes=[];
       $scope.clientIndex = -1
       $scope.usuarios=[]
-
+      $scope.permisos ={"deuda":{"ver":false},"cliente":{"ver":false},"producto":{"ver":false},"factura":{"ver":false},"pedido":{"ver":false,"crear":false,"editar":false,"eliminar":false},"usuario":{"ver":false,"crear":false,"editar":false,"eliminar":false}}
 
       $scope.getUsers = function () {
         var body = {}
@@ -54,7 +54,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
          request.post(ip+'/get/user', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
-            // $scope.usuarios = response.data
+            $scope.user = response.data
          });
       }
 

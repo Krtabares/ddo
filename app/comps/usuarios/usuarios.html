@@ -27,9 +27,6 @@
           <option value="" disabled selected>Selecciona un tipo de usuario</option>
         </select>
 
-
-
-
           <div class="form-group">
             <label>Nombre</label>
             <input type="text" ng-model="user.name" class="form-control" placeholder="Nombre">
@@ -43,6 +40,45 @@
             </div>
           </div>
 
+          <table class="table table-inverse">
+            <thead>
+              <tr>
+                <th>Modulo</th>
+                <th>Ver</th>
+                <th>Crear</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Deudas</th>
+                <td>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" ng-model="permisos.deuda.ver"  >
+                  </div>
+                </td>
+                <td>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" disabled >
+                  </div>
+                </td>
+                <td>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" disabled >
+                  </div>
+                </td>
+                <td>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" disabled >
+                  </div>
+                </td>
+              </tr>
+              <tr>
+
+
+            </tbody>
+          </table>
 
         </form>
       </div>
