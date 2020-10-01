@@ -3,51 +3,6 @@
 
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="showDeudaModal" tabindex="-1" role="dialog" aria-labelledby="showDeudaModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
-        <h5 class="modal-title" id="showDeudaModalLabel">VER USUARIO <i class="fas fa-1x fa-user"></i> </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-		<div class="cirular-avatar">  <i class="iavatar fas fa-2x fa-user"></i> </div>
-
-
-		<div class="data-avatar">
-			<form>
-				  <div class="form-group">
-					<label>Nombre</label>
-					<input type="text" ng-model="user_view.name" class="form-control" placeholder="Nombre">
-				  </div>
-				  <div class="form-group">
-              <label>Tipo de usuario</label>
-              <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-              <select class="form-control form-control-sm" ng-model="user_view.role">
-                <option ng-repeat="type in type_user" value="{{type_user.type}}">
-                  {{type_user.type | uppercase}}
-                </option>
-              </select>
-				  </div>
-				  <div class="form-group">
-					<label>Username</label>
-					<input type="text" ng-model="user_view.username" class="form-control" placeholder="Username">
-				  </div>
-			</form>
-		</div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" style="background: #212529;" data-dismiss="modal"><i class="fas fa-1x fa-times"></i></button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -203,7 +158,7 @@
                         <!-- <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td> -->
                         <!-- <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td> -->
                         <td>
-                          <i class="fa fa-eye" style="cursor: pointer;"    data-toggle="modal" data-target="#addUserModal"  ></i>
+                          <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getUser(x.username)"  data-toggle="modal" data-target="#addUserModal"  ></i>
                         </td>
                       </tr>
 

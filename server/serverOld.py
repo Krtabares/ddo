@@ -107,7 +107,7 @@ async def addUser(request, token : Token):
 
     return response.json("OK", 200)
 
-@app.route('/get/user', ["POST", "GET"])
+@app.route('/get/users', ["POST", "GET"])
 @jwt_required
 async def listUser(request, token : Token):
     data = request.json
@@ -117,6 +117,16 @@ async def listUser(request, token : Token):
         users = await db.user.find({}, {'_id' : 0}).to_list(length=None)
     else:
         users = await db.user.find({'COD_CLIENTE' : data['pCliente']}, {'_id' : 0}).to_list(length=None)
+
+    return response.json(users,200)
+
+@app.route('/get/user', ["POST", "GET"])
+@jwt_required
+async def availableUser(request, token : Token):
+    data = request.json
+    db = get_mongo_db()
+    # username = data.get("username", None)
+    users = await db.user.find_one({'username' : data.get("username", None)}, {'_id' : 0})
 
     return response.json(users,200)
 

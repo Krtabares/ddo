@@ -18,9 +18,9 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.user_view = {};
       $scope.type_user = [
 
-        {'id': 1, type : "Administrador"},
-        {'id': 2, type : "Generico"},
-        
+        {'id': 1, type : "admin", text: "Administrador"},
+        {'id': 2, type : "generic", text: "Generico"},
+
       ];
       var ip = "http://192.168.168.170:3500";
 
@@ -42,6 +42,19 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
           .then(function successCallback(response) {
             console.log(response.data)
             $scope.usuarios = response.data
+         });
+      }
+
+      $scope.getUser = function (username) {
+        var body = {}
+        body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+        body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+        body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+        body.username = username
+         request.post(ip+'/get/user', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+          .then(function successCallback(response) {
+            console.log(response.data)
+            // $scope.usuarios = response.data
          });
       }
 
