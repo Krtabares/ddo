@@ -60,57 +60,19 @@
       </div>
       <div class="modal-body">
       <form>
-        <div class="form-group" ng-if="!hasUserClient" >
-          <label>Tipo de usuario</label>
-          <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-          <select class="form-control form-control-sm" ng-model="user.role">
-
-            <option ng-repeat="type in type_user" value="{{type.type}}">
-              {{type.type | uppercase}}
-            </option>
-            <option value="" disabled selected>Selecciona un tipo de usuario</option>
-          </select>
-        </div>
-
-        <div class="row" ng-show="!hasUserClient">
-          <div class="col-sm-12 col-md-6 col-lg-6">
-            <label for="clientes">Busqueda por cliente</label>
-            <div class="input-group mb-3">
-              <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
-            <div class="form-group">
-              <label for="exampleFormControlSelect1">Seleccione</label>
-              <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-change="selectCLient()">
-                <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
-                <option value="" disabled selected>Seleccione un cliente</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row pb-2 p-2" ng-if="client">
-              <div class="col-md-6">
-                  <p class="font-weight-bold mb-4">Informacion del Cliente </p>
-                  <p class="mb-1" style="text-transform: capitalize;" >{{client.nombre_cliente.toLowerCase()}}</p>
-                  <!-- <p>Acme Inc</p> -->
-                  <p class="mb-1">{{client.direccion_cliente.toLowerCase()}}</p>
-                  <!-- <p class="mb-1">6781 45P</p> -->
-              </div>
-
-              <div class="col-md-6 text-right">
-                  <p class="font-weight-bold mb-4">Detalles</p>
-                  <p class="mb-1"><span class="text-muted">Identificacion: </span> {{client.docu_identif_cliente}}</p>
-                  <p class="mb-1"><span class="text-muted">Codigo: </span> {{client.cod_cliente}}</p>
-                  <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client.nombre_encargado.toLowerCase()}}</p>
-              </div>
-          </div>
 
 
-        </div>
+        <label>Tipo de usuario</label>
+        <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
+        <select class="form-control form-control-sm" ng-model="user.role">
+
+          <option ng-repeat="type in type_user" value="{{type.type}}">
+            {{type.type | uppercase}}
+          </option>
+          <option value="" disabled selected>Selecciona un tipo de usuario</option>
+        </select>
+
+
 
 
           <div class="form-group">
@@ -208,44 +170,41 @@
 
         <div class="row">
           <div class="col-md-12">
-           <!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
-  			</table> -->
+
+                  <table datatable="ng" dt-options="dtOptions"  class="table table-striped table-bordered" >
+                    <thead>
+                      <tr>
+                        <th scope="col"><p class="text-center">#</p></th>
+                        <th scope="col"><p class="text-center">Usuario</p></th>
+                        <th scope="col"><p class="text-center">Nombre</p></th>
+                        <th scope="col"><p class="text-center">Tipo</p></th>
+                        <th scope="col"><p class="text-center">Estatus</p></th>
+
+                        <!-- <th scope="col"><p class="text-center">Nombre vendedor</p></th> -->
+                        <!-- <th scope="col"><p class="text-center">Email vendedor</p></th> -->
+                        <th scope="col"><p class="text-center">Opciones</p></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr  ng-repeat="x in usuarios"  >
+                        <td><p class="text-center">{{ $index + 1 }}</p></td>
+                        <td><p class="text-center">{{ x.username }}</p></td>
+                        <td><p class="text-center">{{ x.name }}</p></td>
+                        <td><p class="text-center">{{ x.role }}</p></td>
+                        <td><p class="text-center">{{ x.status }}</p></td>
 
 
-                          <table datatable="ng" dt-options="dtOptions"  class="table table-striped table-bordered" >
-                            <thead>
-                              <tr>
-                                <th scope="col"><p class="text-center">#</p></th>
-                                <th scope="col"><p class="text-center">Usuario</p></th>
-                                <th scope="col"><p class="text-center">Nombre</p></th>
-                                <th scope="col"><p class="text-center">Tipo</p></th>
-                                <th scope="col"><p class="text-center">Estatus</p></th>
-
-                                <!-- <th scope="col"><p class="text-center">Nombre vendedor</p></th> -->
-                                <!-- <th scope="col"><p class="text-center">Email vendedor</p></th> -->
-                                <th scope="col"><p class="text-center">Opciones</p></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-
-                              <tr  ng-repeat="x in usuarios"  >
-                                <td><p class="text-center">{{ $index + 1 }}</p></td>
-                                <td><p class="text-center">{{ x.username }}</p></td>
-                                <td><p class="text-center">{{ x.name }}</p></td>
-                                <td><p class="text-center">{{ x.role }}</p></td>
-                                <td><p class="text-center">{{ x.status }}</p></td>
+                        <!-- <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td> -->
+                        <!-- <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td> -->
+                        <td>
+                          <i class="fa fa-eye" style="cursor: pointer;"    data-toggle="modal" data-target="#addUserModal"  ></i>
+                        </td>
+                      </tr>
 
 
-                                <!-- <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td> -->
-                                <!-- <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td> -->
-                                <td>
-                                  <i class="fa fa-eye" style="cursor: pointer;"    data-toggle="modal" data-target="#addUserModal"  ></i>
-                                </td>
-                              </tr>
-
-
-                            </tbody>
-                          </table>
+                    </tbody>
+                  </table>
 
           </div>
 
