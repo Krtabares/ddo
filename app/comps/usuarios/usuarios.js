@@ -16,7 +16,12 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.array_user = [];
       $scope.user = {};
       $scope.user_view = {};
-      $scope.type_user = [{'id': 1, type : "vendedor"},{'id': 2, type : "cliente"}];
+      $scope.type_user = [
+
+        {'id': 1, type : "Administrador"},
+        {'id': 2, type : "Generico"},
+        
+      ];
       var ip = "http://192.168.168.170:3500";
 
       $scope.nombre_cliente = null;
@@ -29,10 +34,11 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
 
       $scope.getUsers = function () {
+        var body = {}
         body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
         body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
         body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
-         request.post(ip+'/procedure_facturacion', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+         request.post(ip+'/get/user', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
             console.log(response.data)
             $scope.usuarios = response.data
@@ -64,6 +70,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
          $scope.client  = $scope.clientes[ $scope.clientIndex ];
          // $scope.hasUserClient = true;
          console.log($scope.client )
+         $scope.getUsers()
+         angular.element('#clientes').focus();
        }
 
 
@@ -80,21 +88,25 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
        $scope.clientIndex = -1
      }
      $scope.getClientNew = function (filter = false) {
+       $scope.loading = true
        console.log("getClientNew");
        var body = {};
        if(filter){
          body.pNombre = $scope.nombre_cliente
        }
-       request.post(ip+'/get/user', body,{'Authorization': 'Bearer ' + localstorage.get('token')})
+       request.post(ip+'/procedure_clientes', body,{})
        .then(function successCallback(response) {
          console.log(response)
 
          $scope.clientes = response.data.obj
+         $scope.loading = false
 
        }, function errorCallback(response) {
          console.log(response)
+         $scope.loading = false
        });
      }
+
      $scope.usernameValid = false;
      $scope.availableUser = function (filter = false) {
        console.log("availableUser");
