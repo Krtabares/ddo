@@ -59,8 +59,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
          });
       }
       $scope.hasOwnProp = function (mod,prop) {
-        console.log(typeof mod)
-        // var mod = strin
+        // console.log(typeof mod)
+        // // var mod = strin
         console.log($scope.permisos[mod].hasOwnProperty(prop));
         return $scope.permisos[mod].hasOwnProperty(prop)
       }
