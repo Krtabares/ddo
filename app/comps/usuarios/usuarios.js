@@ -58,8 +58,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
             $scope.user = response.data
          });
       }
-      $scope.hasOwnProp = function (mod,prop) {  
-        $scope.permisos[mod].hasOwnProperty(prop)
+      $scope.hasOwnProp = function (mod,prop) {
+        return $scope.permisos[mod].hasOwnProperty(prop)
       }
 
       verificClient()
