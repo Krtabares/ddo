@@ -74,7 +74,30 @@
                   </div>
                 </td>
               </tr>
-              <tr>
+              <tr  ng-repeat="x in modulos"  >
+                <th scope="row">{{x}}</th>
+                <td>
+                  <div class="form-check" >
+                    <input type="checkbox" class="form-check-input" ng-model="permisos.[x].ver" ng-disabled="hasOwnProp('cliente',ver)"  >
+                  </div>
+                </td>
+                <td>
+                  <div class="form-check" ng-if >
+                    <input type="checkbox" class="form-check-input" ng-model="permisos.[x].crear" ng-disabled="hasOwnProp(x,crear)" >
+                  </div>
+                </td>
+                <td>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input"  ng-model="permisos.[x].editar" ng-disabled="hasOwnProp(x,editar)" >
+                  </div>
+                </td>
+                <td>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" ng-model="permisos.[x].eliminar" ng-disabled="hasOwnProp(x,eliminar)" >
+                  </div>
+                </td>
+              </tr>
+
 
 
             </tbody>
