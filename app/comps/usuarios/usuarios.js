@@ -26,6 +26,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
       $scope.nombre_cliente = null;
       $scope.client = {};
+      $scope.typeview = ''
       $scope.client_info = {};
       $scope.hasUserClient = false;
       $scope.clientes=[];
@@ -56,13 +57,19 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
           .then(function successCallback(response) {
             console.log(response.data)
             $scope.user = response.data
+            $scope.typeview = 'view'
          });
       }
       $scope.hasOwnProp = function (mod,prop) {
-        // console.log(typeof mod)
-        // // var mod = strin
-        console.log($scope.permisos[mod].hasOwnProperty(prop));
         return $scope.permisos[mod].hasOwnProperty(prop)
+      }
+
+      $scope.modalTitle = ""
+
+      $scope.createUser = function () {
+        $scope.reset()
+        $scope.modalTitle = 'Crear usuario'
+        $scope.typeview = 'add'
       }
 
       verificClient()
@@ -100,12 +107,12 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
      $scope.reset = function(){
        $scope.user = {};
        $scope.user_view = {};
-       $scope.nombre_cliente = null;
+       // $scope.nombre_cliente = null;
        $scope.client = {};
        $scope.client_info = {};
-       $scope.hasUserClient = false;
-       $scope.clientes=[];
-       $scope.clientIndex = -1
+       // $scope.hasUserClient = false;
+       // $scope.clientes=[];
+       // $scope.clientIndex = -1
      }
      $scope.getClientNew = function (filter = false) {
        $scope.loading = true

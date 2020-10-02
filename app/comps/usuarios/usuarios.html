@@ -83,7 +83,7 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" ng-click="addUser(user);">Guardar</button>
+        <button type="button" class="btn btn-primary" ng-click="addUser(user);" ng-if="typeview == 'add'" >Guardar</button>
         <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addUser(user);">Cerrar</button> -->
       </div>
     </div>
@@ -161,7 +161,7 @@
           <div class="row">
             <div class="col-md-12">
 
-              <button class="btn btn-primary" style="font-weight: bold;margin-bottom: 1rem;" data-toggle="modal" data-target="#addUserModal"> <i class="fas fa-pencil"></i> CREAR USUARIO <i class="fas fa-1x fa-user"></i></button>
+              <button class="btn btn-primary" style="font-weight: bold;margin-bottom: 1rem;" data-toggle="modal" ng-click="createUser()" data-target="#addUserModal"> <i class="fas fa-pencil"></i> CREAR USUARIO <i class="fas fa-1x fa-user"></i></button>
 
               <div class="row">
                 <div class="col-md-12">
