@@ -56,22 +56,22 @@
                 <th scope="row">{{x}}</th>
                 <td>
                   <div class="form-check" >
-                    <input type="checkbox" class="form-check-input" ng-model="permisos[x].ver" ng-disabled="hasOwnProp('cliente',ver)"  >
+                    <input type="checkbox" class="form-check-input" ng-model="permisos[x].ver" ng-disabled="!hasOwnProp('cliente',ver)"  >
                   </div>
                 </td>
                 <td>
-                  <div class="form-check"  >
-                    <input type="checkbox" class="form-check-input" ng-model="permisos[x].crear" ng-disabled="hasOwnProp(x,crear)" >
+                  <div class="form-check" ng-if="hasOwnProp(x,crear)" >
+                    <input type="checkbox" class="form-check-input" ng-model="permisos[x].crear" ng-disabled="!hasOwnProp(x,crear)" >
                   </div>
                 </td>
                 <td>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input"  ng-model="permisos[x].editar" ng-disabled="hasOwnProp(x,editar)" >
+                  <div class="form-check" ng-if="hasOwnProp(x,editar)" >
+                    <input type="checkbox" class="form-check-input"  ng-model="permisos[x].editar" ng-disabled="!hasOwnProp(x,editar)" >
                   </div>
                 </td>
                 <td>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" ng-model="permisos[x].eliminar" ng-disabled="hasOwnProp(x,eliminar)" >
+                  <div class="form-check"ng-if="hasOwnProp(x,eliminar)" >
+                    <input type="checkbox" class="form-check-input" ng-model="permisos[x].eliminar" ng-disabled="!hasOwnProp(x,eliminar)" >
                   </div>
                 </td>
               </tr>
