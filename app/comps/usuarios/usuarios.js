@@ -32,6 +32,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.clientIndex = -1
       $scope.usuarios=[]
       $scope.permisos ={"deuda":{"ver":false},"cliente":{"ver":false},"producto":{"ver":false},"factura":{"ver":false},"pedido":{"ver":false,"crear":false,"editar":false,"eliminar":false},"usuario":{"ver":false,"crear":false,"editar":false,"eliminar":false}}
+      $scope.modulos = Object.keys($scope.permisos)
 
       $scope.getUsers = function () {
         var body = {}
@@ -56,6 +57,9 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
             console.log(response.data)
             $scope.user = response.data
          });
+      }
+      $scope.hasOwnProp = function (mod,prop) {  
+        $scope.permisos[mod].hasOwnProperty(prop)
       }
 
       verificClient()

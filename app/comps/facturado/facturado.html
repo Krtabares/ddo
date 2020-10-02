@@ -91,55 +91,55 @@
           <li class="breadcrumb-item active" aria-current="page">Pedidos facturados</li>
         </ol>
       </nav>
-<header-client></header-client>
+      <header-client></header-client>
 
-<div ng-show="!hasUserClient">
-  <div class="row" style="margin-bottom: 15px;">
-    <div class="col-md-12">
-      <div class="card " >
-        <div class="card-body">
-          <h5 class="card-title">Busqueda por cliente </h5>
-          <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <!-- <label for="clientes">Busqueda por cliente</label> -->
-              <div class="input-group mb-3">
-                <input type="text" id="clientes"
-                class="form-control"
-                ng-keydown="$event.keyCode === 13 && getClientNew(true)"
-                ng-model="nombre_cliente"
-                placeholder="Busqueda por Cliente"
-                aria-label="Busqueda por Cliente"
-                aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+      <div ng-show="!hasUserClient">
+        <div class="row" style="margin-bottom: 15px;">
+          <div class="col-md-12">
+            <div class="card " >
+              <div class="card-body">
+                <h5 class="card-title">Busqueda por cliente </h5>
+                <div class="row">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
+                    <!-- <label for="clientes">Busqueda por cliente</label> -->
+                    <div class="input-group mb-3">
+                      <input type="text" id="clientes"
+                      class="form-control"
+                      ng-keydown="$event.keyCode === 13 && getClientNew(true)"
+                      ng-model="nombre_cliente"
+                      placeholder="Busqueda por Cliente"
+                      aria-label="Busqueda por Cliente"
+                      aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
+                    <div class="form-group">
+                      <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                      <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-focus="clientIndex = null" ng-change="selectCLient()">
+                        <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
+                        <option value="" disabled selected>Seleccione un cliente</option>
+                      </select>
+                    </div>
+                  </div>
+
                 </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6" ng-show="clientes.length > 0" >
-              <div class="form-group">
-                <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                <select class="form-control" ng-model="clientIndex" id="exampleFormControlSelect1" ng-focus="clientIndex = null" ng-change="selectCLient()">
-                  <option ng-repeat="x in clientes" value="{{$index}}">{{x.nombre_cliente}}</option>
-                  <option value="" disabled selected>Seleccione un cliente</option>
-                </select>
-              </div>
-            </div>
 
+              </div>
+            </div>
           </div>
 
         </div>
+
+        <div ng-if="clientIndex != null">
+          <header-client cliente="client" ></header-client>
+        </div>
+
+
+
       </div>
-    </div>
-
-  </div>
-
-  <div ng-if="clientIndex != null">
-    <header-client cliente="client" ></header-client>
-  </div>
-
-
-
-</div>
 
       <div class="row">
         <div class="col-md-12 mt-10 mb-10">
