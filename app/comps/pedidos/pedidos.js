@@ -558,7 +558,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         function proveedores() {
           $scope.loading = true
           // console.log("validaClienteDDO");
-          request.post(ip+'/get/proveedores', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          request.post(ip+'/get/proveedores', {},{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             console.log(response.data)
 
