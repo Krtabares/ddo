@@ -553,6 +553,27 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
+        $scope.listProveedores=[]
+        $scope.proveedor = {"cod_proveedor":null}
+        function proveedores() {
+          $scope.loading = true
+          // console.log("validaClienteDDO");
+          request.post(ip+'/get/proveedores', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+            console.log(response.data)
+
+            $scope.listProveedores = response.data.obj
+
+            $scope.loading = false
+
+          }, function errorCallback(response) {
+            // console.log(response)
+            $scope.loading = false
+
+          });
+        }
+
+
         $scope.getProdNew = function (filter = false, articulo = false) {
           $scope.loading = true
           // console.log("getProdNew");
@@ -568,6 +589,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               body.pArticulo = $scope.pArticulo
             }else{
               body.pBusqueda = $scope.busqueda_prod
+            }
+
+            if($scope.proveedor.cod_proveedor != null){
+              body.pCodProveedor = $scope.proveedor.cod_proveedor
             }
 
 
