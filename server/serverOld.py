@@ -1922,7 +1922,7 @@ async def pedido (request , token: Token):
                     'estatus_id':row[7],
                     'pedido': pedidos,
                     'errores':errores,
-                    # 'totales':totales,
+                    'totales':totales,
               }
 
             list.append(aux)
