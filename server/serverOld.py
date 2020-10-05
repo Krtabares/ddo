@@ -266,6 +266,7 @@ async def procedure(request):
                 v_cod_cliente varchar2(50);
                 v_nombre_cliente varchar2(200);
                 v_direccion_cliente varchar2(250);
+                v_direccion_entrega_cliente varchar2(250);
                 v_docu_identif_cliente varchar2(50);
                 v_nombre_encargado varchar2(100);
                 v_telefono1 varchar2(50);
@@ -317,6 +318,7 @@ async def procedure(request):
                 v_cod_cliente,
                 v_nombre_cliente,
                 v_direccion_cliente,
+                v_direccion_entrega_cliente,
                 v_docu_identif_cliente,
                 v_nombre_encargado,
                 v_telefono1,
@@ -353,6 +355,7 @@ async def procedure(request):
                 v_cod_cliente|| '|'||
                 v_nombre_cliente|| '|'||
                 v_direccion_cliente|| '|'||
+                v_direccion_entrega_cliente|| '|'||
                 v_docu_identif_cliente|| '|'||
                 v_nombre_encargado|| '|'||
                 v_telefono1|| '|'||
@@ -410,32 +413,33 @@ async def procedure(request):
         'cod_cliente': arr[4],
         'nombre_cliente': arr[5],
         'direccion_cliente': arr[6],
-        'docu_identif_cliente': arr[7],
-        'nombre_encargado': arr[8],
-        'telefono1': arr[9],
-        'telefono2': arr[10],
-        'telefono3': arr[11],
-        'telefono4': arr[12],
-        'email1': arr[13],
-        'email2': arr[14],
-        'email3': arr[15],
-        'email4': arr[16],
-        'v_plazo': arr[17],
-        'v_persona_cyc': arr[18],
-        'zona': arr[19],
-        'monto_minimo':arr[20],
-        'tipo_venta':arr[21],
-        'limite_credito':arr[22],
-        'vendedor':arr[23],
-        'max_unid_med_emp' :arr[24],
-        'max_unid_misc_emp' :arr[25],
-        'unid_fact_med_emp' :arr[26],
-        'unid_fact_misc_emp' :arr[27],
-        'unid_disp_med_emp' :arr[28],
-        'unid_disp_misc_emp' :arr[29],
-        'monto_min_pick' :arr[30],
-        'pagina': arr[31],
-        'linea': arr[32]
+        'direccion_entrega_cliente' :arr[7],
+        'docu_identif_cliente': arr[8],
+        'nombre_encargado': arr[9],
+        'telefono1': arr[10],
+        'telefono2': arr[11],
+        'telefono3': arr[12],
+        'telefono4': arr[13],
+        'email1': arr[14],
+        'email2': arr[15],
+        'email3': arr[16],
+        'email4': arr[17],
+        'v_plazo': arr[18],
+        'v_persona_cyc': arr[19],
+        'zona': arr[20],
+        'monto_minimo':arr[21],
+        'tipo_venta':arr[22],
+        'limite_credito':arr[23],
+        'vendedor':arr[24],
+        'max_unid_med_emp' :arr[25],
+        'max_unid_misc_emp' :arr[26],
+        'unid_fact_med_emp' :arr[27],
+        'unid_fact_misc_emp' :arr[28],
+        'unid_disp_med_emp' :arr[29],
+        'unid_disp_misc_emp' :arr[30],
+        'monto_min_pick' :arr[31],
+        'pagina': arr[32],
+        'linea': arr[33]
         }
         list.append(obj)
     return response.json({"msj": "OK", "obj": list}, 200)
