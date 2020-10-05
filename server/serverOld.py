@@ -245,6 +245,8 @@ async def procedure(request):
             pPagina number DEFAULT null;
             pLineas number DEFAULT 100;
             pCliente varchar2(50) DEFAULT null;
+            pNoCia varchar2(10) DEFAULT '01';
+            pNoGrupo varchar2(10) DEFAULT '01';
             pNombre varchar2(50) DEFAULT null;
             pDireccion varchar2(50) DEFAULT null;
             output number DEFAULT 1000000;
@@ -272,6 +274,13 @@ async def procedure(request):
                 v_tipo_venta varchar2(100);
                 v_limite_credito number;
                 v_vendedor varchar2(100);
+                v_max_unid_med_emp number;
+                v_max_unid_misc_emp number;
+                v_unid_fact_med_emp number;
+                v_unid_fact_misc_emp number;
+                v_unid_disp_med_emp number;
+                v_unid_disp_misc_emp number;
+                v_monto_min_pick number;
                 v_tot number;
                 v_pagina number;
                 v_linea number;
@@ -281,12 +290,14 @@ async def procedure(request):
                     pTotPaginas  := {pTotPaginas};
                     pPagina  := {pPagina};
                     pLineas  := {pLineas};
+                    pNoCia := {pNoCia};
+                    pNoGrupo := {pNoGrupo};
                     pCliente := {pCliente};
                     pNombre := {pNombre};
                     pDireccion := {pDireccion};
 
                 dbms_output.enable(output);
-                PROCESOSPW.clientes (l_cursor, pTotReg, pTotPaginas, pPagina, pLineas, pCliente, pNombre, pDireccion);
+                PROCESOSPW.clientes (l_cursor, pTotReg, pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo, pCliente, pNombre, pDireccion);
 
             LOOP
             FETCH l_cursor into
@@ -314,6 +325,13 @@ async def procedure(request):
                 v_tipo_venta,
                 v_limite_credito,
                 v_vendedor,
+                v_max_unid_med_emp,
+                v_max_unid_misc_emp,
+                v_unid_fact_med_emp,
+                v_unid_fact_misc_emp,
+                v_unid_disp_med_emp,
+                v_unid_disp_misc_emp,
+                v_monto_min_pick,
                 v_pagina,
                 v_linea;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -343,6 +361,13 @@ async def procedure(request):
                 v_tipo_venta|| '|'||
                 v_limite_credito|| '|'||
                 v_vendedor|| '|'||
+                v_max_unid_med_emp|| '|'||
+                v_max_unid_misc_emp|| '|'||
+                v_unid_fact_med_emp|| '|'||
+                v_unid_fact_misc_emp|| '|'||
+                v_unid_disp_med_emp|| '|'||
+                v_unid_disp_misc_emp|| '|'||
+                v_monto_min_pick|| '|'||
                 v_pagina|| '|'||
                 v_linea
                 );
@@ -355,6 +380,8 @@ async def procedure(request):
                         pPagina = data['pPagina'],
                         pLineas = data['pLineas'],
                         pDireccion = data['pDireccion'],
+                        pNoCia = data['pNoCia'],
+                        pNoGrupo = data['pNoGrupo'],
                         pCliente = data['pCliente'],
                         pNombre = data['pNombre'],
                     ))
@@ -391,8 +418,15 @@ async def procedure(request):
         'tipo_venta':arr[21],
         'limite_credito':arr[22],
         'vendedor':arr[23],
-        'pagina': arr[24],
-        'linea': arr[25]
+        'max_unid_med_emp' :arr[24],
+        'max_unid_misc_emp' :arr[25],
+        'unid_fact_med_emp' :arr[26],
+        'unid_fact_misc_emp' :arr[27],
+        'unid_disp_med_emp' :arr[28],
+        'unid_disp_misc_emp' :arr[29],
+        'monto_min_pick' :arr[30],
+        'pagina': arr[31],
+        'linea': arr[32]
         }
         list.append(obj)
     return response.json({"msj": "OK", "obj": list}, 200)
@@ -2061,9 +2095,10 @@ async def procedure_prove(request):
     c.execute("""
                 DECLARE
                 l_cursor  SYS_REFCURSOR;
+                output number DEFAULT 1000000;
 
-                v_cod_proveedor number;
-                v_nom_proveedor number;
+                v_cod_proveedor varchar2(20);
+                v_nom_proveedor varchar2(50);
             BEGIN
 
 
