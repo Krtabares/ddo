@@ -1322,15 +1322,12 @@ async def upd_detalle_producto_serv (request, token: Token):
 
         msg = 0
 
-        print("+===================================================")
-        print(data['pedido']['CANTIDAD'])
-        print(reservado)
-        print("+===================================================")
+        totales = await totales_pedido(int(data['pedido']))
 
         if data['pedido']['CANTIDAD'] > reservado:
             msg = 1
 
-        return response.json({"msg": msg, "reserved":reservado },200)
+        return response.json({"msg": msg, "reserved":reservado, "totales":totales },200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
@@ -1400,7 +1397,6 @@ async def upd_estatus_pedido(estatus, ID):
         row = c.fetchone()
         return row[0]
 
-        return
 
 async def valida_art(cia, arti):
     try:
@@ -1530,12 +1526,14 @@ async def add_detalle_producto (request, token: Token):
 
         reservado = await crear_detalle_pedido(data['pedido'], data['ID'])
 
+        totales = await totales_pedido(int(data['idPedido']))
+
         msg = 0
 
         if data['pedido']['CANTIDAD'] > reservado:
             msg = 1
 
-        return response.json({"msg": msg, "reserved":reservado },200)
+        return response.json({"msg": msg, "reserved":reservado, "totales": totales },200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
@@ -1557,82 +1555,13 @@ async def del_detalle_producto (request, token: Token):
             ])
         db.commit()
 
+        totales = await totales_pedido(int(data['idPedido']))
 
-        return response.json("SUCCESS",200)
+        return response.json({"totales":totales},200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
 
-@app.route('/upd/pedido',["POST","GET"])
-@jwt_required
-async def update_pedido (request, token: Token):
-# async def procedure(request):
-    try:
-        data = request.json
-        print(data)
-        # if not 'COD_PRODUCTO' in data :
-        #     return response.json("ERROR",400)
-        # if not 'CANTIDAD' in data :
-        #     return response.json("ERROR",400)
-        # if not 'PRECIO' in data :
-        #     return response.json("ERROR",400)
-
-
-        db = get_db()
-        c = db.cursor()
-
-        sql = """
-                    UPDATE PAGINAWEB.PEDIDO
-                    SET
-                        --COD_CIA          = :COD_CIA,
-                        --GRUPO_CLIENTE    = :GRUPO_CLIENTE,
-                        --COD_CLIENTE      = :COD_CLIENTE,
-                        --FECHA            = :FECHA,
-                        --NO_PEDIDO_CODISA = :NO_PEDIDO_CODISA,
-                        OBSERVACIONES    = :OBSERVACIONES
-                    WHERE  ID               = :ID
-
-            """
-
-        c.execute(sql, [
-                        # data['COD_CIA'],
-                        # data['GRUPO_CLIENTE'],
-                        # data['COD_CLIENTE'],
-                        # data['FECHA'],
-                        # data['NO_PEDIDO_CODISA'],
-                        data['OBSERVACIONES'],
-                        data['ID']
-                    ]
-                )
-        print("ejecuto primero")
-        c.execute("""DELETE FROM DETALLE_PEDIDO WHERE ID_PEDIDO = :ID""",[data['ID']])
-        # row = c.fetchone()
-        ID = data['ID']
-        iva_list = []
-        print("ejecuto segundo")
-        print(data)
-        for pedido in data['pedido']:
-            print(pedido)
-            sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO) VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO}  )"""
-
-            c.execute(sql.format(
-                ID_PEDIDO = int(ID),
-                 COD_PRODUCTO = str(pedido['COD_PRODUCTO']),
-                 CANTIDAD = int(pedido['CANTIDAD']),
-                 PRECIO = float(pedido['PRECIO'].replace(',','.'))
-                    ))
-            iva_list.append({ 'COD_PRODUCTO':pedido['COD_PRODUCTO'],'iva_bs':pedido['iva_bs'], 'iva_usd':pedido['iva_usd'], 'precio_usd':pedido['precio_usd'],'nombre_producto':pedido['nombre_producto'] })
-
-        db.commit()
-
-        mongodb = get_mongo_db()
-
-        await mongodb.order.update({'id_pedido':int(ID)},{"$set":{"productos":iva_list }}, True, True)
-
-        return response.json("SUCCESS",200)
-    except Exception as e:
-        logger.debug(e)
-        return response.json("ERROR",400)
 
 @app.route('/del/pedido',["POST","GET"])
 @jwt_required
@@ -1651,8 +1580,6 @@ async def update_pedido (request, token: Token):
 
         db.commit()
 
-        mongodb = get_mongo_db()
-        await mongodb.order.remove({'id_pedido':int(data['ID'])})
 
         return response.json("SUCCESS",200)
     except Exception as e:
@@ -1976,6 +1903,7 @@ async def pedido (request , token: Token):
         c = db.cursor()
 
         pedidos = await procedure_detalle_pedidos(int(data['idPedido']))
+        totales = await totales_pedido(int(data['idPedido']))
         errores = await log_errores(int(data['idPedido']))
         c.execute("""SELECT
                          COD_CIA, GRUPO_CLIENTE,
@@ -2041,7 +1969,7 @@ async def log_errores(idPedido):
         logger.debug(e)
         return e
 
-@app.route('/procedure_prove', ["POST", "GET"])
+@app.route('/get/proveedores', ["POST", "GET"])
 async def procedure_prove(request):
 
     data = request.json
@@ -2050,7 +1978,7 @@ async def procedure_prove(request):
     c = db.cursor()
 
     c.callproc("dbms_output.enable")
-    c.execute("""
+    c.execute("""d
                 DECLARE
                 l_cursor  SYS_REFCURSOR;
                 output number DEFAULT 1000000;
@@ -2095,13 +2023,13 @@ async def procedure_prove(request):
 
 
 @app.route('/totales_pedido', ["POST", "GET"])
-async def procedure_prove(request):
+async def totales(request):
 
     data = request.json
-    list = await totales_pedido(data)
+    list = await totales_pedido(int(data['idPedido']))
     return response.json({"msj": "OK", "obj": list}, 200)
 
-async def totales_pedido(data):
+async def totales_pedido(idPedido):
 
 
     db = get_db()
@@ -2131,7 +2059,7 @@ async def totales_pedido(data):
 
                 dbms_output.put_line(v_total_bruto|| '|'||v_desc_volumen|| '|'|| v_otros_descuentos|| '|'|| v_desc_adicional|| '|'|| v_desc_dpp|| '|'|| v_sub_total|| '|'|| v_impuesto|| '|'|| v_total);
         END;
-            """)
+            """.format( idPedido = idPedido ))
     textVar = c.var(str)
     statusVar = c.var(int)
     list = {}
