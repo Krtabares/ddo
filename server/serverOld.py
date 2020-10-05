@@ -225,6 +225,15 @@ async def procedure(request):
     else:
         data['pDireccion'] = "'"+data['pDireccion']+"'"
 
+    if not 'pNoCia' in data :
+        data['pNoCia'] = 'null'
+    else:
+        data['pNoCia'] = "'"+data['pNoCia']+"'"
+
+    if not 'pNoGrupo' in data :
+        data['pNoGrupo'] = 'null'
+    else:
+        data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
     if not 'pCliente' in data :
         data['pCliente'] = 'null'
     else:
@@ -245,8 +254,8 @@ async def procedure(request):
             pPagina number DEFAULT null;
             pLineas number DEFAULT 100;
             pCliente varchar2(50) DEFAULT null;
-            pNoCia varchar2(10) DEFAULT '01';
-            pNoGrupo varchar2(10) DEFAULT '01';
+            pNoCia varchar2(10) DEFAULT null;
+            pNoGrupo varchar2(10) DEFAULT null;
             pNombre varchar2(50) DEFAULT null;
             pDireccion varchar2(50) DEFAULT null;
             output number DEFAULT 1000000;
