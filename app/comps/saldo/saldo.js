@@ -242,8 +242,9 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
 		})
 		.withDOM('frtip')
     .withPaginationType('full_numbers')
+    .withOption('responsive', true)
 		.withButtons([
-            
+
             'pdf',
             'excel'
         ])

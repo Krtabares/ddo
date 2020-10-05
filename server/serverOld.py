@@ -537,6 +537,7 @@ async def procedure(request , token : Token):
                     v_serie_fisico varchar2(15);
                     v_fecha_documento varchar2(10);
                     v_aplica_corte varchar2(1);
+                    v_fecha_entrega varchar2(10);
                     v_tot varchar2(50);
                     v_codigo_compani varchar2(10);
                     v_pagina varchar2(10);
@@ -585,6 +586,7 @@ async def procedure(request , token : Token):
                     v_serie_fisico,
                     v_fecha_documento,
                     v_aplica_corte,
+                    v_fecha_entrega,
                     v_pagina,
                     v_linea;
                         EXIT WHEN l_cursor%NOTFOUND;
@@ -612,7 +614,8 @@ async def procedure(request , token : Token):
                         v_docu_aviso|| '|'||
                         v_serie_fisico|| '|'||
                         v_fecha_documento|| '|'||
-                        v_aplica_corte
+                        v_aplica_corte|| '|'||
+                        v_fecha_entrega
                         );
                     END LOOP;
                 CLOSE l_cursor;
@@ -664,7 +667,7 @@ async def procedure(request , token : Token):
             'serie_fisico' :arr[19],
             'fecha_documento' :arr[20],
             'aplica_corte' :arr[21],
-
+            'fecha_entrega' :arr[22]
         }
         list.append(obj)
     return response.json({"msj":"OK", "obj": list}, 200)
