@@ -149,16 +149,14 @@ async def procedure(request):
     c = db.cursor()
 
 
-
-
     if not 'pCliente' in data :
         data['pCliente'] = 'null'
 
     if not 'pNoCia' in data :
-        data['pNoCia'] = '01'
+        return response.json({"msg": "Missing parameter"}, status=400)
 
     if not 'pNoGrupo' in data :
-        data['pNoGrupo'] = '01'
+        return response.json({"msg": "Missing username parameter"}, status=400)
 
 
     print(data)
@@ -646,12 +644,12 @@ async def procedure(request):
         data['pLineas'] = 100
 
     if not 'pNoCia' in data :
-        data['pNoCia'] = '01'
+        return response.json({"msg": "Missing username parameter"}, status=400)
     else:
         data['pNoCia'] = "'"+data['pNoCia']+"'"
 
     if not 'pNoGrupo' in data :
-        data['pNoGrupo'] = '01'
+        return response.json({"msg": "Missing username parameter"}, status=400)
     else:
         data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
 
@@ -676,6 +674,18 @@ async def procedure(request):
     else:
         data['haveArt'] = ""
 
+    if not 'pCodProveedor' in data :
+        data['pCodProveedor'] = 'null'
+    else:
+        data['pCodProveedor'] = "'"+data['pCodProveedor']+"'"
+
+    if not 'pFiltroCategoria' in data :
+        data['pFiltroCategoria'] = 'null'
+    else:
+        data['pFiltroCategoria'] = "'"+data['pFiltroCategoria']+"'"
+
+
+
     print(data)
     db = get_db()
     c = db.cursor()
@@ -695,6 +705,8 @@ async def procedure(request):
             pBusqueda varchar2(50) DEFAULT null;
             pComponente varchar2(50) DEFAULT null;
             pArticulo varchar2(50) default null;
+            pCodProveedor varchar2(15 )DEFAULT null;
+            pFiltroCategoria varchar2(50) DEFAULT null;
 
             output number DEFAULT 1000000;
 
@@ -715,6 +727,9 @@ async def procedure(request):
                 v_proveedor varchar2(100);
                 v_bodega varchar2(2);
                 v_categoria varchar2(30);
+                v_descuento1 number;
+                v_descuento2 number;
+                v_tipo_prod_emp varchar(20);
                 V_PAGINA number;
                 V_LINEA number;
             BEGIN
@@ -729,10 +744,14 @@ async def procedure(request):
                                 pBusqueda := {pBusqueda};
                                 pComponente := {pComponente};
             {haveArt}         pArticulo := \'{pArticulo}\';
+                                pCodProveedor := {pCodProveedor};
+                                pFiltroCategoria := \'{pFiltroCategoria}\' ;
+
+
 
                 dbms_output.enable(output);
 
-                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pBusqueda,pComponente, pArticulo);
+                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pBusqueda,pComponente, pArticulo, pFiltroCategoria, pCodProveedor );
 
             LOOP
                 FETCH l_cursor into
@@ -753,6 +772,9 @@ async def procedure(request):
                 v_proveedor,
                 v_bodega,
                 v_categoria,
+                v_descuento1,
+                v_descuento2,
+                v_tipo_prod_emp,
                 V_PAGINA,
                 V_LINEA;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -775,6 +797,9 @@ async def procedure(request):
                     v_proveedor|| '|'||
                     v_bodega|| '|'||
                     v_categoria|| '|'||
+                    v_descuento1|| '|'||
+                    v_descuento2|| '|'||
+                    v_tipo_prod_emp|| '|'||
                     V_PAGINA|| '|'||
                     V_LINEA
                 );
@@ -794,7 +819,9 @@ async def procedure(request):
                         pBusqueda = data['pBusqueda'],
                         pComponente = data['pComponente'],
                         pArticulo = data['pArticulo'],
-                        haveArt = data['haveArt']
+                        haveArt = data['haveArt'],
+                        pFiltroCategoria = data['pFiltroCategoria'],
+                        pCodProveedor = data['pCodProveedor']
                     ))
     textVar = c.var(str)
     statusVar = c.var(int)
@@ -822,8 +849,11 @@ async def procedure(request):
             'proveedor' :arr[14],
             'bodega' :arr[15],
             'categoria': arr[16],
-            'pagina': arr[17],
-            'linea': arr[18]
+            'descuento1' : arr[17],
+            'descuento2' : arr[18],
+            'tipo_prod_emp' : arr[19],
+            'pagina': arr[20],
+            'linea': arr[21]
         }
 
         # if data['pArticulo'] == 'null'  :
@@ -2018,6 +2048,57 @@ async def log_errores(idPedido):
     except Exception as e:
         logger.debug(e)
         return e
+
+@app.route('/procedure_prove', ["POST", "GET"])
+async def procedure_prove(request):
+
+    data = request.json
+
+    db = get_db()
+    c = db.cursor()
+
+    c.callproc("dbms_output.enable")
+    c.execute("""
+                DECLARE
+                l_cursor  SYS_REFCURSOR;
+
+                v_cod_proveedor number;
+                v_nom_proveedor number;
+            BEGIN
+
+
+                dbms_output.enable(output);
+                PROCESOSPW.proveedores (l_cursor);
+
+            LOOP
+            FETCH l_cursor into
+
+                v_cod_proveedor,
+                v_nom_proveedor;
+                EXIT WHEN l_cursor%NOTFOUND;
+            dbms_output.put_line
+                (
+                v_cod_proveedor|| '|'||
+                v_nom_proveedor
+                );
+            END LOOP;
+            CLOSE l_cursor;
+        END;
+            """)
+    textVar = c.var(str)
+    statusVar = c.var(int)
+    list = []
+    while True:
+        c.callproc("dbms_output.get_line", (textVar, statusVar))
+        if statusVar.getvalue() != 0:
+            break
+        arr = str(textVar.getvalue()).split("|")
+        obj = {
+        'cod_proveedor' : arr[0],
+        'nombre_proveedor': arr[1]
+        }
+        list.append(obj)
+    return response.json({"msj": "OK", "obj": list}, 200)
 
 
 app.run(host='0.0.0.0', port = port, debug = True)
