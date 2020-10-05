@@ -1001,41 +1001,22 @@ async def procedure(request):
                 pFechaPedido date;
 
                 v_nro_factura varchar2(50);
-
                 v_fecha_factura date;
-
-                v_nro_pedido varchar2(50);
-
-                v_fecha_pedido date;
-
                 v_cod_cliente varchar2(50);
-
                 v_cod_vendedor varchar2(50);
-
                 v_nombre_vendedor varchar2(150);
-
                 v_email_vendedor varchar2(90);
-
                 v_no_linea number;
-
                 v_no_arti varchar2(50);
-
                 v_nombre_arti varchar2(150);
-
                 v_unidades_pedido number;
-
                 v_unidades_facturadas number;
-
                 v_total_producto_bs varchar2(20);
-
                 v_total_producto_usd varchar2(20);
-
                 v_cia        varchar2(2);
-
                 v_grupo      varchar2(2);
-
                 v_tipo_pedido varchar2(15);
-
+                v_fecha_entrega varchar(10);
                 v_pag        number;
 
                 v_lin        number;
@@ -1060,7 +1041,8 @@ async def procedure(request):
 
 
 
-         procesospw.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda, pPedido, pNoCia, pNoGrupo,pCliente,pFechaFactura,pFechaPedido);
+         -- procesospw.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda, pPedido, pNoCia, pNoGrupo,pCliente,pFechaFactura,pFechaPedido);
+         procesospw.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda, pPedido, pNoCia, pNoGrupo,pCliente,pFechaFactura);
 
 
 
@@ -1071,41 +1053,22 @@ async def procedure(request):
         FETCH l_cursor into
 
                 v_nro_factura,
-
                 v_fecha_factura,
-
-                v_nro_pedido,
-
-                v_fecha_pedido,
-
                 v_cod_cliente,
-
                 v_cod_vendedor,
-
                 v_nombre_vendedor,
-
                 v_email_vendedor,
-
                 v_no_linea,
-
                 v_no_arti,
-
                 v_nombre_arti,
-
                 v_unidades_pedido,
-
                 v_unidades_facturadas,
-
                 v_total_producto_bs,
-
                 v_total_producto_usd,
-
                 v_cia,
-
                 v_grupo,
-
                 v_tipo_pedido,
-
+                v_fecha_entrega,
                 v_pag,
 
                 v_lin;
@@ -1117,43 +1080,23 @@ async def procedure(request):
           (
 
                 v_nro_factura|| '|'||
-
                 v_fecha_factura|| '|'||
-
-                v_nro_pedido|| '|'||
-
-                v_fecha_pedido|| '|'||
-
                 v_cod_cliente || '|'||
-
                 v_cod_vendedor|| '|'||
-
                 v_nombre_vendedor|| '|'||
-
                 v_email_vendedor|| '|'||
-
                 v_no_linea|| '|'||
-
                 v_no_arti|| '|'||
-
                 v_nombre_arti|| '|'||
-
                 v_unidades_pedido|| '|'||
-
                 v_unidades_facturadas|| '|'||
-
                 v_total_producto_bs|| '|'||
-
                 v_total_producto_usd|| '|'||
-
                 v_cia || '|'||
-
                 v_grupo || '|'||
-
                 v_tipo_pedido|| '|'||
-
+                v_fecha_entrega|| '|'||
                 v_pag|| '|'||
-
                 v_lin
 
           );
@@ -1200,22 +1143,21 @@ async def procedure(request):
 
                 'nro_factura': arr[0],
                 'fecha_factura': arr[1],
-                'nro_pedido': arr[2],
-                'fecha_pedido': arr[3],
-                'cod_cliente': arr[4],
-                'cod_vendedor': arr[5],
-                'nombre_vendedor': arr[6],
-                'email_vendedor': arr[7],
-                'no_linea': arr[8],
-                'no_arti': arr[9],
-                'nombre_arti': arr[10],
-                'unidades_pedido': arr[11],
-                'unidades_facturadas': arr[12],
-                'total_producto': arr[13],
-                'total_producto_usd': arr[14],
-                'codigo_compani': arr[14],
-                'grupo': arr[15],
-                'tipo_pedido': arr[16]
+                'cod_cliente': arr[2],
+                'cod_vendedor': arr[3],
+                'nombre_vendedor': arr[4],
+                'email_vendedor': arr[5],
+                'no_linea': arr[6],
+                'no_arti': arr[7],
+                'nombre_arti': arr[8],
+                'unidades_pedido': arr[9],
+                'unidades_facturadas': arr[10],
+                'total_producto': arr[11],
+                'total_producto_usd': arr[12],
+                'codigo_compani': arr[13],
+                'grupo': arr[14],
+                'tipo_pedido': arr[15],
+                'fecha_entrega': arr[16]
                 # 'linea': arr[17]
             }
         list.append(obj)
