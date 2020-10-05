@@ -1504,13 +1504,7 @@ async def add_pedidoV2 (request, token: Token):
 
         ID = await crear_pedido(request)
 
-        mongodb = get_mongo_db()
-
-        totales = dict(
-            id_pedido = int(ID),
-            productos = []
-        )
-        await mongodb.order.insert_one(totales)
+        # await mongodb.order.insert_one(totales)
 
         return response.json({"ID":ID},200)
     except Exception as e:
@@ -1526,7 +1520,7 @@ async def add_detalle_producto (request, token: Token):
 
         reservado = await crear_detalle_pedido(data['pedido'], data['ID'])
 
-        totales = await totales_pedido(int(data['idPedido']))
+        totales = await totales_pedido(int(data['ID']))
 
         msg = 0
 
