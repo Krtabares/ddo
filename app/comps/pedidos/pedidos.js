@@ -791,6 +791,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               articulo.alert = false
             }
             $scope.pedido.pedido.push(articulo)
+            $scope.totalesDdo = formatoTotales(response.data.totales)
             calcularTotales()
             $scope.loading = false
           }, function errorCallback(response) {

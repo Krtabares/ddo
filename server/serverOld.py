@@ -2017,11 +2017,12 @@ async def procedure_prove(request):
 
 
 @app.route('/totales_pedido', ["POST", "GET"])
-async def totales(request):
+@jwt_required
+async def totales(request, token: Token):
 
     data = request.json
     list = await totales_pedido(int(data['idPedido']))
-    return response.json({"msj": "OK", "obj": list}, 200)
+    return response.json({"msj": "OK", "totales": list}, 200)
 
 async def totales_pedido(idPedido):
 
