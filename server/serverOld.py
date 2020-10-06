@@ -1966,7 +1966,7 @@ async def log_errores(idPedido):
 @app.route('/get/proveedores', ["POST", "GET"])
 async def procedure_prove(request):
 
-    data = request.json
+    # data = request.json
 
     db = get_db()
     c = db.cursor()
