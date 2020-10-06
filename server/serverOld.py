@@ -1988,7 +1988,7 @@ async def log_errores(idPedido):
         logger.debug(e)
         return e
 
-@app.route('/get/filtros', ["POST", "GET"])
+@app.route('/get/categorias', ["POST", "GET"])
 async def filtros(request):
     try:
 

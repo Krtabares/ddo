@@ -584,6 +584,26 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
+        $scope.listCategorias=[]
+        $scope.categoria = {"CODIGO":null}
+        function getCategorias() {
+          $scope.loading = true
+          // console.log("validaClienteDDO");
+          request.post(ip+'/get/categorias', {},{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+            console.log(response.data)
+
+            $scope.listCategorias = response.data.obj
+
+            $scope.loading = false
+
+          }, function errorCallback(response) {
+            // console.log(response)
+            $scope.loading = false
+
+          });
+        }
+
         $scope.auxBusqueda = null
         $scope.getProdNew = function (filter = false, articulo = false) {
           $scope.loading = true
@@ -610,6 +630,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             if($scope.proveedor.cod_proveedor != null || $scope.proveedor.cod_proveedor != "null" ){
               body.pCodProveedor = $scope.proveedor.cod_proveedor
+            }
+
+            if($scope.categoria.CODIGO != null || $scope.categoria.CODIGO != "null" ){
+              body.pFiltroCategoria = $scope.proveedor.cod_proveedor
             }
 
 

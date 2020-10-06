@@ -599,9 +599,21 @@
               <div class="input-group mb-3 ">
                 <div class="form-group">
                   <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
-                  <select class="form-control" ng-model="proveedor.cod_proveedor" id="exampleFormControlSelect2" >
+                  <select class="form-control" ng-model="proveedor.cod_proveedor" id="proveedor" >
                     <option value="null" >Todos</option>
                     <option ng-repeat="x in listProveedores" value="{{x.cod_proveedor}}">{{x.nombre_proveedor}}</option>
+                    <option value="" disabled selected>Seleccione un proveedor</option>
+                  </select>
+                </div>
+              </div>
+
+              <label for="filtro">Filtrar por categoria</label>
+              <div class="input-group mb-3 ">
+                <div class="form-group">
+                  <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                  <select class="form-control" ng-model="categoria.CODIGO" id="proveedor" >
+                    <option value="null" >Todos</option>
+                    <option ng-repeat="x in listCategorias" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
                     <option value="" disabled selected>Seleccione un proveedor</option>
                   </select>
                 </div>
