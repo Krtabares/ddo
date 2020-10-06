@@ -815,6 +815,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.getProdNew(true)
             $scope.removeArt(i)
             $scope.loading = false
+
+            $scope.totalesDdo = formatoTotales(response.data.totales)
           }, function errorCallback(response) {
             // console.log(response)
             $scope.loading = false
@@ -896,7 +898,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               articulo.alert = false
             }
             // $scope.pedido.pedido.push(articulo)
-            // calcularTotales()
+            // calcularTotales() 1234
+            $scope.totalesDdo = formatoTotales(response.data.totales)
             result = articulo
           }, function errorCallback(response) {
             // console.log(response)
