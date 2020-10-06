@@ -373,7 +373,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
             $scope.articulo.precio_bruto = $scope.product.precio_bruto_bs.replace(",", ".");
-            $scope.articulo.precio_neto_usd = $scope.product.precio_neto_usd.replace(",", ".")
+            $scope.articulo.precio_neto_usd = parseFloat($scope.product.precio_neto_usd.replace(",", ".")) 
             $scope.articulo.precio_neto_bs = $scope.product.precio_neto_bs.replace(",", ".")
             $scope.articulo.existencia =$scope.product.existencia
 
