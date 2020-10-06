@@ -1972,7 +1972,7 @@ async def procedure_prove(request):
     c = db.cursor()
 
     c.callproc("dbms_output.enable")
-    c.execute("""d
+    c.execute("""
                 DECLARE
                 l_cursor  SYS_REFCURSOR;
                 output number DEFAULT 1000000;
