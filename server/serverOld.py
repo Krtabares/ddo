@@ -1376,7 +1376,7 @@ async def crear_detalle_pedido(detalle, ID):
         except Exception as e:
             logger.debug(e)
 
-async def upd_estatus_pedido(estatus, ID):
+async def upd_estatus_pedido(estatus, ID, tipoPedido = "N"):
 
         db = get_db()
         c = db.cursor()
@@ -1385,12 +1385,13 @@ async def upd_estatus_pedido(estatus, ID):
                     UPDATE PAGINAWEB.PEDIDO
                     SET
                         ESTATUS          = :ESTATUS,
-                        FECHA_ESTATUS    = TO_CHAR(SYSDATE, 'DD-MM-YYYY')
+                        FECHA_ESTATUS    = TO_CHAR(SYSDATE, 'DD-MM-YYYY'),
+                        TIPO_PEDIDO      = :TIPO_PEDIDO
                     WHERE  ID               = :ID
 
             """
 
-        c.execute(sql, [estatus,ID])
+        c.execute(sql, [estatus,ID,tipoPedido])
 
         db.commit()
 
@@ -1447,7 +1448,7 @@ async def finaliza_pedido(request, token : Token):
     try:
         data = request.json
 
-        await upd_estatus_pedido(2,data['ID'])
+        await upd_estatus_pedido(2,data['ID'], data['tipoPedido'])
 
         return response.json("success",200)
     except Exception as e:
