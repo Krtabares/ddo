@@ -1997,7 +1997,7 @@ async def filtros(request):
 
         c.execute("""SELECT
                     CODIGO, NOMBRE
-                    FROM PAGINAWEB.FILTRO_CATEGORIA_PRODUCTO;
+                    FROM PAGINAWEB.FILTRO_CATEGORIA_PRODUCTO
                         """)
         list = []
         for row in c:
