@@ -612,9 +612,9 @@
                 <div class="form-group">
                   <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
                   <select class="form-control" ng-model="categoria.CODIGO" id="proveedor" >
-                    <option value="null" >Todos</option>
+                    <!-- <option value="null" >Todos</option> -->
                     <option ng-repeat="x in listCategorias" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
-                    <option value="" disabled selected>Seleccione un proveedor</option>
+                    <option value="" disabled selected>Seleccione una categoria</option>
                   </select>
                 </div>
               </div>

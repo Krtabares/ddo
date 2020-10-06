@@ -633,7 +633,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
 
             if($scope.categoria.CODIGO != null || $scope.categoria.CODIGO != "null" ){
-              body.pFiltroCategoria = $scope.proveedor.cod_proveedor
+              body.pFiltroCategoria = $scope.categoria.CODIGO
             }
 
 
