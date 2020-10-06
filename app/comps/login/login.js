@@ -60,9 +60,9 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 
       getClientDispService(body)
 
-       body = {};
+       // body = {};
 
-      body.pCliente = client.COD_CLIENTE
+      // body.pCliente = client.COD_CLIENTE
 
 
 
