@@ -155,7 +155,7 @@
                     <thead>
                       <tr>
                         <th scope="col"><p class="text-center">#</p></th>
-                        <th scope="col"><p class="text-center">N° Pedido</p></th>
+                        <!-- <th scope="col"><p class="text-center">N° Pedido</p></th> -->
                         <th scope="col"><p class="text-center">Fecha pedido</p></th>
                         <th scope="col"><p class="text-center">N° factura</p></th>
                         <th scope="col"><p class="text-center">Fecha factura</p></th>
@@ -171,7 +171,7 @@
 
                       <tr  ng-repeat="fact in facturas"  ng-click="selectFactura(facturasList[fact])" ng-class="{ selectedRow : $index == productIndex }" >
                         <td><p class="text-center">{{ $index + 1 }}</p></td>
-                        <td><p class="text-center">{{ fact }}</p></td>
+                        <!-- <td><p class="text-center">{{ fact }}</p></td> -->
                         <td><p class="text-center">{{ facturasList[fact][0].fecha_pedido }}</p></td>
                         <td><p class="text-center">{{ facturasList[fact][0].nro_factura }}</p></td>
                         <td><p class="text-center">{{ facturasList[fact][0].fecha_factura }}</p></td>
