@@ -336,7 +336,7 @@
 
               <div class="row mt-5 mb-5" ng-show="editView" >
 
-                <div class="col-2">
+                <div class="col-3">
                   <label>Monto minimo pedido Bs.S</label><br>
                   <span >{{formato(2,client.monto_minimo)? formato(2, client.monto_minimo):0}}</span>
 
@@ -348,24 +348,24 @@
 
                 </div>
 
-                <div class="col-2">
+                <div class="col-3">
                   <label>Credito disponible Bs.S</label><br>
                   <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</span>
 
                 </div>
 
-                <div class="col-2">
+                <div class="col-3">
                   <label>Credito disponible USD</label><br>
                   <span >{{formato(3,(creditoClient.disp_usd_format)? (creditoClient.disp_usd_format - totales.UsdConIva):0)}}</span>
 
                 </div>
 
-                <div class="col-3">
+                <div class="col-6">
                   <label></label>
                   <button type="button" ng-show="editView" class="btn btn-info" ng-click="openModalProducts()">Agregar Productos</button>
                 </div>
 
-                <div class="col-3">
+                <div class="col-6">
                   <label></label>
                   <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="openModalDyn(0,ID)" >Finalizar pedido</button>
                 </div>
