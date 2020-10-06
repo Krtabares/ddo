@@ -27,7 +27,7 @@ from sanic_compress import Compress
 class CustomHandler(ErrorHandler):
     def default(self, request, exception):
         print("[EXCEPTION] "+str(exception))
-        return response.json('NO',501)
+        return response.json(str(exception),501)
 
 app = Sanic(__name__)
 port = 3500
