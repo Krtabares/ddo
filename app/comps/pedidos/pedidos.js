@@ -119,6 +119,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             "title": "Eliminar producto",
             "msg" : "¿Desea eliminar este producto?",
             "color": "danger"
+          },
+          {
+            "title": "Informacion",
+            "msg" : "Si no alcanza el siguiente monto ("+$scope.formato(2 ,$scope.client.monto_min_pick) +") su pedido sera procesado como tipo normal ¿Está seguro de continuar?",
+            "color": "warning"
           }
         ]
         $scope.aceptModalDyn = function () {
@@ -141,6 +146,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               case 3:
                 $scope.removeDetalleProducto($scope.modalDynContextId);
                 break;
+                case 4:
+                  $scope.openModalDyn(0, $scope.modalDynContextId);
+                  break;
             default:
 
           }
@@ -160,6 +168,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.openModalDyn = function(type, contextId) {
 
+          if(type == 0 && $scope.tipoPedido != "N" ){
+            $scope.openModalDyn(4, contextId);
+            return
+          }
           $scope.modalDynTitle = $scope.typeContext[type].title;
           $scope.modalDynMsg = $scope.typeContext[type].msg;
           $scope.modalDynContext = type;
@@ -447,6 +459,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.finalizar_pedido = function () {
+
+          // if($scope.tipoPedido != "D"){
+          //
+          //   notify({ message:'¡Si no alcanza dicho monto su pedido se procesa como Normal!', position:'right', duration:10000, classes:'alert-warning'});
+          // }
+
           $scope.loading = true
           var body = {}
           body.ID = $scope.ID
@@ -1307,7 +1325,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           'bsConIva':0,
           'UsdConIva':0
         }
-
+        $scope.tipoPedido = "N"
         function calcularTotales(editIndex = null) {
             console.log("calcularTotales");
             $scope.totales.bolivares = 0
@@ -1349,6 +1367,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.bsConIva = parseFloat($scope.totales.bolivares + $scope.totales.bsIVA)
           $scope.totales.UsdConIva = parseFloat($scope.totales.USD + $scope.totales.USDIVA)
 
+
+          var clientgroup =  ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+
+            if(clientgroup == "01"){
+              if($scope.totales.bsConIva > $scope.client.monto_min_pick){
+                $scope.tipoPedido = "D"
+              }else{
+                $scope.tipoPedido = "N"
+              }
+
+            }
 
           // console.log($scope.totales)
         }
