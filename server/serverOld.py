@@ -246,7 +246,8 @@ async def procedure(request):
 
     print(data)
     c.callproc("dbms_output.enable")
-    c.execute("""
+
+    sql = """
                 DECLARE
             l_cursor  SYS_REFCURSOR;
             pTotReg number DEFAULT 100;
@@ -396,7 +397,9 @@ async def procedure(request):
                         pNoGrupo = data['pNoGrupo'],
                         pCliente = data['pCliente'],
                         pNombre = data['pNombre'],
-                    ))
+                    )
+    print(sql)
+    c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)
     list = []
