@@ -102,32 +102,39 @@
               <div class="row mt-3 mb-5" >
 
 
-                <div class="col-2">
+                <div class="col-3">
+                  <label>Monto minimo pedido</label><br>
+                  <span >{{formato(2,client.monto_min_pick)? formato(2, client.monto_min_pick):0}}</span>
+
+                </div>
+
+                <div class="col-3">
                   <label>Monto minimo pedido</label><br>
                   <span >{{formato(2,client.monto_minimo)? formato(2, client.monto_minimo):0}}</span>
 
                 </div>
 
-
-                <div class="col-2">
+                <div class="col-3">
                   <label>Credito disponible Bs.S</label><br>
                   <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</span>
 
                 </div>
 
-                <div class="col-2">
+                <div class="col-3">
                   <label>Credito disponible USD</label><br>
                   <span >{{formato(3,(creditoClient.disp_usd_format)? (creditoClient.disp_usd_format - totales.UsdConIva):0)}}</span>
 
                 </div>
 
-                <div class="col-3">
+
+
+                <div class="col-6">
                   <label></label>
                   <button type="button" class="btn btn-info" ng-click="addPedidoV2()" ng-show="ID == null"  >Abrir Pedido</button>
                   <button type="button" class="btn btn-success"  ng-show="ID != null &&  counter < 600000" ng-click="openModalProducts()" >Agregar Productos</button>
                 </div>
 
-                <div class="col-3">
+                <div class="col-6">
                   <label></label>
                   <button type="button"  class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
                 </div>

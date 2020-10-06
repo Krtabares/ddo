@@ -143,7 +143,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             return
           }
           $scope.modalDynTitle = $scope.typeContext[type].title;
-          $scope.modalDynMsg = (type != 4)?  $scope.typeContext[type].msg1 + $scope.client.monto_min_pick + $scope.typeContext[type].msg2 : $scope.typeContext[type].msg ;
+          $scope.modalDynMsg = $scope.typeContext[type].msg;
           $scope.modalDynContext = type;
           $scope.modalDynContextId = contextId;
           $scope.modalDynColor = $scope.typeContext[type].color;
@@ -1494,8 +1494,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           },
           {
             "title": "Informacion",
-            "msg1" : "Si no alcanza el siguiente monto ( ",
-            "msg2" : " ) su pedido sera procesado como tipo normal ¿Está seguro de finalizarlo? ",
+            "msg" : "Si no alcanza el siguiente monto su pedido sera procesado como tipo normal ¿Está seguro de finalizarlo? ",
             "color": "warning"
           }
         ]
