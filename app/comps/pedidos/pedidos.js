@@ -1495,7 +1495,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           },
           {
             "title": "Informacion",
-            "msg" : "Si no alcanza el siguiente monto su pedido sera procesado como tipo normal ¿Está seguro de finalizarlo? ",
+            "msg" : "Si no alcanza el monto minimo para pick-up su pedido sera procesado como tipo normal ¿Está seguro de finalizarlo? ",
             "color": "warning"
           }
         ]
