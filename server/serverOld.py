@@ -729,9 +729,9 @@ async def procedure(request):
 
     if not 'pCodProveedor' in data :
         data['pCodProveedor'] = 'null'
-        data['haveProv'] = '--'
+        data['havePro'] = '--'
     else:
-        data['haveProv'] = ""
+        data['havePro'] = ""
 
     if not 'pFiltroCategoria' in data :
         data['pFiltroCategoria'] = 'null'
