@@ -267,7 +267,7 @@ body {
   overflow-y: scroll !important;
   padding-top: 15px;
 	/* background-color: #dcdcdd; */
-	overflow-x: hidden !important;
+	/* overflow-x: hidden !important; */
 }
 .modal-90{
 	width: 90%;
