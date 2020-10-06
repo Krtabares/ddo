@@ -1338,10 +1338,7 @@ async def upd_detalle_producto_serv (request, token: Token):
 async def crear_detalle_pedido(detalle, ID):
 
         try:
-            print("+===================================================")
-            print("crear_detalle_pedido")
-            print(detalle)
-            print("+===================================================")
+
 
 
             cantidad = 0
@@ -1356,16 +1353,20 @@ async def crear_detalle_pedido(detalle, ID):
             c = db.cursor()
 
             sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO_BRUTO, TIPO_CAMBIO, BODEGA)
-                            VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, \'{BODEGA}\' )"""
+                            VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, \'{BODEGA}\' )""".format(
+                                         ID_PEDIDO = int(ID),
+                                         COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
+                                         CANTIDAD = int(cantidad),
+                                         PRECIO = float(str(detalle['precio_bruto_bs']).replace(',','.')),
+                                         TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
+                                         BODEGA = detalle['bodega']
+                                    )
+            print("+===================================================")
+            print("crear_detalle_pedido")
+            print(sql)
+            print("+===================================================")
 
-            c.execute(sql.format(
-                         ID_PEDIDO = int(ID),
-                         COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
-                         CANTIDAD = int(cantidad),
-                         PRECIO = float(str(detalle['precio_bruto_bs']).replace(',','.')),
-                         TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
-                         BODEGA = detalle['bodega']
-                    ))
+            c.execute(sql)
 
             db.commit()
 
