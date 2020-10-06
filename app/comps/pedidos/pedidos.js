@@ -1383,6 +1383,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         // $scope.dtInstanceProd = {};
         $scope.dtOptionsProd = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
+            .withOption('responsive', true)
             .withDOM('frtip').withPaginationType('full_numbers')
             .withLanguage(DATATABLE_LANGUAGE_ES)
 
