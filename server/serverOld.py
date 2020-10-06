@@ -878,7 +878,7 @@ async def procedure(request):
                         pFiltroCategoria = data['pFiltroCategoria'],
                         havePro = data['havePro'],
                         pCodProveedor = data['pCodProveedor'],
-                        haveCat = data['haveCat'],
+                        haveCat = data['haveCat']
                     )
     print(sql)
     c.execute(sql)
