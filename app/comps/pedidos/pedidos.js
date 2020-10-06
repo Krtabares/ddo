@@ -141,7 +141,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.openModalDyn = function(type, contextId) {
 
-          if(type == 0 && $scope.tipoPedido != "N" ){
+          if(type == 0 && $scope.tipoPedido == "N" ){
             $scope.openModalDyn(4, contextId);
             return
           }
