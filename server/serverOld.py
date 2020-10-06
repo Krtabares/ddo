@@ -729,13 +729,13 @@ async def procedure(request):
 
     if not 'pCodProveedor' in data :
         data['pCodProveedor'] = 'null'
-    else:
-        data['pCodProveedor'] = "'"+data['pCodProveedor']+"'"
+    # else:
+    #     data['pCodProveedor'] = "'"+data['pCodProveedor']+"'"
 
     if not 'pFiltroCategoria' in data :
         data['pFiltroCategoria'] = 'null'
-    else:
-        data['pFiltroCategoria'] = "'"+data['pFiltroCategoria']+"'"
+    # else:
+    #     data['pFiltroCategoria'] = "'"+data['pFiltroCategoria']+"'"
 
 
 
@@ -797,7 +797,7 @@ async def procedure(request):
                                 pBusqueda := {pBusqueda};
                                 pComponente := {pComponente};
             {haveArt}         pArticulo := \'{pArticulo}\';
-                                pCodProveedor := {pCodProveedor};
+                                pCodProveedor := \'{pCodProveedor}\';
                                 pFiltroCategoria := \'{pFiltroCategoria}\' ;
 
 
