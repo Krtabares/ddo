@@ -620,7 +620,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               body.pArticulo = $scope.pArticulo
             }else{
 
-              if(!$scope.busqueda_prod){
+              if($scope.busqueda_prod == null){
                  $scope.busqueda_prod = $scope.auxBusqueda
               }
 
