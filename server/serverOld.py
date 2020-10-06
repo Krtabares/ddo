@@ -744,7 +744,8 @@ async def procedure(request):
     c = db.cursor()
     print(data)
     c.callproc("dbms_output.enable")
-    c.execute("""
+
+    sql = """
 
             DECLARE
             l_cursor  SYS_REFCURSOR;
@@ -875,7 +876,9 @@ async def procedure(request):
                         haveArt = data['haveArt'],
                         pFiltroCategoria = data['pFiltroCategoria'],
                         pCodProveedor = data['pCodProveedor']
-                    ))
+                    )
+    print(sql)
+    c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)
     list = []
