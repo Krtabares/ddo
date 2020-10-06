@@ -98,34 +98,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.modalDynContext = null;
         $scope.modalDynContextId = null;
         $scope.modalDynColor = null;
-        $scope.typeContext=[
-          {
 
-            "title": "Finalizar pedido",
-            "msg" : "¿Está seguro de finalizar su pedido?",
-            "color": "success"
-          },
-          {
-            "title": "Editar pedido",
-            "msg" : "Desea editar este pedido",
-            "color": "info"
-          },
-          {
-            "title": "Eliminar pedido",
-            "msg" : "Desea eliminar este pedido",
-            "color": "danger"
-          },
-          {
-            "title": "Eliminar producto",
-            "msg" : "¿Desea eliminar este producto?",
-            "color": "danger"
-          },
-          {
-            "title": "Informacion",
-            "msg" : "Si no alcanza el siguiente monto ("+$scope.formato(2 ,$scope.client.monto_min_pick) +") su pedido sera procesado como tipo normal ¿Está seguro de continuar?",
-            "color": "warning"
-          }
-        ]
         $scope.aceptModalDyn = function () {
 
           switch ($scope.modalDynContext) {
@@ -1453,7 +1426,34 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           return totales
         }
 
+        $scope.typeContext=[
+          {
 
+            "title": "Finalizar pedido",
+            "msg" : "¿Está seguro de finalizar su pedido?",
+            "color": "success"
+          },
+          {
+            "title": "Editar pedido",
+            "msg" : "Desea editar este pedido",
+            "color": "info"
+          },
+          {
+            "title": "Eliminar pedido",
+            "msg" : "Desea eliminar este pedido",
+            "color": "danger"
+          },
+          {
+            "title": "Eliminar producto",
+            "msg" : "¿Desea eliminar este producto?",
+            "color": "danger"
+          },
+          {
+            "title": "Informacion",
+            "msg" : "Si no alcanza el siguiente monto ("+$scope.formato(2 ,$scope.client.monto_min_pick) +") su pedido sera procesado como tipo normal ¿Está seguro de continuar?",
+            "color": "warning"
+          }
+        ]
 
         proveedores()
     }
