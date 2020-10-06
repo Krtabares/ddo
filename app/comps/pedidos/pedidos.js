@@ -320,6 +320,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.client = JSON.parse(client);
            $scope.client_info = JSON.parse(client_info);
            $scope.client.monto_minimo = parseFloat($scope.client_info.monto_minimo)
+           $scope.client.monto_min_pick = $scope.client_info.monto_min_pick
 
            selectCLientCAP( $scope.client_info)
            $scope.showProductTable = true
