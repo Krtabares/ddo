@@ -727,13 +727,13 @@ async def procedure(request):
     else:
         data['haveArt'] = ""
 
-    if not 'pCodProveedor' in data :
+    if not 'pCodProveedor' in data  or data['pCodProveedor'] == None :
         data['pCodProveedor'] = 'null'
         data['havePro'] = '--'
     else:
         data['havePro'] = ""
 
-    if not 'pFiltroCategoria' in data :
+    if not 'pFiltroCategoria' in data or data['pFiltroCategoria'] == None :
         data['pFiltroCategoria'] = 'null'
         data['haveCat'] = '--'
     else:
