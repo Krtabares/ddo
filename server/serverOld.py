@@ -729,14 +729,15 @@ async def procedure(request):
 
     if not 'pCodProveedor' in data :
         data['pCodProveedor'] = 'null'
-    # else:
-    #     data['pCodProveedor'] = "'"+data['pCodProveedor']+"'"
+        data['haveProv'] = '--'
+    else:
+        data['haveProv'] = ""
 
     if not 'pFiltroCategoria' in data :
         data['pFiltroCategoria'] = 'null'
-    # else:
-    #     data['pFiltroCategoria'] = "'"+data['pFiltroCategoria']+"'"
-
+        data['haveCat'] = '--'
+    else:
+        data['haveCat'] = ""
 
 
     print(data)
@@ -797,9 +798,9 @@ async def procedure(request):
                                 pCliente := {pCliente};
                                 pBusqueda := {pBusqueda};
                                 pComponente := {pComponente};
-            {haveArt}         pArticulo := \'{pArticulo}\';
-                                pCodProveedor := \'{pCodProveedor}\';
-                                pFiltroCategoria := \'{pFiltroCategoria}\' ;
+            {haveArt}                    pArticulo := \'{pArticulo}\';
+            {havePro}                    pCodProveedor := \'{pCodProveedor}\';
+            {haveCat}                    pFiltroCategoria := \'{pFiltroCategoria}\' ;
 
 
 
@@ -875,7 +876,9 @@ async def procedure(request):
                         pArticulo = data['pArticulo'],
                         haveArt = data['haveArt'],
                         pFiltroCategoria = data['pFiltroCategoria'],
-                        pCodProveedor = data['pCodProveedor']
+                        havePro = data['havePro'],
+                        pCodProveedor = data['pCodProveedor'],
+                        haveCat = data['haveCat'],
                     )
     print(sql)
     c.execute(sql)
