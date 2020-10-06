@@ -566,7 +566,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-
+        $scope.auxBusqueda = null
         $scope.getProdNew = function (filter = false, articulo = false) {
           $scope.loading = true
           // console.log("getProdNew");
@@ -581,7 +581,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(articulo){
               body.pArticulo = $scope.pArticulo
             }else{
+
+              if(!$scope.busqueda_prod){
+                 $scope.busqueda_prod = $scope.auxBusqueda
+              }
+
               body.pBusqueda = $scope.busqueda_prod
+
             }
 
             if($scope.proveedor.cod_proveedor != null || $scope.proveedor.cod_proveedor != "null" ){
@@ -610,7 +616,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.productos = response.data.obj
 
               $scope.refreshProduct()
-
+              $scope.auxBusqueda = $scope.busqueda_prod
               $scope.busqueda_prod = null;
 
             }else{
