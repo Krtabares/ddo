@@ -85,7 +85,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           $scope.selectCLient = function(){
 
             // $scope.client = x
-            if($scope.clientes.length > 0){
+            if($scope.clientes && $scope.clientes.length > 0){
               $scope.client  = $scope.clientes[ $scope.clientIndex ];
                 console.log($scope.client,"selectCLient" )
                 facturacion()
