@@ -546,6 +546,24 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
+        function getTotalesPedido() {
+          // console.log("getClientDispService");
+          var body={}
+          body.idPedido = $scope.ID
+          $scope.loading = true
+          request.post(ip+'/totales_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+            // console.log(response)
+            $scope.totalesDdo = formatoTotales(response.data.totales)
+
+            $scope.loading = false
+
+          }, function errorCallback(response) {
+            // console.log(response)
+            $scope.loading = false
+          });
+        }
+
         $scope.listProveedores=[]
         $scope.proveedor = {"cod_proveedor":null}
         function proveedores() {
@@ -1024,8 +1042,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               // $scope.articulo.existencia = parseInt($scope.articulo.existencia) + parseInt($scope.articulo.CANTIDAD)
 
-
-
               calcularTotales(indexArticulo)
 
               error = validacionesArticulo($scope.articulo, existenciaAux)
@@ -1047,6 +1063,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               if(!error){
                 calcularTotales()
+                getTotalesPedido()
                 $(function(){
                   $("#modalInfoProduct").modal('hide');
                 })
