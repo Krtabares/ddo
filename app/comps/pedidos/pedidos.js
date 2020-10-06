@@ -1195,7 +1195,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
 
             $scope.showPedido(response.data.obj[0])
-            $scope.totalesDdo = response.data.obj[0].totales
+            $scope.totalesDdo = formatoTotales(response.data.obj[0].totales)
+
             $scope.loading = false
 
           }, function errorCallback(response) {
@@ -1400,6 +1401,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             DTColumnBuilder.newColumn('precio').withTitle('Precio'),
             DTColumnBuilder.newColumn('cantidad').withTitle('Cantidad de Productos')
         ];
+
+        function formatoTotales(totales) {
+          totales.total_bruto = totales.total_bruto.replace(",",".")
+          totales.desc_volumen = totales.desc_volumen.replace(",",".")
+          totales.otros_descuentos = totales.otros_descuentos.replace(",",".")
+          totales.desc_adicional = totales.desc_adicional.replace(",",".")
+          totales.desc_dpp = totales.desc_dpp.replace(",",".")
+          totales.sub_total = totales.sub_total.replace(",",".")
+          totales.impuesto  = totales.impuesto.replace(",",".")
+          totales.total  = totales.total.replace(",",".")
+          return totales
+        }
 
 
 

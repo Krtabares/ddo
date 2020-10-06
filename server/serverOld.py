@@ -2064,16 +2064,17 @@ async def totales_pedido(idPedido):
 
         if textVar.getvalue() == None:
             break
+
         arr = str(textVar.getvalue()).split("|")
         obj = {
-                        'total_bruto' : arr[0],
-                        'desc_volumen' : arr[1],
-                        'otros_descuentos' : arr[2],
-                        'desc_adicional' : arr[3],
-                        'desc_dpp' : arr[4],
-                        'sub_total' : arr[5],
-                        'impuesto ' : arr[6],
-                        'total ' : arr[7]
+                'total_bruto' : arr[0],
+                'desc_volumen' : arr[1],
+                'otros_descuentos' : arr[2],
+                'desc_adicional' : arr[3],
+                'desc_dpp' : arr[4],
+                'sub_total' : arr[5],
+                'impuesto' : arr[6],
+                'total' : arr[7]
         }
         list = obj
     return list
