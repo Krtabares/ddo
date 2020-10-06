@@ -373,7 +373,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
             $scope.articulo.precio_bruto = $scope.product.precio_bruto_bs.replace(",", ".");
-            $scope.articulo.precio_neto_usd = parseFloat($scope.product.precio_neto_usd.replace(",", ".")) 
+            $scope.articulo.precio_neto_usd = parseFloat($scope.product.precio_neto_usd.replace(",", "."))
             $scope.articulo.precio_neto_bs = $scope.product.precio_neto_bs.replace(",", ".")
             $scope.articulo.existencia =$scope.product.existencia
 
@@ -939,6 +939,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 item.precioFormatVE = $scope.formato(2,  parseFloat(item.precioFormatVE).toFixed(2) )
                 item.precio_bruto = item.precio_bruto_bs.replace(",", ".");
                 item.precio_neto_bs = item.precio_neto_bs.replace(",", ".");
+                item.precio_neto_usd = item.precio_neto_usd.replace(",", ".");
                 item.CANTIDAD = $scope.cantidadAux;
                 item.existencia = parseInt($scope.cantidadAux) + parseInt(item.existencia)
                 item.precioFormatUSD = item.precio_neto_usd.replace(",", ".")
