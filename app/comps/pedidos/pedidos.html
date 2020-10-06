@@ -102,15 +102,15 @@
               <div class="row mt-3 mb-5" >
 
 
-                <div class="col-3">
-                  <label>Monto minimo pedido</label><br>
-                  <span >{{formato(2,client.monto_min_pick)? formato(2, client.monto_min_pick):0}}</span>
-
-                </div>
 
                 <div class="col-3">
                   <label>Monto minimo pedido</label><br>
                   <span >{{formato(2,client.monto_minimo)? formato(2, client.monto_minimo):0}}</span>
+
+                </div>
+                <div class="col-3">
+                  <label>Monto minimo pick - up</label><br>
+                  <span >{{formato(2,client.monto_min_pick)? formato(2, client.monto_min_pick):0}}</span>
 
                 </div>
 
@@ -339,6 +339,12 @@
                 <div class="col-2">
                   <label>Monto minimo pedido Bs.S</label><br>
                   <span >{{formato(2,client.monto_minimo)? formato(2, client.monto_minimo):0}}</span>
+
+                </div>
+
+                <div class="col-3">
+                  <label>Monto minimo pick-Up</label><br>
+                  <span >{{formato(2,client.monto_min_pick)? formato(2, client.monto_min_pick):0}}</span>
 
                 </div>
 
