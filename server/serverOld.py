@@ -1325,7 +1325,7 @@ async def upd_detalle_producto_serv (request, token: Token):
 
         msg = 0
 
-        totales = await totales_pedido(int(data['pedido']))
+        totales = await totales_pedido(int(data['ID']))
 
         if data['pedido']['CANTIDAD'] > reservado:
             msg = 1
@@ -1984,6 +1984,32 @@ async def log_errores(idPedido):
             list.append(aux)
 
         return list
+    except Exception as e:
+        logger.debug(e)
+        return e
+
+@app.route('/get/filtros', ["POST", "GET"])
+async def filtros(request):
+    try:
+
+        db = get_db()
+        c = db.cursor()
+
+        c.execute("""SELECT
+                    CODIGO, NOMBRE
+                    FROM PAGINAWEB.FILTRO_CATEGORIA_PRODUCTO;
+                        """)
+        list = []
+        for row in c:
+            aux = {}
+            aux = {
+                    'CODIGO':row[0],
+                    'NOMBRE':row[1]
+              }
+
+            list.append(aux)
+
+        return response.json({"msj": "OK", "obj": list}, 200)
     except Exception as e:
         logger.debug(e)
         return e
