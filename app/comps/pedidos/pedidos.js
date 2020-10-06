@@ -102,7 +102,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.aceptModalDyn = function () {
 
           switch ($scope.modalDynContext) {
-            case 0:
+            case 0,4:
                 if($scope.totales.bsConIva > $scope.client.monto_minimo){
                   $scope.finalizar_pedido()
                   $(function(){
@@ -119,9 +119,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               case 3:
                 $scope.removeDetalleProducto($scope.modalDynContextId);
                 break;
-                case 4:
-                  $scope.openModalDyn(0, $scope.modalDynContextId);
-                  break;
             default:
 
           }
@@ -1497,7 +1494,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           },
           {
             "title": "Informacion",
-            "msg" : "Si no alcanza el siguiente monto ("+$scope.formato(2 ,$scope.client.monto_min_pick) +") su pedido sera procesado como tipo normal ¿Está seguro de continuar?",
+            "msg" : "Si no alcanza el siguiente monto ("+$scope.formato(2 ,$scope.client.monto_min_pick) +") su pedido sera procesado como tipo normal ¿Está seguro de finalizarlo? "+$scope.client.monto_min_pick,
             "color": "warning"
           }
         ]
