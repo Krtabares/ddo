@@ -34,6 +34,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.product = {};
         $scope.productIndex = -1;
         $scope.infoPsico = false;
+        $scope.totalesDdo = {}
 
         var ip = "http://192.168.168.170:3500";
 
@@ -1194,6 +1195,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
 
             $scope.showPedido(response.data.obj[0])
+            $scope.totalesDdo = response.data.obj[0].totales
             $scope.loading = false
 
           }, function errorCallback(response) {
