@@ -917,11 +917,11 @@ def agrupar_facturas(arreglo):
 
         list = {}
         for row in arreglo:
-            if not row["nro_pedido"] in list :
-                list[int(row["nro_pedido"])]=[]
+            if not row["nro_factura"] in list :
+                list[int(row["nro_factura"])]=[]
 
         for row in arreglo:
-            list[int(row["nro_pedido"])].append(row)
+            list[int(row["nro_factura"])].append(row)
 
         return list
 
@@ -1974,31 +1974,31 @@ async def procedure_prove(request):
     c.callproc("dbms_output.enable")
     c.execute("""
                 DECLARE
-                l_cursor  SYS_REFCURSOR;
-                output number DEFAULT 1000000;
+                        l_cursor  SYS_REFCURSOR;
+                        output number DEFAULT 1000000;
 
-                v_cod_proveedor varchar2(20);
-                v_nom_proveedor varchar2(50);
-            BEGIN
+                        v_cod_proveedor varchar2(20);
+                        v_nom_proveedor varchar2(50);
+                    BEGIN
 
 
-                dbms_output.enable(output);
-                PROCESOSPW.proveedores (l_cursor);
+                        dbms_output.enable(output);
+                        PROCESOSPW.proveedores (l_cursor);
 
-            LOOP
-            FETCH l_cursor into
+                    LOOP
+                    FETCH l_cursor into
 
-                v_cod_proveedor,
-                v_nom_proveedor;
-                EXIT WHEN l_cursor%NOTFOUND;
-            dbms_output.put_line
-                (
-                v_cod_proveedor|| '|'||
-                v_nom_proveedor
-                );
-            END LOOP;
-            CLOSE l_cursor;
-        END;
+                        v_cod_proveedor,
+                        v_nom_proveedor;
+                        EXIT WHEN l_cursor%NOTFOUND;
+                    dbms_output.put_line
+                        (
+                        v_cod_proveedor|| '|'||
+                        v_nom_proveedor
+                        );
+                    END LOOP;
+                    CLOSE l_cursor;
+                END;
             """)
     textVar = c.var(str)
     statusVar = c.var(int)
