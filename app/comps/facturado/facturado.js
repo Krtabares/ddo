@@ -134,8 +134,8 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
           $scope.calculaMontoLinea=function (monto, cantidad, tipo) {
 
-              console.log(cantidad);
-              console.log(parseFloat(monto));
+              // console.log(cantidad);
+              // console.log(parseFloat(monto));
               return $scope.formato(tipo, monto * parseInt(cantidad))
           }
 
