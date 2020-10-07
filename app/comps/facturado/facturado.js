@@ -62,7 +62,14 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                   }
                 }
 
-                var uni_fact =  (element.unidades_facturadas=="")?  element.unidades_facturadas : 0;
+                var uni_fact =  0 ;
+                if(element.unidades_facturadas){
+                  if( element.unidades_facturadas != ""){
+                    uni_fact = element.unidades_facturadas
+                  }
+
+
+                }
                 $scope.facturasTotales[element.nro_factura].total_bs += element.total_producto * uni_fact
                 $scope.facturasTotales[element.nro_factura].total_usd += element.total_producto_usd * uni_fact
               });
