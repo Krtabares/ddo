@@ -54,7 +54,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
             $scope.facturas.forEach((item, i) => {
               // console.log($scope.facturasList[item]);
               $scope.facturasList[item].forEach((element, j) => {
-                console.log(element);
+                // console.log(element);
                 if( !$scope.facturasTotales.hasOwnProperty(element.nro_factura)){
                   $scope.facturasTotales[element.nro_factura] = {
                     total_bs: 0,
@@ -65,7 +65,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                 var uni_fact =  parseInt(element.unidades_facturadas)
                 // console.log( uni_fact);
                 // console.log( typeof uni_fact );
-                if(!isNaN(uni_fact)){
+                if(isNaN(uni_fact)){
 
                   uni_fact = 0
                 }
@@ -74,7 +74,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
                 console.log(!isNaN(uni_fact));
                 console.log( uni_fact);
-                console.log( typeof uni_fact );
+                console.log( element.unidades_facturadas );
                 $scope.facturasTotales[element.nro_factura].total_bs += element.total_producto * uni_fact
                 $scope.facturasTotales[element.nro_factura].total_usd += element.total_producto_usd * uni_fact
               });
