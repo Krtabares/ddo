@@ -65,7 +65,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                 var uni_fact =  parseInt(element.unidades_facturadas)
                 // console.log( uni_fact);
                 // console.log( typeof uni_fact );
-                if(isNaN(uni_fact)){
+                if(!isNaN(uni_fact)){
 
                   uni_fact = 0
                 }
