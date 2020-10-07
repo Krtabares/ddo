@@ -175,9 +175,10 @@
                             <td><p class="text-right">{{ x.fecha_vence}}</p></td>
                             <!-- <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td> -->
                             <td >
-
-                              <button type="button" class="btn btn-danger" ng-click="openModalDyn(3,$index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
-                              <button type="button" class="btn btn-success" ng-click="editRow(x, $index);" ><i class="fa fa-edit" style="cursor: pointer;" ></i></button>
+                              <i class="fa fa-trash" style="cursor: pointer;"  ng-click="openModalDyn(3,$index)" ></i>
+                              <i class="fa fa-edit" style="cursor: pointer;"  ng-click="editRow(x, $index);" ></i>
+                              <!-- <button type="button" class="btn btn-danger" ng-click="openModalDyn(3,$index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button> -->
+                              <!-- <button type="button" class="btn btn-success" ng-click="editRow(x, $index);" ><i class="fa fa-edit" style="cursor: pointer;" ></i></button> -->
                             </td>
                           </tr>
                     </tbody>
@@ -468,8 +469,11 @@
                               <!-- <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td> -->
                               <td >
 
-                                <button type="button" class="btn btn-danger" ng-disabled="!editView" ng-show="editView"  ng-click="openModalDyn(3,$index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
-                                <button type="button" class="btn btn-success" ng-disabled="!editView" ng-show="editView" ng-click="editRow(x, $index);" ><i class="fa fa-edit" style="cursor: pointer;" ></i></button>
+                                <i class="fa fa-trash" style="cursor: pointer;"   ng-disabled="!editView" ng-show="editView"  ng-click="openModalDyn(3,$index);" ></i>
+                                <i class="fa fa-edit" style="cursor: pointer;"  ng-disabled="!editView" ng-show="editView" ng-click="editRow(x, $index);"></i>
+
+                                <!-- <button type="button" class="btn btn-danger" ng-disabled="!editView" ng-show="editView"  ng-click="openModalDyn(3,$index);" ><i class="fa fa-trash" style="cursor: pointer;" ></i></button>
+                                <button type="button" class="btn btn-success" ng-disabled="!editView" ng-show="editView" ng-click="editRow(x, $index);" ><i class="fa fa-edit" style="cursor: pointer;" ></i></button> -->
                               </td>
                             </tr>
                       </tbody>

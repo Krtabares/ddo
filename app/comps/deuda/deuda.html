@@ -19,14 +19,14 @@
             <tr>
                 <th scope="col"><p class="text-center">Tipo documento</p></th>
                 <!-- <th scope="col"><p class="text-center">Documento aviso</p></th> -->
-                <th scope="col"><p class="text-center">N° Fisico</p></th>
+                <th scope="col"><p class="text-center">N° aviso</p></th>
                 <!-- <th scope="col"><p class="text-center">Serie</p></th> -->
                 <th scope="col"><p class="text-center">Fecha documento</p></th>
                 <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
                 <th scope="col"><p class="text-center">Monto inicial</p></th>
                 <th scope="col"><p class="text-center">Monto actual</p></th>
-
-                <!-- <th scope="col"><p class="text-center">Fecha aviso</p></th>
+                <th scope="col"><p class="text-center">Fecha entrega</p></th>
+                <!--
                 <th scope="col"><p class="text-center">Saldo</p></th>
                 <th scope="col"><p class="text-center">Tipo venta</p></th>
                 <th scope="col"><p class="text-center">Fecha ultimo pago</p></th>
@@ -48,6 +48,7 @@
                 <td><p class="text-center">{{ x.fecha_vencimiento }}</p></td>
                 <td><p class="text-center">{{ formato(2,x.monto_inicial) }}</p></td>
                 <td><p class="text-center">{{ formato(2,x.monto_actual) }}</p></td>
+                <td><p class="text-center">{{ x.fecha_entrega }}</p></td>
 
                 <!-- <td><p class="text-center">{{ x.fecha_aviso }}</p></td>
                 <td><p class="text-center">{{ formato(2,x.saldo) }}</p></td>

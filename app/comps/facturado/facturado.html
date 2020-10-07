@@ -162,7 +162,7 @@
                         <th scope="col"><p class="text-center">Monto</p></th>
                         <th scope="col"><p class="text-center">Monto usd</p></th>
                         <th scope="col"><p class="text-center">Tipo pedido</p></th>
-                        <!-- <th scope="col"><p class="text-center">Nombre vendedor</p></th> -->
+                        <th scope="col"><p class="text-center">Fecha de entrega</p></th>
                         <!-- <th scope="col"><p class="text-center">Email vendedor</p></th> -->
                         <th scope="col"><p class="text-center">Opciones</p></th>
                       </tr>
@@ -178,7 +178,7 @@
                         <td><p class="text-center">{{ formato(2,facturasTotales[fact].total_bs) }}</p></td>
                         <td><p class="text-center">{{ formato(3,facturasTotales[fact].total_usd) }}</p></td>
                         <td><p class="text-center">{{ facturasList[fact][0].tipo_pedido }}</p></td>
-                        <!-- <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td> -->
+                        <td><p class="text-center">{{ facturasList[fact][0].fecha_entrega }}</p></td>
                         <!-- <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td> -->
                         <td>
                           <i class="fa fa-eye" style="cursor: pointer;"   ng-click="selectFactura(facturasList[fact])"  data-toggle="modal" data-target="#modalFactura"  ></i>
