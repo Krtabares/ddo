@@ -34,7 +34,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
       $scope.loading = true
       request.post(ip+'/disponible_cliente', body,{})
       .then(function successCallback(response) {
-        // console.log(response)
+        console.log("====================================================================================================")
 
         $scope.creditoClient = response.data.obj
         $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
