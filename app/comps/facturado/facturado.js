@@ -62,7 +62,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                   }
                 }
 
-                var uni_fact =  0 ;
+                var uni_fact =  (parseInt(element.unidades_facturadas))? parseInt(element.unidades_facturadas) : 0;
                 console.log( parseInt(element.unidades_facturadas) );
                 // console.log( typeof element.unidades_facturadas );
                 if(element.unidades_facturadas){
