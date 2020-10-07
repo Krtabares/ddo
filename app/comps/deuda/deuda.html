@@ -272,7 +272,7 @@
                           <tr>
 
 
-                            <th scope="col"><p class="text-center">N° de documento</p></th>
+                            <!-- <th scope="col"><p class="text-center">N° de documento</p></th> -->
                             <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
                             <th scope="col"><p class="text-center">Saldo BS</p></th>
                             <th scope="col"><p class="text-center">Saldo Usd</p></th>
@@ -282,7 +282,7 @@
                         <tbody>
 
                           <tr  ng-repeat="x in vencimiento"   >
-                            <td><p class="text-center">{{ x.no_fisico }}</p></td>
+                            <!-- <td><p class="text-center">{{ x.no_fisico }}</p></td> -->
                             <td><p class="text-center">{{ x.fecha_vencimiento }}</p></td>
                             <td><p class="text-center">{{ formato(2,x.saldo) }}</p></td>
                             <td><p class="text-center">{{ formato(1,x.saldo_usd) }}</p></td>
