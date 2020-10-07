@@ -720,7 +720,7 @@
                       <tr ng-repeat="x in productos"  ng-class="{ selectedRow : $index == productIndex }" >
 
                           <td><p class="text-center">{{ $index + 1 }}</p></td>
-                          <td><i class="fa fa-eye" style="cursor: pointer;"  ng-click="selectProduct($index)" data-toggle="modal" data-target="#showPedidoModal"  ></i></td>
+                          <td><i class="fa fa-eye" style="cursor: pointer;"  ng-click="selectProduct($index)" ></i></td>
                           <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                           <td><p class="text-center">{{ x.categoria }}</p></td>
                           <td><p class="text-center">{{ x.existencia }}</p></td>
