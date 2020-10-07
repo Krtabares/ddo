@@ -50,7 +50,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
              console.log(response.data)
              $scope.facturas = Object.keys(response.data.obj)
              $scope.facturasList = response.data.obj
-            console.log($scope.facturas);
+            // console.log($scope.facturas);
             $scope.facturas.forEach((item, i) => {
               // console.log($scope.facturasList[item]);
               $scope.facturasList[item].forEach((element, j) => {
@@ -72,9 +72,9 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
                 element.unidades_facturadas = uni_fact
 
-                console.log(!isNaN(uni_fact));
-                console.log( uni_fact);
-                console.log( element.unidades_facturadas );
+                // console.log(!isNaN(uni_fact));
+                // console.log( uni_fact);
+                // console.log( element.unidades_facturadas );
                 $scope.facturasTotales[element.nro_factura].total_bs += element.total_producto * uni_fact
                 $scope.facturasTotales[element.nro_factura].total_usd += element.total_producto_usd * uni_fact
               });
@@ -134,8 +134,8 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
           $scope.calculaMontoLinea=function (monto, cantidad, tipo) {
 
-              // monto =
-
+              console.log(cantidad);
+              console.log(monto);
               return $scope.formato(tipo, parseFloat(monto.replace(",", ".")) * parseInt(cantidad))
           }
 
