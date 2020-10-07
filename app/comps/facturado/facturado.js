@@ -136,7 +136,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
               console.log(cantidad);
               console.log(monto);
-              return $scope.formato(tipo, parseFloat(monto.replace(",", ".")) * parseInt(cantidad))
+              return $scope.formato(tipo, monto * parseInt(cantidad))
           }
 
           $scope.getClientNew = function (filter = false) {
