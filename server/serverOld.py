@@ -107,6 +107,18 @@ async def addUser(request, token : Token):
 
     return response.json("OK", 200)
 
+@app.route('/upd/user', ["POST", "GET"])
+@jwt_required
+async def addUser(request, token : Token):
+    user = request.json
+    db = get_mongo_db()
+
+    # await db.user.insert_one(user)
+
+    await db.user.update({'username' : data.get("username", None)},user)
+
+    return response.json("OK", 200)
+
 @app.route('/get/users', ["POST", "GET"])
 @jwt_required
 async def listUser(request, token : Token):
@@ -180,8 +192,8 @@ async def procedure(request):
             """.format(pNoCia = data['pNoCia'],
                         pNoGrupo = data['pNoGrupo'],
                         pCliente = data['pCliente'])
-    print("==========================disponible_cliente================================")
-    print(sql)
+    # print("==========================disponible_cliente================================")
+    # print(sql)
     c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)

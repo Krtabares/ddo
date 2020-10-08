@@ -58,6 +58,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
             console.log(response.data)
             $scope.user = response.data
             $scope.typeview = 'view'
+            $scope.modalTitle = 'Ver usuario'
          });
       }
       $scope.hasOwnProp = function (mod,prop) {
@@ -167,7 +168,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                 .then(function successCallback(response) {
                   console.log(response)
                   if (response.data == "OK") {
-                         $scope.initDatatable();
+                        $scope.getUsers()
                     ngNotify.set('¡Usuario registrado exitosamente!','success')
                   } else if (response.data.email_flag) {
                     //ngNotify.set('¡Ya el correo está registrado!','error')
