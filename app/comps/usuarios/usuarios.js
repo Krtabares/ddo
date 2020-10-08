@@ -79,6 +79,10 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
         $scope.modalTitle = 'Crear usuario'
         $scope.typeview = 'add'
       }
+      $scope.username = null
+      $scope.confirmModal = function (username) {
+        $scope.username = username
+      }
 
       verificClient()
 
@@ -176,8 +180,6 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                   if (response.data == "OK") {
                         $scope.getUsers()
                     ngNotify.set('¡Usuario registrado exitosamente!','success')
-                  } else if (response.data.email_flag) {
-                    //ngNotify.set('¡Ya el correo está registrado!','error')
                   }
                 }, function errorCallback(response) {
                   console.log(response)
@@ -204,8 +206,6 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                     if (response.data == "OK") {
                           $scope.getUsers()
                       ngNotify.set('¡Usuario actualizado exitosamente!','success')
-                    } else if (response.data.email_flag) {
-                      //ngNotify.set('¡Ya el correo está registrado!','error')
                     }
                   }, function errorCallback(response) {
                     console.log(response)
@@ -214,6 +214,29 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
 
           }
+
+          $scope.delUser = function(){
+
+                // user.password = "ddo.2017";
+                // if($scope.clientIndex!=-1 && user.role == 'cliente'){
+                  // user.role = "cliente"
+                var body={}
+                body.username = $scope.username
+                console.log(user);
+                request.post(ip+'/del/user', body,{'Authorization': 'Bearer ' + localstorage.get('token')})
+                    .then(function successCallback(response) {
+                      console.log(response)
+                      if (response.data == "OK") {
+                            $scope.getUsers()
+                        ngNotify.set('¡Usuario eliminado exitosamente!','success')
+                      }
+                    }, function errorCallback(response) {
+                      console.log(response)
+                    });
+
+
+
+            }
 
         $scope.listUser = function(){
           request.get(ip+'/get/user', {})

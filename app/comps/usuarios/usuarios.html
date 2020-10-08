@@ -3,6 +3,33 @@
 
 </div>
 
+<div class="modal fade" id="modalConfirm">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmacion</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+      </div>
+      <div class="modal-body">
+
+        <div class="container">
+
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <h3><p class="text-center">Desea eliminar el registro?</p></h3>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Regresar</button>
+        <button type="button" class="btn btn-danger" ng-click="delUser()" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -193,8 +220,8 @@
                         <th scope="col"><p class="text-center">#</p></th>
                         <th scope="col"><p class="text-center">Usuario</p></th>
                         <th scope="col"><p class="text-center">Nombre</p></th>
-                        <th scope="col"><p class="text-center">Tipo</p></th>
-                        <th scope="col"><p class="text-center">Estatus</p></th>
+                        <!-- <th scope="col"><p class="text-center">Tipo</p></th> -->
+                        <!-- <th scope="col"><p class="text-center">Estatus</p></th> -->
 
                         <!-- <th scope="col"><p class="text-center">Nombre vendedor</p></th> -->
                         <!-- <th scope="col"><p class="text-center">Email vendedor</p></th> -->
@@ -207,14 +234,15 @@
                         <td><p class="text-center">{{ $index + 1 }}</p></td>
                         <td><p class="text-center">{{ x.username }}</p></td>
                         <td><p class="text-center">{{ x.name }}</p></td>
-                        <td><p class="text-center">{{ x.role }}</p></td>
-                        <td><p class="text-center">{{ x.status }}</p></td>
+                        <!-- <td><p class="text-center">{{ x.role }}</p></td> -->
+                        <!-- <td><p class="text-center">{{ x.status }}</p></td> -->
 
 
                         <!-- <td><p class="text-center">{{ facturasList[fact][0].nombre_vendedor }}</p></td> -->
                         <!-- <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td> -->
                         <td>
-                          <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getUser(x.username)"  data-toggle="modal" data-target="#addUserModal"  ></i>
+                          <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getUser(x.username)"  data-toggle="modal" data-target="#addUserModal" ></i>
+                          <i class="fa fa-trash" style="cursor: pointer;" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.username);"  ></i>
                         </td>
                       </tr>
 
