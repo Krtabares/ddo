@@ -48,7 +48,7 @@
           <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')"  ng-model="user.estatus">
 
             <option ng-repeat="type in estatus_user" value="{{estatus.id}}">
-              {{estatus.text | uppercase}}
+              {{type.text | uppercase}}
             </option>
             <option value="" disabled selected>Selecciona el estatus</option>
           </select>

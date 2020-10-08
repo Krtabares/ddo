@@ -24,8 +24,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       ];
       $scope.estatus_user = [
 
-        {'id': 1, type : "admin", text: "Administrador"},
-        {'id': 2, type : "generic", text: "Generico"},
+        {'id': 1, text: "Activo"},
+        {'id': 2, text: "Inactivo"},
 
       ];
       var ip = "http://192.168.168.170:3500";
