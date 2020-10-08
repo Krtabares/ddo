@@ -115,7 +115,7 @@ async def addUser(request, token : Token):
 
     # await db.user.insert_one(user)
 
-    await db.user.update({'username' : data.get("username", None)},user)
+    await db.user.update({'username' : user.get("username", None)},user)
 
     return response.json("OK", 200)
 
