@@ -9,34 +9,34 @@
         <li>
             <a href="#!/home"><i class="fa fa-fw fa-home"></i> Inicio</a>
         </li>
-        <li>
+        <li ng-if="permisos.deuda.ver" >
           <a href="#!/deuda" class=""><i class="fa fa-fw  fas fa-receipt" ></i>Deuda</a>
         </li>
-        <li ng-show="user.role == 'admin'"  >
+        <li ng-if="permisos.usuario.ver" >
           <a href="#!/usuarios" class="">
             <i class="fa fa-fw fas fa-user" ></i>
             Usuarios
           </a>
         </li>
-        <li  ng-show="user.role == 'admin'"  >
+        <li ng-if="permisos.cliente.ver" >
           <a href="#!/clientes" class="">
             <i class=" fa fa-fw fas fa-user" ></i>
             Clientes
           </a>
         </li>
-        <li>
+        <li ng-if="permisos.producto.ver" >
           <a  href="#!/saldo" class="">
             <i class=" fa fa-fw fas fa-list-alt" ></i>
           Productos
         </a>
       </li>
-      <li >
+      <li ng-if="permisos.pedido.ver">
         <a href="#!/pedidos" class="">
           <i class=" fa fa-fw fas fa-list-alt" ></i>
           Pedidos
         </a>
       </li>
-      <li >
+      <li ng-if="permisos.factura.ver">
         <a href="#!/facturado" class="">
           <i class=" fa fa-fw fas fa-list-alt" ></i>
           Facturas

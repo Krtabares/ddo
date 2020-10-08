@@ -13,11 +13,13 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
 
         $scope.hasUserClient = false;
         $scope.user = {};
+        $scope.permisos = {}
         init()
         function init() {
           var user = localStorage.getItem('user')
            $scope.user = JSON.parse(user);
-           console.log($scope.user)
+           $scope.permisos = $scope.user.permisos  ;
+           // console.log($scope.user)
         }
 
 
