@@ -177,7 +177,7 @@ async def procedure(request):
     sql = """
                 DECLARE
 
-                  vdisp_bs varchar2(20;
+                  vdisp_bs varchar2(20);
                   vdisp_usd varchar2(30);
 
 
