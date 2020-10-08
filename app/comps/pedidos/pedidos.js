@@ -37,6 +37,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.totalesDdo = {}
         $scope.tipoBusqueda = 0
 
+
         var ip = "http://192.168.168.170:3500";
 
         //list pedido
@@ -373,7 +374,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             console.log($scope.product )
 
         }
-
+        $scope.tipoBusquedaCliente = 0
         $scope.getClientNew = function (filter = false) {
           // console.log("getClientNew");
           $scope.listaPedidosV2 = []
@@ -382,6 +383,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           if(filter){
             body.pNombre = $scope.nombre_cliente
           }
+          body.pNoCia = "01";
+          body.pNoGrupo = ($scope.tipoBusquedaCliente != 0)? "02": "01";
+
           request.post(ip+'/procedure_clientes', body,{})
           .then(function successCallback(response) {
             // console.log(response)
