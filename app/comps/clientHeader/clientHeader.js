@@ -88,7 +88,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
                 $scope.client_info.limite_credito = $scope.client.limite_credito = parseFloat($scope.client_info.limite_credito)
             }
 
-            // if (Object.keys($scope.client_info).length > 0) {
+            if (Object.keys($scope.client_info).length > 0) {
               var body = {}
               body.pCliente = $scope.client_info.cod_cliente
               body.pNoCia = $scope.client_info.cod_cia
@@ -96,7 +96,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
               getClientDispService(body)
               validaClienteDDO(body)
 
-            // }
+            }
         }
 
 
