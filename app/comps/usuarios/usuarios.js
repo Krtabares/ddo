@@ -222,7 +222,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                   // user.role = "cliente"
                 var body={}
                 body.username = $scope.username
-                console.log(user);
+                // console.log(user);
                 request.post(ip+'/del/user', body,{'Authorization': 'Bearer ' + localstorage.get('token')})
                     .then(function successCallback(response) {
                       console.log(response)
