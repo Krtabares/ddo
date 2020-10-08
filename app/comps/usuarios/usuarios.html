@@ -19,7 +19,8 @@
 
         <label>Tipo de usuario</label>
         <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-        <select class="form-control form-control-sm" ng-model="user.role">
+
+        <select class="form-control form-control-sm" ng-disabled="typeview != 'add' || typeview != 'edit'" ng-model="user.role">
 
           <option ng-repeat="type in type_user" value="{{type.type}}">
             {{type.text | uppercase}}
@@ -29,12 +30,12 @@
 
           <div class="form-group">
             <label>Nombre</label>
-            <input type="text" ng-model="user.name" class="form-control" placeholder="Nombre">
+            <input type="text" ng-model="user.name" class="form-control" ng-if="typeview == 'add' || typeview == 'edit'" placeholder="Nombre">
           </div>
 
           <div class="form-group">
             <label>Username</label>
-            <input type="text" ng-model="user.username"  ng-keyup="availableUser()" class="form-control" placeholder="Username">
+            <input type="text" ng-model="user.username"  ng-keyup="availableUser()" ng-if="typeview == 'add' || typeview == 'edit'" class="form-control" placeholder="Username">
             <div class="invalid-feedback">
               Este usuario ya existe
             </div>
@@ -42,12 +43,12 @@
 
           <label>Estatus</label>
           <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-          <select class="form-control form-control-sm" ng-model="user.estatus">
+          <select class="form-control form-control-sm" ng-disabled="typeview != 'add' || typeview != 'edit'"  ng-model="user.estatus">
 
             <option ng-repeat="type in estatus_user" value="{{estatus.id}}">
               {{estatus.text | uppercase}}
             </option>
-            <option value="" disabled selected>Selecciona un tipo de usuario</option>
+            <option value="" disabled selected>Selecciona el estatus</option>
           </select>
 
 
@@ -67,22 +68,22 @@
               <tr  ng-repeat="x in modulos"  >
                 <th scope="row">{{x}}</th>
                 <td>
-                  <div class="form-check" >
+                  <div class="form-check" ng-if="typeview == 'add' || typeview == 'edit'" >
                     <input type="checkbox" class="form-check-input" ng-model="permisos[x].ver" ng-disabled="!hasOwnProp(x,'ver')"  >
                   </div>
                 </td>
                 <td>
-                  <div class="form-check" ng-if="hasOwnProp(x,'crear')" >
+                  <div class="form-check" ng-if="hasOwnProp(x,'crear')" ng-if="typeview == 'add' || typeview == 'edit'" >
                     <input type="checkbox" class="form-check-input" ng-model="permisos[x].crear" ng-disabled="!hasOwnProp(x,'crear')" >
                   </div>
                 </td>
                 <td>
-                  <div class="form-check" ng-if="hasOwnProp(x,'editar')" >
+                  <div class="form-check" ng-if="hasOwnProp(x,'editar')" ng-if="typeview == 'add' || typeview == 'edit'"  >
                     <input type="checkbox" class="form-check-input"  ng-model="permisos[x].editar" ng-disabled="!hasOwnProp(x,'editar')" >
                   </div>
                 </td>
                 <td>
-                  <div class="form-check"ng-if="hasOwnProp(x,'eliminar')" >
+                  <div class="form-check"ng-if="hasOwnProp(x,'eliminar')" ng-if="typeview == 'add' || typeview == 'edit'"  >
                     <input type="checkbox" class="form-check-input" ng-model="permisos[x].eliminar" ng-disabled="!hasOwnProp(x,'eliminar')" >
                   </div>
                 </td>
