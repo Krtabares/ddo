@@ -119,6 +119,18 @@ async def addUser(request, token : Token):
 
     return response.json("OK", 200)
 
+@app.route('/del/user', ["POST", "GET"])
+@jwt_required
+async def addUser(request, token : Token):
+    user = request.json
+    db = get_mongo_db()
+
+    # await db.user.insert_one(user)
+
+    await db.user.remove({'username' : user.get("username", None)})
+
+    return response.json("OK", 200)
+
 @app.route('/get/users', ["POST", "GET"])
 @jwt_required
 async def listUser(request, token : Token):
