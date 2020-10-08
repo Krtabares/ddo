@@ -22,6 +22,12 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
         {'id': 2, type : "generic", text: "Generico"},
 
       ];
+      $scope.estatus_user = [
+
+        {'id': 1, type : "admin", text: "Administrador"},
+        {'id': 2, type : "generic", text: "Generico"},
+
+      ];
       var ip = "http://192.168.168.170:3500";
 
       $scope.nombre_cliente = null;
