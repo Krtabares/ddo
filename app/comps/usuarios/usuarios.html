@@ -73,25 +73,25 @@
                   <div class="form-check" ng-if="typeview == 'add' || typeview == 'edit'" >
                     <input type="checkbox" class="form-check-input" ng-model="permisos[x].ver" ng-disabled="!hasOwnProp(x,'ver')"  >
                   </div>
-                  <span ng-if="typeview == 'view '&& permisos[x].ver" ><i class="fas fa-check"></i></span>
+                  <span ng-if="typeview == 'view' && permisos[x].ver" ><i class="fas fa-check"></i></span>
                 </td>
                 <td>
-                  <div class="form-check" ng-if="hasOwnProp(x,'crear')" ng-if="typeview == 'add' || typeview == 'edit'" >
+                  <div class="form-check" ng-if="typeview == 'add' || typeview == 'edit' && hasOwnProp(x,'crear')"  >
                     <input type="checkbox" class="form-check-input" ng-model="permisos[x].crear" ng-disabled="!hasOwnProp(x,'crear')" >
                   </div>
-                  <span ng-if="typeview == 'view '&& permisos[x].crear" ><i class="fas fa-check"></i></span>
+                  <span ng-if="typeview == 'view' && permisos[x].crear" ><i class="fas fa-check"></i></span>
                 </td>
                 <td>
-                  <div class="form-check" ng-if="hasOwnProp(x,'editar')" ng-if="typeview == 'add' || typeview == 'edit'"  >
+                  <div class="form-check" ng-if="typeview == 'add' || typeview == 'edit' && hasOwnProp(x,'editar')" typeview == 'add' || typeview == 'edit'  >
                     <input type="checkbox" class="form-check-input"  ng-model="permisos[x].editar" ng-disabled="!hasOwnProp(x,'editar')" >
                   </div>
-                  <span ng-if="typeview == 'view '&& permisos[x].editar" ><i class="fas fa-check"></i></span>
+                  <span ng-if="typeview == 'view' && permisos[x].editar" ><i class="fas fa-check"></i></span>
                 </td>
                 <td>
-                  <div class="form-check"ng-if="hasOwnProp(x,'eliminar')" ng-if="typeview == 'add' || typeview == 'edit'"  >
+                  <div class="form-check"ng-if="typeview == 'add' || typeview == 'edit' && hasOwnProp(x,'eliminar')" typeview == 'add' || typeview == 'edit'  >
                     <input type="checkbox" class="form-check-input" ng-model="permisos[x].eliminar" ng-disabled="!hasOwnProp(x,'eliminar')" >
                   </div>
-                  <span ng-if="typeview == 'view '&& permisos[x].eliminar" ><i class="fas fa-check"></i></span>
+                  <span ng-if="typeview == 'view' && permisos[x].eliminar" ><i class="fas fa-check"></i></span>
                 </td>
               </tr>
 
@@ -104,7 +104,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button"  class="btn btn-primary" ng-if="typeview == 'view'" ng-disabled="!usernameValid"  ng-click="goToEdit();">Editar</button>
         <button type="button" class="btn btn-primary" ng-click="addUser(user);"  ng-if="typeview == 'add'" >Guardar</button>
-        <button type="button" class="btn btn-primary" ng-click="updUser(user);"  ng-if="typeview == 'edit'" >Guardar</button>
+        <button type="button" class="btn btn-success" ng-click="updUser(user);"  ng-if="typeview == 'edit'" >Guardar</button>
         <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addUser(user);">Cerrar</button> -->
       </div>
     </div>
