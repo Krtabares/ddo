@@ -83,7 +83,8 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" ng-click="addUser(user);" ng-if="typeview == 'add'" >Guardar</button>
+        <button type="button"  class="btn btn-primary" ng-if="typeview == 'view'" ng-disabled="!usernameValid"  ng-click="editPedido();">Editar</button>
+        <button type="button" class="btn btn-primary" ng-click="addUser(user);"  ng-if="typeview == 'add'" >Guardar</button>
         <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addUser(user);">Cerrar</button> -->
       </div>
     </div>
