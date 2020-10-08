@@ -17,6 +17,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
         $scope.hasUserClient = false;
         $scope.client = {};
         $scope.client_info = {}
+        $scope.isEmpleado = false;
 
         verificClient()
 
@@ -32,6 +33,9 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
            $scope.client_info = JSON.parse(client_info);
            $scope.client = JSON.parse(client);
            facturacion()
+           if($scope.client.grupo_cliente == "02"){
+             $scope.isEmpleado = true;
+           }
          }
          console.log($scope.client)
        }
@@ -101,6 +105,9 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
               $scope.client  = $scope.clientes[ $scope.clientIndex ];
                 console.log($scope.client,"selectCLient" )
                 facturacion()
+                if($scope.client.grupo_cliente == "02"){
+                  $scope.isEmpleado = true;
+                }
                 angular.element('#clientes').focus();
             }
 
