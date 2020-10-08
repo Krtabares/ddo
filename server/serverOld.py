@@ -173,12 +173,16 @@ async def procedure(request):
 
                 BEGIN
 
-                    PROCESOSPW.disponible_cliente(vdisp_bs, vdisp_usd, :pNoCia, :pNoGrupo, :pCliente);
+                    PROCESOSPW.disponible_cliente(vdisp_bs, vdisp_usd, \'{pNoCia}'\', \'{pNoGrupo}\', \'{pCliente}\');
 
                     dbms_output.put_line(vdisp_bs|| '|'||vdisp_usd);
                 END;
-            """
-    c.execute(sql, [data['pNoCia'],data['pNoGrupo'],data['pCliente']])
+            """.format(pNoCia = data['pNoCia'],
+                        pNoGrupo = data['pNoGrupo'],
+                        pCliente = data['pCliente'])
+    print("==========================disponible_cliente================================")
+    print(sql)
+    c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)
     obj = {}
