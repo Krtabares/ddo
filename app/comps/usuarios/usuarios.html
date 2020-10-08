@@ -20,7 +20,7 @@
         <label>Tipo de usuario</label>
         <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
 
-        <select class="form-control form-control-sm" ng-disabled="typeview != 'add' || typeview != 'edit'" ng-model="user.role">
+        <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')" ng-model="user.role">
 
           <option ng-repeat="type in type_user" value="{{type.type}}">
             {{type.text | uppercase}}
@@ -45,7 +45,7 @@
 
           <label>Estatus</label>
           <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-          <select class="form-control form-control-sm" ng-disabled="typeview != 'add' || typeview != 'edit'"  ng-model="user.estatus">
+          <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')"  ng-model="user.estatus">
 
             <option ng-repeat="type in estatus_user" value="{{estatus.id}}">
               {{estatus.text | uppercase}}
