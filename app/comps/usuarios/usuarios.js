@@ -107,10 +107,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
      $scope.reset = function(){
        $scope.user = {};
-       $scope.user_view = {};
+       $scope.permisos ={"deuda":{"ver":false},"cliente":{"ver":false},"producto":{"ver":false},"factura":{"ver":false},"pedido":{"ver":false,"crear":false,"editar":false,"eliminar":false},"usuario":{"ver":false,"crear":false,"editar":false,"eliminar":false}}
        // $scope.nombre_cliente = null;
-       $scope.client = {};
-       $scope.client_info = {};
        // $scope.hasUserClient = false;
        // $scope.clientes=[];
        // $scope.clientIndex = -1

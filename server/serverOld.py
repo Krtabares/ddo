@@ -162,13 +162,13 @@ async def procedure(request):
 
 
     if not 'pCliente' in data :
-        data['pCliente'] = 'null'
+        return response.json({"msg": "Missing parameter"}, status=400)
 
     if not 'pNoCia' in data :
         return response.json({"msg": "Missing parameter"}, status=400)
 
     if not 'pNoGrupo' in data :
-        return response.json({"msg": "Missing username parameter"}, status=400)
+        return response.json({"msg": "Missing parameter"}, status=400)
 
 
     print(data)
@@ -177,11 +177,9 @@ async def procedure(request):
     sql = """
                 DECLARE
 
-                  vdisp_bs NUMBER;
-                  vdisp_usd NUMBER;
-                  pNoCia varchar2(10) DEFAULT '01';
-                  pNoGrupo varchar2(10) DEFAULT '01';
-                  pCliente varchar2(50) DEFAULT null;
+                  vdisp_bs varchar2(20;
+                  vdisp_usd varchar2(30);
+
 
                 BEGIN
 
