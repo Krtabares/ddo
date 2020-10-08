@@ -35,6 +35,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.productIndex = -1;
         $scope.infoPsico = false;
         $scope.totalesDdo = {}
+        $scope.tipoBusqueda = 1
 
         var ip = "http://192.168.168.170:3500";
 
@@ -621,8 +622,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               if($scope.busqueda_prod == null){
                  $scope.busqueda_prod = $scope.auxBusqueda
               }
+              if($scope.tipoBusqueda==1){
+                body.pComponente = $scope.busqueda_prod
+              }else{
+                body.pBusqueda = $scope.busqueda_prod
+              }
 
-              body.pBusqueda = $scope.busqueda_prod
 
             }
 
