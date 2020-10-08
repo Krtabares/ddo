@@ -114,7 +114,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
               $scope.clientInvalidoMsg = null
             }else{
               $scope.clientInvalidoMsg = response.data.data[0]
-              ngNotify.set($scope.clientInvalidoMsg,'warn')
+              // ngNotify.set($scope.clientInvalidoMsg,'warn')
               $scope.clienteValido = false
               $scope.tabsIndex = 0
               return;
