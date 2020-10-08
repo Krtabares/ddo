@@ -15,7 +15,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.loading = true
         $scope.pedido = {
-            'fecha': new Date(),
+            'fecha': null,
             'pedido':[]
         };
         $scope.tabs = 2
