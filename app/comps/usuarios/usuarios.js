@@ -57,6 +57,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
           .then(function successCallback(response) {
             console.log(response.data)
             $scope.user = response.data
+            $scope.permisos = $scope.user.permisos
             $scope.typeview = 'view'
             $scope.modalTitle = 'Ver usuario'
          });
