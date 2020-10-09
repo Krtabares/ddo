@@ -85,7 +85,7 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
   //
   //   ;
 
-  $scope.dtOptions = DTOptionsBuilder.newOptions()
+  $scope.dtOptiones = DTOptionsBuilder.newOptions()
       .withPaginationType('full_numbers')
       .withOption('responsive', true)
       .withDOM('frtip')
