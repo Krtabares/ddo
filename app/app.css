@@ -817,3 +817,6 @@ td p {
     background-color: #fff;
     border-color: #d8dbe0;
 }
+.rigth{
+	text-align: end !important;
+}
