@@ -663,15 +663,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
                 item.precioFormatVE = item.precio_bruto_bs.replace(",", ".")
 
-                var par = parseFloat(item.precioFormatVE)
-                if(isNaN(par)){
-                  par = 0
+                var par1 = parseFloat(item.precioFormatVE)
+                if(isNaN(par1)){
+                  par1 = 0
                 }
 
-                item.precioFormatVE = $scope.formato(2,  par)
+                item.precioFormatVE = $scope.formato(2,  par1)
                 // item.precio_neto_usd =
                 item.precioFormatUSD = item.precio_neto_usd.replace(",", ".")
-                item.precioFormatUSD = $scope.formato(3,  parseFloat(item.precioFormatUSD).toFixed(2) )
+                var par2 = parseFloat(item.precioFormatVE)
+                if(isNaN(par2)){
+                  par2 = 0
+                }
+                item.precioFormatUSD = $scope.formato(3,  par2 )
 
               });
 
