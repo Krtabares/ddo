@@ -64,12 +64,14 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
       }
 
 
-  $scope.dtOptiones = DTOptionsBuilder.newOptions()
-      .withPaginationType('full_numbers')
-      .withOption('responsive', true)
-      .withDOM('frtip')
-      .withLanguage(DATATABLE_LANGUAGE_ES)
-      .withDisplayLength(15)
+      $scope.dtOptions = DTOptionsBuilder.newOptions()
+          .withPaginationType('full_numbers')
+          .withOption('responsive', true)
+          .withDOM('frtip')
+          .withPaginationType('full_numbers')
+          .withLanguage(DATATABLE_LANGUAGE_ES)
+          .withDisplayLength(15)
+
 
 
 
