@@ -69,8 +69,64 @@
           <div class="card " >
             <div class="card-body">
               <div class="col-md-12">
-                <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
-                </table>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                  <!-- <label for="clientes">Busqueda por cliente</label> -->
+                  <div class="input-group mb-3">
+                    <input type="text" id="clientes"
+                    class="form-control"
+                    ng-keydown="$event.keyCode === 13 && getClientNew(true)"
+                    ng-model="nombre_cliente"
+                    placeholder="Busqueda por Cliente"
+                    aria-label="Busqueda por Cliente"
+                    aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered">
+                </table> -->
+
+                <table datatable="ng"  dt-options="dtOptions"  class="table table-striped table-bordered" >
+                  <thead>
+                    <tr>
+
+                      <th scope="col"><p class="text-center">cod_cliente</p></th>
+                      <th scope="col"><p class="text-center">nombre_cliente</p></th>
+                      <th scope="col"><p class="text-center">docu_identif_cliente</p></th>
+                      <th scope="col"><p class="text-center">ci</p></th>
+                      <th scope="col"><p class="text-center">direccion_cliente</p></th>
+                      <th scope="col"><p class="text-center">direccion_cliente</p></th>
+
+                      <th scope="col"><p class="text-center">nombre_encargado</p></th>
+                      <th scope="col"><p class="text-center">telefono1</p></th>
+
+                      <th scope="col"><p class="text-center">email1</p></th>
+
+
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr  ng-repeat="x in clientes"   >
+
+                        <td><p class="text-center">{{ x.Codigo}}</p></td>
+                        <td><p class="text-center">{{ x.Nombre}}</p></td>
+                        <td><p class="text-center">{{ x.Documento de identificación}}</p></td>
+                        <td><p class="text-center">{{ x.Zona}}</p></td>
+                        <td><p class="text-center">{{ x.Direccion Fiscal}}</p></td>
+                        <td><p class="text-center">{{ x.Direccion Entrega}}</p></td>
+                        <td><p class="text-center">{{ x.Nombre del encargado}}</p></td>
+                        <td><p class="text-center">{{ x.telefono1}}</p></td>
+                        <td><p class="text-center">{{ x.email1}}</p></td>
+
+                        </tr>
+
+
+                      </tbody>
+                    </table>
+
 
               </div>
 
