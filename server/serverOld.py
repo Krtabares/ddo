@@ -1036,22 +1036,22 @@ async def procedure(request):
                 pFechaPedido date;
 
                 v_nro_factura varchar2(50);
-                v_fecha_factura date;
+                v_fecha_factura varchar2(10);
                 v_cod_cliente varchar2(50);
                 v_cod_vendedor varchar2(50);
                 v_nombre_vendedor varchar2(150);
                 v_email_vendedor varchar2(90);
-                v_no_linea number;
+                v_no_linea varchar2(4);
                 v_no_arti varchar2(50);
                 v_nombre_arti varchar2(150);
-                v_unidades_pedido number;
-                v_unidades_facturadas number;
+                v_unidades_pedido varchar2(4);
+                v_unidades_facturadas varchar2(4);
                 v_total_producto_bs varchar2(20);
                 v_total_producto_usd varchar2(20);
                 v_cia        varchar2(2);
                 v_grupo      varchar2(2);
                 v_tipo_pedido varchar2(15);
-                v_fecha_entrega varchar(10);
+                v_fecha_entrega varchar2(10);
                 v_pag        number;
 
                 v_lin        number;
