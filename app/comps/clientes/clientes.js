@@ -37,7 +37,7 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
 
         request.post(ip+'/procedure_clientes', body,{})
         .then(function successCallback(response) {
-          // console.log(response)
+          console.log(response)
           $scope.clientes = null
           $scope.clientIndex = null
           $scope.showProductTable = null
@@ -92,7 +92,7 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
       .withPaginationType('full_numbers')
       .withLanguage(DATATABLE_LANGUAGE_ES)
       .withDisplayLength(15)
-        // 
+        //
         // $scope.dtColumns = [
         //
         //

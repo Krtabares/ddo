@@ -653,7 +653,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(response.data.obj.length > 1){
               response.data.obj.forEach((item, i) => {
 
-                item.precioFormatVE = item.precio_bruto_bs.replace(",", ".")
+                var bruto =  parseFloat(element.precio_bruto_bs)
+                // console.log( uni_fact);
+                // console.log( typeof uni_fact );
+                if(isNaN(bruto)){
+
+                  bruto = 0
+                }
+
+                item.precioFormatVE = bruto.replace(",", ".")
                 item.precioFormatVE = $scope.formato(2,  parseFloat(item.precioFormatVE).toFixed(2) )
                 // item.precio_neto_usd =
                 item.precioFormatUSD = item.precio_neto_usd.replace(",", ".")
