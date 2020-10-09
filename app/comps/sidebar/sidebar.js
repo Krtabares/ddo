@@ -76,9 +76,11 @@ $(function(){
     })
     return decrypted;
   }
-
-  $('#encrypted').text("Encrypted: "+encrypted);
-  $('#decrypted').text("Decrypted: "+ decrypted.toString(CryptoJS.enc.Utf8) );
+  // 
+  // $('#encrypted').text("Encrypted: "+ encrypted);
+  // console.log(encrypted)
+  // $('#decrypted').text("Decrypted: "+ decrypted.toString(CryptoJS.enc.Utf8) );
+  // console.log(decrypt);
 
 
 })
