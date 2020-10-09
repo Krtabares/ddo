@@ -89,7 +89,6 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
       .withPaginationType('full_numbers')
       .withOption('responsive', true)
       .withDOM('frtip')
-      .withPaginationType('full_numbers')
       .withLanguage(DATATABLE_LANGUAGE_ES)
       .withDisplayLength(15)
         //
