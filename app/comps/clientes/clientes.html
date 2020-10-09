@@ -2,51 +2,7 @@
 
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="showDeudaModal" tabindex="-1" role="dialog" aria-labelledby="showDeudaModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background: #399CDF;color: white; font-weight: bold;">
-        <h5 class="modal-title" id="showDeudaModalLabel">VER DEUDA <i class="fas fa-1x fa-list-alt"></i> </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-		 <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body p-0">
-                    <div class="row p-1">
-                        <div class="col-md-12">
-                            <img src="img/logoddo.png">
-                        </div>
-                    </div>
 
-                    <div class="row pb-5 pt-1 p-5">
-                        <div class="col-md-12">
-                            <p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Nombre de cliente</span>  :  {{deuda.nombre_cliente}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Tipo de pago</span>  :  {{deuda.tipo_pago}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Fecha de vencimiento</span>  :  {{deuda.fecha_vencimiento}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Monto inicial</span>  :  {{deuda.monto_inicial}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Monto actual</span>  :  {{deuda.monto_actual}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Fecha de ultimo pago</span>  :  {{deuda.fecha_ultimo_pago}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Monto de ultimo pago</span>  :  {{deuda.monto_ultimo_pago}} </p>
-							<p class="mb-1"> <span style="font-size: 1.3rem;font-weight: bold;">Estatus de deuda</span>  :  {{deuda.estatus_deuda}} </p>
-
-						</div>
-                </div>
-            </div>
-        </div>
-    </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" style="background: #212529;" data-dismiss="modal"><i class="fas fa-1x fa-times"></i></button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 
 <div id="wrapper" class="toggled">
 
@@ -112,7 +68,7 @@
                         <td><p class="text-center">{{ x.cod_cliente }}</p></td>
                         <td><p class="text-center">{{ x.nombre_cliente }}</p></td>
                         <td><p class="text-center">{{ x.docu_identif_cliente }}</p></td>
-                        <td><p class="text-center">{{ x.ci }}</p></td>
+                        <td><p class="text-center">{{ x.zona }}</p></td>
                         <td><p class="text-center">{{ x.direccion_cliente }}</p></td>
                         <td><p class="text-center">{{ x.direccion_cliente }}</p></td>
 
