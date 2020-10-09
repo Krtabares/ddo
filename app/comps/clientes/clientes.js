@@ -20,8 +20,6 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
 
 	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
         var body = {}
-        body.pNoCia = "01"
-        body.pNoGrupo = "01"
         var defer = $q.defer();
          request.post(ip+'/procedure_clientes', {'page': 1, }, {'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
