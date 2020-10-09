@@ -653,7 +653,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(response.data.obj.length > 1){
               response.data.obj.forEach((item, i) => {
 
-                var bruto =  parseFloat(element.precio_bruto_bs)
+                var bruto =  parseFloat(item.precio_bruto_bs)
                 // console.log( uni_fact);
                 // console.log( typeof uni_fact );
                 if(isNaN(bruto)){
