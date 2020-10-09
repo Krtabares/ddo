@@ -650,7 +650,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
             // // console.log(response)
 
-            if(response.data.obj.length > 1){
+            if(response.data.obj.length > 0){
               response.data.obj.forEach((item, i) => {
 
                 // var uni_fact =  par(element.unidades_facturadas)
