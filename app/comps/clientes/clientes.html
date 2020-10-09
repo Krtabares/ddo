@@ -91,17 +91,16 @@
                 <table datatable="ng"  dt-options="dtOptions"  class="table table-striped table-bordered" >
                   <thead>
                     <tr>
+\
 
-                      <th scope="col"><p class="text-center">cod_cliente</p></th>
-                      <th scope="col"><p class="text-center">nombre_cliente</p></th>
-                      <th scope="col"><p class="text-center">docu_identif_cliente</p></th>
-                      <th scope="col"><p class="text-center">ci</p></th>
-                      <th scope="col"><p class="text-center">direccion_cliente</p></th>
-                      <th scope="col"><p class="text-center">direccion_cliente</p></th>
-
-                      <th scope="col"><p class="text-center">nombre_encargado</p></th>
+                      <th scope="col"><p class="text-center">Codigo</p></th>
+                      <th scope="col"><p class="text-center">Nombre</p></th>
+                      <th scope="col"><p class="text-center">Documento de identificación</p></th>
+                      <th scope="col"><p class="text-center">Zona</p></th>
+                      <th scope="col"><p class="text-center">Direccion Fiscal</p></th>
+                      <th scope="col"><p class="text-center">Direccion Entrega</p></th>
+                      <th scope="col"><p class="text-center">Nombre del encargado</p></th>
                       <th scope="col"><p class="text-center">telefono1</p></th>
-
                       <th scope="col"><p class="text-center">email1</p></th>
 
 
@@ -111,16 +110,15 @@
 
                       <tr  ng-repeat="x in clientes"   >
 
-                        <td><p class="text-center">{{ x.Codigo}}</p></td>
-                        <td><p class="text-center">{{ x.Nombre}}</p></td>
-                        <td><p class="text-center">{{ x.Documento de identificación}}</p></td>
-                        <td><p class="text-center">{{ x.Zona}}</p></td>
-                        <td><p class="text-center">{{ x.Direccion Fiscal}}</p></td>
-                        <td><p class="text-center">{{ x.Direccion Entrega}}</p></td>
-                        <td><p class="text-center">{{ x.Nombre del encargado}}</p></td>
-                        <td><p class="text-center">{{ x.telefono1}}</p></td>
-                        <td><p class="text-center">{{ x.email1}}</p></td>
+                        <td><p class="text-center">{{ x.cod_cliente}}</p></td>
+                        <td><p class="text-center">{{ x.nombre_cliente}}</p></td>
+                        <td><p class="text-center">{{ x.docu_identif_cliente}}</p></td>
+                        <td><p class="text-center">{{ x.ci}}</p></td>
+                        <td><p class="text-center">{{ x.direccion_cliente}}</p></td>
+                        <td><p class="text-center">{{ x.direccion_cliente}}</p></td>
 
+                        <td><p class="text-center">{{ x.nombre_encargado}}</p></td>
+                        <td><p class="text-center">{{ x.telefono1}}</p></td>
                         </tr>
 
 
