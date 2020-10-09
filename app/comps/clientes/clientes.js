@@ -17,7 +17,7 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
 
       $scope.deuda = {};
       $scope.listDeuda = [{}];
-      $scope.clientes = null
+      $scope.clientes = []
       $scope.clientIndex = null
       $scope.showProductTable = null
       $scope.loading = false
@@ -38,7 +38,7 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
         request.post(ip+'/procedure_clientes', body,{})
         .then(function successCallback(response) {
           console.log(response)
-          $scope.clientes = null
+          $scope.clientes = []
           $scope.clientIndex = null
           $scope.showProductTable = null
           $scope.loading = false
