@@ -383,8 +383,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           if(filter){
             body.pNombre = $scope.nombre_cliente
           }
-          // body.pNoCia = "01";
-          // body.pNoGrupo = ($scope.tipoBusquedaCliente != 0)? "02": "01";
+          body.pNoCia = "01";
+          body.pNoGrupo = ($scope.tipoBusquedaCliente != 0)? "02": "01";
 
           request.post(ip+'/procedure_clientes', body,{})
           .then(function successCallback(response) {
