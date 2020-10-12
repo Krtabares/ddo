@@ -99,7 +99,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 
         localstorage.set('client',  JSON.stringify(client));
         console.log(response.data.user)
-        if(response.data.user.role=='admin'){
+        if(response.data.user.role=='root'){
           ngNotify.set('¡Bienvenido! ','success')
           window.location.href = "#!/home";
         }else
