@@ -29,7 +29,9 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
         if(filter){
           body.pNombre = $scope.nombre_cliente
         }
-
+        body.pNoCia = "01";
+        body.pNoGrupo = ($scope.tipoBusquedaCliente != 0)? "02": "01";
+        
         request.post(ip+'/procedure_clientes', body,{})
         .then(function successCallback(response) {
           console.log(response)
