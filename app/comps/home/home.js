@@ -50,7 +50,11 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
       var ctx3 = document.getElementById('myChart3').getContext('2d');
 	  $scope.$storage = $localStorage;
 
-	  console.log(localstorage.get('token', ''));
+	  // console.log(localstorage.get('token', ''));
+     //
+     //
+     // console.log("2017", CryptoJS.MD5("ddo.2017").toString());
+     // console.log("admin", CryptoJS.MD5("ddo.admin").toString());
 
 
       var myLineChart = new Chart(ctx3, {

@@ -3,11 +3,11 @@
 
 </div>
 
-<div class="modal fade" id="modalConfirm">
+<div class="modal fade" id="modalPsw">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Confirmacion</h4>
+        <h4 class="modal-title">Cambio de password</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
       </div>
@@ -15,16 +15,38 @@
 
         <div class="container">
 
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h3><p class="text-center">Desea eliminar el registro?</p></h3>
-          </div>
+          <div class="row">
+            <div class="col-sm-12 ">
+              <p class="text-center">Use the form below to change your password. Your password cannot be the same as your username.</p>
+              <form method="post" id="passwordForm">
+                <input type="password" class="input-lg form-control" name="password1" id="password1" placeholder="New Password" autocomplete="off">
+                <div class="row">
+                <div class="col-sm-6">
+                <span id="8char" class="fa fa-times" style="color:#FF0004;"></span> 8 Characters Long<br>
+                <span id="ucase" class="fa fa-times" style="color:#FF0004;"></span> One Uppercase Letter
+                </div>
+                <div class="col-sm-6">
+                <span id="lcase" class="fa fa-times" style="color:#FF0004;"></span> One Lowercase Letter<br>
+                <span id="num" class="fa fa-times" style="color:#FF0004;"></span> One Number
+                </div>
+                </div>
+                <input type="password" class="input-lg form-control" name="password2" id="password2" placeholder="Repeat Password" autocomplete="off">
+                <div class="row">
+                <div class="col-sm-12">
+                <span id="pwmatch" class="fa fa-times" style="color:#FF0004;"></span> Passwords Match
+                </div>
+                </div>
+                <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg" data-loading-text="Changing Password..." value="Change Password">
+              </form>
+            </div><!--/col-sm-6-->
+          </div><!--/row-->
 
         </div>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-info" data-dismiss="modal">Regresar</button>
-        <button type="button" class="btn btn-danger" ng-click="delUser()" data-dismiss="modal">Aceptar</button>
+        <button type="button" class="btn btn-danger" ng-click="updUser()" data-dismiss="modal">Aceptar</button>
       </div>
     </div>
   </div>
@@ -54,75 +76,30 @@
           <div class="row">
             <div class="col-md-12">
 
-              <button class="btn btn-primary" style="font-weight: bold;margin-bottom: 1rem;" data-toggle="modal" ng-click="createUser()" data-target="#addUserModal"> <i class="fas fa-pencil"></i> CREAR USUARIO <i class="fas fa-1x fa-user"></i></button>
+              <!-- <button class="btn btn-primary" style="font-weight: bold;margin-bottom: 1rem;" data-toggle="modal" ng-click="createUser()" data-target="#addUserModal"> <i class="fas fa-pencil"></i> CREAR USUARIO <i class="fas fa-1x fa-user"></i></button> -->
 
               <div class="row">
                 <div class="col-md-12">
 
-                  <div class="modal-body">
-                  <form>
+                  <div class="tab-pane active in" id="home">
+                    <form id="tab">
+                        <label>Username</label>
+                        <input type="text" ng-model="user.username" ng-disabled="typeview == 'view'" class="input-xlarge">
+                        <label>First Name</label>
+                        <input type="text" ng-model="user.name" ng-disabled="typeview == 'view'" class="input-xlarge">
+                        <!-- <label>Last Name</label>
+                        <input type="text" value="Smith" class="input-xlarge">
+                        <label>Email</label>
+                        <input type="text" value="jsmith@yourcompany.com" class="input-xlarge"> -->
 
-
-                    <label>Tipo de usuario</label>
-                    <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-
-                    <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')" ng-model="user.role">
-
-                      <option ng-repeat="type in type_user" value="{{type.type}}">
-                        {{type.text | uppercase}}
-                      </option>
-                      <option value="" disabled selected>Selecciona un tipo de usuario</option>
-                    </select>
-
-                      <div class="form-group">
-                        <label>Nombre:</label><br>
-                        <input type="text" ng-model="user.name" class="form-control" ng-if="typeview == 'add' || typeview == 'edit'" placeholder="Nombre">
-                        <span ng-if="typeview == 'view'" >{{user.name}}</span>
+                        <div>
+                          <button type="button"  class="btn btn-primary" ng-if="typeview == 'view'" data-toggle="modal" data-target="#modalPsw">Cambiar Password</button>
                       </div>
-
-                      <div class="form-group">
-                        <label>Username:</label><br>
-                        <span ng-if="typeview == 'view'"  >{{user.username}}</span>
-                        <input type="text" ng-model="user.username"  ng-keyup="availableUser()" ng-if="typeview == 'add'" class="form-control" placeholder="Username">
-                        <div class="invalid-feedback">
-                          Este usuario ya existe
-                        </div>
-                      </div>
-
-                      <div ng-if="typeview == 'view'" class="">
-
-                        <div class="form-group">
-                          <label>Password:</label><br>
-                          <input type="text" ng-model="user.password"   ng-if="typeview == 'add'" class="form-control" placeholder="password">
-                          <div class="invalid-feedback">
-                            Este usuario ya existe
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label>confirmar password:</label><br>
-                          <input type="text" ng-model="user.password"  ng-keyup="availableUser()" ng-if="typeview == 'add'" class="form-control" placeholder="Username">
-                          <div class="invalid-feedback">
-                            El password no coincide
-                          </div>
-                        </div>
-                        
-                      </div>
-
-
-                      <label>Estatus</label>
-                      <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-                      <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')"  ng-model="user.estatus">
-
-                        <option ng-repeat="type in estatus_user" value="{{type.id}}">
-                          {{type.text | uppercase}}
-                        </option>
-                        <option value="" disabled selected>Selecciona el estatus</option>
-                      </select>
-
-
                     </form>
                   </div>
+
+
+
 
                 </div>
 

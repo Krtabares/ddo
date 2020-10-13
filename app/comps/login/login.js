@@ -85,6 +85,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 
 	  $scope.login = function(){
 		  //console.log($scope.user);
+      $scope.user.password = CryptoJS.MD5($scope.user.password).toString();
 		  request.post(ip+'/login', $scope.user ,{})
 		  .then(function successCallback(response) {
         //console.log(response.data.access_token);
