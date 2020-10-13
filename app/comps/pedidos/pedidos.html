@@ -1035,6 +1035,7 @@
                           <!-- <th scope="col"><p class="text-center">Direcion</p></th> -->
                           <th scope="col"><p class="text-center">Estatus</p></th>
                           <th scope="col"><p class="text-center">Fecha actualizado</p></th>
+                          <th scope="col"><p class="text-center">Tipo pedido</p></th>
                           <th scope="col"><p class="text-center">Opciones</p></th>
                         </tr>
                       </thead>
@@ -1048,7 +1049,9 @@
                           <!-- <td><p class="text-center">{{ x.direccion_cliente }}</p></td> -->
                           <td><p class="text-center">{{ x.estatus }}</p></td>
                           <td><p class="text-center">{{ x.fecha_estatus }}</p></td>
+                          <td><p class="text-center">{{ x.tipo_pedido }}</p></td>
                           <td>
+
                             <i class="fa fa-trash" style="cursor: pointer;" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
 
