@@ -165,7 +165,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
       $scope.addUser = function(user){
 
-            user.password = "ddo.2017";
+            user.password = "52400ede39b6a2098dc0ffb5aad536e6";
             // if($scope.clientIndex!=-1 && user.role == 'cliente'){
               // user.role = "cliente"
             user.COD_CIA = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
