@@ -31,11 +31,7 @@ class CustomHandler(ErrorHandler):
 
 app = Sanic(__name__)
 port = 3500
-users = [{'username':'admin', 'password': 'ddo.admin', 'role': 'admin', 'name': 'admin'},
-{'username':'aplaza', 'password': 'pla04.admin', 'role': 'user', 'name': 'automercado Plaza', 'COD_CIA': '01','GRUPO_CLIENTE': '01','COD_CLIENTE': 'PLA04' },
-{'username':'canon', 'password': 'canon.admin', 'role': 'user', 'name': 'automercado Plaza', 'COD_CIA': '01','GRUPO_CLIENTE': '01','COD_CLIENTE': 'CANON' },
-{'username':'atia', 'password': 'atia.admin', 'role': 'user', 'name': 'clinica atias', 'COD_CIA': '01','GRUPO_CLIENTE': '01','COD_CLIENTE': 'ATIA' },
-{'username':'bmilag', 'password': 'bmilag.admin', 'role': 'user', 'name': 'fuser', 'COD_CIA': '01','GRUPO_CLIENTE': '01', 'COD_CLIENTE': 'BMILAG'}]
+
 sio = socketio.AsyncServer(async_mode='sanic')
 sio.attach(app)
 handler = CustomHandler()
@@ -1851,6 +1847,7 @@ async def procedure_pedidos(cia,grupo,cliente):
                         v_cod_estatus number;
                         v_estatus varchar2(80);
                         v_fecha_estatus DATE;
+                        v_tipo_pedido varchar2(15);
                         pNoCia varchar2(10) DEFAULT '01';
                         pNoGrupo varchar2(10) DEFAULT '01';
                         pCliente varchar2(50) DEFAULT null;
@@ -1867,18 +1864,14 @@ async def procedure_pedidos(cia,grupo,cliente):
 
                           FETCH l_cursor into
                                   v_id_pedido,
-
                                   v_nombre_cliente,
-
                                   v_direccion_cliente,
-
                                   v_fecha_creacion,
-
                                   v_cod_estatus,
-
                                   v_estatus,
-
-                                  v_fecha_estatus;
+                                  v_fecha_estatus,
+                                  v_tipo_pedido
+                                  ;
 
                           EXIT WHEN l_cursor%NOTFOUND;
 
@@ -1897,7 +1890,9 @@ async def procedure_pedidos(cia,grupo,cliente):
 
                                   v_estatus|| '|'||
 
-                                  v_fecha_estatus
+                                  v_fecha_estatus|| '|'||
+
+                                  v_tipo_pedido
 
 
                             );
@@ -1930,7 +1925,8 @@ async def procedure_pedidos(cia,grupo,cliente):
                   'fecha_creacion': arr[3],
                   'cod_estatus': arr[4],
                   'estatus': arr[5],
-                  'fecha_estatus': arr[6]
+                  'fecha_estatus': arr[6],
+                  'tipo_pedido': arr[7]
             }
             list.append(obj)
 
