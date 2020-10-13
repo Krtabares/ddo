@@ -74,6 +74,7 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
 
 
 
+
           }
 
         $scope.passwordConfirm = null
