@@ -637,7 +637,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             if($scope.proveedor.cod_proveedor != null || $scope.proveedor.cod_proveedor != "null" ){
               body.pCodProveedor = $scope.proveedor.cod_proveedor
-            }else if($scope.proveedor.cod_proveedor === "null"){
+            }
+             if(body.pCodProveedor === "null"){
               body.pCodProveedor = null
             }
 
