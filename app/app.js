@@ -10,6 +10,7 @@ angular.module('app', [
                'cgNotify',
                'app.login',
                'app.home',
+               'app.perfil',
                'app.deuda',
                'app.saldo',
                'app.clientes',

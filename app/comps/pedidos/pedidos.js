@@ -1132,6 +1132,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         }
+        $scope.artEmpleado =
 
         function validacionesArticulo(articulo , existenciaAux = null) {
 
@@ -1168,6 +1169,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             notify({ message:'¡El precio excede el credito disponible!', position:'right', duration:10000, classes:'alert-danger'});
             // ngNotify.set('¡El precio excede el credito disponible!','error')
             return  true;
+          }
+
+          if($scope.client_info.grupo_cliente == "02"){
+
+            if( articulo.CANTIDAD > parseInt(articulo.existencia)  ){
+               console.log("¡La cantidad no puede ser mayor a la existencia!");
+               // ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
+               notify({ message:'¡La cantidad no puede ser mayor a la existencia!', position:'right', duration:10000, classes:'alert-danger'});
+              return  true;
+           }
+
           }
 
           return false
