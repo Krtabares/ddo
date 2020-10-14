@@ -59,7 +59,7 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
             password:  CryptoJS.MD5($scope.user.password).toString()
           }
 
-          request.post(ip+'/upd/user_pass', user,{'Authorization': 'Bearer ' + localstorage.get('token')})
+          request.post(ip+'/upd/user_pass', body,{'Authorization': 'Bearer ' + localstorage.get('token')})
               .then(function successCallback(response) {
                 console.log(response)
                 if (response.data == "OK")
@@ -69,17 +69,35 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
                 console.log(response)
               });
 
-
-
-
           }
 
         $scope.passwordConfirm = null
         $scope.alertConfirm = null
-        $scope.confirmPass = function () {
-          if ($scope.user.password != $scope.passwordConfirm) {
-            notify({ message:'El password no coincide', position:'right', duration:100000, classes:'alert-warning'});
+        $scope.validaPass = function () {
+          var ucase = new RegExp("[A-Z]+");
+          var lcase = new RegExp("[a-z]+");
+          var num = new RegExp("[0-9]+");
+
+          if ($scope.user.password.length < 8) {
+            return true
           }
+
+          if(!ucase.test($scope.user.password)){
+            return true
+          }
+
+          if(!lcase.test($scope.user.password)){
+            return true
+          }
+
+          if(!num.test($scope.user.password)){
+            return true
+          }
+
+          if($scope.user.password != $scope.passwordConfirm ){
+            return true
+          }
+          return false
         }
 
 
@@ -138,6 +156,8 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
           		$("#pwmatch").addClass("fa-times");
           		$("#pwmatch").css("color","#FF0004");
           	}
+
+
           });
         })
 

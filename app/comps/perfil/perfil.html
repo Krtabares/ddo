@@ -19,7 +19,7 @@
             <div class="col-sm-12 ">
               <p class="text-center">Use the form below to change your password. Your password cannot be the same as your username.</p>
               <form method="post" id="passwordForm">
-                <input type="password" class="input-lg form-control" name="password1" id="password1" placeholder="New Password" autocomplete="off">
+                <input type="password" class="input-lg form-control" ng-model="user.password" name="password1" id="password1" placeholder="New Password" autocomplete="off">
                 <div class="row">
                 <div class="col-sm-6">
                 <span id="8char" class="fa fa-times" style="color:#FF0004;"></span> 8 Characters Long<br>
@@ -30,13 +30,13 @@
                 <span id="num" class="fa fa-times" style="color:#FF0004;"></span> One Number
                 </div>
                 </div>
-                <input type="password" class="input-lg form-control" name="password2" id="password2" placeholder="Repeat Password" autocomplete="off">
+                <input type="password" class="input-lg form-control" ng-model="user.passwordConfirm" name="password2" id="password2" placeholder="Repeat Password" autocomplete="off">
                 <div class="row">
                 <div class="col-sm-12">
                 <span id="pwmatch" class="fa fa-times" style="color:#FF0004;"></span> Passwords Match
                 </div>
                 </div>
-                <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg" data-loading-text="Changing Password..." value="Change Password">
+                <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg"  value="Change Password">
               </form>
             </div><!--/col-sm-6-->
           </div><!--/row-->
@@ -46,7 +46,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-info" data-dismiss="modal">Regresar</button>
-        <button type="button" class="btn btn-danger" ng-click="updUser()" data-dismiss="modal">Aceptar</button>
+        <button type="button" class="btn btn-danger" ng-click="updUserPass()" ng-disabled="validaPass()"  data-dismiss="modal" data-loading-text="Changing Password...">Aceptar</button>
       </div>
     </div>
   </div>
