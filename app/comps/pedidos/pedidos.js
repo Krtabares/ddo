@@ -1135,7 +1135,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         }
-        $scope.artEmpleado =
+        $scope.artEmpleado = 0
 
         function validacionesArticulo(articulo , existenciaAux = null) {
 
