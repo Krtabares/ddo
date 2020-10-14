@@ -74,6 +74,7 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
         $scope.passwordConfirm = null
         $scope.alertConfirm = null
         $scope.passwordIsValid = false
+        $scope.newPass = null
         $scope.errorPass = function () {
           var ucase = new RegExp("[A-Z]+");
           var lcase = new RegExp("[a-z]+");
