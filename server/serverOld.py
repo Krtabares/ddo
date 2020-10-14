@@ -1268,7 +1268,10 @@ async def crear_pedido(request):
                 FROM PAGINAWEB.PEDIDO WHERE COD_CLIENTE = :COD_CLIENTE and ESTATUS in(0,1,2)"""
         c.execute(sql, [data['COD_CLIENTE']])
         count = c.fetchone()
+        print(count)
 
+        print("========================================================================")
+        print("ejecuto el count")
         if int(count) > 0 :
             # return response.json({"msg": "Cliente con pedidos abiertos"}, status=400)
             raise Exception("Cliente con pedidos abiertos")
