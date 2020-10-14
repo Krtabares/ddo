@@ -782,6 +782,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.counter = 0;
               $scope.mytimeout = $timeout($scope.onTimeout,1000);
             }else{
+              $(function(){
+                $("#addPedidoModal").modal("hide");
+              })
               notify({ message:'¡No se pudo abrir un pedido nuevo!', position:'right', duration:10000, classes:'alert-danger'});
             }
 
