@@ -781,6 +781,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               notify({ message:'¡Pedido abierto con exito!', position:'right', duration:10000, classes:'alert-success'});
               $scope.counter = 0;
               $scope.mytimeout = $timeout($scope.onTimeout,1000);
+            }else{
+              notify({ message:'¡No se pudo abrir un pedido nuevo!', position:'right', duration:10000, classes:'alert-danger'});
             }
 
 
