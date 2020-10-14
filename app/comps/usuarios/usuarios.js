@@ -192,6 +192,10 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                   if (response.data == "OK") {
                         $scope.getUsers()
                     ngNotify.set('¡Usuario registrado exitosamente!','success')
+                    $(function(){
+                      $("#addUserModal").modal("hide");
+                      $('.modal-backdrop').remove();
+                    })
                   }
                 }, function errorCallback(response) {
                   console.log(response)

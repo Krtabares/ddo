@@ -2118,59 +2118,64 @@ async def totales(request, token: Token):
 
 async def totales_pedido(idPedido):
 
+    try:
+        db = get_db()
+        c = db.cursor()
 
-    db = get_db()
-    c = db.cursor()
+        c.callproc("dbms_output.enable")
+        c.execute("""
+                    DECLARE
 
-    c.callproc("dbms_output.enable")
-    c.execute("""
-                DECLARE
+                    output number DEFAULT 1000000;
 
-                output number DEFAULT 1000000;
+                    v_total_bruto number := 0;
+                    v_desc_volumen number := 0;
+                    v_otros_descuentos number:= 0;
+                    v_desc_adicional number := 0;
+                    v_desc_dpp number := 0;
+                    v_sub_total number :=0;
+                    v_impuesto number :=0;
+                    v_total number := 0;
 
-                v_total_bruto number := 0;
-                v_desc_volumen number := 0;
-                v_otros_descuentos number:= 0;
-                v_desc_adicional number := 0;
-                v_desc_dpp number := 0;
-                v_sub_total number :=0;
-                v_impuesto number :=0;
-                v_total number := 0;
-
-            BEGIN
+                BEGIN
 
 
-                dbms_output.enable(output);
+                    dbms_output.enable(output);
 
-                PROCESOSPW.totales_pedido ({idPedido},v_total_bruto,v_desc_volumen, v_otros_descuentos, v_desc_adicional, v_desc_dpp, v_sub_total, v_impuesto, v_total );
+                    PROCESOSPW.totales_pedido ({idPedido},v_total_bruto,v_desc_volumen, v_otros_descuentos, v_desc_adicional, v_desc_dpp, v_sub_total, v_impuesto, v_total );
 
-                dbms_output.put_line(v_total_bruto|| '|'||v_desc_volumen|| '|'|| v_otros_descuentos|| '|'|| v_desc_adicional|| '|'|| v_desc_dpp|| '|'|| v_sub_total|| '|'|| v_impuesto|| '|'|| v_total);
-        END;
-            """.format( idPedido = idPedido ))
-    textVar = c.var(str)
-    statusVar = c.var(int)
-    list = {}
-    while True:
-        c.callproc("dbms_output.get_line", (textVar, statusVar))
-        if statusVar.getvalue() != 0:
-            break
+                    dbms_output.put_line(v_total_bruto|| '|'||v_desc_volumen|| '|'|| v_otros_descuentos|| '|'|| v_desc_adicional|| '|'|| v_desc_dpp|| '|'|| v_sub_total|| '|'|| v_impuesto|| '|'|| v_total);
+            END;
+                """.format( idPedido = idPedido ))
+        textVar = c.var(str)
+        statusVar = c.var(int)
+        list = {}
+        while True:
+            c.callproc("dbms_output.get_line", (textVar, statusVar))
+            if statusVar.getvalue() != 0:
+                break
 
-        if textVar.getvalue() == None:
-            break
+            if textVar.getvalue() == None:
+                break
 
-        arr = str(textVar.getvalue()).split("|")
-        obj = {
-                'total_bruto' : arr[0],
-                'desc_volumen' : arr[1],
-                'otros_descuentos' : arr[2],
-                'desc_adicional' : arr[3],
-                'desc_dpp' : arr[4],
-                'sub_total' : arr[5],
-                'impuesto' : arr[6],
-                'total' : arr[7]
-        }
-        list = obj
-    return list
+            arr = str(textVar.getvalue()).split("|")
+            obj = {
+                    'total_bruto' : arr[0],
+                    'desc_volumen' : arr[1],
+                    'otros_descuentos' : arr[2],
+                    'desc_adicional' : arr[3],
+                    'desc_dpp' : arr[4],
+                    'sub_total' : arr[5],
+                    'impuesto' : arr[6],
+                    'total' : arr[7]
+            }
+            list = obj
+        return list
+    except Exception as e:
+        logger.debug(e)
+        return e
+
+
 
 
 app.run(host='0.0.0.0', port = port, debug = True)

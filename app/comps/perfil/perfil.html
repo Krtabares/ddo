@@ -73,8 +73,8 @@
           </nav>
 
 
-
-    <div class="col-md-12 mt-10 mb-10">
+<div class="col-md-3"></div>
+    <div class="col-md-6 mt-10 mb-10">
       <div class="card " >
         <div class="card-body">
           <div class="row">
@@ -87,14 +87,15 @@
 
                   <div class="tab-pane active in" id="home">
                     <form id="tab">
-                        <label>Username</label>
-                        <input type="text" ng-model="user.username" ng-disabled="typeview == 'view'" class="input-xlarge">
-                        <label>First Name</label>
-                        <input type="text" ng-model="user.name" ng-disabled="typeview == 'view'" class="input-xlarge">
-                        <!-- <label>Last Name</label>
-                        <input type="text" value="Smith" class="input-xlarge">
-                        <label>Email</label>
-                        <input type="text" value="jsmith@yourcompany.com" class="input-xlarge"> -->
+                        <div class="col-md-12">
+                          <label>Username</label>
+                          <input type="text" ng-model="user.username" ng-disabled="typeview == 'view'" class="input-xlarge">
+
+                        </div>
+                        <div class="col-md-12">
+                          <label>First Name</label>
+                          <input type="text" ng-model="user.name" ng-disabled="typeview == 'view'" class="input-xlarge">
+                        </div>
 
                         <div>
                           <button type="button"  class="btn btn-primary" ng-if="typeview == 'view'" data-toggle="modal" data-target="#modalPsw">Cambiar Password</button>
@@ -115,7 +116,7 @@
         </div>
         </div>
     </div>
-
+<div class="col-md-3"></div>
 
 
       </div>
