@@ -37,8 +37,8 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         console.log("====================================================================================================")
 
         $scope.creditoClient = response.data.obj
-        $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
-        $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
+        $scope.creditoClient.disp_bs_format = (isNaN(parseFloat(response.data.obj.disp_bs)))? 0:parseFloat(response.data.obj.disp_bs)
+        $scope.creditoClient.disp_usd_format = (isNaN(parseFloat(response.data.obj.disp_usd)))? 0 : parseFloat(response.data.obj.disp_usd)
         console.log($scope.creditoClient)
         $scope.loading = false
 
