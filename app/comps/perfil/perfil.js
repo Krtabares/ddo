@@ -73,31 +73,32 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
 
         $scope.passwordConfirm = null
         $scope.alertConfirm = null
-        $scope.validaPass = function () {
+        $scope.passwordIsValid = false
+        $scope.errorPass = function () {
           var ucase = new RegExp("[A-Z]+");
           var lcase = new RegExp("[a-z]+");
           var num = new RegExp("[0-9]+");
 
           if ($scope.user.password.length < 8) {
-            return true
+            $scope.passwordIsValid = false
           }
 
           if(!ucase.test($scope.user.password)){
-            return true
+            $scope.passwordIsValid = false
           }
 
           if(!lcase.test($scope.user.password)){
-            return true
+            $scope.passwordIsValid = false
           }
 
           if(!num.test($scope.user.password)){
-            return true
+            $scope.passwordIsValid = false
           }
 
           if($scope.user.password != $scope.passwordConfirm ){
-            return true
+            $scope.passwordIsValid = false
           }
-          return false
+          $scope.passwordIsValid = true
         }
 
 

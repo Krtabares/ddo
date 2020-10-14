@@ -30,7 +30,11 @@
                 <span id="num" class="fa fa-times" style="color:#FF0004;"></span> One Number
                 </div>
                 </div>
-                <input type="password" class="input-lg form-control" ng-model="user.passwordConfirm" name="password2" id="password2" placeholder="Repeat Password" autocomplete="off">
+                <input type="password"
+                class="input-lg form-control"
+                ng-model="user.passwordConfirm"
+                ng-keyup="errorPass()"
+                name="password2" id="password2" placeholder="Repeat Password" autocomplete="off">
                 <div class="row">
                 <div class="col-sm-12">
                 <span id="pwmatch" class="fa fa-times" style="color:#FF0004;"></span> Passwords Match
@@ -46,7 +50,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-info" data-dismiss="modal">Regresar</button>
-        <button type="button" class="btn btn-danger" ng-click="updUserPass()" ng-disabled="validaPass()"  data-dismiss="modal" data-loading-text="Changing Password...">Aceptar</button>
+        <button type="button" class="btn btn-danger" ng-click="updUserPass()" ng-disabled="!passwordIsValid"  data-dismiss="modal" data-loading-text="Changing Password...">Aceptar</button>
       </div>
     </div>
   </div>
