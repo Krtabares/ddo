@@ -1226,6 +1226,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.reset = function(){
           $scope.stopTimeout()
+          $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0"        }
           $scope.counter = 0;
           $scope.tabsIndex = 0
           $scope.totales.bolivares = 0
