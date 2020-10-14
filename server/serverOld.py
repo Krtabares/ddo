@@ -1270,7 +1270,8 @@ async def crear_pedido(request):
         count = c.fetchone()
 
         if int(count) > 0 :
-            return response.json({"msg": "Cliente con pedidos abiertos"}, status=400)
+            # return response.json({"msg": "Cliente con pedidos abiertos"}, status=400)
+            raise Exception("Sorry, no numbers below zero")
 
         c.callproc("dbms_output.enable")
         sql = """
