@@ -1262,6 +1262,16 @@ async def crear_pedido(request):
 
         db = get_db()
         c = db.cursor()
+
+        sql = """SELECT
+                COUNT(ID)
+                FROM PAGINAWEB.PEDIDO WHERE COD_CLIENTE = :COD_CLIENTE and ESTATUS in(0,1,2)"""
+        c.execute(sql, [data['COD_CLIENTE']])
+        count = c.fetchone()
+
+        if int(count) > 0 :
+            return response.json({"msg": "Cliente con pedidos abiertos"}, status=400)
+
         c.callproc("dbms_output.enable")
         sql = """
                 declare
