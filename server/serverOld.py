@@ -117,7 +117,7 @@ async def addUser(request, token : Token):
 
 @app.route('/upd/user_pass', ["POST", "GET"])
 @jwt_required
-async def addUser(request, token : Token):
+async def user_pass(request, token : Token):
     user = request.json
     db = get_mongo_db()
 
