@@ -54,23 +54,24 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
 
         $scope.updUserPass = function(){
 
-            var passhash = CryptoJS.MD5($scope.user.password).toString();
-            alert(passhash)
+          var body = {
+            username: $scope.user.username,
+            password:  CryptoJS.MD5($scope.user.password).toString()
+          }
               // user.COD_CIA = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
               // user.GRUPO_CLIENTE = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
               // user.COD_CLIENTE = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
               // user.permisos = $scope.permisos
               // console.log(user);
-              // request.post(ip+'/upd/user', user,{'Authorization': 'Bearer ' + localstorage.get('token')})
-              //     .then(function successCallback(response) {
-              //       console.log(response)
-              //       if (response.data == "OK") {
-              //             $scope.getUsers()
-              //         notify({ message:'Cambios Guardados', position:'right', duration:100000, classes:'alert-success'});
-              //       }
-              //     }, function errorCallback(response) {
-              //       console.log(response)
-              //     });
+              request.post(ip+'/upd/user_pass', user,{'Authorization': 'Bearer ' + localstorage.get('token')})
+                  .then(function successCallback(response) {
+                    console.log(response)
+                    if (response.data == "OK")
+                      notify({ message:'Cambios Guardados', position:'right', duration:100000, classes:'alert-success'});
+
+                  }, function errorCallback(response) {
+                    console.log(response)
+                  });
 
 
 
