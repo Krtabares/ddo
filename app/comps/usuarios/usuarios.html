@@ -44,54 +44,55 @@
 
         <ul class="nav nav-tabs mb-4">
             <li class="nav-item">
-              <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Informacion Cliente </a>
+              <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Informacion usuario</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" ng-class="{ active : tabsIndex == 1 }"  ng-click="goToTab(1)" >Detalle de pedido </a>
+              <a class="nav-link" ng-class="{ active : tabsIndex == 1 }"  ng-click="goToTab(1)" >Permisos</a>
             </li>
         </ul>
 
       <form>
 
-
-        <label>Tipo de usuario</label>
-        <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-
-        <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')" ng-model="user.role">
-
-          <option ng-repeat="type in type_user" value="{{type.type}}">
-            {{type.text | uppercase}}
-          </option>
-          <option value="" disabled selected>Selecciona un tipo de usuario</option>
-        </select>
-
-          <div class="form-group">
-            <label>Nombre:</label><br>
-            <input type="text" ng-model="user.name" class="form-control" ng-if="typeview == 'add' || typeview == 'edit'" placeholder="Nombre">
-            <span ng-if="typeview == 'view'" >{{user.name}}</span>
-          </div>
-
-          <div class="form-group">
-            <label>Username:</label><br>
-            <span ng-if="typeview == 'view'"  >{{user.username}}</span>
-            <input type="text" ng-model="user.username"  ng-keyup="availableUser()" ng-if="typeview == 'add'" class="form-control" placeholder="Username">
-            <div class="invalid-feedback">
-              Este usuario ya existe
-            </div>
-          </div>
-
-          <label>Estatus</label>
+        <div ng-show="tabsIndex == 0">
+          <label>Tipo de usuario</label>
           <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-          <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')"  ng-model="user.estatus">
 
-            <option ng-repeat="type in estatus_user" value="{{type.id}}">
+          <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')" ng-model="user.role">
+
+            <option ng-repeat="type in type_user" value="{{type.type}}">
               {{type.text | uppercase}}
             </option>
-            <option value="" disabled selected>Selecciona el estatus</option>
+            <option value="" disabled selected>Selecciona un tipo de usuario</option>
           </select>
 
+            <div class="form-group">
+              <label>Nombre:</label><br>
+              <input type="text" ng-model="user.name" class="form-control" ng-if="typeview == 'add' || typeview == 'edit'" placeholder="Nombre">
+              <span ng-if="typeview == 'view'" >{{user.name}}</span>
+            </div>
 
+            <div class="form-group">
+              <label>Username:</label><br>
+              <span ng-if="typeview == 'view'"  >{{user.username}}</span>
+              <input type="text" ng-model="user.username"  ng-keyup="availableUser()" ng-if="typeview == 'add'" class="form-control" placeholder="Username">
+              <div class="invalid-feedback">
+                Este usuario ya existe
+              </div>
+            </div>
 
+            <label>Estatus</label>
+            <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
+            <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')"  ng-model="user.estatus">
+
+              <option ng-repeat="type in estatus_user" value="{{type.id}}">
+                {{type.text | uppercase}}
+              </option>
+              <option value="" disabled selected>Selecciona el estatus</option>
+            </select>
+
+        </div>
+
+        <div class=""  ng-show="tabsIndex == 1">
           <table class="table table-inverse">
             <thead>
               <tr>
@@ -134,6 +135,10 @@
 
             </tbody>
           </table>
+
+        </div>
+
+
 
         </form>
       </div>
@@ -278,3 +283,6 @@
   </div>
 </div>
 <my-footer></my-footer>
+<div ng-show="loading">
+  <my-loading></my-loading>
+</div>

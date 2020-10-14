@@ -38,6 +38,7 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
 
       }
       $scope.vencimiento = []
+      $scope.tieneReg = true
       $scope.getDeudas = function(){
         $scope.loading = true
         var body = {}
@@ -50,6 +51,9 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
             console.log(response.data)
             // var response = $scope.response
             // console.log(response)
+            if(response.data.obj.length > 0 ){
+              $scope.tieneReg = true
+            }
             response.data.obj.forEach((item, i) => {
 
               if(item.aplica_corte=="S"){

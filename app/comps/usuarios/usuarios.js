@@ -12,7 +12,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
   .controller('usuariosCtrl', ['$scope', 'localstorage', '$q', '$rootScope', 'DTOptionsBuilder', 'DTColumnBuilder', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'NgMap','$localStorage',
     function($scope, localstorage, $q, $rootScope, DTOptionsBuilder, DTColumnBuilder, $routeParams, $interval, $timeout, ngNotify, request, NgMap, $localStorage) {
-
+        $scope.loading = true
       $scope.array_user = [];
       $scope.user = {};
       $scope.user_view = {};
@@ -54,18 +54,21 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       }
 
       $scope.getUsers = function () {
+        $scope.loading = true
         var body = {}
         body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
         body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
         body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
          request.post(ip+'/get/users', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
+              $scope.loading = false
             console.log(response.data)
             $scope.usuarios = response.data
          });
       }
 
       $scope.getUser = function (username) {
+        $scope.loading = true
         var body = {}
         body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
         body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
@@ -78,6 +81,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
             $scope.permisos = $scope.user.permisos
             $scope.typeview = 'view'
             $scope.modalTitle = 'Ver usuario'
+            $scope.loading = false
          });
       }
       $scope.hasOwnProp = function (mod,prop) {
@@ -176,7 +180,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
      }
 
       $scope.addUser = function(user){
-
+            $scope.loading = true
             user.password = "52400ede39b6a2098dc0ffb5aad536e6";
             // if($scope.clientIndex!=-1 && user.role == 'cliente'){
               // user.role = "cliente"
@@ -197,6 +201,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                       $('.modal-backdrop').remove();
                     })
                   }
+                  $scope.loading = false
                 }, function errorCallback(response) {
                   console.log(response)
                 });
@@ -206,7 +211,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
         }
 
         $scope.updUser = function(user){
-
+              $scope.loading = true
               // user.password = "ddo.2017";
               // if($scope.clientIndex!=-1 && user.role == 'cliente'){
                 // user.role = "cliente"
@@ -223,6 +228,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                           $scope.getUsers()
                       ngNotify.set('¡Usuario actualizado exitosamente!','success')
                     }
+                      $scope.loading = false
                   }, function errorCallback(response) {
                     console.log(response)
                   });
@@ -236,6 +242,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                 // user.password = "ddo.2017";
                 // if($scope.clientIndex!=-1 && user.role == 'cliente'){
                   // user.role = "cliente"
+                $scope.loading = true
                 var body={}
                 body.username = $scope.username
                 // console.log(user);
@@ -246,6 +253,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                             $scope.getUsers()
                         ngNotify.set('¡Usuario eliminado exitosamente!','success')
                       }
+                      $scope.loading = false
                     }, function errorCallback(response) {
                       console.log(response)
                     });
