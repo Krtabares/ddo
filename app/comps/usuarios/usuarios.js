@@ -40,6 +40,18 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.usuarios=[]
       $scope.permisos ={"deuda":{"ver":false},"cliente":{"ver":false},"producto":{"ver":false},"factura":{"ver":false},"pedido":{"ver":false,"crear":false,"editar":false,"eliminar":false},"usuario":{"ver":false,"crear":false,"editar":false,"eliminar":false}}
       $scope.modulos = Object.keys($scope.permisos)
+      $scope.tabs = 1
+      $scope.tabsIndex = 0
+
+      $scope.nextStep = function () {
+        $scope.goToTab($scope.tabsIndex + 1 );
+      }
+
+      $scope.goToTab = function (index) {
+        if(index <= $scope.tabs )
+          $scope.tabsIndex = index
+
+      }
 
       $scope.getUsers = function () {
         var body = {}
