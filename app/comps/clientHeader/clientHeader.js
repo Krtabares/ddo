@@ -53,8 +53,18 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
               // console.log(response)
 
               $scope.creditoClient = response.data.obj
-              $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
-              $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
+
+              var uni_fact =  parseInt(element.unidades_facturadas)
+              // console.log( uni_fact);
+              // console.log( typeof uni_fact );
+              if(isNaN(uni_fact)){
+
+                uni_fact = 0
+              }
+
+
+              $scope.creditoClient.disp_bs_format = (isNaN(parseFloat(response.data.obj.disp_bs)))? 0:parseFloat(response.data.obj.disp_bs)
+              $scope.creditoClient.disp_usd_format = (isNaN(parseFloat(response.data.obj.disp_usd)))? 0 : parseFloat(response.data.obj.disp_usd)
               localstorage.set('creditoClient',  JSON.stringify($scope.creditoClient.disp_bs_format));
               $scope.loading = false
 
