@@ -1271,7 +1271,7 @@ async def crear_pedido(request):
 
         if int(count) > 0 :
             # return response.json({"msg": "Cliente con pedidos abiertos"}, status=400)
-            raise Exception("Sorry, no numbers below zero")
+            raise Exception("Cliente con pedidos abiertos")
 
         c.callproc("dbms_output.enable")
         sql = """
@@ -1582,6 +1582,8 @@ async def add_pedidoV2 (request, token: Token):
         ID = await crear_pedido(request)
 
         # await mongodb.order.insert_one(totales)
+        if ID == None
+            response.json("ERROR",400)
 
         return response.json({"ID":ID},200)
     except Exception as e:
