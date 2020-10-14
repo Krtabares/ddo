@@ -777,9 +777,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             // console.log(response)
             $scope.ID = response.data.ID
 
-            notify({ message:'¡Pedido abierto con exito!', position:'right', duration:10000, classes:'alert-success'});
-            $scope.counter = 0;
-            $scope.mytimeout = $timeout($scope.onTimeout,1000);
+            if($scope.ID != null){
+              notify({ message:'¡Pedido abierto con exito!', position:'right', duration:10000, classes:'alert-success'});
+              $scope.counter = 0;
+              $scope.mytimeout = $timeout($scope.onTimeout,1000);
+            }
+
+
             $scope.getPedidos_filteringV2()
             // alert("Guardado con exito!")
             $scope.loading = false
