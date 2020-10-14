@@ -1272,7 +1272,7 @@ async def crear_pedido(request):
 
         print("========================================================================")
         print("ejecuto el count")
-        if int(count) > 0 :
+        if int(count[0]) > 0 :
             # return response.json({"msg": "Cliente con pedidos abiertos"}, status=400)
             raise Exception("Cliente con pedidos abiertos")
 
