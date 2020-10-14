@@ -63,7 +63,7 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
               .then(function successCallback(response) {
                 console.log(response)
                 if (response.data == "OK")
-                  notify({ message:'Cambios Guardados', position:'right', duration:100000, classes:'alert-success'});
+                  notify({ message:'Cambios Guardados', position:'right', duration:1000, classes:'alert-success'});
 
               }, function errorCallback(response) {
                 console.log(response)
