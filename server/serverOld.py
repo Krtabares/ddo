@@ -1271,8 +1271,8 @@ async def crear_pedido(request):
 
                     INSERT INTO PEDIDO ( COD_CIA, GRUPO_CLIENTE,
                                             COD_CLIENTE,  NO_PEDIDO_CODISA,
-                                            OBSERVACIONES, ESTATUS) VALUES
-                            (  :COD_CIA, :GRUPO_CLIENTE, :COD_CLIENTE, :NO_PEDIDO_CODISA, :OBSERVACIONES, :ESTATUS  )
+                                            OBSERVACIONES, ESTATUS, TIPO_PEDIDO) VALUES
+                            (  :COD_CIA, :GRUPO_CLIENTE, :COD_CLIENTE, :NO_PEDIDO_CODISA, :OBSERVACIONES, :ESTATUS, 'N'  )
                              returning ID into s2;
                     dbms_output.put_line(s2);
                 end;
