@@ -1582,7 +1582,7 @@ async def add_pedidoV2 (request, token: Token):
         ID = await crear_pedido(request)
 
         # await mongodb.order.insert_one(totales)
-        if ID == None
+        if ID == None :
             response.json("ERROR",400)
 
         return response.json({"ID":ID},200)
