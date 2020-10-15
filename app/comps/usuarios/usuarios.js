@@ -39,37 +39,52 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.clientIndex = -1
       $scope.usuarios=[]
       $scope.permisos ={
-  "deuda": {
-    "ver": false,
-    "access":['root','sisadm','seller','admin','generic' ]
-  },
-  "cliente": {
-    "ver": false,
-    "access":['root', 'sisadm','seller' ]
-  },
-  "producto": {
-    "ver": false,
-    "access":['root', 'sisadm','seller','admin','generic' ]
-  },
-  "factura": {
-    "ver": false,
-    "access":['root', 'sisadm','seller','admin','generic' ]
-  },
-  "pedido": {
-    "ver": false,
-    "crear": false,
-    "editar": false,
-    "eliminar": false
-    "access":['root', 'sisadm','seller','admin','generic' ]
-  },
-  "usuario": {
-    "ver": false,
-    "crear": false,
-    "editar": false,
-    "eliminar": false
-    "access":['root', 'sisadm', 'admin' ]
-  }
-}
+            "deuda": {
+              "ver": false
+            },
+            "cliente": {
+              "ver": false
+            },
+            "producto": {
+              "ver": false
+            },
+            "factura": {
+              "ver": false
+            },
+            "pedido": {
+              "ver": false,
+              "crear": false,
+              "editar": false,
+              "eliminar": false
+            },
+            "usuario": {
+              "ver": false,
+              "crear": false,
+              "editar": false,
+              "eliminar": false
+            }
+          }
+
+          $scope.permisosAccess ={
+                "deuda": {
+                  "access":["root","sisAdm","seller","admin","generic" ]
+                },
+                "cliente": {
+                  "access":["root", "sisAdm","seller" ]
+                },
+                "producto": {
+                  "access":["root", "sisAdm","seller","admin","generic" ]
+                },
+                "factura": {
+                  "access":["root", "sisAdm","seller","admin","generic" ]
+                },
+                "pedido": {
+                  "access":["root", "sisAdm","seller","admin","generic" ]
+                },
+                "usuario": {
+                  "access":['root', 'sisAdm', 'admin' ]
+                }
+              }
       $scope.modulos = Object.keys($scope.permisos)
       $scope.tabs = 1
       $scope.tabsIndex = 0
@@ -84,14 +99,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
       }
 
-      $scope.validaAccess = function (access) {
-        var result = access.find(element => element == $scope.userLogged.role);
 
-        if(result != undefined){
-          return true
-        }
-        return false
-      }
 
       $scope.getUsers = function () {
         $scope.loading = true
@@ -141,7 +149,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       }
 
       verificClient()
-      $scope.userLogged = localStorage.getItem('user')
+      var userLog = localStorage.getItem('user')
+      $scope.userLogged = JSON.parse(userLog)
       function verificClient(){
 
        var client = localStorage.getItem('client')
@@ -384,6 +393,20 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 		// }
     //
 		// $scope.initDatatable();
+
+    $scope.validaAccess = function (modulo) {
+      // console.log(modulo);
+      // console.log($scope.permisosAccess[modulo].access);
+      // console.log($scope.userLogged);
+      var result = $scope.permisosAccess[modulo].access.indexOf($scope.userLogged.role);
+
+      console.log(result);
+
+      if(result < 0 ){
+        return false
+      }
+      return true
+    }
 
     $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withPaginationType('full_numbers')
