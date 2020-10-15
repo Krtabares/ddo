@@ -1,118 +1,122 @@
-<div ng-include="'comps/common/topbar.html'">
 
-</div>
+<div ng-if="token_valid">
 
-<div id="wrapper" class="toggled">
+  <div ng-include="'comps/common/topbar.html'">
 
-  <my-sidebar></my-sidebar>
-  <div  id="page-content-wrapper" class="container-fluid">
+  </div>
+
+  <div id="wrapper" class="toggled">
+
+    <my-sidebar></my-sidebar>
+    <div  id="page-content-wrapper" class="container-fluid">
 
       <div class="col-md-12 col-sm-12">
 
         <!-- <br>
-        <h5 class="text-center"> <strong>HOME</strong> </h5>
-        <h2 class="text-center"> <strong>{{client_info.nombre_cliente}}</strong> </h2> -->
-        <nav aria-label="breadcrumb" role="navigation">
-          <ol class="breadcrumb m-0">
-            <li class="breadcrumb-item"><a class="text-success" >server.com</a></li>
-            <!-- <li class="breadcrumb-item"><a class="text-info" href="#!/home">Home</a></li> -->
-            <li class="breadcrumb-item active" aria-current="page">Inicio</li>
-            <li class="breadcrumb-item"><a class="text-info" href="#!/home">{{client_info.nombre_cliente}}</a></li>
+          <h5 class="text-center"> <strong>HOME</strong> </h5>
+          <h2 class="text-center"> <strong>{{client_info.nombre_cliente}}</strong> </h2> -->
+          <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item"><a class="text-success" >server.com</a></li>
+              <!-- <li class="breadcrumb-item"><a class="text-info" href="#!/home">Home</a></li> -->
+              <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+              <li class="breadcrumb-item"><a class="text-info" href="#!/home">{{client_info.nombre_cliente}}</a></li>
 
-          </ol>
-        </nav>
+            </ol>
+          </nav>
 
-        <div class="container-fluid">
+          <div class="container-fluid">
 
             <!-- <button type="button" class="btn btn-primary" ng-click="numeroChang()" ></button>
-          <header-client  numero="numero"  ></header-client> -->
+              <header-client  numero="numero"  ></header-client> -->
 
-          <div class="card " >
-            <div class="card-body">
-              <!-- <h5 class="card-title">Informacion del Cliente </h5> -->
+              <div class="card " >
+                <div class="card-body">
+                  <!-- <h5 class="card-title">Informacion del Cliente </h5> -->
+                  <div class="row">
+
+                    <div class="col-md-4">
+                      <canvas id="myChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="col-md-4">
+                      <canvas id="myChart2" width="400" height="200"></canvas>
+                    </div>
+                    <div class="col-md-4">
+                      <canvas id="myChart3" width="400" height="200"></canvas>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <br>
+              <!-- <hr> -->
               <div class="row">
 
-                <div class="col-md-4">
-                  <canvas id="myChart" width="400" height="200"></canvas>
+                <div class="col-md-4" style="font-size:14px">
+                  <br>
+                  <br>
+                  <div class="card" style="background:#D76F2C;color:#000">
+                    <div class="card-body">
+                      <i class="fas fa-shopping-bag"></i>
+                      Crédito disponible: <span style="font-weight:bold;color:#000">Bs. 165.854.559,00</span>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="card" style="background:#D76F2C;color:#000">
+                    <div class="card-body">
+                      <i class="fas fa-shopping-bag"></i>
+                      Deuda (60 días): <span style="font-weight:bold;color:#000">Bs. 165.854.559,00</span>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="card" style="background:#D76F2C;color:#000">
+                    <div class="card-body">
+                      <i class="fas fa-shopping-bag"></i>
+                      Próximo pago: <span style="font-weight:bold;color:#000">15/08/2019 (13 días)</span>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="card" style="background:#D76F2C;color:#000">
+                    <div class="card-body">
+                      <i class="fas fa-shopping-bag"></i>
+                      Algo más: <span style="font-weight:bold;color:#000">15/08/2019 (13 días)</span>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-4">
-                  <canvas id="myChart2" width="400" height="200"></canvas>
+                  <br>
+                  <p class="text-center">Últimos mensajes</p>
+                  <table class="table table-sm">
+                    <tr style="font-weight:bold;color:#000;background:#D76F2C">
+                      <td class="text-center">Orden</td>
+                      <td class="text-center">Mensaje</td>
+                      <td class="text-center">Emisor</td>
+                      <td class="text-center">Estado</td>
+                    </tr>
+                  </table>
                 </div>
                 <div class="col-md-4">
-                  <canvas id="myChart3" width="400" height="200"></canvas>
+                  <br>
+                  <p class="text-center">Últimos accesos</p>
+                  <table class="table table-sm">
+                    <tr style="font-weight:bold;color:#000;background:#D76F2C">
+                      <td class="text-center">Fecha</td>
+                      <td class="text-center">Hora</td>
+                      <td class="text-center">Cliente</td>
+                    </tr>
+                  </table>
                 </div>
-
               </div>
+              <br>
+              <br>
+              <br>
             </div>
+
           </div>
 
-          <br>
-          <!-- <hr> -->
-          <div class="row">
-
-            <div class="col-md-4" style="font-size:14px">
-              <br>
-              <br>
-              <div class="card" style="background:#D76F2C;color:#000">
-                <div class="card-body">
-                  <i class="fas fa-shopping-bag"></i>
-                  Crédito disponible: <span style="font-weight:bold;color:#000">Bs. 165.854.559,00</span>
-                </div>
-              </div>
-              <br>
-              <div class="card" style="background:#D76F2C;color:#000">
-                <div class="card-body">
-                  <i class="fas fa-shopping-bag"></i>
-                  Deuda (60 días): <span style="font-weight:bold;color:#000">Bs. 165.854.559,00</span>
-                </div>
-              </div>
-              <br>
-              <div class="card" style="background:#D76F2C;color:#000">
-                <div class="card-body">
-                  <i class="fas fa-shopping-bag"></i>
-                  Próximo pago: <span style="font-weight:bold;color:#000">15/08/2019 (13 días)</span>
-                </div>
-              </div>
-              <br>
-              <div class="card" style="background:#D76F2C;color:#000">
-                <div class="card-body">
-                  <i class="fas fa-shopping-bag"></i>
-                  Algo más: <span style="font-weight:bold;color:#000">15/08/2019 (13 días)</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <br>
-              <p class="text-center">Últimos mensajes</p>
-              <table class="table table-sm">
-                <tr style="font-weight:bold;color:#000;background:#D76F2C">
-                  <td class="text-center">Orden</td>
-                  <td class="text-center">Mensaje</td>
-                  <td class="text-center">Emisor</td>
-                  <td class="text-center">Estado</td>
-                </tr>
-              </table>
-            </div>
-            <div class="col-md-4">
-                <br>
-              <p class="text-center">Últimos accesos</p>
-              <table class="table table-sm">
-                <tr style="font-weight:bold;color:#000;background:#D76F2C">
-                  <td class="text-center">Fecha</td>
-                  <td class="text-center">Hora</td>
-                  <td class="text-center">Cliente</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <br>
-          <br>
-          <br>
         </div>
-
       </div>
 
-  </div>
+      <my-footer></my-footer>
 </div>
-
-<my-footer></my-footer>

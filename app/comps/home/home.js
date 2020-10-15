@@ -24,6 +24,22 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
       //   $scope.numero++
       //   console.log("numeroChang"+ $scope.numero);
       // }
+      $scope.token_valid = false
+      function validate_token() {
+        $scope.loading = true
+        // console.log("validaClienteDDO");
+        request.post(ip+'/validate_token', {},{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+        .then(function successCallback(response) {
+          console.log(response.data)
+          $scope.loading = false
+
+        }, function errorCallback(response) {
+          // console.log(response)
+          $scope.loading = false
+          window.location.href = "#!/login";
+
+        });
+      }
 
       verificClient()
 

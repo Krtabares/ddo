@@ -89,9 +89,15 @@ async def login(request):
     return response.json({"msg": "Bad username or password"}, status=403)
 
 @app.route("/refresh_token", ["POST", "GET"])
+@jwt_required
 async def refresh_token(request):
     refresh_token = await create_refresh_token( identity=str(uuid.uuid4()), app=request.app )
     return response.json({'refresh_token': refresh_token}, status=200)
+
+@app.route("/validate_token", ["POST", "GET"])
+async def validate_token(request, token : Token):
+    print("valido")
+    return response.json({'msg': "OK"}, status=200)
 
 @app.route('/add/user', ["POST", "GET"])
 @jwt_required

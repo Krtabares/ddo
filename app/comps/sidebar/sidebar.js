@@ -76,7 +76,7 @@ $(function(){
     })
     return decrypted;
   }
-  // 
+  //
   // $('#encrypted').text("Encrypted: "+ encrypted);
   // console.log(encrypted)
   // $('#decrypted').text("Decrypted: "+ decrypted.toString(CryptoJS.enc.Utf8) );
@@ -109,16 +109,16 @@ $(function(){
         $scope.hamburger_cross = function () {
             console.log("hamburger_cross");
 
-            if ($scope.isClosed == true) {
+            if ($scope.isClosed == false) {
               // $scope.overlay.hide();
               $scope.trigger.removeClass('is-open');
               $scope.trigger.addClass('is-closed');
-              $scope.isClosed = false;
+              $scope.isClosed = true;
             } else {
               // $scope.overlay.show();
               $scope.trigger.removeClass('is-closed');
               $scope.trigger.addClass('is-open');
-              $scope.isClosed = true;
+              $scope.isClosed = false;
             }
 
 
