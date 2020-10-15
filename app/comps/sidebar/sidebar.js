@@ -17,6 +17,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
         init()
         function init() {
           var user = localStorage.getItem('user','')
+          console.log(user);
           if(user!=''){
 
             $scope.user = JSON.parse(user);
