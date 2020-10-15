@@ -1375,13 +1375,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           console.log(i);
           console.log($scope.pedido.totales);
-          if($scope.pedido.totales)
-            $scope.pedido.totales.productos.forEach((item, index) => {
-              if(item.COD_PRODUCTO == $scope.pedido.pedido[i].COD_PRODUCTO){
-                $scope.pedido.totales.bsConIva = $scope.pedido.totales.bsConIva - item.iva_bs
-                $scope.pedido.totales.UsdConIva = $scope.pedido.totales.UsdConIva - item.iva_usd
-              }
-            });
+          // if($scope.pedido.totales)
+          //   $scope.pedido.totales.productos.forEach((item, index) => {
+          //     if(item.COD_PRODUCTO == $scope.pedido.pedido[i].COD_PRODUCTO){
+          //       $scope.pedido.totales.bsConIva = $scope.pedido.totales.bsConIva - item.iva_bs
+          //       $scope.pedido.totales.UsdConIva = $scope.pedido.totales.UsdConIva - item.iva_usd
+          //     }
+          //   });
 
           $scope.pedido.pedido.splice( i, 1 );
 
