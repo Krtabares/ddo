@@ -25,6 +25,7 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
       //   console.log("numeroChang"+ $scope.numero);
       // }
       $scope.token_valid = false
+      validate_token()
       function validate_token() {
         $scope.loading = true
         // console.log("validaClienteDDO");
