@@ -38,7 +38,38 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.clientes=[];
       $scope.clientIndex = -1
       $scope.usuarios=[]
-      $scope.permisos ={"deuda":{"ver":false},"cliente":{"ver":false},"producto":{"ver":false},"factura":{"ver":false},"pedido":{"ver":false,"crear":false,"editar":false,"eliminar":false},"usuario":{"ver":false,"crear":false,"editar":false,"eliminar":false}}
+      $scope.permisos ={
+  "deuda": {
+    "ver": false,
+    "access":['root','sisadm','seller','admin','generic' ]
+  },
+  "cliente": {
+    "ver": false,
+    "access":['root', 'sisadm','seller' ]
+  },
+  "producto": {
+    "ver": false,
+    "access":['root', 'sisadm','seller','admin','generic' ]
+  },
+  "factura": {
+    "ver": false,
+    "access":['root', 'sisadm','seller','admin','generic' ]
+  },
+  "pedido": {
+    "ver": false,
+    "crear": false,
+    "editar": false,
+    "eliminar": false
+    "access":['root', 'sisadm','seller','admin','generic' ]
+  },
+  "usuario": {
+    "ver": false,
+    "crear": false,
+    "editar": false,
+    "eliminar": false
+    "access":['root', 'sisadm', 'admin' ]
+  }
+}
       $scope.modulos = Object.keys($scope.permisos)
       $scope.tabs = 1
       $scope.tabsIndex = 0
@@ -51,6 +82,15 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
         if(index <= $scope.tabs )
           $scope.tabsIndex = index
 
+      }
+
+      $scope.validaAccess = function (access) {
+        var result = access.find(element => element == $scope.userLogged.role);
+
+        if(result != undefined){
+          return true
+        }
+        return false
       }
 
       $scope.getUsers = function () {
@@ -101,7 +141,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       }
 
       verificClient()
-
+      $scope.userLogged = localStorage.getItem('user')
       function verificClient(){
 
        var client = localStorage.getItem('client')

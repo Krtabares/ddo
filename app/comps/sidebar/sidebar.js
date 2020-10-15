@@ -19,7 +19,6 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
           var user = localStorage.getItem('user','')
           console.log(user);
           if(user != null){
-
             $scope.user = JSON.parse(user);
             $scope.permisos = $scope.user.permisos  ;
           }
