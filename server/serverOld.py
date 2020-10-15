@@ -1637,7 +1637,7 @@ async def del_detalle_producto (request, token: Token):
             ])
         db.commit()
 
-        totales = await totales_pedido(int(data['idPedido']))
+        totales = await totales_pedido(int(data['id_pedido']))
 
         return response.json({"totales":totales},200)
     except Exception as e:
