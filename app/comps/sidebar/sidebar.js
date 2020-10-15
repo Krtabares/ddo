@@ -16,12 +16,13 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
         $scope.permisos = {}
         init()
         function init() {
-          var user = localStorage.getItem('user')
-           $scope.user = JSON.parse(user);
-           $scope.permisos = $scope.user.permisos  ;
+          var user = localStorage.getItem('user','')
+          if(user!=''){
 
+            $scope.user = JSON.parse(user);
+            $scope.permisos = $scope.user.permisos  ;
+          }
 
-           // console.log($scope.user)
         }
 
 /** comienza el encript*/
