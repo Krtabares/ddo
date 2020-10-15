@@ -32,7 +32,7 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
         .then(function successCallback(response) {
           console.log(response.data)
           $scope.loading = false
-
+          $scope.token_valid = true
         }, function errorCallback(response) {
           // console.log(response)
           $scope.loading = false
