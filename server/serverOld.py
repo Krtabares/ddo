@@ -1529,8 +1529,8 @@ async def finaliza_pedido(request, token : Token):
     try:
         data = request.json
 
-        await upd_estatus_pedido(2,data['ID'])
         await upd_tipo_pedido(data['ID'], data['tipoPedido'] )
+        await upd_estatus_pedido(2,data['ID'])
 
         return response.json("success",200)
     except Exception as e:
