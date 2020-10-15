@@ -1374,7 +1374,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // // console.log($scope.pedido.pedido[i].COD_PRODUCTO)
 
           console.log(i);
-
+          console.log($scope.pedido.totales);
           if($scope.pedido.totales)
             $scope.pedido.totales.productos.forEach((item, index) => {
               if(item.COD_PRODUCTO == $scope.pedido.pedido[i].COD_PRODUCTO){
