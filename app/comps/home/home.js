@@ -18,12 +18,9 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
       $scope.client = {};
       $scope.client_info = {};
       $scope.hasUserClient = false;
-      // $scope.numero = 0
-      //
-      // $scope.numeroChang = function () {
-      //   $scope.numero++
-      //   console.log("numeroChang"+ $scope.numero);
-      // }
+      
+      var ip = "http://192.168.168.170:3500";
+
       $scope.token_valid = false
       validate_token()
       function validate_token() {
