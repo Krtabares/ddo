@@ -1166,17 +1166,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
              return  true;
           }
           // console.log("validacionesArticulo")
-          // console.log(articulo.precio_bruto_bs, articulo.iva_bs,articulo.CANTIDAD );
-          var valor = 0
-
-          // console.log(parseFloat(articulo.precio_bruto_bs));
-          // console.log(parseFloat(articulo.iva_bs));
-          // console.log( existenciaAux - articulo.CANTIDAD );
-          valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * (articulo.CANTIDAD - existenciaAux)
-
-          // console.log(valor);
-          valor = (parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD
-          if( !validaCreditoContraProducto((parseFloat(articulo.precio_bruto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)  ){
+          if( !validaCreditoContraProducto((parseFloat(articulo.precio_neto_bs)+parseFloat(articulo.iva_bs)) * articulo.CANTIDAD)  ){
             console.log("¡El precio excede el credito disponible! !existenciaaux");
             notify({ message:'¡El precio excede el credito disponible!', position:'right', duration:10000, classes:'alert-danger'});
             // ngNotify.set('¡El precio excede el credito disponible!','error')
