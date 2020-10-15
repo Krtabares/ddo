@@ -18,11 +18,11 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
       $scope.client = {};
       $scope.client_info = {};
       $scope.hasUserClient = false;
-      
+
       var ip = "http://192.168.168.170:3500";
 
       $scope.token_valid = false
-      validate_token()
+      // validate_token()
       function validate_token() {
         $scope.loading = true
         // console.log("validaClienteDDO");
