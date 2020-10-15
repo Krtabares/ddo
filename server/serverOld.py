@@ -1446,16 +1446,16 @@ async def upd_estatus_pedido(estatus, ID):
         sql = """
                     UPDATE PAGINAWEB.PEDIDO
                     SET
-                        ESTATUS          = :ESTATUS,
+                        ESTATUS          = {ESTATUS},
                         FECHA_ESTATUS    = TO_CHAR(SYSDATE, 'DD-MM-YYYY')
-                    WHERE  ID               = :ID
+                    WHERE  ID               = {ID}
 
-            """
-
-        c.execute(sql, [estatus,ID])
+            """.format(  ESTATUS = estatus,ID = int(ID))
+        print(sql)
+        c.execute(sql)
 
         db.commit()
-
+        print("============================ejecuto======================")
         sql = """select descripcion
                         from ESTATUS where codigo = :estatus"""
         c.execute(sql, [estatus])
@@ -1529,7 +1529,7 @@ async def finaliza_pedido(request, token : Token):
     try:
         data = request.json
 
-        # await upd_tipo_pedido(data['ID'], data['tipoPedido'] )
+        await upd_tipo_pedido(data['ID'], data['tipoPedido'] )
         await upd_estatus_pedido(2,data['ID'])
 
         return response.json("success",200)
