@@ -1373,6 +1373,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           // // console.log($scope.pedido.pedido[i].COD_PRODUCTO)
 
+          console.log(i);
 
           if($scope.pedido.totales)
             $scope.pedido.totales.productos.forEach((item, index) => {
