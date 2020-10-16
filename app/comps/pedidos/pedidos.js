@@ -37,6 +37,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0"        }
         $scope.tipoBusqueda = 0
 
+        var userLog = localStorage.getItem('user')
+        $scope.userLogged = JSON.parse(userLog)
+
 
         var ip = "http://192.168.168.170:3500";
 
