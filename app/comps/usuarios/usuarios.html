@@ -146,7 +146,7 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button"  class="btn btn-primary" ng-if="typeview == 'view'" ng-click="goToEdit();">Editar</button>
+        <button type="button"  class="btn btn-primary" ng-if=" userLogged.usuario.editar || typeview == 'view'" ng-click="goToEdit();">Editar</button>
         <button type="button" class="btn btn-primary" ng-click="addUser(user);"  ng-if="typeview == 'add'" >Guardar</button>
         <button type="button" class="btn btn-success" ng-click="updUser(user);"  ng-if="typeview == 'edit'" >Guardar</button>
         <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addUser(user);">Cerrar</button> -->
@@ -226,7 +226,7 @@
           <div class="row">
             <div class="col-md-12">
 
-              <button class="btn btn-primary" style="font-weight: bold;margin-bottom: 1rem;" data-toggle="modal" ng-click="createUser()" data-target="#addUserModal"> <i class="fas fa-pencil"></i> CREAR USUARIO <i class="fas fa-1x fa-user"></i></button>
+              <button class="btn btn-primary" style="font-weight: bold;margin-bottom: 1rem;" ng-if="userLogged.usuario.crear" data-toggle="modal" ng-click="createUser()" data-target="#addUserModal"> <i class="fas fa-pencil"></i> CREAR USUARIO <i class="fas fa-1x fa-user"></i></button>
 
               <div class="row">
                 <div class="col-md-12">
@@ -259,7 +259,7 @@
                         <!-- <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td> -->
                         <td>
                           <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getUser(x.username)"  data-toggle="modal" data-target="#addUserModal" ></i>
-                          <i class="fa fa-trash" style="cursor: pointer;" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.username);"  ></i>
+                          <i class="fa fa-trash" style="cursor: pointer;" data-toggle="modal" ng-if="userLogged.usuario.eliminar" data-target="#modalConfirm" ng-click="confirmModal(x.username);"  ></i>
                         </td>
                       </tr>
 
