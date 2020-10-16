@@ -20,13 +20,13 @@ from sanic_jwt_extended.exceptions import JWTExtendedException
 from sanic_jwt_extended.tokens import Token
 from motor.motor_asyncio import AsyncIOMotorClient
 from sanic.exceptions import ServerError
-from sanic_openapi import swagger_blueprint
+from sanic_openapi import swagger_blue#print
 from sanic_openapi import doc
 from sanic_compress import Compress
 
 class CustomHandler(ErrorHandler):
     def default(self, request, exception):
-        print("[EXCEPTION] "+str(exception))
+        #print("[EXCEPTION] "+str(exception))
         return response.json(str(exception),501)
 
 app = Sanic(__name__)
@@ -40,7 +40,7 @@ app.config.JWT_SECRET_KEY = "ef8f6025-ec38-4bf3-b40c-29642ccd6312"
 app.config.JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=120)
 app.config.RBAC_ENABLE = True
 jwt = JWTManager(app)
-app.blueprint(swagger_blueprint)
+app.blue#print(swagger_blue#print)
 CORS(app, automatic_options=True)
 Compress(app)
 
@@ -54,7 +54,7 @@ def get_mongo_db():
 def get_db():
     dsn_tns = cx_Oracle.makedsn('192.168.168.218', '1521', service_name='DELOESTE')
     # if needed, place an 'r' before any parameter in order to address special characters such as '\'.
-    conn = cx_Oracle.connect(user=r'APLPAGWEB', password='4P1P4GWE3', dsn=dsn_tns)
+        conn = cx_Oracle.connect(user=r'APLPAGWEB', password='4P1P4GWE3', dsn=dsn_tns)
     #conn = cx_Oracle.connect(user=r'paginaweb', password='paginaweb', dsn=dsn_tns)
     # if needed, place an 'r' before any parameter in order to address special characters such as '\'.
     #For example, if your user name contains '\', you'll need to place 'r' before the user name: user=r'User Name'
@@ -80,7 +80,7 @@ async def login(request):
     db = get_mongo_db()
 
     user = await db.user.find_one({'username' : username}, {'_id' : 0})
-    print(user)
+    #print(user)
     if user:
         if user['password'] == password:
             access_token = await create_access_token(identity=username, app=request.app)
@@ -96,7 +96,7 @@ async def refresh_token(request):
 
 @app.route("/validate_token", ["POST", "GET"])
 async def validate_token(request, token : Token):
-    print("valido")
+    #print("valido")
     return response.json({'msg': "OK"}, status=200)
 
 @app.route('/add/user', ["POST", "GET"])
@@ -198,7 +198,7 @@ async def procedure(request):
         return response.json({"msg": "Missing parameter"}, status=400)
 
 
-    print(data)
+    #print(data)
 
     c.callproc("dbms_output.enable")
     sql = """
@@ -217,8 +217,8 @@ async def procedure(request):
             """.format(pNoCia = data['pNoCia'],
                         pNoGrupo = data['pNoGrupo'],
                         pCliente = data['pCliente'])
-    # print("==========================disponible_cliente================================")
-    # print(sql)
+    # #print("==========================disponible_cliente================================")
+    # #print(sql)
     c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)
@@ -227,8 +227,8 @@ async def procedure(request):
         c.callproc("dbms_output.get_line", (textVar, statusVar))
         if textVar.getvalue() == None:
             break
-        print("==========================================================")
-        print(textVar.getvalue())
+        #print("==========================================================")
+        #print(textVar.getvalue())
         arr = str(textVar.getvalue()).split("|")
         obj = {
         'disp_bs' : arr[0],
@@ -248,7 +248,7 @@ async def procedure(request):
     db = get_db()
     c = db.cursor()
 
-    print(data)
+    #print(data)
     if not 'pTotReg' in data or data['pTotReg'] == 0 :
         data['pTotReg'] = 100
 
@@ -285,7 +285,7 @@ async def procedure(request):
     else:
         data['pNombre'] = "'"+data['pNombre']+"'"
 
-    print(data)
+    #print(data)
     c.callproc("dbms_output.enable")
 
     sql = """
@@ -439,7 +439,7 @@ async def procedure(request):
                         pCliente = data['pCliente'],
                         pNombre = data['pNombre'],
                     )
-    print(sql)
+    #print(sql)
     c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)
@@ -544,7 +544,7 @@ async def procedure(request , token : Token):
     db = get_db()
     c = db.cursor()
     c.callproc("dbms_output.enable")
-    print(data)
+    #print(data)
     sql = """DECLARE
                 l_cursor  SYS_REFCURSOR;
                     pTotReg number DEFAULT 100;
@@ -678,7 +678,7 @@ async def procedure(request , token : Token):
                                     pEstatus = data['pEstatus']
                                 )
 
-    print(sql)
+    #print(sql)
     c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)
@@ -723,7 +723,7 @@ async def procedure(request):
 
     data = request.json
 
-    print(data)
+    #print(data)
 
     if not 'pTotReg' in data or data['pTotReg'] == 0 :
         data['pTotReg'] = 100
@@ -781,10 +781,10 @@ async def procedure(request):
         data['haveCat'] = ""
 
 
-    print(data)
+    #print(data)
     db = get_db()
     c = db.cursor()
-    print(data)
+    #print(data)
     c.callproc("dbms_output.enable")
 
     sql = """
@@ -921,7 +921,7 @@ async def procedure(request):
                         pCodProveedor = data['pCodProveedor'],
                         haveCat = data['haveCat']
                     )
-    print(sql)
+    #print(sql)
     c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)
@@ -979,7 +979,7 @@ def agrupar_facturas(arreglo):
 async def procedure(request):
 
     data = request.json
-    print(data)
+    #print(data)
     if not 'pTotReg' in data or data['pTotReg'] == 0 :
         data['pTotReg'] = 100
 
@@ -1029,7 +1029,7 @@ async def procedure(request):
         data['pFechaPedido'] = 'null'
 
 
-    print(data)
+    #print(data)
     db = get_db()
     c = db.cursor()
     c.callproc("dbms_output.enable")
@@ -1179,7 +1179,7 @@ async def procedure(request):
 
                     )
 
-    print(sql)
+    #print(sql)
     c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)
@@ -1274,10 +1274,10 @@ async def crear_pedido(request):
                 FROM PAGINAWEB.PEDIDO WHERE COD_CLIENTE = :COD_CLIENTE and ESTATUS in(0,1,2)"""
         c.execute(sql, [data['COD_CLIENTE']])
         count = c.fetchone()
-        print(count)
+        #print(count)
 
-        print("========================================================================")
-        print("ejecuto el count")
+        #print("========================================================================")
+        #print("ejecuto el count")
         if int(count[0]) > 0 :
             # return response.json({"msg": "Cliente con pedidos abiertos"}, status=400)
             raise Exception("Cliente con pedidos abiertos")
@@ -1307,8 +1307,8 @@ async def crear_pedido(request):
                         0
                     ]
                 )
-        print("========================================================================")
-        print("ejecuto el query")
+        #print("========================================================================")
+        #print("ejecuto el query")
         statusVar = c.var(cx_Oracle.NUMBER)
         lineVar = c.var(cx_Oracle.STRING)
         ID = None
@@ -1316,8 +1316,8 @@ async def crear_pedido(request):
           c.callproc("dbms_output.get_line", (lineVar, statusVar))
           if lineVar.getvalue() == None:
               break
-          print("==========================================================")
-          print(lineVar.getvalue())
+          #print("==========================================================")
+          #print(lineVar.getvalue())
           ID = lineVar.getvalue()
 
           if statusVar.getvalue() != 0:
@@ -1332,7 +1332,7 @@ async def update_detalle_pedido(detalle, ID):
 
             db = get_db()
             c = db.cursor()
-            print(detalle)
+            #print(detalle)
             c.execute("""UPDATE PAGINAWEB.DETALLE_PEDIDO
                             SET
                                    CANTIDAD     = :CANTIDAD,
@@ -1422,10 +1422,10 @@ async def crear_detalle_pedido(detalle, ID):
                                          TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
                                          BODEGA = detalle['bodega']
                                     )
-            print("+===================================================")
-            print("crear_detalle_pedido")
-            print(sql)
-            print("+===================================================")
+            #print("+===================================================")
+            #print("crear_detalle_pedido")
+            #print(sql)
+            #print("+===================================================")
 
             c.execute(sql)
 
@@ -1451,11 +1451,11 @@ async def upd_estatus_pedido(estatus, ID):
                     WHERE  ID               = {ID}
 
             """.format(  ESTATUS = estatus,ID = int(ID))
-        print(sql)
+        #print(sql)
         c.execute(sql)
 
         db.commit()
-        print("============================ejecuto======================")
+        #print("============================ejecuto======================")
         sql = """select descripcion
                         from ESTATUS where codigo = :estatus"""
         c.execute(sql, [estatus])
@@ -1495,9 +1495,9 @@ async def valida_art(cia, arti):
                         arti
                     ])
         row = c.fetchone()
-        print("+===================================================")
-        print(row[0])
-        print('row[0]')
+        #print("+===================================================")
+        #print(row[0])
+        #print('row[0]')
         return row[0]
     except Exception as e:
         logger.debug(e)
@@ -1516,7 +1516,7 @@ async def valida_articulo(request, token : Token):
 
         row = await valida_art(data['pNoCia'], data['pArti'])
 
-        print(row)
+        #print(row)
 
         return response.json({"data":row},200)
     except Exception as e:
@@ -1651,7 +1651,7 @@ async def update_pedido (request, token: Token):
 # async def procedure(request):
     try:
         data = request.json
-        print(data)
+        #print(data)
 
         db = get_db()
         c = db.cursor()
@@ -2200,4 +2200,4 @@ async def totales_pedido(idPedido):
 
 
 
-app.run(host='0.0.0.0', port = port, debug = True)
+app.run(host='0.0.0.0', port = port, debug = false)
