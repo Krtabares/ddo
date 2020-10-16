@@ -45,6 +45,9 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
             "cliente": {
               "ver": false
             },
+            "perfil": {
+              "ver": false
+            },
             "producto": {
               "ver": false
             },
@@ -71,6 +74,9 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                 },
                 "cliente": {
                   "access":["root", "sisAdm","seller" ]
+                },
+                "perfil": {
+                  "access":["root","sisAdm","seller","admin","generic" ]
                 },
                 "producto": {
                   "access":["root", "sisAdm","seller","admin","generic" ]
