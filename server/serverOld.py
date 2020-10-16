@@ -1246,13 +1246,14 @@ async def valida_client(request, token : Token):
         sql = """select
                     t2.DESCRIPCION
                         from dual
-                    join TIPO_ERROR t2 on procesospw.valida_cliente(:pNoCia,:pNoGrupo,:pCliente,:pMoneda,0) = t2.CODIGO"""
-        c.execute(sql, [
-                        data['pNoCia'],
-                        data['pNoGrupo'],
-                        data['pCliente'],
-                        data['pMoneda']
-                    ])
+                    join TIPO_ERROR t2 on procesospw.valida_cliente({pNoCia},{pNoGrupo},{pCliente},{pMoneda},0) = t2.CODIGO""".format(
+                    pNoCia = data['pNoCia'],
+                    pNoGrupo = data['pNoGrupo'],
+                    pCliente = data['pCliente'],
+                    pMoneda = data['pMoneda']
+                    )
+        print(sql)
+        c.execute(sql)
         row = c.fetchone()
 
         # totalPages=row[0]
