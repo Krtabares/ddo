@@ -20,13 +20,13 @@ from sanic_jwt_extended.exceptions import JWTExtendedException
 from sanic_jwt_extended.tokens import Token
 from motor.motor_asyncio import AsyncIOMotorClient
 from sanic.exceptions import ServerError
-from sanic_openapi import swagger_blue#print
+from sanic_openapi import swagger_blueprint
 from sanic_openapi import doc
 from sanic_compress import Compress
 
 class CustomHandler(ErrorHandler):
     def default(self, request, exception):
-        #print("[EXCEPTION] "+str(exception))
+        print("[EXCEPTION] "+str(exception))
         return response.json(str(exception),501)
 
 app = Sanic(__name__)
