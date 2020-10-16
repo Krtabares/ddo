@@ -77,9 +77,7 @@
               <label>Username:</label><br>
               <span ng-if="typeview == 'view'"  >{{user.username}}</span>
               <input type="text" ng-model="user.username"  ng-keyup="availableUser()" ng-if="typeview == 'add' || typeview == 'edit'" ng-disabled="typeview == 'edit'"  class="form-control" placeholder="Username">
-              <div class="invalid-feedback">
-                Este usuario ya existe
-              </div>
+
             </div>
 
             <label>Estatus</label>
@@ -146,7 +144,7 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button"  class="btn btn-primary" ng-if=" userLogged.usuario.editar || typeview == 'view'" ng-click="goToEdit();">Editar</button>
+        <button type="button"  class="btn btn-primary" ng-if=" userLogged.usuario.editar && typeview == 'view'" ng-click="goToEdit();">Editar</button>
         <button type="button" class="btn btn-primary" ng-click="addUser(user);"  ng-if="typeview == 'add'" >Guardar</button>
         <button type="button" class="btn btn-success" ng-click="updUser(user);"  ng-if="typeview == 'edit'" >Guardar</button>
         <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addUser(user);">Cerrar</button> -->

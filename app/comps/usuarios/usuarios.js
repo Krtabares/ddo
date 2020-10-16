@@ -46,7 +46,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
               "ver": false
             },
             "perfil": {
-              "ver": false
+              "ver": false,
+              "editar": false,
             },
             "producto": {
               "ver": false
