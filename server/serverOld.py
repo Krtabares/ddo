@@ -40,7 +40,7 @@ app.config.JWT_SECRET_KEY = "ef8f6025-ec38-4bf3-b40c-29642ccd6312"
 app.config.JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=120)
 app.config.RBAC_ENABLE = True
 jwt = JWTManager(app)
-app.blue#print(swagger_blue#print)
+app.blueprint(swagger_blue#print)
 CORS(app, automatic_options=True)
 Compress(app)
 
