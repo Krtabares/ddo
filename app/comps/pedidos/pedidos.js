@@ -1176,12 +1176,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           if($scope.client_info.grupo_cliente == "02"){
 
-            if( articulo.CANTIDAD > parseInt(articulo.existencia)  ){
-               console.log("¡La cantidad no puede ser mayor a la existencia!");
-               // ngNotify.set('¡La cantidad no puede ser mayor a la existencia!','error')
-               notify({ message:'¡La cantidad no puede ser mayor a la existencia!', position:'right', duration:10000, classes:'alert-danger'});
-              return  true;
-           }
+            if(articulo.tipo_prod_emp == "MEDICINA"){
+              if( ($scope.totales.empMed + articulo.CANTIDAD) > $scope.client.unid_disp_med_emp){
+                notify({ message:'¡La cantidad no puede ser mayor a la disponible por tipo de producto!', position:'right', duration:10000, classes:'alert-danger'});
+               return  true;
+              }
+            }
+            if(articulo.tipo_prod_emp == "MISCELANEOS"){
+              if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
+                notify({ message:'¡La cantidad no puede ser mayor a la disponible por tipo de producto!', position:'right', duration:10000, classes:'alert-danger'});
+               return  true;
+              }
+            }
 
           }
 
@@ -1235,6 +1241,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.USDIVA = 0
           $scope.totales.bsConIva = 0
           $scope.totales.UsdConIva = 0
+          $scope.totales.empMisc = 0
+          $scope.totales.empMed = 0
           $scope.busqueda_prod = null
           $scope.productIndex = -1
           // $scope.clientes = null
@@ -1386,10 +1394,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           'bsIVA':0,
           'USDIVA':0,
           'bsConIva':0,
-          'UsdConIva':0
+          'UsdConIva':0,
+          'empMisc':0,
+          'empMed':0,
         }
         $scope.tipoPedido = "N"
         function calcularTotales(editIndex = null) {
+            var clientgroup =  ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
             console.log("calcularTotales");
             $scope.totales.bolivares = 0
             $scope.totales.USD = 0
@@ -1397,6 +1408,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.totales.USDIVA = 0
             $scope.totales.bsConIva = 0
             $scope.totales.UsdConIva = 0
+            $scope.totales.empMisc = 0
+            $scope.totales.empMed = 0
             // console.log($scope.pedido.pedido)
             $scope.pedido.pedido.forEach((element, i )=> {
 
@@ -1405,20 +1418,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 return;
               }
 
-              $scope.totales.bolivares = parseFloat($scope.totales.bolivares)
-                                             + (parseFloat(element.precio_neto_bs) * element.CANTIDAD)
+              $scope.totales.bolivares = parseFloat($scope.totales.bolivares) + (parseFloat(element.precio_neto_bs) * element.CANTIDAD)
 
-              $scope.totales.USD = parseFloat($scope.totales.USD)
-                                            + (parseFloat(element.precio_neto_usd) * element.CANTIDAD)
+              $scope.totales.USD = parseFloat($scope.totales.USD)  + (parseFloat(element.precio_neto_usd) * element.CANTIDAD)
 
+              $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA) + (parseFloat(element.iva_bs) * element.CANTIDAD)
 
-              $scope.totales.bsIVA = parseFloat($scope.totales.bsIVA)
-                + (parseFloat(element.iva_bs) * element.CANTIDAD)
+              $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA) + (parseFloat(element.iva_usd) * element.CANTIDAD)
 
-
-
-              $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
-                + (parseFloat(element.iva_usd) * element.CANTIDAD)
+              if(clientgroup == "02"){
+                if(element.tipo_prod_emp == "MISCELANEO"){
+                  $scope.totales.empMisc += element.CANTIDAD
+                }
+                if(element.tipo_prod_emp == "MEDICINA"){
+                  $scope.totales.empMisc += element.CANTIDAD
+                }
+              }
 
 
             });
@@ -1431,7 +1446,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.UsdConIva = parseFloat($scope.totales.USD + $scope.totales.USDIVA)
 
 
-          var clientgroup =  ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+
 
             if(clientgroup == "01"){
               if($scope.totales.bsConIva > $scope.client.monto_min_pick){
