@@ -12,9 +12,9 @@
         <li ng-if="permisos.deuda.ver" >
           <a href="#!/deuda" class=""><i class="fa fa-fw  fas fa-receipt" ></i>Deuda</a>
         </li>
-        <li ng-if="permisos.usuario.ver" >
+        <li ng-if="permisos.perfil.ver" >
           <a href="#!/perfil" class="">
-            <i class="fa fa-fw fas fa-users" ></i>
+            <i class="fa fa-fw fas fa-user" ></i>
             perfil
           </a>
         </li>
@@ -26,19 +26,19 @@
         </li>
         <li ng-if="permisos.cliente.ver" >
           <a href="#!/clientes" class="">
-            <i class=" fa fa-fw fas fa-user" ></i>
+            <i class=" fa fa-fw fas fa-briefcase" ></i>
             Clientes
           </a>
         </li>
         <li ng-if="permisos.producto.ver" >
           <a  href="#!/saldo" class="">
-            <i class=" fa fa-fw fas fa-list-alt" ></i>
+            <i class=" fa fa-fw fas fa-shopping-cart" ></i>
           Productos
         </a>
       </li>
       <li ng-if="permisos.pedido.ver">
         <a href="#!/pedidos" class="">
-          <i class=" fa fa-fw fas fa-list-alt" ></i>
+          <i class=" fa fa-fw fas fa-list-ul" ></i>
           Pedidos
         </a>
       </li>
