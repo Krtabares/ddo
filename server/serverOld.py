@@ -85,7 +85,8 @@ async def login(request):
         if user['password'] == password:
             access_token = await create_access_token(identity=username, app=request.app)
             return response.json({'access_token': access_token, 'user': user}, 200)
-
+        if user['estatus'] != "Inactivo"
+            return response.json({"msg": "Usuario inactivo"}, status=403)
     return response.json({"msg": "Bad username or password"}, status=403)
 
 @app.route("/refresh_token", ["POST", "GET"])

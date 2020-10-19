@@ -1051,57 +1051,44 @@ async def procedure(request):
                 pFechaPedido date;
 
                 v_nro_factura varchar2(50);
-                v_fecha_factura varchar2(10);
+                v_fecha_factura date;
                 v_cod_cliente varchar2(50);
                 v_cod_vendedor varchar2(50);
                 v_nombre_vendedor varchar2(150);
                 v_email_vendedor varchar2(90);
-                v_no_linea varchar2(4);
+                v_no_linea number;
                 v_no_arti varchar2(50);
                 v_nombre_arti varchar2(150);
-                v_unidades_pedido varchar2(4);
-                v_unidades_facturadas varchar2(4);
-                v_total_producto_bs varchar2(20);
-                v_total_producto_usd varchar2(20);
-                v_cia        varchar2(2);
-                v_grupo      varchar2(2);
-                v_tipo_pedido varchar2(15);
-                v_fecha_entrega varchar2(10);
-                v_pag        number;
+                v_unidades_pedido number;
+                v_unidades_facturadas number;
+                v_total_producto_bs varchar(20);
+                v_total_producto_usd varchar(20);
+                v_cia          varchar2(2);
+                v_grupo        varchar2(2);
+                v_tipo_pedido  varchar2(15);
+                v_fecha_entrega date;
 
-                v_lin        number;
-
-                v_totreg     number;
-
-                v_tot number:=0;
 
 
     BEGIN
 
-              pTotReg  := {pTotReg};
-              pTotPaginas  := {pTotPaginas};
-              pPagina  := {pPagina};
-              pLineas  := {pLineas};
-              pDeuda := {pDeuda};
-              pNoCia := {pNoCia};
-              pNoGrupo := {pNoGrupo};
-              pCliente := {pCliente};
-              pFechaFactura := {pFechaFactura};
-              pFechaPedido := {pFechaPedido};
+            pTotReg  := {pTotReg};
+            pTotPaginas  := {pTotPaginas};
+            pPagina  := {pPagina};
+            pLineas  := {pLineas};
+            pDeuda := {pDeuda};
+            pNoCia := {pNoCia};
+            pNoGrupo := {pNoGrupo};
+            pCliente := {pCliente};
+            pFechaFactura := {pFechaFactura};
+            pFechaPedido := {pFechaPedido};
 
-
-
-         -- PROCESOSPW.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda, pPedido, pNoCia, pNoGrupo,pCliente,pFechaFactura,pFechaPedido);
-         PROCESOSPW.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda , pNoCia, pNoGrupo,pCliente,pFechaFactura);
-
-
-
+         paginaweb.procesospw1.pedidos_facturados (l_cursor,pTotReg /*pTotReg*/,pTotPaginas /*pTotPaginas*/,NULL /*pPagina*/,100 /*pLineas*/, null /*pDeuda*/,pNoCia /*pCia*/,pNoGrupo /*pGrupo*/,pCliente /*pCliente*/,
+                                         null/*FechaFactura*/);
 
 
       LOOP
-
         FETCH l_cursor into
-
                 v_nro_factura,
                 v_fecha_factura,
                 v_cod_cliente,
@@ -1120,15 +1107,10 @@ async def procedure(request):
                 v_tipo_pedido,
                 v_fecha_entrega,
                 v_pag,
-
                 v_lin;
-
         EXIT WHEN l_cursor%NOTFOUND;
-
         dbms_output.put_line
-
           (
-
                 v_nro_factura|| '|'||
                 v_fecha_factura|| '|'||
                 v_cod_cliente || '|'||
@@ -1140,30 +1122,23 @@ async def procedure(request):
                 v_nombre_arti|| '|'||
                 v_unidades_pedido|| '|'||
                 v_unidades_facturadas|| '|'||
-                v_total_producto_bs|| '|'||
-                v_total_producto_usd|| '|'||
+                v_total_producto_bs || '|'||
+                v_total_producto_usd || '|'||
                 v_cia || '|'||
                 v_grupo || '|'||
-                v_tipo_pedido|| '|'||
-                v_fecha_entrega|| '|'||
+                v_tipo_pedido || '|'||
+                v_fecha_entrega || '|'||
                 v_pag|| '|'||
                 v_lin
-
           );
 
-
-
       END LOOP;
-
-         --v_tot:=l_cursor%rowcount;
-
-         --dbms_output.put_line(v_tot || '|'|| v_totreg || '|'|| v_totpag );
-
+         v_tot:=l_cursor%rowcount;
+         dbms_output.put_line(v_tot || '|'|| v_totreg || '|'|| v_totpag );
       CLOSE l_cursor;
 
-
     END;
-                """.format(
+""".format(
                         pTotReg = data['pTotReg'],
                         pTotPaginas = data['pTotPaginas'],
                         pPagina = data['pPagina'],
@@ -1243,8 +1218,7 @@ async def valida_client(request, token : Token):
 
         db = get_db()
         c = db.cursor()
-        sql = """select
-                    t2.DESCRIPCION
+        sql = """select t2.DESCRIPCION
                         from dual
                     join TIPO_ERROR t2 on PROCESOSPW1.valida_cliente(\'{pNoCia}\',\'{pNoGrupo}\',\'{pCliente}\',{pMoneda},0) = t2.CODIGO""".format(
                     pNoCia = data['pNoCia'],
