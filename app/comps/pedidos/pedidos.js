@@ -1187,7 +1187,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             // ngNotify.set('¡El precio excede el credito disponible!','error')
             return  true;
           }
-
+          console.log('================================================================',$scope.client_info.grupo_cliente);
+          console.log($scope.client_info.grupo_cliente == "02");
           if($scope.client_info.grupo_cliente == "02"){
 
             if(articulo.tipo_prod_emp == "MEDICINA"){
@@ -1195,8 +1196,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 notify({ message:'¡La cantidad no puede ser mayor a la disponible por tipo de producto!', position:'right', duration:10000, classes:'alert-danger'});
                return  true;
               }
-            }
-            if(articulo.tipo_prod_emp == "MISCELANEOS"){
+            }else if(articulo.tipo_prod_emp == "MISCELANEOS"){
               if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
                 notify({ message:'¡La cantidad no puede ser mayor a la disponible por tipo de producto!', position:'right', duration:10000, classes:'alert-danger'});
                return  true;
@@ -1414,7 +1414,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
         $scope.tipoPedido = "N"
         function calcularTotales(editIndex = null) {
-            var clientgroup =  ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+            var clientgroup =  ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+
             console.log("calcularTotales");
             $scope.totales.bolivares = 0
             $scope.totales.USD = 0
