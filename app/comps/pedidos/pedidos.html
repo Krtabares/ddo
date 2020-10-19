@@ -1070,7 +1070,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-12" ng-show="showProductTable || hasUserClient"  >
-                    userLogged.pedido.crear :{{userLogged | JSON}}
+                    <!-- userLogged.pedido.crear :{{userLogged | JSON}} -->
                     <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();"  ng-if="userLogged.pedido.crear"  ng-disabled="!clienteValido" ng-show="!unicOrderID"  > <i class="fa fa-edit"></i> Crear pedido</button>
                     <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="getPedido(unicOrderID);" ng-disabled="!clienteValido" ng-show="unicOrderID" data-toggle="modal" data-target="#showPedidoModal"  > <i class="fa fa-edit"></i>Continuar Pedido</button>
 
