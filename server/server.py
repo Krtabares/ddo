@@ -1133,8 +1133,8 @@ async def procedure(request):
           );
 
       END LOOP;
-         v_tot:=l_cursor%rowcount;
-         dbms_output.put_line(v_tot || '|'|| v_totreg || '|'|| v_totpag );
+         --v_tot:=l_cursor%rowcount;
+        -- dbms_output.put_line(v_tot || '|'|| v_totreg || '|'|| v_totpag );
       CLOSE l_cursor;
 
     END;
