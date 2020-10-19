@@ -1595,6 +1595,7 @@ async def add_pedidoV2 (request, token: Token):
         if ID == None :
             response.json("ERROR",400)
 
+        await logAudit(data['username'], 'pedido', 'add', ID)
         return response.json({"ID":ID},200)
     except Exception as e:
         logger.debug(e)
@@ -1616,6 +1617,7 @@ async def add_detalle_producto (request, token: Token):
         if data['pedido']['CANTIDAD'] > reservado:
             msg = 1
 
+        await logAudit(data['username'], 'pedido', 'upd', int(data['ID']))
         return response.json({"msg": msg, "reserved":reservado, "totales": totales },200)
     except Exception as e:
         logger.debug(e)
@@ -1639,6 +1641,8 @@ async def del_detalle_producto (request, token: Token):
         db.commit()
 
         totales = await totales_pedido(int(data['id_pedido']))
+
+        await logAudit(data['username'], 'pedido', 'del', int(data['id_pedido']))
 
         return response.json({"totales":totales},200)
     except Exception as e:
@@ -2200,5 +2204,19 @@ async def totales_pedido(idPedido):
 
 
 
+async def logAudit(user, module, accion, context):
+
+    db = get_mongo_db()
+
+    log = dict(
+        username = user,
+        module = module,
+        accion = accion,
+        context = context,
+    )
+
+    await db.audit.insert_one(log)
+
+    return
 
 app.run(host='0.0.0.0', port = port, debug = False)

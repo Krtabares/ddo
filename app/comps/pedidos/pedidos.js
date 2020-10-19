@@ -448,6 +448,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var body = {}
           body.ID = $scope.ID
           body.tipoPedido = $scope.tipoPedido
+          body.username = $scope.userLogged.username
           request.post(ip+'/finalizar_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             // console.log(response)
@@ -775,6 +776,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.loading = true
           // // console.log(pedido);
           var body = $scope.buildBody();
+          body.username = $scope.userLogged.username
           request.post(ip+'/add/pedidoV2', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             // console.log(response)
@@ -854,10 +856,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var body = {};
 
           body.pedido = articulo
-          // if(!$scope.ID){
-          //   $scope.addPedidoV2()
-          // }
+
           body.ID = $scope.ID
+          body.username = $scope.userLogged.username
           request.post(ip+'/add/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             // console.log(response)
@@ -887,6 +888,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           body.COD_PRODUCTO = $scope.pedido.pedido[i].COD_PRODUCTO;
           body.id_pedido = $scope.ID
+          body.username = $scope.userLogged.username
           request.post(ip+'/del/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             // console.log(response)
@@ -910,6 +912,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.loading = true
           var body = $scope.buildBody();
           body.ID = $scope.ID
+          body.username = $scope.userLogged.username
           request.post(ip+'/del/pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             // console.log(response)
@@ -965,6 +968,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           body.pedido = articulo
           body.ID = $scope.ID
+          body.username = $scope.userLogged.username
           request.post(ip+'/upd/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             // console.log(response)
