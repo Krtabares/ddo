@@ -210,7 +210,7 @@ async def procedure(request):
 
                 BEGIN
 
-                    PROCESOSPW1.disponible_cliente(vdisp_bs, vdisp_usd, \'{pNoCia}\', \'{pNoGrupo}\', \'{pCliente}\');
+                    PROCESOSPW.disponible_cliente(vdisp_bs, vdisp_usd, \'{pNoCia}\', \'{pNoGrupo}\', \'{pCliente}\');
 
                     dbms_output.put_line(vdisp_bs|| '|'||vdisp_usd);
                 END;
@@ -349,7 +349,7 @@ async def procedure(request):
                     pDireccion := {pDireccion};
 
                 dbms_output.enable(output);
-                PROCESOSPW1.clientes (l_cursor, pTotReg, pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo, pCliente, pNombre, pDireccion);
+                PROCESOSPW.clientes (l_cursor, pTotReg, pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo, pCliente, pNombre, pDireccion);
 
             LOOP
             FETCH l_cursor into
@@ -602,9 +602,9 @@ async def procedure(request , token : Token):
 
                     dbms_output.enable(output);
 
-                    PROCESOSPW1.deudas (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo, pCLiente);
+                    PROCESOSPW.deudas (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo, pCLiente);
 
-                    -- PROCESOSPW1.deudas (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pDeuda , pCLiente , pNombre, pTipo, pEstatus);
+                    -- PROCESOSPW.deudas (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pDeuda , pCLiente , pNombre, pTipo, pEstatus);
 
                     LOOP
                     FETCH l_cursor into
@@ -847,7 +847,7 @@ async def procedure(request):
 
                 dbms_output.enable(output);
 
-                PROCESOSPW1.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pBusqueda,pComponente, pArticulo, pFiltroCategoria, pCodProveedor );
+                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pBusqueda,pComponente, pArticulo, pFiltroCategoria, pCodProveedor );
 
             LOOP
                 FETCH l_cursor into
@@ -1091,8 +1091,8 @@ async def procedure(request):
 
 
 
-         -- PROCESOSPW1.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda, pPedido, pNoCia, pNoGrupo,pCliente,pFechaFactura,pFechaPedido);
-         PROCESOSPW1.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda , pNoCia, pNoGrupo,pCliente,pFechaFactura);
+         -- PROCESOSPW.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda, pPedido, pNoCia, pNoGrupo,pCliente,pFechaFactura,pFechaPedido);
+         PROCESOSPW.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda , pNoCia, pNoGrupo,pCliente,pFechaFactura);
 
 
 
@@ -1489,7 +1489,7 @@ async def valida_art(cia, arti):
 
         db = get_db()
         c = db.cursor()
-        sql = """select PROCESOSPW1.existencia_disponible(:pNoCia,:pArti)
+        sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
                         from dual"""
         c.execute(sql, [
                         cia,
@@ -1789,9 +1789,9 @@ async def procedure_detalle_pedidos(idPedido):
                       BEGIN
 
 
-                          PROCESOSPW1.detalle_pedidos_cargados (l_cursor ,{idPedido});
+                          PROCESOSPW.detalle_pedidos_cargados (l_cursor ,{idPedido});
 
-                          
+
                         LOOP
 
                           FETCH l_cursor into
@@ -1898,7 +1898,7 @@ async def procedure_pedidos(cia,grupo,cliente):
                           pNoGrupo := {pNoGrupo};
                           pCliente := {pCliente};
 
-                          PROCESOSPW1.pedidos_cargados (l_cursor ,pNoCia, pNoGrupo,pCliente);
+                          PROCESOSPW.pedidos_cargados (l_cursor ,pNoCia, pNoGrupo,pCliente);
 
                         LOOP
 
@@ -2102,7 +2102,7 @@ async def procedure_prove(request):
 
 
                         dbms_output.enable(output);
-                        PROCESOSPW1.proveedores (l_cursor);
+                        PROCESOSPW.proveedores (l_cursor);
 
                     LOOP
                     FETCH l_cursor into
@@ -2169,7 +2169,7 @@ async def totales_pedido(idPedido):
 
                     dbms_output.enable(output);
 
-                    PROCESOSPW1.totales_pedido ({idPedido},v_total_bruto,v_desc_volumen, v_otros_descuentos, v_desc_adicional, v_desc_dpp, v_sub_total, v_impuesto, v_total );
+                    PROCESOSPW.totales_pedido ({idPedido},v_total_bruto,v_desc_volumen, v_otros_descuentos, v_desc_adicional, v_desc_dpp, v_sub_total, v_impuesto, v_total );
 
                     dbms_output.put_line(v_total_bruto|| '|'||v_desc_volumen|| '|'|| v_otros_descuentos|| '|'|| v_desc_adicional|| '|'|| v_desc_dpp|| '|'|| v_sub_total|| '|'|| v_impuesto|| '|'|| v_total);
             END;
