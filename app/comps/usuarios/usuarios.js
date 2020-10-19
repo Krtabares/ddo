@@ -12,7 +12,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
   .controller('usuariosCtrl', ['$scope', 'localstorage', '$q', '$rootScope', 'DTOptionsBuilder', 'DTColumnBuilder', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'NgMap','$localStorage',
     function($scope, localstorage, $q, $rootScope, DTOptionsBuilder, DTColumnBuilder, $routeParams, $interval, $timeout, ngNotify, request, NgMap, $localStorage) {
-        $scope.loading = true
+        $scope.loading = false
       $scope.array_user = [];
       $scope.user = {};
       $scope.user_view = {};
