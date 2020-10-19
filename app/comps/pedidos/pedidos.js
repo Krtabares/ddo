@@ -40,6 +40,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         var userLog = localStorage.getItem('user')
         $scope.userLogged = JSON.parse(userLog)
 
+console.log($scope.userLogged);
 
         var ip = "http://192.168.168.170:3500";
 
