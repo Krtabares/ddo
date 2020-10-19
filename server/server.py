@@ -1230,7 +1230,7 @@ async def valida_client(request, token : Token):
                     pCliente = data['pCliente'],
                     pMoneda = data['pMoneda']
                     )
-        print(sql)
+        # print(sql)
         c.execute(sql)
         row = c.fetchone()
 
