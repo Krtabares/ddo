@@ -448,7 +448,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var body = {}
           body.ID = $scope.ID
           body.tipoPedido = $scope.tipoPedido
-          body.username = $scope.userLogged.username
+            body.username = $scope.userLogged.username
           request.post(ip+'/finalizar_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
             // console.log(response)
