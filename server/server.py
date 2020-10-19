@@ -1068,7 +1068,11 @@ async def procedure(request):
                 v_tipo_pedido  varchar2(15);
                 v_fecha_entrega date;
 
-
+                v_pag        number;
+                v_lin        number;
+                v_totreg     number;
+                v_totpag     number;
+                v_tot number:=0;
 
     BEGIN
 
