@@ -155,12 +155,12 @@
 
                 </div>
                 <div class="col-3">
-                  <label>disponible unidades medicina</label><br>
+                  <label>Disponible unidades medicina</label><br>
                   <span >{{client.unid_disp_med_emp - totales.empMed}}</span>
 
                 </div>
                 <div class="col-3">
-                  <label>disponible unidades miscelanos</label><br>
+                  <label>Disponible unidades miscelanos</label><br>
                   <span >{{client.unid_disp_misc_emp - totales.empMisc}}</span>
 
                 </div>
@@ -666,7 +666,7 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="reset();">Regresar</button>
-        <button type="button"  class="btn btn-primary"  ng-if="userLogged.pedido.editar" ng-show="!editView && pedido.estatus_id < 3 "   ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
+        <button type="button"  class="btn btn-primary"  ng-if="userLogged.permisos.pedido.editar" ng-show="!editView && pedido.estatus_id < 3 "   ng-disabled="!clienteValido"  ng-click="editPedido();">Editar</button>
         <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="openModalDyn(0,ID)" >Finalizar pedido</button>
 
         <!-- <button type="button"  class="btn btn-success" ng-disabled="pedido.pedido.length < 1" ng-show="editView" ng-click="updPedido();">Actualizar pedido</button> -->
@@ -777,13 +777,12 @@
                       <th scope="col"><p class="text-center">Opciones</p></th>
                       <th scope="col"><p class="text-center">Nombre Producto</p></th>
                       <th scope="col"><p class="text-center">Categoria</p></th>
-                      <th scope="col" ng-if="client.grupo_cliente == '02'" ><p class="text-center">Tipo (empleado)</p></th>
                       <th scope="col"><p class="text-center">Existencia</p></th>
                       <th scope="col"><p class="text-center">Principio Activo</p></th>
                       <th scope="col"><p class="text-center">Precio Bs.S</p></th>
-                      <!-- <th scope="col"><p class="text-center">Iva Bs.S</p></th> -->
+                      <th scope="col"><p class="text-center">Iva Bs.S</p></th>
                       <th scope="col"><p class="text-center">Precio USD</p></th>
-                      <!-- <th scope="col"><p class="text-center">Iva USD</p></th> -->
+                      <th scope="col"><p class="text-center">Iva USD</p></th>
                       <th scope="col"><p class="text-center">Proveedor</p></th>
                       </tr>
                   </thead>
@@ -795,13 +794,12 @@
                           <td><i class="fa fa-eye" style="cursor: pointer;"  ng-click="selectProduct($index)" ></i></td>
                           <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                           <td><p class="text-center">{{ x.categoria }}</p></td>
-                          <td><p class="text-center" ng-if="client.grupo_cliente == '02'" >{{ x.tipo_prod_emp }}</p></td>
                           <td><p class="text-center">{{ x.existencia }}</p></td>
                           <td><p class="text-center">{{ x.princ_activo }}</p></td>
                           <td><p class="text-right">{{  x.precioFormatVE }}</p></td>
-                          <!-- <td><p class="text-right">{{  x.iva_bs }}</p></td> -->
+                          <td><p class="text-right">{{  x.iva_bs }}</p></td>
                           <td><p class="text-right">{{  x.precioFormatUSD }}</p></td>
-                          <!-- <td><p class="text-right">{{  x.iva_usd }}</p></td> -->
+                          <td><p class="text-right">{{  x.iva_usd }}</p></td>
                           <td><p class="text-left">{{  x.proveedor }}</p></td>
 
                       </tr>
@@ -1070,8 +1068,8 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-12" ng-show="showProductTable || hasUserClient"  >
-                    <!-- userLogged.pedido.crear :{{userLogged | JSON}} -->
-                    <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();"  ng-if="userLogged.pedido.crear"  ng-disabled="!clienteValido" ng-show="!unicOrderID"  > <i class="fa fa-edit"></i> Crear pedido</button>
+                    <!-- userLogged.pedido.crear :{{userLogged. }} -->
+                    <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();"  ng-if="userLogged.permisos.pedido.crear"  ng-disabled="!clienteValido" ng-show="!unicOrderID"  > <i class="fa fa-edit"></i> Crear pedido</button>
                     <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="getPedido(unicOrderID);" ng-disabled="!clienteValido" ng-show="unicOrderID" data-toggle="modal" data-target="#showPedidoModal"  > <i class="fa fa-edit"></i>Continuar Pedido</button>
 
                   </div>

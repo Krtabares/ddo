@@ -40,7 +40,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         var userLog = localStorage.getItem('user')
         $scope.userLogged = JSON.parse(userLog)
 
-console.log($scope.userLogged);
+// console.log($scope.userLogged);
 
         var ip = "http://192.168.168.170:3500";
 
@@ -327,6 +327,12 @@ console.log($scope.userLogged);
            $scope.client_info = JSON.parse(client_info);
            $scope.client.monto_minimo = parseFloat($scope.client_info.monto_minimo)
            $scope.client.monto_min_pick = $scope.client_info.monto_min_pick
+           $scope.client.max_unid_med_emp =  $scope.client_info.max_unid_med_emp
+           $scope.client.max_unid_misc_emp =  $scope.client_info.max_unid_misc_emp
+           $scope.client.unid_fact_med_emp =  $scope.client_info.unid_fact_med_emp
+           $scope.client.unid_fact_misc_emp =  $scope.client_info.unid_fact_misc_emp
+           $scope.client.unid_disp_med_emp =  $scope.client_info.unid_disp_med_emp
+           $scope.client.unid_disp_misc_emp =  $scope.client_info.unid_disp_misc_emp
 
            selectCLientCAP( $scope.client_info)
            $scope.showProductTable = true
