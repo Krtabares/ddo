@@ -1181,8 +1181,8 @@ async def procedure(request):
                 'nombre_arti': arr[8],
                 'unidades_pedido': arr[9],
                 'unidades_facturadas': arr[10],
-                'total_producto': arr[11],
-                'total_producto_usd': arr[12],
+                'total_producto' :  formatFloatDdo(arr[11]) ,
+                'total_producto_usd': formatFloatDdo(arr[12]),
                 'codigo_compani': arr[13],
                 'grupo': arr[14],
                 'tipo_pedido': arr[15],
@@ -2196,5 +2196,15 @@ async def logAudit(user, module, accion, context):
     await db.audit.insert_one(log)
 
     return
+
+def formatFloatDdo(value):
+
+    if len(value) > 0:
+    	x = value.replace(",", ".")
+    	x = float(x)
+    else:
+    	x = float(0)
+
+    return x
 
 app.run(host='0.0.0.0', port = port, debug = False)
