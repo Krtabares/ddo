@@ -161,11 +161,14 @@ async def listUser(request, token : Token):
     users = []
     # print(data)
     if not 'role' in data :
-        users = await db.user.find({'COD_CLIENTE' : data['pCliente']}, {'_id' : 0}).to_list(length=None)
 
-    if  data['role'] == "root" :
+        if  data['role'] != "root" :
 
-        users = await db.user.find({}, {'_id' : 0}).to_list(length=None)
+            users = await db.user.find({'COD_CLIENTE' : data['pCliente']}, {'_id' : 0}).to_list(length=None)
+
+        if  data['role'] == "root" :
+
+            users = await db.user.find({}, {'_id' : 0}).to_list(length=None)
 
     return response.json(users,200)
 
