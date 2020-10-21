@@ -118,7 +118,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
         body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
         if($scope.userLogged.role == 'root' ){
           if(body.pCliente == null){
-            body.root = $scope.userLogged.role
+            body.role = $scope.userLogged.role
           }
 
         }
