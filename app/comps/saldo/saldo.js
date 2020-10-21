@@ -27,6 +27,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       $scope.client = {};
       $scope.client_info = {}
       $scope.dtInstance = {};
+      $scope.tipoBusqueda = 0
       verificClient()
 
     function verificClient(){
@@ -153,7 +154,13 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
         body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
         body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
-        body.pBusqueda = $scope.busqueda_prod
+
+        if($scope.tipoBusqueda==1){
+          body.pComponente = $scope.busqueda_prod
+        }else{
+          body.pBusqueda = $scope.busqueda_prod
+        }
+
       }
       console.log(body)
       request.post(ip+'/procedure_productos', body,{})
@@ -214,6 +221,50 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
     }
 
     // newPromise();
+
+    $scope.listProveedores=[]
+    $scope.proveedor = {"cod_proveedor":null}
+    function proveedores() {
+      $scope.loading = true
+      // console.log("validaClienteDDO");
+      request.post(ip+'/get/proveedores', {},{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+      .then(function successCallback(response) {
+        console.log(response.data)
+
+        $scope.listProveedores = response.data.obj
+
+        $scope.loading = false
+
+      }, function errorCallback(response) {
+        // console.log(response)
+        $scope.loading = false
+
+      });
+    }
+
+    $scope.listCategorias=[]
+    $scope.categoria = {"CODIGO":null}
+    function getCategorias() {
+      $scope.loading = true
+      // console.log("validaClienteDDO");
+      request.post(ip+'/get/categorias', {},{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+      .then(function successCallback(response) {
+        console.log(response.data)
+
+        $scope.listCategorias = response.data.obj
+
+        $scope.loading = false
+
+      }, function errorCallback(response) {
+        // console.log(response)
+        $scope.loading = false
+
+      });
+    }
+
+
+    proveedores()
+    getCategorias()
 
 
 	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
