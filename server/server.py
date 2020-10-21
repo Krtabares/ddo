@@ -158,6 +158,8 @@ async def listUser(request, token : Token):
     data = request.json
     db = get_mongo_db()
 
+    users = []
+
     if not 'role' in data :
         users = await db.user.find({'COD_CLIENTE' : data['pCliente']}, {'_id' : 0}).to_list(length=None)
 
