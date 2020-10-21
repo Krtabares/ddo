@@ -84,7 +84,7 @@
             <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
             <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')"  ng-model="user.estatus">
 
-              <option ng-repeat="type in estatus_user" value="{{type.id}}">
+              <option ng-repeat="type in estatus_user" value="{{type.text}}">
                 {{type.text | uppercase}}
               </option>
               <option value="" disabled selected>Selecciona el estatus</option>
