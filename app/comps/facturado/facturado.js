@@ -34,6 +34,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
            $scope.client = JSON.parse(client);
            facturacion()
            var grupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+           console.log(grupo);
            if(grupo == "02"){
              $scope.isEmpleado = true;
            }
