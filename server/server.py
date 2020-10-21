@@ -82,7 +82,7 @@ async def login(request):
     user = await db.user.find_one({'username' : username}, {'_id' : 0})
     #print(user)
     if user:
-        
+
         if user['password'] == password:
 
             if user['estatus'] != "Inactivo"
@@ -161,8 +161,9 @@ async def listUser(request, token : Token):
     if not 'role' in data :
         users = await db.user.find({'COD_CLIENTE' : data['pCliente']}, {'_id' : 0}).to_list(length=None)
 
-    # else if  data['role'] == "root" :
-    #     users = await db.user.find({}, {'_id' : 0}).to_list(length=None)
+    else if  data['role'] == "root" :
+
+        users = await db.user.find({}, {'_id' : 0}).to_list(length=None)
 
     return response.json(users,200)
 

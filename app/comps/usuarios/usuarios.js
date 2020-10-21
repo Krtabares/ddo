@@ -114,6 +114,12 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
         body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
         body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
         body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+        if($scope.userLogged.role == 'root' ){
+          if(body.pCliente == null){
+            body.root = $scope.userLogged.role
+          }
+
+        }
          request.post(ip+'/get/users', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
           .then(function successCallback(response) {
               $scope.loading = false
@@ -169,8 +175,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
          $scope.hasUserClient = true;
          $scope.client_info = JSON.parse(client_info);
          $scope.client = JSON.parse(client);
-         $scope.getUsers()
        }
+       $scope.getUsers()
        console.log($scope.client)
      }
 
