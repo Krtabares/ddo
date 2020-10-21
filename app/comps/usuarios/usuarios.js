@@ -13,6 +13,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
   .controller('usuariosCtrl', ['$scope', 'localstorage', '$q', '$rootScope', 'DTOptionsBuilder', 'DTColumnBuilder', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'NgMap','$localStorage',
     function($scope, localstorage, $q, $rootScope, DTOptionsBuilder, DTColumnBuilder, $routeParams, $interval, $timeout, ngNotify, request, NgMap, $localStorage) {
         $scope.loading = false
+        var userLog = localStorage.getItem('user')
+        $scope.userLogged = JSON.parse(userLog)
       $scope.array_user = [];
       $scope.user = {};
       $scope.user_view = {};
@@ -162,8 +164,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       }
 
       verificClient()
-      var userLog = localStorage.getItem('user')
-      $scope.userLogged = JSON.parse(userLog)
+
       function verificClient(){
 
        var client = localStorage.getItem('client')
