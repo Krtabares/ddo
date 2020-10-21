@@ -106,7 +106,7 @@
             <tbody>
 
               <tr  ng-repeat="x in modulos"  ng-show="validaAccess(x)" >
-                <th scope="row">{{x}}</th>
+                <th scope="row" style="text-transform: capitalize;" >{{x}}</th>
                 <td>
                   <div class="form-check" ng-if="typeview == 'add' || typeview == 'edit'" >
                     <input type="checkbox" class="form-check-input" ng-model="permisos[x].ver" ng-disabled="!hasOwnProp(x,'ver')"  >
