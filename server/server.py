@@ -85,7 +85,7 @@ async def login(request):
 
         if user['password'] == password:
 
-            if user['estatus'] != "Inactivo"
+            if user['estatus'] != "Inactivo" :
                 return response.json({"msg": "Usuario inactivo"}, status=403)
 
             access_token = await create_access_token(identity=username, app=request.app)
