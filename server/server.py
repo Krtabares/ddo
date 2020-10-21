@@ -80,13 +80,13 @@ async def login(request):
     db = get_mongo_db()
 
     user = await db.user.find_one({'username' : username}, {'_id' : 0})
-    print(user)
+    # print(user)
     if user:
 
         if user['password'] == password:
 
             if user['estatus'] != "Activo" :
-                return response.json({"msg": "Usuario inactivo"}, status=403)
+                return response.json({"msg": "Usuario inactivo"}, status=430)
 
             access_token = await create_access_token(identity=username, app=request.app)
             return response.json({'access_token': access_token, 'user': user}, 200)
@@ -159,7 +159,7 @@ async def listUser(request, token : Token):
     db = get_mongo_db()
 
     users = []
-    print(data)
+    # print(data)
     if not 'role' in data :
         users = await db.user.find({'COD_CLIENTE' : data['pCliente']}, {'_id' : 0}).to_list(length=None)
 

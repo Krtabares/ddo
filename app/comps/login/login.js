@@ -115,6 +115,9 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 			if(response.status == 403){
 				ngNotify.set('¡Credenciales erróneas!','error')
 			}
+      if(response.status == 430){
+				ngNotify.set('¡Usuario inactivo!','error')
+			}
 
 		  });
     }
