@@ -161,6 +161,17 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
           body.pBusqueda = $scope.busqueda_prod
         }
 
+        if($scope.proveedor.cod_proveedor != null || $scope.proveedor.cod_proveedor != "null" ){
+          body.pCodProveedor = $scope.proveedor.cod_proveedor
+        }
+        if(body.pCodProveedor === "null"){
+          body.pCodProveedor = null
+        }
+
+        if($scope.categoria.CODIGO != null || $scope.categoria.CODIGO != "null" ){
+          body.pFiltroCategoria = $scope.categoria.CODIGO
+        }
+
       }
       console.log(body)
       request.post(ip+'/procedure_productos', body,{})
