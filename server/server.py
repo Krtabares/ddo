@@ -159,7 +159,7 @@ async def listUser(request, token : Token):
     db = get_mongo_db()
 
     users = []
-    # print(data)
+    print(data)
     if not 'role' in data :
 
         if  data['role'] != "root" :
