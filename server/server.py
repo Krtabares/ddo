@@ -82,9 +82,16 @@ async def login(request):
     user = await db.user.find_one({'username' : username}, {'_id' : 0})
     #print(user)
     if user:
+        
         if user['password'] == password:
+
+            if user['estatus'] != "Inactivo"
+                return response.json({"msg": "Usuario inactivo"}, status=403)
+
             access_token = await create_access_token(identity=username, app=request.app)
             return response.json({'access_token': access_token, 'user': user}, 200)
+
+
 
     return response.json({"msg": "Bad username or password"}, status=403)
 
