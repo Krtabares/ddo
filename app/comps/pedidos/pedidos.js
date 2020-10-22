@@ -368,9 +368,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             });
 
             $scope.articulo.COD_PRODUCTO = $scope.product.cod_producto;
-            $scope.articulo.precio_bruto = $scope.product.precio_bruto_bs.replace(",", ".");
-            $scope.articulo.precio_neto_usd = parseFloat($scope.product.precio_neto_usd.replace(",", "."))
-            $scope.articulo.precio_neto_bs = $scope.product.precio_neto_bs.replace(",", ".")
+            $scope.articulo.precio_bruto = $scope.product.precio_bruto_bs
+            $scope.articulo.precio_neto_usd = $scope.product.precio_neto_usd
+            $scope.articulo.precio_neto_bs = $scope.product.precio_neto_bs
             $scope.articulo.existencia =$scope.product.existencia
 
             if(!existe){
@@ -665,33 +665,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             // // console.log(response)
 
             if(response.data.obj.length > 0){
-              // response.data.obj.forEach((item, i) => {
-
-                // var uni_fact =  par(element.unidades_facturadas)
-                // // console.log( uni_fact);
-                // // console.log( typeof uni_fact );
-                // if(isNaN(uni_fact)){
-                //
-                //   uni_fact = 0
-                // }
-
-                // item.precioFormatVE = item.precio_neto_bs
-                //
-                // var par1 = parseFloat(item.precioFormatVE)
-                // if(isNaN(par1)){
-                //   par1 = 0
-                // }
-                //
-                // item.precioFormatVE = $scope.formato(2,  par1)
-                // // item.precio_neto_usd =
-                // item.precioFormatUSD = item.precio_neto_usd.
-                // var par2 = parseFloat(item.precioFormatVE)
-                // if(isNaN(par2)){
-                //   par2 = 0
-                // }
-                // item.precioFormatUSD = $scope.formato(3,  par2 )
-
-              // });
 
 
               $scope.productos = response.data.obj
