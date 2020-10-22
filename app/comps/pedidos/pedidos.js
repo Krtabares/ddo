@@ -1361,20 +1361,20 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.editView = false;
           $scope.tabsIndex = 1;
           // pedido.fecha = new Date(pedido.fecha);
-          pedido.pedido.forEach((item, i) => {
-
-            // pedido.totales.productos.forEach((element, i) => {
-            //   if(item.COD_PRODUCTO == element.COD_PRODUCTO){
-                item.iva_bs = item.iva_bs.replace(",", ".")
-                item.iva_usd = item.iva_usd.replace(",", ".")
-                item.precio_neto_usd = item.precio_neto_usd.replace(",", ".")
-                item.precio_bruto = item.precio_bruto_bs.replace(",", ".")
-                item.precio_neto_bs = item.precio_neto_bs.replace(",", ".")
-                // item.nombre_producto = element.nombre_producto
-              // }
-            // });
-
-          });
+          // pedido.pedido.forEach((item, i) => {
+          //
+          //   // pedido.totales.productos.forEach((element, i) => {
+          //   //   if(item.COD_PRODUCTO == element.COD_PRODUCTO){
+          //       // item.iva_bs = item.iva_bs.replace(",", ".")
+          //       item.iva_usd = item.iva_usd.replace(",", ".")
+          //       item.precio_neto_usd = item.precio_neto_usd.replace(",", ".")
+          //       item.precio_bruto = item.precio_bruto_bs.replace(",", ".")
+          //       item.precio_neto_bs = item.precio_neto_bs.replace(",", ".")
+          //       // item.nombre_producto = element.nombre_producto
+          //     // }
+          //   // });
+          //
+          // });
 
           $scope.pedido = pedido;
           // $scope.totales = pedido.totales
