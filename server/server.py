@@ -1249,7 +1249,8 @@ async def valida_client(request, token : Token):
         # print(sql)
         c.execute(sql)
         row = c.fetchone()
-
+        print("==============================================================row")
+        print(row)
         if row != None:
             response.json({"data":row},450)
 
