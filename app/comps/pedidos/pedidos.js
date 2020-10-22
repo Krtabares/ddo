@@ -240,7 +240,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           // $scope.client = x
           
-          if($scope.clientes != null && $scope.clientes.length > 0){
+          if($scope.client != null && $scope.clientes.length > 0){
               var auxCli = $scope.clientes
               var auxCliIndex = $scope.clientIndex
 
