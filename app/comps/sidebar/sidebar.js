@@ -9,7 +9,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
   .controller('sidebarCtrl', ['$scope', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'localstorage', 'request', 'NgMap','$localStorage',
     function($scope, $rootScope, $routeParams, $interval, $timeout, ngNotify, localstorage, request, NgMap, $localStorage) {
 
-        console.log("sidebarCtrl entro")
+
 
         $scope.hasUserClient = false;
         $scope.user = {};
@@ -17,7 +17,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
         init()
         function init() {
           var user = localStorage.getItem('user','')
-          console.log(user);
+
           if(user != null){
             $scope.user = JSON.parse(user);
             $scope.permisos = $scope.user.permisos  ;
@@ -79,9 +79,9 @@ $(function(){
   }
   //
   // $('#encrypted').text("Encrypted: "+ encrypted);
-  // console.log(encrypted)
+  //
   // $('#decrypted').text("Decrypted: "+ decrypted.toString(CryptoJS.enc.Utf8) );
-  // console.log(decrypt);
+  //
 
 
 })
@@ -108,7 +108,7 @@ $(function(){
         $scope.isClosed = false;
 
         $scope.hamburger_cross = function () {
-            console.log("hamburger_cross");
+
 
             if ($scope.isClosed == false) {
               // $scope.overlay.hide();
