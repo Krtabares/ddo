@@ -106,24 +106,17 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
 
           request.post(ip+'/valida/client', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            //
 
-            // $scope.creditoClient = response.data.obj
-            // $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
-            // $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
-            if(response.data.data != null && !response.data.data[0]){
               $scope.clienteValido = true
               $scope.clientInvalidoMsg = null
-            }else{
-              $scope.clientInvalidoMsg = response.data.data[0]
-              // ngNotify.set($scope.clientInvalidoMsg,'warn')
-              $scope.clienteValido = false
-              $scope.tabsIndex = 0
-              return;
-            }
+
 
           }, function errorCallback(response) {
-
+            if(response.status == 450){
+              // ngNotify.set('¡Usuario inactivo!','error')
+              $scope.clientInvalidoMsg = response.data.data[0]
+              $scope.clienteValido = false
+            }
           });
         }
 
