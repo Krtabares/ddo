@@ -239,7 +239,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.selectCLient = function(){
 
           // $scope.client = x
-          
+
           if($scope.client != null && $scope.clientes.length > 0){
               var auxCli = $scope.clientes
               var auxCliIndex = $scope.clientIndex
@@ -503,27 +503,24 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         function validaClienteDDO(body) {
           $scope.loading = true
           // // console.log("validaClienteDDO");
+
           request.post(ip+'/valida/client', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            // // console.log(response.data.data)
 
-            if(response.data.data){
+            $scope.clienteValido = true
+            $scope.clientInvalidoMsg = null
+
+            $scope.loading = false
+
+          }, function errorCallback(response) {
+            if(response.status == 450){
               $scope.clientInvalidoMsg = response.data.data[0]
               notify({ message:$scope.clientInvalidoMsg, position:'right', duration:10000, classes:'alert-warning'});
               $scope.clienteValido = false
               $scope.tabsIndex = 0
-              return;
             }
-              $scope.clienteValido = true
-              $scope.clientInvalidoMsg = null
-
-              $scope.loading = false
-
-          }, function errorCallback(response) {
-            // // console.log(response)
-            $scope.loading = false
-
           });
+          
         }
 
         function validaDisponibilidadDDO(arti) {
