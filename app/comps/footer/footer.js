@@ -32,27 +32,16 @@ angular.module('app.myFooter', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-ht
                 var siteFooterHeight = siteFooter.height();
                 var siteFooterWidth = siteFooter.width();
 
-                // var sitemyOverlay = $('#myOverlay');
-                // var sitemyOverlayHeight = sitemyOverlay.height();
-                // var sitemyOverlayWidth = sitemyOverlay.width();
 
-
-
-                console.log('Content Height = ' + siteContentHeight + 'px');
-                console.log('Content Width = ' + siteContentWidth + 'px');
-
-                // console.log('overlay Height = ' + sitemyOverlayHeight + 'px');
-                // console.log('overlay Width = ' + sitemyOverlayWidth + 'px');
-
-                console.log('Footer Height = ' + siteFooterHeight + 'px');
-                console.log('Footer Width = ' + siteFooterWidth + 'px');
+                // console.log('Content Height = ' + siteContentHeight + 'px');
+                // console.log('Content Width = ' + siteContentWidth + 'px');
+                //
+                // console.log('Footer Height = ' + siteFooterHeight + 'px');
+                // console.log('Footer Width = ' + siteFooterWidth + 'px');
 
                 siteContent.css({
-                  "margin-bottom" : siteFooterHeight 
+                  "margin-bottom" : siteFooterHeight
                 });
-                // sitemyOverlay.css({
-                //   "margin-bottom" : siteFooterHeight + 50
-                // });
               };
             });
 
