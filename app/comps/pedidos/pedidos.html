@@ -796,10 +796,10 @@
                           <td><p class="text-center">{{ x.categoria }}</p></td>
                           <td><p class="text-center">{{ x.existencia }}</p></td>
                           <td><p class="text-center">{{ x.princ_activo }}</p></td>
-                          <td><p class="text-right">{{  x.precioFormatVE }}</p></td>
-                          <td><p class="text-right">{{  x.iva_bs }}</p></td>
-                          <td><p class="text-right">{{  x.precioFormatUSD }}</p></td>
-                          <td><p class="text-right">{{  x.iva_usd }}</p></td>
+                          <td><p class="text-right">{{  formato(2,x.precio_neto_bs) }}</p></td>
+                          <td><p class="text-right">{{  formato(2,x.iva_bs) }}</p></td>
+                          <td><p class="text-right">{{  formato(3,x.precio_neto_usd) }}</p></td>
+                          <td><p class="text-right">{{  formato(3,x.iva_usd) }}</p></td>
                           <td><p class="text-left">{{  x.proveedor }}</p></td>
 
                       </tr>

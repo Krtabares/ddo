@@ -675,21 +675,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 //   uni_fact = 0
                 // }
 
-                item.precioFormatVE = item.precio_neto_bs.replace(",", ".")
-
-                var par1 = parseFloat(item.precioFormatVE)
-                if(isNaN(par1)){
-                  par1 = 0
-                }
-
-                item.precioFormatVE = $scope.formato(2,  par1)
-                // item.precio_neto_usd =
-                item.precioFormatUSD = item.precio_neto_usd.replace(",", ".")
-                var par2 = parseFloat(item.precioFormatVE)
-                if(isNaN(par2)){
-                  par2 = 0
-                }
-                item.precioFormatUSD = $scope.formato(3,  par2 )
+                // item.precioFormatVE = item.precio_neto_bs
+                //
+                // var par1 = parseFloat(item.precioFormatVE)
+                // if(isNaN(par1)){
+                //   par1 = 0
+                // }
+                //
+                // item.precioFormatVE = $scope.formato(2,  par1)
+                // // item.precio_neto_usd =
+                // item.precioFormatUSD = item.precio_neto_usd.
+                // var par2 = parseFloat(item.precioFormatVE)
+                // if(isNaN(par2)){
+                //   par2 = 0
+                // }
+                // item.precioFormatUSD = $scope.formato(3,  par2 )
 
               });
 
