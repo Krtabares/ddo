@@ -62,8 +62,8 @@
             <option ng-repeat="type in type_user" value="{{type.type}}">
               {{type.text | uppercase}}
             </option>
-            <option value="seller" ng-if="(userLogged.role == 'sisAdm' || userLogged.role == 'root') && clientIndex == -1" style="text-transform: capitalize;" >Vendedor</option>
-            <option value="sisAdm" ng-if="(userLogged.role == 'sisAdm' || userLogged.role == 'root') && clientIndex == -1" style="text-transform: capitalize;" >Administrador de sistema</option>
+            <option value="seller" ng-if="(userLogged.role == 'sisAdm' || userLogged.role == 'root') && clientIndex == null" style="text-transform: capitalize;" >Vendedor</option>
+            <option value="sisAdm" ng-if="(userLogged.role == 'sisAdm' || userLogged.role == 'root') && clientIndex == null" style="text-transform: capitalize;" >Administrador de sistema</option>
             <option value="" disabled selected>Selecciona un tipo de usuario</option>
           </select>
 
