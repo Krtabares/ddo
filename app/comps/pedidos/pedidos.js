@@ -665,7 +665,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             // // console.log(response)
 
             if(response.data.obj.length > 0){
-              response.data.obj.forEach((item, i) => {
+              // response.data.obj.forEach((item, i) => {
 
                 // var uni_fact =  par(element.unidades_facturadas)
                 // // console.log( uni_fact);
@@ -691,7 +691,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 // }
                 // item.precioFormatUSD = $scope.formato(3,  par2 )
 
-              });
+              // });
 
 
               $scope.productos = response.data.obj
