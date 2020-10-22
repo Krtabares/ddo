@@ -1238,7 +1238,7 @@ async def valida_client(request, token : Token):
         c = db.cursor()
         sql = """select t2.DESCRIPCION
                         from dual
-                    join TIPO_ERROR t2 on PAGINAWEB.PROCESOSPW1.valida_cliente(\'{pNoCia}\',\'{pNoGrupo}\',\'{pCliente}\',{pMoneda},0) = t2.CODIGO""".format(
+                    join TIPO_ERROR t2 on PAGINAWEB.PROCESOSPW.valida_cliente(\'{pNoCia}\',\'{pNoGrupo}\',\'{pCliente}\',{pMoneda},0) = t2.CODIGO""".format(
                     pNoCia = data['pNoCia'],
                     pNoGrupo = data['pNoGrupo'],
                     pCliente = data['pCliente'],
