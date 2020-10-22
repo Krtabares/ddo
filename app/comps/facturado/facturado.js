@@ -13,7 +13,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
         //init
         var ip = IP_SERVER_PYTHON;
 
-        $scope.loading = true;
+        $scope.loading = false;
         $scope.hasUserClient = false;
         $scope.client = {};
         $scope.client_info = {}
