@@ -1251,10 +1251,10 @@ async def valida_client(request, token : Token):
         row = c.fetchone()
         print("==============================================================row")
         print(row)
-        if row != None:
-            response.json({"data":row},450)
+        if row == None:
+            return response.json({"msg":"success"},200)
 
-        return response.json({"msg":"success"},200)
+        return response.json({"data":row},450)
 
     except Exception as e:
         logger.debug(e)
