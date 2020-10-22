@@ -1004,15 +1004,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(response.data.obj.length > 0){
               response.data.obj.forEach((item, i) => {
 
-                item.precioFormatVE = item.precio_bruto_bs.replace(",", ".")
-                item.precioFormatVE = $scope.formato(2,  parseFloat(item.precioFormatVE).toFixed(2) )
-                item.precio_bruto = item.precio_bruto_bs.replace(",", ".");
-                item.precio_neto_bs = item.precio_neto_bs.replace(",", ".");
-                item.precio_neto_usd = item.precio_neto_usd.replace(",", ".");
+                // item.precioFormatVE = item.precio_bruto_bs.replace(",", ".")
+                // item.precioFormatVE = $scope.formato(2,  parseFloat(item.precioFormatVE).toFixed(2) )
+                // item.precio_bruto = item.precio_bruto_bs.replace(",", ".");
+                // item.precio_neto_bs = item.precio_neto_bs.replace(",", ".");
+                // item.precio_neto_usd = item.precio_neto_usd.replace(",", ".");/
                 item.CANTIDAD = $scope.cantidadAux;
                 item.existencia = parseInt($scope.cantidadAux) + parseInt(item.existencia)
-                item.precioFormatUSD = item.precio_neto_usd.replace(",", ".")
-                item.precioFormatUSD = $scope.formato(3,  parseFloat(item.precioFormatUSD).toFixed(2) )
+                // item.precioFormatUSD = item.precio_neto_usd.replace(",", ".")
+                // item.precioFormatUSD = $scope.formato(3,  parseFloat(item.precioFormatUSD).toFixed(2) )
                 $scope.productIndex = i
 
               });
@@ -1067,8 +1067,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               error = validacionesArticulo($scope.articulo)
 
-              $scope.articulo.precio_bruto = $scope.articulo.precio_bruto.replace(",", ".");
-              $scope.articulo.precio_neto_bs = $scope.articulo.precio_neto_bs.replace(",", ".");
+              // $scope.articulo.precio_bruto = $scope.articulo.precio_bruto.replace(",", ".");
+              // $scope.articulo.precio_neto_bs = $scope.articulo.precio_neto_bs.replace(",", ".");
 
               // console.log($scope.articulo.precio_bruto);
 
