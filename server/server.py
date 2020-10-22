@@ -1101,6 +1101,8 @@ async def procedure(request):
             pFechaFactura := {pFechaFactura};
             pFechaPedido := {pFechaPedido};
 
+            dbms_output.enable(output);
+
             procesospw.pedidos_facturados (l_cursor,pTotReg /*pTotReg*/,pTotPaginas /*pTotPaginas*/,NULL /*pPagina*/,100 /*pLineas*/, null /*pDeuda*/,pNoCia /*pCia*/,pNoGrupo /*pGrupo*/,pCliente /*pCliente*/,
                                          null/*FechaFactura*/);
 
