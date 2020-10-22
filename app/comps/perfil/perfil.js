@@ -14,7 +14,7 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
     function($scope, $rootScope, $routeParams, $interval, $timeout, notify, request, NgMap, localstorage, $localStorage, $sessionStorage) {
 
       // CARGA INICIAL DE CHART
-      var ip = "http://192.168.168.170:3500";
+      var ip = IP_SERVER_PYTHON;
       $scope.client = {};
       $scope.client_info = {};
       $scope.hasUserClient = false;

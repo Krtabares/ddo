@@ -18,7 +18,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         "http://www.del-oeste.com/wp-content/uploads/2017/08/almacen-foto-cliente.jpg",
         "http://www.del-oeste.com/wp-content/uploads/2017/08/img-about.jpg",
       ]
-	  var ip = "http://192.168.168.170:3500";
+	  var ip = IP_SERVER_PYTHON;
     $scope.loading = false
     $scope.user = {};
     localstorage.clear()

@@ -30,7 +30,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
         {'id': 2, text: "Inactivo"},
 
       ];
-      var ip = "http://192.168.168.170:3500";
+      var ip = IP_SERVER_PYTHON;
 
       $scope.nombre_cliente = null;
       $scope.client = {};

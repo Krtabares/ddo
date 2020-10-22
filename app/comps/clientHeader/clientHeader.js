@@ -20,7 +20,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
         $scope.client = {};
         $scope.client_info = {}
         $scope.dtInstance = {};
-        var ip = "http://192.168.168.170:3500";
+        var ip = IP_SERVER_PYTHON;
 
         $scope.clienteValido = true
         $scope.clientInvalidoMsg = null

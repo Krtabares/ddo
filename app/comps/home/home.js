@@ -19,7 +19,7 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
       $scope.client_info = {};
       $scope.hasUserClient = false;
 
-      var ip = "http://192.168.168.170:3500";
+      var ip = IP_SERVER_PYTHON;
 
       $scope.token_valid = false
       // validate_token()

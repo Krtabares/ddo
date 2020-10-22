@@ -42,7 +42,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 // // console.log($scope.userLogged);
 
-        var ip = "http://192.168.168.170:3500";
+        var ip = IP_SERVER_PYTHON;
 
         //list pedido
         $scope.listPedido = [];

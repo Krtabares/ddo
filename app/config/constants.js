@@ -28,3 +28,5 @@ var DATATABLE_LANGUAGE_ES = {
     "colvis": "Visibilidad"
   }
 }
+
+var IP_SERVER_PYTHON = "http://192.168.168.170:3500"
