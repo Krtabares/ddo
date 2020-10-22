@@ -12,7 +12,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
   .controller('clientHeaderCtrl', ['$scope', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'localstorage', 'request', 'NgMap','$localStorage',
     function($scope, $rootScope, $routeParams, $interval, $timeout, ngNotify, localstorage, request, NgMap, $localStorage, $element) {
 
-        console.log("clientHeaderCtrl entro")
+
         // var test = mini;
 
         $scope.hasUserClient = false;
@@ -31,7 +31,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
         var entrada = {}
         $ctrl.$onInit = function () {
           // $ctrl.cliente
-          console.log($ctrl.cliente);
+
           if($ctrl.cliente){
             $scope.inputClient = true;
             entrada =  $ctrl.cliente
@@ -41,16 +41,16 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
         }
 
         $ctrl.onChanges = function (changes) {
-          console.log("esto es lo que cambio",obj);
+
 
           }
           $scope.creditoClient={}
           function getClientDispService(body) {
-            // console.log("getClientDispService");
+            //
             // $scope.loading = true
             request.post(ip+'/disponible_cliente', body,{})
             .then(function successCallback(response) {
-              // console.log(response)
+              //
 
               $scope.creditoClient = response.data.obj
 
@@ -61,7 +61,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
               $scope.loading = false
 
             }, function errorCallback(response) {
-              // console.log(response)
+              //
               // $scope.loading = false
             });
           }
@@ -72,15 +72,15 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
             var client = localStorage.getItem('client')
             var client_info = localStorage.getItem('client_info')
             $scope.creditoClient = localStorage.getItem('creditoClient')
-            console.log(client)
-            console.log( client=='{}'  )
+
+
              if ( client=='{}' ){
                 $scope.hasUserClient = false;
-                console.log($scope.inputClient);
+
                 if($scope.inputClient){
                   $scope.client_info = entrada
                   $scope.inputClient = true;
-                  console.log($scope.client_info);
+
                 }
 
             }else{
@@ -103,10 +103,10 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
 
 
         function validaClienteDDO(body) {
-          console.log("validaClienteDDO");
+
           request.post(ip+'/valida/client', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            // console.log(response.data.data)
+            //
 
             // $scope.creditoClient = response.data.obj
             // $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
@@ -123,7 +123,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
             }
 
           }, function errorCallback(response) {
-            console.log(response)
+
           });
         }
 
