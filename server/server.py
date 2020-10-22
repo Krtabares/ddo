@@ -1250,9 +1250,11 @@ async def valida_client(request, token : Token):
         c.execute(sql)
         row = c.fetchone()
 
-        # totalPages=row[0]
+        if row != None:
+            response.json({"data":row},450)
 
-        return response.json({"data":row},200)
+        return response.json({"msg":"success"},200)
+
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
