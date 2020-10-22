@@ -245,8 +245,8 @@ async def procedure(request):
         #print(textVar.getvalue())
         arr = str(textVar.getvalue()).split("|")
         obj = {
-        'disp_bs' : arr[0],
-        'disp_usd': arr[1]
+        'disp_bs' : formatFloatDdo(arr[0]),
+        'disp_usd': formatFloatDdo(arr[1])
         }
         if statusVar.getvalue() != 0:
             break
@@ -708,10 +708,10 @@ async def procedure(request , token : Token):
             'nombre_cliente' :arr[2],
             'tipo_venta' :arr[3],
             'fecha_vencimiento' :arr[4],
-            'monto_inicial' :arr[5],
-            'monto_actual' :arr[6],
-            'monto_inicial_usd' :arr[7],
-            'monto_actual_usd' :arr[8],
+            'monto_inicial' :formatFloatDdo(arr[5]),
+            'monto_actual' :formatFloatDdo(arr[6]),
+            'monto_inicial_usd' :formatFloatDdo(arr[7]),
+            'monto_actual_usd' :formatFloatDdo(arr[8]),
             'fecha_ultimo_pago' :arr[9],
             'monto_ultimo_pago' :arr[10],
             'estatus_deuda' :arr[11],
@@ -954,10 +954,10 @@ async def procedure(request):
             'ind_psicotropico' : arr[5],
             'fecha_vence' : arr[6],
             'existencia' : arr[7],
-            'precio_bruto_bs' : arr[8],
-            'precio_neto_bs' : arr[9],
-            'iva_bs' : arr[10],
-            'precio_neto_usd' : arr[11],
+            'precio_bruto_bs' : formatFloatDdo(arr[8]),
+            'precio_neto_bs' : formatFloatDdo(arr[9]),
+            'iva_bs' : formatFloatDdo(arr[10]),
+            'precio_neto_usd' : formatFloatDdo(arr[11]),
             'iva_usd' : arr[12],
             'tipo_cambio' : arr[13],
             'proveedor' :arr[14],
@@ -1101,7 +1101,7 @@ async def procedure(request):
             pFechaFactura := {pFechaFactura};
             pFechaPedido := {pFechaPedido};
 
-         paginaweb.procesospw1.pedidos_facturados (l_cursor,pTotReg /*pTotReg*/,pTotPaginas /*pTotPaginas*/,NULL /*pPagina*/,100 /*pLineas*/, null /*pDeuda*/,pNoCia /*pCia*/,pNoGrupo /*pGrupo*/,pCliente /*pCliente*/,
+         paginaweb.procesospw.pedidos_facturados (l_cursor,pTotReg /*pTotReg*/,pTotPaginas /*pTotPaginas*/,NULL /*pPagina*/,100 /*pLineas*/, null /*pDeuda*/,pNoCia /*pCia*/,pNoGrupo /*pGrupo*/,pCliente /*pCliente*/,
                                          null/*FechaFactura*/);
 
 
@@ -1847,13 +1847,13 @@ async def procedure_detalle_pedidos(idPedido):
                   'nombre_producto': arr[2],
                   'princ_activo': arr[3],
                   'CANTIDAD': arr[4],
-                  'precio_bruto_bs' : arr[5],
-                  'precio_bruto_usd' : arr[6],
-                  'precio_neto_bs': arr[7],
-                  'PRECIO': arr[5],
-                  'iva_bs': arr[8],
-                  'precio_neto_usd': arr[9],
-                  'iva_usd': arr[10],
+                  'precio_bruto_bs' : formatFloatDdo(arr[5]),
+                  'precio_bruto_usd' : formatFloatDdo(arr[6]),
+                  'precio_neto_bs': formatFloatDdo(arr[7]),
+                  'PRECIO': formatFloatDdo(arr[5]),
+                  'iva_bs': formatFloatDdo(arr[8]),
+                  'precio_neto_usd': formatFloatDdo(arr[9]),
+                  'iva_usd': formatFloatDdo(arr[10]),
                   'fecha_vence': arr[11]
             }
             list.append(obj)
