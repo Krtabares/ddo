@@ -111,7 +111,7 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
             // $scope.creditoClient = response.data.obj
             // $scope.creditoClient.disp_bs_format = parseFloat(response.data.obj.disp_bs)
             // $scope.creditoClient.disp_usd_format = parseFloat(response.data.obj.disp_usd)
-            if(!response.data.data && !response.data.data[0]){
+            if(response.data.data != null && !response.data.data[0]){
               $scope.clienteValido = true
               $scope.clientInvalidoMsg = null
             }else{
