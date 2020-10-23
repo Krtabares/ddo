@@ -143,7 +143,7 @@
 
               </div>
 
-              <div class="row mb-5">
+              <div class="row mb-5" ng-if="clienteEmpleado">
                 <div class="col-3">
                   <label>Max. unidades medicina</label><br>
                   <span >{{client.max_unid_med_emp}}</span>
@@ -462,7 +462,7 @@
 
               </div>
 
-              <div class="row mb-5" ng-show="editView">
+              <div class="row mb-5" ng-show="editView && clienteEmpleado">
                 <div class="col-3">
                   <label>Max. unidades medicina</label><br>
                   <span >{{client.max_unid_med_emp}}</span>

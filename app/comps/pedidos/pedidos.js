@@ -37,6 +37,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0"        }
         $scope.tipoBusqueda = 0
         $scope.pickUpAvailable = false;
+        $scope.clienteEmpleado = false;
 
         var userLog = localStorage.getItem('user')
         $scope.userLogged = JSON.parse(userLog)
@@ -253,6 +254,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.showProductTable = true;
 
+              if($scope.client.grupo_cliente == "2"){
+                $scope.clienteEmpleado = true;
+              }else{
+                $scope.clienteEmpleado = false;
+              }
+
           }else {
             $scope.showProductTable = false
           }
@@ -327,6 +334,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.hasUserClient = true;
            $scope.client = JSON.parse(client);
            $scope.client_info = JSON.parse(client_info);
+
            $scope.client.monto_minimo = parseFloat($scope.client_info.monto_minimo)
            $scope.client.monto_min_pick = $scope.client_info.monto_min_pick
            $scope.client.max_unid_med_emp =  $scope.client_info.max_unid_med_emp
@@ -335,6 +343,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.client.unid_fact_misc_emp =  $scope.client_info.unid_fact_misc_emp
            $scope.client.unid_disp_med_emp =  $scope.client_info.unid_disp_med_emp
            $scope.client.unid_disp_misc_emp =  $scope.client_info.unid_disp_misc_emp
+
+           if($scope.client_info.grupo_cliente = "02" ){
+             $scope.clienteEmpleado = true
+           }else{
+              $scope.clienteEmpleado = false
+           }
 
            selectCLientCAP( $scope.client_info)
            $scope.showProductTable = true
@@ -1161,7 +1175,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
           // console.log('================================================================',$scope.client_info.grupo_cliente);
           // console.log($scope.client_info.grupo_cliente == "02");
-          if($scope.client_info.grupo_cliente == "02"){
+          if( $scope.clienteEmpleado == true){
 
             if(articulo.tipo_prod_emp == "MEDICINA"){
               if( ($scope.totales.empMed + articulo.CANTIDAD) > $scope.client.unid_disp_med_emp){
@@ -1386,7 +1400,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
         $scope.tipoPedido = "N"
         function calcularTotales(editIndex = null) {
-            var clientgroup =  ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+            // var clientgroup =  ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
 
             // console.log("calcularTotales");
             $scope.totales.bolivares = 0
@@ -1413,7 +1427,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA) + (parseFloat(element.iva_usd) * element.CANTIDAD)
 
-              if(clientgroup == "02"){
+              if( $scope.clienteEmpleado == true ){
                 if(element.tipo_prod_emp == "MISCELANEO"){
                   $scope.totales.empMisc += element.CANTIDAD
                 }
