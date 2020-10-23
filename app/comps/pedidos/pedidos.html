@@ -1103,7 +1103,7 @@
                           <td><p class="text-center">{{ x.tipo_pedido }}</p></td>
                           <td>
 
-                            <i class="fa fa-trash" style="cursor: pointer;"  ng-if="userLogged.pedido.eliminar" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
+                            <i class="fa fa-trash" style="cursor: pointer;"  ng-if="userLogged.permisos.pedido.eliminar" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
 
                             <!-- <button type="button" class="btn btn-info"  ></button> -->

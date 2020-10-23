@@ -36,6 +36,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.infoPsico = false;
         $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0"        }
         $scope.tipoBusqueda = 0
+        $scope.pickUpAvailable = false;
 
         var userLog = localStorage.getItem('user')
         $scope.userLogged = JSON.parse(userLog)
@@ -396,7 +397,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // }
           body.pNoCia = "01";
           body.pNoGrupo = ($scope.tipoBusquedaCliente != 0)? "02": "01";
-          console.log(body);
+          // console.log(body);
           request.post(ip+'/procedure_clientes', body,{})
           .then(function successCallback(response) {
             // // console.log(response)
