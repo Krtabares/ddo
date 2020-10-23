@@ -213,41 +213,7 @@
 
               </div>
 
-              <div class="row" ng-if="1==2">
-                <div class="col-lg-2 col-sm-5">
-                  </div>
-                    <div class="col-lg-6 col-sm-6 ml-auto">
-                        <table class="table table-clear">
-                            <tbody>
-                                <tr>
-                                    <td class="left">
-                                        <strong class="text-dark">Total (no incluye iva)</strong>
-                                    </td>
-                                    <td class="right">{{formato(2,totales.bolivares)}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="left">
-                                        <strong class="text-dark">Total (con iva)</strong>
-                                    </td>
-                                    <td class="right">{{formato(2,totales.bsConIva)}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="left">
-                                        <strong class="text-dark">Total USD (no incluye iva)</strong>
-                                    </td>
-                                    <td class="right">{{formato(3,totales.USD)}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="left">
-                                        <strong class="text-dark">Total USD (con iva)</strong> </td>
-                                    <td class="right">
-                                        <strong class="text-dark">{{formato(3,totales.UsdConIva)}}</strong>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+
 
                 <div ng-if="ID != null" class="row">
                   <div class="col-lg-2 col-sm-5">
@@ -848,7 +814,7 @@
 
               <div class="col-md-4 ">
                   <p class="font-weight-bold mb-4">Detalles</p>
-                  <p class="mb-1" ng-if="client.grupo_cliente == '02'" ><span class="text-muted">Tipo (empleado): </span> {{articulo.tipo_prod_emp}}</p>
+                  <p class="mb-1" ng-if="clienteEmpleado" ><span class="text-muted">Tipo (empleado): </span> {{articulo.tipo_prod_emp}}</p>
                   <p class="mb-1"><span class="text-muted">Regulado: </span> {{articulo.ind_regulado}}</p>
                   <p class="mb-1"><span class="text-muted">Impuesto: </span> {{articulo.ind_impuesto}}</p>
                   <p class="mb-1"><span class="text-muted">Psicotropico: </span> {{articulo.ind_psicotropico}}</p>
@@ -1105,8 +1071,6 @@
 
                             <i class="fa fa-trash" style="cursor: pointer;"  ng-if="userLogged.permisos.pedido.eliminar" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
 
-
-                            <!-- <button type="button" class="btn btn-info"  ></button> -->
                             <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
 
 
