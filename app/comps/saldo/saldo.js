@@ -177,7 +177,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       request.post(ip+'/procedure_productos', body,{})
       .then(function successCallback(response) {
         console.log(response)
-        if(response.data.obj.length > 1){
+        if(response.data.obj.length > 0){
           // $scope.productos = response.data.obj
           // defer.resolve(response.data.obj);
             $scope.listaProd = response.data.obj;
