@@ -1336,7 +1336,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.loading = false
 
           }, function errorCallback(response) {
-
+            $scope.oneOrder();
             $scope.loading = false
           });
         }
