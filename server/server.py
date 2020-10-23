@@ -168,7 +168,7 @@ async def listUser(request, token : Token):
 
         if  data['role'] == "sisAdm" :
 
-            users = await db.user.find({'role':{'$in':[sisAdm','seller']}}, {'_id' : 0}).to_list(length=None)
+            users = await db.user.find({'role':{'$in':['sisAdm','seller']}}, {'_id' : 0}).to_list(length=None)
 
     else:
         users = await db.user.find({'COD_CLIENTE' : data['pCliente']}, {'_id' : 0}).to_list(length=None)
