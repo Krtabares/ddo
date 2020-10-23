@@ -36,7 +36,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.infoPsico = false;
         $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0"        }
         $scope.tipoBusqueda = 0
-        $scope.pickUpAvailable = false;
+        $scope.pickUpAvailable = 0;
         $scope.clienteEmpleado = false;
 
         var userLog = localStorage.getItem('user')
@@ -1449,7 +1449,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
 
-            if(clientgroup == "01"){
+            if(!$scope.clienteEmpleado && $scope.pickUpAvailable){
               if($scope.totales.bsConIva > $scope.client.monto_min_pick){
                 $scope.tipoPedido = "D"
               }else{
