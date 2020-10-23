@@ -770,7 +770,7 @@ async def procedure(request):
     else:
         data['pCliente'] = "'"+data['pCliente']+"'"
 
-    if not 'pBusqueda' in data :
+    if not 'pBusqueda' in data or data['pBusqueda'] == None :
         data['pBusqueda'] = 'null'
     else:
         data['pBusqueda'] = "'"+data['pBusqueda']+"'"
