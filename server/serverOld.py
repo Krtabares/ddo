@@ -80,13 +80,19 @@ async def login(request):
     db = get_mongo_db()
 
     user = await db.user.find_one({'username' : username}, {'_id' : 0})
-    #print(user)
+    # print(user)
     if user:
+
         if user['password'] == password:
+
+            if user['estatus'] != "Activo" :
+                return response.json({"msg": "Usuario inactivo"}, status=430)
+
             access_token = await create_access_token(identity=username, app=request.app)
             return response.json({'access_token': access_token, 'user': user}, 200)
-        if user['estatus'] != "Inactivo"
-            return response.json({"msg": "Usuario inactivo"}, status=403)
+
+
+
     return response.json({"msg": "Bad username or password"}, status=403)
 
 @app.route("/refresh_token", ["POST", "GET"])
@@ -152,11 +158,22 @@ async def listUser(request, token : Token):
     data = request.json
     db = get_mongo_db()
 
-    if not 'role' in data :
+    users = []
+    print(data)
+    if 'role' in data :
+
+        if  data['role'] == "root" :
+
+            users = await db.user.find({'role':{'$in':['root','sisAdm','seller']}}, {'_id' : 0}).to_list(length=None)
+
+        if  data['role'] == "sisAdm" :
+
+            users = await db.user.find({'role':{'$in':['sisAdm','seller']}}, {'_id' : 0}).to_list(length=None)
+
+    else:
         users = await db.user.find({'COD_CLIENTE' : data['pCliente']}, {'_id' : 0}).to_list(length=None)
 
-    # else if  data['role'] == "root" :
-    #     users = await db.user.find({}, {'_id' : 0}).to_list(length=None)
+
 
     return response.json(users,200)
 
@@ -232,8 +249,8 @@ async def procedure(request):
         #print(textVar.getvalue())
         arr = str(textVar.getvalue()).split("|")
         obj = {
-        'disp_bs' : arr[0],
-        'disp_usd': arr[1]
+        'disp_bs' : formatFloatDdo(arr[0]),
+        'disp_usd': formatFloatDdo(arr[1])
         }
         if statusVar.getvalue() != 0:
             break
@@ -695,10 +712,10 @@ async def procedure(request , token : Token):
             'nombre_cliente' :arr[2],
             'tipo_venta' :arr[3],
             'fecha_vencimiento' :arr[4],
-            'monto_inicial' :arr[5],
-            'monto_actual' :arr[6],
-            'monto_inicial_usd' :arr[7],
-            'monto_actual_usd' :arr[8],
+            'monto_inicial' :formatFloatDdo(arr[5]),
+            'monto_actual' :formatFloatDdo(arr[6]),
+            'monto_inicial_usd' :formatFloatDdo(arr[7]),
+            'monto_actual_usd' :formatFloatDdo(arr[8]),
             'fecha_ultimo_pago' :arr[9],
             'monto_ultimo_pago' :arr[10],
             'estatus_deuda' :arr[11],
@@ -753,7 +770,7 @@ async def procedure(request):
     else:
         data['pCliente'] = "'"+data['pCliente']+"'"
 
-    if not 'pBusqueda' in data :
+    if not 'pBusqueda' in data or data['pBusqueda'] == None :
         data['pBusqueda'] = 'null'
     else:
         data['pBusqueda'] = "'"+data['pBusqueda']+"'"
@@ -785,7 +802,7 @@ async def procedure(request):
     #print(data)
     db = get_db()
     c = db.cursor()
-    #print(data)
+    print(data)
     c.callproc("dbms_output.enable")
 
     sql = """
@@ -941,10 +958,10 @@ async def procedure(request):
             'ind_psicotropico' : arr[5],
             'fecha_vence' : arr[6],
             'existencia' : arr[7],
-            'precio_bruto_bs' : arr[8],
-            'precio_neto_bs' : arr[9],
-            'iva_bs' : arr[10],
-            'precio_neto_usd' : arr[11],
+            'precio_bruto_bs' : formatFloatDdo(arr[8]),
+            'precio_neto_bs' : formatFloatDdo(arr[9]),
+            'iva_bs' : formatFloatDdo(arr[10]),
+            'precio_neto_usd' : formatFloatDdo(arr[11]),
             'iva_usd' : arr[12],
             'tipo_cambio' : arr[13],
             'proveedor' :arr[14],
@@ -1052,57 +1069,50 @@ async def procedure(request):
                 pFechaPedido date;
 
                 v_nro_factura varchar2(50);
-                v_fecha_factura varchar2(10);
+                v_fecha_factura date;
                 v_cod_cliente varchar2(50);
                 v_cod_vendedor varchar2(50);
                 v_nombre_vendedor varchar2(150);
                 v_email_vendedor varchar2(90);
-                v_no_linea varchar2(4);
+                v_no_linea number;
                 v_no_arti varchar2(50);
                 v_nombre_arti varchar2(150);
-                v_unidades_pedido varchar2(4);
-                v_unidades_facturadas varchar2(4);
-                v_total_producto_bs varchar2(20);
-                v_total_producto_usd varchar2(20);
-                v_cia        varchar2(2);
-                v_grupo      varchar2(2);
-                v_tipo_pedido varchar2(15);
-                v_fecha_entrega varchar2(10);
+                v_unidades_pedido number;
+                v_unidades_facturadas number;
+                v_total_producto_bs varchar(20);
+                v_total_producto_usd varchar(20);
+                v_cia          varchar2(2);
+                v_grupo        varchar2(2);
+                v_tipo_pedido  varchar2(15);
+                v_fecha_entrega date;
+
                 v_pag        number;
-
                 v_lin        number;
-
                 v_totreg     number;
-
+                v_totpag     number;
                 v_tot number:=0;
-
 
     BEGIN
 
-              pTotReg  := {pTotReg};
-              pTotPaginas  := {pTotPaginas};
-              pPagina  := {pPagina};
-              pLineas  := {pLineas};
-              pDeuda := {pDeuda};
-              pNoCia := {pNoCia};
-              pNoGrupo := {pNoGrupo};
-              pCliente := {pCliente};
-              pFechaFactura := {pFechaFactura};
-              pFechaPedido := {pFechaPedido};
+            pTotReg  := {pTotReg};
+            pTotPaginas  := {pTotPaginas};
+            pPagina  := {pPagina};
+            pLineas  := {pLineas};
+            pDeuda := {pDeuda};
+            pNoCia := {pNoCia};
+            pNoGrupo := {pNoGrupo};
+            pCliente := {pCliente};
+            pFechaFactura := {pFechaFactura};
+            pFechaPedido := {pFechaPedido};
 
+            dbms_output.enable(output);
 
-
-         -- procesospw.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda, pPedido, pNoCia, pNoGrupo,pCliente,pFechaFactura,pFechaPedido);
-         procesospw.pedidos_facturados (l_cursor,pTotReg ,pTotPaginas,pPagina,pLineas,pDeuda , pNoCia, pNoGrupo,pCliente,pFechaFactura);
-
-
-
+            procesospw.pedidos_facturados (l_cursor,pTotReg /*pTotReg*/,pTotPaginas /*pTotPaginas*/,NULL /*pPagina*/,100 /*pLineas*/, null /*pDeuda*/,pNoCia /*pCia*/,pNoGrupo /*pGrupo*/,pCliente /*pCliente*/,
+                                         null/*FechaFactura*/);
 
 
       LOOP
-
         FETCH l_cursor into
-
                 v_nro_factura,
                 v_fecha_factura,
                 v_cod_cliente,
@@ -1121,15 +1131,10 @@ async def procedure(request):
                 v_tipo_pedido,
                 v_fecha_entrega,
                 v_pag,
-
                 v_lin;
-
         EXIT WHEN l_cursor%NOTFOUND;
-
         dbms_output.put_line
-
           (
-
                 v_nro_factura|| '|'||
                 v_fecha_factura|| '|'||
                 v_cod_cliente || '|'||
@@ -1141,30 +1146,23 @@ async def procedure(request):
                 v_nombre_arti|| '|'||
                 v_unidades_pedido|| '|'||
                 v_unidades_facturadas|| '|'||
-                v_total_producto_bs|| '|'||
-                v_total_producto_usd|| '|'||
+                v_total_producto_bs || '|'||
+                v_total_producto_usd || '|'||
                 v_cia || '|'||
                 v_grupo || '|'||
-                v_tipo_pedido|| '|'||
-                v_fecha_entrega|| '|'||
+                v_tipo_pedido || '|'||
+                v_fecha_entrega || '|'||
                 v_pag|| '|'||
                 v_lin
-
           );
 
-
-
       END LOOP;
-
          --v_tot:=l_cursor%rowcount;
-
-         --dbms_output.put_line(v_tot || '|'|| v_totreg || '|'|| v_totpag );
-
+        -- dbms_output.put_line(v_tot || '|'|| v_totreg || '|'|| v_totpag );
       CLOSE l_cursor;
 
-
     END;
-                """.format(
+""".format(
                         pTotReg = data['pTotReg'],
                         pTotPaginas = data['pTotPaginas'],
                         pPagina = data['pPagina'],
@@ -1203,8 +1201,8 @@ async def procedure(request):
                 'nombre_arti': arr[8],
                 'unidades_pedido': arr[9],
                 'unidades_facturadas': arr[10],
-                'total_producto': arr[11],
-                'total_producto_usd': arr[12],
+                'total_producto' :  formatFloatDdo(arr[11]) ,
+                'total_producto_usd': formatFloatDdo(arr[12]),
                 'codigo_compani': arr[13],
                 'grupo': arr[14],
                 'tipo_pedido': arr[15],
@@ -1244,22 +1242,24 @@ async def valida_client(request, token : Token):
 
         db = get_db()
         c = db.cursor()
-        sql = """select
-                    t2.DESCRIPCION
+        sql = """select t2.DESCRIPCION
                         from dual
-                    join TIPO_ERROR t2 on procesospw.valida_cliente(\'{pNoCia}\',\'{pNoGrupo}\',\'{pCliente}\',{pMoneda},0) = t2.CODIGO""".format(
+                    join TIPO_ERROR t2 on PAGINAWEB.PROCESOSPW.valida_cliente(\'{pNoCia}\',\'{pNoGrupo}\',\'{pCliente}\',{pMoneda},0) = t2.CODIGO""".format(
                     pNoCia = data['pNoCia'],
                     pNoGrupo = data['pNoGrupo'],
                     pCliente = data['pCliente'],
                     pMoneda = data['pMoneda']
                     )
-        print(sql)
+        # print(sql)
         c.execute(sql)
         row = c.fetchone()
+        # print("==============================================================row")
+        # print(row)
+        if row == None:
+            return response.json({"msg":"success"},200)
 
-        # totalPages=row[0]
+        return response.json({"data":row},450)
 
-        return response.json({"data":row},200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
@@ -1490,7 +1490,7 @@ async def valida_art(cia, arti):
 
         db = get_db()
         c = db.cursor()
-        sql = """select procesospw.existencia_disponible(:pNoCia,:pArti)
+        sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
                         from dual"""
         c.execute(sql, [
                         cia,
@@ -1790,7 +1790,7 @@ async def procedure_detalle_pedidos(idPedido):
                       BEGIN
 
 
-                          Procesospw.detalle_pedidos_cargados (l_cursor ,{idPedido});
+                          PROCESOSPW.detalle_pedidos_cargados (l_cursor ,{idPedido});
 
 
                         LOOP
@@ -1856,13 +1856,13 @@ async def procedure_detalle_pedidos(idPedido):
                   'nombre_producto': arr[2],
                   'princ_activo': arr[3],
                   'CANTIDAD': arr[4],
-                  'precio_bruto_bs' : arr[5],
-                  'precio_bruto_usd' : arr[6],
-                  'precio_neto_bs': arr[7],
-                  'PRECIO': arr[5],
-                  'iva_bs': arr[8],
-                  'precio_neto_usd': arr[9],
-                  'iva_usd': arr[10],
+                  'precio_bruto_bs' : formatFloatDdo(arr[5]),
+                  'precio_bruto_usd' : formatFloatDdo(arr[6]),
+                  'precio_neto_bs': formatFloatDdo(arr[7]),
+                  'PRECIO': formatFloatDdo(arr[5]),
+                  'iva_bs': formatFloatDdo(arr[8]),
+                  'precio_neto_usd': formatFloatDdo(arr[9]),
+                  'iva_usd': formatFloatDdo(arr[10]),
                   'fecha_vence': arr[11]
             }
             list.append(obj)
@@ -1899,7 +1899,7 @@ async def procedure_pedidos(cia,grupo,cliente):
                           pNoGrupo := {pNoGrupo};
                           pCliente := {pCliente};
 
-                          Procesospw.pedidos_cargados (l_cursor ,pNoCia, pNoGrupo,pCliente);
+                          PROCESOSPW.pedidos_cargados (l_cursor ,pNoCia, pNoGrupo,pCliente);
 
                         LOOP
 
@@ -2219,5 +2219,15 @@ async def logAudit(user, module, accion, context):
     await db.audit.insert_one(log)
 
     return
+
+def formatFloatDdo(value):
+
+    if len(value) > 0:
+    	x = value.replace(",", ".")
+    	x = float(x)
+    else:
+    	x = float(0)
+
+    return x
 
 app.run(host='0.0.0.0', port = port, debug = False)
