@@ -29,7 +29,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.client = {};
         $scope.client_info = {}
         $scope.ID = null
-        $scope.clientIndex = -1;
+        $scope.clientIndex = null;
         $scope.productos = null;
         $scope.product = {};
         $scope.productIndex = -1;
@@ -520,7 +520,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.tabsIndex = 0
             }
           });
-          
+
         }
 
         function validaDisponibilidadDDO(arti) {
