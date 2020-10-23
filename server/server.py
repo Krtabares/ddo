@@ -802,7 +802,7 @@ async def procedure(request):
     #print(data)
     db = get_db()
     c = db.cursor()
-    #print(data)
+    print(data)
     c.callproc("dbms_output.enable")
 
     sql = """
