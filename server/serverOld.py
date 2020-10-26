@@ -1221,17 +1221,17 @@ async def valida_client(request, token : Token):
         data = request.json
 
         if not 'pNoCia' in data :
-            data['pNoCia'] = '01'
+            return response.json({"msg": "Missing password parameter cia"}, status=400)
         # else:
         #     data['pNoCia'] = "'"+data['pNoCia']+"'"
 
         if not 'pNoGrupo' in data :
-            data['pNoGrupo'] = '01'
+            return response.json({"msg": "Missing password parameter grupo"}, status=400)
         # else:
         #     data['pNoGrupo'] = "'"+data['pNoGrupo']+"'"
 
         if not 'pCliente' in data :
-            data['pCliente'] = 'null'
+            return response.json({"msg": "Missing password parameter cliente"}, status=400)
         # else:
         #     data['pCliente'] = "'"+data['pCliente']+"'"
 
@@ -1250,7 +1250,7 @@ async def valida_client(request, token : Token):
                     pCliente = data['pCliente'],
                     pMoneda = data['pMoneda']
                     )
-        # print(sql)
+        print(sql)
         c.execute(sql)
         row = c.fetchone()
         # print("==============================================================row")
