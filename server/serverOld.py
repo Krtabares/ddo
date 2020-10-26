@@ -1785,6 +1785,7 @@ async def procedure_detalle_pedidos(idPedido):
                         v_precio_neto_usd varchar2(10);
                         v_iva_usd varchar2(10);
                         v_fecha_vence varchar2(10);
+                        v_tipo_prod_emp varchar2(12);
 
 
                       BEGIN
@@ -1808,7 +1809,8 @@ async def procedure_detalle_pedidos(idPedido):
                                   v_iva_bs ,
                                   v_precio_neto_usd ,
                                   v_iva_usd,
-                                  v_fecha_vence;
+                                  v_fecha_vence,
+                                  v_tipo_prod_emp;
 
                           EXIT WHEN l_cursor%NOTFOUND;
 
@@ -1828,7 +1830,8 @@ async def procedure_detalle_pedidos(idPedido):
                                   v_iva_bs|| '|'||
                                   v_precio_neto_usd|| '|'||
                                   v_iva_usd|| '|'||
-                                  v_fecha_vence
+                                  v_fecha_vence|| '|'||
+                                  v_tipo_prod_emp
 
 
                             );
@@ -1863,7 +1866,8 @@ async def procedure_detalle_pedidos(idPedido):
                   'iva_bs': formatFloatDdo(arr[8]),
                   'precio_neto_usd': formatFloatDdo(arr[9]),
                   'iva_usd': formatFloatDdo(arr[10]),
-                  'fecha_vence': arr[11]
+                  'fecha_vence': arr[11],
+                  'tipo_prod_emp': arr[12]
             }
             list.append(obj)
 
