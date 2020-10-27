@@ -279,7 +279,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pCliente = $scope.pedido.no_cliente
             body.pNoCia = $scope.pedido.no_cia
             body.pNoGrupo =  $scope.pedido.grupo
-
+            console.log("selectCLientCAP");
             validaClienteDDO(body)
 
 
@@ -1283,6 +1283,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               body.pNoCia = response.data.obj[0].no_cia
               body.pNoGrupo = response.data.obj[0].grupo
               getClientDispService(body)
+              console.log(getPedido);
               validaClienteDDO(body)
             }
 
