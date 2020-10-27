@@ -1078,11 +1078,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               error = validacionesArticulo($scope.articulo)
 
-
-
-
-
-
               if(!error){
                 $scope.addDetalleProducto($scope.articulo)
                 calcularTotales()
@@ -1337,7 +1332,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           $scope.pedido = pedido;
 
-
+          $scope.pickUpAvailable = pedido.TIPO_PEDIDO
           calcularTotales()
         }
 
