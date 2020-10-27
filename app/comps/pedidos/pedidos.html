@@ -98,18 +98,18 @@
 
             <div class="col-sm-12 col-md-12 col-lg-12" ng-show="tabsIndex == 1" >
               <div class="row" ng-if="!clienteEmpleado" >
-                <div class="form-check mb-3">
-                  <input class="form-check-input" type="radio" name="exampleRadios" ng-model="pickUpAvailable" id="exampleRadios1" ng-value="1" >
-                  <label class="form-check-label" for="exampleRadios1">
-                    Pedido normal
-                  </label>
-                </div>
-                <div class="form-check mb-3">
-                  <input class="form-check-input" type="radio" name="exampleRadios" ng-model="pickUpAvailable" id="exampleRadios2" ng-value="2" >
-                  <label class="form-check-label" for="exampleRadios2">
-                    Pedido Pick-Up
-                  </label>
-                </div>
+                <label>Tipo de pedido</label>
+                  <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
+                  <select class="form-control form-control-sm"  ng-model="pickUpAvailable">
+
+                    <option selected value="1">
+                      Pedido normal
+                    </option>
+                    <option selected value="2">
+                      Pedido Pick-Up
+                    </option>
+
+                  </select>
               </div>
 
               <div class="row mt-3 mb-5" >
@@ -401,18 +401,20 @@
           <div class="col-sm-12 col-md-12 col-lg-12"  style="margin-top: 32px;" ng-show="tabsIndex == 1"  >
 
             <div class="row" ng-if="!clienteEmpleado" ng-show="editView" >
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="pickUpAvailable" id="exampleRadios3" ng-value="1" >
-                <label class="form-check-label" for="exampleRadios3">
+
+
+              <label>Tipo de pedido</label>
+              <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
+              <select class="form-control form-control-sm"  ng-model="pickUpAvailable">
+
+                <option selected value="1">
                   Pedido normal
-                </label>
-              </div>
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="pickUpAvailable" id="exampleRadios4" ng-value="2" >
-                <label class="form-check-label" for="exampleRadios4">
+                </option>
+                <option selected value="2">
                   Pedido Pick-Up
-                </label>
-              </div>
+                </option>
+
+              </select>
             </div>
 
             <div class="row mt-5 mb-5" ng-show="editView" >
