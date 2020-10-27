@@ -400,6 +400,21 @@
 
           <div class="col-sm-12 col-md-12 col-lg-12"  style="margin-top: 32px;" ng-show="tabsIndex == 1"  >
 
+            <div class="row" ng-if="!clienteEmpleado" ng-show="editView" >
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="pickUpAvailable" id="exampleRadios1" ng-value="0" >
+                <label class="form-check-label" for="exampleRadios1">
+                  Pedido normal
+                </label>
+              </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="pickUpAvailable" id="exampleRadios2" ng-value="1" >
+                <label class="form-check-label" for="exampleRadios2">
+                  Pedido Pick-Up
+                </label>
+              </div>
+            </div>
+
             <div class="row mt-5 mb-5" ng-show="editView" >
               <div class="col-6">
                 <label></label>
