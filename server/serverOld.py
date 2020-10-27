@@ -1384,6 +1384,11 @@ async def upd_detalle_producto_serv (request, token: Token):
     try:
         data = request.json
 
+        pedidoValido = await validate_Pedido(data['ID'])
+
+        if not pedidovalido :
+            return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
+
         reservado = await update_detalle_pedido(data['pedido'], data['ID'])
 
         msg = 0
@@ -1483,6 +1488,8 @@ async def upd_tipo_pedido( ID, tipoPedido = "N"):
 
 async def validate_Pedido( ID ):
 
+    try:
+
         db = get_db()
         c = db.cursor()
 
@@ -1502,6 +1509,9 @@ async def validate_Pedido( ID ):
             return True
         else:
             return False
+
+    except Exception as e:
+        logger.debug(e)
 
 
 async def valida_art(cia, arti):
