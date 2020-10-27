@@ -1626,7 +1626,7 @@ async def add_detalle_producto (request, token: Token):
     try:
         data = request.json
 
-        pedidoValido = await validate_Pedido(ID)
+        pedidoValido = await validate_Pedido(data['ID'])
 
         if not pedidovalido :
             return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
