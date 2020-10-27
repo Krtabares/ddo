@@ -518,7 +518,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         function validaClienteDDO(body) {
           $scope.loading = true
 
-
+          console.log("pedido",body);
           request.post(ip+'/valida/client', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
