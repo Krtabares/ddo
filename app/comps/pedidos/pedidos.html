@@ -102,7 +102,7 @@
                   <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
                   <select class="form-control form-control-sm"  ng-model="pickUpAvailable">
 
-                    <option selected value="1">
+                    <option selected value="1" selected >
                       Pedido normal
                     </option>
                     <option selected value="2">
@@ -400,14 +400,14 @@
 
           <div class="col-sm-12 col-md-12 col-lg-12"  style="margin-top: 32px;" ng-show="tabsIndex == 1"  >
 
-            <div class="row" ng-if="!clienteEmpleado" ng-show="editView" >
+            <div class="row"  ng-show="editView && !clienteEmpleado" >
 
 
               <label>Tipo de pedido</label>
               <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
               <select class="form-control form-control-sm"  ng-model="pickUpAvailable">
 
-                <option selected value="1">
+                <option selected value="1" selected >
                   Pedido normal
                 </option>
                 <option selected value="2">
