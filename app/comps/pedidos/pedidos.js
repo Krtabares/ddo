@@ -145,7 +145,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         $scope.openModalDyn = function(type, contextId) {
-
+          console.log(type , $scope.tipoPedido , $scope.pickUpAvailable);
           if(type == 0 && $scope.tipoPedido == "N"  && $scope.pickUpAvailable ){
             $scope.openModalDyn(4, contextId);
             return
@@ -1298,16 +1298,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.getPedidos_filtering = function(no_client){
 
 
-
-
-
-
-
-
-
-
-
-
         }
         $scope.listaPedidosV2=[]
         $scope.getPedidos_filteringV2 = function(no_client){
@@ -1345,21 +1335,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.editView = false;
           $scope.tabsIndex = 1;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           $scope.pedido = pedido;
 
 
@@ -1367,18 +1342,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.removeArt = function(i){
-
-
-
-
-
-
-
-
-
-
-
-
 
           $scope.pedido.pedido.splice( i, 1 );
 
@@ -1443,9 +1406,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.totales.USDIVA = parseFloat($scope.totales.USDIVA)
           $scope.totales.bsConIva = parseFloat($scope.totales.bolivares + $scope.totales.bsIVA)
           $scope.totales.UsdConIva = parseFloat($scope.totales.USD + $scope.totales.USDIVA)
-
-
-
 
             if(!$scope.clienteEmpleado && $scope.pickUpAvailable){
               if($scope.totales.bsConIva > $scope.client.monto_min_pick){
