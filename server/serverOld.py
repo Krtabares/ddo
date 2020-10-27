@@ -1500,7 +1500,7 @@ async def validate_Pedido( ID ):
 
         if row[0] < 2:
             return True
-        else
+        else:
             return False
 
 
