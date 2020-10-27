@@ -868,6 +868,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.loading = false
           }, function errorCallback(response) {
 
+            if(response.status == 410){
+      				  notify({ message:response.data.msg, position:'right', duration:20000, classes:'alert-danger'});
+                $(function(){
+                  $("#addPedidoModal").modal("hide");
+                  $("#showPedidoModal").modal("hide");
+                  $('.modal-backdrop').remove();
+                })
+                $scope.getPedidos_filteringV2();
+      			}
             $scope.loading = false
           });
         }

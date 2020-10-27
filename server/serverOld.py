@@ -1407,6 +1407,7 @@ async def crear_detalle_pedido(detalle, ID):
             cantidad = 0
             disponible = await valida_art("01", detalle['COD_PRODUCTO'])
 
+
             if int(detalle['CANTIDAD']) > disponible :
                 cantidad = disponible
             else:
@@ -1424,10 +1425,6 @@ async def crear_detalle_pedido(detalle, ID):
                                          TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
                                          BODEGA = detalle['bodega']
                                     )
-            #print("+===================================================")
-            #print("crear_detalle_pedido")
-            #print(sql)
-            #print("+===================================================")
 
             c.execute(sql)
 
@@ -1484,6 +1481,28 @@ async def upd_tipo_pedido( ID, tipoPedido = "N"):
         return
 
 
+async def validate_Pedido( ID ):
+
+        db = get_db()
+        c = db.cursor()
+
+        sql = """
+                    SELECT ESTATUS FROM PAGINAWEB.PEDIDO
+                    WHERE  ID  = :ID
+
+            """
+
+        c.execute(sql, ID)
+
+        row = c.fetchone()
+
+        db.commit()
+
+        if row[0] < 2:
+            return True
+        else
+            return False
+
 
 async def valida_art(cia, arti):
     try:
@@ -1497,9 +1516,7 @@ async def valida_art(cia, arti):
                         arti
                     ])
         row = c.fetchone()
-        #print("+===================================================")
-        #print(row[0])
-        #print('row[0]')
+
         return row[0]
     except Exception as e:
         logger.debug(e)
@@ -1608,6 +1625,11 @@ async def add_detalle_producto (request, token: Token):
 # async def procedure(request):
     try:
         data = request.json
+
+        pedidoValido = await validate_Pedido(ID)
+
+        if not pedidovalido :
+            return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
 
         reservado = await crear_detalle_pedido(data['pedido'], data['ID'])
 
