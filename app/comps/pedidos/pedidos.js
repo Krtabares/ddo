@@ -344,7 +344,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.client.unid_disp_med_emp =  $scope.client_info.unid_disp_med_emp
            $scope.client.unid_disp_misc_emp =  $scope.client_info.unid_disp_misc_emp
 
-           if($scope.client_info.grupo_cliente = "02" ){
+           if($scope.client_info.grupo_cliente == "02" ){
              $scope.clienteEmpleado = true
            }else{
               $scope.clienteEmpleado = false
