@@ -2000,7 +2000,7 @@ async def pedido (request , token: Token):
         c.execute("""SELECT
                          COD_CIA, GRUPO_CLIENTE,
                         COD_CLIENTE, TO_CHAR(FECHA_CARGA, 'DD-MM-YYYY'), NO_PEDIDO_CODISA,
-                        OBSERVACIONES, t2.descripcion, ESTATUS
+                        OBSERVACIONES, t2.descripcion, ESTATUS, TIPO_PEDIDO
                         FROM PAGINAWEB.PEDIDO t1
                         join PAGINAWEB.ESTATUS t2
                             on t1.ESTATUS = t2.CODIGO
@@ -2018,6 +2018,7 @@ async def pedido (request , token: Token):
                     'observacion':row[5],
                     'estatus':row[6],
                     'estatus_id':row[7],
+                    'tipo_pedido':row[8],
                     'pedido': pedidos,
                     'errores':errores,
                     'totales':totales,
