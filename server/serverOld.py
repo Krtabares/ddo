@@ -1635,6 +1635,7 @@ async def add_detalle_producto (request, token: Token):
 # async def procedure(request):
     try:
         data = request.json
+        pedidoValido = False
 
         pedidoValido = await validate_Pedido(data['ID'])
 
