@@ -1499,7 +1499,7 @@ async def validate_Pedido( ID ):
 
             """
 
-        c.execute(sql, ID)
+        c.execute(sql, [ID])
 
         row = c.fetchone()
 
