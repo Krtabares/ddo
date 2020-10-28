@@ -1386,7 +1386,7 @@ async def upd_detalle_producto_serv (request, token: Token):
 
         pedidoValido = await validate_Pedido(data['ID'])
 
-        if not pedidovalido :
+        if not pedidoValido :
             return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
 
         reservado = await update_detalle_pedido(data['pedido'], data['ID'])
@@ -1639,7 +1639,7 @@ async def add_detalle_producto (request, token: Token):
 
         pedidoValido = await validate_Pedido(data['ID'])
 
-        if not pedidovalido :
+        if not pedidoValido :
             return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
 
         reservado = await crear_detalle_pedido(data['pedido'], data['ID'])
