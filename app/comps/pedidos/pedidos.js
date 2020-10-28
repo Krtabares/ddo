@@ -842,7 +842,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.addDetalleProducto = function(articulo){
-
+          console.log("addDetalleProducto");
           $scope.loading = true
           var body = {};
 
@@ -1086,7 +1086,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(!existe){
 
               error = validacionesArticulo($scope.articulo)
-
+              console.log(error);
               if(!error){
                 $scope.addDetalleProducto($scope.articulo)
                 calcularTotales()
@@ -1103,13 +1103,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               var existenciaAux = $scope.articulo.existencia
 
-
-
               calcularTotales(indexArticulo)
 
               error = validacionesArticulo($scope.articulo, existenciaAux)
-
-
 
               if(!error){
 
