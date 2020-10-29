@@ -1172,15 +1172,20 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             return  true;
           }
 
-
+          console.log("$scope.clienteEmpleado", $scope.clienteEmpleado);
           if( $scope.clienteEmpleado == true){
-
+            console.log("entro en validacion de empleado");
+            console.log("articulo.tipo_prod_emp", articulo.tipo_prod_emp);
             if(articulo.tipo_prod_emp == "MEDICINA"){
+              console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);
+              console.log("$scope.client.unid_disp_med_emp", $scope.client.unid_disp_med_emp);
               if( ($scope.totales.empMed + articulo.CANTIDAD) > $scope.client.unid_disp_med_emp){
                 notify({ message:'¡La cantidad no puede ser mayor a la disponible por tipo de producto!', position:'right', duration:10000, classes:'alert-danger'});
                return  true;
               }
             }else if(articulo.tipo_prod_emp == "MISCELANEOS"){
+              console.log("$scope.totales.empMisc + articulo.CANTIDAD", $scope.totales.empMisc + articulo.CANTIDAD);
+              console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
               if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
                 notify({ message:'¡La cantidad no puede ser mayor a la disponible por tipo de producto!', position:'right', duration:10000, classes:'alert-danger'});
                return  true;
