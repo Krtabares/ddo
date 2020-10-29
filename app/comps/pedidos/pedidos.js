@@ -1393,7 +1393,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   $scope.totales.empMisc += parseInt(element.CANTIDAD)
                 }
                 if(element.tipo_prod_emp == "MEDICINA"){
-                  $scope.totales.empMisc += parseInt(element.CANTIDAD) 
+                  $scope.totales.empMed += parseInt(element.CANTIDAD) 
                 }
               }
 
