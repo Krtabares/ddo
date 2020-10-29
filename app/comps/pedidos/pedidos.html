@@ -917,14 +917,20 @@
                   <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? (articulo.precio_neto_bs  * articulo.CANTIDAD):0)}}</span>
 
                 </div>
+
                 <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                  <label>Por unidad USD</label><br>
-                  <span  class="text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
+                  <div ng-show="articulo.CANTIDAD > 0">
+                    <label>Por unidad USD</label><br>
+                    <span  class="text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
+
+                  </div>
 
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                  <label>Total USD</label><br>
-                  <span class="text-right" >{{formato(3,(articulo.precio_neto_usd)? (articulo.precio_neto_usd  * articulo.CANTIDAD):0)}}</span>
+                  <div ng-show="articulo.CANTIDAD > 0">
+                    <label>Total USD</label><br>
+                    <span class="text-right" >{{formato(3,(articulo.precio_neto_usd)? (articulo.precio_neto_usd  * articulo.CANTIDAD):0)}}</span>
+                    </div>
 
                 </div>
               </div>
