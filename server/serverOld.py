@@ -962,7 +962,7 @@ async def procedure(request):
             'precio_neto_bs' : formatFloatDdo(arr[9]),
             'iva_bs' : formatFloatDdo(arr[10]),
             'precio_neto_usd' : formatFloatDdo(arr[11]),
-            'iva_usd' : arr[12],
+            'iva_usd' : formatFloatDdo(arr[12]),
             'tipo_cambio' : arr[13],
             'proveedor' :arr[14],
             'bodega' :arr[15],
