@@ -1664,6 +1664,11 @@ async def del_detalle_producto (request, token: Token):
     try:
         data = request.json
 
+        pedidoValido = await validate_Pedido(data['id_pedido'])
+
+        if not pedidoValido :
+            return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
+
         db = get_db()
         c = db.cursor()
 
