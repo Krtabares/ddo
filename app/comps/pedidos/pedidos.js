@@ -1183,7 +1183,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 notify({ message:'¡La cantidad no puede ser mayor a la disponible por tipo de producto!', position:'right', duration:10000, classes:'alert-danger'});
                return  true;
               }
-            }else if(articulo.tipo_prod_emp == "MISCELANEOS"){
+            }else if(articulo.tipo_prod_emp == "MISCELANEO"){
               console.log("$scope.totales.empMisc + articulo.CANTIDAD", $scope.totales.empMisc + articulo.CANTIDAD);
               console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
               if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
