@@ -390,7 +390,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             if(!existe){
 
-              $scope.articulo.CANTIDAD = 1
+              // $scope.articulo.CANTIDAD = 1
 
             }else{
               $scope.articulo.CANTIDAD = cantidadAux
