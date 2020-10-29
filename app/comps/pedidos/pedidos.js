@@ -1416,7 +1416,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             }
 
-
+            console.log(  $scope.totales);
         }
 
         function validaCreditoContraProducto(valor) {
