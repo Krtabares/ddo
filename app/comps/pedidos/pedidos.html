@@ -522,7 +522,7 @@
                 </div>
               </div>
               <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="infoPsico = true;" ng-show="!infoPsico"  > <i class="fa fa-info"></i> Requisitos para Psicotropicos</button>
-              
+
 
                   <!-- <table class="table table-striped table-bordered"  datatable="ng" dt-options="dtOptionsDetalil"> -->
                       <table class="table table-striped table-bordered"  >
@@ -889,7 +889,7 @@
 
               <div class="col-6">
                 <label>Cantidad</label>
-                <input type="number"  min="1" ng-model="articulo.CANTIDAD"
+                <input type="number"  ng-model="articulo.CANTIDAD"
                 ng-keydown="$event.keyCode === 13 && addArtPedido(true)"
                  class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
               </div>
