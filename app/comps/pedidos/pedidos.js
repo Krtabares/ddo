@@ -1393,7 +1393,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   $scope.totales.empMisc += parseInt(element.CANTIDAD)
                 }
                 if(element.tipo_prod_emp == "MEDICINA"){
-                  $scope.totales.empMed += parseInt(element.CANTIDAD) 
+                  $scope.totales.empMed += parseInt(element.CANTIDAD)
                 }
               }
 
@@ -1416,7 +1416,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             }
 
-            console.log(  $scope.totales);
+            // console.log(  $scope.totales);
         }
 
         function validaCreditoContraProducto(valor) {
