@@ -87,7 +87,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
 		  //console.log($scope.user);
       // $scope.user.password = CryptoJS.MD5($scope.user.password).toString();
       var body = {
-        username: $scope.user.username,
+        username: $scope.user.username.toUpperCase() ,
         password:  CryptoJS.MD5($scope.user.password).toString()
       }
 		  request.post(ip+'/login',body,{})
