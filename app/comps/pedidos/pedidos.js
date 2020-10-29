@@ -1390,10 +1390,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               if( $scope.clienteEmpleado == true ){
                 if(element.tipo_prod_emp == "MISCELANEO"){
-                  $scope.totales.empMisc += element.CANTIDAD
+                  $scope.totales.empMisc += parseInt(element.CANTIDAD)
                 }
                 if(element.tipo_prod_emp == "MEDICINA"){
-                  $scope.totales.empMisc += element.CANTIDAD
+                  $scope.totales.empMisc += parseInt(element.CANTIDAD) 
                 }
               }
 
