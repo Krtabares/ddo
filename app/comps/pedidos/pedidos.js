@@ -1200,14 +1200,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);
               console.log("$scope.client.unid_disp_med_emp", $scope.client.unid_disp_med_emp);
               if( ($scope.totales.empMed + articulo.CANTIDAD) > $scope.client.unid_disp_med_emp){
-                notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ( <strong>'+($scope.totales.empMed - $scope.client.unid_disp_med_emp )+' </strong>) para medicinas!', position:'right', duration:10000, classes:'alert-danger'});
+                notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ( '+($scope.totales.empMed - $scope.client.unid_disp_med_emp )+') para medicinas!', position:'right', duration:10000, classes:'alert-danger'});
                return  true;
               }
             }else if(articulo.tipo_prod_emp == "MISCELANEO"){
               console.log("$scope.totales.empMisc + articulo.CANTIDAD", $scope.totales.empMisc + articulo.CANTIDAD);
               console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
               if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
-              notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ( <strong>'+($scope.totales.empMisc - $scope.client.unid_disp_misc_emp )+' </strong>) para productos misceláneos!', position:'right', duration:10000, classes:'alert-danger'});
+              notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ( '+($scope.totales.empMisc - $scope.client.unid_disp_misc_emp )+') para productos misceláneos!', position:'right', duration:10000, classes:'alert-danger'});
                return  true;
               }
             }
