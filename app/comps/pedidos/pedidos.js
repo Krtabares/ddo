@@ -35,7 +35,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.productIndex = -1;
         $scope.infoPsico = false;
         $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0"        }
-        $scope.tipoBusqueda = 0
+        $scope.tipoBusqueda = 1
         $scope.pickUpAvailable = '1';
         $scope.clienteEmpleado = false;
 
@@ -648,7 +648,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               if($scope.busqueda_prod == null){
                  $scope.busqueda_prod = $scope.auxBusqueda
               }
-              if($scope.tipoBusqueda==1){
+              if($scope.tipoBusqueda==2){
                 body.pComponente = $scope.busqueda_prod
               }else{
                 body.pBusqueda = $scope.busqueda_prod
@@ -1194,6 +1194,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           console.log("$scope.clienteEmpleado", $scope.clienteEmpleado);
           if( $scope.clienteEmpleado == true){
+
+            if( articulo.CANTIDAD > 1  ){
+               notify({ message:'¡Solo puede solicitar una unidad por producto!', position:'right', duration:10000, classes:'alert-danger'});
+              return  true;
+            }
             console.log("entro en validacion de empleado");
             console.log("articulo.tipo_prod_emp", articulo.tipo_prod_emp);
             if(articulo.tipo_prod_emp == "MEDICINA"){

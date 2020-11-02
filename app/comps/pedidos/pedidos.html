@@ -423,8 +423,6 @@
 
 
               <label>Tipo de pedido</label>
-              <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-              {{pickUpAvailable}}
               <select class="form-control form-control-sm"  ng-model="pickUpAvailable">
 
                 <option  value="1" >
@@ -727,18 +725,23 @@
           <div class="">
 
             <div class="col-sm-12 col-md-12 col-lg-12">
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusqueda" id="exampleRadios1" ng-value="0" >
-                <label class="form-check-label" for="exampleRadios1">
-                  Busqueda por producto
-                </label>
+
+              <div class="row"   >
+
+
+                <label>Tipo de busqueda</label>
+                <select class="form-control form-control-sm"  ng-model="tipoBusqueda">
+
+                  <option  value="1" >
+                   Por producto
+                  </option>
+                  <option  value="2">
+                  Por componente activo
+                  </option>
+
+                </select>
               </div>
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusqueda" id="exampleRadios2" ng-value="1" >
-                <label class="form-check-label" for="exampleRadios2">
-                  Busqueda por componente activo
-                </label>
-              </div>
+
 
 
               <div class="row">
