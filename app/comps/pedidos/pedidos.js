@@ -226,9 +226,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
             getClientDispService(body)
 
-
-
-
             $scope.edit_pedido();
 
 
@@ -321,7 +318,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         verificClient()
-
+        $scope.naturalLimits = true
         function verificClient(){
 
          var client = localStorage.getItem('client')
@@ -344,7 +341,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
            $scope.client.unid_disp_misc_emp =  $scope.client_info.unid_disp_misc_emp
 
            if($scope.client_info.grupo_cliente == "02" ){
+
              $scope.clienteEmpleado = true
+
+             if($scope.client_info.ind_emp_nolim=='S'){
+                $scope.naturalLimits = false
+              }else {
+                $scope.naturalLimits = true
+              }
+
            }else{
               $scope.clienteEmpleado = false
            }
@@ -752,11 +757,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.getPedidos_filteringV2();
 
               notify({ message:'¡Pedido generado con exito!', position:'right', duration:10000, classes:'alert-success'});
-            /*if (response.data.exist) {
-              ngNotify.set('¡Ya el nombre de usuario se encuentra registrado!','error')
-            } else if (response.data.email_flag) {
-              ngNotify.set('¡Ya el correo está registrado!','error')
-            }*/
+
             alert("Guardado con exito!")
           }, function errorCallback(response) {
 
@@ -1044,23 +1045,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(response.data.obj.length > 0){
               response.data.obj.forEach((item, i) => {
 
-
-
-
-
-
                 item.CANTIDAD = $scope.cantidadAux;
                 item.existencia = parseInt($scope.cantidadAux) + parseInt(item.existencia)
-
 
                 $scope.productIndex = i
 
               });
 
-
               $scope.articulo = response.data.obj[0]
-
-
 
             }else{
               notify({ message:'¡No se encontraron resultados!', position:'right', duration:10000, classes:'alert-warning'});
@@ -1069,10 +1061,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }, function errorCallback(response) {
 
           });
-
-
-
-
 
           $(function(){
             $("#modalInfoProduct").modal({
@@ -1194,12 +1182,23 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           console.log("$scope.clienteEmpleado", $scope.clienteEmpleado);
           if( $scope.clienteEmpleado == true){
-
-            if( articulo.CANTIDAD > 1  ){
-               notify({ message:'¡Solo puede solicitar una unidad por producto!', position:'right', duration:10000, classes:'alert-danger'});
-              return  true;
-            }
             console.log("entro en validacion de empleado");
+
+            if( $scope.naturalLimits ){
+
+              if(  articulo.CANTIDAD > 1  ){
+                 notify({ message:'¡Solo puede solicitar una unidad por producto!', position:'right', duration:10000, classes:'alert-danger'});
+                return  true;
+              }
+
+              if(articulo.disp_prod_emp == "N"){
+                notify({ message:'¡Este producto ya fue solicitado en un pediodo el dia de hoy!', position:'right', duration:10000, classes:'alert-danger'});
+               return  true;
+              }
+
+            }
+
+
             console.log("articulo.tipo_prod_emp", articulo.tipo_prod_emp);
             if(articulo.tipo_prod_emp == "MEDICINA"){
               console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);

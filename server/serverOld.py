@@ -351,6 +351,7 @@ async def procedure(request):
                 v_unid_disp_med_emp number;
                 v_unid_disp_misc_emp number;
                 v_monto_min_pick number;
+                ind_emp_nolim varchar2(1);
                 v_tot number;
                 v_pagina number;
                 v_linea number;
@@ -403,6 +404,7 @@ async def procedure(request):
                 v_unid_disp_med_emp,
                 v_unid_disp_misc_emp,
                 v_monto_min_pick,
+                ind_emp_nolim,
                 v_pagina,
                 v_linea;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -440,6 +442,7 @@ async def procedure(request):
                 v_unid_disp_med_emp|| '|'||
                 v_unid_disp_misc_emp|| '|'||
                 v_monto_min_pick|| '|'||
+                ind_emp_nolim|| '|'||
                 v_pagina|| '|'||
                 v_linea
                 );
@@ -500,8 +503,9 @@ async def procedure(request):
         'unid_disp_med_emp' :arr[29],
         'unid_disp_misc_emp' :arr[30],
         'monto_min_pick' :arr[31],
-        'pagina': arr[32],
-        'linea': arr[33]
+        'ind_emp_nolim' :arr[32],
+        'pagina': arr[33],
+        'linea': arr[34]
         }
         list.append(obj)
     return response.json({"msj": "OK", "obj": list}, 200)
@@ -843,7 +847,8 @@ async def procedure(request):
                 v_categoria varchar2(30);
                 v_descuento1 number;
                 v_descuento2 number;
-                v_tipo_prod_emp varchar(20);
+                v_tipo_prod_emp varchar2(20);
+                v_disp_prod_emp varchar2(1);
                 V_PAGINA number;
                 V_LINEA number;
             BEGIN
@@ -889,6 +894,7 @@ async def procedure(request):
                 v_descuento1,
                 v_descuento2,
                 v_tipo_prod_emp,
+                v_disp_prod_emp,
                 V_PAGINA,
                 V_LINEA;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -914,6 +920,7 @@ async def procedure(request):
                     v_descuento1|| '|'||
                     v_descuento2|| '|'||
                     v_tipo_prod_emp|| '|'||
+                    v_disp_prod_emp|| '|'||
                     V_PAGINA|| '|'||
                     V_LINEA
                 );
@@ -970,6 +977,7 @@ async def procedure(request):
             'descuento1' : arr[17],
             'descuento2' : arr[18],
             'tipo_prod_emp' : arr[19],
+            'disp_prod_emp' :arr[19],
             'pagina': arr[20],
             'linea': arr[21]
         }
@@ -1642,6 +1650,8 @@ async def add_detalle_producto (request, token: Token):
         if not pedidoValido :
             return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
 
+        await upd_estatus_pedido(1,data['ID'])
+
         reservado = await crear_detalle_pedido(data['pedido'], data['ID'])
 
         totales = await totales_pedido(int(data['ID']))
@@ -1668,6 +1678,8 @@ async def del_detalle_producto (request, token: Token):
 
         if not pedidoValido :
             return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
+
+        await upd_estatus_pedido(1,data['id_pedido'])
 
         db = get_db()
         c = db.cursor()
