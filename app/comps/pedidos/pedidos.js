@@ -1371,7 +1371,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           $scope.pedido = pedido;
 
-          $scope.pickUpAvailable = (pedido.TIPO_PEDIDO == "N")? "1":"2";
+          $scope.pickUpAvailable = (pedido.tipo_pedido == "N")? "1":"2";
           calcularTotales()
         }
 
