@@ -1138,7 +1138,7 @@
                       </thead>
                       <tbody>
 
-                        <tr ng-repeat="x in listaPedidosV2">
+                        <tr ng-repeat="x in listaPedidosV2" ng-show="x.estatus != 'PEDIDO CREADO'">
                           <th scope="row">{{ $index + 1 }}</th>
                           <td><p class="text-center">ORD-{{ x.ID }}-WEB</p></td>
                           <td><p class="text-center">{{  x.fecha_creacion }}</p></td>
