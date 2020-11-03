@@ -71,12 +71,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           getClientDispService(body)
 
-          $(function(){
-            $("#addPedidoModal").modal({
-                backdrop: 'static',
-                keyboard: false
-            });
-          })
+          $scope.addPedidoV2()
+
+
 
         }
         $scope.unicOrderID = null
@@ -778,6 +775,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               notify({ message:'¡Pedido abierto con exito!', position:'right', duration:10000, classes:'alert-success'});
               $scope.counter = 0;
               $scope.mytimeout = $timeout($scope.onTimeout,1000);
+
+              $(function(){
+                $("#addPedidoModal").modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+              })
+
             }else{
               $(function(){
                 $("#addPedidoModal").modal("hide");
