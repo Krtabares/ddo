@@ -43,7 +43,7 @@
           </div>
 
         <ul class="nav nav-tabs mb-4">
-            <li class="nav-item">
+            <li class="nav-item" ng-show="1 == 2" >
               <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Informacion Cliente <span class="badge badge-secondary">1</span></a>
             </li>
             <li class="nav-item">
@@ -343,14 +343,14 @@
             </button>
           </div>
         <ul class="nav nav-tabs mb-4">
-            <li class="nav-item">
-              <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Informacion Cliente <span class="badge badge-secondary">1</span></a>
+            <li class="nav-item" ng-show="1 == 2" >
+              <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Informacion Cliente </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" ng-class="{ active : tabsIndex == 1 }" ng-disabled="!showProductTable || !clienteValido" ng-click="goToTab(1)" >Detalle de pedido <span class="badge badge-secondary">2</span></a>
+              <a class="nav-link" ng-class="{ active : tabsIndex == 1 }" ng-disabled="!showProductTable || !clienteValido" ng-click="goToTab(1)" >Detalle de pedido </a>
             </li>
             <li class="nav-item" ng-show="pedido.errores.length > 0">
-              <a class="nav-link" ng-class="{ active : tabsIndex == 2 }" ng-disabled="!showProductTable || !clienteValido" ng-click="goToTab(2)" >Errores<span class="badge badge-danger">3</span></a>
+              <a class="nav-link" ng-class="{ active : tabsIndex == 2 }" ng-disabled="!showProductTable || !clienteValido" ng-click="goToTab(2)" >Errores</a>
             </li>
         </ul>
 
