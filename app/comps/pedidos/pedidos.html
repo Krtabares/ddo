@@ -97,29 +97,32 @@
             </div>
 
             <div class="col-sm-12 col-md-12 col-lg-12" ng-show="tabsIndex == 1" >
-              <div class="row" ng-show="!clienteEmpleado && ID != null" >
-                <label>Tipo de pedido</label>
-                  <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
-                  <select class="form-control form-control-sm"  ng-model="pickUpAvailable">
 
-                    <option  value="1"  >
-                      Pedido normal
-                    </option>
-                    <option  value="2">
-                      Pedido Pick-Up
-                    </option>
-
-                  </select>
-              </div>
 
               <div class="row mt-3 mb-5" >
-                <div class="col-6">
+                <div class="col-4">
+                  <div ng-show="!clienteEmpleado && ID != null" >
+                    <label>Tipo de pedido</label>
+                      <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
+                      <select class="form-control form-control-sm"  ng-model="pickUpAvailable">
+
+                        <option  value="1"  >
+                          Pedido normal
+                        </option>
+                        <option  value="2">
+                          Pedido Pick-Up
+                        </option>
+
+                      </select>
+                  </div>
+                </div>
+                <div class="col-4">
                   <label></label>
                   <button type="button" class="btn btn-info" ng-click="addPedidoV2()" ng-show="ID == null"  >Abrir Pedido</button>
                   <button type="button" class="btn btn-success"  ng-show="ID != null &&  counter < 600000" ng-click="openModalProducts()" >Agregar Productos</button>
                 </div>
 
-                <div class="col-6">
+                <div class="col-4">
                   <label></label>
                   <button type="button"  class="btn btn-success" ng-click="openModalDyn(0,ID)" ng-show="ID != null" ng-disabled="pedido.pedido.length < 1 || !clienteValido" >Finalizar pedido</button>
                 </div>
