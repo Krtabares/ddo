@@ -1458,8 +1458,7 @@ async def upd_estatus_pedido(estatus, ID):
         sql = """
                     UPDATE PAGINAWEB.PEDIDO
                     SET
-                        ESTATUS          = {ESTATUS},
-                        FECHA_ESTATUS    = TO_CHAR(SYSDATE, 'DD-MM-YYYY')
+                        ESTATUS          = {ESTATUS}
                     WHERE  ID               = {ID}
 
             """.format(  ESTATUS = estatus,ID = int(ID))
