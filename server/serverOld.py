@@ -1451,7 +1451,7 @@ async def crear_detalle_pedido(detalle, ID):
             logger.debug(e)
 
 async def upd_estatus_pedido(estatus, ID):
-
+        print("upd_estatus")
         db = get_db()
         c = db.cursor()
 
@@ -1463,9 +1463,9 @@ async def upd_estatus_pedido(estatus, ID):
                     WHERE  ID               = {ID}
 
             """.format(  ESTATUS = estatus,ID = int(ID))
-        #print(sql)
+        print(sql)
         c.execute(sql)
-
+        print("ejeuto query")
         db.commit()
         #print("============================ejecuto======================")
         sql = """select descripcion
@@ -1475,7 +1475,7 @@ async def upd_estatus_pedido(estatus, ID):
         return row[0]
 
 async def upd_tipo_pedido( ID, tipoPedido = "N"):
-
+        print("upd_tipo_pedido")
         db = get_db()
         c = db.cursor()
 
@@ -1488,6 +1488,7 @@ async def upd_tipo_pedido( ID, tipoPedido = "N"):
             """
 
         c.execute(sql, [tipoPedido,ID])
+        print("ejecuto query")
 
         db.commit()
 

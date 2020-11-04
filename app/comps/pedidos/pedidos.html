@@ -701,9 +701,13 @@
 
             <div class="col-sm-12 col-md-12 col-lg-12">
 
-              <div class="row"   >
 
-                <div class="col-md-4">
+
+
+
+              <div class="row">
+
+                <!-- <div class="col-md-2">
 
                   <label>Tipo de busqueda</label>
                   <select class="form-control form-control-sm"  ng-model="tipoBusqueda">
@@ -715,16 +719,24 @@
                       Por componente activo
                     </option>
 
-                  </select>
+                  </select> -->
+                  <div class="col-md-2">
+                  <label for="proveedor">Tipo de busqueda</label>
+                  <div class="input-group mb-3 ">
+                    <div class="form-group">
+                      <select class="form-control" ng-model="tipoBusqueda"  >
+                        <option  value="1" >
+                          Por producto
+                        </option>
+                        <option  value="2">
+                          Por componente activo
+                        </option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
 
-              </div>
-
-
-
-              <div class="row">
-
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <label for="clientes">Busqueda </label>
                   <div class="input-group mb-3 ">
                     <input type="text" class="form-control"
