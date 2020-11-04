@@ -404,29 +404,34 @@
 
           <div class="col-sm-12 col-md-12 col-lg-12"  style="margin-top: 32px;" ng-show="tabsIndex == 1"  >
 
-            <div class="row"  ng-show="editView && !clienteEmpleado" >
 
-
-              <label>Tipo de pedido</label>
-              <select class="form-control form-control-sm"  ng-model="pickUpAvailable">
-
-                <option  value="1" >
-                 Normal
-                </option>
-                <option  value="2">
-                  Pick-Up
-                </option>
-
-              </select>
-            </div>
 
             <div class="row mt-5 mb-5" ng-show="editView" >
-              <div class="col-6">
+
+              <div class="col-4">
+                <div   ng-show="editView && !clienteEmpleado" >
+
+
+                  <label>Tipo de pedido</label>
+                  <select class="form-control form-control-sm"  ng-model="pickUpAvailable">
+
+                    <option  value="1" >
+                     Normal
+                    </option>
+                    <option  value="2">
+                      Pick-Up
+                    </option>
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-4">
                 <label></label>
                 <button type="button" ng-show="editView" class="btn btn-info" ng-click="openModalProducts()">Agregar Productos</button>
               </div>
 
-              <div class="col-6">
+              <div class="col-4">
                 <label></label>
                 <button type="button"  class="btn btn-success" ng-show="editView && pedido.estatus_id < 2"  ng-disabled="pedido.pedido.length < 1 || !clienteValido"  ng-click="openModalDyn(0,ID)" >Finalizar pedido</button>
               </div>
