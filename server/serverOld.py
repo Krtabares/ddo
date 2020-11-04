@@ -977,9 +977,9 @@ async def procedure(request):
             'descuento1' : arr[17],
             'descuento2' : arr[18],
             'tipo_prod_emp' : arr[19],
-            'disp_prod_emp' :arr[19],
-            'pagina': arr[20],
-            'linea': arr[21]
+            'disp_prod_emp' :arr[20],
+            'pagina': arr[21],
+            'linea': arr[22]
         }
 
         # if data['pArticulo'] == 'null'  :
