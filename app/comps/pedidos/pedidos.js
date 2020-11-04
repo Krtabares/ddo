@@ -105,9 +105,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.modalDynColor = null;
 
         $scope.aceptModalDyn = function () {
-
+          console.log("aceptModalDyn",$scope.modalDynContext);
           switch ($scope.modalDynContext) {
-            case 0,4:
+            case 0:
                 if($scope.totales.bsConIva > $scope.client.monto_minimo){
                   $scope.finalizar_pedido()
                   $(function(){
@@ -121,6 +121,20 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'right', duration:10000, classes:'alert-warning'});
                 }
               break;
+              case 4:
+                  if($scope.totales.bsConIva > $scope.client.monto_minimo){
+                    $scope.finalizar_pedido()
+                    $(function(){
+                      $("#addPedidoModal").modal("hide");
+                      $("#showPedidoModal").modal("hide");
+                      $('.modal-backdrop').remove();
+                    })
+                  }else{
+
+
+                    notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'right', duration:10000, classes:'alert-warning'});
+                  }
+                break;
               case 3:
                 $scope.removeDetalleProducto($scope.modalDynContextId);
                 break;
