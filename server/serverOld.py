@@ -1417,30 +1417,34 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
 
             cantidad = 0
             # disponible = await valida_art("01", detalle['COD_PRODUCTO'])
+            respuesta = await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,detalle['CANTIDAD'],float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
 
-            await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,detalle['CANTIDAD'],float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
+            if respuesta['error'] != None:
+                return respuesta['error']
 
-            # if int(detalle['CANTIDAD']) > disponible :
-            #     cantidad = disponible
-            # else:
-            #     cantidad = detalle['CANTIDAD']
+            disponible = respuesta['disponible']
 
-            # db = get_db()
-            # c = db.cursor()
-            #
-            # sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO_BRUTO, TIPO_CAMBIO, BODEGA)
-            #                 VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, \'{BODEGA}\' )""".format(
-            #                              ID_PEDIDO = int(ID),
-            #                              COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
-            #                              CANTIDAD = int(detalle['CANTIDAD']),
-            #                              PRECIO = float(str(detalle['precio_bruto_bs']).replace(',','.')),
-            #                              TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
-            #                              BODEGA = detalle['bodega']
-            #                         )
-            #
-            # c.execute(sql)
-            #
-            # db.commit()
+            if int(detalle['CANTIDAD']) > disponible :
+                cantidad = disponible
+            else:
+                cantidad = detalle['CANTIDAD']
+
+            db = get_db()
+            c = db.cursor()
+
+            sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO_BRUTO, TIPO_CAMBIO, BODEGA)
+                            VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, \'{BODEGA}\' )""".format(
+                                         ID_PEDIDO = int(ID),
+                                         COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
+                                         CANTIDAD = int(detalle['CANTIDAD']),
+                                         PRECIO = float(str(detalle['precio_bruto_bs']).replace(',','.')),
+                                         TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
+                                         BODEGA = detalle['bodega']
+                                    )
+
+            c.execute(sql)
+
+            db.commit()
 
             await upd_estatus_pedido(1,int(ID))
 
@@ -1527,6 +1531,11 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
         db = get_db()
         c = db.cursor()
 
+        respuesta  = dict(
+            error = None,
+            disponible = 0
+        )
+
 
         sql = """SELECT t1.DESCRIPCION FROM PAGINAWEB.TIPO_ERROR t1
               WHERE t1.CODIGO = PROCESOSPW.valida_articulo (\'{pCia}\',\'{pGrupo}\',\'{pCliente}\',\'{pNoArti}\',{pCantidad},{pPrecio},'P',{pIdPedido})""".format(
@@ -1538,16 +1547,15 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
                 pPrecio=pPrecio,
                 pIdPedido=pIdPedido
         )
-        print(sql)
+        # print(sql)
         c.execute(sql)
 
         row = c.fetchone()
-        print("RESUTADO VALIDA ARTICULO")
+        # print("RESUTADO VALIDA ARTICULO")
 
         if row[0] != None:
-            print(row[0])
-        else:
-            print("paso validascion")
+            respuesta['error'] = row[0]
+            return respuesta
 
         sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
                         from dual"""
@@ -1557,7 +1565,9 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
                     ])
         row = c.fetchone()
 
-        return row[0]
+        respuesta['disponible'] = row[0]
+
+        return respuesta
     except Exception as e:
         logger.debug(e)
 
@@ -1672,9 +1682,11 @@ async def add_detalle_producto (request, token: Token):
         if not pedidoValido :
             return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
 
-        await upd_estatus_pedido(1,data['ID'])
 
-        reservado = await crear_detalle_pedido(data['pedido'], data['ID'], data['pNoCia'], data['pNoGrupo'], data['pCliente'])
+        respuesta = await crear_detalle_pedido(data['pedido'], data['ID'], data['pNoCia'], data['pNoGrupo'], data['pCliente'])
+
+        if isinstance(respuesta, str) :
+            return response.json({"msg": respuesta,  },480)
 
         totales = await totales_pedido(int(data['ID']))
 
@@ -1683,7 +1695,10 @@ async def add_detalle_producto (request, token: Token):
         if data['pedido']['CANTIDAD'] > reservado:
             msg = 1
 
+        await upd_estatus_pedido(1,data['ID'])
+
         await logAudit(data['username'], 'pedido', 'upd', int(data['ID']))
+
         return response.json({"msg": msg, "reserved":reservado, "totales": totales },200)
     except Exception as e:
         logger.debug(e)
