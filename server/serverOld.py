@@ -1546,7 +1546,7 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
 
         if row[0] != None:
             print(row[0])
-        else
+        else:
             print("paso validascion")
 
         sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
