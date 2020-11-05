@@ -1418,7 +1418,7 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
             cantidad = 0
             # disponible = await valida_art("01", detalle['COD_PRODUCTO'])
 
-            valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,detalle['CANTIDAD'],float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
+            await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,detalle['CANTIDAD'],float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
 
             # if int(detalle['CANTIDAD']) > disponible :
             #     cantidad = disponible
