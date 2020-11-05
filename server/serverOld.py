@@ -1528,9 +1528,8 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
         c = db.cursor()
 
 
-        sql = """SELECT
-                    PROCESOSPW.valida_articulo ({pCia},{pGrupo},{pCliente},\'{pNoArti}\',{pCantidad},{pPrecio},'P',{pIdPedido})
-                    FROM Dual""".format(
+        sql = """SELECT t1.DESCRIPCION FROM PAGINAWEB.TIPO_ERROR t1
+              WHERE t1.CODIGO = PROCESOSPW.valida_articulo (\'{pCia}\',\'{pGrupo}\',\'{pCliente}\',\'{pNoArti}\',{pCantidad},{pPrecio},'P',{pIdPedido})""".format(
                 pCia=pCia,
                 pGrupo=pGrupo,
                 pCliente=pCliente,
@@ -1544,8 +1543,10 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
 
         row = c.fetchone()
         print("RESUTADO VALIDA ARTICULO")
-        print(row[0])
-
+        if row[0] != None:
+            print(row[0])
+        else
+            print("paso validascion")
         sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
                         from dual"""
         c.execute(sql, [
