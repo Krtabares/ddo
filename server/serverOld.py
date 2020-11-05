@@ -1529,7 +1529,7 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
 
 
         sql = """SELECT
-                    PROCESOSPW.valida_articulo ({pCia},{pGrupo},{pCliente},{pNoArti},{pCantidad},{pPrecio},'P',{pIdPedido})
+                    PROCESOSPW.valida_articulo ({pCia},{pGrupo},{pCliente},\'{pNoArti}\',{pCantidad},{pPrecio},'P',{pIdPedido})
                     FROM Dual""".format(
                 pCia=pCia,
                 pGrupo=pGrupo,
@@ -1539,7 +1539,7 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
                 pPrecio=pPrecio,
                 pIdPedido=pIdPedido
         )
-
+        print(sql)
         c.execute(sql)
 
         row = c.fetchone()
