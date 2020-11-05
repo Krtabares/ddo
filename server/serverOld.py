@@ -1543,10 +1543,12 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
 
         row = c.fetchone()
         print("RESUTADO VALIDA ARTICULO")
+
         if row[0] != None:
             print(row[0])
         else
             print("paso validascion")
+
         sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
                         from dual"""
         c.execute(sql, [
