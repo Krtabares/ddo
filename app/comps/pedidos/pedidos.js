@@ -865,9 +865,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           console.log("addDetalleProducto");
           $scope.loading = true
           var body = {};
-
+          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+          body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
           body.pedido = articulo
-
           body.ID = $scope.ID
           body.username = $scope.userLogged.username
           request.post(ip+'/add/detalle_producto', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
@@ -876,12 +877,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             $scope.getPedidos_filteringV2();
             $scope.getProdNew(true);
-            if(response.data.reserved < articulo.CANTIDAD && 1==2){
-              articulo.CANTIDAD = response.data.reserved
-              articulo.alert = true
-            }else{
-              articulo.alert = false
-            }
+            // if(response.data.reserved < articulo.CANTIDAD && 1==2){
+            //   articulo.CANTIDAD = response.data.reserved
+            //   articulo.alert = true
+            // }else{
+            //   articulo.alert = false
+            // }
             $scope.pedido.pedido.push(articulo)
             $scope.totalesDdo = formatoTotales(response.data.totales)
             calcularTotales()

@@ -1411,41 +1411,40 @@ async def upd_detalle_producto_serv (request, token: Token):
         logger.debug(e)
         return response.json("ERROR",400)
 
-async def crear_detalle_pedido(detalle, ID):
+async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
 
         try:
 
-
-
             cantidad = 0
-            disponible = await valida_art("01", detalle['COD_PRODUCTO'])
+            # disponible = await valida_art("01", detalle['COD_PRODUCTO'])
 
+            valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,detalle['CANTIDAD'],float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
 
-            if int(detalle['CANTIDAD']) > disponible :
-                cantidad = disponible
-            else:
-                cantidad = detalle['CANTIDAD']
+            # if int(detalle['CANTIDAD']) > disponible :
+            #     cantidad = disponible
+            # else:
+            #     cantidad = detalle['CANTIDAD']
 
-            db = get_db()
-            c = db.cursor()
-
-            sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO_BRUTO, TIPO_CAMBIO, BODEGA)
-                            VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, \'{BODEGA}\' )""".format(
-                                         ID_PEDIDO = int(ID),
-                                         COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
-                                         CANTIDAD = int(cantidad),
-                                         PRECIO = float(str(detalle['precio_bruto_bs']).replace(',','.')),
-                                         TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
-                                         BODEGA = detalle['bodega']
-                                    )
-
-            c.execute(sql)
-
-            db.commit()
+            # db = get_db()
+            # c = db.cursor()
+            #
+            # sql = """INSERT INTO DETALLE_PEDIDO ( ID_PEDIDO, COD_PRODUCTO, CANTIDAD, PRECIO_BRUTO, TIPO_CAMBIO, BODEGA)
+            #                 VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, \'{BODEGA}\' )""".format(
+            #                              ID_PEDIDO = int(ID),
+            #                              COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
+            #                              CANTIDAD = int(detalle['CANTIDAD']),
+            #                              PRECIO = float(str(detalle['precio_bruto_bs']).replace(',','.')),
+            #                              TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
+            #                              BODEGA = detalle['bodega']
+            #                         )
+            #
+            # c.execute(sql)
+            #
+            # db.commit()
 
             await upd_estatus_pedido(1,int(ID))
 
-            return cantidad
+            return 0
 
         except Exception as e:
             logger.debug(e)
@@ -1522,16 +1521,36 @@ async def validate_Pedido( ID ):
         logger.debug(e)
 
 
-async def valida_art(cia, arti):
+async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
     try:
 
         db = get_db()
         c = db.cursor()
+
+
+        sql = """SELECT
+                    PROCESOSPW.valida_articulo ({pCia},{pGrupo},{pCliente},{pNoArti},{pCantidad},{pPrecio},'P',{pIdPedido})
+                    FROM Dual""".format(
+                pCia=pCia,
+                pGrupo=pGrupo,
+                pCliente=pCliente,
+                pNoArti=pNoArti,
+                pCantidad=pCantidad,
+                pPrecio=pPrecio,
+                pIdPedido=pIdPedido
+        )
+
+        c.execute(sql)
+
+        row = c.fetchone()
+        print("RESUTADO VALIDA ARTICULO")
+        print(row[0])
+
         sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
                         from dual"""
         c.execute(sql, [
-                        cia,
-                        arti
+                        pCia,
+                        pNoArti
                     ])
         row = c.fetchone()
 
@@ -1652,7 +1671,7 @@ async def add_detalle_producto (request, token: Token):
 
         await upd_estatus_pedido(1,data['ID'])
 
-        reservado = await crear_detalle_pedido(data['pedido'], data['ID'])
+        reservado = await crear_detalle_pedido(data['pedido'], data['ID'], data['pNoCia'], data['pNoGrupo'], data['pCliente'])
 
         totales = await totales_pedido(int(data['ID']))
 
