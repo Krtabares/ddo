@@ -1421,8 +1421,7 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
             print(">>>>>>>>>>>>>>>>>>>>>>>respuesta creas<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
             print(respuesta)
             if respuesta != None :
-                if respuesta['error'] != None:
-                    return respuesta['error']
+                return respuesta['error']
             print("sigue")
             disponible = respuesta['disponible']
 
@@ -1554,7 +1553,7 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
         # print("RESUTADO VALIDA ARTICULO")
 
         if row[0] != None:
-            respuesta['error'] = row[0]
+            respuesta = row[0]
             return respuesta
 
         sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
@@ -1565,7 +1564,7 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
                     ])
         row = c.fetchone()
 
-        respuesta['disponible'] = row[0]
+        # respuesta['disponible'] = row[0]
 
         return respuesta
     except Exception as e:
