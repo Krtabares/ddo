@@ -1420,8 +1420,9 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
             respuesta = await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,detalle['CANTIDAD'],float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
             print(">>>>>>>>>>>>>>>>>>>>>>>respuesta creas<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
             print(respuesta)
-            if respuesta != None and respuesta['error'] != None:
-                return respuesta['error']
+            if respuesta != None :
+                if respuesta['error'] != None:
+                    return respuesta['error']
             print("sigue")
             disponible = respuesta['disponible']
 
