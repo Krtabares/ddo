@@ -911,7 +911,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       			}
             if(response.status == 480){
                 notify({ message:response.data.msg, position:'right', duration:20000, classes:'alert-danger'});
-              $scope.errorValidaArticulo = true
+
             }
             $scope.loading = false
           });
@@ -978,36 +978,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.ID = ID
         }
 
-        $scope.updDetalleProductoTable = function (articulo) {
 
-          articulo.CANTIDAD = parseInt(articulo.CANTIDAD )
-
-
-
-          calcularTotales($scope.editRowIndex)
-
-          if(!validacionesArticulo(articulo, $scope.existenciaEdit)){
-            $scope.updDetalleProducto(articulo)
-
-            $scope.pedido.pedido[$scope.editRowIndex] = articulo
-
-            $scope.existenciaEdit = null
-            $scope.editRowIndex = -1
-            $scope.editArticulo = null
-            $scope.cantidadAux = 0
-
-
-          }else{
-            articulo.CANTIDAD = parseInt($scope.cantidadAux )
-          }
-
-
-
-          calcularTotales()
-
-        }
-
-        $scope.updDetalleProducto = function(articulo){
+        $scope.updDetalleProducto = function(articulo, indexArticulo, listAux){
 
           var body = {};
           var result
@@ -1030,7 +1002,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
             $scope.totalesDdo = formatoTotales(response.data.totales)
+
             result = articulo
+
+            $scope.pedido.pedido.push($scope.articulo)
+
+            $scope.pedido.pedido.splice( indexArticulo, 1 );
+
+            calcularTotales()
+            getTotalesPedido()
+            $(function(){
+              $("#modalInfoProduct").modal('hide');
+            })
+            notify({ message:'¡Linea actulizada con exito!', position:'right', duration:10000, classes:'alert-success'});
           }, function errorCallback(response) {
 
             if(response.status == 410){
@@ -1041,6 +1025,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   $('.modal-backdrop').remove();
                 })
                 $scope.getPedidos_filteringV2();
+            }
+
+            if(response.status == 480){
+              notify({ message:response.data.msg, position:'right', duration:20000, classes:'alert-danger'});
+              $scope.pedido.pedido = listAux
             }
 
           });
@@ -1105,11 +1094,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           })
 
         }
+
         $scope.errorValidaArticulo = false
         $scope.addArtPedido = function(){
             if(Object.keys($scope.articulo).length === 0)
               return
-
 
             var error=false;
             var existe = false;
@@ -1120,7 +1109,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $scope.articulo.COD_PRODUCTO = element.COD_PRODUCTO
                 indexArticulo = i
                 existe = true;
-
 
               }
             });
@@ -1146,37 +1134,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               if(!error){
 
-                $scope.updDetalleProducto($scope.articulo);
-
-                $scope.pedido.pedido.push($scope.articulo)
-
-                $scope.pedido.pedido.splice( indexArticulo, 1 );
+                $scope.updDetalleProducto($scope.articulo, indexArticulo, listAux);
 
               }else{
+
                 $scope.pedido.pedido = listAux
+                
               }
               $scope.articulo.existencia = existenciaAux
 
-              if(!error){
-                calcularTotales()
-                getTotalesPedido()
-                $(function(){
-                  $("#modalInfoProduct").modal('hide');
-                })
-                notify({ message:'¡Linea actulizada con exito!', position:'right', duration:10000, classes:'alert-success'});
-              }
-
               return
             }
-
-            // if(!error){
-            //   $scope.articulo = {};
-            //   $scope.productIndex = -1
-            //
-            //   $scope.product = {}
-            //   $scope.counter = 0;
-            // }
-
 
         }
         $scope.artEmpleado = 0
