@@ -1179,7 +1179,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         function validacionesArticulo(articulo , existenciaAux = null) {
 
           // TODO: llamada a servicio valida articulo
-
+          var body = {}
           body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
           body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
           body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
