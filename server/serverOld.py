@@ -1421,7 +1421,7 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
             print(">>>>>>>>>>>>>>>>>>>>>>>respuesta creas<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
             print(respuesta)
             if respuesta != 1 :
-                return respuesta['error']
+                return respuesta
             print("sigue")
             disponible = detalle['disponible']
 
@@ -1579,7 +1579,7 @@ async def valida_articulo(request, token : Token):
         respuesta = await valida_art(data['pNoCia'], articulo['COD_PRODUCTO'],data['pNoGrupo'],data['pCliente'],articulo['CANTIDAD'],float(str(articulo['precio_bruto_bs']).replace(',','.')),int(data['idPedido']))
 
         if respuesta != 1:
-            return response.json({"msg": respuesta['error']}, status=480)
+            return response.json({"msg": respuesta}, status=480)
 
         return response.json({"data":row},200)
     except Exception as e:
