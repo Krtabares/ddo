@@ -1337,7 +1337,7 @@ async def crear_pedido(request):
     except Exception as e:
         logger.debug(e)
 
-async def update_detalle_pedido(detalle, ID):
+async def update_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
     try:
 
             db = get_db()
@@ -1359,12 +1359,12 @@ async def update_detalle_pedido(detalle, ID):
 
 
             cantidad = 0
-            disponible = await valida_art("01", detalle['COD_PRODUCTO'])
+            respuesta = await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,detalle['CANTIDAD'],float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
 
-            if int(detalle['CANTIDAD']) > disponible :
-                cantidad = disponible
-            else:
-                cantidad = detalle['CANTIDAD']
+            if respuesta != 1 :
+                return respuesta
+            # print("sigue")
+            disponible = detalle['CANTIDAD']
 
             c.execute("""UPDATE PAGINAWEB.DETALLE_PEDIDO
                             SET
@@ -1380,7 +1380,7 @@ async def update_detalle_pedido(detalle, ID):
                             ])
             db.commit()
 
-            return cantidad
+            return disponible
 
     except Exception as e:
         logger.debug(e)
@@ -1397,14 +1397,18 @@ async def upd_detalle_producto_serv (request, token: Token):
         if not pedidoValido :
             return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
 
-        reservado = await update_detalle_pedido(data['pedido'], data['ID'])
+        reservado = await update_detalle_pedido(data['pedido'], data['ID'], data['pNoCia'], data['pNoGrupo'] , data['pCliente'])
+
+        if isinstance(reservado, str) :
+            return response.json({"msg": respuesta  },480)
 
         msg = 0
 
+
         totales = await totales_pedido(int(data['ID']))
 
-        if data['pedido']['CANTIDAD'] > reservado:
-            msg = 1
+        # if data['pedido']['CANTIDAD'] > reservado:
+        #     msg = 1
 
         return response.json({"msg": msg, "reserved":reservado, "totales":totales },200)
     except Exception as e:
@@ -1418,11 +1422,11 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
             cantidad = 0
             # disponible = await valida_art("01", detalle['COD_PRODUCTO'])
             respuesta = await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,detalle['CANTIDAD'],float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
-            print(">>>>>>>>>>>>>>>>>>>>>>>respuesta creas<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            print(respuesta)
+            # print(">>>>>>>>>>>>>>>>>>>>>>>respuesta creas<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            # print(respuesta)
             if respuesta != 1 :
                 return respuesta
-            print("sigue")
+            # print("sigue")
             disponible = detalle['CANTIDAD']
 
             # if int(detalle['CANTIDAD']) > disponible :
@@ -1677,8 +1681,8 @@ async def add_detalle_producto (request, token: Token):
 
 
         respuesta = await crear_detalle_pedido(data['pedido'], data['ID'], data['pNoCia'], data['pNoGrupo'], data['pCliente'])
-        print("=============respuesta=================")
-        print(respuesta)
+        # print("=============respuesta=================")
+        # print(respuesta)
         if isinstance(respuesta, str) :
             return response.json({"msg": respuesta  },480)
 

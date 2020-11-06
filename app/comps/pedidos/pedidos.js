@@ -983,7 +983,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           var body = {};
           var result
-
+          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+          body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
           body.pedido = articulo
           body.ID = $scope.ID
           body.username = $scope.userLogged.username
@@ -1139,7 +1141,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }else{
 
                 $scope.pedido.pedido = listAux
-                
+
               }
               $scope.articulo.existencia = existenciaAux
 
