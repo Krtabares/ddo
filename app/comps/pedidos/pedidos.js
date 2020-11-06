@@ -1179,31 +1179,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         function validacionesArticulo(articulo , existenciaAux = null) {
 
           // TODO: llamada a servicio valida articulo
-          var body = {}
-          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
-          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
-          body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
-          body.idPedido = $scope.ID
-          body.articulo = articulo
 
-          var result = false
-
-          request.post(ip+'/valida/articulo', body,{})
-          .then(function successCallback(response) {
-
-
-
-          }, function errorCallback(response) {
-            if(response.status == 400){
-
-              notify({ message:response.data.msg, position:'right', duration:10000, classes:'alert-danger'});
-              result = true
-            }
-          });
-
-          if(result){
-            return true
-          }
 
           if(isEmpty( articulo.COD_PRODUCTO ) && isEmpty( articulo.cod_producto )){
 
@@ -1266,6 +1242,33 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
             }
 
+          }
+
+
+          var body = {}
+          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+          body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+          body.idPedido = $scope.ID
+          body.articulo = articulo
+
+          var result = false
+
+          request.post(ip+'/valida/articulo', body,{})
+          .then(function successCallback(response) {
+
+
+
+          }, function errorCallback(response) {
+            if(response.status == 400){
+
+              notify({ message:response.data.msg, position:'right', duration:10000, classes:'alert-danger'});
+              result = true
+            }
+          });
+
+          if(result){
+            return true
           }
 
           return false
