@@ -1546,7 +1546,7 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
 
         row = c.fetchone()
         print("RESUTADO VALIDA ARTICULO")
-        if row != None and != None:
+        if row != None and row[0] != None:
             print(row[0])
             return row[0]
 
