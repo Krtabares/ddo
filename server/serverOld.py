@@ -1436,7 +1436,7 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
                             VALUES ( {ID_PEDIDO}, \'{COD_PRODUCTO}\' ,  {CANTIDAD} ,  {PRECIO} , {TIPO_CAMBIO}, \'{BODEGA}\' )""".format(
                                          ID_PEDIDO = int(ID),
                                          COD_PRODUCTO = str(detalle['COD_PRODUCTO']),
-                                         CANTIDAD = int(detalle['CANTIDAD']),
+                                         CANTIDAD = int(disponible),
                                          PRECIO = float(str(detalle['precio_bruto_bs']).replace(',','.')),
                                          TIPO_CAMBIO = float(str(detalle['tipo_cambio']).replace(',','.')) ,
                                          BODEGA = detalle['bodega']
@@ -1446,9 +1446,7 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
 
             db.commit()
 
-            await upd_estatus_pedido(1,int(ID))
-
-            return 0
+            return disponible
 
         except Exception as e:
             logger.debug(e)
