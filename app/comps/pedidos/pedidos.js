@@ -1117,9 +1117,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             if(!existe){
 
-              error = validacionesArticulo($scope.articulo)
+
               console.log(error);
-              if(!error){
+              if(!validacionesArticulo($scope.articulo)){
                 $scope.addDetalleProducto($scope.articulo)
                 calcularTotales()
                 $(function(){
