@@ -1684,7 +1684,7 @@ async def add_detalle_producto (request, token: Token):
         respuesta = await crear_detalle_pedido(data['pedido'], data['ID'], data['pNoCia'], data['pNoGrupo'], data['pCliente'])
 
         if isinstance(respuesta, str) :
-            return response.json({"msg": respuesta,  },480)
+            return response.json({"msg": respuesta  },480)
 
         totales = await totales_pedido(int(data['ID']))
 
