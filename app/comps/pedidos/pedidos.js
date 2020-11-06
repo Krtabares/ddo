@@ -1186,6 +1186,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           body.idPedido = $scope.ID
           body.articulo = articulo
 
+          var result = false
 
           request.post(ip+'/valida/articulo', body,{})
           .then(function successCallback(response) {
@@ -1196,9 +1197,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(response.status == 400){
 
               notify({ message:response.data.msg, position:'right', duration:10000, classes:'alert-danger'});
-              return true
+              result = true
             }
           });
+
+          if(result){
+            return true
+          }
 
           if(isEmpty( articulo.COD_PRODUCTO ) && isEmpty( articulo.cod_producto )){
 
