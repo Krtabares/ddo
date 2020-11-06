@@ -1263,15 +1263,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(response.status == 400){
 
               notify({ message:response.data.msg, position:'right', duration:10000, classes:'alert-danger'});
-              result = true
+              return  true
             }
           });
 
-          if(result){
-            return true
-          }else{
-            return false
-          }
+
 
           // return false
 
