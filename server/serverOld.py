@@ -1690,14 +1690,14 @@ async def add_detalle_producto (request, token: Token):
 
         msg = 0
 
-        if data['pedido']['CANTIDAD'] > reservado:
+        if data['pedido']['CANTIDAD'] > respuesta:
             msg = 1
 
         await upd_estatus_pedido(1,data['ID'])
 
         await logAudit(data['username'], 'pedido', 'upd', int(data['ID']))
 
-        return response.json({"msg": msg, "reserved":reservado, "totales": totales },200)
+        return response.json({"msg": msg, "reserved":respuesta, "totales": totales },200)
     except Exception as e:
         logger.debug(e)
         return response.json("ERROR",400)
