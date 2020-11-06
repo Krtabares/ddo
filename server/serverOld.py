@@ -1423,7 +1423,7 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
             if respuesta != None :
                 return respuesta['error']
             print("sigue")
-            disponible = respuesta['disponible']
+            disponible = detalle['disponible']
 
             if int(detalle['CANTIDAD']) > disponible :
                 cantidad = disponible
