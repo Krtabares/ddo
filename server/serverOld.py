@@ -1577,15 +1577,15 @@ async def valida_articulo(request, token : Token):
     try:
         data = request.json
 
-        if not 'pNoCia' in data :
-            data['pNoCia'] = '01'
+        if not 'articulo' in data:
+            return response.json({"msg": "Missing username parameter"}, status=400)
 
-        if not 'pArti' in data :
-            data['pArti'] = 'null'
+        articulo = data['articulo']
 
-        row = await valida_art(data['pNoCia'], data['pArti'])
+        respuesta = await valida_art(pCia, articulo['COD_PRODUCTO'],data['pGrupo'],data['pCliente'],articulo['CANTIDAD'],float(str(articulo['precio_bruto_bs']).replace(',','.')),int(data['idPedido']))
 
-        #print(row)
+        if respuesta['error'] != None:
+            return response.json({"msg": respuesta['error']}, status=400)
 
         return response.json({"data":row},200)
     except Exception as e:

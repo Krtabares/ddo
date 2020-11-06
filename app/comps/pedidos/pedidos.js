@@ -877,12 +877,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             $scope.getPedidos_filteringV2();
             $scope.getProdNew(true);
-            // if(response.data.reserved < articulo.CANTIDAD && 1==2){
-            //   articulo.CANTIDAD = response.data.reserved
-            //   articulo.alert = true
-            // }else{
-            //   articulo.alert = false
-            // }
+            if(response.data.reserved < articulo.CANTIDAD && 1==2){
+              articulo.CANTIDAD = response.data.reserved
+              articulo.alert = true
+            }else{
+              articulo.alert = false
+            }
             $scope.pedido.pedido.push(articulo)
             $scope.totalesDdo = formatoTotales(response.data.totales)
             calcularTotales()
@@ -898,6 +898,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 })
                 $scope.getPedidos_filteringV2();
       			}
+            if(response.status == 480){
+                notify({ message:response.data.msg, position:'right', duration:20000, classes:'alert-danger'});
+
+            }
             $scope.loading = false
           });
         }
@@ -1174,6 +1178,27 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         function validacionesArticulo(articulo , existenciaAux = null) {
 
+          // TODO: llamada a servicio valida articulo
+
+          body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+          body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+          body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+          body.idPedido = $scope.ID
+          body.articulo = articulo
+
+
+          request.post(ip+'/valida/articulo', body,{})
+          .then(function successCallback(response) {
+
+
+
+          }, function errorCallback(response) {
+            if(response.status == 400){
+
+              notify({ message:response.data.msg, position:'right', duration:10000, classes:'alert-danger'});
+              return true
+            }
+          });
 
           if(isEmpty( articulo.COD_PRODUCTO ) && isEmpty( articulo.cod_producto )){
 
