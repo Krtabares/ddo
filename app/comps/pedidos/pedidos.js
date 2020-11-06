@@ -1181,69 +1181,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // TODO: llamada a servicio valida articulo
 
 
-          if(isEmpty( articulo.COD_PRODUCTO ) && isEmpty( articulo.cod_producto )){
-
-            return  true;
-          }
-           if( isEmpty(articulo.CANTIDAD ) || articulo.CANTIDAD < 1 ){
-
-            notify({ message:'¡Por favor verifique la cantidad!', position:'right', duration:10000, classes:'alert-danger'});
-            return  true;
-          }
-
-           if( articulo.CANTIDAD > parseInt(articulo.existencia)  ){
-
-
-              notify({ message:'¡La cantidad no puede ser mayor a la existencia!', position:'right', duration:10000, classes:'alert-danger'});
-             return  true;
-          }
-
-
-          if( !validaCreditoContraProducto(parseFloat(articulo.precio_neto_bs) * articulo.CANTIDAD)  ){
-
-            notify({ message:'¡El precio excede el credito disponible!', position:'right', duration:10000, classes:'alert-danger'});
-
-            return  true;
-          }
-
-          console.log("$scope.clienteEmpleado", $scope.clienteEmpleado);
-          if( $scope.clienteEmpleado == true){
-            console.log("entro en validacion de empleado");
-
-            if( $scope.naturalLimits ){
-
-              if(  articulo.CANTIDAD > 1  ){
-                 notify({ message:'¡Solo puede solicitar una unidad por producto!', position:'right', duration:10000, classes:'alert-danger'});
-                return  true;
-              }
-
-              if(articulo.disp_prod_emp == "N"){
-                notify({ message:'¡Este producto ya fue solicitado en un pediodo el dia de hoy!', position:'right', duration:10000, classes:'alert-danger'});
-               return  true;
-              }
-
-            }
-
-
-            console.log("articulo.tipo_prod_emp", articulo.tipo_prod_emp);
-            if(articulo.tipo_prod_emp == "MEDICINA"){
-              console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);
-              console.log("$scope.client.unid_disp_med_emp", $scope.client.unid_disp_med_emp);
-              if( ($scope.totales.empMed + articulo.CANTIDAD) > $scope.client.unid_disp_med_emp){
-                notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ( '+(  $scope.client.unid_disp_med_emp - $scope.totales.empMed)+') para medicinas!', position:'right', duration:10000, classes:'alert-danger'});
-               return  true;
-              }
-            }else if(articulo.tipo_prod_emp == "MISCELANEO"){
-              console.log("$scope.totales.empMisc + articulo.CANTIDAD", $scope.totales.empMisc + articulo.CANTIDAD);
-              console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
-              if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
-              notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ( '+( $scope.client.unid_disp_misc_emp - $scope.totales.empMisc )+') para productos misceláneos!', position:'right', duration:10000, classes:'alert-danger'});
-               return  true;
-              }
-            }
-
-          }
-
 
           var body = {}
           body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
@@ -1257,7 +1194,70 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/valida/articulo', body,{})
           .then(function successCallback(response) {
 
+            if(isEmpty( articulo.COD_PRODUCTO ) && isEmpty( articulo.cod_producto )){
 
+              result =  true;
+            }
+             if( isEmpty(articulo.CANTIDAD ) || articulo.CANTIDAD < 1 ){
+
+              notify({ message:'¡Por favor verifique la cantidad!', position:'right', duration:10000, classes:'alert-danger'});
+              result =  true;
+            }
+
+             if( articulo.CANTIDAD > parseInt(articulo.existencia)  ){
+
+
+                notify({ message:'¡La cantidad no puede ser mayor a la existencia!', position:'right', duration:10000, classes:'alert-danger'});
+               result =  true;
+            }
+
+
+            if( !validaCreditoContraProducto(parseFloat(articulo.precio_neto_bs) * articulo.CANTIDAD)  ){
+
+              notify({ message:'¡El precio excede el credito disponible!', position:'right', duration:10000, classes:'alert-danger'});
+
+              result =  true;
+            }
+
+            console.log("$scope.clienteEmpleado", $scope.clienteEmpleado);
+            if( $scope.clienteEmpleado == true){
+              console.log("entro en validacion de empleado");
+
+              if( $scope.naturalLimits ){
+
+                if(  articulo.CANTIDAD > 1  ){
+                   notify({ message:'¡Solo puede solicitar una unidad por producto!', position:'right', duration:10000, classes:'alert-danger'});
+                  result =  true;
+                }
+
+                if(articulo.disp_prod_emp == "N"){
+                  notify({ message:'¡Este producto ya fue solicitado en un pediodo el dia de hoy!', position:'right', duration:10000, classes:'alert-danger'});
+                 result =  true;
+                }
+
+              }
+
+
+              console.log("articulo.tipo_prod_emp", articulo.tipo_prod_emp);
+              if(articulo.tipo_prod_emp == "MEDICINA"){
+                console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);
+                console.log("$scope.client.unid_disp_med_emp", $scope.client.unid_disp_med_emp);
+                if( ($scope.totales.empMed + articulo.CANTIDAD) > $scope.client.unid_disp_med_emp){
+                  notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ( '+(  $scope.client.unid_disp_med_emp - $scope.totales.empMed)+') para medicinas!', position:'right', duration:10000, classes:'alert-danger'});
+                 result =  true;
+                }
+              }else if(articulo.tipo_prod_emp == "MISCELANEO"){
+                console.log("$scope.totales.empMisc + articulo.CANTIDAD", $scope.totales.empMisc + articulo.CANTIDAD);
+                console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
+                if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
+                notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ( '+( $scope.client.unid_disp_misc_emp - $scope.totales.empMisc )+') para productos misceláneos!', position:'right', duration:10000, classes:'alert-danger'});
+                 result =  true;
+                }
+              }
+
+            }
+
+            return result
 
           }, function errorCallback(response) {
             if(response.status == 400){
@@ -1269,9 +1269,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           if(result){
             return true
+          }else{
+            return false
           }
 
-          return false
+          // return false
 
         }
 
