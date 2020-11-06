@@ -1529,12 +1529,7 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
 
         db = get_db()
         c = db.cursor()
-
-        respuesta  = dict(
-            error = None,
-            disponible = 0
-        )
-
+        respuesta = None
 
         sql = """SELECT t1.DESCRIPCION FROM PAGINAWEB.TIPO_ERROR t1
               WHERE t1.CODIGO = PROCESOSPW.valida_articulo (\'{pCia}\',\'{pGrupo}\',\'{pCliente}\',\'{pNoArti}\',{pCantidad},{pPrecio},'P',{pIdPedido})""".format(
@@ -1553,8 +1548,7 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
         # print("RESUTADO VALIDA ARTICULO")
 
         if row[0] != None:
-            respuesta = row[0]
-            return respuesta
+            return row[0]
 
         sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
                         from dual"""
@@ -1566,7 +1560,7 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
 
         # respuesta['disponible'] = row[0]
 
-        return respuesta
+        return 0
     except Exception as e:
         logger.debug(e)
 
