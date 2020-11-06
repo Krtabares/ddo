@@ -1423,12 +1423,12 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
             if respuesta != 1 :
                 return respuesta
             print("sigue")
-            disponible = detalle['disponible']
+            disponible = detalle['CANTIDAD']
 
-            if int(detalle['CANTIDAD']) > disponible :
-                cantidad = disponible
-            else:
-                cantidad = detalle['CANTIDAD']
+            # if int(detalle['CANTIDAD']) > disponible :
+            #     cantidad = disponible
+            # else:
+            #     cantidad = detalle['CANTIDAD']
 
             db = get_db()
             c = db.cursor()
