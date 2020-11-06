@@ -1682,7 +1682,8 @@ async def add_detalle_producto (request, token: Token):
 
 
         respuesta = await crear_detalle_pedido(data['pedido'], data['ID'], data['pNoCia'], data['pNoGrupo'], data['pCliente'])
-
+        print("=============respuesta=================")
+        print(respuesta)
         if isinstance(respuesta, str) :
             return response.json({"msg": respuesta  },480)
 
