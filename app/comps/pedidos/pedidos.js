@@ -886,7 +886,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.pedido.pedido.push(articulo)
             $scope.totalesDdo = formatoTotales(response.data.totales)
             calcularTotales()
+
             $scope.loading = false
+            $scope.articulo = {};
+            $scope.productIndex = -1
+            $scope.product = {}
+            $scope.counter = 0;
+
             $(function(){
               $("#modalInfoProduct").modal('hide');
             })
@@ -1122,13 +1128,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             if(!existe){
 
-              error = validacionesArticulo($scope.articulo)
-              console.log(error);
-              if(!error){
+              if(!validacionesArticulo($scope.articulo)){
+
                 $scope.addDetalleProducto($scope.articulo)
-                if($scope.errorValidaArticulo){
-                  error = true
-                }
+
               }
 
             }else{
@@ -1166,13 +1169,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               return
             }
 
-            if(!error){
-              $scope.articulo = {};
-              $scope.productIndex = -1
-
-              $scope.product = {}
-              $scope.counter = 0;
-            }
+            // if(!error){
+            //   $scope.articulo = {};
+            //   $scope.productIndex = -1
+            //
+            //   $scope.product = {}
+            //   $scope.counter = 0;
+            // }
 
 
         }
