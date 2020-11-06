@@ -1582,7 +1582,7 @@ async def valida_articulo(request, token : Token):
 
         articulo = data['articulo']
 
-        respuesta = await valida_art(pCia, articulo['COD_PRODUCTO'],data['pGrupo'],data['pCliente'],articulo['CANTIDAD'],float(str(articulo['precio_bruto_bs']).replace(',','.')),int(data['idPedido']))
+        respuesta = await valida_art(data['pNoCia'], articulo['COD_PRODUCTO'],data['pNoGrupo'],data['pCliente'],articulo['CANTIDAD'],float(str(articulo['precio_bruto_bs']).replace(',','.')),int(data['idPedido']))
 
         if respuesta['error'] != None:
             return response.json({"msg": respuesta['error']}, status=480)
