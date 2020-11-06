@@ -1191,7 +1191,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           var result = false
 
-          request.post(ip+'/valida/articulo', body,{})
+          request.post(ip+'/valida/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
             if(isEmpty( articulo.COD_PRODUCTO ) && isEmpty( articulo.cod_producto )){
