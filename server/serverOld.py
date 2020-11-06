@@ -1545,18 +1545,19 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
         c.execute(sql)
 
         row = c.fetchone()
-        # print("RESUTADO VALIDA ARTICULO")
+        print("RESUTADO VALIDA ARTICULO")
 
         if row[0] != None:
+            print(row[0])
             return row[0]
 
-        sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
-                        from dual"""
-        c.execute(sql, [
-                        pCia,
-                        pNoArti
-                    ])
-        row = c.fetchone()
+        # sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
+        #                 from dual"""
+        # c.execute(sql, [
+        #                 pCia,
+        #                 pNoArti
+        #             ])
+        # row = c.fetchone()
 
         # respuesta['disponible'] = row[0]
 
