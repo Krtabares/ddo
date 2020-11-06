@@ -1418,10 +1418,11 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
             cantidad = 0
             # disponible = await valida_art("01", detalle['COD_PRODUCTO'])
             respuesta = await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,detalle['CANTIDAD'],float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
-
+            print(">>>>>>>>>>>>>>>>>>>>>>>respuesta creas<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            print(respuesta)
             if respuesta['error'] != None:
                 return respuesta['error']
-
+            print("sigue")
             disponible = respuesta['disponible']
 
             if int(detalle['CANTIDAD']) > disponible :
