@@ -905,7 +905,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       			}
             if(response.status == 480){
                 notify({ message:response.data.msg, position:'right', duration:20000, classes:'alert-danger'});
-
+              $scope.errorValidaArticulo = true
             }
             $scope.loading = false
           });
@@ -1099,7 +1099,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           })
 
         }
-
+        $scope.errorValidaArticulo = false
         $scope.addArtPedido = function(){
             if(Object.keys($scope.articulo).length === 0)
               return
@@ -1126,6 +1126,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               console.log(error);
               if(!error){
                 $scope.addDetalleProducto($scope.articulo)
+                if($scope.errorValidaArticulo){
+                  error = true
+                }
               }
 
             }else{
