@@ -50,8 +50,35 @@
 
     <div ng-view></div>
 
-  </div>
 
+    <div class="modal fade" id="modalConfirmSidebar">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Confirmacion</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+          </div>
+          <div class="modal-body">
+
+            <div class="container">
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <h3><p class="text-center">Desea cerrar la session?</p></h3>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+            <a href="/" data-dismiss="modal" >
+              <button type="button" class="btn btn-danger"  >Salir</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
