@@ -684,7 +684,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
 
 
-
           }
 
           request.post(ip+'/procedure_productos', body,{})
@@ -1256,6 +1255,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
 
           return body
+        }
+
+        $scope.closeModalOrder =  function () {
+
+          if($scope.pedido.estatus =='PEDIDO EN CONSTRUCCION' || $scope.pedido.estatus =='PEDIDO CREADO' || $scope.pedido.estatus == 'POR PROCESAR'){
+            if($scope.pedido.pedido.length() < 1){
+
+                $scope.delPedido()
+            }
+          }else{
+              $scope.reset()
+          }
+
         }
 
         $scope.reset = function(){
