@@ -1339,7 +1339,7 @@ async def crear_pedido(request):
 
 async def update_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
     try:
-
+            print("====================update_detalle_pedido=====================")
             db = get_db()
             c = db.cursor()
             #print(detalle)
@@ -1357,10 +1357,11 @@ async def update_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
                             ])
             db.commit()
 
+            print("actualizo con cero")
 
             cantidad = 0
             respuesta = await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,detalle['CANTIDAD'],float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
-
+            print("paso valida art")
             if respuesta != 1 :
                 return respuesta
             # print("sigue")
@@ -1373,13 +1374,13 @@ async def update_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
                             WHERE  ID_PEDIDO    = :ID_PEDIDO
                             AND    COD_PRODUCTO = :COD_PRODUCTO""",
                             [
-                                int(cantidad),
+                                int(disponible),
                                 float(str(detalle['precio_bruto_bs']).replace(',','.')),
                                 ID,
                                 detalle['COD_PRODUCTO']
                             ])
             db.commit()
-
+            print("ejecuto todo")
             return disponible
 
     except Exception as e:
@@ -1399,7 +1400,7 @@ async def upd_detalle_producto_serv (request, token: Token):
 
         print(data)
         reservado = await update_detalle_pedido(data['pedido'], data['ID'], data['pNoCia'], data['pNoGrupo'] , data['pCliente'])
-
+        print("======================reservado===================")
         if isinstance(reservado, str) :
             return response.json({"msg": respuesta  },480)
 
