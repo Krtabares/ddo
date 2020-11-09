@@ -1397,6 +1397,7 @@ async def upd_detalle_producto_serv (request, token: Token):
         if not pedidoValido :
             return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
 
+        print(data)
         reservado = await update_detalle_pedido(data['pedido'], data['ID'], data['pNoCia'], data['pNoGrupo'] , data['pCliente'])
 
         if isinstance(reservado, str) :
