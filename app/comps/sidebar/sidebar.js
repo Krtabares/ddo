@@ -25,6 +25,10 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
 
         }
 
+        $scope.salir = function () {
+          window.location.href = "#!/home";
+        }
+
 /** comienza el encript*/
 
 $(function(){
