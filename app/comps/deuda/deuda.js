@@ -71,8 +71,8 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
               $scope.listAvisos = {}
               //Recorremos el arreglo
               response.data.obj.forEach( x => {
-                if( !$scope.listAvisos.hasOwnProperty(x.docu_aviso)){
-                  $scope.listAvisos[x.docu_aviso] = {
+                if( !$scope.listAvisos.hasOwnProperty(x.fecha_aviso)){
+                  $scope.listAvisos[x.fecha_aviso] = {
                     facturas: [],
                     fecha_aviso: x.fecha_aviso,
                     docu_aviso: x.docu_aviso,
@@ -81,8 +81,8 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
                   }
                 }
 
-                $scope.listAvisos[x.docu_aviso].facturas.push(x)
-                $scope.listAvisos[x.docu_aviso].saldo += parseFloat(x.monto_actual)
+                $scope.listAvisos[x.fecha_aviso].facturas.push(x)
+                $scope.listAvisos[x.fecha_aviso].saldo += parseFloat(x.monto_actual)
               })
 
             }else{
