@@ -25,6 +25,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
     function init() {
       $(function(){
         $('.modal-backdrop').remove();
+        $('#modalConfirmSidebar').modal("hide");
       })
     }
     init()
