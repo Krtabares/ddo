@@ -1278,7 +1278,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           if($scope.pedido.estatus =='PEDIDO EN CONSTRUCCION' || $scope.pedido.estatus =='PEDIDO CREADO' || $scope.pedido.estatus == 'POR PROCESAR'){
             console.log($scope.pedido)
-            if($scope.pedido.pedido.length() < 1){
+            if($scope.pedido.pedido.length < 1){
 
                 $scope.delPedido()
             }else{
