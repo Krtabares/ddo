@@ -141,6 +141,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               case 5:
                 $scope.close_pedido()
+                $(function(){
+                  $("#addPedidoModal").modal("hide");
+                  $("#showPedidoModal").modal("hide");
+                  $('.modal-backdrop').remove();
+                })
+
                 break;
             default:
 
@@ -153,6 +159,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             case 5:
             // TODO: flujo cierre modal
               $scope.delPedido()
+              $(function(){
+                $("#addPedidoModal").modal("hide");
+                $("#showPedidoModal").modal("hide");
+                $('.modal-backdrop').remove();
+              })
+
               break;
             default:
 
@@ -1275,7 +1287,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.closeModalOrder =  function () {
-
+          console.log($secope.pedido);
           if($scope.pedido.estatus =='PEDIDO EN CONSTRUCCION' || $scope.pedido.estatus =='PEDIDO CREADO' || $scope.pedido.estatus == 'POR PROCESAR'){
 
             if($scope.pedido.pedido.length < 1){
@@ -1287,13 +1299,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
           }else{
               $scope.reset()
+              $(function(){
+                $("#addPedidoModal").modal("hide");
+                $("#showPedidoModal").modal("hide");
+                $('.modal-backdrop').remove();
+              })
+
           }
 
-          $(function(){
-            $("#addPedidoModal").modal("hide");
-            $("#showPedidoModal").modal("hide");
-            $('.modal-backdrop').remove();
-          })
 
         }
 
