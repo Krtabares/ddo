@@ -171,7 +171,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.modalDynContext = type;
           $scope.modalDynContextId = contextId;
           $scope.modalDynColor = $scope.typeContext[type].color;
-
+          console.log("entro y seteo");
           $(function(){
             $("#modalConfirmDynamic").modal({
                 backdrop: 'static',
