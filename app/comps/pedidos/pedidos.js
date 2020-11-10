@@ -1287,7 +1287,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.closeModalOrder =  function () {
-          console.log($secope.pedido);
+          console.log($scope.pedido);
           if($scope.pedido.estatus =='PEDIDO EN CONSTRUCCION' || $scope.pedido.estatus =='PEDIDO CREADO' || $scope.pedido.estatus == 'POR PROCESAR'){
 
             if($scope.pedido.pedido.length < 1){
