@@ -121,6 +121,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                   notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'right', duration:10000, classes:'alert-warning'});
                 }
               break;
+
+              case 3:
+                $scope.removeDetalleProducto($scope.modalDynContextId);
+                break;
+
               case 4:
                   if($scope.totales.bsConIva > $scope.client.monto_minimo){
                     $scope.finalizar_pedido()
@@ -130,13 +135,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                       $('.modal-backdrop').remove();
                     })
                   }else{
-
-
                     notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'right', duration:10000, classes:'alert-warning'});
                   }
                 break;
-              case 3:
-                $scope.removeDetalleProducto($scope.modalDynContextId);
+
+              case 5:
+                $scope.close_pedido()
                 break;
             default:
 
@@ -146,8 +150,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.cancelModalDyn = function() {
           switch ($scope.modalDynContext) {
-            case 0:
-
+            case 5:
+            // TODO: flujo cierre modal
+              $scope.delPedido()
               break;
             default:
 
@@ -156,7 +161,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         $scope.openModalDyn = function(type, contextId) {
-          console.log(type , $scope.tipoPedido , $scope.pickUpAvailable);
+
           if(type == 0 && $scope.tipoPedido == "N"  && $scope.pickUpAvailable == "2" ){
             $scope.openModalDyn(4, contextId);
             return
@@ -377,10 +382,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.selectProduct = function(value = null){
 
-
-
-
-
            var index = (value!=null)? value:$scope.productIndex
             $scope.productIndex = index;
             $scope.product  = $scope.productos[ index ];
@@ -477,11 +478,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.finalizar_pedido = function () {
 
-
-
-
-
-
           $scope.loading = true
           var body = {}
           body.ID = $scope.ID
@@ -507,6 +503,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.loading = true
           var body = {}
           body.ID = $scope.ID
+          body.estatus = 1
           request.post(ip+'/editar_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
@@ -517,9 +514,29 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.editView = true
               $scope.pedido.estatus = response.data.estatus
               $scope.pedido.estatus_id = 1
-              notify({ message:'Pedido en construccion!', position:'right', duration:10000, classes:'alert-success'});
+              notify({ message:response.data.estatus, position:'right', duration:10000, classes:'alert-success'});
 
               $scope.mytimeout = $timeout($scope.onTimeout,1000);
+
+          }, function errorCallback(response) {
+
+            $scope.loading = false
+          });
+        }
+
+        $scope.close_pedido =function () {
+          $scope.loading = true
+          var body = {}
+          body.ID = $scope.ID
+          body.estatus = 1
+          request.post(ip+'/posponer_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+
+              $scope.loading = false
+
+              $scope.getPedidos_filteringV2();
+
+              notify({ message:response.data.estatus, position:'right', duration:10000, classes:'alert-success'});
 
           }, function errorCallback(response) {
 
@@ -961,12 +978,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/del/pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
-              $scope.reset();
+
 
               $scope.getPedidos_filteringV2();
               $scope.ID = null;
               notify({ message:'¡Pedido eliminado con exito!', position:'right', duration:10000, classes:'alert-success'});
+              $scope.reset();
               $scope.oneOrder()
+
               $scope.loading = false
           }, function errorCallback(response) {
 
@@ -1152,8 +1171,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         function validacionesArticulo(articulo , existenciaAux = null) {
 
-          // TODO: llamada a servicio valida articulo
-
 
           if(isEmpty( articulo.COD_PRODUCTO ) && isEmpty( articulo.cod_producto )){
 
@@ -1263,10 +1280,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if($scope.pedido.pedido.length() < 1){
 
                 $scope.delPedido()
+            }else{
+              $scope.openModalDyn(5, null);
             }
           }else{
               $scope.reset()
           }
+
+          $(function(){
+            $("#addPedidoModal").modal("hide");
+            $("#showPedidoModal").modal("hide");
+            $('.modal-backdrop').remove();
+          })
 
         }
 
@@ -1286,6 +1311,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.busqueda_prod = null
           $scope.productIndex = -1
 
+          $scope.proveedor.cod_proveedor = null
+          $scope.categoria.CODIGO = null
 
 
           $scope.productos = []
@@ -1557,6 +1584,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             "title": "Informacion",
             "msg" : "Si no alcanza el monto minimo para pick-up su pedido sera procesado como tipo normal ¿Está seguro de finalizarlo? ",
             "color": "warning"
+          },
+          {
+            "title": "Confirmacion",
+            "msg" : "¿Desea conservar este pedido para editarlo posteriormente?",
+            "color": "alert"
           }
         ]
 
