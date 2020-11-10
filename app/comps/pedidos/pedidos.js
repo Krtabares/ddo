@@ -515,7 +515,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.loading = true
           var body = {}
           body.ID = $scope.ID
-          body.estatus = 1
+          body.estatus = 6
           request.post(ip+'/editar_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
