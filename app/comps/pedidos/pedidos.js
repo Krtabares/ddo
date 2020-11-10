@@ -817,7 +817,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               notify({ message:'¡Pedido abierto con exito!', position:'right', duration:10000, classes:'alert-success'});
               $scope.counter = 0;
               $scope.mytimeout = $timeout($scope.onTimeout,1000);
-
+              $scope.pedido.estatus ='PEDIDO CREADO'
               $(function(){
                 $("#addPedidoModal").modal({
                     backdrop: 'static',
