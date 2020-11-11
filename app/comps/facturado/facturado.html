@@ -208,12 +208,12 @@
                         <td><p class="text-center">{{ $index + 1 }}</p></td>
                         <!-- <td><p class="text-center">{{ fact }}</p></td> -->
                         <!-- <td><p class="text-center">{{ facturasList[fact][0].fecha_pedido }}</p></td> -->
-                        <td><p class="text-center">{{ facturas.nro_factura }}</p></td>
-                        <td><p class="text-center">{{ facturas.fecha_factura }}</p></td>
+                        <td><p class="text-center">{{ fact.nro_factura }}</p></td>
+                        <td><p class="text-center">{{ fact.fecha_factura }}</p></td>
                         <td><p class="text-center">{{ formato(2,facturasTotales[fact].total_bs) }}</p></td>
                         <td><p class="text-center">{{ formato(3,facturasTotales[fact].total_usd) }}</p></td>
-                        <td><p class="text-center">{{ facturas.tipo_pedido }}</p></td>
-                        <td ng-if="!isEmpleado" ><p class="text-center">{{ facturas.fecha_entrega }}</p></td>
+                        <td><p class="text-center">{{ fact.tipo_pedido }}</p></td>
+                        <td ng-if="!isEmpleado" ><p class="text-center">{{ fact.fecha_entrega }}</p></td>
                         <!-- <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td> -->
                         <td>
                           <i class="fa fa-eye" style="cursor: pointer;"   ng-click="selectFactura(facturasList[fact], fact)"  data-toggle="modal" data-target="#modalFactura"  ></i>
