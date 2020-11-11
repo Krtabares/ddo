@@ -1525,7 +1525,7 @@ async def validate_Pedido( ID ):
 
         db.commit()
 
-        if row[0] < 2:
+        if row[0] < 2 or row[0] == 6  :
             return True
         else:
             return False
