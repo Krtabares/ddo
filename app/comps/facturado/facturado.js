@@ -61,11 +61,17 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
              // $scope.facturas = Object.keys(response.data.obj)
 
              $scope.facturasList = response.data.obj
-
+              var obj = {}
             facAux.forEach((item, i) => {
               // console.log($scope.facturasList[item]);
+              obj = {}
+              obj.detalle = $scope.facturasList[item];
+              obj.nro_factura = $scope.facturasList[item][0].nro_factura;
+              obj.fecha_factura = $scope.facturasList[item][0].fecha_factura;
+              obj.tipo_pedido = $scope.facturasList[item][0].tipo_pedido;
+              obj.fecha_entrega = $scope.facturasList[item][0].fecha_entrega;
+
               $scope.facturasList[item].forEach((element, j) => {
-                // console.log(element);
                 if( !$scope.facturasTotales.hasOwnProperty(element.nro_factura)){
                   $scope.facturasTotales[element.nro_factura] = {
                     total_bs: 0,
@@ -74,9 +80,11 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                 }
                 $scope.facturasTotales[element.nro_factura].total_bs += element.total_producto
                 $scope.facturasTotales[element.nro_factura].total_usd += element.total_producto_usd
+
               });
               // console.log($scope.facturasTotales);
-              $scope.facturas.push($scope.facturasList[item])
+
+              $scope.facturas.push(obj)
             });
             console.log($scope.facturas)
 
