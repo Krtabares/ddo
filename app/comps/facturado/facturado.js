@@ -199,6 +199,5 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                   .withDOM('frtip').withPaginationType('full_numbers')
                   .withLanguage(DATATABLE_LANGUAGE_ES)
 
-
     }
 ]);
