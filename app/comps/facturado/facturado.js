@@ -178,6 +178,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           $scope.dtOptions = DTOptionsBuilder.newOptions()
                     .withPaginationType('full_numbers')
                     .withOption('responsive', true)
+                    .withOption('order', [[2, 'asc']])
                     .withDOM('frtip').withPaginationType('full_numbers')
                     .withLanguage(DATATABLE_LANGUAGE_ES)
 
