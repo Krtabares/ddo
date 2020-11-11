@@ -91,9 +91,15 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
             $scope.loading = false
           });
        }
+          $scope.totalfactura = {
+            "bs" : 0,
+            "usd": 0
+          }
           $scope.factura = []
-          $scope.selectFactura = function (fact) {
+          $scope.selectFactura = function (fact,i) {
             $scope.factura = fact
+          $scope.totalfactura.bs =  $scope.facturasTotales[i].total_bs
+          $scope.totalfactura.usd =  $scope.facturasTotales[i].total_usd
               // angular.element('#btnfacturaInfo').trigger('click');
           }
           $scope.clientes = null;

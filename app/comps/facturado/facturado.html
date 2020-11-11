@@ -59,6 +59,31 @@
 
                     </tbody>
                     </table>
+
+
+                                    <div class="row">
+                                      <div class="col-lg-2 col-sm-5">
+                                        </div>
+                                          <div class="col-lg-6 col-sm-6 ml-auto">
+                                              <table class="table table-clear">
+                                                  <tbody>
+
+                                                      <tr>
+                                                          <td class="right">
+                                                              <strong class="text-dark">Total bs</strong> </td>
+
+                                                              <td class="right">{{formato(2,totalfactura.bs)}} </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td class="right">
+                                                              <strong class="text-dark">Total usd</strong> </td>
+
+                                                              <td class="right">{{formato(2,totalfactura.usd)}} </td>
+                                                      </tr>
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      </div>
                 </div>
 
 
@@ -191,7 +216,7 @@
                         <td ng-if="!isEmpleado" ><p class="text-center">{{ facturasList[fact][0].fecha_entrega }}</p></td>
                         <!-- <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td> -->
                         <td>
-                          <i class="fa fa-eye" style="cursor: pointer;"   ng-click="selectFactura(facturasList[fact])"  data-toggle="modal" data-target="#modalFactura"  ></i>
+                          <i class="fa fa-eye" style="cursor: pointer;"   ng-click="selectFactura(facturasList[fact], fact)"  data-toggle="modal" data-target="#modalFactura"  ></i>
                         </td>
                       </tr>
 
