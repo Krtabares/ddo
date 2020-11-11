@@ -210,8 +210,8 @@
                         <!-- <td><p class="text-center">{{ facturasList[fact][0].fecha_pedido }}</p></td> -->
                         <td><p class="text-center">{{ fact.nro_factura }}</p></td>
                         <td><p class="text-center">{{ fact.fecha_factura }}</p></td>
-                        <td><p class="text-center">{{ formato(2,facturasTotales[fact].total_bs) }}</p></td>
-                        <td><p class="text-center">{{ formato(3,facturasTotales[fact].total_usd) }}</p></td>
+                        <td><p class="text-center">{{ formato(2,facturasTotales[fact.nro_factura].total_bs) }}</p></td>
+                        <td><p class="text-center">{{ formato(3,facturasTotales[fact.nro_factura].total_usd) }}</p></td>
                         <td><p class="text-center">{{ fact.tipo_pedido }}</p></td>
                         <td ng-if="!isEmpleado" ><p class="text-center">{{ fact.fecha_entrega }}</p></td>
                         <!-- <td><p class="text-center">{{  facturasList[fact][0].email_vendedor }}</p></td> -->
