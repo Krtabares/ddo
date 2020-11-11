@@ -42,11 +42,6 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
          console.log($scope.client)
        }
 
-       function dateToNum(d) {
-           // Convert date "26/06/2016" to 20160626
-           d = d.split("/"); return Number(d[2]+d[1]+d[0]);
-         }
-
 
        $scope.facturas = []
        $scope.facturasTotales = {}
@@ -60,10 +55,14 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           request.post(ip+'/procedure_facturacion', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
            .then(function successCallback(response) {
              console.log(response.data)
+
+             var facAux = Object.keys(response.data.obj)
+
              $scope.facturas = Object.keys(response.data.obj)
+
              $scope.facturasList = response.data.obj
-            // console.log($scope.facturas);
-            $scope.facturas.forEach((item, i) => {
+
+            facAux.forEach((item, i) => {
               // console.log($scope.facturasList[item]);
               $scope.facturasList[item].forEach((element, j) => {
                 // console.log(element);
@@ -73,31 +72,13 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                     total_usd:0
                   }
                 }
-
-                // var uni_fact =  parseInt(element.unidades_facturadas)
-                // // console.log( uni_fact);
-                // // console.log( typeof uni_fact );
-                // if(isNaN(uni_fact)){
-                //
-                //   uni_fact = 0
-                // }
-                //
-                // element.unidades_facturadas = uni_fact
-
-                // console.log(!isNaN(uni_fact));
-                // console.log( uni_fact);
-                // console.log( element.unidades_facturadas );
                 $scope.facturasTotales[element.nro_factura].total_bs += element.total_producto
                 $scope.facturasTotales[element.nro_factura].total_usd += element.total_producto_usd
               });
               // console.log($scope.facturasTotales);
-
+              $scope.facturas.push($scope.facturasList[item])
+              console.log($scope.facturas)
             });
-
-
-              $scope.facturas.sort(function(a,b){
-                return dateToNum(a.fecha_factura) - dateToNum(b.fecha_factura);
-              });
 
 
             $scope.loading = false
