@@ -583,7 +583,7 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-middle,
 .hamburger.is-open .hamb-bottom {
-  height: 4px;
+  height: 2px;
   left: 0;
   position: absolute;
   width: 60%;

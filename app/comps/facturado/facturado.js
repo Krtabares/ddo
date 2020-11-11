@@ -68,21 +68,21 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                   }
                 }
 
-                var uni_fact =  parseInt(element.unidades_facturadas)
-                // console.log( uni_fact);
-                // console.log( typeof uni_fact );
-                if(isNaN(uni_fact)){
-
-                  uni_fact = 0
-                }
-
-                element.unidades_facturadas = uni_fact
+                // var uni_fact =  parseInt(element.unidades_facturadas)
+                // // console.log( uni_fact);
+                // // console.log( typeof uni_fact );
+                // if(isNaN(uni_fact)){
+                //
+                //   uni_fact = 0
+                // }
+                //
+                // element.unidades_facturadas = uni_fact
 
                 // console.log(!isNaN(uni_fact));
                 // console.log( uni_fact);
                 // console.log( element.unidades_facturadas );
-                $scope.facturasTotales[element.nro_factura].total_bs += element.total_producto * uni_fact
-                $scope.facturasTotales[element.nro_factura].total_usd += element.total_producto_usd * uni_fact
+                $scope.facturasTotales[element.nro_factura].total_bs += element.total_producto
+                $scope.facturasTotales[element.nro_factura].total_usd += element.total_producto_usd
               });
               // console.log($scope.facturasTotales);
 
@@ -145,7 +145,8 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
               // console.log(cantidad);
               // console.log(parseFloat(monto));
-              return $scope.formato(tipo, monto * parseInt(cantidad))
+              // return $scope.formato(tipo, monto * parseInt(cantidad))
+              return $scope.formato(tipo, monto )
           }
 
           $scope.getClientNew = function (filter = false) {
