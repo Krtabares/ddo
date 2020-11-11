@@ -58,7 +58,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
              var facAux = Object.keys(response.data.obj)
 
-             $scope.facturas = Object.keys(response.data.obj)
+             // $scope.facturas = Object.keys(response.data.obj)
 
              $scope.facturasList = response.data.obj
 
@@ -77,8 +77,8 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
               });
               // console.log($scope.facturasTotales);
               $scope.facturas.push($scope.facturasList[item])
-              console.log($scope.facturas)
             });
+            console.log($scope.facturas)
 
 
             $scope.loading = false
