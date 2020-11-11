@@ -241,7 +241,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.editPedido= function(){
-          if($scope.pedido.estatus_id >= 3){
+          if($scope.pedido.estatus_id >= 3 && $scope.pedido.estatus_id != 6){
 
 
             notify({ message:'¡Este pedido no puede ser editado!', position:'right', duration:10000, classes:'alert-danger'});
