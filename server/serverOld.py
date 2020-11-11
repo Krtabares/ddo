@@ -1409,6 +1409,10 @@ async def upd_detalle_producto_serv (request, token: Token):
 
         totales = await totales_pedido(int(data['ID']))
 
+        await upd_estatus_pedido(6,data['ID'])
+
+        # TODO:
+
         # if data['pedido']['CANTIDAD'] > reservado:
         #     msg = 1
 
@@ -1611,7 +1615,7 @@ async def editar_pedido(request, token : Token):
     try:
         data = request.json
 
-        estatus = await upd_estatus_pedido(1,data['ID'])
+        estatus = await upd_estatus_pedido(6,data['ID'])
 
         return response.json({"estatus" : estatus},200)
     except Exception as e:
@@ -1708,7 +1712,7 @@ async def add_detalle_producto (request, token: Token):
         # if data['pedido']['CANTIDAD'] > respuesta:
         #     msg = 1
 
-        await upd_estatus_pedido(1,data['ID'])
+        await upd_estatus_pedido(6,data['ID'])
 
         await logAudit(data['username'], 'pedido', 'upd', int(data['ID']))
 
@@ -1729,7 +1733,7 @@ async def del_detalle_producto (request, token: Token):
         if not pedidoValido :
             return response.json({"msg": "NO PUEDE EDITAR ESTE PEDIDO" }, status=410)
 
-        await upd_estatus_pedido(1,data['id_pedido'])
+        await upd_estatus_pedido(6,data['id_pedido'])
 
         db = get_db()
         c = db.cursor()
