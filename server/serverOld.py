@@ -1220,7 +1220,7 @@ async def procedure(request):
                 # 'linea': arr[17]
             }
         list.append(obj)
-    vale = datetime.strtime(arr[1],"%d/%m/%y").strftime("%d/%m/%Y")
+    vale = datetime.strptime(arr[1],"%d/%m/%y").strftime("%d/%m/%Y")
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++fecha+++++++++++++++++++++++++++++++++++++")
     print(vale)
 
