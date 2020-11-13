@@ -1196,7 +1196,7 @@ async def procedure(request):
         if statusVar.getvalue() != 0:
             break
         arr = str(textVar.getvalue()).split("|")
-        vale = datetime.strtime("arr[1]","%d/%m/%y").strftime("%d/%m/%Y")
+        vale = datetime.strtime(arr[1],"%d/%m/%y").strftime("%d/%m/%Y")
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++fecha+++++++++++++++++++++++++++++++++++++")
         print(vale)
         obj = {
