@@ -1201,7 +1201,7 @@ async def procedure(request):
         obj = {
 
                 'nro_factura': arr[0],
-                'fecha_factura': arr[1],
+                'fecha_factura': datetime.strptime(arr[1],"%d/%m/%y").strftime("%d/%m/%Y"),
                 'cod_cliente': arr[2],
                 'cod_vendedor': arr[3],
                 'nombre_vendedor': arr[4],
@@ -1220,9 +1220,9 @@ async def procedure(request):
                 # 'linea': arr[17]
             }
         list.append(obj)
-    vale = datetime.strptime(arr[1],"%d/%m/%y").strftime("%d/%m/%Y")
-    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++fecha+++++++++++++++++++++++++++++++++++++")
-    print(vale)
+    # vale = datetime.strptime(arr[1],"%d/%m/%y").strftime("%d/%m/%Y")
+    # print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++fecha+++++++++++++++++++++++++++++++++++++")
+    # print(vale)
 
     return response.json({"msj": "OK", "obj": agrupar_facturas(list)}, 200)
 
