@@ -42,6 +42,11 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
          console.log($scope.client)
        }
 
+       function dateToNum(d) {
+          // Convert date "26/06/2016" to 20160626
+          d = d.split("/"); return Number(d[2]+d[1]+d[0]);
+        }
+
 
        $scope.facturas = []
        $scope.facturasTotales = {}
@@ -88,9 +93,12 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
             });
             console.log($scope.facturas)
 
-            $scope.facturas.sort(function (a, b) {
-                return ('' + a.fecha_factura).localeCompare(b.fecha_factura);
-            })
+            // $scope.facturas.sort(function (a, b) {
+            //     return ('' + a.fecha_factura).localeCompare(b.fecha_factura);
+            // })
+            $scope.facturas.sort(function(a,b){
+              return dateToNum(a.fecha_factura) - dateToNum(b.fecha_factura);
+            });
             $scope.loading = false
           });
        }
