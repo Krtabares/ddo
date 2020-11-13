@@ -74,7 +74,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
               obj.detalle = $scope.facturasList[item];
               obj.nro_factura = $scope.facturasList[item][0].nro_factura;
               obj.fecha_factura = $scope.facturasList[item][0].fecha_factura;
-              obj.fecha_facturaDate = date: new Date(scope.facturasList[item][0].fecha_factura);
+              obj.fecha_facturaDate = new Date(scope.facturasList[item][0].fecha_factura);
               obj.tipo_pedido = $scope.facturasList[item][0].tipo_pedido;
               obj.fecha_entrega = $scope.facturasList[item][0].fecha_entrega;
 
