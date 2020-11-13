@@ -1293,6 +1293,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if($scope.pedido.pedido.length < 1){
 
                 $scope.delPedido()
+                $(function(){
+                  $("#addPedidoModal").modal("hide");
+                  $("#showPedidoModal").modal("hide");
+                  $('.modal-backdrop').remove();
+                })
             }else{
               console.log("openModalDyn");
               $scope.openModalDyn(5, null);
