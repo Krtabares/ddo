@@ -204,7 +204,7 @@
                     </thead>
                     <tbody>
 
-                      <tr  ng-repeat="fact in facturas | orderBy:'-fecha_factura'"  ng-click="selectFactura(facturasList[fact])" ng-class="{ selectedRow : $index == productIndex }" >
+                      <tr  ng-repeat="fact in facturas | orderBy:'-fecha_factura'" ng-class="{ selectedRow : $index == productIndex }" >
                         <td><p class="text-center">{{ $index + 1 }}</p></td>
                         <!-- <td><p class="text-center">{{ fact }}</p></td> -->
                         <!-- <td><p class="text-center">{{ facturasList[fact][0].fecha_pedido }}</p></td> -->
