@@ -1201,7 +1201,7 @@ async def procedure(request):
         obj = {
 
                 'nro_factura': arr[0],
-                'fecha_factura': datetime.strptime(arr[1],"%d/%m/%y").strftime("%d/%m/%Y"),
+                'fecha_factura': arr[1],
                 'cod_cliente': arr[2],
                 'cod_vendedor': arr[3],
                 'nombre_vendedor': arr[4],
