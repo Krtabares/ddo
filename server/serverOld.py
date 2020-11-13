@@ -1191,14 +1191,13 @@ async def procedure(request):
     textVar = c.var(str)
     statusVar = c.var(int)
     list = []
+    fecha = ''
     while True:
         c.callproc("dbms_output.get_line", (textVar, statusVar))
         if statusVar.getvalue() != 0:
             break
         arr = str(textVar.getvalue()).split("|")
-        vale = datetime.strtime(arr[1],"%d/%m/%y").strftime("%d/%m/%Y")
-        print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++fecha+++++++++++++++++++++++++++++++++++++")
-        print(vale)
+        fecha = arr[1]
         obj = {
 
                 'nro_factura': arr[0],
@@ -1221,6 +1220,9 @@ async def procedure(request):
                 # 'linea': arr[17]
             }
         list.append(obj)
+    vale = datetime.strtime(arr[1],"%d/%m/%y").strftime("%d/%m/%Y")
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++fecha+++++++++++++++++++++++++++++++++++++")
+    print(vale)
 
     return response.json({"msj": "OK", "obj": agrupar_facturas(list)}, 200)
 
