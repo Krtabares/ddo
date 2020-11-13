@@ -100,6 +100,8 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           }
           $scope.factura = []
           $scope.selectFactura = function (fact,i) {
+
+            console.log(fact);
             $scope.factura = fact
           $scope.totalfactura.bs =  $scope.facturasTotales[i].total_bs
           $scope.totalfactura.usd =  $scope.facturasTotales[i].total_usd
