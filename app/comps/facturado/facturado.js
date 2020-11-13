@@ -98,7 +98,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
             //     return ('' + a.fecha_factura).localeCompare(b.fecha_factura);
             // })
             $scope.facturas = auxFact2.sort(function(a,b){
-              return dateToNum(a.fecha_factura) - dateToNum(b.fecha_factura);
+              return   dateToNum(b.fecha_factura);- dateToNum(a.fecha_factura)
             });
             $scope.loading = false
           });
