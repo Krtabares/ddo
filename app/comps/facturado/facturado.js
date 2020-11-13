@@ -74,6 +74,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
               obj.detalle = $scope.facturasList[item];
               obj.nro_factura = $scope.facturasList[item][0].nro_factura;
               obj.fecha_factura = $scope.facturasList[item][0].fecha_factura;
+              obj.fecha_facturaDate = date: new Date(scope.facturasList[item][0].fecha_factura);
               obj.tipo_pedido = $scope.facturasList[item][0].tipo_pedido;
               obj.fecha_entrega = $scope.facturasList[item][0].fecha_entrega;
 
@@ -97,13 +98,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
             // $scope.facturas.sort(function (a, b) {
             //     return ('' + a.fecha_factura).localeCompare(b.fecha_factura);
             // })
-            $scope.facturas = auxFact2.sort(function(a,b){
-              var A = a.fecha_factura.split("/");
-              var B = b.fecha_factura.split("/");
-              var strA = [ A[2], A[1], A[0] ].join("/");
-              var strB = [ B[2], B[1], B[0] ].join("/");
-              return strA.localeCompare( strB );
-            });
+            $scope.facturas = auxFact2.sort((a, b) => b.fecha_facturaDate - a.fecha_facturaDate)
             $scope.loading = false
           });
        }
