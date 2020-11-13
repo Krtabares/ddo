@@ -67,6 +67,7 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
 
              $scope.facturasList = response.data.obj
               var obj = {}
+              var auxFact2 = []
             facAux.forEach((item, i) => {
               // console.log($scope.facturasList[item]);
               obj = {}
@@ -89,14 +90,14 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
               });
               // console.log($scope.facturasTotales);
 
-              $scope.facturas.push(obj)
+              auxFact2.push(obj)
             });
-            console.log($scope.facturas)
+
 
             // $scope.facturas.sort(function (a, b) {
             //     return ('' + a.fecha_factura).localeCompare(b.fecha_factura);
             // })
-            $scope.facturas.sort(function(a,b){
+            $scope.facturas = auxFact2.sort(function(a,b){
               return dateToNum(a.fecha_factura) - dateToNum(b.fecha_factura);
             });
             $scope.loading = false
