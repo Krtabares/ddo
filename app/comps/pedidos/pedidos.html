@@ -1132,6 +1132,10 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
+
+                    <div class="alert alert-warning alert-dismissible fade show" ng-show="counter > 600000 && counter < timeLimit" role="alert">
+                      <strong>Advertencia!</strong> Dispone de menos de 15 minutos de inactividad
+                    </div>
                   </div>
 
                   <div class="col-md-12">

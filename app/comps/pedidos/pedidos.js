@@ -83,12 +83,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               if( item.cod_estatus == 0  ){
                 $scope.unicOrderID = item.ID
+                $scope.tiempoPedido(item.ID)
                 return
               }else if( item.cod_estatus == 1  ){
                 $scope.unicOrderID = item.ID
+                $scope.tiempoPedido(item.ID)
                 return
               }else if( item.cod_estatus == 2  ){
                 $scope.unicOrderID = item.ID
+                $scope.tiempoPedido(item.ID)
                 return
               }
           });
@@ -1544,15 +1547,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           return hour + ':' + minute + ':' + second;
         }
 
+        $scope.liveTimeOrd = 0
+        // $scope.timeLimit = 899999
         $scope.tiempoPedido = function (id) {
           $scope.loading = true
           var body = {}
           body.pIdPedido = id
           request.post(ip+'/tiempo_resta_pedido/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-            
-            notify({ message:"Este pedido tiene "+ secondsToString(response.data.time) +" minutos para ser cancelado por el sistema ", position:'right', duration:10000, classes:'alert-info'});
 
+            notify({ message:"Su pedido cuenta con "+ secondsToString(response.data.time) +"  para ser cancelado automaticamente por el sistema ", position:'right', duration:10000, classes:'alert-info'});
+
+            $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,((response.data.time - 900) * 1000));
 
             $scope.loading = false
 
@@ -1563,6 +1569,20 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.loading = false
           });
 
+        }
+        $scope.mytimeoutOrdCancel = null
+        $scope.msgOrdCancel =  false
+        $scope.onTimeoutOrdCancel = function(){
+
+          $scope.msgOrdCancel =  true
+
+        }
+
+
+        $scope.stopTimeoutOrdCancel = function(){
+
+            $timeout.cancel($scope.mytimeoutOrdCancel);
+            $scope.liveTimeOrd = null;
         }
 
 
