@@ -1567,7 +1567,6 @@ async def tiempo_resta_pedido(request, token : Token):
         data = request.json
         db = get_db()
         c = db.cursor()
-        respuesta = None
 
         sql = """SELECT PROCESOSPW.tiempo_resta_pedido ({pIdPedido}) from dual""".format(
                 pIdPedido=data['pIdPedido']
