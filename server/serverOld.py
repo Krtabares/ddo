@@ -1538,6 +1538,53 @@ async def validate_Pedido( ID ):
     except Exception as e:
         logger.debug(e)
 
+async def tiempo_resta_pedido(pIdPedido):
+    try:
+
+        db = get_db()
+        c = db.cursor()
+        respuesta = None
+
+        sql = """SELECT PROCESOSPW.tiempo_resta_pedido ({pIdPedido}) from dual""".format(
+                pIdPedido=pIdPedido
+        )
+        # print(sql)
+        c.execute(sql)
+
+        row = c.fetchone()
+        print("RESUTADO tiempo")
+        if row != None and row[0] != None:
+            print(row[0])
+
+        return row[0]
+
+    except Exception as e:
+        logger.debug(e)
+@app.route('/tiempo_resta_pedido/articulo', ["POST", "GET"])
+@jwt_required
+async def tiempo_resta_pedido(pIdPedido):
+    try:
+
+        db = get_db()
+        c = db.cursor()
+        respuesta = None
+
+        sql = """SELECT PROCESOSPW.tiempo_resta_pedido ({pIdPedido}) from dual""".format(
+                pIdPedido=pIdPedido
+        )
+        # print(sql)
+        c.execute(sql)
+
+        row = c.fetchone()
+        print("RESUTADO tiempo")
+        if row != None and row[0] != None:
+            print(row[0])
+
+        return row[0]
+
+    except Exception as e:
+        logger.debug(e)
+
 
 async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
     try:
@@ -1564,16 +1611,6 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
         if row != None and row[0] != None:
             print(row[0])
             return row[0]
-
-        # sql = """select PROCESOSPW.existencia_disponible(:pNoCia,:pArti)
-        #                 from dual"""
-        # c.execute(sql, [
-        #                 pCia,
-        #                 pNoArti
-        #             ])
-        # row = c.fetchone()
-
-        # respuesta['disponible'] = row[0]
 
         return 1
     except Exception as e:
