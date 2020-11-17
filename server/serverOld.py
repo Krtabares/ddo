@@ -1562,22 +1562,22 @@ async def tiempo_resta_pedido(pIdPedido):
         logger.debug(e)
 @app.route('/tiempo_resta_pedido/articulo', ["POST", "GET"])
 @jwt_required
-async def tiempo_resta_pedido(pIdPedido):
+async def tiempo_resta_pedido(request, token : Token):
     try:
-
+        data = request.json
         db = get_db()
         c = db.cursor()
         respuesta = None
 
         sql = """SELECT PROCESOSPW.tiempo_resta_pedido ({pIdPedido}) from dual""".format(
-                pIdPedido=pIdPedido
+                pIdPedido=data['pIdPedido']
         )
         # print(sql)
         c.execute(sql)
 
         row = c.fetchone()
         print("RESUTADO tiempo")
-        
+
         if row != None and row[0] != None:
             print(row[0])
 
