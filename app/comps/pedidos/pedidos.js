@@ -1534,15 +1534,24 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
              return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
         }
 
+        function secondsToString(seconds) {
+          var hour = Math.floor(seconds / 3600);
+          hour = (hour < 10)? '0' + hour : hour;
+          var minute = Math.floor((seconds / 60) % 60);
+          minute = (minute < 10)? '0' + minute : minute;
+          var second = seconds % 60;
+          second = (second < 10)? '0' + second : second;
+          return hour + ':' + minute + ':' + second;
+        }
+
         $scope.tiempoPedido = function (id) {
           $scope.loading = true
           var body = {}
           body.pIdPedido = id
           request.post(ip+'/tiempo_resta_pedido/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
-
-            var timeout = response.data.time / 60
-            notify({ message:"Este pedido tiene "+ timeout +" minutos para ser cancelado por el sistema ", position:'right', duration:10000, classes:'alert-info'});
+            
+            notify({ message:"Este pedido tiene "+ secondsToString(response.data.time) +" minutos para ser cancelado por el sistema ", position:'right', duration:10000, classes:'alert-info'});
 
 
             $scope.loading = false
