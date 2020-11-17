@@ -1578,7 +1578,7 @@ async def tiempo_resta_pedido(request, token : Token):
         print("RESUTADO tiempo")
 
         if row != None and row[0] != None:
-            response.json({"time":row[0]},200)
+            return response.json({"time":row[0]},200)
 
         return response.json({"time":row[0]},407)
 
