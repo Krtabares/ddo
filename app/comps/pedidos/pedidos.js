@@ -1541,8 +1541,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/tiempo_resta_pedido/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
-
-            notify({ message:response.data.time, position:'right', duration:10000, classes:'alert-warning'});
+            var timeout = response.data.time / 60
+            notify({ message:"Este pedido tiene "+ timeout +" minutos para ser cancelado por el sistema ", position:'right', duration:10000, classes:'alert-info'});
 
 
             $scope.loading = false
@@ -1551,6 +1551,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(response.status == 407){
               notify({ message:"No se pudo obtener esta informacion, intente mas tarde", position:'right', duration:10000, classes:'alert-warning'});
             }
+            $scope.loading = false
           });
 
         }
