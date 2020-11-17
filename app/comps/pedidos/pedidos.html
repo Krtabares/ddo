@@ -1167,6 +1167,7 @@
 
                             <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
 
+                            <i class="fa fa-clock" style="cursor: pointer;"   ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'"  ng-click="tiempoPedido(x.ID);"  ></i>
 
                           </td>
                         </tr>
