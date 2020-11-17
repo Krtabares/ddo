@@ -1534,7 +1534,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
              return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
         }
 
-        $scope.tiempoPedido function (id) {
+        $scope.tiempoPedido = function (id) {
           $scope.loading = true
           var body = {}
           body.pIdPedido = id
