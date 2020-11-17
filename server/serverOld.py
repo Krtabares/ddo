@@ -1577,10 +1577,11 @@ async def tiempo_resta_pedido(pIdPedido):
 
         row = c.fetchone()
         print("RESUTADO tiempo")
+        
         if row != None and row[0] != None:
             print(row[0])
 
-        return row[0]
+        return response.json({"time":row[0]},200)
 
     except Exception as e:
         logger.debug(e)
