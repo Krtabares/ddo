@@ -1559,7 +1559,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
              return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
         }
 
-        function secondsToString(seconds) {
+       $scope.secondsToString = function (seconds) {
           var hour = Math.floor(seconds / 3600);
           hour = (hour < 10)? '0' + hour : hour;
           var minute = Math.floor((seconds / 60) % 60);
@@ -1578,7 +1578,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/tiempo_resta_pedido/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
-            notify({ message:"Su pedido cuenta con "+ secondsToString(response.data.time) +"  para ser cancelado automaticamente por el sistema ", position:'right', duration:10000, classes:'alert-info'});
+            notify({ message:"Su pedido cuenta con "+ $scope.secondsToString(response.data.time) +"  para ser cancelado automaticamente por el sistema ", position:'right', duration:10000, classes:'alert-info'});
             var tiempo =  parseInt(response.data.time )
             $scope.liveTimeOrd = tiempo * 1000
 
