@@ -507,6 +507,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.stopTimeout()
               $scope.getPedidos_filteringV2();
               notify({ message:'¡Cerrado con exito!', position:'right', duration:10000, classes:'alert-success'});
+              $scope.stopTimeoutOrdCancel()
 
           }, function errorCallback(response) {
 
@@ -523,13 +524,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
 
 
-
               $scope.loading = false
               $scope.getPedidos_filteringV2();
               $scope.editView = true
               $scope.pedido.estatus = response.data.estatus
               $scope.pedido.estatus_id = 1
               notify({ message:response.data.estatus, position:'right', duration:10000, classes:'alert-success'});
+
+              if($scope.liveTimeOrd < 900000){
+                $scope.counter = $scope.liveTimeOrd
+              }
 
               $scope.mytimeout = $timeout($scope.onTimeout,1000);
 
@@ -545,6 +549,26 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           body.ID = $scope.ID
           body.estatus = 1
           request.post(ip+'/posponer_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          .then(function successCallback(response) {
+
+              $scope.loading = false
+
+              $scope.getPedidos_filteringV2();
+
+              notify({ message:response.data.estatus, position:'right', duration:10000, classes:'alert-success'});
+
+          }, function errorCallback(response) {
+
+            $scope.loading = false
+          });
+        }
+
+        $scope.cancel_pedido =function () {
+          $scope.loading = true
+          var body = {}
+          body.ID = $scope.ID
+          body.estatus = 1
+          request.post(ip+'/cancel_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
               $scope.loading = false
@@ -1080,8 +1104,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.editRow = function (articulo, i) {
 
 
-
-
           calcularTotales(i)
 
           validaDisponibilidadDDO(articulo.COD_PRODUCTO)
@@ -1557,8 +1579,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           .then(function successCallback(response) {
 
             notify({ message:"Su pedido cuenta con "+ secondsToString(response.data.time) +"  para ser cancelado automaticamente por el sistema ", position:'right', duration:10000, classes:'alert-info'});
+            var tiempo =  parseInt(response.data.time )
+            $scope.liveTimeOrd = tiempo * 1000
 
-            $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,((response.data.time - 900) * 1000));
+            alert(response.data.time)
+
+            $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
+
 
             $scope.loading = false
 
@@ -1572,9 +1599,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
         $scope.mytimeoutOrdCancel = null
         $scope.msgOrdCancel =  false
+        $scope.countOrdCancel = 0
         $scope.onTimeoutOrdCancel = function(){
 
-          $scope.msgOrdCancel =  true
+          $scope.liveTimeOrd -= 1000
+
+          if($scope.liveTimeOrd < 900001 ){
+              $scope.msgOrdCancel =  true
+          }
+          if ($scope.liveTimeOrd < 1000 ) {
+            $scope.stopTimeoutOrdCancel()
+            $scope.cancel_pedido()
+            return
+          }
+
+          $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
 
         }
 
@@ -1600,11 +1639,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             .withOption('responsive', true)
             .withDOM('frtip').withPaginationType('full_numbers')
             .withLanguage(DATATABLE_LANGUAGE_ES)
-      $scope.dtOptionsDetalil = DTOptionsBuilder.newOptions()
-          .withPaginationType('full_numbers')
-          .withOption('responsive', true)
-          .withDOM('frtip').withPaginationType('full_numbers')
-          .withLanguage(DATATABLE_LANGUAGE_ES)
+        $scope.dtOptionsDetalil = DTOptionsBuilder.newOptions()
+            .withPaginationType('full_numbers')
+            .withOption('responsive', true)
+            .withDOM('frtip').withPaginationType('full_numbers')
+            .withLanguage(DATATABLE_LANGUAGE_ES)
 
 
         $scope.dtColumns = [
