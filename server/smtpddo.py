@@ -174,6 +174,7 @@ async def availableUser(request):
     data = request.json
     db = get_mongo_db()
     # username = data.get("username", None)
+    print(data)
     user = None
 
     if 'username' in data : 
