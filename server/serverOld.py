@@ -189,6 +189,7 @@ async def availableUser(request):
     data = request.json
     db = get_mongo_db()
     # username = data.get("username", None)
+    user = None
 
     if 'username' in data : 
         user = await db.user.find_one({'username' : data.get("username", None)}, {'_id' : 0})
