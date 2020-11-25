@@ -18,11 +18,11 @@
                       <div class="form-group">
                         <div class="input-group">
                           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                          <input id="email" name="email" ng placeholder="email o username" class="form-control"  type="email">
+                          <input id="email" name="email" ng-model="user.username" placeholder="email o username" class="form-control"  type="email">
                         </div>
                       </div>
                       <div class="form-group">
-                        <input name="recover" class="btn btn-lg btn-primary btn-block" ng-click="user.username"  type="button">
+                        <input name="recover" class="btn btn-lg btn-primary btn-block" ng-click="resetPass()"   type="button">
                       </div>
                       
                     </form>
