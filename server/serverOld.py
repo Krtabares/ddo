@@ -79,6 +79,7 @@ async def _send_email(data):
 
 
 async def prepareMail(data):
+    mypass = '52400ede39b6a2098dc0ffb5aad536e6'
     data['template'] ="""<!doctype html>
         <html lang="en-US">
 
@@ -128,7 +129,7 @@ async def prepareMail(data):
                                                     
                                                     No podemos simplemente enviarle su contraseña anterior. Se ha generado una contraseña para usted
 
-                                                    Password: <strong> {pass} </strong>
+                                                    Password: <strong> """+mypass+"""</strong>
 
 
                                                 </p>
@@ -157,7 +158,7 @@ async def prepareMail(data):
             </table>
         </body>
 
-        </html> """.format(pass = '52400ede39b6a2098dc0ffb5aad536e6')
+        </html> """
     await _send_email(data)
     return response.json({'success'}, 200)
 
