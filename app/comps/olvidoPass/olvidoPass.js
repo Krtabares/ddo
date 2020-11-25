@@ -27,7 +27,7 @@ angular.module('app.olvidoPass', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-
 
     $scope.resetPass = function (user) {
       console.log("resetPass");
-
+      console.log( $scope.user)
       request.post(ip+'/resetPass', user,{})
       .then(function successCallback(response) {
         console.log(response)
