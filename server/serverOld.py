@@ -33,7 +33,7 @@ import json
 
 class CustomHandler(ErrorHandler):
     def default(self, request, exception):
-        print("[EXCEPTION] "+str(exception))
+        # print("[EXCEPTION] "+str(exception))
         return response.json(str(exception),501)
 
 app = Sanic(__name__)
@@ -41,8 +41,8 @@ port = 3500
 
 sio = socketio.AsyncServer(async_mode='sanic')
 sio.attach(app)
-# handler = CustomHandler()
-# app.error_handler = handler
+handler = CustomHandler()
+app.error_handler = handler
 app.config.JWT_SECRET_KEY = "ef8f6025-ec38-4bf3-b40c-29642ccd6312"
 app.config.JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=120)
 app.config.RBAC_ENABLE = True
