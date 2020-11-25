@@ -1,18 +1,49 @@
 import asyncio
-from sanic import Sanic
-from sanic import request
-from sanic.response import json
-from sanic_cors import CORS, cross_origin
+import aiohttp
+import unidecode
+import uuid
 import aiosmtplib
-from random import randint
+import socketio
+import requests
+import random
+import cx_Oracle
+import traceback
+from datetime import datetime, timedelta
+from sanic import Sanic
+from sanic import response
+from sanic_cors import CORS, cross_origin
+from sanic.handlers import ErrorHandler
+from sanic.exceptions import SanicException
+from sanic.log import logger
+from sanic_jwt_extended import (JWTManager, jwt_required, create_access_token,create_refresh_token)
+from sanic_jwt_extended.exceptions import JWTExtendedException
+from sanic_jwt_extended.tokens import Token
+from motor.motor_asyncio import AsyncIOMotorClient
+from sanic.exceptions import ServerError
+from sanic_openapi import swagger_blueprint
+from sanic_openapi import doc
+from sanic_compress import Compress
 from sanic_jinja2 import SanicJinja2
 from email.header import Header
 from email.mime.text import MIMEText
 from email.utils import formataddr
 from datetime import datetime
 app = Sanic(__name__)
-jinja = SanicJinja2(app)
+sio = socketio.AsyncServer(async_mode='sanic')
+sio.attach(app)
+# handler = CustomHandler()
+# app.error_handler = handler
+app.config.JWT_SECRET_KEY = "ef8f6025-ec38-4bf3-b40c-29642ccd6312"
+app.config.JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=120)
+app.config.RBAC_ENABLE = True
+jwt = JWTManager(app)
+app.blueprint(swagger_blueprint)
 CORS(app, automatic_options=True)
+Compress(app)
+
+jinja = SanicJinja2(app)
+
+
 def get_mongo_db():
     mongo_uri = "mongodb://127.0.0.1:27017/ddo"
     client = AsyncIOMotorClient(mongo_uri)
