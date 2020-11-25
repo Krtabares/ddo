@@ -562,13 +562,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.loading = false
           });
         }
-
         $scope.cancel_pedido =function () {
+
           $scope.loading = true
           var body = {}
           body.ID = $scope.ID
-          body.estatus = 5
           request.post(ip+'/cancel_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
+          body.estatus = 5
           .then(function successCallback(response) {
 
               $scope.loading = false
@@ -1607,9 +1607,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           if($scope.liveTimeOrd < 900001 ){
               $scope.msgOrdCancel =  true
           }
-          if ($scope.liveTimeOrd < 1000 ) {
-            $scope.stopTimeoutOrdCancel()
+          if ($scope.liveTimeOrd < 1001 ) {
             $scope.cancel_pedido()
+            $scope.stopTimeoutOrdCancel()
             return
           }
 
