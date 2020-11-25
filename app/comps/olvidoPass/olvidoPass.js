@@ -23,8 +23,25 @@ angular.module('app.olvidoPass', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-
 
 	  $scope.$storage = $localStorage
 
+    $scope.user = {
+      
+    }
 
+    $scope.resetPass = function () {
+      console.log("resetPass");
 
+      request.post(ip+'/resetPass', $scope.user,{'Authorization': 'Bearer ' + localstorage.get('token')})
+      .then(function successCallback(response) {
+        console.log(response)
+
+        notify({ message:'El nuevo password fue enviado a su correo', position:'right', duration:1000, classes:'alert-success'});
+
+      }, function errorCallback(response) {
+        console.log(response)
+        notify({ message:'No se pudo completar la accion verifique los datos', position:'right', duration:1000, classes:'alert-danger'});
+
+      });
+    }
 
 
 
