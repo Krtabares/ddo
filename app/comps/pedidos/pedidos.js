@@ -567,7 +567,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.loading = true
           var body = {}
           body.ID = $scope.ID
-          body.estatus = 1
+          body.estatus = 6
           request.post(ip+'/cancel_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
@@ -1582,7 +1582,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             var tiempo =  parseInt(response.data.time )
             $scope.liveTimeOrd = tiempo * 1000
 
-            alert(response.data.time)
+            // alert(response.data.time)
 
             $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
 

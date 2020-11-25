@@ -213,11 +213,32 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
        });
      }
 
+     $scope.emailValid = false;
+     $scope.availableEmail = function (filter = false) {
+      console.log("availableEmail");
+
+      request.post(ip+'/available/email', $scope.user,{'Authorization': 'Bearer ' + localstorage.get('token')})
+      .then(function successCallback(response) {
+        console.log(response)
+        if(response.data != null){
+          $scope.emailValid = true
+        }else {
+          $scope.emailValid = false
+        }
+        // $scope.clientes = response.data.obj
+
+      }, function errorCallback(response) {
+        console.log(response)
+      });
+    }
+
       $scope.addUser = function(user){
             $scope.loading = true
             user.password = "52400ede39b6a2098dc0ffb5aad536e6";
-            // if($scope.clientIndex!=-1 && user.role == 'cliente'){
-              // user.role = "cliente"
+            if(!$scope.usernameValid || !$scope.emailValid){
+              ngNotify.set('¡Verifique username y/o email!','danger')
+              return
+            }
             user.username = user.username.toUpperCase()
             user.COD_CIA = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
             user.GRUPO_CLIENTE = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
@@ -240,9 +261,6 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                 }, function errorCallback(response) {
                   console.log(response)
                 });
-
-
-
         }
 
         $scope.updUser = function(user){
