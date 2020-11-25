@@ -28,6 +28,7 @@ from email.header import Header
 from email.mime.text import MIMEText
 from email.utils import formataddr
 from datetime import datetime
+
 app = Sanic(__name__)
 sio = socketio.AsyncServer(async_mode='sanic')
 sio.attach(app)
@@ -162,13 +163,13 @@ async def prepareMail(data):
     await _send_email(data)
     return response.json({'success'}, 200)
     
-@app.route('/put', methods=["POST"])
-async def check(request):
-    data = request.json
-    await _send_email(data)
-    return json(f"SUCCESS!")
+# @app.route('/put', methods=["POST"])
+# async def check(request):
+#     data = request.json
+#     await _send_email(data)
+#     return json(f"SUCCESS!")
 
-@app.route('/resetPass', ["POST", "GET"])
+@app.route('/put', ["POST", "GET"])
 async def availableUser(request):
     data = request.json
     db = get_mongo_db()
@@ -194,7 +195,6 @@ async def availableUser(request):
         to = user['email'],
         subject = "Reinicio de Password"
     )
-
 
     await prepareMail(emailData)
 
