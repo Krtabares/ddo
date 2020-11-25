@@ -174,14 +174,7 @@ async def availableUser(request):
     data = request.json
     print(data)
 
-
-    # emailData = dict(
-    #     template = "",
-    #     to = user['email'],
-    #     subject = "Reinicio de Password"
-    # )
-
-    # await prepareMail(emailData)
+    await prepareMail(data)
 
     return response.json(user,200)    
 app.run(port=8888, debug=True)
