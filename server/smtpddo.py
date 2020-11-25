@@ -169,35 +169,19 @@ async def prepareMail(data):
 #     await _send_email(data)
 #     return json(f"SUCCESS!")
 
-@app.route('/put', ["POST", "GET"])
+@app.route('/put', ["POST"])
 async def availableUser(request):
     data = request.json
-    db = get_mongo_db()
-    # username = data.get("username", None)
     print(data)
-    user = None
 
-    if 'username' in data : 
-        user = await db.user.find_one({'username' : data.get("username", None)}, {'_id' : 0})
 
-    elif user == None : 
-        user = await db.user.find_one({'email' : data.get("username", None)}, {'_id' : 0})
-    
-    else:
-        response.json({"msg": "Missing username parameter"}, status=400)
+    # emailData = dict(
+    #     template = "",
+    #     to = user['email'],
+    #     subject = "Reinicio de Password"
+    # )
 
-    if user == None:
-        response.json({"msg": "Missing username parameter"}, status=400)
-
-    print(user)
-
-    emailData = dict(
-        template = "",
-        to = user['email'],
-        subject = "Reinicio de Password"
-    )
-
-    await prepareMail(emailData)
+    # await prepareMail(emailData)
 
     return response.json(user,200)    
 app.run(port=8888, debug=True)
