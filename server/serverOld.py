@@ -205,7 +205,7 @@ async def availableUser(request):
 
     print(user)
     emailData = [] 
-    emailData['To'] = user.email
+    emailData['To'] = user['email']
     emailData['Subject'] = "Reinicio de Password"
 
     await prepareMail(emailData)
