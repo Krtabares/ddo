@@ -202,13 +202,13 @@ async def availableUser(request):
 
     if user == None:
         response.json({"msg": "Missing username parameter"}, status=400)
-        
-    print(user)
-    emailData = [] 
-    emailData['To'] = user.email
-    emailData['Subject'] = "Reinicio de Password"
 
-    await prepareMail(emailData)
+    print(user)
+    # emailData = [] 
+    # emailData['To'] = user.email
+    # emailData['Subject'] = "Reinicio de Password"
+
+    # await prepareMail(emailData)
 
     return response.json(user,200)    
 
