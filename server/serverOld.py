@@ -209,11 +209,11 @@ async def availableUser(request):
     # emailData['To'] = user['email']
     # emailData['Subject'] = "Reinicio de Password"
 
-        emailData = dict(
-            template = "",
-            to = user['email'],
-            subject = "Reinicio de Password"
-        )
+    emailData = dict(
+        template = "",
+        to = user['email'],
+        subject = "Reinicio de Password"
+    )
 
 
     await prepareMail(emailData)
