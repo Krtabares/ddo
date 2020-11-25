@@ -2,6 +2,7 @@ import asyncio
 from sanic import Sanic
 from sanic import request
 from sanic.response import json
+from sanic_cors import CORS, cross_origin
 import aiosmtplib
 from random import randint
 from sanic_jinja2 import SanicJinja2
@@ -11,7 +12,7 @@ from email.utils import formataddr
 from datetime import datetime
 app = Sanic(__name__)
 jinja = SanicJinja2(app)
-
+CORS(app, automatic_options=True)
 def get_mongo_db():
     mongo_uri = "mongodb://127.0.0.1:27017/ddo"
     client = AsyncIOMotorClient(mongo_uri)
