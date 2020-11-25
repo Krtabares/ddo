@@ -43,3 +43,5 @@ async def check(request):
     data = request.json
     await _send_email(data)
     return json(f"SUCCESS!")
+
+app.run(port=8888, debug=True)
