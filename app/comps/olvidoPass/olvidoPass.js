@@ -19,7 +19,7 @@ angular.module('app.olvidoPass', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-
       $scope.client_info = {};
       $scope.hasUserClient = false;
 
-      var ip = 'http://192.168.168.170:8888';
+      var ip = IP_SERVER_PYTHON;
 
 	  $scope.$storage = $localStorage
 
