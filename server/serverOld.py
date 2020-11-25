@@ -1835,7 +1835,7 @@ async def editar_pedido(request, token : Token):
     try:
         data = request.json
 
-        estatus = await upd_estatus_pedido(data['estatus'],data['ID'])
+        estatus = await upd_estatus_pedido(6,data['ID'])
 
         return response.json({"estatus" : estatus},200)
     except Exception as e:
