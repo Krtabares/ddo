@@ -185,8 +185,7 @@ def searchUser(username, password):
     return False
 
 @app.route('/resetPass', ["POST", "GET"])
-@jwt_required
-async def availableUser(request, token : Token):
+async def availableUser(request):
     data = request.json
     db = get_mongo_db()
     # username = data.get("username", None)
