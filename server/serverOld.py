@@ -199,6 +199,10 @@ async def availableUser(request):
     
     else:
         response.json({"msg": "Missing username parameter"}, status=400)
+
+    if user == None:
+        response.json({"msg": "Missing username parameter"}, status=400)
+        
     print(user)
     emailData = [] 
     emailData['To'] = user.email
