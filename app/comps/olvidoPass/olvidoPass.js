@@ -24,13 +24,13 @@ angular.module('app.olvidoPass', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-
 	  $scope.$storage = $localStorage
 
     $scope.user = {
-      
+
     }
 
     $scope.resetPass = function () {
       console.log("resetPass");
 
-      request.post(ip+'/resetPass', $scope.user,{'Authorization': 'Bearer ' + localstorage.get('token')})
+      request.post(ip+'/resetPass', $scope.user,{})
       .then(function successCallback(response) {
         console.log(response)
 
