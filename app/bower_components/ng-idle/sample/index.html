@@ -8,7 +8,7 @@
       app
       .controller('EventsCtrl', function($scope, Idle) {
         $scope.events = [];
-        $scope.idle = 5;
+        $scope.idle = 10*60;
         $scope.timeout = 5;
 
         $scope.$on('IdleStart', function() {

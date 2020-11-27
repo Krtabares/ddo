@@ -14,18 +14,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       $scope.events = [];
       $scope.idle = 15;
       $scope.timeout = 10;
+      $scope.showTimeout = false;
 
       $scope.$on('IdleStart', function() {
         addEvent({event: 'IdleStart', date: new Date()});
+        $scope.showTimeout = true;
       });
 
       $scope.$on('IdleEnd', function() {
         addEvent({event: 'IdleEnd', date: new Date()});
         $scope.timeout = 10;
+        $scope.showTimeout = false;
       });
 
       $scope.$on('IdleWarn', function(e, countdown) {
         addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
+        $scope.showTimeout = true;
       });
 
       $scope.$on('IdleTimeout', function() {
