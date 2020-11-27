@@ -541,7 +541,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.countdown()
               $scope.stopTimeout()
-              $scope.mytimeout = $timeout(function (){
+              mytimeout = $timeout(function (){
                 $scope.onTimeout()
               },$scope.timeLimit * 1000);
 
@@ -853,7 +853,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.counter = $scope.timeLimit;
               $scope.countdown()
               $scope.stopTimeout()
-              $scope.mytimeout = $timeout(function (){
+              mytimeout = $timeout(function (){
                 $scope.onTimeout()
               },$scope.timeLimit * 1000);
               $scope.pedido.estatus ='PEDIDO CREADO'
@@ -887,9 +887,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.stopTimeout()
 
-              if(!$scope.editView){
-                $scope.delPedido()
-              }
+              // if(!$scope.editView){
+              //   $scope.delPedido()
+              // }
 
               $(function(){
                 $("#addPedidoModal").modal("hide");
@@ -897,19 +897,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $("#modalInfoProduct").modal("hide");
               })
 
-              window.location.href = "#!/";
+              // window.location.href = "#!/";
 
               return;
 
         }
 
 
-        $scope.mytimeout = null
+         var mytimeout = null
 
         $scope.stopTimeout = function(){
-            alert("cancelo timeout")
-            console.log($scope.mytimeout)
-            $timeout.cancel($scope.mytimeout);
+          console.log(mytimeout)
+          alert("cancelo timeout")
+            $timeout.cancel(mytimeout);
             $scope.counter = $scope.timeLimit;
             // $scope.$apply();
 
@@ -985,7 +985,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.counter = $scope.timeLimit;
             $scope.stopTimeout()
             $scope.countdown()
-            $scope.mytimeout = $timeout(function (){
+            mytimeout = $timeout(function (){
                 $scope.onTimeout()
               },$scope.timeLimit * 1000);
 
@@ -1507,7 +1507,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.counter = $scope.timeLimit;
           $scope.stopTimeout()
           $scope.countdown()
-          $scope.mytimeout = $timeout(function (){
+          mytimeout = $timeout(function (){
             $scope.onTimeout()
           },$scope.timeLimit * 1000);
           // $scope.resetTime()
@@ -1634,7 +1634,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             // alert(response.data.time)
 
-            $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
+            mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
 
 
             $scope.loading = false
@@ -1647,7 +1647,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
 
         }
-        $scope.mytimeoutOrdCancel = null
+        mytimeoutOrdCancel = null
         $scope.msgOrdCancel =  false
         $scope.countOrdCancel = 0
         $scope.onTimeoutOrdCancel = function(){
@@ -1663,14 +1663,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             return
           }
 
-          $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
+          mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
 
         }
 
 
         $scope.stopTimeoutOrdCancel = function(){
 
-            $timeout.cancel($scope.mytimeoutOrdCancel);
+            $timeout.cancel(mytimeoutOrdCancel);
             $scope.liveTimeOrd = null;
         }
 
