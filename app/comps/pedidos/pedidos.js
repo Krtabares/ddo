@@ -93,6 +93,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $scope.unicOrderID = item.ID
                 $scope.tiempoPedido(item.ID)
                 return
+              }else if( item.cod_estatus == 6  ){
+                $scope.unicOrderID = item.ID
+                $scope.tiempoPedido(item.ID)
+                return
               }
           });
 
@@ -913,16 +917,20 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.countdown = function() {
           console.log($scope.counter);
 
-          stopped = $timeout(function() {
-             console.log($scope.counter);
-            if($scope.counter < 1){
-              $scope.stop1()
-              return
-            }else{
-              $scope.counter-=1;   
-            }
-           $scope.countdown();   
-          }, 1000);
+          // stopped = $timeout(function() {
+          //    console.log($scope.counter);
+          //   if($scope.counter < 1){
+          //     $scope.stop1()
+          //     return
+          //   }else{
+          //     $scope.counter-=1;   
+          //   }
+          //  $scope.countdown();   
+          // }, 1000);
+
+          // $scope.add5Seconds = function () {
+            $scope.$broadcast('timer-add-cd-seconds', $scope.timeLimit);
+        // }
         };
          
           
