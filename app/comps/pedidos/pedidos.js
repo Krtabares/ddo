@@ -12,7 +12,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify,Idle, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
       $scope.events = [];
-      $scope.idle = 60*15;
+      $scope.idle = 15;
       $scope.timeout = 10;
 
       $scope.$on('IdleStart', function() {
