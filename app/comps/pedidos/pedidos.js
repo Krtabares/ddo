@@ -12,8 +12,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify,Idle, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
       $scope.events = [];
-      $scope.idle = 15;
-      $scope.timeout = 15;
+      $scope.idle = 60*15;
+      $scope.timeout = 10;
 
       $scope.$on('IdleStart', function() {
         addEvent({event: 'IdleStart', date: new Date()});
@@ -21,6 +21,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
       $scope.$on('IdleEnd', function() {
         addEvent({event: 'IdleEnd', date: new Date()});
+        $scope.timeout = 10;
       });
 
       $scope.$on('IdleWarn', function(e, countdown) {
@@ -29,6 +30,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
       $scope.$on('IdleTimeout', function() {
         addEvent({event: 'IdleTimeout', date: new Date()});
+        $scope.onTimeout()
+        
       });
 
       $scope.$on('Keepalive', function() {
@@ -927,9 +930,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.stopTimeout()
 
-              // if(!$scope.editView){
-              //   $scope.delPedido()
-              // }
+              if(!$scope.editView){
+                $scope.delPedido()
+              }
 
               $(function(){
                 $("#addPedidoModal").modal("hide");
@@ -937,7 +940,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $("#modalInfoProduct").modal("hide");
               })
 
-              // window.location.href = "#!/";
+              window.location.href = "#!/";
 
               return;
 
