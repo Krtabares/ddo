@@ -575,8 +575,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.loading = true
           var body = {}
           body.ID = $scope.ID
-          request.post(ip+'/cancel_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           body.estatus = 5
+          request.post(ip+'/cancel_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
               $scope.loading = false
@@ -1508,7 +1508,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.mytimeout = $timeout(function (){
             $scope.onTimeout()
           },$scope.timeLimit * 1000);
-          $scope.resetTime()
+          // $scope.resetTime()
         }
 
         $scope.totales = {
