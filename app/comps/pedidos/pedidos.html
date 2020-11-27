@@ -16,7 +16,7 @@
         <div class="card-header mb-3 " ng-show="counter > 0" >
   
             <span class="float-right"> <strong>tiempo:</strong>
-              <div idle-countdown="countdown">
+              <div ng-if="showTimeout" idle-countdown="countdown">
               cierre de sesion en {{countdown}} seconds.
             </div>
           </span>
@@ -332,7 +332,7 @@
             <strong>{{pedido.fecha}}</strong>
             <span class="float-right ml-3" ng-show="editView" > 
               <!-- <strong>tiempo:</strong> {{msToTime(counter*1000)}}  -->
-              <div idle-countdown="countdown">
+              <div ng-if="showTimeout" idle-countdown="countdown">
                 cierre de sesion en {{countdown}} seconds.
               </div>
             </span>
