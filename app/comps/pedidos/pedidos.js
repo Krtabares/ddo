@@ -1383,6 +1383,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.reset = function(){
           $scope.stopTimeout()
           // $scope.resetTime()
+          $scope.$broadcast('timer-start');
           $scope.stop1()
           $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0"        }
           $scope.counter = $scope.timeLimit;
