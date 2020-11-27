@@ -9,6 +9,7 @@ angular.module('app', [
                'ngNotify',
                'cgNotify',
                'timer',
+               'ngIdle',
                'app.login',
                'app.home',
                'app.perfil',

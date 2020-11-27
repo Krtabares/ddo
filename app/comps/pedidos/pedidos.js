@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.bootstrap','ngRoute', 'ngNotify','cgNotify','timer', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
+angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.bootstrap','ngRoute', 'ngNotify','cgNotify','timer','ngIdle', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
   .config(['$routeProvider', function($routeProvider) {
 
     $routeProvider.when('/pedidos', {
@@ -9,9 +9,49 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
     });
   }])
   .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify','notify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
-    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
+    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify,Idle, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
+      $scope.events = [];
+      $scope.idle = 15;
+      $scope.timeout = 15;
 
+      $scope.$on('IdleStart', function() {
+        addEvent({event: 'IdleStart', date: new Date()});
+      });
+
+      $scope.$on('IdleEnd', function() {
+        addEvent({event: 'IdleEnd', date: new Date()});
+      });
+
+      $scope.$on('IdleWarn', function(e, countdown) {
+        addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
+      });
+
+      $scope.$on('IdleTimeout', function() {
+        addEvent({event: 'IdleTimeout', date: new Date()});
+      });
+
+      $scope.$on('Keepalive', function() {
+        addEvent({event: 'Keepalive', date: new Date()});
+      });
+
+      function addEvent(evt) {
+        $scope.$evalAsync(function() {
+          $scope.events.push(evt);
+        })
+      }
+
+      $scope.reset = function() {
+        Idle.watch();
+      }
+
+      $scope.$watch('idle', function(value) {
+        if (value !== null) Idle.setIdle(value);
+      });
+
+      $scope.$watch('timeout', function(value) {
+        if (value !== null) Idle.setTimeout(value);
+      });
 
         $scope.loading = true
         $scope.pedido = {
@@ -918,20 +958,17 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.countdown = function() {
           console.log($scope.counter);
 
-          // stopped = $timeout(function() {
-          //    console.log($scope.counter);
-          //   if($scope.counter < 1){
-          //     $scope.stop1()
-          //     return
-          //   }else{
-          //     $scope.counter-=1;   
-          //   }
-          //  $scope.countdown();   
-          // }, 1000);
+          stopped = $timeout(function() {
+             console.log($scope.counter);
+            if($scope.counter < 1){
+              $scope.stop1()
+              return
+            }else{
+              $scope.counter-=1;   
+            }
+           $scope.countdown();   
+          }, 1000);
 
-          // $scope.add5Seconds = function () {
-            $scope.$broadcast('timer-add-cd-seconds', $scope.timeLimit);
-        // }
         };
          
           
@@ -1755,4 +1792,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         proveedores()
         getCategorias()
     }
-]);
+]).config(function(IdleProvider, KeepaliveProvider) {
+  KeepaliveProvider.interval(10);
+  IdleProvider.windowInterrupt('focus');
+})
+.run(function($rootScope, Idle, $log, Keepalive){
+  Idle.watch();
+});
