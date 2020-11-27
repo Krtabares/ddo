@@ -15,10 +15,10 @@
         </div>
         <div class="card-header mb-3 " ng-show="counter > 0" >
   
-            <span class="float-right">  <div ng-if="showIdle"><strong>tiempo de inactividad </strong>:{{idleCount}} segundos</div>
+            <span class="float-right"> <strong>tiempo:</strong>
               
               <div ng-if="showTimeout" idle-countdown="countdown">
-              cierre de sesion en {{countdown}} segundos.
+              cierre de sesion en {{countdown}} seconds.
             </div>
           </span>
         </div>
@@ -333,7 +333,6 @@
             <strong>{{pedido.fecha}}</strong>
             <span class="float-right ml-3" ng-show="editView" > 
               <!-- <strong>tiempo:</strong> {{msToTime(counter*1000)}}  -->
-              <div ng-if="showIdle"><strong>tiempo de inactividad </strong>:{{idleCount}} segundos</div>
               <div ng-if="showTimeout" idle-countdown="countdown">
                 cierre de sesion en {{countdown}} seconds.
               </div>
