@@ -12,8 +12,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify,Idle, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
       $scope.events = [];
-      $scope.idle = 15;
-      $scope.timeout = 10;
+      $scope.idle = 15*60;
+      $scope.timeout = 20;
       $scope.showTimeout = false;
 
       $scope.$on('IdleStart', function() {
@@ -23,7 +23,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
       $scope.$on('IdleEnd', function() {
         addEvent({event: 'IdleEnd', date: new Date()});
-        $scope.timeout = 10;
+        $scope.timeout = 20;
         $scope.showTimeout = false;
       });
 

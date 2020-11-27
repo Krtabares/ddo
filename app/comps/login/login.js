@@ -24,6 +24,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
     localstorage.clear()
     function init() {
       $(function(){
+        $(document).ready(function() {document.title = 'Droguería del Oeste - Gestión de Órdenes'; });
         $('.modal-backdrop').remove();
         $('#modalConfirmSidebar').modal("hide");
       })
