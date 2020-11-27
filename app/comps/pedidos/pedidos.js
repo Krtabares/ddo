@@ -579,7 +579,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $scope.counter = $scope.liveTimeOrd
               }
 
-              $scope.countdown()
+              // $scope.countdown()
               $scope.stopTimeout()
               mytimeout = $timeout(function (){
                 $scope.onTimeout()
@@ -891,7 +891,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if($scope.ID != null){
               // notify({ message:'¡Pedido abierto con exito!', position:'left', duration:10000, classes:'alert-success'});
               $scope.counter = $scope.timeLimit;
-              $scope.countdown()
+              // $scope.countdown()
               $scope.stopTimeout()
               mytimeout = $timeout(function (){
                 $scope.onTimeout()
@@ -966,7 +966,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }else{
               $scope.counter-=1;   
             }
-           $scope.countdown();   
+          //  $scope.countdown();   
           }, 1000);
 
         };
@@ -1021,7 +1021,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.product = {}
             $scope.counter = $scope.timeLimit;
             $scope.stopTimeout()
-            $scope.countdown()
+            // $scope.countdown()
             mytimeout = $timeout(function (){
                 $scope.onTimeout()
               },$scope.timeLimit * 1000);
@@ -1543,7 +1543,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           calcularTotales()
           $scope.counter = $scope.timeLimit;
           $scope.stopTimeout()
-          $scope.countdown()
+          // $scope.countdown()
           mytimeout = $timeout(function (){
             $scope.onTimeout()
           },$scope.timeLimit * 1000);
