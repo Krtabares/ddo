@@ -536,6 +536,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
 
               $scope.countdown()
+              $scope.stopTimeout()
               $scope.mytimeout = $timeout(function (){
                 $scope.onTimeout()
               },$scope.timeLimit * 1000);
@@ -847,6 +848,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               // notify({ message:'¡Pedido abierto con exito!', position:'left', duration:10000, classes:'alert-success'});
               $scope.counter = $scope.timeLimit;
               $scope.countdown()
+              $scope.stopTimeout()
               $scope.mytimeout = $timeout(function (){
                 $scope.onTimeout()
               },$scope.timeLimit * 1000);
@@ -879,8 +881,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.counter = $scope.timeLimit;
         $scope.onTimeout = function(){
 
-            // if($scope.counter < 1){
-
               $scope.stopTimeout()
 
               if(!$scope.editView){
@@ -896,13 +896,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               window.location.href = "#!/";
 
               return;
-            // }
-
-            // $scope.counter -= 1;
-            // console.log($scope.mytimeout);
-            // $timeout.cancel($scope.mytimeout);
-            // $scope.mytimeout = $timeout($scope.onTimeout,1000);
-
 
         }
 
@@ -922,7 +915,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           stopped = $timeout(function() {
              console.log($scope.counter);
-           $scope.counter-=1000;   
+            if($scope.counter < 1){
+              $scope.stop1()
+              return
+            }else{
+              $scope.counter-=1;   
+            }
            $scope.countdown();   
           }, 1000);
         };
@@ -976,6 +974,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.productIndex = -1
             $scope.product = {}
             $scope.counter = $scope.timeLimit;
+            $scope.stopTimeout()
             $scope.countdown()
             $scope.mytimeout = $timeout(function (){
                 $scope.onTimeout()
@@ -1376,6 +1375,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.reset = function(){
           $scope.stopTimeout()
           // $scope.resetTime()
+          $scope.stop1()
           $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0"        }
           $scope.counter = $scope.timeLimit;
           $scope.tabsIndex = 0
@@ -1495,6 +1495,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           calcularTotales()
           $scope.counter = $scope.timeLimit;
+          $scope.stopTimeout()
           $scope.countdown()
           $scope.mytimeout = $timeout(function (){
             $scope.onTimeout()
