@@ -8,6 +8,7 @@ angular.module('app', [
                'angular-bind-html-compile',
                'ngNotify',
                'cgNotify',
+               'timer',
                'app.login',
                'app.home',
                'app.perfil',

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.bootstrap','ngRoute', 'ngNotify','cgNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
+angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.bootstrap','ngRoute', 'ngNotify','cgNotify','timer', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
   .config(['$routeProvider', function($routeProvider) {
 
     $routeProvider.when('/pedidos', {
@@ -121,7 +121,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 }else{
 
 
-                  notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'right', duration:10000, classes:'alert-warning'});
+                  notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'left', duration:10000, classes:'alert-warning'});
                 }
               break;
 
@@ -138,7 +138,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                       $('.modal-backdrop').remove();
                     })
                   }else{
-                    notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'right', duration:10000, classes:'alert-warning'});
+                    notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'left', duration:10000, classes:'alert-warning'});
                   }
                 break;
 
@@ -247,7 +247,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           if($scope.pedido.estatus_id >= 3 && $scope.pedido.estatus_id != 6){
 
 
-            notify({ message:'¡Este pedido no puede ser editado!', position:'right', duration:10000, classes:'alert-danger'});
+            notify({ message:'¡Este pedido no puede ser editado!', position:'left', duration:10000, classes:'alert-danger'});
             return
           }else{
 
@@ -459,7 +459,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
             }else{
-              notify({ message:'¡No se encontraron resultados!', position:'right', duration:10000, classes:'alert-warning'});
+              notify({ message:'¡No se encontraron resultados!', position:'left', duration:10000, classes:'alert-warning'});
 
             }
 
@@ -482,7 +482,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.client = response.data.obj[0]
 
             }else{
-              notify({ message:'¡No se encontraron resultados!', position:'right', duration:10000, classes:'alert-warning'});
+              notify({ message:'¡No se encontraron resultados!', position:'left', duration:10000, classes:'alert-warning'});
             }
 
           }, function errorCallback(response) {
@@ -506,7 +506,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.loading = false
               $scope.stopTimeout()
               $scope.getPedidos_filteringV2();
-              notify({ message:'¡Cerrado con exito!', position:'right', duration:10000, classes:'alert-success'});
+              notify({ message:'¡Cerrado con exito!', position:'left', duration:10000, classes:'alert-success'});
               $scope.stopTimeoutOrdCancel()
 
           }, function errorCallback(response) {
@@ -514,8 +514,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.loading = false
           });
         }
-
-        $scope.edit_pedido =function () {
+        
+        $scope.edit_pedido = function () {
           $scope.loading = true
           var body = {}
           body.ID = $scope.ID
@@ -529,13 +529,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.editView = true
               $scope.pedido.estatus = response.data.estatus
               $scope.pedido.estatus_id = 1
-              notify({ message:response.data.estatus, position:'right', duration:10000, classes:'alert-success'});
+              notify({ message:response.data.estatus, position:'left', duration:10000, classes:'alert-success'});
 
               if($scope.liveTimeOrd < 900000){
                 $scope.counter = $scope.liveTimeOrd
               }
 
-              $scope.mytimeout = $timeout($scope.onTimeout,1000);
+              $scope.countdown()
+              $scope.mytimeout = $timeout(function (){
+                $scope.onTimeout()
+              },$scope.timeLimit * 1000);
 
           }, function errorCallback(response) {
 
@@ -555,7 +558,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filteringV2();
 
-              notify({ message:response.data.estatus, position:'right', duration:10000, classes:'alert-success'});
+              notify({ message:response.data.estatus, position:'left', duration:10000, classes:'alert-success'});
 
           }, function errorCallback(response) {
 
@@ -575,7 +578,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filteringV2();
 
-              notify({ message:response.data.estatus, position:'right', duration:10000, classes:'alert-success'});
+              notify({ message:response.data.estatus, position:'left', duration:10000, classes:'alert-success'});
 
           }, function errorCallback(response) {
 
@@ -600,7 +603,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }, function errorCallback(response) {
             if(response.status == 450){
               $scope.clientInvalidoMsg = response.data.data[0]
-              notify({ message:$scope.clientInvalidoMsg, position:'right', duration:10000, classes:'alert-warning'});
+              notify({ message:$scope.clientInvalidoMsg, position:'left', duration:10000, classes:'alert-warning'});
               $scope.clienteValido = false
               $scope.tabsIndex = 0
             }
@@ -756,7 +759,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.busqueda_prod = null;
 
             }else{
-              notify({ message:'¡No se encontraron resultados!', position:'right', duration:10000, classes:'alert-warning'});
+              notify({ message:'¡No se encontraron resultados!', position:'left', duration:10000, classes:'alert-warning'});
             }
             $scope.loading = false
 
@@ -822,7 +825,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filteringV2();
 
-              notify({ message:'¡Pedido generado con exito!', position:'right', duration:10000, classes:'alert-success'});
+              notify({ message:'¡Pedido generado con exito!', position:'left', duration:10000, classes:'alert-success'});
 
             alert("Guardado con exito!")
           }, function errorCallback(response) {
@@ -841,9 +844,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.ID = response.data.ID
 
             if($scope.ID != null){
-              notify({ message:'¡Pedido abierto con exito!', position:'right', duration:10000, classes:'alert-success'});
-              $scope.counter = 0;
-              $scope.mytimeout = $timeout($scope.onTimeout,1000);
+              // notify({ message:'¡Pedido abierto con exito!', position:'left', duration:10000, classes:'alert-success'});
+              $scope.counter = $scope.timeLimit;
+              $scope.countdown()
+              $scope.mytimeout = $timeout(function (){
+                $scope.onTimeout()
+              },$scope.timeLimit * 1000);
               $scope.pedido.estatus ='PEDIDO CREADO'
               $(function(){
                 $("#addPedidoModal").modal({
@@ -856,7 +862,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $(function(){
                 $("#addPedidoModal").modal("hide");
               })
-              notify({ message:'¡No se pudo abrir un pedido nuevo!', position:'right', duration:10000, classes:'alert-danger'});
+              notify({ message:'¡No se pudo abrir un pedido nuevo!', position:'left', duration:10000, classes:'alert-danger'});
             }
 
 
@@ -869,12 +875,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
         }
 
-        $scope.timeLimit = 899999
-        $scope.counter = 0;
+        $scope.timeLimit = 300//899
+        $scope.counter = $scope.timeLimit;
         $scope.onTimeout = function(){
 
-            if($scope.counter > $scope.timeLimit){
+            // if($scope.counter < 1){
+
               $scope.stopTimeout()
+
               if(!$scope.editView){
                 $scope.delPedido()
               }
@@ -884,14 +892,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $("#modalproduct").modal("hide");
                 $("#modalInfoProduct").modal("hide");
               })
+
               window.location.href = "#!/";
 
               return;
-            }
+            // }
 
-            $scope.counter= $scope.counter + 1000;
-
-            $scope.mytimeout = $timeout($scope.onTimeout,1000);
+            // $scope.counter -= 1;
+            // console.log($scope.mytimeout);
+            // $timeout.cancel($scope.mytimeout);
+            // $scope.mytimeout = $timeout($scope.onTimeout,1000);
 
 
         }
@@ -902,8 +912,27 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.stopTimeout = function(){
 
             $timeout.cancel($scope.mytimeout);
-            $scope.counter = 0;
+            $scope.counter = $scope.timeLimit;
+            // $scope.$apply();
+
         }
+        var stopped;
+        $scope.countdown = function() {
+          console.log($scope.counter);
+
+          stopped = $timeout(function() {
+             console.log($scope.counter);
+           $scope.counter-=1000;   
+           $scope.countdown();   
+          }, 1000);
+        };
+         
+          
+      $scope.stop1 = function(){
+         $timeout.cancel(stopped);
+          
+          } 
+
 
         $scope.msToTime =  function(s) {
           var ms = s % 1000;
@@ -946,17 +975,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.articulo = {};
             $scope.productIndex = -1
             $scope.product = {}
-            $scope.counter = 0;
+            $scope.counter = $scope.timeLimit;
+            $scope.countdown()
+            $scope.mytimeout = $timeout(function (){
+                $scope.onTimeout()
+              },$scope.timeLimit * 1000);
 
             $(function(){
               $("#modalInfoProduct").modal('hide');
             })
 
-            notify({ message:'¡Producto agregado al pedido!', position:'right', duration:10000, classes:'alert-success'});
+            notify({ message:'¡Producto agregado al pedido!', position:'left', duration:10000, classes:'alert-success'});
           }, function errorCallback(response) {
 
             if(response.status == 410){
-      				  notify({ message:response.data.msg, position:'right', duration:20000, classes:'alert-danger'});
+      				  notify({ message:response.data.msg, position:'left', duration:20000, classes:'alert-danger'});
                 $(function(){
                   $("#addPedidoModal").modal("hide");
                   $("#showPedidoModal").modal("hide");
@@ -965,7 +998,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 $scope.getPedidos_filteringV2();
       			}
             if(response.status == 480){
-                notify({ message:response.data.msg, position:'right', duration:20000, classes:'alert-danger'});
+                notify({ message:response.data.msg, position:'left', duration:20000, classes:'alert-danger'});
 
             }
             $scope.loading = false
@@ -993,7 +1026,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }, function errorCallback(response) {
 
             if(response.status == 410){
-                notify({ message:response.data.msg, position:'right', duration:20000, classes:'alert-danger'});
+                notify({ message:response.data.msg, position:'left', duration:20000, classes:'alert-danger'});
                 $(function(){
                   $("#addPedidoModal").modal("hide");
                   $("#showPedidoModal").modal("hide");
@@ -1021,7 +1054,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filteringV2();
               $scope.ID = null;
-              notify({ message:'¡Pedido eliminado con exito!', position:'right', duration:10000, classes:'alert-success'});
+              notify({ message:'¡Pedido eliminado con exito!', position:'left', duration:10000, classes:'alert-success'});
               $scope.reset();
               $scope.oneOrder()
 
@@ -1073,11 +1106,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $(function(){
               $("#modalInfoProduct").modal('hide');
             })
-            notify({ message:'¡Linea actulizada con exito!', position:'right', duration:10000, classes:'alert-success'});
+            notify({ message:'¡Linea actulizada con exito!', position:'left', duration:10000, classes:'alert-success'});
           }, function errorCallback(response) {
 
             if(response.status == 410){
-                notify({ message:response.data.msg, position:'right', duration:20000, classes:'alert-danger'});
+                notify({ message:response.data.msg, position:'left', duration:20000, classes:'alert-danger'});
                 $(function(){
                   $("#addPedidoModal").modal("hide");
                   $("#showPedidoModal").modal("hide");
@@ -1087,7 +1120,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }
 
             if(response.status == 480){
-              notify({ message:response.data.msg, position:'right', duration:20000, classes:'alert-danger'});
+              notify({ message:response.data.msg, position:'left', duration:20000, classes:'alert-danger'});
               $scope.pedido.pedido = listAux
             }
 
@@ -1136,7 +1169,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.articulo = response.data.obj[0]
 
             }else{
-              notify({ message:'¡No se encontraron resultados!', position:'right', duration:10000, classes:'alert-warning'});
+              notify({ message:'¡No se encontraron resultados!', position:'left', duration:10000, classes:'alert-warning'});
             }
 
           }, function errorCallback(response) {
@@ -1215,21 +1248,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           }
            if( isEmpty(articulo.CANTIDAD ) || articulo.CANTIDAD < 1 ){
 
-            notify({ message:'¡Por favor verifique la cantidad!', position:'right', duration:10000, classes:'alert-danger'});
+            notify({ message:'¡Por favor verifique la cantidad!', position:'left', duration:10000, classes:'alert-danger'});
             return  true;
           }
 
            if( articulo.CANTIDAD > parseInt(articulo.existencia)  ){
 
 
-              notify({ message:'¡La cantidad no puede ser mayor a la existencia!', position:'right', duration:10000, classes:'alert-danger'});
+              notify({ message:'¡La cantidad no puede ser mayor a la existencia!', position:'left', duration:10000, classes:'alert-danger'});
              return  true;
           }
 
 
           if( !validaCreditoContraProducto(parseFloat(articulo.precio_neto_bs) * articulo.CANTIDAD)  ){
 
-            notify({ message:'¡El precio excede el credito disponible!', position:'right', duration:10000, classes:'alert-danger'});
+            notify({ message:'¡El precio excede el credito disponible!', position:'left', duration:10000, classes:'alert-danger'});
 
             return  true;
           }
@@ -1241,12 +1274,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if( $scope.naturalLimits ){
 
               if(  articulo.CANTIDAD > 1  ){
-                 notify({ message:'¡Solo puede solicitar una unidad por producto!', position:'right', duration:10000, classes:'alert-danger'});
+                 notify({ message:'¡Solo puede solicitar una unidad por producto!', position:'left', duration:10000, classes:'alert-danger'});
                 return  true;
               }
 
               if(articulo.disp_prod_emp == "N"){
-                notify({ message:'¡Este producto ya fue solicitado en un pediodo el dia de hoy!', position:'right', duration:10000, classes:'alert-danger'});
+                notify({ message:'¡Este producto ya fue solicitado en un pediodo el dia de hoy!', position:'left', duration:10000, classes:'alert-danger'});
                return  true;
               }
 
@@ -1258,14 +1291,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);
               console.log("$scope.client.unid_disp_med_emp", $scope.client.unid_disp_med_emp);
               if( ($scope.totales.empMed + articulo.CANTIDAD) > $scope.client.unid_disp_med_emp){
-                notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+(  $scope.client.unid_disp_med_emp - $scope.totales.empMed)+') para medicinas!', position:'right', duration:10000, classes:'alert-danger'});
+                notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+(  $scope.client.unid_disp_med_emp - $scope.totales.empMed)+') para medicinas!', position:'left', duration:10000, classes:'alert-danger'});
                return  true;
               }
             }else if(articulo.tipo_prod_emp == "MISCELANEO"){
               console.log("$scope.totales.empMisc + articulo.CANTIDAD", $scope.totales.empMisc + articulo.CANTIDAD);
               console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
               if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
-              notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+( $scope.client.unid_disp_misc_emp - $scope.totales.empMisc )+') para productos misceláneos!', position:'right', duration:10000, classes:'alert-danger'});
+              notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+( $scope.client.unid_disp_misc_emp - $scope.totales.empMisc )+') para productos misceláneos!', position:'left', duration:10000, classes:'alert-danger'});
                return  true;
               }
             }
@@ -1313,7 +1346,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.closeModalOrder =  function () {
           console.log($scope.pedido);
-          if($scope.pedido.estatus =='PEDIDO EN CONSTRUCCION' || $scope.pedido.estatus =='PEDIDO CREADO' || $scope.pedido.estatus == 'POR PROCESAR' || $scope.pedido.estatus == 'POR PROCESAR'){
+          if($scope.pedido.estatus =='PEDIDO EN CONSTRUCCION' || $scope.pedido.estatus =='PEDIDO CREADO' || $scope.pedido.estatus == 'POR PROCESAR' || $scope.pedido.estatus == 'PEDIDO EN EDICION'){
 
             if($scope.pedido.pedido.length < 1){
 
@@ -1342,8 +1375,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.reset = function(){
           $scope.stopTimeout()
+          // $scope.resetTime()
           $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0"        }
-          $scope.counter = 0;
+          $scope.counter = $scope.timeLimit;
           $scope.tabsIndex = 0
           $scope.totales.bolivares = 0
           $scope.totales.USD = 0
@@ -1460,7 +1494,12 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.pedido.pedido.splice( i, 1 );
 
           calcularTotales()
-          $scope.counter = 0;
+          $scope.counter = $scope.timeLimit;
+          $scope.countdown()
+          $scope.mytimeout = $timeout(function (){
+            $scope.onTimeout()
+          },$scope.timeLimit * 1000);
+          $scope.resetTime()
         }
 
         $scope.totales = {
@@ -1578,7 +1617,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/tiempo_resta_pedido/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
-            notify({ message:"Su pedido cuenta con "+ $scope.secondsToString(response.data.time) +"  para ser cancelado automaticamente por el sistema ", position:'right', duration:10000, classes:'alert-info'});
+            notify({ message:"Su pedido cuenta con "+ $scope.secondsToString(response.data.time) +"  para ser cancelado automaticamente por el sistema ", position:'left', duration:10000, classes:'alert-info'});
             var tiempo =  parseInt(response.data.time )
             $scope.liveTimeOrd = tiempo * 1000
 
@@ -1591,7 +1630,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           }, function errorCallback(response) {
             if(response.status == 407){
-              notify({ message:"No se pudo obtener esta informacion, intente mas tarde", position:'right', duration:10000, classes:'alert-warning'});
+              notify({ message:"No se pudo obtener esta informacion, intente mas tarde", position:'left', duration:10000, classes:'alert-warning'});
             }
             $scope.loading = false
           });
