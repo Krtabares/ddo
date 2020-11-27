@@ -583,7 +583,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               // $scope.stopTimeout()
               // mytimeout = $timeout(function (){
               //   $scope.onTimeout()
-              },$scope.timeLimit * 1000);
+              // },$scope.timeLimit * 1000);
 
           }, function errorCallback(response) {
 
