@@ -1634,7 +1634,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             // alert(response.data.time)
 
-            mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
+            $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
 
 
             $scope.loading = false
@@ -1647,7 +1647,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           });
 
         }
-        mytimeoutOrdCancel = null
+        $scope.mytimeoutOrdCancel = null
         $scope.msgOrdCancel =  false
         $scope.countOrdCancel = 0
         $scope.onTimeoutOrdCancel = function(){
@@ -1663,14 +1663,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             return
           }
 
-          mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
+          $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
 
         }
 
 
         $scope.stopTimeoutOrdCancel = function(){
 
-            $timeout.cancel(mytimeoutOrdCancel);
+            $timeout.cancel($scope.mytimeoutOrdCancel);
             $scope.liveTimeOrd = null;
         }
 
