@@ -19,12 +19,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       $scope.idleCount = 0
 
       $scope.$on('IdleStart', function() {
-        addEvent({event: 'IdleStart', date: new Date()});
+        // addEvent({event: 'IdleStart', date: new Date()});
         $scope.showTimeout = true;
+        $scope.showIdle = true;
       });
 
       $scope.$on('IdleEnd', function() {
-        addEvent({event: 'IdleEnd', date: new Date()});
+        // addEvent({event: 'IdleEnd', date: new Date()});
         $scope.timeout = 10;
         if($scope.idle > 1){
           $scope.idle -= 10
@@ -38,22 +39,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       });
 
       $scope.$on('IdleWarn', function(e, countdown) {
-        addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
+        // addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
         $scope.showIdle = true;
         $scope.idleCount = countdown
       });
 
       $scope.$on('IdleTimeout', function() {
-        addEvent({event: 'IdleTimeout', date: new Date()});
+        // addEvent({event: 'IdleTimeout', date: new Date()});
         $scope.onTimeout()
         
       });
 
       $scope.$on('Keepalive', function() {
-        addEvent({event: 'Keepalive', date: new Date()});
+        // addEvent({event: 'Keepalive', date: new Date()});
       });
 
-      function addEvent(evt) {
+       function addEvent(evt) {
         $scope.$evalAsync(function() {
           $scope.events.push(evt);
         })
@@ -632,7 +633,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           $scope.loading = true
           var body = {}
-          body.ID = $scope.ID
+          body.ID = $scope.unicOrderID
           body.estatus = 5
           request.post(ip+'/cancel_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
