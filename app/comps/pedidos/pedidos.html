@@ -15,9 +15,10 @@
         </div>
         <div class="card-header mb-3 " ng-show="counter > 0" >
   
-            <span class="float-right"> <strong>tiempo:</strong>
+            <span class="float-right">  <div ng-if="showIdle"><strong>tiempo de inactividad </strong>:{{idleCount}} segundos</div>
+              
               <div ng-if="showTimeout" idle-countdown="countdown">
-              cierre de sesion en {{countdown}} seconds.
+              cierre de sesion en {{countdown}} segundos.
             </div>
           </span>
         </div>
@@ -1130,7 +1131,7 @@
                     <div class="col-md-6" ng-show="showProductTable || hasUserClient"  >
                       <!-- userLogged.pedido.crear :{{userLogged. }} -->
                       <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="initModal();"  ng-if="userLogged.permisos.pedido.crear"  ng-disabled="!clienteValido" ng-show="!unicOrderID"  > <i class="fa fa-edit"></i> Crear pedido</button>
-                      <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="getPedido(unicOrderID);" ng-disabled="!clienteValido" ng-show="unicOrderID" data-toggle="modal" data-target="#showPedidoModal"  > <i class="fa fa-edit"></i>Continuar Pedido {{secondsToString(liveTimeOrd/1000)}}</button>
+                      <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem;" ng-click="getPedido(unicOrderID);" ng-disabled="!clienteValido" ng-show="unicOrderID" data-toggle="modal" data-target="#showPedidoModal"  > <i class="fa fa-edit"></i>Continuar Pedido </button>
   
                     </div>
   

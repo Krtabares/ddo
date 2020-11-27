@@ -12,9 +12,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify,Idle, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
       $scope.events = [];
-      $scope.idle = 15*60;
-      $scope.timeout = 20;
+      $scope.idle = 60;
+      $scope.timeout = 10;
       $scope.showTimeout = false;
+      $scope.showIdle = false;
+      $scope.idleCount = 0
 
       $scope.$on('IdleStart', function() {
         addEvent({event: 'IdleStart', date: new Date()});
@@ -23,13 +25,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
       $scope.$on('IdleEnd', function() {
         addEvent({event: 'IdleEnd', date: new Date()});
-        $scope.timeout = 20;
+        $scope.timeout = 10;
+        if($scope.idle > 1){
+          $scope.idle -= 10
+        }else{
+          $scope.onTimeout()
+        }
+        
+      
         $scope.showTimeout = false;
+        $scope.showIdle = false;
       });
 
       $scope.$on('IdleWarn', function(e, countdown) {
         addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
-        $scope.showTimeout = true;
+        $scope.showIdle = true;
+        $scope.idleCount = countdown
       });
 
       $scope.$on('IdleTimeout', function() {
@@ -1678,7 +1689,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             // alert(response.data.time)
 
-            $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
+            $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,$scope.liveTimeOrd);
 
 
             $scope.loading = false
