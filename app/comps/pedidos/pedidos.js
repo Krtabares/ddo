@@ -548,7 +548,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
               $scope.loading = false
-              $scope.stopTimeout()
+              // $scope.stopTimeout()
               $scope.getPedidos_filteringV2();
               notify({ message:'¡Cerrado con exito!', position:'left', duration:10000, classes:'alert-success'});
               $scope.stopTimeoutOrdCancel()
@@ -580,9 +580,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
 
               // $scope.countdown()
-              $scope.stopTimeout()
-              mytimeout = $timeout(function (){
-                $scope.onTimeout()
+              // $scope.stopTimeout()
+              // mytimeout = $timeout(function (){
+              //   $scope.onTimeout()
               },$scope.timeLimit * 1000);
 
           }, function errorCallback(response) {
@@ -892,10 +892,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               // notify({ message:'¡Pedido abierto con exito!', position:'left', duration:10000, classes:'alert-success'});
               $scope.counter = $scope.timeLimit;
               // $scope.countdown()
-              $scope.stopTimeout()
-              mytimeout = $timeout(function (){
-                $scope.onTimeout()
-              },$scope.timeLimit * 1000);
+              // $scope.stopTimeout()
+              // mytimeout = $timeout(function (){
+              //   $scope.onTimeout()
+              // },$scope.timeLimit * 1000);
               $scope.pedido.estatus ='PEDIDO CREADO'
               $(function(){
                 $("#addPedidoModal").modal({
@@ -948,7 +948,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.stopTimeout = function(){
           console.log(mytimeout)
-          alert("cancelo timeout")
+          // alert("cancelo timeout")
             $timeout.cancel(mytimeout);
             $scope.counter = $scope.timeLimit;
             // $scope.$apply();
@@ -1020,11 +1020,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.productIndex = -1
             $scope.product = {}
             $scope.counter = $scope.timeLimit;
-            $scope.stopTimeout()
+            // $scope.stopTimeout()
             // $scope.countdown()
-            mytimeout = $timeout(function (){
-                $scope.onTimeout()
-              },$scope.timeLimit * 1000);
+            // mytimeout = $timeout(function (){
+            //     $scope.onTimeout()
+            //   },$scope.timeLimit * 1000);
 
             $(function(){
               $("#modalInfoProduct").modal('hide');
@@ -1542,11 +1542,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           calcularTotales()
           $scope.counter = $scope.timeLimit;
-          $scope.stopTimeout()
+          // $scope.stopTimeout()
           // $scope.countdown()
-          mytimeout = $timeout(function (){
-            $scope.onTimeout()
-          },$scope.timeLimit * 1000);
+          // mytimeout = $timeout(function (){
+          //   $scope.onTimeout()
+          // },$scope.timeLimit * 1000);
           // $scope.resetTime()
         }
 
