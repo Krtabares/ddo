@@ -8,7 +8,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       controller: 'pedidosCtrl'
     });
   }])
-  .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify','notify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
+  .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify','notify','Idle', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify,Idle, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
       $scope.events = [];
