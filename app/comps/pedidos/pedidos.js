@@ -907,7 +907,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.mytimeout = null
 
         $scope.stopTimeout = function(){
-
+            alert("cancelo timeout")
+            console.log($scope.mytimeout)
             $timeout.cancel($scope.mytimeout);
             $scope.counter = $scope.timeLimit;
             // $scope.$apply();
