@@ -10,6 +10,7 @@
         $scope.events = [];
         $scope.idle = 10*60;
         $scope.timeout = 5;
+        $scope.idleCount = 0
 
         $scope.$on('IdleStart', function() {
           addEvent({event: 'IdleStart', date: new Date()});
@@ -21,6 +22,7 @@
 
         $scope.$on('IdleWarn', function(e, countdown) {
           addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
+          $scope.idleCount = countdown
         });
 
         $scope.$on('IdleTimeout', function() {

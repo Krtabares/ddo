@@ -1737,7 +1737,7 @@ async def editar_pedido(request, token : Token):
     try:
         data = request.json
 
-        estatus = await upd_estatus_pedido(6,data['ID'])
+        estatus = await upd_estatus_pedido(5,data['ID'])
 
         return response.json({"estatus" : estatus},200)
     except Exception as e:
@@ -2447,5 +2447,9 @@ def formatFloatDdo(value):
     	x = float(0)
 
     return x
+
+
+
+    
 
 app.run(host='0.0.0.0', port = port, debug = True)

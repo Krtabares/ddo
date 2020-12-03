@@ -12,8 +12,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify,Idle, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
       $scope.events = [];
-      $scope.idle = 60;
-      $scope.timeout = 10;
+      $scope.idle = 60    ;
+      $scope.timeout = 30;
       $scope.showTimeout = false;
       $scope.showIdle = false;
       $scope.idleCount = 0
@@ -23,25 +23,21 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.showTimeout = true;
         $scope.showIdle = true;
       });
-
+      
       $scope.$on('IdleEnd', function() {
         // addEvent({event: 'IdleEnd', date: new Date()});
-        $scope.timeout = 10;
-        if($scope.idle > 1){
-          $scope.idle -= 10
-        }else{
-          $scope.onTimeout()
-        }
         
-      
+        
         $scope.showTimeout = false;
         $scope.showIdle = false;
       });
-
+      
       $scope.$on('IdleWarn', function(e, countdown) {
         // addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
+        notify({ message: countdown + ' Segundos para cierre de session', position:'left', duration:1000, classes:'alert-danger'});
         $scope.showIdle = true;
         $scope.idleCount = countdown
+        
       });
 
       $scope.$on('IdleTimeout', function() {
@@ -52,6 +48,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
       $scope.$on('Keepalive', function() {
         // addEvent({event: 'Keepalive', date: new Date()});
+        // alert("hola mundo")
+        $scope.timeout = 60;
       });
 
        function addEvent(evt) {
@@ -115,7 +113,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.goToTab = function (index) {
           if(index <= $scope.tabs )
             $scope.tabsIndex = index
-
         }
 
         $scope.initModal = function () {
@@ -564,13 +561,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/finalizar_pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
-
-
-              $scope.loading = false
-              // $scope.stopTimeout()
+              $scope.loading = false;
               $scope.getPedidos_filteringV2();
               notify({ message:'¡Cerrado con exito!', position:'left', duration:10000, classes:'alert-success'});
-              $scope.stopTimeoutOrdCancel()
+              $scope.stopTimeoutOrdCancel();
 
           }, function errorCallback(response) {
 
@@ -1114,8 +1108,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/del/pedido', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
-
-
               $scope.getPedidos_filteringV2();
               $scope.ID = null;
               notify({ message:'¡Pedido eliminado con exito!', position:'left', duration:10000, classes:'alert-success'});
@@ -1171,6 +1163,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $("#modalInfoProduct").modal('hide');
             })
             notify({ message:'¡Linea actulizada con exito!', position:'left', duration:10000, classes:'alert-success'});
+
           }, function errorCallback(response) {
 
             if(response.status == 410){
@@ -1434,7 +1427,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           }
 
-
+          $scope.$interrupt()
         }
 
         $scope.reset = function(){
@@ -1552,6 +1545,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           $scope.pedido = pedido;
 
           $scope.pickUpAvailable = (pedido.tipo_pedido == "N")? "1":"2";
+
+          if(pedido.estatus_id < 3 || pedido.estatus_id == 6){
+            $scope.editPedido()
+          }
           calcularTotales()
         }
 
@@ -1581,8 +1578,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
         $scope.tipoPedido = "N"
         function calcularTotales(editIndex = null) {
-
-
 
             $scope.totales.bolivares = 0
             $scope.totales.USD = 0
@@ -1641,9 +1636,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         function validaCreditoContraProducto(valor) {
 
-
-
-
           if(($scope.creditoClient.disp_bs_format - $scope.totales.bsConIva - valor) >= 0){
             return true
           }else{
@@ -1690,7 +1682,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             // alert(response.data.time)
 
-            $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,$scope.liveTimeOrd);
+            $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel(),$scope.liveTimeOrd);
 
 
             $scope.loading = false
@@ -1708,18 +1700,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.countOrdCancel = 0
         $scope.onTimeoutOrdCancel = function(){
 
-          $scope.liveTimeOrd -= 1000
+          // $scope.liveTimeOrd -= 1000
 
-          if($scope.liveTimeOrd < 900001 ){
-              $scope.msgOrdCancel =  true
-          }
-          if ($scope.liveTimeOrd < 1001 ) {
+          // if($scope.liveTimeOrd < 900001 ){
+            $scope.msgOrdCancel =  true
+          // }
+          // if ($scope.liveTimeOrd < 1001 ) {
             $scope.cancel_pedido()
             $scope.stopTimeoutOrdCancel()
-            return
-          }
+            // return
+          // }
 
-          $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel,1000);
+          // $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel(),1000);
 
         }
 
@@ -1746,6 +1738,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             .withDOM('frtip').withPaginationType('full_numbers')
             .withLanguage(DATATABLE_LANGUAGE_ES)
         $scope.dtOptionsDetalil = DTOptionsBuilder.newOptions()
+            .withPaginationType('full_numbers')
+            .withOption('responsive', true)
+            .withDOM('frtip').withPaginationType('full_numbers')
+            .withLanguage(DATATABLE_LANGUAGE_ES)
+        $scope.dtOrderDetalil = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
             .withOption('responsive', true)
             .withDOM('frtip').withPaginationType('full_numbers')

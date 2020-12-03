@@ -195,7 +195,7 @@
   
                 <div class="form-group" >
   
-                  <table class="table table-striped table-bordered"  >
+                  <table class="table table-striped table-bordered" datatable="ng" dt-options="dtOrderDetalil"  >
                     <!-- <table class="table table-striped table-bordered"  datatable="ng" dt-options="dtOptionsDetalil"> -->
                       <thead>
                           <tr>
@@ -508,7 +508,7 @@
   
   
                     <!-- <table class="table table-striped table-bordered"  datatable="ng" dt-options="dtOptionsDetalil"> -->
-                        <table class="table table-striped table-bordered"  >
+                        <table class="table table-striped table-bordered" datatable="ng" dt-options="dtOrderDetalil"  >
                         <thead>
                             <tr>
                             <!-- <th scope="col"><p class="text-center">#</p></th> -->
@@ -730,7 +730,7 @@
                       </option>
   
                     </select> -->
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                     <label for="proveedor">Tipo de busqueda</label>
                     <div class="input-group mb-3 ">
                       <div class="form-group">
@@ -746,7 +746,7 @@
                     </div>
                   </div>
   
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <label for="clientes">Busqueda </label>
                     <div class="input-group mb-3 ">
                       <input type="text" class="form-control"
@@ -976,8 +976,8 @@
   
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info" data-dismiss="modal">Regresar</button>
-          <button type="button" class="btn btn-danger" ng-click="delPedido()" data-dismiss="modal">Aceptar</button>
+          <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-danger" ng-click="delPedido()" data-dismiss="modal">Si</button>
         </div>
       </div>
     </div>
@@ -1003,8 +1003,8 @@
   
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="cancelModalDyn()" >Cancelar</button>
-          <button type="button" class="btn btn-{{modalDynColor}}" ng-click="aceptModalDyn()" data-dismiss="modal">Aceptar</button>
+          <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="cancelModalDyn()" >No</button>
+          <button type="button" class="btn btn-{{modalDynColor}}" ng-click="aceptModalDyn()" data-dismiss="modal">Si</button>
         </div>
       </div>
     </div>
