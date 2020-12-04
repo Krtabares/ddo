@@ -1,15 +1,88 @@
 'use strict';
 
-angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'ngStorage'])
+angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'angular-bind-html-compile', 'ngStorage', 'ngIdle'])
 .component("mySidebar", {
     templateUrl: "comps/sidebar/sidebar.html",
     controller: 'sidebarCtrl'
   })
 
-  .controller('sidebarCtrl', ['$scope', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'localstorage', 'request', 'NgMap','$localStorage',
-    function($scope, $rootScope, $routeParams, $interval, $timeout, ngNotify, localstorage, request, NgMap, $localStorage) {
+  .controller('sidebarCtrl', ['$scope', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'notify', 'localstorage', 'request', 'NgMap','$localStorage','Idle',
+    function($scope, $rootScope, $routeParams, $interval, $timeout, ngNotify,notify, localstorage,  request, NgMap, $localStorage, Idle) {
 
 
+
+      $scope.events = [];
+      $scope.idle = 60;
+      $scope.timeout = 60;
+      $scope.idleCount = 0
+
+        $scope.$on('IdleStart', function() {
+          // addEvent({event: 'IdleStart', date: new Date()});
+        });
+
+        $scope.$on('IdleEnd', function() {
+          // addEvent({event: 'IdleEnd', date: new Date()});
+          // if($scope.timeout >= 120 ){
+          //   $scope.timeout = 60
+          //   return
+          // }
+          // if($scope.timeout <= 60 && $scope.timeout > 10){
+          //   $scope.timeout -= 5
+          //   $scope.idle = 1
+          //   return
+          // }
+          // if($scope.timeout <=10){
+          //   $scope.timeout -= 1
+            
+          //   return
+          // }
+          // if($scope.timeout == 1){
+          //   $scope.timeout = 0
+          //   $scope.idle =  0
+          //   return
+          // }
+         
+        });
+      
+
+        $scope.$on('IdleWarn', function(e, countdown) {
+          // addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
+          if(countdown < 10){
+            notify({ message: countdown + ' Segundos para cierre de session', position:'left', duration:1000, classes:'alert-danger'});
+            
+          }else if((countdown % 10 == 0)){
+            notify({ message: countdown + ' Segundos para cierre de session', position:'left', duration:1000, classes:'alert-danger'});
+          }
+          // $scope.showIdle = true;
+          // $scope.idleCount = countdown
+          
+        });
+        $scope.$on('IdleTimeout', function() {
+          addEvent({event: 'IdleTimeout', date: new Date()});
+          window.location.href = "#!/";
+        });
+
+        $scope.$on('Keepalive', function() {
+          addEvent({event: 'Keepalive', date: new Date()});
+        });
+
+        function addEvent(evt) {
+          $scope.$evalAsync(function() {
+            $scope.events.push(evt);
+          })
+        }
+
+        $scope.reset = function() {
+          Idle.watch();
+        }
+
+        $scope.$watch('idle', function(value) {
+          if (value !== null) Idle.setIdle(value);
+        });
+
+        $scope.$watch('timeout', function(value) {
+          if (value !== null) Idle.setTimeout(value);
+        });
 
         $scope.hasUserClient = false;
         $scope.user = {};
@@ -29,69 +102,6 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-h
           window.location.href = "#!/login";
         }
 
-/** comienza el encript*/
-
-$(function(){
-  var keySize = 256;
-  var ivSize = 128;
-  var iterations = 100;
-
-  var message = "1";
-  var password = "Secret Password";
-
-
-  function encrypt (msg, pass) {
-    var salt = CryptoJS.lib.WordArray.random(128/8);
-
-    var key = CryptoJS.PBKDF2(pass, salt, {
-        keySize: keySize/32,
-        iterations: iterations
-      });
-
-    var iv = CryptoJS.lib.WordArray.random(128/8);
-
-    var encrypted = CryptoJS.AES.encrypt(msg, key, {
-      iv: iv,
-      padding: CryptoJS.pad.Pkcs7,
-      mode: CryptoJS.mode.CBC
-
-    });
-
-    // salt, iv will be hex 32 in length
-    // append them to the ciphertext for use  in decryption
-    var transitmessage = salt.toString()+ iv.toString() + encrypted.toString();
-    return transitmessage;
-  }
-
-  function decrypt (transitmessage, pass) {
-    var salt = CryptoJS.enc.Hex.parse(transitmessage.substr(0, 32));
-    var iv = CryptoJS.enc.Hex.parse(transitmessage.substr(32, 32))
-    var encrypted = transitmessage.substring(64);
-
-    var key = CryptoJS.PBKDF2(pass, salt, {
-        keySize: keySize/32,
-        iterations: iterations
-      });
-
-    var decrypted = CryptoJS.AES.decrypt(encrypted, key, {
-      iv: iv,
-      padding: CryptoJS.pad.Pkcs7,
-      mode: CryptoJS.mode.CBC
-
-    })
-    return decrypted;
-  }
-  //
-  // $('#encrypted').text("Encrypted: "+ encrypted);
-  //
-  // $('#decrypted').text("Decrypted: "+ decrypted.toString(CryptoJS.enc.Utf8) );
-  //
-
-
-})
-
-
-/** termina el encript*/
 
         $scope.side = true
 
@@ -134,5 +144,12 @@ $(function(){
             })
         }
 
-    }
-  ]);
+  }]).config(function(IdleProvider, KeepaliveProvider) {
+    KeepaliveProvider.interval(10);
+    IdleProvider.windowInterrupt('focus');
+  })
+  .run(function($rootScope, Idle, $log, Keepalive){
+    Idle.watch();
+
+    // $log.debug('app started.');
+  });

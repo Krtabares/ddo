@@ -9,36 +9,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
     });
   }])
   .controller('pedidosCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify','notify','Idle', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
-    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify,Idle, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
+    function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, notify, Idle, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
-      $scope.events = [];
-      $scope.idle = 60    ;
-      $scope.timeout = 30;
-      $scope.showTimeout = false;
-      $scope.showIdle = false;
-      $scope.idleCount = 0
-
-      $scope.$on('IdleStart', function() {
-        // addEvent({event: 'IdleStart', date: new Date()});
-        $scope.showTimeout = true;
-        $scope.showIdle = true;
-      });
-      
-      $scope.$on('IdleEnd', function() {
-        // addEvent({event: 'IdleEnd', date: new Date()});
-        
-        
-        $scope.showTimeout = false;
-        $scope.showIdle = false;
-      });
-      
-      $scope.$on('IdleWarn', function(e, countdown) {
-        // addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
-        notify({ message: countdown + ' Segundos para cierre de session', position:'left', duration:1000, classes:'alert-danger'});
-        $scope.showIdle = true;
-        $scope.idleCount = countdown
-        
-      });
 
       $scope.$on('IdleTimeout', function() {
         // addEvent({event: 'IdleTimeout', date: new Date()});
@@ -46,29 +18,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         
       });
 
-      $scope.$on('Keepalive', function() {
-        // addEvent({event: 'Keepalive', date: new Date()});
-        // alert("hola mundo")
-        $scope.timeout = 60;
-      });
-
-       function addEvent(evt) {
-        $scope.$evalAsync(function() {
-          $scope.events.push(evt);
-        })
-      }
-
-      $scope.reset = function() {
-        Idle.watch();
-      }
-
-      $scope.$watch('idle', function(value) {
-        if (value !== null) Idle.setIdle(value);
-      });
-
-      $scope.$watch('timeout', function(value) {
-        if (value !== null) Idle.setTimeout(value);
-      });
 
         $scope.loading = true
         $scope.pedido = {
@@ -139,19 +88,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               if( item.cod_estatus == 0  ){
                 $scope.unicOrderID = item.ID
-                $scope.tiempoPedido(item.ID)
+                // $scope.tiempoPedido(item.ID)
                 return
               }else if( item.cod_estatus == 1  ){
                 $scope.unicOrderID = item.ID
-                $scope.tiempoPedido(item.ID)
+                // $scope.tiempoPedido(item.ID)
                 return
               }else if( item.cod_estatus == 2  ){
                 $scope.unicOrderID = item.ID
-                $scope.tiempoPedido(item.ID)
+                // $scope.tiempoPedido(item.ID)
                 return
               }else if( item.cod_estatus == 6  ){
                 $scope.unicOrderID = item.ID
-                $scope.tiempoPedido(item.ID)
+                // $scope.tiempoPedido(item.ID)
                 return
               }
           });
@@ -902,13 +851,8 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.ID = response.data.ID
 
             if($scope.ID != null){
-              // notify({ message:'¡Pedido abierto con exito!', position:'left', duration:10000, classes:'alert-success'});
               $scope.counter = $scope.timeLimit;
-              // $scope.countdown()
-              // $scope.stopTimeout()
-              // mytimeout = $timeout(function (){
-              //   $scope.onTimeout()
-              // },$scope.timeLimit * 1000);
+
               $scope.pedido.estatus ='PEDIDO CREADO'
               $(function(){
                 $("#addPedidoModal").modal({
@@ -938,9 +882,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.counter = $scope.timeLimit;
         $scope.onTimeout = function(){
 
-              $scope.stopTimeout()
+              // $scope.stopTimeout()
 
-              if(!$scope.editView){
+              if($scope.ID !== null && !$scope.editView){
                 $scope.delPedido()
               }
 
@@ -987,8 +931,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           
       $scope.stop1 = function(){
          $timeout.cancel(stopped);
-          
-          } 
+      } 
 
 
         $scope.msToTime =  function(s) {
@@ -1348,14 +1291,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               console.log("$scope.totales.empMed + articulo.CANTIDAD ", $scope.totales.empMed + articulo.CANTIDAD);
               console.log("$scope.client.unid_disp_med_emp", $scope.client.unid_disp_med_emp);
               if( ($scope.totales.empMed + articulo.CANTIDAD) > $scope.client.unid_disp_med_emp){
-                notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+(  $scope.client.unid_disp_med_emp - $scope.totales.empMed)+') para medicinas!', position:'left', duration:10000, classes:'alert-danger'});
+                notify({ message:'¡Excede cantidad disponible en medicinas!', position:'left', duration:10000, classes:'alert-danger'});
+                // notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+(  $scope.client.unid_disp_med_emp - $scope.totales.empMed)+') para medicinas!', position:'left', duration:10000, classes:'alert-danger'});
                return  true;
               }
             }else if(articulo.tipo_prod_emp == "MISCELANEO"){
               console.log("$scope.totales.empMisc + articulo.CANTIDAD", $scope.totales.empMisc + articulo.CANTIDAD);
               console.log("$scope.client.unid_disp_misc_emp", $scope.client.unid_disp_misc_emp);
               if( ($scope.totales.empMisc + articulo.CANTIDAD) > $scope.client.unid_disp_misc_emp){
-              notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+( $scope.client.unid_disp_misc_emp - $scope.totales.empMisc )+') para productos misceláneos!', position:'left', duration:10000, classes:'alert-danger'});
+                
+                notify({ message:'¡Excede cantidad disponible en misceláneos!', position:'left', duration:10000, classes:'alert-danger'});
+
+              // notify({ message:'¡La cantidad ingresada excede la cantidad que usted tiene disponible ('+( $scope.client.unid_disp_misc_emp - $scope.totales.empMisc )+') para productos misceláneos!', position:'left', duration:10000, classes:'alert-danger'});
                return  true;
               }
             }
@@ -1427,7 +1374,6 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           }
 
-          $scope.$interrupt()
         }
 
         $scope.reset = function(){
@@ -1706,7 +1652,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.msgOrdCancel =  true
           // }
           // if ($scope.liveTimeOrd < 1001 ) {
-            $scope.cancel_pedido()
+            // $scope.cancel_pedido()
             $scope.stopTimeoutOrdCancel()
             // return
           // }
@@ -1808,10 +1754,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         proveedores()
         getCategorias()
     }
-]).config(function(IdleProvider, KeepaliveProvider) {
-  KeepaliveProvider.interval(10);
-  IdleProvider.windowInterrupt('focus');
-})
+])
+// .config(function(IdleProvider, KeepaliveProvider) {
+//   KeepaliveProvider.interval(10);
+//   IdleProvider.windowInterrupt('focus');
+// })
 .run(function($rootScope, Idle, $log, Keepalive){
   Idle.watch();
-});
+})
+;
+ 

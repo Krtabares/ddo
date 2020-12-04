@@ -13,13 +13,13 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="card-header mb-3 " ng-show="counter > 0" >
+        <div class="card-header mb-3 " >
   
-            <span class="float-right"> <strong>tiempo:</strong>
+            <span class="float-right"> 
               
-              <div ng-if="showTimeout" idle-countdown="countdown">
+              <!-- <div ng-if="true" idle-countdown="countdown">
               cierre de sesion en {{countdown}} seconds.
-            </div>
+            </div> -->
           </span>
         </div>
         <div class="modal-body">
@@ -28,7 +28,7 @@
               Advertencia:
               <strong>{{clientInvalidoMsg}}</strong>
             </div> -->
-  
+<!-- 
             <div class="alert alert-info alert-dismissible fade show" ng-show="counter >= 1" role="alert">
               <strong>Informacion!</strong> Dispone de 15 minutos de inactividad
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -46,7 +46,7 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-            </div>
+            </div> -->
   
           <ul class="nav nav-tabs mb-4">
               <li class="nav-item" ng-show="1 == 2" >
@@ -247,36 +247,36 @@
                         <div class="col-lg-6 col-sm-6 ml-auto">
                             <table class="table table-clear">
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td class="right">
                                             <strong class="text-dark">Total bruto</strong>
                                         </td>
                                         <td class="right">{{formato(2,totalesDdo.total_bruto)}} </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> -->
+                                    <!-- <tr>
                                         <td class="right">
                                             <strong class="text-dark">Desc. Volumen</strong>
                                         </td>
                                         <td class="right">{{formato(2,totalesDdo.desc_volumen)}} </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> -->
+                                    <!-- <tr>
                                         <td class="right">
                                             <strong class="text-dark">Otros descuentos</strong>
                                         </td>
                                         <td class="right">{{formato(2,totalesDdo.otros_descuentos)}} </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> -->
+                                    <!-- <tr>
                                         <td class="right">
                                             <strong class="text-dark">Desc. Adicional</strong> </td>
   
                                             <td class="right">{{formato(2,totalesDdo.desc_adicional)}} </td>
-                                    </tr>
-                                    <tr>
+                                    </tr> -->
+                                    <!-- <tr>
                                         <td class="right">
                                             <strong class="text-dark">Desc. dpp</strong> </td>
   
                                             <td class="right">{{formato(2,totalesDdo.desc_dpp)}} </td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <td class="right">
                                             <strong class="text-dark">Sub - Total</strong> </td>
@@ -333,14 +333,14 @@
             <strong>{{pedido.fecha}}</strong>
             <span class="float-right ml-3" ng-show="editView" > 
               <!-- <strong>tiempo:</strong> {{msToTime(counter*1000)}}  -->
-              <div ng-if="showTimeout" idle-countdown="countdown">
+              <!-- <div ng-if="true" idle-countdown="countdown">
                 cierre de sesion en {{countdown}} seconds.
-              </div>
+              </div> -->
             </span>
             <span class="float-right"> <strong>Estatus:</strong> {{pedido.estatus}}</span>
             </div>
   
-            <div class="alert alert-info alert-dismissible fade show" ng-show="counter >= 1" role="alert">
+            <!-- <div class="alert alert-info alert-dismissible fade show" ng-show="counter >= 1" role="alert">
               <strong>Informacion!</strong> Dispone de 15 minutos de inactividad
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -357,7 +357,7 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-            </div>
+            </div> -->
           <ul class="nav nav-tabs mb-4">
               <li class="nav-item" ng-show="1 == 2" >
                 <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Informacion Cliente </a>
@@ -591,7 +591,7 @@
                       <div class="col-lg-6 col-sm-6 ml-auto">
                           <table class="table table-clear">
                               <tbody>
-                                  <tr>
+                                  <!-- <tr>
                                       <td class="right">
                                           <strong class="text-dark">Total bruto</strong>
                                       </td>
@@ -620,7 +620,7 @@
                                           <strong class="text-dark">Desc. dpp</strong> </td>
   
                                           <td class="right">{{formato(2,totalesDdo.desc_dpp)}} </td>
-                                  </tr>
+                                  </tr> -->
                                   <tr>
                                       <td class="right">
                                           <strong class="text-dark">Sub - Total</strong> </td>
@@ -804,11 +804,11 @@
                         <th scope="col"><p class="text-center">Nombre Producto</p></th>
                         <th scope="col"><p class="text-center">Categoria</p></th>
                         <th scope="col"><p class="text-center">Existencia</p></th>
-                        <th scope="col"><p class="text-center">Principio Activo</p></th>
                         <th scope="col"><p class="text-center">Precio Bs.S</p></th>
                         <th scope="col"><p class="text-center">Iva Bs.S</p></th>
                         <th scope="col"><p class="text-center">Precio USD</p></th>
                         <th scope="col"><p class="text-center">Iva USD</p></th>
+                        <th scope="col"><p class="text-center">Principio Activo</p></th>
                         <th scope="col"><p class="text-center">Proveedor</p></th>
                         </tr>
                     </thead>
@@ -821,11 +821,11 @@
                             <td><p class="text-center">{{ x.nombre_producto }}</p></td>
                             <td><p class="text-center">{{ x.categoria }}</p></td>
                             <td><p class="text-center">{{ x.existencia }}</p></td>
-                            <td><p class="text-center">{{ x.princ_activo }}</p></td>
                             <td><p class="text-right">{{  formato(2,x.precio_neto_bs) }}</p></td>
                             <td><p class="text-right">{{  formato(2,x.iva_bs) }}</p></td>
                             <td><p class="text-right">{{  formato(3,x.precio_neto_usd) }}</p></td>
                             <td><p class="text-right">{{  formato(3,x.iva_usd) }}</p></td>
+                            <td><p class="text-center">{{ x.princ_activo }}</p></td>
                             <td><p class="text-left">{{  x.proveedor }}</p></td>
   
                         </tr>
@@ -853,7 +853,7 @@
   </div>
   
   <div class="modal fade" id="modalInfoProduct">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog mw-100  modal-90 modal-100-ht">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" style="text-transform: capitalize;" >{{articulo.nombre_producto.toLowerCase()}}</h4>

@@ -14,7 +14,7 @@
 
           <div class="modal-body-he">
             <button id="btnProductInfo" style="display:none" data-toggle="modal" data-target="#modalInfoProduct"></button>
-            <div class="container">
+            <div class="">
 
               <div class="col-sm-12 col-md-12 col-lg-12">
 
@@ -205,7 +205,7 @@
                     <tbody>
 
                       <tr  ng-repeat="fact in facturas | orderBy:'-fecha_facturaDate'" ng-class="{ selectedRow : $index == productIndex }" >
-                        <td><p class="text-center">{{ $index + 1 }}</p></td>
+                        <td><p class="text-center">{{fact.no_linea }}</p></td>
                         <!-- <td><p class="text-center">{{ fact }}</p></td> -->
                         <!-- <td><p class="text-center">{{ facturasList[fact][0].fecha_pedido }}</p></td> -->
                         <td><p class="text-center">{{ fact.nro_factura }}</p></td>

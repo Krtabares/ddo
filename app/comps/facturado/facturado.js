@@ -111,9 +111,20 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
           $scope.selectFactura = function (fact) {
 
             console.log(fact[0]);
+
+            fact.sort(function (a, b) {
+              if (a.no_linea > b.no_linea) {
+                return 1;
+              }
+              if (a.no_linea < b.no_linea) {
+                return -1;
+              }
+              // a must be equal to b
+              return 0;
+            })
             $scope.factura = fact
-          $scope.totalfactura.bs =  $scope.facturasTotales[fact[0].nro_factura].total_bs
-          $scope.totalfactura.usd =  $scope.facturasTotales[fact[0].nro_factura].total_usd
+            $scope.totalfactura.bs =  $scope.facturasTotales[fact[0].nro_factura].total_bs
+            $scope.totalfactura.usd =  $scope.facturasTotales[fact[0].nro_factura].total_usd
               // angular.element('#btnfacturaInfo').trigger('click');
           }
           $scope.clientes = null;
@@ -194,12 +205,16 @@ angular.module('app.facturado', ['datatables', 'datatables.buttons', 'datatables
                     .withOption('responsive', true)
                     .withDOM('frtip').withPaginationType('full_numbers')
                     .withLanguage(DATATABLE_LANGUAGE_ES)
+                    .withDisplayLength(15)
+
 
         $scope.dtOptionsFact = DTOptionsBuilder.newOptions()
                   .withPaginationType('full_numbers')
                   .withOption('responsive', true)
                   .withDOM('frtip').withPaginationType('full_numbers')
                   .withLanguage(DATATABLE_LANGUAGE_ES)
+                  .withDisplayLength(15)
+
 
     }
 ]);

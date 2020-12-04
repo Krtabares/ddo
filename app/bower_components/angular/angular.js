@@ -19135,6 +19135,9 @@ function $RootScopeProvider() {
               (current !== target && current.$$nextSibling)))) {
             while (current !== target && !(next = current.$$nextSibling)) {
               current = current.$parent;
+              if(!current){
+                  break;
+              }
             }
           }
         }

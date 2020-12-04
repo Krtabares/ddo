@@ -84,7 +84,8 @@ angular.module('ngIdle.idle', ['ngIdle.keepalive', 'ngIdle.localStorage'])
       idle: 20 * 60, // in seconds (default is 20min)
       timeout: 30, // in seconds (default is 30sec)
       autoResume: 'idle', // lets events automatically resume (unsets idle state/resets warning)
-      interrupt: 'mousemove keydown DOMMouseScroll mousewheel mousedown touchstart touchmove scroll',
+      // interrupt: 'mousemove keydown DOMMouseScroll mousewheel mousedown touchstart touchmove scroll',
+      interrupt: 'keydown mousedown touchstart',
       windowInterrupt: null,
       keepalive: true
     };
@@ -391,8 +392,8 @@ angular.module('ngIdle.title', [])
     this.$get = ['$document', '$interpolate', function($document, $interpolate) {
       var state = {
         original: null,
-        idle: '{{minutes}}:{{seconds}} until your session times out!',
-        timedout: 'Your session has expired.'
+        idle: '{{minutes}}:{{seconds}} hasta que se agote el tiempo de su sesión!',
+        timedout: 'Su sesión ha caducado.'
       };
 
       return {

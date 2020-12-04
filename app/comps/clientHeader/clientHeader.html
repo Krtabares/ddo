@@ -28,7 +28,7 @@
 
             <!-- <h6 class="card-title">Informacion del Cliente </h6> -->
             <p class="mb-1" ng-if="client_info.grupo_cliente != '02'" ><span class="text-muted">Razon Social: </span>{{client_info.nombre_cliente}}</p>
-            <p class="mb-1"><span class="text-muted">RIF: </span> {{client_info.docu_identif_cliente}}</p>
+            <p class="mb-1"><span ng-if="client_info.grupo_cliente == '01'" class="text-muted">RIF: </span> <span ng-if="client_info.grupo_cliente == '02'" class="text-muted">C.I.: </span> {{client_info.docu_identif_cliente}}</p>
             <p class="mb-1"><span class="text-muted">Direccion Fiscal: </span> {{client_info.direccion_cliente.toLowerCase()}}</p>
             <!-- <p class="mb-1"><span class="text-muted">Zona: </span>{{client_info.zona}}</p> -->
             <!-- <p class="mb-1"><span class="text-muted">Telefono: </span>{{client_info.telefono1}}</p> -->

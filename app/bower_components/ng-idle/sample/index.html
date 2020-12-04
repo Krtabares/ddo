@@ -44,6 +44,7 @@
         }
 
         $scope.$watch('idle', function(value) {
+          console.log(Idle)
           if (value !== null) Idle.setIdle(value);
         });
 
