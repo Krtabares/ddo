@@ -101,8 +101,8 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
                 }
 
 
-                aux[x.fecha_vencimiento].saldo += parseFloat(x.monto_actual.replace(",", "."))
-                aux[x.fecha_vencimiento].saldo_usd += parseFloat(x.monto_actual_usd.replace(",", "."))
+                aux[x.fecha_vencimiento].saldo += parseFloat(x.monto_actual)
+                aux[x.fecha_vencimiento].saldo_usd += parseFloat(x.monto_actual_usd)
 
               })
 
