@@ -1129,6 +1129,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           return result
         }
 
+        $scope.closeModalInfoProduct = function(){
+          calcularTotales()
+        }
+
         $scope.existenciaEdit = null
         $scope.cantidadAux = 0
         $scope.editRowIndex = -1

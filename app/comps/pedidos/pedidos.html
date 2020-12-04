@@ -857,7 +857,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" style="text-transform: capitalize;" >{{articulo.nombre_producto.toLowerCase()}}</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <button type="button" class="close" ng-click="closeModalInfoProduct()" data-dismiss="modal" aria-hidden="true">&times;</button>
   
         </div>
         <div class="modal-body">
@@ -950,7 +950,7 @@
   
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info" data-dismiss="modal">Regresar</button>
+          <button type="button" class="btn btn-info" ng-click="closeModalInfoProduct()" data-dismiss="modal">Regresar</button>
         </div>
       </div>
     </div>
