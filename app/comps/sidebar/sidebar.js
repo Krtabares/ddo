@@ -99,7 +99,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
         }
 
         $scope.salir = function () {
-          window.location.href = "#!/login";
+          window.location.href = "/";
         }
 
 
