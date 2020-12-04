@@ -60,7 +60,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
         $scope.$on('IdleTimeout', function() {
           // addEvent({event: 'IdleTimeout', date: new Date()});
           // window.location.reload()
-          window.location.href = "/";
+          window.location.href = "/ddo/app";
         });
 
         $scope.$on('Keepalive', function() {
