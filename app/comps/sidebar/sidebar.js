@@ -58,8 +58,9 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
           
         });
         $scope.$on('IdleTimeout', function() {
-          addEvent({event: 'IdleTimeout', date: new Date()});
-          window.location.href = "#!/";
+          // addEvent({event: 'IdleTimeout', date: new Date()});
+          // window.location.reload()
+          window.location.href = "/";
         });
 
         $scope.$on('Keepalive', function() {
