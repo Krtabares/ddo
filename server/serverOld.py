@@ -2382,15 +2382,35 @@ async def totales_pedido(idPedido):
                     v_sub_total number :=0;
                     v_impuesto number :=0;
                     v_total number := 0;
+                    v_totalGravado number := 0;
+                    v_totalExento  number := 0;
+                    v_descImpuesto number := 0;
+                    v_totalNetoUSD number := 0;
+                    v_tipoCambio  number := 0;
 
                 BEGIN
 
 
                     dbms_output.enable(output);
 
-                    PROCESOSPW.totales_pedido ({idPedido},v_total_bruto,v_desc_volumen, v_otros_descuentos, v_desc_adicional, v_desc_dpp, v_sub_total, v_impuesto, v_total );
+                    PROCESOSPW.totales_pedido ({idPedido},v_total_bruto,v_desc_volumen, v_otros_descuentos, v_desc_adicional, v_desc_dpp, v_sub_total, v_impuesto, v_total,
+                    v_totalGravado, v_totalExento, v_descImpuesto, v_totalNetoUSD,v_tipoCambio  );
 
-                    dbms_output.put_line(v_total_bruto|| '|'||v_desc_volumen|| '|'|| v_otros_descuentos|| '|'|| v_desc_adicional|| '|'|| v_desc_dpp|| '|'|| v_sub_total|| '|'|| v_impuesto|| '|'|| v_total);
+                    dbms_output.put_line(
+                                v_total_bruto|| '|'||
+                                v_desc_volumen|| '|'||
+                                v_otros_descuentos|| '|'||
+                                v_desc_adicional|| '|'||
+                                v_desc_dpp|| '|'||
+                                v_sub_total|| '|'||
+                                v_impuesto|| '|'||
+                                v_total|| '|'||
+                                v_totalGravado|| '|'||
+                                v_totalExento|| '|'||
+                                v_descImpuesto|| '|'||
+                                v_totalNetoUSD|| '|'||
+                                v_tipoCambio|| '|'||
+                         );
             END;
                 """.format( idPedido = idPedido ))
         textVar = c.var(str)
@@ -2406,14 +2426,19 @@ async def totales_pedido(idPedido):
 
             arr = str(textVar.getvalue()).split("|")
             obj = {
-                    'total_bruto' : arr[0],
-                    'desc_volumen' : arr[1],
-                    'otros_descuentos' : arr[2],
-                    'desc_adicional' : arr[3],
-                    'desc_dpp' : arr[4],
-                    'sub_total' : arr[5],
-                    'impuesto' : arr[6],
-                    'total' : arr[7]
+                    'total_bruto' :  formatFloatDdo(arr[0]),
+                    'desc_volumen' :  formatFloatDdo(arr[1]),
+                    'otros_descuentos' :  formatFloatDdo(arr[2]),
+                    'desc_adicional' :  formatFloatDdo(arr[3]),
+                    'desc_dpp' :  formatFloatDdo(arr[4]),
+                    'sub_total' :  formatFloatDdo(arr[5]),
+                    'impuesto' :  formatFloatDdo(arr[6]),
+                    'total' :  formatFloatDdo(arr[7]),
+                    'totalGravado' :  formatFloatDdo(arr[8]),
+                    'totalExento' :  formatFloatDdo(arr[9]),
+                    'descImpuesto' :  formatFloatDdo(arr[10]),
+                    'totalNetoUSD' :  formatFloatDdo(arr[11]),
+                    'tipoCambio' :  formatFloatDdo(arr[12]),
             }
             list = obj
         return list

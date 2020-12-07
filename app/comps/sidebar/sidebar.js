@@ -12,9 +12,20 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
 
 
       $scope.events = [];
-      $scope.idle = 60;
-      $scope.timeout = 60;
+      $scope.idle = 15;
+      $scope.timeout = 60*15;
       $scope.idleCount = 0
+
+      $scope.msToTime =  function(s) {
+        var ms = s % 1000;
+        s = (s - ms) / 1000;
+        var secs = s % 60;
+        s = (s - secs) / 60;
+        var mins = s % 60;
+        var hrs = (s - mins) / 60;
+
+        return hrs + ':' + mins + ':' + secs;
+      }
 
         $scope.$on('IdleStart', function() {
           // addEvent({event: 'IdleStart', date: new Date()});
@@ -49,10 +60,14 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
           // addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
           if(countdown < 10){
             notify({ message: countdown + ' Segundos para cierre de session', position:'left', duration:1000, classes:'alert-danger'});
-            
-          }else if((countdown % 10 == 0)){
-            notify({ message: countdown + ' Segundos para cierre de session', position:'left', duration:1000, classes:'alert-danger'});
+            return
+          }else if((countdown % 60 == 0)){
+
+            notify({ message: $scope.msToTime(countdown*1000) + ' para cierre de session', position:'left', duration:3000, classes:'alert-danger'});
+            return
+          
           }
+          
           // $scope.showIdle = true;
           // $scope.idleCount = countdown
           
@@ -64,7 +79,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
         });
 
         $scope.$on('Keepalive', function() {
-          addEvent({event: 'Keepalive', date: new Date()});
+          // addEvent({event: 'Keepalive', date: new Date()});
         });
 
         function addEvent(evt) {

@@ -279,21 +279,27 @@
                                     </tr> -->
                                     <tr>
                                         <td class="right">
-                                            <strong class="text-dark">Sub - Total</strong> </td>
+                                            <strong class="text-dark">SUB.T. (E):</strong> </td>
   
-                                            <td class="right">{{formato(2,totalesDdo.sub_total)}} </td>
+                                            <td class="right">{{formato(2,totalesDdo.totalExento)}} </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="right">
+                                          <strong class="text-dark">SUB.T. (G):</strong> </td>
+
+                                          <td class="right">{{formato(2,totalesDdo.totalGravado)}} </td>
                                     </tr>
                                     <tr>
                                         <td class="right">
-                                            <strong class="text-dark">Impuesto</strong> </td>
+                                            <strong class="text-dark">I.V.A. </strong> </td>
   
-                                            <td class="right">{{formato(2,totalesDdo.impuesto)}} </td>
+                                            <td class="right">{{totalesDdo.impuesto  formato(2,totalesDdo.descImpuesto)}} </td>
                                     </tr>
                                     <tr>
                                         <td class="right">
                                             <strong class="text-dark">Total</strong> </td>
   
-                                            <td class="right">{{formato(2,totalesDdo.total)}} </td>
+                                            <td class="right">{{formato(2,totalNetoUSD)  formato(2,totalesDdo.total)}} </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -622,23 +628,29 @@
                                           <td class="right">{{formato(2,totalesDdo.desc_dpp)}} </td>
                                   </tr> -->
                                   <tr>
-                                      <td class="right">
-                                          <strong class="text-dark">Sub - Total</strong> </td>
-  
-                                          <td class="right">{{formato(2,totalesDdo.sub_total)}} </td>
-                                  </tr>
-                                  <tr>
-                                      <td class="right">
-                                          <strong class="text-dark">Impuesto</strong> </td>
-  
-                                          <td class="right">{{formato(2,totalesDdo.impuesto)}} </td>
-                                  </tr>
-                                  <tr>
-                                      <td class="right">
-                                          <strong class="text-dark">Total</strong> </td>
-  
-                                          <td class="right">{{formato(2,totalesDdo.total)}} </td>
-                                  </tr>
+                                    <td class="right">
+                                        <strong class="text-dark">SUB.T. (E):</strong> </td>
+
+                                        <td class="right">{{formato(2,totalesDdo.totalExento)}} </td>
+                                </tr>
+                                <tr>
+                                  <td class="right">
+                                      <strong class="text-dark">SUB.T. (G):</strong> </td>
+
+                                      <td class="right">{{formato(2,totalesDdo.totalGravado)}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="right">
+                                        <strong class="text-dark">I.V.A. </strong> </td>
+
+                                        <td class="right">{{totalesDdo.impuesto  formato(2,totalesDdo.descImpuesto)}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="right">
+                                        <strong class="text-dark">Total</strong> </td>
+
+                                        <td class="right">{{formato(2,totalNetoUSD)  formato(2,totalesDdo.total)}} </td>
+                                </tr>
                               </tbody>
                           </table>
                       </div>
