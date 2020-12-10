@@ -2408,8 +2408,7 @@ async def totales_pedido(idPedido):
                                 v_totalExento|| '|'||
                                 v_descImpuesto|| '|'||
                                 v_totalNetoUSD|| '|'||
-                                v_tipoCambio|| '|'||
-                         )
+                                v_tipoCambio);
             END;
                 """.format( idPedido = idPedido ))
         textVar = c.var(str)
