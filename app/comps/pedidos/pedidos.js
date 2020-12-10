@@ -1710,6 +1710,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         ];
 
         function formatoTotales(totales) {
+          console.log(totales)
           // totales.total_bruto = totales.total_bruto.replace(",",".")
           // totales.desc_volumen = totales.desc_volumen.replace(",",".")
           // totales.otros_descuentos = totales.otros_descuentos.replace(",",".")

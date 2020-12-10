@@ -2393,8 +2393,7 @@ async def totales_pedido(idPedido):
 
                     dbms_output.enable(output);
 
-                    PROCESOSPW.totales_pedido ({idPedido},v_total_bruto,v_desc_volumen, v_otros_descuentos, v_desc_adicional, v_desc_dpp, v_sub_total, v_impuesto, v_total,
-                    v_totalGravado, v_totalExento, v_descImpuesto, v_totalNetoUSD,v_tipoCambio  );
+                    PROCESOSPW.totales_pedido ({idPedido},v_total_bruto,v_desc_volumen, v_otros_descuentos, v_desc_adicional, v_desc_dpp, v_sub_total, v_impuesto, v_total,v_totalGravado, v_totalExento, v_descImpuesto, v_totalNetoUSD,v_tipoCambio  );
 
                     dbms_output.put_line(
                                 v_total_bruto|| '|'||
@@ -2410,7 +2409,7 @@ async def totales_pedido(idPedido):
                                 v_descImpuesto|| '|'||
                                 v_totalNetoUSD|| '|'||
                                 v_tipoCambio|| '|'||
-                         );
+                         )
             END;
                 """.format( idPedido = idPedido ))
         textVar = c.var(str)
