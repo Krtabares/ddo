@@ -2374,19 +2374,19 @@ async def totales_pedido(idPedido):
 
                     output number DEFAULT 1000000;
 
-                    v_total_bruto number := 0;
-                    v_desc_volumen number := 0;
-                    v_otros_descuentos number:= 0;
-                    v_desc_adicional number := 0;
-                    v_desc_dpp number := 0;
-                    v_sub_total number :=0;
-                    v_impuesto number :=0;
-                    v_total number := 0;
-                    v_totalGravado number := 0;
-                    v_totalExento  number := 0;
-                    v_descImpuesto number := 0;
-                    v_totalNetoUSD number := 0;
-                    v_tipoCambio  number := 0;
+                    v_total_bruto varchar(20);
+                    v_desc_volumen varchar(20);
+                    v_otros_descuentos varchar(20);
+                    v_desc_adicional varchar(20);
+                    v_desc_dpp varchar(20);
+                    v_sub_total varchar(20);
+                    v_impuesto varchar(20);
+                    v_total varchar(20);
+                    v_totalGravado varchar(20);
+                    v_totalExento  varchar(20);
+                    v_descImpuesto varchar(20);
+                    v_totalNetoUSD varchar(20);
+                    v_tipoCambio  varchar(20);
 
                 BEGIN
 
