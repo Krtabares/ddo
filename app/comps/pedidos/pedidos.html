@@ -298,10 +298,16 @@
                                     </tr>
                                     <tr>
                                         <td class="right">
-                                            <strong class="text-dark">Total</strong> </td>
+                                            <strong class="text-dark">TOTAL Bs.S</strong> </td>
   
-                                            <td class="right">USD {{ formato(3,totalesDdo.totalNetoUSD) }} {{formato(2,totalesDdo.total)}} </td>
+                                            <td class="right"> {{formato(2,totalesDdo.total)}} </td>
                                     </tr>
+                                    <tr>
+                                      <td class="right">
+                                          <strong class="text-dark">TOTAL USD </strong> </td>
+
+                                          <td class="right"> {{ formato(3,totalesDdo.totalNetoUSD) }}  </td>
+                                  </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -648,11 +654,17 @@
                                         <td class="right">{{totalesDdo.descImpuesto }}  </td>
                                 </tr>
                                 <tr>
-                                    <td class="right">
-                                        <strong class="text-dark">Total</strong> </td>
+                                  <td class="right">
+                                      <strong class="text-dark">TOTAL Bs.S</strong> </td>
 
-                                        <td class="right">USD {{ formato(3,totalesDdo.totalNetoUSD) }} {{formato(2,totalesDdo.total)}} </td>
-                                </tr>
+                                      <td class="right"> {{formato(2,totalesDdo.total)}} </td>
+                              </tr>
+                              <tr>
+                                <td class="right">
+                                    <strong class="text-dark">TOTAL USD </strong> </td>
+
+                                    <td class="right"> {{ formato(3,totalesDdo.totalNetoUSD) }}  </td>
+                            </tr>
                               </tbody>
                           </table>
                       </div>
