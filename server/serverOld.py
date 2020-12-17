@@ -2434,7 +2434,7 @@ async def totales_pedido(idPedido):
                     'total' :  formatFloatDdo(arr[7]),
                     'totalGravado' :  formatFloatDdo(arr[8]),
                     'totalExento' :  formatFloatDdo(arr[9]),
-                    'descImpuesto' :  formatFloatDdo(arr[10]),
+                    'descImpuesto' :  arr[10],
                     'totalNetoUSD' :  formatFloatDdo(arr[11]),
                     'tipoCambio' :  formatFloatDdo(arr[12]),
             }
