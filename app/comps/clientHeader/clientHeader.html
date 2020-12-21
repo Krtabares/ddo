@@ -18,7 +18,7 @@
       <div class="col-md-6" style="padding-left: 0px !important;">
         <div class="card card-min " >
           <div class="card-info-header">
-            Informacion del Cliente
+            Información del Cliente
 
             <button type="button" class="close"  aria-label="Close" data-toggle="collapse" data-target="#collapseInfo" aria-expanded="false" aria-controls="collapseInfo">
               <span aria-hidden="true">-</span>
@@ -26,10 +26,10 @@
           </div>
           <div class="card-body " id="collapseInfo"  >
 
-            <!-- <h6 class="card-title">Informacion del Cliente </h6> -->
+            <!-- <h6 class="card-title">Información del Cliente </h6> -->
             <p class="mb-1" ng-if="client_info.grupo_cliente != '02'" ><span class="text-muted">Razon Social: </span>{{client_info.nombre_cliente}}</p>
             <p class="mb-1"><span ng-if="client_info.grupo_cliente == '01'" class="text-muted">RIF: </span> <span ng-if="client_info.grupo_cliente == '02'" class="text-muted">C.I.: </span> {{client_info.docu_identif_cliente}}</p>
-            <p class="mb-1"><span class="text-muted">Direccion Fiscal: </span> {{client_info.direccion_cliente.toLowerCase()}}</p>
+            <p class="mb-1"><span class="text-muted">Dirección Fiscal: </span> {{client_info.direccion_cliente.toLowerCase()}}</p>
             <!-- <p class="mb-1"><span class="text-muted">Zona: </span>{{client_info.zona}}</p> -->
             <!-- <p class="mb-1"><span class="text-muted">Telefono: </span>{{client_info.telefono1}}</p> -->
             <!-- <p class="mb-1" style="text-transform: capitalize;"><span class="text-muted">Encargado: </span> {{client_info.nombre_encargado.toLowerCase()}}</p> -->
@@ -53,7 +53,7 @@
             <p class="mb-1" ng-if="client_info.grupo_cliente =='02'" ><span class="text-muted"> Nombre empleado</span> {{client_info.nombre_cliente}}</p>
             <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client_info.tipo_venta}}</p>
             <p class="mb-1"><span class="text-muted">Plazo: </span> {{client_info.v_plazo}} dias</p>
-            <p class="mb-1"><span class="text-muted">Limite de Credito: </span> {{formato(2,client_info.limite_credito)}}</p>
+            <p class="mb-1"><span class="text-muted">Limite de Crédito: </span> {{formato(2,client_info.limite_credito)}}</p>
             <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,creditoClient.disp_bs_format)}}</p>
             <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Total unidades facturadas del mes: </span> {{client_info.unid_fact_med_emp}}</p>
             <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Saldo en unidades: </span> {{client_info.unid_disp_med_emp}}</p>

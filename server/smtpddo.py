@@ -63,7 +63,7 @@ async def _send_email(data):
 @app.route('/put', methods=["POST"])
 async def check(request):
     # data = request.json
-    # await _send_email2("")
+    await _send_email2("")
     return json(f"SUCCESS!")
 
 

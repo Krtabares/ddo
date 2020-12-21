@@ -265,14 +265,14 @@ angular.module('app.deuda', ['datatables', 'datatables.buttons', 'datatables.boo
       .withLanguage(DATATABLE_LANGUAGE_ES)
 
         $scope.dtColumns = [
-            // DTColumnBuilder.newColumn('no_fisico').withTitle('N° de documento'),
+            // DTColumnBuilder.newColumn('no_fisico').withTitle('N.º de documento'),
             // DTColumnBuilder.newColumn('fecha_vencimiento').withTitle('Fecha de vencimiento'),
             // DTColumnBuilder.newColumn('tipo_venta').withTitle('Tipo de venta'),
             // DTColumnBuilder.newColumn('monto_actual').withTitle('Monto actual'),
             // DTColumnBuilder.newColumn('estatus_deuda').withTitle('Estatus deuda').withClass('none'),
             // DTColumnBuilder.newColumn('codigo_tipo_doc').withTitle('Código tipo doc').withClass('none'),
             // DTColumnBuilder.newColumn('nombre_tipo_doc').withTitle('Nombre tipo doc')
-            DTColumnBuilder.newColumn('no_fisico').withTitle('N° de documento'),
+            DTColumnBuilder.newColumn('no_fisico').withTitle('N.º de documento'),
             // DTColumnBuilder.newColumn('codigo_cliente').withTitle(''),
             // DTColumnBuilder.newColumn('nombre_cliente').withTitle(''),
             DTColumnBuilder.newColumn('tipo_venta').withTitle('Tipo venta'),

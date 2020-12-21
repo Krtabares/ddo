@@ -26,9 +26,9 @@
     <div ng-show="!hasUserClient">
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6">
-          <label for="clientes">Busqueda por cliente</label>
+          <label for="clientes">Búsqueda por cliente</label>
           <div class="input-group mb-3">
-            <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Busqueda por Cliente" aria-label="Busqueda por Cliente" aria-describedby="basic-addon2">
+            <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Búsqueda por Cliente" aria-label="Búsqueda por Cliente" aria-describedby="basic-addon2">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
             </div>
@@ -54,23 +54,23 @@
       <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
           <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusqueda" id="exampleRadios1" ng-value="0" >
+            <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBúsqueda" id="exampleRadios1" ng-value="0" >
             <label class="form-check-label" for="exampleRadios1">
-              Busqueda por producto
+              Búsqueda por producto
             </label>
           </div>
           <div class="form-check mb-3">
             <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusqueda" id="exampleRadios2" ng-value="1" >
             <label class="form-check-label" for="exampleRadios2">
-              Busqueda por componente activo
+              Búsqueda por componente activo
             </label>
           </div>
 
           <div class="row">
             <div class="col-md-6">
-              <label for="clientes">Busqueda</label>
+              <label for="clientes">Búsqueda</label>
               <div class="input-group mb-3">
-                <input type="text" class="form-control"  ng-model="busqueda_prod" placeholder="Busqueda por Producto" aria-label="Busqueda por Producto" aria-describedby="basic-addon2">
+                <input type="text" class="form-control"  ng-model="busqueda_prod" placeholder="Búsqueda por Producto" aria-label="Búsqueda por Producto" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
                 </div>
@@ -92,14 +92,14 @@
             </div>
 
             <div class="col-md-3">
-              <label for="filtro">Filtrar por categoria</label>
+              <label for="filtro">Filtrar por categoría</label>
               <div class="input-group mb-3 ">
                 <div class="form-group">
                   <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
                   <select class="form-control" ng-model="categoria.CODIGO" id="proveedor" >
                     <!-- <option value="null" >Todos</option> -->
                     <option ng-repeat="x in listCategorias" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
-                    <option value="" disabled selected>Seleccione una categoria</option>
+                    <option value="" disabled selected>Seleccione una categoría</option>
                   </select>
                 </div>
               </div>

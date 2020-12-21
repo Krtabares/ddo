@@ -27,7 +27,7 @@
   
           <ul class="nav nav-tabs mb-4">
               <li class="nav-item" ng-show="1 == 2" >
-                <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Informacion Cliente <span class="badge badge-secondary">1</span></a>
+                <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Información Cliente <span class="badge badge-secondary">1</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" ng-class="{ active : tabsIndex == 1, disabled: !clienteValido  }" ng-disabled=" !clienteValido" ng-click="goToTab(1)" >Detalle de pedido <span class="badge badge-secondary">2</span></a>
@@ -119,24 +119,24 @@
   
   
                   <div class="col-3">
-                    <label>Monto minimo pedido</label><br>
+                    <label>Monto mínimo pedido</label><br>
                     <span >{{formato(2,client.monto_minimo)? formato(2, client.monto_minimo):0}}</span>
   
                   </div>
                   <div class="col-3">
-                    <label>Monto minimo pick - up</label><br>
+                    <label>Monto mínimo pick - up</label><br>
                     <span >{{formato(2,client.monto_min_pick)? formato(2, client.monto_min_pick):0}}</span>
   
                   </div>
   
                   <div class="col-3">
-                    <label>Credito disponible Bs.S</label><br>
+                    <label>Crédito disponible Bs.S</label><br>
                     <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</span>
   
                   </div>
   
                   <div class="col-3">
-                    <label>Credito disponible USD</label><br>
+                    <label>Crédito disponible USD</label><br>
                     <span >{{formato(3,(creditoClient.disp_usd_format)? (creditoClient.disp_usd_format - totales.UsdConIva):0)}}</span>
   
                   </div>
@@ -147,22 +147,22 @@
   
                 <div class="row mb-5" ng-if="clienteEmpleado">
                   <div class="col-3">
-                    <label>Max. unidades medicina</label><br>
+                    <label>Max. Unidades medicina</label><br>
                     <span >{{client.max_unid_med_emp}}</span>
   
                   </div>
                   <div class="col-3">
-                    <label>Max. unidades miscelanos</label><br>
+                    <label>Max. Unidades misceláneos</label><br>
                     <span >{{client.max_unid_misc_emp}}</span>
   
                   </div>
                   <div class="col-3">
-                    <label>Disp. unidades medicina</label><br>
+                    <label>Disp. Unidades medicina</label><br>
                     <span >{{client.unid_disp_med_emp - totales.empMed}}</span>
   
                   </div>
                   <div class="col-3">
-                    <label>Disp. unidades miscelanos</label><br>
+                    <label>Disp. Unidades misceláneos</label><br>
                     <span >{{client.unid_disp_misc_emp - totales.empMisc}}</span>
   
                   </div>
@@ -186,7 +186,7 @@
                           <th scope="col"><p class="text-center">Total USD</p></th>
                           <th scope="col"><p class="text-center">Fecha Vencimiento</p></th>
                           <!-- <th scope="col"><p class="text-center">Estatus</p></th> -->
-                          <th scope="col"><p class="text-center">Opcion</p></th>
+                          <th scope="col"><p class="text-center">Opción</p></th>
   
                           </tr>
                       </thead>
@@ -333,7 +333,7 @@
             </div> -->
           <ul class="nav nav-tabs mb-4">
               <li class="nav-item" ng-show="1 == 2" >
-                <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Informacion Cliente </a>
+                <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Información Cliente </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" ng-class="{ active : tabsIndex == 1 }" ng-disabled="!showProductTable || !clienteValido" ng-click="goToTab(1)" >Detalle de pedido </a>
@@ -428,25 +428,25 @@
                 <div class="row mt-5 mb-5" ng-show="editView" >
   
                   <div class="col-3">
-                    <label>Monto minimo pedido Bs.S</label><br>
+                    <label>Monto mínimo pedido Bs.S</label><br>
                     <span >{{formato(2,client.monto_minimo)? formato(2, client.monto_minimo):0}}</span>
   
                   </div>
   
                   <div class="col-3">
-                    <label>Monto minimo pick-Up</label><br>
+                    <label>Monto mínimo pick-Up</label><br>
                     <span >{{formato(2,client.monto_min_pick)? formato(2, client.monto_min_pick):0}}</span>
   
                   </div>
   
                   <div class="col-3">
-                    <label>Credito disponible Bs.S</label><br>
+                    <label>Crédito disponible Bs.S</label><br>
                     <span >{{formato(2,(creditoClient.disp_bs_format)? (creditoClient.disp_bs_format - totales.bsConIva):0)}}</span>
   
                   </div>
   
                   <div class="col-3">
-                    <label>Credito disponible USD</label><br>
+                    <label>Crédito disponible USD</label><br>
                     <span >{{formato(3,(creditoClient.disp_usd_format)? (creditoClient.disp_usd_format - totales.UsdConIva):0)}}</span>
   
                   </div>
@@ -456,22 +456,22 @@
   
                 <div class="row mb-5" ng-show="editView && clienteEmpleado">
                   <div class="col-3">
-                    <label>Max. unidades medicina</label><br>
+                    <label>Max. Unidades medicina</label><br>
                     <span >{{client.max_unid_med_emp}}</span>
   
                   </div>
                   <div class="col-3">
-                    <label>Max. unidades miscelanos</label><br>
+                    <label>Max. Unidades misceláneos</label><br>
                     <span >{{client.max_unid_misc_emp}}</span>
   
                   </div>
                   <div class="col-3">
-                    <label>Disp. unidades medicina</label><br>
+                    <label>Disp. Unidades medicina</label><br>
                     <span >{{client.unid_disp_med_emp - totales.empMed}}</span>
   
                   </div>
                   <div class="col-3">
-                    <label>Disp. unidades miscelanos</label><br>
+                    <label>Disp. Unidades misceláneos</label><br>
                     <span >{{client.unid_disp_misc_emp - totales.empMisc}}</span>
   
                   </div>
@@ -493,7 +493,7 @@
                             <th scope="col"><p class="text-center">Precio USD</p></th>
                             <th scope="col"><p class="text-center">Total USD</p></th>
                             <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
-                            <th scope="col"><p class="text-center">Opcion</p></th>
+                            <th scope="col"><p class="text-center">Opción</p></th>
   
                             </tr>
                         </thead>
@@ -722,8 +722,8 @@
                       <input type="text" class="form-control"
                       ng-model="busqueda_prod"
                       ng-keydown="$event.keyCode === 13 && getProdNew(true)"
-                      placeholder="Busqueda por Producto"
-                      aria-label="Busqueda por Producto"
+                      placeholder="Búsqueda por Producto"
+                      aria-label="Búsqueda por Producto"
                       aria-describedby="basic-addon2">
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
@@ -746,14 +746,14 @@
                   </div>
   
                   <div class="col-md-3">
-                    <label for="filtro">Filtrar por categoria</label>
+                    <label for="filtro">Filtrar por categoría</label>
                     <div class="input-group mb-3 ">
                       <div class="form-group">
                         <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
                         <select class="form-control" ng-model="categoria.CODIGO" id="proveedor" >
                           <!-- <option value="null" >Todos</option> -->
                           <option ng-repeat="x in listCategorias" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
-                          <option value="" disabled selected>Seleccione una categoria</option>
+                          <option value="" disabled selected>Seleccione una categoría</option>
                         </select>
                       </div>
                     </div>
@@ -849,7 +849,7 @@
           <div class="container">
             <div class="row pb-2 p-2" >
                 <div class="col-md-4">
-                  <p class="font-weight-bold mb-4">Informacion</p>
+                  <p class="font-weight-bold mb-4">Información</p>
                   <p class="mb-1"><span class="text-muted">Principal Activo: </span> {{articulo.princ_activo}}</p>
                   <p class="mb-1"><span class="text-muted">Codigo: </span> {{articulo.cod_producto}}</p>
                   <p class="mb-1"><span class="text-muted">Fecha Vencimiento: </span> {{articulo.fecha_vence}}</p>
@@ -1022,18 +1022,18 @@
               <div class="col-md-12">
                 <div class="card " >
                   <div class="card-body">
-                    <h5 class="card-title">Busqueda por cliente </h5>
+                    <h5 class="card-title">Búsqueda por cliente </h5>
   
                     <div class="form-check mb-3">
                       <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusquedaCliente" id="exampleRadios1" ng-value="0" selected >
                       <label class="form-check-label" for="exampleRadios1">
-                        Busqueda por cliente
+                        Búsqueda por cliente
                       </label>
                     </div>
                     <div class="form-check mb-3">
                       <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusquedaCliente" id="exampleRadios2" ng-value="1" >
                       <label class="form-check-label" for="exampleRadios2">
-                        Busqueda por empleado
+                        Búsqueda por empleado
                       </label>
                     </div>
   
@@ -1045,8 +1045,8 @@
                           class="form-control"
                           ng-keydown="$event.keyCode === 13 && getClientNew(true)"
                           ng-model="nombre_cliente"
-                          placeholder="Busqueda por Cliente"
-                          aria-label="Busqueda por Cliente"
+                          placeholder="Búsqueda por Cliente"
+                          aria-label="Búsqueda por Cliente"
                           aria-describedby="basic-addon2">
                           <div class="input-group-append">
                             <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>

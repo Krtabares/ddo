@@ -28,31 +28,31 @@
 
           <div class="card " >
             <div class="card-body">
-              <h5 class="card-title">Busqueda  </h5>
+              <h5 class="card-title">Búsqueda  </h5>
 
               <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusquedaCliente" id="exampleRadios1" ng-value="0" >
+                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBúsquedaCliente" id="exampleRadios1" ng-value="0" >
                 <label class="form-check-label" for="exampleRadios1">
-                  Busqueda por cliente
+                  Búsqueda por cliente
                 </label>
               </div>
               <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusquedaCliente" id="exampleRadios2" ng-value="1" >
+                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBúsquedaCliente" id="exampleRadios2" ng-value="1" >
                 <label class="form-check-label" for="exampleRadios2">
-                  Busqueda por empleado
+                  Búsqueda por empleado
                 </label>
               </div>
 
               <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-6">
-                  <!-- <label for="clientes">Busqueda por cliente</label> -->
+                  <!-- <label for="clientes">Búsqueda por cliente</label> -->
                   <div class="input-group mb-3">
                     <input type="text" id="clientes"
                     class="form-control"
                     ng-keydown="$event.keyCode === 13 && getClientNew(true)"
                     ng-model="nombre_cliente"
-                    placeholder="Busqueda por Cliente"
-                    aria-label="Busqueda por Cliente"
+                    placeholder="Búsqueda por Cliente"
+                    aria-label="Búsqueda por Cliente"
                     aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
@@ -80,8 +80,8 @@
                       <th scope="col"><p class="text-center">Nombre</p></th>
                       <th scope="col"><p class="text-center">Documento de identificación</p></th>
                       <th scope="col"><p class="text-center">Zona</p></th>
-                      <th scope="col"><p class="text-center">Direccion Fiscal</p></th>
-                      <th scope="col"><p class="text-center">Direccion Entrega</p></th>
+                      <th scope="col"><p class="text-center">Dirección Fiscal</p></th>
+                      <th scope="col"><p class="text-center">Dirección Entrega</p></th>
                       <th scope="col"><p class="text-center">Nombre del encargado</p></th>
                       <th scope="col"><p class="text-center">telefono1</p></th>
                       <th scope="col"><p class="text-center">email1</p></th>
