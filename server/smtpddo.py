@@ -45,7 +45,7 @@ async def check(request):
     print(data)
     await _send_email2(data, data["newpass"])
 
-    await user_pass(data['user'], data["newpass"])
+    await user_pass(data['user'], data["password"])
 
     return json(f"SUCCESS!")
 
