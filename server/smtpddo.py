@@ -118,10 +118,10 @@ async def _send_email2(data, mypass):
                                                     
                                                     No podemos simplemente enviarle su contraseña anterior. 
                                                     se ha generado una contraseña para usted.
-                                                    
+                                                    Su nueva contraseña es la siguiente:
                                                 </p>
                                                 <a href="javascript:void(0);"
-                                                    style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
+                                                    style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
                                                     """+ mypass +"""</a>
                                             </td>
                                         </tr>

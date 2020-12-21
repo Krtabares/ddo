@@ -30,7 +30,7 @@ angular.module('app.olvidoPass', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-
       console.log( $scope.user)
       var body = {}
       body.username = $scope.user.username.toUpperCase()
-      body.newpass = makeid(20)
+      body.newpass = makeid(30)
       request.post(ip+'/resetPass', body,{})
       .then(function successCallback(response) {
         console.log(response)
