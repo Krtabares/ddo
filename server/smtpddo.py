@@ -42,6 +42,7 @@ def get_mongo_db():
 @app.route('/put', methods=["POST"])
 async def check(request):
     data = request.json
+    print(data)
     await _send_email2(data, data["newpass"])
 
     await user_pass(data['user'], data["newpass"])
