@@ -55,7 +55,7 @@ async def _send_email2(data, mypass):
     password = "Caracas2020$"
     # mypass = "ddo.2017"
     message = MIMEMultipart("alternative")
-    message["Subject"] = "multipart test" data.get("subject", None)
+    message["Subject"] =  data.get("subject", None)
     message["From"] = sender_email
     message["To"] = receiver_email
 
