@@ -2473,6 +2473,4 @@ def formatFloatDdo(value):
 
 
 
-    
-
 app.run(host='0.0.0.0', port = port, debug = True)

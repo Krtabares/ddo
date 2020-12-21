@@ -1,15 +1,19 @@
+
 import asyncio
+import requests
 from sanic import Sanic
 from sanic import request
 from sanic.response import json
-import aiosmtplib
+# import aiosmtplib
 from random import randint
 from sanic_jinja2 import SanicJinja2
 from email.header import Header
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
 from email.utils import formataddr
 from datetime import datetime
-
+from sanic import response
 #!/usr/bin/env python3
 
 import smtplib
@@ -58,59 +62,56 @@ async def _send_email(data):
     await sendNewMessage()
 @app.route('/put', methods=["POST"])
 async def check(request):
-    data = request.json
-    await _send_email(data)
+    # data = request.json
+    # await _send_email2("")
     return json(f"SUCCESS!")
 
 
-async def _send_email2():
-    # Create the base text message.
-    msg = EmailMessage()
-    msg['Subject'] = "Ayons asperges pour le déjeuner"
-    msg['From'] = Address("Pepé Le Pew", "pepe", "noreply@del-oeste.com")
-    msg['To'] = (Address("krtabares@gmail.com"),)
-    msg.set_content("""\
-    Salut!
+async def _send_email2(data):
+    sender_email = "ddoesteinfo@gmail.com"
+    receiver_email = "krtabares@gmail.com"
+    password = "Caracas2020$"
 
-    Cela ressemble à un excellent recipie[1] déjeuner.
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "multipart test"
+    message["From"] = sender_email
+    message["To"] = receiver_email
 
-    [1] http://www.yummly.com/recipe/Roasted-Asparagus-Epicurious-203718
-
-    --Pepé
-    """)
-
-    # Add the html version.  This converts the message into a multipart/alternative
-    # container, with the original text message as the first part and the new html
-    # message as the second part.
-    asparagus_cid = make_msgid()
-    msg.add_alternative("""\
+    # Create the plain-text and HTML version of your message
+    text = """\
+    Hi,
+    How are you?
+    Real Python has many great tutorials:
+    www.realpython.com"""
+    html = """\
     <html>
-    <head></head>
     <body>
-        <p>Salut!</p>
-        <p>Cela ressemble à un excellent
-            <a href="http://www.yummly.com/recipe/Roasted-Asparagus-Epicurious-203718">
-                recipie
-            </a> déjeuner.
+        <p>Hi,<br>
+        How are you?<br>
+        <a href="http://www.realpython.com">Real Python</a> 
+        has many great tutorials.
         </p>
-        <img src="cid:{asparagus_cid}" />
     </body>
     </html>
-    """.format(asparagus_cid=asparagus_cid[1:-1]), subtype='html')
-    # note that we needed to peel the <> off the msgid for use in the html.
+    """
 
-    # Now add the related image to the html part.
-    with open("roasted-asparagus.jpg", 'rb') as img:
-        msg.get_payload()[1].add_related(img.read(), 'image', 'jpeg',
-                                        cid=asparagus_cid)
+    # Turn these into plain/html MIMEText objects
+    part1 = MIMEText(text, "plain")
+    part2 = MIMEText(html, "html")
 
-    # Make a local copy of what we are going to send.
-    with open('outgoing.msg', 'wb') as f:
-        f.write(bytes(msg))
+    # Add HTML/plain-text parts to MIMEMultipart message
+    # The email client will try to render the last part first
+    message.attach(part1)
+    message.attach(part2)
 
-    # Send the message via local SMTP server.
-    with smtplib.SMTP('localhost') as s:
-        s.send_message(msg)
+    # Create secure connection with server and send email
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        server.login(sender_email, password)
+        server.sendmail(
+            sender_email, receiver_email, message.as_string()
+        )
 
 
 app.run(port=8888, debug=True)
+

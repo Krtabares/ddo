@@ -1,4 +1,4 @@
-<div  >
+
   <div ng-include="'comps/common/topbar.html'">
 
   </div>
@@ -23,30 +23,7 @@
           </span>
         </div>
         <div class="modal-body">
-  
-            <!-- <div class="alert alert-danger"  ng-show="!clienteValido && !hasUserClient" role="alert">
-              Advertencia:
-              <strong>{{clientInvalidoMsg}}</strong>
-            </div> -->
-<!-- 
-            <div class="alert alert-info alert-dismissible fade show" ng-show="counter >= 1" role="alert">
-              <strong>Informacion!</strong> Dispone de 15 minutos de inactividad
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="alert alert-warning alert-dismissible fade show" ng-show="counter < 600000 && counter < timeLimit" role="alert">
-              <strong>Advertencia!</strong> Dispone de menos de 5 minutos de inactividad
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="alert alert-danger alert-dismissible fade show" ng-show="counter < 1" role="alert">
-              <strong>INFO!</strong> Su tiempo para elaborar el pedido se a agotado
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div> -->
+
   
           <ul class="nav nav-tabs mb-4">
               <li class="nav-item" ng-show="1 == 2" >
@@ -216,15 +193,15 @@
                       <tbody>
   
                           <tr ng-repeat="x in pedido.pedido" ng-class="{ incideRow : x.alert }" >
-                              <td><p class="text-center">{{ x.nombre_producto }}</p></td>
+                              <td><p class="text-left">{{ x.nombre_producto }}</p></td>
                               <td>
-                                <p class="text-center">{{ x.CANTIDAD }}</p>
+                                <p class="text-left">{{ x.CANTIDAD }}</p>
                               </td>
                               <td><p class="text-right">{{ formato(2,x.precio_neto_bs) }}</p></td>
                               <td><p class="text-right">{{ formato(2,(x.precio_neto_bs * x.CANTIDAD)) }}</p></td>
                               <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
                               <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
-                              <td><p class="text-right">{{ x.fecha_vence}}</p></td>
+                              <td><p class="text-left">{{ x.fecha_vence}}</p></td>
                               <!-- <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td> -->
                               <td >
                                 <i class="fa fa-trash" style="cursor: pointer;"  ng-click="openModalDyn(3,$index)" ></i>
@@ -352,24 +329,7 @@
             </span>
             <span class="float-right"> <strong>Estatus:</strong> {{pedido.estatus}}</span>
             </div>
-  
-            <!-- <div class="alert alert-info alert-dismissible fade show" ng-show="counter >= 1" role="alert">
-              <strong>Informacion!</strong> Dispone de 15 minutos de inactividad
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="alert alert-warning alert-dismissible fade show" ng-show="counter < 600000 && counter < timeLimit" role="alert">
-              <strong>Advertencia!</strong> Dispone de menos de 5 minutos de inactividad
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="alert alert-danger alert-dismissible fade show" ng-show="counter < 1" role="alert">
-              <strong>INFO!</strong> Su tiempo para elaborar el pedido se a agotado
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+
             </div> -->
           <ul class="nav nav-tabs mb-4">
               <li class="nav-item" ng-show="1 == 2" >
@@ -542,13 +502,13 @@
                             <tr ng-repeat="x in pedido.pedido" ng-class="{ incideRow : x.alert }" >
                                 <!-- <th scope="row">{{ $index + 1 }}</th> -->
                                 <!-- <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td> -->
-                                <td><p class="text-center">{{ x.nombre_producto }}</p></td>
-                                <td><p class="text-center">{{ x.CANTIDAD }}</p></td>
+                                <td><p class="text-left">{{ x.nombre_producto }}</p></td>
+                                <td><p class="text-left">{{ x.CANTIDAD }}</p></td>
                                 <td><p class="text-right">{{ formato(2,x.precio_neto_bs) }}</p></td>
                                 <td><p class="text-right">{{ formato(2,(x.precio_neto_bs * x.CANTIDAD)) }}</p></td>
                                 <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
                                 <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
-                                <td><p class="text-center">{{ x.fecha_vence }}</p></td>
+                                <td><p class="text-left">{{ x.fecha_vence }}</p></td>
                                 <!-- <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td> -->
                                 <td >
   
@@ -693,9 +653,9 @@
   
                             <tr ng-repeat="x in pedido.errores" ng-class="{ incideRow : x.alert }" >
                                 <!-- <th scope="row">{{ $index + 1 }}</th> -->
-                                <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td>
-                                <td><p class="text-center">{{ x.DESCRIPCION }}</p></td>
-                                <td><p class="text-center">{{ x.FECHA }}</p></td>
+                                <td><p class="text-left">{{ x.COD_PRODUCTO }}</p></td>
+                                <td><p class="text-left">{{ x.DESCRIPCION }}</p></td>
+                                <td><p class="text-left">{{ x.FECHA }}</p></td>
   
                               </tr>
                         </tbody>
@@ -738,29 +698,13 @@
               <div class="col-sm-12 col-md-12 col-lg-12">
   
   
-  
-  
-  
                 <div class="row">
-  
-                  <!-- <div class="col-md-2">
-  
-                    <label>Tipo de busqueda</label>
-                    <select class="form-control form-control-sm"  ng-model="tipoBusqueda">
-  
-                      <option  value="1" >
-                        Por producto
-                      </option>
-                      <option  value="2">
-                        Por componente activo
-                      </option>
-  
-                    </select> -->
+
                     <div class="col-md-3">
-                    <label for="proveedor">Tipo de busqueda</label>
+                    <label for="tipoBusqueda">Tipo de busqueda</label>
                     <div class="input-group mb-3 ">
                       <div class="form-group">
-                        <select class="form-control" ng-model="tipoBusqueda"  >
+                        <select class="form-control" ng-model="tipoBusqueda" id="tipoBusqueda" >
                           <option  value="1" >
                             Por producto
                           </option>
@@ -822,7 +766,7 @@
   
                 <div ng-if="showProductTable" >
   
-                  <table datatable="ng" dt-options="dtOptionsProd"  class="table table-sm" >
+                  <table datatable="ng" id="tableProd" dt-options="dtOptionsProd"  class="table table-sm" style="overflow: hidden !important;" >
                     <thead>
                         <tr>
                         <th scope="col"><p class="text-center">#</p></th>
@@ -830,6 +774,7 @@
                         <th scope="col"><p class="text-center">Nombre Producto</p></th>
                         <th scope="col"><p class="text-center">Categoria</p></th>
                         <th scope="col"><p class="text-center">Existencia</p></th>
+                        <th scope="col"><p class="text-center">Cantidad</p></th>
                         <th scope="col"><p class="text-center">Precio Bs.S</p></th>
                         <th scope="col"><p class="text-center">Iva Bs.S</p></th>
                         <th scope="col"><p class="text-center">Precio USD</p></th>
@@ -840,18 +785,31 @@
                     </thead>
                     <tbody>
                       <a href="#infoProduct">
-                        <tr ng-repeat="x in productos"  ng-class="{ selectedRow : $index == productIndex }" >
+                        <tr ng-repeat="x in productos"  ng-class="{ selectedRow : $index == productIndex }"  ng-click="selectProduct($index,true)"  >
   
-                            <td><p class="text-center">{{ $index + 1 }}</p></td>
+                            <td><p class="text-left">{{ $index + 1 }}</p></td>
                             <td><i class="fa fa-eye" style="cursor: pointer;"  ng-click="selectProduct($index)" ></i></td>
-                            <td><p class="text-center">{{ x.nombre_producto }}</p></td>
-                            <td><p class="text-center">{{ x.categoria }}</p></td>
-                            <td><p class="text-center">{{ x.existencia }}</p></td>
+                            <td><p class="text-left">{{ x.nombre_producto }}</p></td>
+                            <td><p class="text-left">{{ x.categoria }}</p></td>
+                            <td><p class="text-left">{{ x.existencia }}</p></td>
+                            <td><p class="text-left">
+                              <div ng-if="$index == productIndex">
+                                <input id="cantidad_{{$index}}" type="number" style=" width: 130px !important;"  ng-model="articulo.CANTIDAD"
+                                 ng-keydown="$event.keyCode === 13 && addArtPedido(true)" 
+                                 ng-blur="validaBlur(articulo.CANTIDAD)"
+                                class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                              </div>
+                              <div ng-if="$index != productIndex">
+                                <input type="number" class="form-control" style=" width: 130px !important;" ng-disabled="true" >
+                              </div>
+
+                             </p>
+                            </td>
                             <td><p class="text-right">{{  formato(2,x.precio_neto_bs) }}</p></td>
                             <td><p class="text-right">{{  formato(2,x.iva_bs) }}</p></td>
                             <td><p class="text-right">{{  formato(3,x.precio_neto_usd) }}</p></td>
                             <td><p class="text-right">{{  formato(3,x.iva_usd) }}</p></td>
-                            <td><p class="text-center">{{ x.princ_activo }}</p></td>
+                            <td><p class="text-left">{{ x.princ_activo }}</p></td>
                             <td><p class="text-left">{{  x.proveedor }}</p></td>
   
                         </tr>
@@ -1196,13 +1154,13 @@
   
                           <tr ng-repeat="x in listaPedidosV2" ng-show="x.estatus != 'PEDIDO CREADO'">
                             <th scope="row">{{ $index + 1 }}</th>
-                            <td><p class="text-center">ORD-{{ x.ID }}-WEB</p></td>
-                            <td><p class="text-center">{{  x.fecha_creacion }}</p></td>
-                            <td ng-show="!hasUserClient" ><p class="text-center">{{ x.nombre_cliente }}</p></td>
-                            <!-- <td><p class="text-center">{{ x.direccion_cliente }}</p></td> -->
-                            <td><p class="text-center">{{ x.estatus }}</p></td>
-                            <td><p class="text-center">{{ x.fecha_estatus }}</p></td>
-                            <td><p class="text-center">{{ x.tipo_pedido }}</p></td>
+                            <td><p class="text-left">ORD-{{ x.ID }}-WEB</p></td>
+                            <td><p class="text-left">{{  x.fecha_creacion }}</p></td>
+                            <td ng-show="!hasUserClient" ><p class="text-left">{{ x.nombre_cliente }}</p></td>
+                            <!-- <td><p class="text-left">{{ x.direccion_cliente }}</p></td> -->
+                            <td><p class="text-left">{{ x.estatus }}</p></td>
+                            <td><p class="text-left">{{ x.fecha_estatus }}</p></td>
+                            <td><p class="text-left">{{ x.tipo_pedido }}</p></td>
                             <td>
   
                               <i class="fa fa-trash" style="cursor: pointer;"  ng-if="userLogged.permisos.pedido.eliminar" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
@@ -1236,4 +1194,4 @@
     <my-loading></my-loading>
   </div>
   
-</div>
+

@@ -14,9 +14,9 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
     function($scope, $rootScope, $routeParams, $interval, $timeout, ngNotify, localstorage, request, NgMap, $localStorage) {
 
       $scope.url = [
-        "http://www.del-oeste.com/wp-content/uploads/2017/10/slider-n.jpg",
-        "http://www.del-oeste.com/wp-content/uploads/2017/08/almacen-foto-cliente.jpg",
-        "http://www.del-oeste.com/wp-content/uploads/2017/08/img-about.jpg",
+        "../app/img/slider-n.jpg",
+        "../app/img/almacen-foto-cliente.jpg",
+        "../app/img/img-about.jpg",
       ]
 	  var ip = IP_SERVER_PYTHON;
     $scope.loading = false

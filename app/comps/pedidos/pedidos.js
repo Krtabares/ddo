@@ -403,8 +403,22 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
         }
+        $scope.auxCantidadBlur = null
+        $scope.validaBlur = function (cantidad = null) {
+       
+          if(cantidad != null && cantidad > 0  ){
+            $scope.auxCantidadBlur = cantidad
+            $scope.addArtPedido(true)
+          }else{
+            cantidad = null
+            $scope.auxCantidadBlur = null
+            return
+          }
 
-        $scope.selectProduct = function(value = null){
+          
+        }
+
+        $scope.selectProduct = function(value = null ,type = null){
 
            var index = (value!=null)? value:$scope.productIndex
             $scope.productIndex = index;
@@ -436,7 +450,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             }else{
               $scope.articulo.CANTIDAD = cantidadAux
             }
-            angular.element('#btnProductInfo').trigger('click');
+            if(type == null){
+              angular.element('#btnProductInfo').trigger('click');
+            }else{
+              $(function(){
+                $('#cantidad_'+$scope.productIndex).focus();
+              })
+            }
 
 
         }
@@ -1227,7 +1247,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               error = validacionesArticulo($scope.articulo, existenciaAux)
 
               if(!error){
-
+                if($scope.auxCantidadBlur == $scope.articulo.CANTIDAD){
+                  return
+                }
                 $scope.updDetalleProducto($scope.articulo, indexArticulo, listAux);
 
               }else{
