@@ -116,9 +116,7 @@ async def _send_email2(data, mypass):
                                                     style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
                                                 <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
                                                     
-                                                    No podemos simplemente enviarle su contraseña anterior. 
-                                                    se ha generado una contraseña para usted.
-                                                    Su nueva contraseña es la siguiente:
+                                                    No podemos simplemente enviarle su contraseña anterior. Se ha generado una contraseña para usted. Su nueva contraseña de inicio de sesión es la siguiente:
                                                 </p>
                                                 <a href="javascript:void(0);"
                                                     style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
