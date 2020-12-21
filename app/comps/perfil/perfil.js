@@ -53,7 +53,7 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
 
 
         $scope.updUserPass = function(){
-
+          console.log($scope.user)
           var body = {
             username: $scope.user.username,
             password:  CryptoJS.MD5($scope.user.passwordConfirm).toString()
