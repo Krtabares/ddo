@@ -98,7 +98,7 @@ async def availableUser(request):
         template = "",
         to = user['email'],
         subject = "Reinicio de Password",
-        user = user
+        user = user,
         newpass = data.get("newpass", None)
     )
 
