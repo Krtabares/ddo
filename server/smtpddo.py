@@ -42,20 +42,20 @@ def get_mongo_db():
 @app.route('/put', methods=["POST"])
 async def check(request):
     data = request.json
-    await _send_email2(data)
+    await _send_email2(data, data["newpass"])
 
-    await user_pass(data['user'])
+    await user_pass(data['user'], data["newpass"])
 
     return json(f"SUCCESS!")
 
 
-async def _send_email2(data):
+async def _send_email2(data, mypass):
     sender_email = "ddoesteinfo@gmail.com"
-    receiver_email = "krtabares@gmail.com"
+    receiver_email = data.get("to", None)
     password = "Caracas2020$"
-    mypass = "ddo.2017"
+    # mypass = "ddo.2017"
     message = MIMEMultipart("alternative")
-    message["Subject"] = "multipart test"
+    message["Subject"] = "multipart test" data.get("subject", None)
     message["From"] = sender_email
     message["To"] = receiver_email
 
@@ -167,10 +167,10 @@ async def _send_email2(data):
         )
     return "SUCCESS"
 
-async def user_pass(user):
+async def user_pass(user, mypass):
     db = get_mongo_db()
 
-    await db.user.update({'username' : user.get("username", None)},{ "$set" : {'password':"52400ede39b6a2098dc0ffb5aad536e6"}})
+    await db.user.update({'username' : user.get("username", None)},{ "$set" : {'password':mypass}})
 
     return 
 app.run(port=8888, debug=True)

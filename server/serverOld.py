@@ -99,6 +99,7 @@ async def availableUser(request):
         to = user['email'],
         subject = "Reinicio de Password",
         user = user
+        newpass = data.get("newpass", None)
     )
 
     smtp = http.client.HTTPConnection('127.0.0.1', 8888)

@@ -30,6 +30,7 @@ angular.module('app.olvidoPass', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-
       console.log( $scope.user)
       var body = {}
       body.username = $scope.user.username.toUpperCase()
+      body.newpass = makeid(20)
       request.post(ip+'/resetPass', body,{})
       .then(function successCallback(response) {
         console.log(response)
@@ -42,6 +43,18 @@ angular.module('app.olvidoPass', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-
 
       });
     }
+
+    function makeid(length) {
+      var result           = '';
+      var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var charactersLength = characters.length;
+      for ( var i = 0; i < length; i++ ) {
+         result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      return result;
+   }
+   
+  //  console.log(makeid(5));
 
 
 
