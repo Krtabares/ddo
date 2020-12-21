@@ -16,7 +16,7 @@ from datetime import datetime
 from sanic import response
 #!/usr/bin/env python3
 
-import smtplib
+import ssl,smtplib
 
 from email.message import EmailMessage
 from email.headerregistry import Address
