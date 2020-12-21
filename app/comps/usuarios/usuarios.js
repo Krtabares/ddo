@@ -237,6 +237,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
             user.password = "52400ede39b6a2098dc0ffb5aad536e6";
             if(!$scope.usernameValid || !$scope.emailValid){
               ngNotify.set('¡Verifique username y/o email!','danger')
+              $scope.loading = false
               return
             }
             user.username = user.username.toUpperCase()
@@ -404,7 +405,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       // console.log($scope.userLogged);
       var result = $scope.permisosAccess[modulo].access.indexOf($scope.userLogged.role);
 
-      console.log(result);
+      // console.log(result);
 
       if(result < 0 ){
         return false
