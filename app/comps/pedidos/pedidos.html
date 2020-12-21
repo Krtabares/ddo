@@ -268,10 +268,10 @@
                                     </tr>
                                     <tr>
                                         <td class="right">
-                                            <strong class="text-dark">I.V.A. </strong> </td>
+                                            <strong class="text-dark">{{totalesDdo.descImpuesto }} </strong> </td>
   
                                             <!-- <td class="right">% {{totalesDdo.impuesto }} {{formato(2,totalesDdo.descImpuesto)}} </td> -->
-                                            <td class="right">{{totalesDdo.descImpuesto }}  </td>
+                                            <td class="right"> {{formato(2,totalesDdo.impuesto) }} </td>
                                     </tr>
                                     <tr>
                                         <td class="right">
@@ -607,12 +607,12 @@
                                       <td class="right">{{formato(2,totalesDdo.totalGravado)}} </td>
                                 </tr>
                                 <tr>
-                                    <td class="right">
-                                        <strong class="text-dark">I.V.A. </strong> </td>
+                                  <td class="right">
+                                      <strong class="text-dark">{{totalesDdo.descImpuesto }} </strong> </td>
 
-                                        <!-- <td class="right">{{totalesDdo.descImpuesto }} {{formato(2,totalesDdo.descImpuesto)}} </td> -->
-                                        <td class="right">{{totalesDdo.descImpuesto }}  </td>
-                                </tr>
+                                      <!-- <td class="right">% {{totalesDdo.impuesto }} {{formato(2,totalesDdo.descImpuesto)}} </td> -->
+                                      <td class="right"> {{formato(2,totalesDdo.impuesto) }} </td>
+                              </tr>
                                 <tr>
                                   <td class="right">
                                       <strong class="text-dark">TOTAL Bs.S</strong> </td>

@@ -58,7 +58,7 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
             username: $scope.user.username,
             password:  CryptoJS.MD5($scope.user.passwordConfirm).toString()
           }
-          console.log($scope.passwordConfirm)
+          console.log($scope.user.passwordConfirm)
           request.post(ip+'/upd/user_pass', body,{'Authorization': 'Bearer ' + localstorage.get('token')})
               .then(function successCallback(response) {
                 console.log(response)
