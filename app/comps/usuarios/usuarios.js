@@ -236,6 +236,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
             $scope.loading = true
             user.password = "52400ede39b6a2098dc0ffb5aad536e6";
             if(!$scope.usernameValid || !$scope.emailValid){
+              console.log("$scope.usernameValid",$scope.usernameValid)
+              console.log("$scope.emailValid",$scope.emailValid)
               ngNotify.set('¡Verifique username y/o email!','danger')
               $scope.loading = false
               return
