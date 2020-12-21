@@ -161,12 +161,12 @@ async def addUser(request, token : Token):
 
     userEmail = await db.user.find_one({'email' : user.get("email", None)}, {'_id' : 0})
 
-    if usersEmail != None:
+    if userEmail != None:
         return response.json({"msg": "Email no disponible"}, status=400)
     
-    userEmail = await db.user.find_one({'username' : user.get("username", None)}, {'_id' : 0})
+    username = await db.user.find_one({'username' : user.get("username", None)}, {'_id' : 0})
 
-    if usersEmail != None:
+    if username != None:
         return response.json({"msg": "Username no disponible"}, status=400)
 
     await db.user.insert_one(user)
