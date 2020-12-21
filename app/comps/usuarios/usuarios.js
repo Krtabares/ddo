@@ -235,13 +235,13 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.addUser = function(user){
             $scope.loading = true
             user.password = "52400ede39b6a2098dc0ffb5aad536e6";
-            if(!$scope.usernameValid || !$scope.emailValid){
-              console.log("$scope.usernameValid",$scope.usernameValid)
-              console.log("$scope.emailValid",$scope.emailValid)
-              ngNotify.set('¡Verifique username y/o email!','danger')
-              $scope.loading = false
-              return
-            }
+            // if(!$scope.usernameValid || !$scope.emailValid){
+            //   console.log("$scope.usernameValid",$scope.usernameValid)
+            //   console.log("$scope.emailValid",$scope.emailValid)
+            //   ngNotify.set('¡Verifique username y/o email!','danger')
+            //   $scope.loading = false
+            //   return
+            // }
             user.username = user.username.toUpperCase()
             user.COD_CIA = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
             user.GRUPO_CLIENTE = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
@@ -262,7 +262,11 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                   }
                   $scope.loading = false
                 }, function errorCallback(response) {
-                  console.log(response)
+                  $scope.loading = false
+                  if(response.status == 400){
+                    // notify({ message:response.data.msg, position:'left', duration:20000, classes:'alert-danger'});
+                    ngNotify.set(response.data.msg,'danger')
+                  }
                 });
         }
 
