@@ -99,7 +99,7 @@ async def availableUser(request):
         to = user['email'],
         subject = "Reinicio de Password",
         user = user,
-        newpass = data.get("newpass", None)
+        newpass = data.get("newpass", None),
         password = data.get("password", None)
     )
     print(emailData)
