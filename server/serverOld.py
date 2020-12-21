@@ -97,18 +97,19 @@ async def availableUser(request):
     emailData = dict(
         template = "",
         to = user['email'],
-        subject = "Reinicio de Password"
+        subject = "Reinicio de Password",
+        user = user
     )
 
     smtp = http.client.HTTPConnection('127.0.0.1', 8888)
-    smtp.request("POST", "/put",
+    result = smtp.request("POST", "/put",
                 json.dumps(emailData)
                 )
 
 
     # await prepareMail(emailData)
 
-    return response.json(user,200)    
+    return response.json(result,200)    
 
 @app.route("/login", ["POST"])
 async def login(request):
