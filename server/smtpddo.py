@@ -111,6 +111,7 @@ async def _send_email2(data):
         server.sendmail(
             sender_email, receiver_email, message.as_string()
         )
+    return "SUCCESS"
 
 
 app.run(port=8888, debug=True)
