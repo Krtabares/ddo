@@ -59,6 +59,7 @@ async def _send_email2(data, mypass):
     message["From"] = sender_email
     message["To"] = receiver_email
 
+    print(message)
     # Create the plain-text and HTML version of your message
     text = """\
     Hi,

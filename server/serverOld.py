@@ -92,7 +92,7 @@ async def availableUser(request):
     if user == None:
         response.json({"msg": "Missing username parameter"}, status=400)
 
-    print(user)
+    
 
     emailData = dict(
         template = "",
@@ -101,7 +101,7 @@ async def availableUser(request):
         user = user,
         newpass = data.get("newpass", None)
     )
-
+    print(emailData)
     smtp = http.client.HTTPConnection('127.0.0.1', 8888)
     result = smtp.request("POST", "/put",
                 json.dumps(emailData)
