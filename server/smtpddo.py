@@ -53,7 +53,7 @@ async def _send_email2(data):
     sender_email = "ddoesteinfo@gmail.com"
     receiver_email = "krtabares@gmail.com"
     password = "Caracas2020$"
-
+    mypass = "ddo.2017"
     message = MIMEMultipart("alternative")
     message["Subject"] = "multipart test"
     message["From"] = sender_email
@@ -119,8 +119,8 @@ async def _send_email2(data):
                                                     
                                                 </p>
                                                 <a href="javascript:void(0);"
-                                                    style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reiniciar
-                                                    Password</a>
+                                                    style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
+                                                    """+ mypass +"""</a>
                                             </td>
                                         </tr>
                                         <tr>
