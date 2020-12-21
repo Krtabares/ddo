@@ -26,12 +26,12 @@ from sanic.handlers import ErrorHandler
 app = Sanic(__name__)
 jinja = SanicJinja2(app)
 
-class CustomHandler(ErrorHandler):
-    def default(self, request, exception):
-        # print("[EXCEPTION] "+str(exception))
-        return response.json(str(exception),501)
-handler = CustomHandler()
-app.error_handler = handler
+# class CustomHandler(ErrorHandler):
+#     def default(self, request, exception):
+#         # print("[EXCEPTION] "+str(exception))
+#         return response.json(str(exception),501)
+# handler = CustomHandler()
+# app.error_handler = handler
 
 async def _send_email(data):
     MAIL_SERVER_HOST = "mail.del-oeste.com"
