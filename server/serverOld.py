@@ -527,7 +527,7 @@ async def procedure(request):
                         pCliente = data['pCliente'],
                         pNombre = data['pNombre'],
                     )
-    #print(sql)
+    print(sql)
     c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)
