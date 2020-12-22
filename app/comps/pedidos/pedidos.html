@@ -224,36 +224,7 @@
                         <div class="col-lg-6 col-sm-6 ml-auto">
                             <table class="table table-clear">
                                 <tbody>
-                                    <!-- <tr>
-                                        <td class="right">
-                                            <strong class="text-dark">Total bruto</strong>
-                                        </td>
-                                        <td class="right">{{formato(2,totalesDdo.total_bruto)}} </td>
-                                    </tr> -->
-                                    <!-- <tr>
-                                        <td class="right">
-                                            <strong class="text-dark">Desc. Volumen</strong>
-                                        </td>
-                                        <td class="right">{{formato(2,totalesDdo.desc_volumen)}} </td>
-                                    </tr> -->
-                                    <!-- <tr>
-                                        <td class="right">
-                                            <strong class="text-dark">Otros descuentos</strong>
-                                        </td>
-                                        <td class="right">{{formato(2,totalesDdo.otros_descuentos)}} </td>
-                                    </tr> -->
-                                    <!-- <tr>
-                                        <td class="right">
-                                            <strong class="text-dark">Desc. Adicional</strong> </td>
-  
-                                            <td class="right">{{formato(2,totalesDdo.desc_adicional)}} </td>
-                                    </tr> -->
-                                    <!-- <tr>
-                                        <td class="right">
-                                            <strong class="text-dark">Desc. dpp</strong> </td>
-  
-                                            <td class="right">{{formato(2,totalesDdo.desc_dpp)}} </td>
-                                    </tr> -->
+
                                     <tr>
                                         <td class="right">
                                             <strong class="text-dark">SUB.T. (E):</strong> </td>
@@ -330,7 +301,7 @@
             <span class="float-right"> <strong>Estatus:</strong> {{pedido.estatus}}</span>
             </div>
 
-            </div> -->
+            </div>
           <ul class="nav nav-tabs mb-4">
               <li class="nav-item" ng-show="1 == 2" >
                 <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Información Cliente </a>
@@ -762,11 +733,12 @@
   
                 </div>
   
-  
+              </div>
   
                 <div ng-if="showProductTable" >
   
                   <table datatable="ng" id="tableProd" dt-options="dtOptionsProd"  class="table table-sm" style="overflow: hidden !important;" >
+                    <!-- <table  class="table table-sm" style="overflow: hidden !important;" > -->
                     <thead>
                         <tr>
                         <th scope="col"><p class="text-center">#</p></th>
@@ -784,7 +756,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                      <a href="#infoProduct">
+
                         <tr ng-repeat="x in productos"  ng-class="{ selectedRow : $index == productIndex }"  ng-click="selectProduct($index,true)"  >
   
                             <td><p class="text-left">{{ $index + 1 }}</p></td>
@@ -813,7 +785,6 @@
                             <td><p class="text-left">{{  x.proveedor }}</p></td>
   
                         </tr>
-                        </a>
   
                     </tbody>
                     </table>
@@ -823,7 +794,7 @@
             </div>
   
             </div>
-          </div>
+          
   
   
         </div>

@@ -29,6 +29,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
 
         $scope.$on('IdleStart', function() {
           // addEvent({event: 'IdleStart', date: new Date()});
+          notify({ message: $scope.msToTime( $scope.timeout*1000) + ' para cierre de sesion', position:'left', duration:3000, classes:'alert-danger'});
         });
 
         $scope.$on('IdleEnd', function() {
@@ -59,11 +60,11 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
         $scope.$on('IdleWarn', function(e, countdown) {
           // addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
           if(countdown < 10){
-            notify({ message: countdown + ' Segundos para cierre de session', position:'left', duration:1000, classes:'alert-danger'});
+            notify({ message: countdown + ' Segundos para cierre de sesion', position:'left', duration:1000, classes:'alert-danger'});
             return
-          }else if((countdown % 60 == 0)){
+          }else if((countdown % 60 == 0) && (countdown < 60*10)){
 
-            notify({ message: $scope.msToTime(countdown*1000) + ' para cierre de session', position:'left', duration:3000, classes:'alert-danger'});
+            notify({ message: $scope.msToTime(countdown*1000) + ' para cierre de sesion', position:'left', duration:3000, classes:'alert-danger'});
             return
           
           }

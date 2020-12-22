@@ -264,7 +264,7 @@ body {
 
 .modal-body-he{
 	/* height: 450px !important; */
-  /* overflow-y: scroll !important; */
+  overflow-y: scroll !important;
   padding-top: 15px;
 	/* background-color: #dcdcdd; */
 	/* overflow-x: hidden !important; */
