@@ -210,10 +210,33 @@ body {
   display: inline-block;
 }
 
-@media (max-width:767px) {
+@media (max-width:600px) {
     #wrapper {
     padding-left: 70px;
     transition: all .4s ease 0s;
+  }
+  #wrapper.toggled {
+    padding-left: 0px !important;
+  }
+  .hamburger{
+    /* margin-left: 220px !important;
+     */
+     right: 8px !important;
+  }
+  #sidebar-wrapper {
+    background: #1a1a1ad4 !important;
+  }
+
+
+  #card-rigth, #card-left {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin-bottom: 15px;
+  }
+}
+
+  
+
 }
 #sidebar-wrapper {
     left: 60px;
@@ -934,4 +957,12 @@ td p {
     margin-right:0;
     font-weight:600
   }
+}
+.btn{
+  width: 100% !important;
+  margin-bottom: 10px;
+}
+
+.form-group{
+  width: 100% !important;
 }
