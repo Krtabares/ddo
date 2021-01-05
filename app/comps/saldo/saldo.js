@@ -28,6 +28,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       $scope.client_info = {}
       $scope.dtInstance = {};
       $scope.tipoBusqueda = 0
+      $scope.productos= []
       verificClient()
 
     function verificClient(){
@@ -46,6 +47,17 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
      console.log($scope.client)
    }
 
+   $scope.formato = function(tipo, valor){
+    if(tipo == 1){
+      return formatterVeDECIMAL.format(valor)
+    }
+    if(tipo==2){
+      return formatterVe.format(valor)
+    }
+    if(tipo==3){
+      return formatterUSD.format(valor)
+    }
+  }
 
    $scope.clientes = null;
    $scope.nombre_cliente = null;
@@ -180,7 +192,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         if(response.data.obj.length > 0){
           // $scope.productos = response.data.obj
           // defer.resolve(response.data.obj);
-            $scope.listaProd = response.data.obj;
+            $scope.productos = response.data.obj;
           // $scope.dtOptions.reloadData()
         }else{
           ngNotify.set('¡No se encontraron resultados!', 'warn')
@@ -213,12 +225,12 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         console.log(response)
         if(response.data.obj.length > 1){
           // $scope.productos = response.data.obj
-          response.data.obj.forEach((item, i) => {
-            item.precio = item.precio.replace(",", ".")
-            item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
+          // response.data.obj.forEach((item, i) => {
+          //   item.precio = item.precio.replace(",", ".")
+          //   item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
 
-          });
-          $scope.listaProd = response.data.obj;
+          // });
+          $scope.productos = response.data.obj;
           // defer.resolve(response.data.obj);
           // $scope.dtOptions.reloadData()
         }else{
@@ -278,48 +290,56 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
     getCategorias()
 
 
-	$scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
-        var defer = $q.defer();
-        var body = {}
-        console.log($scope.client);
+	// $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
+  //       var defer = $q.defer();
+  //       var body = {}
+  //       console.log($scope.client);
 
-        body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
-        body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
-        body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
+  //       body.pNoCia = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
+  //       body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
+  //       body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
 
-        console.log(body);
-         request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
-          .then(function successCallback(response) {
-            console.log(response.data)
+  //       console.log(body);
+  //        request.post(ip+'/procedure_productos', body, {'Authorization': 'Bearer ' + localstorage.get('token')})
+  //         .then(function successCallback(response) {
+  //           console.log(response.data)
 
-            response.data.obj.forEach((item, i) => {
-              item.precio = item.precio_bruto_bs.replace(",", ".")
-              item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
+  //           response.data.obj.forEach((item, i) => {
+  //             item.precio = item.precio_bruto_bs.replace(",", ".")
+  //             item.precio = $scope.formato(2,  parseFloat(item.precio).toFixed(2) )
 
-            });
-            defer.resolve(response.data.obj);
+  //           });
+  //           defer.resolve(response.data.obj);
 
-         });
-        return defer.promise;
-		})
-		.withDOM('frtip')
-    .withPaginationType('full_numbers')
-    .withOption('responsive', true)
-		.withButtons([
+  //        });
+  //       return defer.promise;
+	// 	})
+	// 	.withDOM('frtip')
+  //   .withPaginationType('full_numbers')
+  //   .withOption('responsive', true)
+	// 	.withButtons([
 
-            'pdf',
-            'excel'
-        ])
-    .withLanguage(DATATABLE_LANGUAGE_ES)
+  //           'pdf',
+  //           'excel'
+  //       ])
+  //   .withLanguage(DATATABLE_LANGUAGE_ES)
 
-        $scope.dtColumns = [
-            // DTColumnBuilder.newColumn('bodega').withTitle('Bodega'),
-            DTColumnBuilder.newColumn('nombre_producto').withTitle('Nombre de producto'),
-            DTColumnBuilder.newColumn('fecha_vence').withTitle('Fecha vencimiento'),
-            DTColumnBuilder.newColumn('proveedor').withTitle('Proveedor'),
-            // DTColumnBuilder.newColumn('cod_producto').withTitle('Código de producto'),
-            DTColumnBuilder.newColumn('princ_activo').withTitle('Principio activo').withClass('none'),
-            DTColumnBuilder.newColumn('existencia').withTitle('Existencia').withClass('none'),
-            // DTColumnBuilder.newColumn('precio').withTitle('Precio')
-        ];
+  //       $scope.dtColumns = [
+  //           // DTColumnBuilder.newColumn('bodega').withTitle('Bodega'),
+  //           DTColumnBuilder.newColumn('nombre_producto').withTitle('Nombre de producto'),
+  //           DTColumnBuilder.newColumn('fecha_vence').withTitle('Fecha vencimiento'),
+  //           DTColumnBuilder.newColumn('proveedor').withTitle('Proveedor'),
+  //           // DTColumnBuilder.newColumn('cod_producto').withTitle('Código de producto'),
+  //           DTColumnBuilder.newColumn('princ_activo').withTitle('Principio activo').withClass('none'),
+  //           DTColumnBuilder.newColumn('existencia').withTitle('Existencia').withClass('none'),
+  //           // DTColumnBuilder.newColumn('precio').withTitle('Precio')
+  //       ];
+
+  $scope.dtOptionsProd = DTOptionsBuilder.newOptions()
+  .withPaginationType('full_numbers')
+  .withOption('responsive', true)
+  .withDOM('frtip').withPaginationType('full_numbers')
+  .withLanguage(DATATABLE_LANGUAGE_ES)
+
+
   }]);

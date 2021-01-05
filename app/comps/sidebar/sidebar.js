@@ -6,17 +6,23 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
     controller: 'sidebarCtrl'
   })
 
-  .controller('sidebarCtrl', ['$scope', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'notify', 'localstorage', 'request', 'NgMap','$localStorage','Idle',
-    function($scope, $rootScope, $routeParams, $interval, $timeout, ngNotify,notify, localstorage,  request, NgMap, $localStorage, Idle) {
+  .controller('sidebarCtrl', ['$scope', '$rootScope', '$routeParams', '$interval', '$timeout', '$window', 'ngNotify', 'notify', 'localstorage', 'request', 'NgMap','$localStorage','Idle',
+    function($scope, $rootScope, $routeParams, $interval, $timeout, $window, ngNotify,notify, localstorage,  request, NgMap, $localStorage, Idle) {
 
 
-
+      $scope.width = $window.innerWidth;
       $scope.events = [];
-      $scope.idle = 15;
+      $scope.idle = 5;
       $scope.timeout = 60*15;
       $scope.idleCount = 0
 
       $scope.msToTime =  function(s) {
+        // Pad to 2 or 3 digits, default is 2
+        function pad(n, z) {
+          z = z || 2;
+          return ('00' + n).slice(-z);
+        }
+
         var ms = s % 1000;
         s = (s - ms) / 1000;
         var secs = s % 60;
@@ -24,7 +30,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
         var mins = s % 60;
         var hrs = (s - mins) / 60;
 
-        return hrs + ':' + mins + ':' + secs;
+        return pad(hrs) + ':' + pad(mins) + ':' + pad(secs) + '.' + ms;
       }
 
         $scope.$on('IdleStart', function() {
@@ -33,34 +39,15 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
         });
 
         $scope.$on('IdleEnd', function() {
-          // addEvent({event: 'IdleEnd', date: new Date()});
-          // if($scope.timeout >= 120 ){
-          //   $scope.timeout = 60
-          //   return
-          // }
-          // if($scope.timeout <= 60 && $scope.timeout > 10){
-          //   $scope.timeout -= 5
-          //   $scope.idle = 1
-          //   return
-          // }
-          // if($scope.timeout <=10){
-          //   $scope.timeout -= 1
-            
-          //   return
-          // }
-          // if($scope.timeout == 1){
-          //   $scope.timeout = 0
-          //   $scope.idle =  0
-          //   return
-          // }
          
         });
       
 
         $scope.$on('IdleWarn', function(e, countdown) {
           // addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
+          console.log($scope.msToTime(countdown*1000))
           if(countdown < 10){
-            notify({ message: countdown + ' Segundos para cierre de sesion', position:'left', duration:1000, classes:'alert-danger'});
+            notify({ message: $scope.msToTime(countdown*1000) + ' Segundos para cierre de sesion', position:'left', duration:1000, classes:'alert-danger'});
             return
           }else if((countdown % 60 == 0) && (countdown < 60*10)){
 
