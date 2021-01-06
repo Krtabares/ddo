@@ -916,6 +916,7 @@ async def procedure(request):
                 v_descuento2 number;
                 v_tipo_prod_emp varchar2(20);
                 v_disp_prod_emp varchar2(1);
+                v_dir_imagen varchar2(300);
                 V_PAGINA number;
                 V_LINEA number;
             BEGIN
@@ -962,6 +963,7 @@ async def procedure(request):
                 v_descuento2,
                 v_tipo_prod_emp,
                 v_disp_prod_emp,
+                v_dir_imagen,
                 V_PAGINA,
                 V_LINEA;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -988,6 +990,7 @@ async def procedure(request):
                     v_descuento2|| '|'||
                     v_tipo_prod_emp|| '|'||
                     v_disp_prod_emp|| '|'||
+                    v_dir_imagen|| '|'||
                     V_PAGINA|| '|'||
                     V_LINEA
                 );
@@ -1045,8 +1048,9 @@ async def procedure(request):
             'descuento2' : arr[18],
             'tipo_prod_emp' : arr[19],
             'disp_prod_emp' :arr[20],
-            'pagina': arr[21],
-            'linea': arr[22]
+            'dir_imagen' : arr[21],
+            'pagina': arr[22],
+            'linea': arr[23]
         }
 
         # if data['pArticulo'] == 'null'  :
