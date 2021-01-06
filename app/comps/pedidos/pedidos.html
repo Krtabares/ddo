@@ -18,7 +18,7 @@
             <span class="float-right"> 
               
               <!-- <div ng-if="true" idle-countdown="countdown">
-              cierre de sesion en {{countdown}} seconds.
+              cierre de sesión en {{countdown}} seconds.
             </div> -->
           </span>
         </div>
@@ -177,7 +177,7 @@
                       <thead>
                           <tr>
                           <!-- <th scope="col"><p class="text-center">#</p></th> -->
-                          <!-- <th scope="col"><p class="text-center">Codigo de Articulo</p></th> -->
+                          <!-- <th scope="col"><p class="text-center">Código de Articulo</p></th> -->
                           <th scope="col"><p class="text-center">Nombre Articulo</p></th>
                           <th scope="col"><p class="text-center">Cantidad</p></th>
                           <th scope="col"><p class="text-center">Precio por unidad</p></th>
@@ -295,7 +295,7 @@
             <span class="float-right ml-3" ng-show="editView" > 
               <!-- <strong>tiempo:</strong> {{msToTime(counter*1000)}}  -->
               <!-- <div ng-if="true" idle-countdown="countdown">
-                cierre de sesion en {{countdown}} seconds.
+                cierre de sesión en {{countdown}} seconds.
               </div> -->
             </span>
             <span class="float-right"> <strong>Estatus:</strong> {{pedido.estatus}}</span>
@@ -456,7 +456,7 @@
                         <thead>
                             <tr>
                             <!-- <th scope="col"><p class="text-center">#</p></th> -->
-                            <!-- <th scope="col"><p class="text-center">Codigo de Articulo</p></th> -->
+                            <!-- <th scope="col"><p class="text-center">Código de Articulo</p></th> -->
                             <th scope="col"><p class="text-center">Nombre Articulo</p></th>
                             <th scope="col"><p class="text-center">Cantidad</p></th>
                             <th scope="col"><p class="text-center">Precio por unidad</p></th>
@@ -613,7 +613,7 @@
                         <thead>
                             <tr>
                             <!-- <th scope="col"><p class="text-center">#</p></th> -->
-                            <th scope="col"><p class="text-center">Codigo de Articulo</p></th>
+                            <th scope="col"><p class="text-center">Código de Articulo</p></th>
                             <th scope="col"><p class="text-center">Descripcion</p></th>
                             <th scope="col"><p class="text-center">Fecha</p></th>
   
@@ -779,8 +779,11 @@
                             </td>
                             <td><p class="text-right">{{  formato(2,x.precio_neto_bs) }}</p></td>
                             <td><p class="text-right">{{  formato(2,x.iva_bs) }}</p></td>
-                            <td><p class="text-right">{{  formato(3,x.precio_neto_usd) }}</p></td>
-                            <td><p class="text-right">{{  formato(3,x.iva_usd) }}</p></td>
+                            <!-- <td><p class="text-right">{{  formato(3,x.precio_neto_usd) }}</p></td>
+                            <td><p class="text-right">{{  formato(3,x.iva_usd) }}</p></td> -->
+                            
+                            <td><p class="text-right">${{x.precio_neto_usd }}</p></td>
+                            <td><p class="text-right">${{x.iva_usd }}</p></td>
                             <td><p class="text-left">{{ x.princ_activo }}</p></td>
                             <td><p class="text-left">{{  x.proveedor }}</p></td>
   
@@ -822,7 +825,7 @@
                 <div class="col-md-4">
                   <p class="font-weight-bold mb-4">Información</p>
                   <p class="mb-1"><span class="text-muted">Principal Activo: </span> {{articulo.princ_activo}}</p>
-                  <p class="mb-1"><span class="text-muted">Codigo: </span> {{articulo.cod_producto}}</p>
+                  <p class="mb-1"><span class="text-muted">Código: </span> {{articulo.cod_producto}}</p>
                   <p class="mb-1"><span class="text-muted">Fecha Vencimiento: </span> {{articulo.fecha_vence}}</p>
                   <p class="mb-1"><span class="text-muted">Proveedor: </span> {{articulo.proveedor}}</p>
                 </div>
@@ -915,7 +918,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Confirmacion</h4>
+          <h4 class="modal-title">Confirmación</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   
         </div>
@@ -1016,8 +1019,8 @@
                           class="form-control"
                           ng-keydown="$event.keyCode === 13 && getClientNew(true)"
                           ng-model="nombre_cliente"
-                          placeholder="Búsqueda por Cliente"
-                          aria-label="Búsqueda por Cliente"
+                          placeholder="Búsqueda por cliente"
+                          aria-label="Búsqueda por cliente"
                           aria-describedby="basic-addon2">
                           <div class="input-group-append">
                             <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
@@ -1077,13 +1080,13 @@
                         </button>
                       </div>
                     </div>
-                    <div class="col-md-6 col-md-12">
+                    <div class="col-md-6 col-sm-12">
   
                       <button class="btn btn-warning" style="float: left; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="infoPsico = true;" ng-show="!infoPsico"  > <i class="fa fa-info-circle"></i> Requisitos para psicotrópico</button>
                     </div>
   
   
-                    <div class="col-md-6 col-md-12" ng-show="showProductTable || hasUserClient"  >
+                    <div class="col-md-6 col-sm-12" ng-show="showProductTable || hasUserClient"  >
                       <!-- userLogged.pedido.crear :{{userLogged. }} -->
                       <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="initModal();"  ng-if="userLogged.permisos.pedido.crear"  ng-disabled="!clienteValido" ng-show="!unicOrderID"  > <i class="fa fa-edit"></i> Crear pedido</button>
                       <button class="btn btn-primary" style="float: right; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="getPedido(unicOrderID);" ng-disabled="!clienteValido" ng-show="unicOrderID" data-toggle="modal" data-target="#showPedidoModal"  > <i class="fa fa-edit"></i>Continuar Pedido </button>

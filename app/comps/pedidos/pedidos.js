@@ -1772,7 +1772,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             "color": "warning"
           },
           {
-            "title": "Confirmacion",
+            "title": "Confirmación",
             "msg" : "¿Desea conservar este pedido para editarlo posteriormente?",
             "color": "alert"
           }

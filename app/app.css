@@ -962,3 +962,7 @@ td p {
 .form-group{
   width: 100% !important;
 }
+
+.modal-header{
+  background: #399CDF;color: white; font-weight: bold;
+}

@@ -13,15 +13,15 @@
         </button>
       </div>
       <div class="modal-body">
-        <p class="mb-1"><span class="text-muted">Fecha de Entrega: </span> {{avisoAct.fecha_aviso}}</p>
+        <p class="mb-1"><span class="text-muted">Fecha de entrega: </span> {{avisoAct.fecha_aviso}}</p>
         <table datatable="ng" dt-options="dtOptionsAviso"  class="table table-striped table-bordered" >
           <thead>
             <tr>
                 <th scope="col"><p class="text-center">Tipo documento</p></th>
-                <th scope="col"><p class="text-center">N.º aviso</p></th>
+                <th scope="col"><p class="text-center">Nº aviso</p></th>
                 <th scope="col"><p class="text-center">Fecha documento</p></th>
                 <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
-                <th scope="col"><p class="text-center">Monto Original</p></th>
+                <th scope="col"><p class="text-center">Monto original</p></th>
                 <th scope="col"><p class="text-center">Monto actual</p></th>
                 <th scope="col"><p class="text-center">Fecha entrega</p></th>
               </tr>
@@ -82,8 +82,8 @@
                         class="form-control"
                         ng-keydown="$event.keyCode === 13 && getClientNew(true)"
                         ng-model="nombre_cliente"
-                        placeholder="Búsqueda por Cliente"
-                        aria-label="Búsqueda por Cliente"
+                        placeholder="Búsqueda por cliente"
+                        aria-label="Búsqueda por cliente"
                         aria-describedby="basic-addon2">
                         <div class="input-group-append">
                           <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
@@ -145,7 +145,7 @@
 
 
                             <th scope="col"><p class="text-center">Tipo documento</p></th>
-                            <th scope="col"><p class="text-center">N.º Físico</p></th>
+                            <th scope="col"><p class="text-center">Nº físico</p></th>
                             <th scope="col"><p class="text-center">Fecha documento</p></th>
                             <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
                             <th scope="col"><p class="text-center">Saldo</p></th>
@@ -174,8 +174,8 @@
                           <tr>
 
                             <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
-                            <th scope="col"><p class="text-center">Saldo BS</p></th>
-                            <th scope="col"><p class="text-center">Saldo Usd</p></th>
+                            <th scope="col"><p class="text-center">Saldo Bs.</p></th>
+                            <th scope="col"><p class="text-center">Saldo USD.</p></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -202,7 +202,7 @@
 
                           <th scope="col"><p class="text-center">Fecha </p></th>
                           <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
-                          <th scope="col"><p class="text-center">N.º Documento</p></th>
+                          <th scope="col"><p class="text-center">Nº Documento</p></th>
                           <th scope="col"><p class="text-center">Saldo</p></th>
                             <th scope="col"><p class="text-center">Opciones</p></th>
                           </tr>

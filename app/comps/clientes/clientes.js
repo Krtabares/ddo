@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.bootstrap', 'ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
+angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.bootstrap', 'ngRoute', 'ngNotify','cgNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
 
   .config(['$routeProvider', function($routeProvider) {
 
@@ -10,8 +10,8 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
     });
   }])
 
-  .controller('clientesCtrl', ['$scope', '$q', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'localstorage', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
-    function($scope, $q, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, localstorage, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
+  .controller('clientesCtrl', ['$scope', '$q', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify','notify', 'localstorage', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'NgMap','$localStorage',
+    function($scope, $q, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify,notify, localstorage, request, DTOptionsBuilder, DTColumnBuilder, NgMap, $localStorage) {
 
       var ip = IP_SERVER_PYTHON;
 
@@ -22,8 +22,10 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
       $scope.loading = false
       $scope.nombre_cliente=null
       $scope.loading = true
+      $scope.tipoBusquedaCliente = 0;
 
       $scope.getClientNew = function (filter = false) {
+        console.log("getClient")
         $scope.loading = true
         var body = {};
         if(filter){
@@ -31,7 +33,7 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
         }
         body.pNoCia = "01";
         body.pNoGrupo = ($scope.tipoBusquedaCliente != 0)? "02": "01";
-        
+        console.log(body)
         request.post(ip+'/procedure_clientes', body,{})
         .then(function successCallback(response) {
           console.log(response)
@@ -48,7 +50,8 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
             // $scope.nombre_cliente = null
 
           }else{
-            // notify({ message:'¡No se encontraron resultados!', position:'right', duration:10000, classes:'alert-warning'});
+            $scope.clientes = []
+            notify({ message:'¡No se encontraron resultados!', position:'right', duration:10000, classes:'alert-warning'});
 
           }
 

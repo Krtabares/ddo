@@ -28,7 +28,7 @@
         <div class="col-sm-12 col-md-6 col-lg-6">
           <label for="clientes">Búsqueda por cliente</label>
           <div class="input-group mb-3">
-            <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Búsqueda por Cliente" aria-label="Búsqueda por Cliente" aria-describedby="basic-addon2">
+            <input type="text" id="clientes" class="form-control" ng-model="nombre_cliente" placeholder="Búsqueda por cliente" aria-label="Búsqueda por cliente" aria-describedby="basic-addon2">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
             </div>
@@ -143,8 +143,11 @@
               <td><p class="text-left">{{ x.existencia }}</p></td>
               <td><p class="text-right">{{  formato(2,x.precio_neto_bs) }}</p></td>
               <td><p class="text-right">{{  formato(2,x.iva_bs) }}</p></td>
-              <td><p class="text-right">{{  formato(3,x.precio_neto_usd) }}</p></td>
-              <td><p class="text-right">{{  formato(3,x.iva_usd) }}</p></td>
+              <!-- <td><p class="text-right">{{  formato(3,x.precio_neto_usd) }}</p></td>
+              <td><p class="text-right">{{  formato(3,x.iva_usd) }}</p></td> -->
+              
+              <td><p class="text-right">${{x.precio_neto_usd }}</p></td>
+              <td><p class="text-right">${{x.iva_usd }}</p></td>
               <td><p class="text-left">{{ x.princ_activo }}</p></td>
               <td><p class="text-left">{{  x.proveedor }}</p></td>
 

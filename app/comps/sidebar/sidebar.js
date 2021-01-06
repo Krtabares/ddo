@@ -30,12 +30,12 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
         var mins = s % 60;
         var hrs = (s - mins) / 60;
 
-        return pad(hrs) + ':' + pad(mins) + ':' + pad(secs) + '.' + ms;
+        return pad(hrs) + ':' + pad(mins) + ':' + pad(secs) //+ '.' + ms;
       }
 
         $scope.$on('IdleStart', function() {
           // addEvent({event: 'IdleStart', date: new Date()});
-          notify({ message: $scope.msToTime( $scope.timeout*1000) + ' para cierre de sesion', position:'left', duration:3000, classes:'alert-danger'});
+          notify({ message: $scope.msToTime( $scope.timeout*1000) + ' para cierre de sesión', position:'left', duration:3000, classes:'alert-danger'});
         });
 
         $scope.$on('IdleEnd', function() {
@@ -45,13 +45,13 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
 
         $scope.$on('IdleWarn', function(e, countdown) {
           // addEvent({event: 'IdleWarn', date: new Date(), countdown: countdown});
-          console.log($scope.msToTime(countdown*1000))
+          // console.log($scope.msToTime(countdown*1000), countdown )
           if(countdown < 10){
-            notify({ message: $scope.msToTime(countdown*1000) + ' Segundos para cierre de sesion', position:'left', duration:1000, classes:'alert-danger'});
+            notify({ message: $scope.msToTime(countdown*1000) + ' Segundos para cierre de sesión', position:'left', duration:1000, classes:'alert-danger'});
             return
-          }else if((countdown % 60 == 0) && (countdown < 60*10)){
+          }else if((countdown % 60 == 0) && (countdown < 300)){
 
-            notify({ message: $scope.msToTime(countdown*1000) + ' para cierre de sesion', position:'left', duration:3000, classes:'alert-danger'});
+            notify({ message: $scope.msToTime(countdown*1000) + ' para cierre de sesión', position:'left', duration:3000, classes:'alert-danger'});
             return
           
           }

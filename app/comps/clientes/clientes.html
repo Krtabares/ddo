@@ -31,13 +31,13 @@
               <h5 class="card-title">Búsqueda  </h5>
 
               <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBúsquedaCliente" id="exampleRadios1" ng-value="0" >
+                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusquedaCliente" id="exampleRadios1" ng-value="0" >
                 <label class="form-check-label" for="exampleRadios1">
                   Búsqueda por cliente
                 </label>
               </div>
               <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBúsquedaCliente" id="exampleRadios2" ng-value="1" >
+                <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusquedaCliente" id="exampleRadios2" ng-value="1" >
                 <label class="form-check-label" for="exampleRadios2">
                   Búsqueda por empleado
                 </label>
@@ -51,8 +51,8 @@
                     class="form-control"
                     ng-keydown="$event.keyCode === 13 && getClientNew(true)"
                     ng-model="nombre_cliente"
-                    placeholder="Búsqueda por Cliente"
-                    aria-label="Búsqueda por Cliente"
+                    placeholder="Búsqueda por cliente"
+                    aria-label="Búsqueda por cliente"
                     aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button class="btn btn-outline-secondary"  ng-click="getClientNew(true)" type="button">Buscar</button>
@@ -76,15 +76,15 @@
                   <thead>
                     <tr>
 
-                      <th scope="col"><p class="text-center">Codigo</p></th>
+                      <th scope="col"><p class="text-center">Código</p></th>
                       <th scope="col"><p class="text-center">Nombre</p></th>
                       <th scope="col"><p class="text-center">Documento de identificación</p></th>
                       <th scope="col"><p class="text-center">Zona</p></th>
-                      <th scope="col"><p class="text-center">Dirección Fiscal</p></th>
-                      <th scope="col"><p class="text-center">Dirección Entrega</p></th>
+                      <th scope="col"><p class="text-center">Dirección fiscal</p></th>
+                      <th scope="col"><p class="text-center">Dirección de entrega</p></th>
                       <th scope="col"><p class="text-center">Nombre del encargado</p></th>
-                      <th scope="col"><p class="text-center">telefono1</p></th>
-                      <th scope="col"><p class="text-center">email1</p></th>
+                      <th scope="col"><p class="text-center">Teléfono</p></th>
+                      <th scope="col"><p class="text-center">Email</p></th>
 
 
                       </tr>
@@ -126,3 +126,6 @@
 </div>
 </div>
 <my-footer></my-footer>
+<div ng-show="loading">
+  <my-loading></my-loading>
+</div>
