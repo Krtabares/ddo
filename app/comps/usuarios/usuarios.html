@@ -59,7 +59,7 @@
 
           <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')" ng-model="user.role">
 
-            <option ng-repeat="type in type_user" value="{{type.type}}">
+            <option ng-if="clientIndex != null" ng-repeat="type in type_user" value="{{type.type}}">
               {{type.text | uppercase}}
             </option>
             <option value="seller" ng-if="(userLogged.role == 'sisAdm' || userLogged.role == 'root') && clientIndex == null" style="text-transform: capitalize;" >Vendedor</option>
