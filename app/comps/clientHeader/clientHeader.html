@@ -18,7 +18,7 @@
       <div class="col-md-6" style="padding: 0px !important;">
         <div id="card-left" class="card card-min " >
           <div class="card-info-header">
-            Información del Cliente
+            Información del cliente
 
             <button type="button" class="close"  aria-label="Close" data-toggle="collapse" data-target="#collapseInfo" aria-expanded="false" aria-controls="collapseInfo">
               <span aria-hidden="true">-</span>
@@ -27,7 +27,7 @@
           <div class="card-body " id="collapseInfo"  >
 
             <!-- <h6 class="card-title">Información del Cliente </h6> -->
-            <p class="mb-1" ng-if="client_info.grupo_cliente != '02'" ><span class="text-muted">Razon Social: </span>{{client_info.nombre_cliente}}</p>
+            <p class="mb-1" ng-if="client_info.grupo_cliente != '02'" ><span class="text-muted">Razón social: </span>{{client_info.nombre_cliente}}</p>
             <p class="mb-1"><span ng-if="client_info.grupo_cliente == '01'" class="text-muted">RIF: </span> <span ng-if="client_info.grupo_cliente == '02'" class="text-muted">C.I.: </span> {{client_info.docu_identif_cliente}}</p>
             <p class="mb-1"><span class="text-muted">Dirección fiscal: </span> {{client_info.direccion_cliente.toLowerCase()}}</p>
             <!-- <p class="mb-1"><span class="text-muted">Zona: </span>{{client_info.zona}}</p> -->
@@ -40,7 +40,7 @@
 
         <div class="card card-min" >
           <div class="card-info-header">
-            Detalles del Cliente
+            Detalles del cliente
 
             <button type="button" class="close" aria-label="Close" data-toggle="collapse" data-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle">
               <span aria-hidden="true">-</span>
@@ -51,9 +51,9 @@
             <!-- <h6 class="card-title">Detalles del Cliente</h6> -->
             <p class="mb-1"><span class="text-muted"> Código {{ (client_info.grupo_cliente == "02") ?  "de empleado":"" }} </span> {{client_info.cod_cliente}}</p>
             <p class="mb-1" ng-if="client_info.grupo_cliente =='02'" ><span class="text-muted"> Nombre empleado</span> {{client_info.nombre_cliente}}</p>
-            <p class="mb-1"><span class="text-muted">Tipo de Venta: </span> {{client_info.tipo_venta}}</p>
-            <p class="mb-1"><span class="text-muted">Plazo: </span> {{client_info.v_plazo}} dias</p>
-            <p class="mb-1"><span class="text-muted">Limite de Crédito: </span> {{formato(2,client_info.limite_credito)}}</p>
+            <p class="mb-1"><span class="text-muted">Tipo de venta: </span> {{client_info.tipo_venta}}</p>
+            <p class="mb-1"><span class="text-muted">Plazo: </span> {{client_info.v_plazo}} días</p>
+            <p class="mb-1"><span class="text-muted">Limite de crédito: </span> {{formato(2,client_info.limite_credito)}}</p>
             <p class="mb-1"><span class="text-muted">Limite disponible: </span> {{formato(2,creditoClient.disp_bs_format)}}</p>
             <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Total unidades facturadas del mes: </span> {{client_info.unid_fact_med_emp}}</p>
             <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Saldo en unidades: </span> {{client_info.unid_disp_med_emp}}</p>
