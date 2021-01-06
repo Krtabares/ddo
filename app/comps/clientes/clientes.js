@@ -21,7 +21,7 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
       $scope.showProductTable = null
       $scope.loading = false
       $scope.nombre_cliente=null
-      $scope.loading = true
+      $scope.loading = false
       $scope.tipoBusquedaCliente = 0;
 
       $scope.getClientNew = function (filter = false) {
