@@ -16,7 +16,7 @@
         <div class="container">
 
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h3><p class="text-center">Desea eliminar el registro?</p></h3>
+              <h3><p class="text-center">¿Desea eliminar el registro?</p></h3>
           </div>
 
         </div>
@@ -54,7 +54,7 @@
       <form>
 
         <div ng-show="tabsIndex == 0">
-          <label>Tipo de usuario</label>
+          <label><strong>Tipo de usuario:</strong> </label>
           <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
 
           <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')" ng-model="user.role">
@@ -68,16 +68,16 @@
           </select>
 
             <div class="form-group">
-              <label>Nombre:</label><br>
+              <label> <strong>Nombre:</strong> </label><br>
               <input type="text" ng-model="user.name" class="form-control" ng-if="typeview == 'add' || typeview == 'edit'" placeholder="Nombre">
               <span ng-if="typeview == 'view'" >{{user.name}}</span>
             </div>
             
 
             <div class="form-group">
-              <label>Email:</label><br>
+              <label> <strong> Email:</strong></label><br>
               <span ng-if="typeview == 'view'"  >{{user.email}}</span>
-              <input type="email" ng-model="user.email"   ng-if="typeview == 'add' || typeview == 'edit'" ng-disabled="typeview == 'edit'"  class="form-control" required placeholder="Username">
+              <input type="email" ng-model="user.email"   ng-if="typeview == 'add' || typeview == 'edit'" ng-disabled="typeview == 'edit'"  class="form-control" required placeholder="Email">
 
             </div>
             <div  ng-show="!emailValid" class="invalid-feedback">
@@ -85,7 +85,7 @@
             </div>
 
             <div class="form-group">
-              <label>Username:</label><br>
+              <label><strong>Nombre de usuario:</strong></label><br>
               <span ng-if="typeview == 'view'"  >{{user.username}}</span>
               <input type="text" ng-model="user.username"  ng-if="typeview == 'add' || typeview == 'edit'" ng-disabled="typeview == 'edit'"  class="form-control" placeholder="Username">
 
@@ -94,7 +94,7 @@
               Por favor, elija un nombre de usuario.
             </div>
 
-            <label>Estatus</label>
+            <label><strong>Estatus:</strong></label>
             <!--<input type="text" ng-model="user_view.role" class="form-control" placeholder="Tipo de usuario">-->
             <select class="form-control form-control-sm" ng-disabled="!(typeview == 'add' || typeview == 'edit')"  ng-model="user.estatus">
 
@@ -110,7 +110,7 @@
           <table class="table table-inverse">
             <thead>
               <tr>
-                <th>Modulo</th>
+                <th>Módulo</th>
                 <th>Ver</th>
                 <th>Crear</th>
                 <th>Modificar</th>
@@ -157,10 +157,10 @@
         </form>
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button"  class="btn btn-primary" ng-if=" userLogged.permisos.usuario.editar && typeview == 'view'" ng-click="goToEdit();">Editar</button>
         <button type="submit" class="btn btn-primary" ng-click="addUser(user);"  ng-if="typeview == 'add'" >Guardar</button>
         <button type="submit" class="btn btn-success" ng-click="updUser(user);"  ng-if="typeview == 'edit'" >Guardar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addUser(user);">Cerrar</button> -->
       </div>
     </div>

@@ -27,10 +27,10 @@
   
           <ul class="nav nav-tabs mb-4">
               <li class="nav-item" ng-show="1 == 2" >
-                <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Información Cliente <span class="badge badge-secondary">1</span></a>
+                <a class="nav-link " ng-class="{ active : tabsIndex == 0 }" ng-click="goToTab(0)" >Información Cliente </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" ng-class="{ active : tabsIndex == 1, disabled: !clienteValido  }" ng-disabled=" !clienteValido" ng-click="goToTab(1)" >Detalle de pedido <span class="badge badge-secondary">2</span></a>
+                <a class="nav-link" ng-class="{ active : tabsIndex == 1, disabled: !clienteValido  }" ng-disabled=" !clienteValido" ng-click="goToTab(1)" >Detalle de pedido </a>
               </li>
           </ul>
   
@@ -87,7 +87,7 @@
                   <div class="col-md-4 col-sm-12">
                     <label></label>
                     <button type="button" class="btn btn-info" ng-click="addPedidoV2()" ng-show="ID == null"  >Abrir Pedido</button>
-                    <button type="button" class="btn btn-success"  ng-show="ID != null" ng-click="openModalProducts()" >Agregar Productos</button>
+                    <button type="button" class="btn btn-success"  ng-show="ID != null" ng-click="openModalProducts()" >Agregar productos</button>
                   </div>
   
                   <div class="col-md-4 col-sm-12">
@@ -147,22 +147,22 @@
   
                 <div class="row mb-5" ng-if="clienteEmpleado">
                   <div class="col-md-3 col-sm-12">
-                    <label>Max. Unidades medicina</label><br>
+                    <label>Max. unidades medicina</label><br>
                     <span >{{client.max_unid_med_emp}}</span>
   
                   </div>
                   <div class="col-md-3 col-sm-12">
-                    <label>Max. Unidades misceláneos</label><br>
+                    <label>Max. unidades misceláneos</label><br>
                     <span >{{client.max_unid_misc_emp}}</span>
   
                   </div>
                   <div class="col-md-3 col-sm-12">
-                    <label>Disp. Unidades medicina</label><br>
+                    <label>Disp. unidades medicina</label><br>
                     <span >{{client.unid_disp_med_emp - totales.empMed}}</span>
   
                   </div>
                   <div class="col-md-3 col-sm-12">
-                    <label>Disp. Unidades misceláneos</label><br>
+                    <label>Disp. unidades misceláneos</label><br>
                     <span >{{client.unid_disp_misc_emp - totales.empMisc}}</span>
   
                   </div>
@@ -178,13 +178,13 @@
                           <tr>
                           <!-- <th scope="col"><p class="text-center">#</p></th> -->
                           <!-- <th scope="col"><p class="text-center">Código de Articulo</p></th> -->
-                          <th scope="col"><p class="text-center">Nombre Articulo</p></th>
+                          <th scope="col"><p class="text-center">Nombre articulo</p></th>
                           <th scope="col"><p class="text-center">Cantidad</p></th>
                           <th scope="col"><p class="text-center">Precio por unidad</p></th>
                           <th scope="col"><p class="text-center">Total</p></th>
                           <th scope="col"><p class="text-center">Precio USD</p></th>
                           <th scope="col"><p class="text-center">Total USD</p></th>
-                          <th scope="col"><p class="text-center">Fecha Vencimiento</p></th>
+                          <th scope="col"><p class="text-center">Fecha vencimiento</p></th>
                           <!-- <th scope="col"><p class="text-center">Estatus</p></th> -->
                           <th scope="col"><p class="text-center">Opción</p></th>
   
@@ -246,13 +246,13 @@
                                     </tr>
                                     <tr>
                                         <td class="right">
-                                            <strong class="text-dark">TOTAL Bs.S</strong> </td>
+                                            <strong class="text-dark">TOTAL Bs.S :</strong> </td>
   
                                             <td class="right"> {{formato(2,totalesDdo.total)}} </td>
                                     </tr>
                                     <tr>
                                       <td class="right">
-                                          <strong class="text-dark">TOTAL USD </strong> </td>
+                                          <strong class="text-dark">TOTAL USD  : :</strong> </td>
 
                                           <td class="right"> {{ formato(3,totalesDdo.totalNetoUSD) }}  </td>
                                   </tr>
@@ -369,7 +369,7 @@
   
                 <div class="col-md-4 col-sm-12">
                   <label></label>
-                  <button type="button" ng-show="editView" class="btn btn-info" ng-click="openModalProducts()">Agregar Productos</button>
+                  <button type="button" ng-show="editView" class="btn btn-info" ng-click="openModalProducts()">Agregar productos</button>
                 </div>
   
                 <div class="col-md-4 col-sm-12">
@@ -427,22 +427,22 @@
   
                 <div class="row mb-5" ng-show="editView && clienteEmpleado">
                   <div class="col-md-3 col-sm-12">
-                    <label>Max. Unidades medicina</label><br>
+                    <label>Max. unidades medicina</label><br>
                     <span >{{client.max_unid_med_emp}}</span>
   
                   </div>
                   <div class="col-md-3 col-sm-12">
-                    <label>Max. Unidades misceláneos</label><br>
+                    <label>Max. unidades misceláneos</label><br>
                     <span >{{client.max_unid_misc_emp}}</span>
   
                   </div>
                   <div class="col-md-3 col-sm-12">
-                    <label>Disp. Unidades medicina</label><br>
+                    <label>Disp. unidades medicina</label><br>
                     <span >{{client.unid_disp_med_emp - totales.empMed}}</span>
   
                   </div>
                   <div class="col-md-3 col-sm-12">
-                    <label>Disp. Unidades misceláneos</label><br>
+                    <label>Disp. unidades misceláneos</label><br>
                     <span >{{client.unid_disp_misc_emp - totales.empMisc}}</span>
   
                   </div>
@@ -457,7 +457,7 @@
                             <tr>
                             <!-- <th scope="col"><p class="text-center">#</p></th> -->
                             <!-- <th scope="col"><p class="text-center">Código de Articulo</p></th> -->
-                            <th scope="col"><p class="text-center">Nombre Articulo</p></th>
+                            <th scope="col"><p class="text-center">Nombre articulo</p></th>
                             <th scope="col"><p class="text-center">Cantidad</p></th>
                             <th scope="col"><p class="text-center">Precio por unidad</p></th>
                             <th scope="col"><p class="text-center">Total</p></th>
@@ -513,13 +513,13 @@
                                 </tr>
                                 <tr>
                                     <td class="left">
-                                        <strong class="text-dark">Total USD (no incluye iva)</strong>
+                                        <strong class="text-dark">TOTAL USD  (no incluye iva)</strong>
                                     </td>
                                     <td class="right">{{formato(3,totales.USD)}}</td>
                                 </tr>
                                 <tr>
                                     <td class="left">
-                                        <strong class="text-dark">Total USD (con iva)</strong> </td>
+                                        <strong class="text-dark">TOTAL USD  (con iva)</strong> </td>
                                     <td class="right">
                                         <strong class="text-dark">{{formato(3,totales.UsdConIva)}}</strong>
                                     </td>
@@ -586,13 +586,13 @@
                               </tr>
                                 <tr>
                                   <td class="right">
-                                      <strong class="text-dark">TOTAL Bs.S</strong> </td>
+                                      <strong class="text-dark">TOTAL Bs.S:</strong> </td>
 
                                       <td class="right"> {{formato(2,totalesDdo.total)}} </td>
                               </tr>
                               <tr>
                                 <td class="right">
-                                    <strong class="text-dark">TOTAL USD </strong> </td>
+                                    <strong class="text-dark">TOTAL USD  :</strong> </td>
 
                                     <td class="right"> {{ formato(3,totalesDdo.totalNetoUSD) }}  </td>
                             </tr>
@@ -672,7 +672,7 @@
                 <div class="row">
 
                     <div class="col-md-3">
-                    <label for="tipoBusqueda">Tipo de busqueda</label>
+                    <label for="tipoBusqueda">Tipo de búsqueda</label>
                     <div class="input-group mb-3 ">
                       <div class="form-group">
                         <select class="form-control" ng-model="tipoBusqueda" id="tipoBusqueda" >
@@ -688,7 +688,7 @@
                   </div>
   
                   <div class="col-md-3">
-                    <label for="clientes">Busqueda </label>
+                    <label for="clientes">Búsqueda </label>
                     <div class="input-group mb-3 ">
                       <input type="text" class="form-control"
                       ng-model="busqueda_prod"
@@ -743,15 +743,15 @@
                         <tr>
                         <th scope="col"><p class="text-center">#</p></th>
                         <th scope="col"><p class="text-center">Opciones</p></th>
-                        <th scope="col"><p class="text-center">Nombre Producto</p></th>
-                        <th scope="col"><p class="text-center">Categoria</p></th>
+                        <th scope="col"><p class="text-center">Nombre producto</p></th>
+                        <th scope="col"><p class="text-center">Categoría</p></th>
                         <th scope="col"><p class="text-center">Existencia</p></th>
                         <th scope="col"><p class="text-center">Cantidad</p></th>
                         <th scope="col"><p class="text-center">Precio Bs.S</p></th>
                         <th scope="col"><p class="text-center">Iva Bs.S</p></th>
                         <th scope="col"><p class="text-center">Precio USD</p></th>
-                        <th scope="col"><p class="text-center">Iva USD</p></th>
-                        <th scope="col"><p class="text-center">Principio Activo</p></th>
+                        <th scope="col"><p class="text-center">IVA USD</p></th>
+                        <th scope="col"><p class="text-center">Principio activo</p></th>
                         <th scope="col"><p class="text-center">Proveedor</p></th>
                         </tr>
                     </thead>
@@ -824,9 +824,9 @@
             <div class="row pb-2 p-2" >
                 <div class="col-md-4">
                   <p class="font-weight-bold mb-4">Información</p>
-                  <p class="mb-1"><span class="text-muted">Principal Activo: </span> {{articulo.princ_activo}}</p>
+                  <p class="mb-1"><span class="text-muted">Principal activo: </span> {{articulo.princ_activo}}</p>
                   <p class="mb-1"><span class="text-muted">Código: </span> {{articulo.cod_producto}}</p>
-                  <p class="mb-1"><span class="text-muted">Fecha Vencimiento: </span> {{articulo.fecha_vence}}</p>
+                  <p class="mb-1"><span class="text-muted">Fecha vencimiento: </span> {{articulo.fecha_vence}}</p>
                   <p class="mb-1"><span class="text-muted">Proveedor: </span> {{articulo.proveedor}}</p>
                 </div>
   
@@ -835,7 +835,7 @@
                     <p class="mb-1" ng-if="clienteEmpleado" ><span class="text-muted">Tipo (empleado): </span> {{articulo.tipo_prod_emp}}</p>
                     <p class="mb-1"><span class="text-muted">Regulado: </span> {{articulo.ind_regulado}}</p>
                     <p class="mb-1"><span class="text-muted">Impuesto: </span> {{articulo.ind_impuesto}}</p>
-                    <p class="mb-1"><span class="text-muted">Psicotropico: </span> {{articulo.ind_psicotropico}}</p>
+                    <p class="mb-1"><span class="text-muted">Psicotrópico: </span> {{articulo.ind_psicotropico}}</p>
                     <p class="mb-1"><span class="text-muted">Existencia: </span> {{articulo.existencia}}</p>
   
                 </div>
@@ -843,7 +843,7 @@
                 <div class="col-md-4 ">
                     <p class="font-weight-bold mb-4">Otros</p>
   
-                    <p class="mb-1"><span class="text-muted">Categoria: </span> {{articulo.categoria}}</p>
+                    <p class="mb-1"><span class="text-muted">Categoría: </span> {{articulo.categoria}}</p>
                     <p class="mb-1"><span class="text-muted">Descuento 1: </span> {{articulo.descuento1}}</p>
                     <p class="mb-1"><span class="text-muted">Descuento 2: </span> {{articulo.descuento2}}</p>
   
@@ -857,7 +857,7 @@
                   <label>Cantidad</label>
                   <input type="number"  ng-model="articulo.CANTIDAD"
                   ng-keydown="$event.keyCode === 13 && addArtPedido(true)"
-                   class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                   class="form-control" placeholder="Cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                 </div>
                 <div class="col-6">
                   <div class="col-12">
@@ -871,16 +871,16 @@
                 <div class="row col-sm-12 col-md-12 col-lg-12">
                   <div class="col-sm-12 col-md-12 col-lg-12 mt-3 ">
   
-                    <label>Precios</label>
+                    <label> <strong>Precios</strong> </label>
                   </div>
                   <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                    <label>Por unidad Bs.S</label><br>
+                    <label> <strong>Por unidad Bs.S</strong> </label><br>
                     <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</span>
   
                   </div>
                   <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                       <div ng-show="articulo.CANTIDAD > 0">
-                    <label>Total Bs.S</label><br>
+                    <label><strong>TOTAL Bs.S</strong></label><br>
                     <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? (articulo.precio_neto_bs  * articulo.CANTIDAD):0)}}</span>
                   </div>
   
@@ -888,14 +888,14 @@
   
                   <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
   
-                      <label>Por unidad USD</label><br>
+                      <label><strong>Por unidad USD</strong></label><br>
                       <span  class="text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
   
   
                   </div>
                   <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                     <div ng-show="articulo.CANTIDAD > 0">
-                      <label>Total USD</label><br>
+                      <label><strong>Total USD</strong></label><br>
                       <span class="text-right" >{{formato(3,(articulo.precio_neto_usd)? (articulo.precio_neto_usd  * articulo.CANTIDAD):0)}}</span>
                       </div>
   
@@ -962,7 +962,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="cancelModalDyn()" >No</button>
-          <button type="button" class="btn btn-{{modalDynColor}}" ng-click="aceptModalDyn()" data-dismiss="modal">Si</button>
+          <button type="button" class="btn btn-{{modalDynColor}}" ng-click="aceptModalDyn()" data-dismiss="modal">Sí</button>
         </div>
       </div>
     </div>
@@ -1114,12 +1114,12 @@
                         <thead>
                           <tr>
                             <th scope="col"><p class="text-center">#</p></th>
-                            <th scope="col"><p class="text-center">N pedido</p></th>
-                            <th scope="col"><p class="text-center">Fecha creacion</p></th>
-                            <th  ng-show="!hasUserClient" scope="col"><p class="text-center">Nombre Cliente</p></th>
+                            <th scope="col"><p class="text-center">Nº pedido</p></th>
+                            <th scope="col"><p class="text-center">Fecha creación</p></th>
+                            <th  ng-show="!hasUserClient" scope="col"><p class="text-center">Nombre cliente</p></th>
                             <!-- <th scope="col"><p class="text-center">Direcion</p></th> -->
                             <th scope="col"><p class="text-center">Estatus</p></th>
-                            <th scope="col"><p class="text-center">Fecha actualizado</p></th>
+                            <th scope="col"><p class="text-center">Fecha actualización</p></th>
                             <th scope="col"><p class="text-center">Tipo pedido</p></th>
                             <th scope="col"><p class="text-center">Opciones</p></th>
                           </tr>

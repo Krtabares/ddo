@@ -130,7 +130,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 }else{
 
 
-                  notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo ), position:'left', duration:10000, classes:'alert-warning'});
+                  notify({ message:'¡Para realizar un pedido el monto total debe ser mayor a ' + $scope.formato(2, $scope.client.monto_minimo )+"!", position:'left', duration:10000, classes:'alert-warning'});
                 }
               break;
 
@@ -532,7 +532,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.loading = false;
               $scope.getPedidos_filteringV2();
-              notify({ message:'¡Cerrado con exito!', position:'left', duration:10000, classes:'alert-success'});
+              notify({ message:'¡Pedido cerrado con exito!', position:'left', duration:10000, classes:'alert-success'});
               $scope.stopTimeoutOrdCancel();
 
           }, function errorCallback(response) {
@@ -1288,7 +1288,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           if( !validaCreditoContraProducto(parseFloat(articulo.precio_neto_bs) * articulo.CANTIDAD)  ){
 
-            notify({ message:'¡El precio excede el credito disponible!', position:'left', duration:10000, classes:'alert-danger'});
+            notify({ message:'¡El precio excede el crédito disponible!', position:'left', duration:10000, classes:'alert-danger'});
 
             return  true;
           }
