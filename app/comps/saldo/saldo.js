@@ -13,6 +13,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
   .controller('saldoCtrl', ['$scope', '$q', 'localstorage', '$http', '$rootScope', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'NgMap','$localStorage',
     function($scope, $q, localstorage, $http, $rootScope, $routeParams, $interval, $timeout, ngNotify, request, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, NgMap, $localStorage) {
 
+
       var ip = IP_SERVER_PYTHON;
       $scope.loading = false
       $scope.saldo = {};
@@ -29,6 +30,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       $scope.dtInstance = {};
       $scope.tipoBusqueda = 0
       $scope.productos= []
+      $scope.srcServer = IP_SRC_IMAGE
       verificClient()
 
     function verificClient(){

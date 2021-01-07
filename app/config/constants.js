@@ -30,3 +30,4 @@ var DATATABLE_LANGUAGE_ES = {
 }
 
 var IP_SERVER_PYTHON = "http://192.168.168.170:3500"
+var IP_SRC_IMAGE = "http://192.168.168.170/imagen/"

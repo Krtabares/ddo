@@ -121,6 +121,7 @@
             <tr>
 
               <th scope="col"><p class="text-center">#</p></th>
+              <th scope="col"><p class="text-center">Imagen</p></th>
               <th scope="col"><p class="text-center">Nombre producto</p></th>
               <th scope="col"><p class="text-center">Categoría</p></th>
               <th scope="col"><p class="text-center">Existencia</p></th>
@@ -138,6 +139,10 @@
             <tr ng-repeat="x in productos"   >
   
               <td><p class="text-left">{{ $index + 1 }}</p></td>
+              <td>
+                <picture>
+                  <source  srcset="{{ srcServer+x.nombre_producto }}" type="image/webp">
+                </picture></td>
               <td><p class="text-left">{{ x.nombre_producto }}</p></td>
               <td><p class="text-left">{{ x.categoria }}</p></td>
               <td><p class="text-left">{{ x.existencia }}</p></td>
