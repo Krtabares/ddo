@@ -19,6 +19,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
       });
 
 
+        $scope.srcServer = IP_SRC_IMAGE
         $scope.loading = true
         $scope.pedido = {
             'fecha': null,
@@ -40,7 +41,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.product = {};
         $scope.productIndex = -1;
         $scope.infoPsico = false;
-        $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0"        }
+        $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0","totalExento":"0","totalGravado":"0", "descImpuesto":null, "totalNetoUSD":"0"}
         $scope.tipoBusqueda = '1'
         $scope.pickUpAvailable = '1';
         $scope.clienteEmpleado = false;
@@ -1407,7 +1408,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // $scope.resetTime()
           $scope.$broadcast('timer-start');
           $scope.stop1()
-          $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0"        }
+          $scope.totalesDdo = {"total_bruto":"0","desc_volumen":"0","otros_descuentos":"0","desc_adicional":"0","desc_dpp":"0","sub_total":"0","impuesto":"0","total":"0","totalExento":"0","totalGravado":"0", "descImpuesto":null, "totalNetoUSD":"0"}
           $scope.counter = $scope.timeLimit;
           $scope.tabsIndex = 0
           $scope.totales.bolivares = 0

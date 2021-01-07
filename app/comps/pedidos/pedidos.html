@@ -743,6 +743,7 @@
                         <tr>
                         <th scope="col"><p class="text-center">#</p></th>
                         <th scope="col"><p class="text-center">Opciones</p></th>
+                        <th scope="col"><p class="text-center">Imagen</p></th>
                         <th scope="col"><p class="text-center">Nombre producto</p></th>
                         <th scope="col"><p class="text-center">Categoría</p></th>
                         <th scope="col"><p class="text-center">Existencia</p></th>
@@ -761,6 +762,9 @@
   
                             <td><p class="text-left">{{ $index + 1 }}</p></td>
                             <td><i class="fa fa-eye" style="cursor: pointer;"  ng-click="selectProduct($index)" ></i></td>
+                            <td> 
+                              <img src="{{  srcServer+x.dir_imagen }}" alt="no image"  style="width: 120px;">
+                            </td>
                             <td><p class="text-left">{{ x.nombre_producto }}</p></td>
                             <td><p class="text-left">{{ x.categoria }}</p></td>
                             <td><p class="text-left">{{ x.existencia }}</p></td>
