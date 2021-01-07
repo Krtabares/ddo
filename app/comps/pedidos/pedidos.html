@@ -577,7 +577,7 @@
 
                                       <td class="right">{{formato(2,totalesDdo.totalGravado)}} </td>
                                 </tr>
-                                <tr ng-if="totalesDdo.descImpuesto != null || totalesDdo.impuesto != 0">
+                                <tr ng-if="totalesDdo.descImpuesto != '' || totalesDdo.impuesto > 0">
                                   <td class="right">
                                       <strong class="text-dark">{{totalesDdo.descImpuesto }} </strong> </td>
 
