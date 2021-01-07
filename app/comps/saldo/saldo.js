@@ -291,6 +291,10 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
     proveedores()
     getCategorias()
 
+    $scope.imgError = function (element) {
+      console.log(element)
+    }
+
 
 	// $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
   //       var defer = $q.defer();
