@@ -140,9 +140,8 @@
   
               <td><p class="text-left">{{ $index + 1 }}</p></td>
               <td>
-                <picture>
-                  <source  srcset="{{ srcServer+x.dir_imagen }}" type="image/webp">
-                </picture></td>
+                <img src="{{ srcServer+x.dir_imagen }}" alt="{{x.nombre_producto}}">
+              </td>
               <td><p class="text-left">{{ x.nombre_producto }}</p></td>
               <td><p class="text-left">{{ x.categoria }}</p></td>
               <td><p class="text-left">{{ x.existencia }}</p></td>
