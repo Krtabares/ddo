@@ -966,3 +966,12 @@ td p {
 .modal-header{
   background: #399CDF;color: white; font-weight: bold;
 }
+.btn-success{
+  background: #d76f2c !important;
+}
+.btn-info{
+  background: #2a9de0 !important;
+}
+.btn-secondary{
+  background: #d0d0d1 !important;
+}
