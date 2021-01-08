@@ -54,9 +54,11 @@
             <p class="mb-1"><span class="text-muted">Tipo de venta: </span> {{client_info.tipo_venta}}</p>
             <p class="mb-1"><span class="text-muted">Plazo: </span> {{client_info.v_plazo}} días</p>
             <p class="mb-1" ng-if="client_info.limite_credito != null && client_info.limite_credito != ''"><span class="text-muted">Límite de crédito: </span> {{formato(2,client_info.limite_credito)}}</p>
-            <p class="mb-1"><span class="text-muted">Límite disponible: </span> {{formato(2,creditoClient.disp_bs_format)}}</p>
-            <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Total unidades facturadas del mes: </span> {{client_info.unid_fact_med_emp}}</p>
-            <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Saldo en unidades: </span> {{client_info.unid_disp_med_emp}}</p>
+            <p class="mb-1" ng-if="creditoClient.disp_bs_format != null && creditoClient.disp_bs_format != '0'"><span class="text-muted">Límite disponible: </span> {{formato(2,creditoClient.disp_bs_format)}}</p>
+            <!-- <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Total unidades facturadas del mes: </span> {{client_info.unid_fact_med_emp}}</p> -->
+            <!-- <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Saldo en unidades: </span> {{client_info.unid_disp_med_emp}}</p> -->
+            <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Disp. en medicinas: </span> {{client_info.unid_disp_med_emp}}</p>
+            <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Disp. en misceláneos: </span> {{client_info.unid_disp_misc_emp}}</p>
             <p class="mb-1" style="text-transform: capitalize;"  ng-if="client_info.grupo_cliente != '02'"  ><span class="text-muted">Vendedor: </span> {{client_info.vendedor.toLowerCase()}}</p>
             <p class="mb-1" style="text-transform: capitalize;" ng-if="client_info.grupo_cliente != '02'" ><span class="text-muted">Analista de cobranzas: </span> {{client_info.v_persona_cyc.toLowerCase()}}</p>
           </div>

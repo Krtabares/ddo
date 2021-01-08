@@ -18,13 +18,18 @@ angular.module('app.headerClient', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bin
         $scope.hasUserClient = false;
         $scope.user = {};
         $scope.client = {};
-        $scope.client_info = {}
+        $scope.client_info = {
+          'limite_credito':0
+        }
+        // $scope.creditoClient.disp_bs_format = "0"
         $scope.dtInstance = {};
         var ip = IP_SERVER_PYTHON;
 
         $scope.clienteValido = true
         $scope.clientInvalidoMsg = null
-        $scope.creditoClient = null
+        $scope.creditoClient = {
+          disp_bs_format:"0"
+        }
         $scope.inputClient = false;
 
         var $ctrl = this;
