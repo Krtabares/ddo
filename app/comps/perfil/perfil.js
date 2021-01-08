@@ -65,7 +65,7 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
                 if (response.data == "OK")
                   notify({ message:'Contraseña modificada con éxito', position:'right', duration:1000, classes:'alert-success'});
 
-                $scope.user.password = null
+                $scope.newPass = null
                 $scope.user.passwordConfirm = null
               }, function errorCallback(response) {
                 console.log(response)

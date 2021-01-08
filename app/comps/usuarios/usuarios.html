@@ -87,7 +87,7 @@
             <div class="form-group">
               <label><strong>Nombre de usuario:</strong></label><br>
               <span ng-if="typeview == 'view'"  >{{user.username}}</span>
-              <input type="text" ng-model="user.username"  ng-if="typeview == 'add' || typeview == 'edit'" ng-disabled="typeview == 'edit'"  class="form-control" placeholder="Username">
+              <input type="text" ng-model="user.username"  ng-if="typeview == 'add' || typeview == 'edit'" ng-disabled="typeview == 'edit'"  class="form-control" placeholder="Nombre de dusuario">
 
             </div>
             <div ng-show="!usernameValid" class="invalid-feedback">

@@ -40,7 +40,7 @@ angular.module('app.olvidoPass', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-
         $scope.user = null;
       }, function errorCallback(response) {
         console.log(response)
-        notify({ message:'No se pudo completar la accion verifique los datos', position:'right', duration:1000, classes:'alert-danger'});
+        notify({ message:'No se pudo completar la acción verifique los datos', position:'right', duration:1000, classes:'alert-danger'});
 
       });
     }

@@ -89,19 +89,19 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               if( item.cod_estatus == 0  ){
                 $scope.unicOrderID = item.ID
-                // $scope.tiempoPedido(item.ID)
+                $scope.tiempoPedido(item.ID)
                 return
               }else if( item.cod_estatus == 1  ){
                 $scope.unicOrderID = item.ID
-                // $scope.tiempoPedido(item.ID)
+                $scope.tiempoPedido(item.ID)
                 return
               }else if( item.cod_estatus == 2  ){
                 $scope.unicOrderID = item.ID
-                // $scope.tiempoPedido(item.ID)
+                $scope.tiempoPedido(item.ID)
                 return
               }else if( item.cod_estatus == 6  ){
                 $scope.unicOrderID = item.ID
-                // $scope.tiempoPedido(item.ID)
+                $scope.tiempoPedido(item.ID)
                 return
               }
           });
@@ -446,7 +446,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             if(!existe){
 
-              // $scope.articulo.CANTIDAD = 1
+              $scope.articulo.CANTIDAD = 0
 
             }else{
               $scope.articulo.CANTIDAD = cantidadAux
@@ -533,7 +533,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.loading = false;
               $scope.getPedidos_filteringV2();
-              notify({ message:'¡Pedido cerrado con exito!', position:'left', duration:10000, classes:'alert-success'});
+              notify({ message:'¡Pedido cerrado con éxito!', position:'left', duration:10000, classes:'alert-success'});
               $scope.stopTimeoutOrdCancel();
 
           }, function errorCallback(response) {
@@ -853,9 +853,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filteringV2();
 
-              notify({ message:'¡Pedido generado con exito!', position:'left', duration:10000, classes:'alert-success'});
+              notify({ message:'¡Pedido generado con éxito!', position:'left', duration:10000, classes:'alert-success'});
 
-            alert("Guardado con exito!")
+            alert("Guardado con éxito!")
           }, function errorCallback(response) {
 
           });
@@ -1074,7 +1074,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filteringV2();
               $scope.ID = null;
-              notify({ message:'¡Pedido eliminado con exito!', position:'left', duration:10000, classes:'alert-success'});
+              notify({ message:'¡Pedido eliminado con éxito!', position:'left', duration:10000, classes:'alert-success'});
               $scope.reset();
               $scope.oneOrder()
 
@@ -1126,7 +1126,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $(function(){
               $("#modalInfoProduct").modal('hide');
             })
-            notify({ message:'¡Linea actulizada con exito!', position:'left', duration:10000, classes:'alert-success'});
+            notify({ message:'¡Linea actulizada con éxito!', position:'left', duration:10000, classes:'alert-success'});
 
           }, function errorCallback(response) {
 
@@ -1649,7 +1649,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/tiempo_resta_pedido/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
-            notify({ message:"Su pedido cuenta con "+ $scope.secondsToString(response.data.time) +"  para ser cancelado automaticamente por el sistema ", position:'left', duration:10000, classes:'alert-info'});
+            notify({ message:"Su pedido cuenta con "+ $scope.secondsToString(response.data.time) +"  para ser cancelado automáticamente por el sistema ", position:'left', duration:10000, classes:'alert-info'});
             var tiempo =  parseInt(response.data.time )
             $scope.liveTimeOrd = tiempo * 1000
 

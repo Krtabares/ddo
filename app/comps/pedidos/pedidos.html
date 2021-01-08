@@ -147,12 +147,12 @@
   
                 <div class="row mb-5" ng-if="clienteEmpleado">
                   <div class="col-md-3 col-sm-12">
-                    <label>Max. unidades medicina</label><br>
+                    <label>Máx. unidades medicina</label><br>
                     <span >{{client.max_unid_med_emp}}</span>
   
                   </div>
                   <div class="col-md-3 col-sm-12">
-                    <label>Max. unidades misceláneos</label><br>
+                    <label>Máx. unidades misceláneos</label><br>
                     <span >{{client.max_unid_misc_emp}}</span>
   
                   </div>
@@ -178,7 +178,7 @@
                           <tr>
                           <!-- <th scope="col"><p class="text-center">#</p></th> -->
                           <!-- <th scope="col"><p class="text-center">Código de Articulo</p></th> -->
-                          <th scope="col"><p class="text-center">Nombre articulo</p></th>
+                          <th scope="col"><p class="text-center">Nombre artículo</p></th>
                           <th scope="col"><p class="text-center">Cantidad</p></th>
                           <th scope="col"><p class="text-center">Precio por unidad</p></th>
                           <th scope="col"><p class="text-center">Total</p></th>
@@ -198,10 +198,10 @@
                                 <p class="text-left">{{ x.CANTIDAD }}</p>
                               </td>
                               <td><p class="text-right">{{ formato(2,x.precio_neto_bs) }}</p></td>
-                              <td><p class="text-right">{{ formato(2,(x.precio_neto_bs * x.CANTIDAD)) }}</p></td>
+                              <td><p class="text-left">{{ formato(2,(x.precio_neto_bs * x.CANTIDAD)) }}</p></td>
                               <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
                               <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
-                              <td><p class="text-left">{{ x.fecha_vence}}</p></td>
+                              <td><p class="text-right">{{ x.fecha_vence}}</p></td>
                               <!-- <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td> -->
                               <td >
                                 <i class="fa fa-trash" style="cursor: pointer;"  ng-click="openModalDyn(3,$index)" ></i>
@@ -246,13 +246,13 @@
                                     </tr>
                                     <tr>
                                         <td class="right">
-                                            <strong class="text-dark">TOTAL Bs.S :</strong> </td>
+                                            <strong class="text-dark">TOTAL Bs.S:</strong> </td>
   
                                             <td class="right"> {{formato(2,totalesDdo.total)}} </td>
                                     </tr>
                                     <tr>
                                       <td class="right">
-                                          <strong class="text-dark">TOTAL USD  : :</strong> </td>
+                                          <strong class="text-dark">TOTAL USD:</strong> </td>
 
                                           <td class="right"> {{ formato(3,totalesDdo.totalNetoUSD) }}  </td>
                                   </tr>
@@ -427,12 +427,12 @@
   
                 <div class="row mb-5" ng-show="editView && clienteEmpleado">
                   <div class="col-md-3 col-sm-12">
-                    <label>Max. unidades medicina</label><br>
+                    <label>Máx. unidades medicina</label><br>
                     <span >{{client.max_unid_med_emp}}</span>
   
                   </div>
                   <div class="col-md-3 col-sm-12">
-                    <label>Max. unidades misceláneos</label><br>
+                    <label>Máx. unidades misceláneos</label><br>
                     <span >{{client.max_unid_misc_emp}}</span>
   
                   </div>
@@ -457,7 +457,7 @@
                             <tr>
                             <!-- <th scope="col"><p class="text-center">#</p></th> -->
                             <!-- <th scope="col"><p class="text-center">Código de Articulo</p></th> -->
-                            <th scope="col"><p class="text-center">Nombre articulo</p></th>
+                            <th scope="col"><p class="text-center">Nombre artículo</p></th>
                             <th scope="col"><p class="text-center">Cantidad</p></th>
                             <th scope="col"><p class="text-center">Precio por unidad</p></th>
                             <th scope="col"><p class="text-center">Total</p></th>
@@ -474,12 +474,12 @@
                                 <!-- <th scope="row">{{ $index + 1 }}</th> -->
                                 <!-- <td><p class="text-center">{{ x.COD_PRODUCTO }}</p></td> -->
                                 <td><p class="text-left">{{ x.nombre_producto }}</p></td>
-                                <td><p class="text-left">{{ x.CANTIDAD }}</p></td>
+                                <td><p class="text-right">{{ x.CANTIDAD }}</p></td>
                                 <td><p class="text-right">{{ formato(2,x.precio_neto_bs) }}</p></td>
                                 <td><p class="text-right">{{ formato(2,(x.precio_neto_bs * x.CANTIDAD)) }}</p></td>
                                 <td><p class="text-right">{{ formato(3,x.precio_neto_usd) }}</p></td>
                                 <td><p class="text-right">{{ formato(3,(x.precio_neto_usd * x.CANTIDAD)) }}</p></td>
-                                <td><p class="text-left">{{ x.fecha_vence }}</p></td>
+                                <td><p class="text-right">{{ x.fecha_vence }}</p></td>
                                 <!-- <td><p class="text-right"><i ng-show="!x.alert" class="fas fa-1x fa-check"></i><i ng-show="x.alert"  class="fas fa-1x fa-times"></i>  </p></td> -->
                                 <td >
   
@@ -592,7 +592,7 @@
                               </tr>
                               <tr>
                                 <td class="right">
-                                    <strong class="text-dark">TOTAL USD  :</strong> </td>
+                                    <strong class="text-dark">TOTAL USD:</strong> </td>
 
                                     <td class="right"> {{ formato(3,totalesDdo.totalNetoUSD) }}  </td>
                             </tr>
@@ -693,7 +693,7 @@
                       <input type="text" class="form-control"
                       ng-model="busqueda_prod"
                       ng-keydown="$event.keyCode === 13 && getProdNew(true)"
-                      placeholder="Búsqueda por Producto"
+                      placeholder="Búsqueda por producto"
                       aria-label="Búsqueda por Producto"
                       aria-describedby="basic-addon2">
                       <div class="input-group-append">
@@ -749,7 +749,7 @@
                         <th scope="col"><p class="text-center">Existencia</p></th>
                         <th scope="col"><p class="text-center">Cantidad</p></th>
                         <th scope="col"><p class="text-center">Precio Bs.S</p></th>
-                        <th scope="col"><p class="text-center">Iva Bs.S</p></th>
+                        <th scope="col"><p class="text-center">IVA Bs.S</p></th>
                         <th scope="col"><p class="text-center">Precio USD</p></th>
                         <th scope="col"><p class="text-center">IVA USD</p></th>
                         <th scope="col"><p class="text-center">Principio activo</p></th>
@@ -886,7 +886,7 @@
                   </div>
                   <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
                       <div ng-show="articulo.CANTIDAD > 0">
-                    <label><strong>TOTAL Bs.S</strong></label><br>
+                    <label><strong>Total Bs.S</strong></label><br>
                     <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? (articulo.precio_neto_bs  * articulo.CANTIDAD):0)}}</span>
                   </div>
   
@@ -1090,7 +1090,6 @@
   
                       <button class="btn btn-warning" style="float: left; font-weight: bold;margin-bottom: 1rem; width: 100%;" ng-click="infoPsico = true;" ng-show="!infoPsico"  > <i class="fa fa-info-circle"></i> Requisitos para psicotrópico</button>
                     </div>
-  
   
                     <div class="col-md-6 col-sm-12" ng-show="showProductTable || hasUserClient"  >
                       <!-- userLogged.pedido.crear :{{userLogged. }} -->
