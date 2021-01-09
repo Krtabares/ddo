@@ -1651,7 +1651,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             // notify({ message:"Su pedido cuenta con "+ $scope.secondsToString(response.data.time) +"  para ser cancelado automáticamente por el sistema ", position:'left', duration:10000, classes:'alert-info'});
             var tiempo =  parseInt(response.data.time )
-            $scope.liveTimeOrd = tiempo * 1000
+            $scope.liveTimeOrd = tiempo
 
             // alert(response.data.time)
 
@@ -1789,7 +1789,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           // $scope.timerConsole += $scope.timerType  + ' - event.name = '+ event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis +'\n';
           // console.log(args.millis)
 
-          var ms = s % 1000;
+          var ms = args.millis % 1000;
           s = (s - ms) / 1000;
           console.log($scope.msToTime(args.millis));
           if(s == 1 ){
