@@ -1126,6 +1126,7 @@
                             <th scope="col"><p class="text-center">Estatus</p></th>
                             <th scope="col"><p class="text-center">Fecha actualización</p></th>
                             <th scope="col"><p class="text-center">Tipo pedido</p></th>
+                            <th scope="col"><p class="text-center">Tiempo pedido</p></th>
                             <th scope="col"><p class="text-center">Opciones</p></th>
                           </tr>
                         </thead>
@@ -1141,15 +1142,18 @@
                             <td><p class="text-left">{{ x.fecha_estatus }}</p></td>
                             <td><p class="text-left">{{ x.tipo_pedido }}</p></td>
                             <td>
+                              <div ng-if="timerRunning && (x.estatus == 'PEDIDO EN CONSTRUCCION' || x.estatus == 'PEDIDO EN EDICION' ) ">
+                                <timer countdown="liveTimeOrd" interval="1000">{{hours}}:{{minutes}}:{{seconds}}</timer>
+                              </div>
+                            </td>
+                            <td>
   
                               <i class="fa fa-trash" style="cursor: pointer;"  ng-if="userLogged.permisos.pedido.eliminar" ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'" data-toggle="modal" data-target="#modalConfirm" ng-click="confirmModal(x.ID);"  ></i>
   
                               <i class="fa fa-eye" style="cursor: pointer;"  ng-click="getPedido(x.ID);" data-toggle="modal" data-target="#showPedidoModal"  ></i>
   
-                              <i class="fa fa-clock" style="cursor: pointer;"   ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'"  ng-click="tiempoPedido(x.ID);"  ></i>
-                              <div ng-if="timerRunning && (x.estatus == 'PEDIDO EN CONSTRUCCION' || x.estatus == 'PEDIDO EN EDICION' ) ">
-                                <timer countdown="liveTimeOrd" interval="1000">{{hours}}:{{minutes}}:{{seconds}}</timer>
-                              </div>
+                              <!-- <i class="fa fa-clock" style="cursor: pointer;"   ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'"  ng-click="tiempoPedido(x.ID);"  ></i> -->
+                              
                             </td>
                           </tr>
                         </tbody>
