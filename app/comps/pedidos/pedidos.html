@@ -2,6 +2,19 @@
   <div ng-include="'comps/common/topbar.html'">
 
   </div>
+
+  <!-- The Modal -->
+<div id="modalImg" class="modal">
+
+  <!-- The Close Button -->
+  <span class="close">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content" id="img01">
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>
   
   <div class="modal fade" id="addPedidoModal" tabindex="-1" role="dialog" aria-labelledby="addPedidoModalLabel" aria-hidden="true">
     <div class="modal-dialog  mw-100  modal-90 modal-100-ht" role="document">
@@ -764,7 +777,7 @@
                             <td><i class="fa fa-eye" style="cursor: pointer;"  ng-click="selectProduct($index)" ></i></td>
                             <td> 
                               <div ng-if="x.dir_imagen != ''">
-                                <img src="{{  srcServer+x.dir_imagen }}" alt="no image"  style="width: 120px;">
+                                <img id="img_{{$index}}" src="{{  srcServer+x.dir_imagen }}" alt="no image"  style="width: 120px;" ng-click="zoomImg('img_'+$index,srcServer+x.dir_imagen )">
                               </div>
                             </td>
                             <td><p class="text-left">{{ x.nombre_producto }}</p></td>
