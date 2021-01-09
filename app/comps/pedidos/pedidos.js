@@ -1793,7 +1793,10 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           var s = args.millis
           var ms = s % 1000;
           s = (s - ms) / 1000;
-          console.log($scope.msToTime(args.millis));
+          // console.log($scope.msToTime(args.millis));
+          if(s <= 900){
+            $scope.msgOrdCancel =  true
+          }
           if(s == 1 ){
             console.log("cancelo");
             $scope.cancel_pedido()
