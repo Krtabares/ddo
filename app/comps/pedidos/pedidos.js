@@ -1787,7 +1787,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         $scope.$on('timer-tick', function (event, args) {
           // $scope.timerConsole += $scope.timerType  + ' - event.name = '+ event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis +'\n';
-          console.log(arg.millis)
+          console.log(args.millis)
         });
     }
 
