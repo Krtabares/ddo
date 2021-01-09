@@ -1657,7 +1657,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             // $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel(),$scope.liveTimeOrd);
 
-            console.log("tiempo de servidor " , $scope,msToTime(tiempo*1000))
+            console.log("tiempo de servidor " , $scope.msToTime(tiempo*1000))
 
             $scope.timerRunning = true;
 
