@@ -987,7 +987,7 @@ td p {
 #myImg:hover {opacity: 0.7;}
 
 /* The Modal (background) */
-.modal {
+.my-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -1002,7 +1002,7 @@ td p {
 }
 
 /* Modal Content (Image) */
-.modal-content {
+.my-modal-content {
   margin: auto;
   display: block;
   width: 80%;
