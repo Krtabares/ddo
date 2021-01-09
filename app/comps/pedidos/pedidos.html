@@ -1148,7 +1148,7 @@
   
                               <i class="fa fa-clock" style="cursor: pointer;"   ng-show="x.estatus =='PEDIDO EN CONSTRUCCION' || x.estatus =='PEDIDO CREADO' || x.estatus == 'POR PROCESAR'"  ng-click="tiempoPedido(x.ID);"  ></i>
                               <div ng-if="timerRunning && (x.estatus == 'PEDIDO EN CONSTRUCCION' || x.estatus == 'PEDIDO EN EDICION' ) ">
-                                <timer countdown="liveTimeOrd" interval="1000">{{countdown}}</timer>
+                                <timer countdown="liveTimeOrd" interval="1000">{{hours}}: {{minutes}}: {{seconds}}</timer>
                               </div>
                             </td>
                           </tr>
