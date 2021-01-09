@@ -932,7 +932,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             // $scope.$apply();
 
         }
-        // var stopped;
+        var stopped;
         // $scope.countdown = function() {
         //   console.log($scope.counter);
 
