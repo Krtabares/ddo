@@ -1649,14 +1649,15 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
           request.post(ip+'/tiempo_resta_pedido/articulo', body,{'Authorization': 'Bearer ' + localstorage.get('token', '')})
           .then(function successCallback(response) {
 
-            notify({ message:"Su pedido cuenta con "+ $scope.secondsToString(response.data.time) +"  para ser cancelado automáticamente por el sistema ", position:'left', duration:10000, classes:'alert-info'});
+            // notify({ message:"Su pedido cuenta con "+ $scope.secondsToString(response.data.time) +"  para ser cancelado automáticamente por el sistema ", position:'left', duration:10000, classes:'alert-info'});
             var tiempo =  parseInt(response.data.time )
             $scope.liveTimeOrd = tiempo * 1000
 
             // alert(response.data.time)
 
-            $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel(),$scope.liveTimeOrd);
+            // $scope.mytimeoutOrdCancel = $timeout($scope.onTimeoutOrdCancel(),$scope.liveTimeOrd);
 
+            $scope.timerRunning = true;
 
             $scope.loading = false
 
@@ -1781,7 +1782,16 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         proveedores()
         getCategorias()
+
+        $scope.timerRunning = false;
+
+        $scope.$on('timer-tick', function (event, args) {
+          // $scope.timerConsole += $scope.timerType  + ' - event.name = '+ event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis +'\n';
+          console.log(arg.millis)
+        });
     }
+
+
 ])
 // .config(function(IdleProvider, KeepaliveProvider) {
 //   KeepaliveProvider.interval(10);
