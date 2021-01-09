@@ -1788,7 +1788,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.$on('timer-tick', function (event, args) {
           // $scope.timerConsole += $scope.timerType  + ' - event.name = '+ event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis +'\n';
           // console.log(args.millis)
-          s = args.millis
+          var s = args.millis
           var ms = s % 1000;
           s = (s - ms) / 1000;
           console.log($scope.msToTime(args.millis));
