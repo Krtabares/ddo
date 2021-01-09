@@ -1022,7 +1022,7 @@ td p {
 }
 
 /* Add Animation - Zoom in the Modal */
-.modal-content, #caption {
+.my-modal-content, #caption {
   animation-name: zoom;
   animation-duration: 0.6s;
 }
@@ -1033,7 +1033,7 @@ td p {
 }
 
 /* The Close Button */
-.close {
+.my-close {
   position: absolute;
   top: 15px;
   right: 35px;
@@ -1043,8 +1043,8 @@ td p {
   transition: 0.3s;
 }
 
-.close:hover,
-.close:focus {
+.my-close:hover,
+.my-close:focus {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
@@ -1052,7 +1052,7 @@ td p {
 
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 700px){
-  .modal-content {
+  .my-modal-content {
     width: 100%;
   }
 }
