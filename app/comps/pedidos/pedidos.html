@@ -771,7 +771,7 @@
                     </thead>
                     <tbody>
 
-                        <tr ng-repeat="x in productos"  ng-class="{ selectedRow : $index == productIndex }"    >
+                        <tr ng-repeat="x in productos"  ng-class="{ selectedRow : $index == productIndex }"  ng-click="selectProduct($index,true)"  >
   
                             <td><p class="text-left">{{ $index + 1 }}</p></td>
                             <td><i class="fa fa-eye" style="cursor: pointer;"  ng-click="selectProduct($index)" ></i></td>
@@ -783,11 +783,11 @@
                             <td><p class="text-left">{{ x.nombre_producto }}</p></td>
                             <td><p class="text-left">{{ x.categoria }}</p></td>
                             <td><p class="text-left">{{ x.existencia }}</p></td>
-                            <td><p class="text-left" ng-click="selectProduct($index,true)" >
+                            <td><p class="text-left">
                               <div ng-if="$index == productIndex">
                                 <input id="cantidad_{{$index}}" type="number" style=" width: 130px !important;"  ng-model="articulo.CANTIDAD"
                                  ng-keydown="$event.keyCode === 13 && addArtPedido(true)" 
-                                 ng-blur="validaBlur(articulo.CANTIDAD)" 
+                                 ng-blur="validaBlur(articulo.CANTIDAD)"
                                 class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                               </div>
                               <div ng-if="$index != productIndex">
