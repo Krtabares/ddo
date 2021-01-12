@@ -1506,7 +1506,7 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
             disponible = await existencia_disponible(pCia, detalle['COD_PRODUCTO'],detalle['CANTIDAD'] )
 
             if disponible == -1:
-                return "error"
+                return "No se pudo completar por favor verifique la disponibilidad del producto"
 
             respuesta = await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,disponible,float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
             
@@ -1715,7 +1715,8 @@ async def existencia_disponible(pCia, pNoArti, pCantidad ):
 
             if pCantidad < int(row[0])  :
                 return row[0]
-
+            elif
+                return pCantidad
         return -1
     except Exception as e:
         logger.debug(e)
