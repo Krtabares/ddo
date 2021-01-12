@@ -3,18 +3,9 @@
 
   </div>
 
-  <!-- The Modal -->
-<div id="modalImg" class="my-modal">
 
-  <!-- The Close Button -->
-  <span class="my-close">&times;</span>
 
-  <!-- Modal Content (The Image) -->
-  <img class="my-modal-content" id="img01">
 
-  <!-- Modal Caption (Image Text) -->
-  <div id="caption"></div>
-</div>
   
   <div class="modal fade" id="addPedidoModal" tabindex="-1" role="dialog" aria-labelledby="addPedidoModalLabel" aria-hidden="true">
     <div class="modal-dialog  mw-100  modal-90 modal-100-ht" role="document">
@@ -776,8 +767,8 @@
                             <td><p class="text-left">{{ $index + 1 }}</p></td>
                             <td><i class="fa fa-eye" style="cursor: pointer;"  ng-click="selectProduct($index)" ></i></td>
                             <td> 
-                              <div ng-if="x.dir_imagen != ''">
-                                <img id="img_{{$index}}" src="{{  srcServer+x.dir_imagen }}" alt="no image"  style="width: 120px;" ng-click="zoomImg('img_'+$index,srcServer+x.dir_imagen )">
+                              <div ng-if="x.dir_imagen != ''" style="cursor: pointer;" ng-click="zoomImg(srcServer+x.dir_imagen, x.nombre_producto )"   >
+                                <img id="img_{{$index}}" src="{{  srcServer+x.dir_imagen }}" alt="no image"  style="width: 120px;">
                               </div>
                             </td>
                             <td><p class="text-left">{{ x.nombre_producto }}</p></td>
@@ -816,9 +807,7 @@
             </div>
   
             </div>
-          
-  
-  
+           
         </div>
         <div class="modal-footer">
   
@@ -872,54 +861,50 @@
   
             <div id="infoProduct" class="row" >
   
-                <div class="col-6">
+                <div class="col-md-6 col-sm-12">
                   <label>Cantidad</label>
                   <input type="number"  ng-model="articulo.CANTIDAD"
                   ng-keydown="$event.keyCode === 13 && addArtPedido(true)"
                    class="form-control" placeholder="Cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                   <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
+                   <div class="row col-sm-12 col-md-12 col-lg-12">
+                     <div class="col-sm-12 col-md-12 col-lg-12 mt-3 ">
+     
+                       <label> <strong>Precios</strong> </label>
+                     </div>
+                     <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
+                       <label> <strong>Por unidad Bs.S</strong> </label><br>
+                       <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</span>
+     
+                     </div>
+                     <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
+                         <div ng-show="articulo.CANTIDAD > 0">
+                       <label><strong>Total Bs.S</strong></label><br>
+                       <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? (articulo.precio_neto_bs  * articulo.CANTIDAD):0)}}</span>
+                     </div>
+     
+                     </div>
+     
+                     <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
+     
+                         <label><strong>Por unidad USD</strong></label><br>
+                         <span  class="text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
+     
+     
+                     </div>
+                     <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
+                       <div ng-show="articulo.CANTIDAD > 0">
+                         <label><strong>Total USD</strong></label><br>
+                         <span class="text-right" >{{formato(3,(articulo.precio_neto_usd)? (articulo.precio_neto_usd  * articulo.CANTIDAD):0)}}</span>
+                         </div>
+     
+                     </div>
+                   </div>
                 </div>
-                <div class="col-6">
-                  <div class="col-12">
-  
-                  </div>
-                  <div class="col-12">
-  
-                    <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
-                  </div>
+                <div class="col-md-6 col-sm-12">
+                  <img src="{{  srcServer+articulo.dir_imagen }}" alt="" >
                 </div>
-                <div class="row col-sm-12 col-md-12 col-lg-12">
-                  <div class="col-sm-12 col-md-12 col-lg-12 mt-3 ">
-  
-                    <label> <strong>Precios</strong> </label>
-                  </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                    <label> <strong>Por unidad Bs.S</strong> </label><br>
-                    <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</span>
-  
-                  </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                      <div ng-show="articulo.CANTIDAD > 0">
-                    <label><strong>Total Bs.S</strong></label><br>
-                    <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? (articulo.precio_neto_bs  * articulo.CANTIDAD):0)}}</span>
-                  </div>
-  
-                  </div>
-  
-                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-  
-                      <label><strong>Por unidad USD</strong></label><br>
-                      <span  class="text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
-  
-  
-                  </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                    <div ng-show="articulo.CANTIDAD > 0">
-                      <label><strong>Total USD</strong></label><br>
-                      <span class="text-right" >{{formato(3,(articulo.precio_neto_usd)? (articulo.precio_neto_usd  * articulo.CANTIDAD):0)}}</span>
-                      </div>
-  
-                  </div>
-                </div>
+
   
             </div>
   
@@ -982,6 +967,30 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="cancelModalDyn()" >No</button>
           <button type="button" class="btn btn-{{modalDynColor}}" ng-click="aceptModalDyn()" data-dismiss="modal">Sí</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalImg">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">{{ imgTitle }}</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  
+        </div>
+        <div class="modal-body">
+  
+          <div class="container">
+  
+            <img class="my-modal-content" id="img01" src="{{viewImg}}" > 
+  
+          </div>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"  >cerrar</button>
         </div>
       </div>
     </div>

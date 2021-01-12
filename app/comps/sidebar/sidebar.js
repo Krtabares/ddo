@@ -35,7 +35,7 @@ angular.module('app.mySidebar', ['ngRoute', 'ngNotify','cgNotify',  'ngMap', 'an
 
         $scope.$on('IdleStart', function() {
           // addEvent({event: 'IdleStart', date: new Date()});
-          notify({ message: $scope.msToTime( $scope.timeout*1000) + ' para cierre de sesión', position:'left', duration:3000, classes:'alert-danger'});
+          // notify({ message: $scope.msToTime( $scope.timeout*1000) + ' para cierre de sesión', position:'left', duration:3000, classes:'alert-danger'});
         });
 
         $scope.$on('IdleEnd', function() {
