@@ -108,7 +108,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         console.log(response.data.user)
         if(response.data.user.role=='root' || response.data.user.role=='sisAdm' || response.data.user.role=='seller' ){
           ngNotify.set('¡Bienvenido! ','success')
-          window.location.href = "#!/home";
+          window.location.href = "#!/pedidos";
         }else
           $scope.getClientNew(client)
 

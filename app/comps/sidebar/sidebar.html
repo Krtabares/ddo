@@ -9,6 +9,9 @@
         <li>
             <a href="#!/home"><i class="fa fa-fw fa-home"></i> Inicio</a>
         </li>
+        <li ng-if="permisos.estadisticas.ver" >
+          <a href="#!/estadisticas"><i class="fa fa-fw fa-chart-pie"></i> Estadísticas</a>
+      </li>
         <li ng-if="permisos.deuda.ver" >
           <a href="#!/deuda" class=""><i class="fa fa-fw  fas fa-receipt" ></i>Deuda</a>
         </li>

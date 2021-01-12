@@ -40,8 +40,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       $scope.clientes=[];
       $scope.clientIndex = -1
       $scope.usuarios=[]
-      $scope.permisos ={"deuda":{"ver":false},"cliente":{"ver":false},"perfil":{"ver":false,"editar":false},"producto":{"ver":false},"factura":{"ver":false},"pedido":{"ver":false,"crear":false,"editar":false,"eliminar":false},"usuario":{"ver":false,"crear":false,"editar":false,"eliminar":false}}
-
+      $scope.permisos ={"deuda":{"ver":false},"cliente":{"ver":false},"perfil":{"ver":false,"editar":false},"producto":{"ver":false},"factura":{"ver":false},"pedido":{"ver":false,"crear":false,"editar":false,"eliminar":false},"usuario":{"ver":false,"crear":false,"editar":false,"eliminar":false},"estadisticas":{"ver":false}}
+      
           $scope.permisosAccess ={
                 "deuda": {
                   "access":["root","sisAdm","seller","admin","generic" ]
@@ -63,7 +63,11 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                 },
                 "usuario": {
                   "access":['root', 'sisAdm', 'admin' ]
-                }
+                },
+                "estadisticas": {
+                  "access":["root","sisAdm","seller","admin","generic" ]
+                },
+                
               }
       $scope.modulos = Object.keys($scope.permisos)
       $scope.tabs = 1
@@ -168,8 +172,9 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
      $scope.reset = function(){
        $scope.user = {};
-       $scope.permisos = {"deuda":{"ver":false},"cliente":{"ver":false},"perfil":{"ver":false,"editar":false},"producto":{"ver":false},"factura":{"ver":false},"pedido":{"ver":false,"crear":false,"editar":false,"eliminar":false},"usuario":{"ver":false,"crear":false,"editar":false,"eliminar":false}}
-       // $scope.nombre_cliente = null;
+      //  $scope.permisos = {"deuda":{"ver":false},"cliente":{"ver":false},"perfil":{"ver":false,"editar":false},"producto":{"ver":false},"factura":{"ver":false},"pedido":{"ver":false,"crear":false,"editar":false,"eliminar":false},"usuario":{"ver":false,"crear":false,"editar":false,"eliminar":false}}     
+       $scope.permisos ={"deuda":{"ver":false},"cliente":{"ver":false},"perfil":{"ver":false,"editar":false},"producto":{"ver":false},"factura":{"ver":false},"pedido":{"ver":false,"crear":false,"editar":false,"eliminar":false},"usuario":{"ver":false,"crear":false,"editar":false,"eliminar":false},"estadisticas":{"ver":false}}
+      // $scope.nombre_cliente = null;
        // $scope.hasUserClient = false;
        // $scope.clientes=[];
        // $scope.clientIndex = -1

@@ -26,7 +26,8 @@ angular.module('app', [
                'app.myFooter',
                'app.myLoading',
                'app.headerClient',
-               'app.olvidoPass'
+               'app.olvidoPass',
+               'app.estadisticas'
      ])
      .factory('request', ['$http','$q', function($http,$q) {
           return {
