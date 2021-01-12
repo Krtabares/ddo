@@ -1502,14 +1502,20 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
         try:
 
             cantidad = 0
-            # disponible = await valida_art("01", detalle['COD_PRODUCTO'])
-            respuesta = await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,detalle['CANTIDAD'],float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
-            print(">>>>>>>>>>>>>>>>>>>>>>>respuesta creas<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            print(respuesta)
+
+            disponible = await existencia_disponible(pCia, detalle['COD_PRODUCTO'],detalle['CANTIDAD'] )
+
+            if disponible == -1:
+                return "error"
+
+            respuesta = await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,disponible,float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
+            
+            # print(">>>>>>>>>>>>>>>>>>>>>>>respuesta creas<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            # print(respuesta)
             if respuesta != 1 :
                 return respuesta
             # print("sigue")
-            disponible = detalle['CANTIDAD']
+            # disponible = detalle['CANTIDAD']
 
             # if int(detalle['CANTIDAD']) > disponible :
             #     cantidad = disponible
@@ -1684,6 +1690,33 @@ async def valida_art(pCia, pNoArti,pGrupo,pCliente,pCantidad,pPrecio,pIdPedido):
             return row[0]
 
         return 1
+    except Exception as e:
+        logger.debug(e)
+
+async def existencia_disponible(pCia, pNoArti, pCantidad ):
+    try:
+
+        db = get_db()
+        c = db.cursor()
+        respuesta = None
+        disponible = 0
+        sql = """SELECT PROCESOSPW.existencia_disponible (\'{pCia}\',\'{pNoArti}\') from dual""".format(
+                pCia=pCia,
+                pNoArti=pNoArti,
+
+        )
+        # print(sql) select procesospw.existencia_disponible('01','PCEFADROXI3') from dual  CEFADROXILO GV CAP 500mgx20
+        c.execute(sql)
+
+        row = c.fetchone()
+        print("RESUTADO VALIDA ARTICULO")
+        if row != None and row[0] != None:
+            print(row[0])
+
+            if pCantidad < int(row[0])  :
+                return row[0]
+
+        return -1
     except Exception as e:
         logger.debug(e)
 
