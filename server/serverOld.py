@@ -1715,7 +1715,7 @@ async def existencia_disponible(pCia, pNoArti, pCantidad ):
 
             if pCantidad < int(row[0])  :
                 return row[0]
-            elif:
+            else:
                 return pCantidad
         return -1
     except Exception as e:
