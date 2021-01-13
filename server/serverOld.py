@@ -1016,7 +1016,7 @@ async def procedure(request):
                         pCodProveedor = data['pCodProveedor'],
                         haveCat = data['haveCat']
                     )
-    #print(sql)
+    print(sql)
     c.execute(sql)
     textVar = c.var(str)
     statusVar = c.var(int)
