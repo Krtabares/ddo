@@ -1504,13 +1504,14 @@ async def crear_detalle_pedido(detalle, ID,pCia, pGrupo ,pCliente):
             cantidad = 0
 
             disponible = await existencia_disponible(pCia, detalle['COD_PRODUCTO'],detalle['CANTIDAD'] )
-
+            print(">>>>>>>>>>>>>>>>>>>>>>>respuesta creas<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            print(disponible)
             if disponible == -1:
                 return "No se pudo completar por favor verifique la disponibilidad del producto"
 
             respuesta = await valida_art(pCia, detalle['COD_PRODUCTO'],pGrupo,pCliente,disponible,float(str(detalle['precio_bruto_bs']).replace(',','.')),int(ID))
             
-            # print(">>>>>>>>>>>>>>>>>>>>>>>respuesta creas<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            
             # print(respuesta)
             if respuesta != 1 :
                 return respuesta
@@ -1705,18 +1706,18 @@ async def existencia_disponible(pCia, pNoArti, pCantidad ):
                 pNoArti=pNoArti,
 
         )
-        # print(sql) select procesospw.existencia_disponible('01','PCEFADROXI3') from dual  CEFADROXILO GV CAP 500mgx20
         c.execute(sql)
 
         row = c.fetchone()
-        print("RESUTADO VALIDA ARTICULO")
+        
+        print("RESUTADO existencia_disponible")
+        print(row[0])
         if row != None and row[0] != None:
-            print(row[0])
-
             if pCantidad < int(row[0])  :
                 return row[0]
             else:
                 return pCantidad
+
         return -1
     except Exception as e:
         logger.debug(e)
