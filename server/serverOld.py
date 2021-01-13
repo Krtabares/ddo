@@ -1712,8 +1712,8 @@ async def existencia_disponible(pCia, pNoArti, pCantidad ):
         
         print("RESUTADO existencia_disponible")
         print(row[0])
-        if row != None and row[0] != None:
-            if pCantidad < int(row[0])  :
+        if row != None and row[0] != None and row[0] > 0:
+            if pCantidad > int(row[0])  :
                 return row[0]
             else:
                 return pCantidad
