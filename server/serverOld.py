@@ -880,7 +880,7 @@ async def procedure(request):
 
             DECLARE
             l_cursor  SYS_REFCURSOR;
-            pTotReg number DEFAULT 100;
+            pTotReg number DEFAULT 5000;
             pTotPaginas number DEFAULT 100;
             pPagina number DEFAULT 1;
             pLineas number DEFAULT 5000;
