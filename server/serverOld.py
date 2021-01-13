@@ -923,7 +923,7 @@ async def procedure(request):
 
                                 pTotReg  := {pTotReg};
                                 pTotPaginas  := {pTotPaginas};
-                                pPagina  := {pPagina};
+                                -- pPagina  := {pPagina};
                                 pLineas  := {pLineas};
                                 pNoCia := {pNoCia};
                                 pNoGrupo := {pNoGrupo};
