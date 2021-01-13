@@ -419,6 +419,8 @@ async def procedure(request):
                 v_unid_disp_misc_emp number;
                 v_monto_min_pick number;
                 ind_emp_nolim varchar2(1);
+                v_email_vendedor varchar2(100);
+                v_email_persona_cyc varchar2(100);
                 v_tot number;
                 v_pagina number;
                 v_linea number;
@@ -472,6 +474,8 @@ async def procedure(request):
                 v_unid_disp_misc_emp,
                 v_monto_min_pick,
                 ind_emp_nolim,
+                v_email_vendedor,
+                v_email_persona_cyc,
                 v_pagina,
                 v_linea;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -510,6 +514,8 @@ async def procedure(request):
                 v_unid_disp_misc_emp|| '|'||
                 v_monto_min_pick|| '|'||
                 ind_emp_nolim|| '|'||
+                v_email_vendedor|| '|'||
+                v_email_persona_cyc|| '|'||
                 v_pagina|| '|'||
                 v_linea
                 );
@@ -571,8 +577,10 @@ async def procedure(request):
         'unid_disp_misc_emp' :arr[30],
         'monto_min_pick' :arr[31],
         'ind_emp_nolim' :arr[32],
-        'pagina': arr[33],
-        'linea': arr[34]
+        'email_vendedor' : arr[33],
+        'email_persona_cyc' : arr[34],
+        'pagina': arr[35],
+        'linea': arr[36]
         }
         list.append(obj)
     return response.json({"msj": "OK", "obj": list}, 200)
@@ -869,6 +877,9 @@ async def procedure(request):
     else:
         data['haveCat'] = ""
 
+    if not 'pExistencia' in data or data['pExistencia'] == None :
+        data['pExistencia'] = 'null'
+
 
     #print(data)
     db = get_db()
@@ -892,6 +903,7 @@ async def procedure(request):
             pArticulo varchar2(50) default null;
             pCodProveedor varchar2(15 )DEFAULT null;
             pFiltroCategoria varchar2(50) DEFAULT null;
+            pExistencia number DEFAULT null;
 
             output number DEFAULT 1000000;
 
@@ -917,6 +929,7 @@ async def procedure(request):
                 v_tipo_prod_emp varchar2(20);
                 v_disp_prod_emp varchar2(1);
                 v_dir_imagen varchar2(300);
+                v_division varchar2(30);
                 V_PAGINA number;
                 V_LINEA number;
             BEGIN
@@ -930,6 +943,7 @@ async def procedure(request):
                                 pCliente := {pCliente};
                                 pBusqueda := {pBusqueda};
                                 pComponente := {pComponente};
+                                pExistencia :={pExistencia}
             {haveArt}                    pArticulo := \'{pArticulo}\';
             {havePro}                    pCodProveedor := \'{pCodProveedor}\';
             {haveCat}                    pFiltroCategoria := \'{pFiltroCategoria}\' ;
@@ -938,7 +952,7 @@ async def procedure(request):
 
                 dbms_output.enable(output);
 
-                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pBusqueda,pComponente, pArticulo, pFiltroCategoria, pCodProveedor );
+                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pBusqueda,pComponente, pArticulo, pFiltroCategoria, pCodProveedor , pExistencia);
 
             LOOP
                 FETCH l_cursor into
@@ -964,6 +978,7 @@ async def procedure(request):
                 v_tipo_prod_emp,
                 v_disp_prod_emp,
                 v_dir_imagen,
+                v_division,
                 V_PAGINA,
                 V_LINEA;
                 EXIT WHEN l_cursor%NOTFOUND;
@@ -991,6 +1006,7 @@ async def procedure(request):
                     v_tipo_prod_emp|| '|'||
                     v_disp_prod_emp|| '|'||
                     v_dir_imagen|| '|'||
+                    v_division|| '|'||
                     V_PAGINA|| '|'||
                     V_LINEA
                 );
@@ -1015,6 +1031,7 @@ async def procedure(request):
                         havePro = data['havePro'],
                         pCodProveedor = data['pCodProveedor'],
                         haveCat = data['haveCat']
+                        pExistencia= data['pExistencia']
                     )
     print(sql)
     c.execute(sql)
@@ -1049,8 +1066,9 @@ async def procedure(request):
             'tipo_prod_emp' : arr[19],
             'disp_prod_emp' :arr[20],
             'dir_imagen' : arr[21],
-            'pagina': arr[22],
-            'linea': arr[23]
+            'division' : arr[22],
+            'pagina': arr[23],
+            'linea': arr[24]
         }
 
         # if data['pArticulo'] == 'null'  :
