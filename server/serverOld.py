@@ -883,7 +883,7 @@ async def procedure(request):
             pTotReg number DEFAULT 100;
             pTotPaginas number DEFAULT 100;
             pPagina number DEFAULT 1;
-            pLineas number DEFAULT 100;
+            pLineas number DEFAULT 5000;
             pNoCia varchar2(10) DEFAULT '01';
             pNoGrupo varchar2(10) DEFAULT '01';
             pCliente varchar2(50) DEFAULT null;
