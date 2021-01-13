@@ -943,7 +943,7 @@ async def procedure(request):
                                 pCliente := {pCliente};
                                 pBusqueda := {pBusqueda};
                                 pComponente := {pComponente};
-                                pExistencia :={pExistencia}
+                                pExistencia :={pExistencia};
             {haveArt}                    pArticulo := \'{pArticulo}\';
             {havePro}                    pCodProveedor := \'{pCodProveedor}\';
             {haveCat}                    pFiltroCategoria := \'{pFiltroCategoria}\' ;
@@ -952,7 +952,7 @@ async def procedure(request):
 
                 dbms_output.enable(output);
 
-                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pBusqueda,pComponente, pArticulo, pFiltroCategoria, pCodProveedor , pExistencia);
+                PROCESOSPW.productos (l_cursor, pTotReg ,pTotPaginas, pPagina, pLineas, pNoCia, pNoGrupo,pCliente,pBusqueda,pComponente, pArticulo, pFiltroCategoria, pCodProveedor, pExistencia);
 
             LOOP
                 FETCH l_cursor into
