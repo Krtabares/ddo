@@ -982,7 +982,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             $scope.getPedidos_filteringV2();
             $scope.getProdNew(true);
-            if(response.data.reserved < articulo.CANTIDAD && 1==2){
+            if(response.data.reserved < articulo.CANTIDAD){
               articulo.CANTIDAD = response.data.reserved
               articulo.alert = true
 
