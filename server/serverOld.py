@@ -1030,7 +1030,7 @@ async def procedure(request):
                         pFiltroCategoria = data['pFiltroCategoria'],
                         havePro = data['havePro'],
                         pCodProveedor = data['pCodProveedor'],
-                        haveCat = data['haveCat']
+                        haveCat = data['haveCat'],
                         pExistencia= data['pExistencia']
                     )
     print(sql)
