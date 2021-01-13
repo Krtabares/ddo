@@ -985,6 +985,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             if(response.data.reserved < articulo.CANTIDAD && 1==2){
               articulo.CANTIDAD = response.data.reserved
               articulo.alert = true
+
+              notify({ message:"¡Solo se pudieron reservar "+response.data.reserved+" unidades! verifique disponibilidad", position:'left', duration:10000, classes:'alert-success'});
+
             }else{
               articulo.alert = false
             }

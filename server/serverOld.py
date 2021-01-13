@@ -1870,7 +1870,7 @@ async def add_detalle_producto (request, token: Token):
 
         msg = 0
 
-        if data['pedido']['CANTIDAD'] > respuesta:
+        if data['pedido']['CANTIDAD'] < respuesta:
             msg = 1
 
         await upd_estatus_pedido(6,data['ID'])
