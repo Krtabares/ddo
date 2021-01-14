@@ -51,7 +51,7 @@ angular.module('app.clientes', ['datatables', 'datatables.buttons', 'datatables.
 
           }else{
             $scope.clientes = []
-            notify({ message:'¡No se encontraron resultados!', position:'right', duration:10000, classes:'alert-warning'});
+            notify({ message:'¡No se encontraron resultados!', position:'right', duration:10000, classes:'  notifyPop alert-warning'});
 
           }
 

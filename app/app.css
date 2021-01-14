@@ -289,7 +289,7 @@ body {
 }
 
 .selectedRow{
-	background: aqua !important;
+	background:  #019cde !important;
 }
 
 .modal-body-he{
@@ -731,6 +731,10 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
   }
 }
 
+.notifyPop{
+  opacity: 0.85 !important;
+}
+
 .alert-info{
 	color: #0c5460;
     background-color: #d1ecf1;
@@ -1062,4 +1066,21 @@ td p {
   .my-modal-content {
     width: 100%;
   }
+}
+
+btn-naranja{
+  
+  background-color: #BB451F;
+  color: #fff;
+}
+
+.alert-naranja{
+	  color: #fff;
+    background-color: #BB451F;
+    border-color: #BB451F;
+}
+.alert-gris{
+  color: rgb(23, 22, 22);
+  background-color: #CACFD2;
+  border-color: #CACFD2;
 }

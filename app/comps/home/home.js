@@ -15,6 +15,8 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
 
       // CARGA INICIAL DE CHART
 
+      // notify({ message:"¡Solo se pudieron reservar  unidades! verifique disponibilidad", position:'left', duration:10000, classes:'  notifyPop alert-success '});
+
       $scope.client = {};
       $scope.client_info = {};
       $scope.hasUserClient = false;
@@ -42,7 +44,7 @@ angular.module('app.home', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html-c
       verificClient()
 
       function verificClient(){
-        // notify({ message:'My message', position:'right', duration:100000, classes:'alert-danger'});
+        // notify({ message:'My message', position:'right', duration:100000, classes:'  notifyPop alert-danger'});
         var client = localStorage.getItem('client')
         var client_info = localStorage.getItem('client_info')
         console.log(client)

@@ -269,7 +269,7 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
                 }, function errorCallback(response) {
                   $scope.loading = false
                   if(response.status == 400){
-                    // notify({ message:response.data.msg, position:'left', duration:20000, classes:'alert-danger'});
+                    // notify({ message:response.data.msg, position:'left', duration:20000, classes:'  notifyPop alert-danger'});
                     ngNotify.set(response.data.msg,'danger')
                   }
                 });
