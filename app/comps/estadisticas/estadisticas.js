@@ -42,7 +42,7 @@ angular.module('app.estadisticas', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bin
       verificClient()
 
       function verificClient(){
-        // notify({ message:'My message', position:'right', duration:100000, classes:'  notifyPop alert-danger'});
+        // notify({ message:'My message', position:'right', duration:100000, classes:'   alert-danger'});
         var client = localStorage.getItem('client')
         var client_info = localStorage.getItem('client_info')
         console.log(client)

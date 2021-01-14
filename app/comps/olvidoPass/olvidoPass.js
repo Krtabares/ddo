@@ -36,11 +36,11 @@ angular.module('app.olvidoPass', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-
       .then(function successCallback(response) {
         console.log(response)
 
-        notify({ message:'La nueva contraseña fue enviada a su correo electrónico', position:'right', duration:10000, classes:'  notifyPop alert-success'});
+        notify({ message:'La nueva contraseña fue enviada a su correo electrónico', position:'right', duration:10000, classes:'   alert-success'});
         $scope.user = null;
       }, function errorCallback(response) {
         console.log(response)
-        notify({ message:'No se pudo completar la acción verifique los datos', position:'right', duration:1000, classes:'  notifyPop alert-danger'});
+        notify({ message:'No se pudo completar la acción verifique los datos', position:'right', duration:1000, classes:'   alert-danger'});
 
       });
     }

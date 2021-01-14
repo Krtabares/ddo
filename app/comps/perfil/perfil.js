@@ -63,7 +63,7 @@ angular.module('app.perfil', ['ngRoute', 'cgNotify', 'ngMap', 'angular-bind-html
               .then(function successCallback(response) {
                 console.log(response)
                 if (response.data == "OK")
-                  notify({ message:'Contraseña modificada con éxito', position:'right', duration:1000, classes:'  notifyPop alert-success'});
+                  notify({ message:'Contraseña modificada con éxito', position:'right', duration:1000, classes:'   alert-success'});
 
                 $scope.newPass = null
                 $scope.user.passwordConfirm = null

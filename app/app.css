@@ -737,21 +737,21 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
 
 .alert-info{
 	color: #0c5460;
-    background-color: #d1ecf1;
+    background-color: #d1ecf185;
     border-color: #bee5eb;
 }
 .alert-success {
-  background-color: #dff0d8;
+  background-color: #dff0d851;
   border-color: #d0e9c6;
   color: #3c763d;
 }
 .alert-warning {
-  background-color: #fcf8e3;
+  background-color: #fcf8e35a;
   border-color: #faf2cc;
   color: #8a6d3b;
 }
 .alert-danger {
-  background-color: #f2dede;
+  background-color: #f2dede43;
   border-color: #ebcccc;
   color: #a94442;
 }
@@ -1068,7 +1068,7 @@ td p {
   }
 }
 
-btn-naranja{
+.btn-naranja{
   
   background-color: #BB451F;
   color: #fff;
