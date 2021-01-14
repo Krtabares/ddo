@@ -77,7 +77,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         localstorage.set('client_info',  JSON.stringify(response.data.obj[0]));
         // $scope.clientes = response.data.obj
         ngNotify.set('¡Bienvenido! '+response.data.obj[0].nombre_cliente ,'success')
-        window.location.href = "#!/home";
+        window.location.href = "#!/pedidos";
 
       }, function errorCallback(response) {
         console.log(response)
@@ -108,7 +108,7 @@ angular.module('app.login', ['ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-
         console.log(response.data.user)
         if(response.data.user.role=='root' || response.data.user.role=='sisAdm' || response.data.user.role=='seller' ){
           ngNotify.set('¡Bienvenido! ','success')
-          window.location.href = "#!/pedidos";
+          window.location.href = "#!/home";
         }else
           $scope.getClientNew(client)
 
