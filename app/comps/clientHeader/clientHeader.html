@@ -59,8 +59,8 @@
             <!-- <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Saldo en unidades: </span> {{client_info.unid_disp_med_emp}}</p> -->
             <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Disp. en medicinas: </span> {{client_info.unid_disp_med_emp}}</p>
             <p class="mb-1" ng-if="client_info.grupo_cliente == '02'" ><span class="text-muted"  >Disp. en misceláneos: </span> {{client_info.unid_disp_misc_emp}}</p>
-            <p class="mb-1"   ng-if="client_info.grupo_cliente != '02'"  ><span class="text-muted">Vendedor: </span> <span style="text-transform: capitalize;">{{client_info.vendedor.toLowerCase()}}</span></p>
-            <p class="mb-1"   ng-if="client_info.grupo_cliente != '02'"  ><span class="text-muted">Email vendedor: </span> {{client_info.email_vendedor.toLowerCase()}}</p>
+            <p class="mb-1"  ng-if="client_info.grupo_cliente != '02'"  ><span class="text-muted">Vendedor: </span> <span style="text-transform: capitalize;">{{client_info.vendedor.toLowerCase()}}</span></p>
+            <p class="mb-1"  ng-if="client_info.grupo_cliente != '02'"  ><span class="text-muted">Email vendedor: </span> {{client_info.email_vendedor.toLowerCase()}}</p>
             <p class="mb-1"  ng-if="client_info.grupo_cliente != '02'" ><span class="text-muted">Analista de cobranzas: </span> <span style="text-transform: capitalize;">{{client_info.v_persona_cyc.toLowerCase()}}</span> </p>
             <p class="mb-1"  ng-if="client_info.grupo_cliente != '02'" ><span class="text-muted">Email analista: </span> {{client_info.email_persona_cyc.toLowerCase()}}</p>
           </div>
