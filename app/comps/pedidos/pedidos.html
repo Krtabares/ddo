@@ -838,7 +838,7 @@
                   <p class="mb-1"><span class="text-muted">Proveedor: </span> {{articulo.proveedor}}</p>
                 </div>
   
-                <div class="col-md-4 ">
+                <div class="col-md-3 ">
                     <p class="font-weight-bold mb-4">Detalles</p>
                     <!-- <p class="mb-1" ng-if="clienteEmpleado" ><span class="text-muted">Tipo (empleado): </span> {{articulo.tipo_prod_emp}}</p> -->
                     <p class="mb-1"><span class="text-muted">Regulado: </span> {{articulo.ind_regulado}}</p>
@@ -851,14 +851,15 @@
                 <div class="col-md-4 ">
                     <p class="font-weight-bold mb-4">Otros</p>
   
-                    <p class="mb-1"><span class="text-muted">Categoría: </span> {{articulo.categoria}}/{{articulo.division}}</p>
+                    <p class="mb-1"><span class="text-muted">Categoría: </span> {{articulo.categoria}}</p>
+                    <p class="mb-1"><span class="text-muted">Division: </span> {{articulo.division}}</p>
                     <!-- <p class="mb-1"><span class="text-muted">Descuento 1: </span> {{articulo.descuento1}}</p>
                     <p class="mb-1"><span class="text-muted">Descuento 2: </span> {{articulo.descuento2}}</p>-->
                 </div>
   
             </div>
   
-            <div id="infoProduct" class="row" >
+            <div id="infoProduct"  >
   
                 <div class="col-md-6 col-sm-12">
                   <div ng-if="editProduct">
