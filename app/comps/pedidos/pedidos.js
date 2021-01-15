@@ -768,7 +768,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               }
 
               if($scope.categoria.CODIGO != null || $scope.categoria.CODIGO != "null" ){
-                body.pFiltroCategoria = $scope.categoria.
+                body.pFiltroCategoria = $scope.categoria.CODIGOs
                 body.pExistencia = 1
               }
 
