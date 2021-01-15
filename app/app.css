@@ -301,7 +301,7 @@ body {
 }
 
 .modal{
-  padding-right: 0px !important;
+  padding: 0px !important;
 }
 .modal-90{
   width: 100%;
@@ -743,21 +743,21 @@ box-shadow:  -2px 0px 5px 1px rgba(0,0,0,0.75);
 
 .alert-info{
 	color: #0c5460;
-    background-color: #d1ecf185;
+    background-color: #d1ecf1ba;
     border-color: #bee5eb;
 }
 .alert-success {
-  background-color: #dff0d851;
+  background-color: #dff0d8b1;
   border-color: #d0e9c6;
   color: #3c763d;
 }
 .alert-warning {
-  background-color: #fcf8e35a;
+  background-color: #fcf8e3b6;
   border-color: #faf2cc;
   color: #8a6d3b;
 }
 .alert-danger {
-  background-color: #f2dede43;
+  background-color: #f2dedeb1;
   border-color: #ebcccc;
   color: #a94442;
 }
