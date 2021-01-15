@@ -2,6 +2,30 @@
 
 </div>
 
+<div class="modal fade" id="modalImg">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ imgTitle }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+      </div>
+      <div class="modal-body">
+
+        <div class="container">
+
+          <img class="my-modal-content" id="img01" src="{{viewImg}}" > 
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"  >cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div id="wrapper" class="toggled">
   <my-sidebar></my-sidebar>
@@ -139,10 +163,10 @@
             <tr ng-repeat="x in productos"   >
   
               <td><p class="text-left">{{ $index + 1 }}</p></td> 
-              <td> 
-                <div ng-if="x.dir_imagen != ''">
 
-                  <img src="{{  srcServer+x.dir_imagen }}" alt="no image"  style="width: 120px;">
+              <td> 
+                <div ng-if="x.dir_imagen != ''" style="cursor: pointer;" ng-click="zoomImg(srcServer+x.dir_imagen, x.nombre_producto )"   >
+                  <img id="img_{{$index}}" src="{{  srcServer+x.dir_imagen }}" alt="no image"  style="width: 120px;">
                 </div>
               </td>
               <td><p class="text-left">{{ x.nombre_producto }}</p></td>

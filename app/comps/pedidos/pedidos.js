@@ -736,7 +736,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.auxBusqueda = null
-        $scope.getProdNew = function (filter = false, articulo = false) {
+        $scope.getProdNew = function (filter = false, nuevaBus = false) {
           $scope.loading = true
 
           var body = {};
@@ -751,9 +751,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               body.pArticulo = $scope.pArticulo
             }else{
 
-              if($scope.busqueda_prod == null){
-                 $scope.busqueda_prod = $scope.auxBusqueda
-              }
+              // if($scope.busqueda_prod == null){
+              //    $scope.busqueda_prod = $scope.auxBusqueda
+              // }
               if($scope.tipoBusqueda=='2'){
                 body.pComponente = $scope.busqueda_prod
               }else{

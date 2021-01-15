@@ -295,6 +295,22 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       console.log(element)
     }
 
+    $scope.imgTitle = null;
+    $scope.viewImg = null;
+    $scope.zoomImg = function ( src, nombreProd) {
+
+      console.log("zoom")
+      $scope.imgTitle = nombreProd;
+      $scope.viewImg = src;
+      // Get the image and insert it inside the modal - use its "alt" text as a caption
+      $(function(){
+        $("#modalImg").modal("show");
+
+      })
+
+      
+    }
+
 
 	// $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
   //       var defer = $q.defer();
