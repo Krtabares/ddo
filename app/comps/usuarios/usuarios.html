@@ -134,13 +134,13 @@
                   <span ng-if="typeview == 'view' && permisos[x].crear" ><i class="fas fa-check"></i></span>
                 </td>
                 <td>
-                  <div class="form-check" ng-if="typeview == 'add' || typeview == 'edit' && hasOwnProp(x,'editar')" typeview == 'add' || typeview == 'edit'  >
+                  <div class="form-check" ng-if="typeview == 'add' || typeview == 'edit' && hasOwnProp(x,'editar')"  >
                     <input type="checkbox" class="form-check-input"  ng-model="permisos[x].editar" ng-disabled="!hasOwnProp(x,'editar')" >
                   </div>
                   <span ng-if="typeview == 'view' && permisos[x].editar" ><i class="fas fa-check"></i></span>
                 </td>
                 <td>
-                  <div class="form-check"ng-if="typeview == 'add' || typeview == 'edit' && hasOwnProp(x,'eliminar')" typeview == 'add' || typeview == 'edit'  >
+                  <div class="form-check"ng-if="typeview == 'add' || typeview == 'edit' && hasOwnProp(x,'eliminar')"  >
                     <input type="checkbox" class="form-check-input" ng-model="permisos[x].eliminar" ng-disabled="!hasOwnProp(x,'eliminar')" >
                   </div>
                   <span ng-if="typeview == 'view' && permisos[x].eliminar" ><i class="fas fa-check"></i></span>
