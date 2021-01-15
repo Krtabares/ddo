@@ -45,6 +45,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         $scope.tipoBusqueda = '1'
         $scope.pickUpAvailable = '1';
         $scope.clienteEmpleado = false;
+        $scope.editProduct = false;
 
         var userLog = localStorage.getItem('user')
         $scope.userLogged = JSON.parse(userLog)
@@ -425,14 +426,14 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
             $scope.productIndex = index;
             $scope.product  = $scope.productos[ index ];
             $scope.articulo = $scope.product
-
+            $scope.editProduct = false;
             var existe = false;
             var cantidadAux = 0;
             $scope.pedido.pedido.forEach((element,i) => {
 
               if($scope.articulo.cod_producto == element.COD_PRODUCTO || $scope.articulo.COD_PRODUCTO == element.COD_PRODUCTO ){
                 existe = true;
-
+                $scope.editProduct = true;
                 cantidadAux = parseInt(element.CANTIDAD)
                 return
               }
@@ -607,6 +608,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               $scope.getPedidos_filteringV2();
 
               notify({ message:response.data.estatus, position:'left', duration:10000, classes:'   alert-success'});
+              $scope.msgOrdCancel = false
 
           }, function errorCallback(response) {
 

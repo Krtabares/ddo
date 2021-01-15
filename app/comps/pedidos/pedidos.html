@@ -862,12 +862,15 @@
             <div id="infoProduct" class="row" >
   
                 <div class="col-md-6 col-sm-12">
-                  <label>Cantidad</label>
-                  <input type="number"  ng-model="articulo.CANTIDAD"
-                  ng-keydown="$event.keyCode === 13 && addArtPedido(true)"
-                   class="form-control" placeholder="Cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
-                   <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
-                   <div class="row col-sm-12 col-md-12 col-lg-12">
+                  <div ng-if="editProduct">
+                    <label>Cantidad</label>
+                    <input type="number"  ng-model="articulo.CANTIDAD"
+                    ng-keydown="$event.keyCode === 13 && addArtPedido(true)"
+                     class="form-control" placeholder="Cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                     <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
+                     
+                  </div>
+                 <div class="row col-sm-12 col-md-12 col-lg-12">
                      <div class="col-sm-12 col-md-12 col-lg-12 mt-3 ">
      
                        <label> <strong>Precios</strong> </label>
@@ -1122,7 +1125,7 @@
   
                     <div class="col-md-12">
   
-                      <div class="alert alert-warning alert-dismissible fade show"  role="alert">
+                      <div class="alert alert-gris alert-dismissible fade show"  role="alert">
                         <strong><i class="fas fa-info-circle"></i></strong> Los pedidos que se encuentran en <strong>construcción</strong> tendrán un tiempo de vida máximo de <strong>dos (2) horas</strong>. Si usted no cierra el pedido dentro de ese intervalo de tiempo, este será <strong>cancelado</strong> y las unidades reservadas para los productos del pedido serán liberadas.
   
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
