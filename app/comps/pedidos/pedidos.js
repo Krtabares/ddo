@@ -736,7 +736,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.auxBusqueda = null
-        $scope.getProdNew = function (filter = false, nuevaBus = false) {
+        $scope.getProdNew = function (filter = false, articulo = false) {
           $scope.loading = true
 
           var body = {};

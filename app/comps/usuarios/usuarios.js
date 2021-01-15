@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.bootstrap','ngRoute', 'ngNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
+angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.bootstrap','ngRoute', 'ngNotify','cgNotify', 'ngMap', 'angular-bind-html-compile', 'swxLocalStorage'])
 
   .config(['$routeProvider', function($routeProvider) {
 
@@ -10,8 +10,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
     });
   }])
 
-  .controller('usuariosCtrl', ['$scope', 'localstorage', '$q', '$rootScope', 'DTOptionsBuilder', 'DTColumnBuilder', '$routeParams', '$interval', '$timeout', 'ngNotify', 'request', 'NgMap','$localStorage',
-    function($scope, localstorage, $q, $rootScope, DTOptionsBuilder, DTColumnBuilder, $routeParams, $interval, $timeout, ngNotify, request, NgMap, $localStorage) {
+  .controller('usuariosCtrl', ['$scope', 'localstorage', '$q', '$rootScope', 'DTOptionsBuilder', 'DTColumnBuilder', '$routeParams', '$interval', '$timeout', 'ngNotify','notify', 'request', 'NgMap','$localStorage',
+    function($scope, localstorage, $q, $rootScope, DTOptionsBuilder, DTColumnBuilder, $routeParams, $interval, $timeout, ngNotify, notify, request, NgMap, $localStorage) {
         $scope.loading = false
         var userLog = localStorage.getItem('user')
         $scope.userLogged = JSON.parse(userLog)
@@ -238,16 +238,29 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
       });
     }
 
+    $scope.validaUsuario = function (user) {
+      
+      if (!user.username) {
+        notify({ message:'¡Seleccione un nombre de usuario !', position:'left', duration:10000, classes:'   alert-warning'});
+        return true
+      }
+      if (!user.email) {
+        notify({ message:'¡Seleccione un correo !', position:'left', duration:10000, classes:'   alert-warning'});
+        return true
+      }
+      if (!user.estatus) {
+        notify({ message:'¡Seleccione un estatus !', position:'left', duration:10000, classes:'   alert-warning'});
+        return true
+      }
+      return false
+    }
+
       $scope.addUser = function(user){
             $scope.loading = true
             user.password = "52400ede39b6a2098dc0ffb5aad536e6";
-            // if(!$scope.usernameValid || !$scope.emailValid){
-            //   console.log("$scope.usernameValid",$scope.usernameValid)
-            //   console.log("$scope.emailValid",$scope.emailValid)
-            //   ngNotify.set('¡Verifique username y/o email!','danger')
-            //   $scope.loading = false
-            //   return
-            // }
+            if ( $scope.validaUsuario(user)) {
+               return
+            }
             user.username = user.username.toUpperCase()
             user.COD_CIA = ($scope.client.COD_CIA)?  $scope.client.COD_CIA : $scope.client.cod_cia ;
             user.GRUPO_CLIENTE = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
