@@ -123,7 +123,8 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
          });
       }
       $scope.hasOwnProp = function (mod,prop) {
-        return ($scope.permisos[mod])? $scope.permisos[mod].hasOwnProperty(prop):null
+        if(mod)
+          return $scope.permisos[mod].hasOwnProperty(prop)
       }
 
       $scope.modalTitle = ""
