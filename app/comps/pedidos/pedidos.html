@@ -831,6 +831,12 @@
         <div class="modal-body">
   
           <div class="container">
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a class="text-info" >{{articulo.categoria}}<</a></li>
+                <li class="breadcrumb-item"><a class="text-info">{{articulo.division}}</a></li>
+              </ol>
+            </nav>
             <div class="row" >
 
               <div class="col-md-5 col-sm-12">
@@ -842,7 +848,9 @@
 
                     <h1 class="product-name cx-heading cx-brand-font bold larger">{{articulo.nombre_producto.toLowerCase()}}</h1>
                   </div>
-                  <div class="col-md-12" >
+                  <div class="col-md-12" style="border-top: 1px solid #ccc;
+                  padding-top: 10px;
+                  margin-top: 10px;"  >
                     <!-- <span class="product-price-lowest">$44.99</span> -->
                     <span class="product-price-lowest" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</span>
                   </div>
@@ -851,7 +859,9 @@
 
                   </div>
                 </div>
-                <div class="row" >
+                <div class="row" style="border-top: 1px solid #ccc;
+                padding-top: 10px;
+                margin-top: 10px;" >
                   <div class="col-md-6" >
                     <p class="mb-1"><span class="text-muted">Principio activo: </span> {{articulo.princ_activo}}</p>
                     <p class="mb-1"><span class="text-muted">Fecha vencimiento: </span> {{articulo.fecha_vence}}</p>
