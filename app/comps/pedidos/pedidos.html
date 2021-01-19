@@ -850,6 +850,15 @@
                     
                   </div>
 
+                  <div class="col-md-12" ng-if="editProduct">
+                    <label>Cantidad</label>
+                    <input type="number"  ng-model="articulo.CANTIDAD"
+                    ng-keydown="$event.keyCode === 13 && addArtPedido(true)"
+                     class="form-control" placeholder="Cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                     <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
+                     
+                  </div>
+
                 </div>
                 <div class="row" style="border-top: 1px solid #ccc;
                 padding-top: 10px;
