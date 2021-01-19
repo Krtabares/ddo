@@ -846,19 +846,10 @@
                 <div class="row" >
                   <div class="col-md-12" >
 
-                    <h1 class="product-name cx-heading cx-brand-font bold larger">{{articulo.nombre_producto.toLowerCase()}}</h1>
-                    <small>{{articulo.princ_activo}}</small>
+                    <h1 class="product-name cx-heading cx-brand-font bold larger">{{articulo.nombre_producto.toLowerCase()}} <br> <small>{{articulo.princ_activo}}</small></h1>
+                    
                   </div>
-                  <div class="col-md-12" style="border-top: 1px solid #ccc;
-                  padding-top: 10px;
-                  margin-top: 10px;"  >
-                    <!-- <span class="product-price-lowest">$44.99</span> -->
-                    <span class="product-price-lowest text-right" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</span>
-                  </div>
-                  <div class="col-md-12" >
-                    <span  class="product-price-lowest text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
 
-                  </div>
                 </div>
                 <div class="row" style="border-top: 1px solid #ccc;
                 padding-top: 10px;
@@ -878,7 +869,19 @@
                     <p class="mb-1"><span class="text-muted">Psicotrópico: </span> {{articulo.ind_psicotropico}}</p>
                     <p class="mb-1"><span class="text-muted">Existencia: </span> {{articulo.existencia}}</p>
   
+                  </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-12" style="border-top: 1px solid #ccc;
+                  padding-top: 10px;
+                  margin-top: 10px;"  >
+                    <!-- <span class="product-price-lowest">$44.99</span> -->
+                    <span class="product-price-lowest text-right" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</span>
+                  </div>
+                  <div class="col-md-12" >
+                    <span  class="product-price-lowest text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
+
+                  </div>
                 </div>
                 
               </div>
