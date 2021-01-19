@@ -776,7 +776,7 @@
                             <td><p class="text-left">{{ x.existencia }}</p></td>
                             <td><p class="text-left">
                               <div ng-if="$index == productIndex">
-                                <input id="cantidad_{{$index}}" type="number" style=" width: 130px !important;"  ng-model="articulo.CANTIDAD"
+                                <input id="cantidad_{{$index}}" type="text" style=" width: 130px !important;"  ng-model="articulo.CANTIDAD"
                                  ng-keydown="$event.keyCode === 13 && addArtPedido(true)" 
                                  ng-blur="validaBlur(articulo.CANTIDAD)"
                                 class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
