@@ -90,8 +90,8 @@
   
                   <div class="col-md-4 col-sm-12">
                     <label></label>
-                    <button type="button" class="btn btn-info" ng-click="addPedidoV2()" ng-show="ID == null"  >Abrir Pedido</button>
-                    <button type="button" class="btn btn-success"  ng-show="ID != null" ng-click="openModalProducts()" >Agregar productos</button>
+                    <!-- <button type="button" class="btn btn-info" ng-click="addPedidoV2()" ng-show="ID == null"  >Abrir Pedido</button> -->
+                    <button type="button" class="btn btn-info"  ng-show="ID != null" ng-click="openModalProducts()" >Agregar productos</button>
                   </div>
   
                   <div class="col-md-4 col-sm-12">
@@ -818,7 +818,9 @@
     </div>
   </div>
   
-  <div class="modal fade" id="modalInfoProduct">
+
+
+  <div class="modal show" id="modalInfoProduct">
     <div class="modal-dialog mw-100  modal-90 modal-100-ht">
       <div class="modal-content">
         <div class="modal-header">
@@ -829,17 +831,30 @@
         <div class="modal-body">
   
           <div class="container">
-            <div class="row pb-2 p-2" >
-                <div class="col-md-4">
-                  <p class="font-weight-bold mb-4">Información</p>
-                  <p class="mb-1"><span class="text-muted">Principio activo: </span> {{articulo.princ_activo}}</p>
-                  <!-- <p class="mb-1"><span class="text-muted">Código: </span> {{articulo.cod_producto}}</p> -->
-                  <p class="mb-1"><span class="text-muted">Fecha vencimiento: </span> {{articulo.fecha_vence}}</p>
-                  <p class="mb-1"><span class="text-muted">Proveedor: </span> {{articulo.proveedor}}</p>
+            <div class="row" >
+
+              <div class="col-md-5 col-sm-12">
+                <img src="{{  srcServer+articulo.dir_imagen }}" alt="" >
+              </div>
+              <div class="col-md-7 col-sm-12">
+                <div class="row" >
+                  <h1 class="product-name cx-heading cx-brand-font bold larger">Classic Clog</h1>
+                  <div class="col-md-6" >
+                    <!-- <span class="product-price-lowest">$44.99</span> -->
+                    <span class="product-price-lowest" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</span>
+                    <span  class="product-price-lowest" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
+                  </div>
                 </div>
-  
-                <div class="col-md-3 ">
-                    <p class="font-weight-bold mb-4">Detalles</p>
+                <div class="row" >
+                  <div class="col-md-6" >
+                    <p class="mb-1"><span class="text-muted">Principio activo: </span> {{articulo.princ_activo}}</p>
+                    <p class="mb-1"><span class="text-muted">Fecha vencimiento: </span> {{articulo.fecha_vence}}</p>
+                    <p class="mb-1"><span class="text-muted">Proveedor: </span> {{articulo.proveedor}}</p>
+                    <p class="mb-1"><span class="text-muted">Categoría: </span> {{articulo.categoria}}</p>
+                    <p class="mb-1"><span class="text-muted">División: </span> {{articulo.division}}</p>
+                  </div>
+                  <div class="col-md-6 ">
+                    <!-- <p class="font-weight-bold mb-4">Detalles</p> -->
                     <!-- <p class="mb-1" ng-if="clienteEmpleado" ><span class="text-muted">Tipo (empleado): </span> {{articulo.tipo_prod_emp}}</p> -->
                     <p class="mb-1"><span class="text-muted">Regulado: </span> {{articulo.ind_regulado}}</p>
                     <p class="mb-1"><span class="text-muted">Impuesto: </span> {{articulo.ind_impuesto}}</p>
@@ -847,70 +862,10 @@
                     <p class="mb-1"><span class="text-muted">Existencia: </span> {{articulo.existencia}}</p>
   
                 </div>
-  
-                <div class="col-md-4 ">
-                    <p class="font-weight-bold mb-4">Otros</p>
-  
-                    <p class="mb-1"><span class="text-muted">Categoría: </span> {{articulo.categoria}}</p>
-                    <p class="mb-1"><span class="text-muted">División: </span> {{articulo.division}}</p>
-                    <!-- <p class="mb-1"><span class="text-muted">Descuento 1: </span> {{articulo.descuento1}}</p>
-                    <p class="mb-1"><span class="text-muted">Descuento 2: </span> {{articulo.descuento2}}</p>-->
                 </div>
-  
+                
+              </div>
             </div>
-  
-            <div id="infoProduct" class="row" >
-  
-                <div class="col-md-6 col-sm-12">
-                  <div ng-if="editProduct">
-                    <label>Cantidad</label>
-                    <input type="number"  ng-model="articulo.CANTIDAD"
-                    ng-keydown="$event.keyCode === 13 && addArtPedido(true)"
-                     class="form-control" placeholder="Cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
-                     <button type="button" ng-disabled="productIndex==-1" class="btn btn-success" style="margin-top: 32px;" ng-click="addArtPedido();">Agregar</button>
-                     
-                  </div>
-                 <div class="row col-sm-12 col-md-12 col-lg-12">
-                     <div class="col-sm-12 col-md-12 col-lg-12 mt-3 ">
-     
-                       <label> <strong>Precios</strong> </label>
-                     </div>
-                     <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                       <label> <strong>Por unidad Bs.S</strong> </label><br>
-                       <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</span>
-     
-                     </div>
-                     <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                         <div ng-show="articulo.CANTIDAD > 0">
-                       <label><strong>Total Bs.S</strong></label><br>
-                       <span class="text-right" >{{formato(2,(articulo.precio_neto_bs)? (articulo.precio_neto_bs  * articulo.CANTIDAD):0)}}</span>
-                     </div>
-     
-                     </div>
-     
-                     <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-     
-                         <label><strong>Por unidad USD</strong></label><br>
-                         <span  class="text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
-     
-     
-                     </div>
-                     <div class="col-sm-6 col-md-6 col-lg-6 mt-3">
-                       <div ng-show="articulo.CANTIDAD > 0">
-                         <label><strong>Total USD</strong></label><br>
-                         <span class="text-right" >{{formato(3,(articulo.precio_neto_usd)? (articulo.precio_neto_usd  * articulo.CANTIDAD):0)}}</span>
-                         </div>
-     
-                     </div>
-                   </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                  <img src="{{  srcServer+articulo.dir_imagen }}" alt="" >
-                </div>
-
-  
-            </div>
-  
           </div>
   
         </div>
