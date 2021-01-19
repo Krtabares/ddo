@@ -781,8 +781,8 @@
                                  ng-blur="validaBlur(articulo.CANTIDAD)"
                                 class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                               </div>
-                              <div ng-if="$index != productIndex">
-                                <input type="number" class="form-control" style=" width: 130px !important;" ng-disabled="true" >
+                              <div ng-if="$index != productIndex" >
+                                <input type="text" class="form-control" ng-click="selectProduct($index,true)" style=" width: 130px !important;" ng-disabled="true" >
                               </div>
 
                              </p>
