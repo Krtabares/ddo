@@ -838,11 +838,17 @@
               </div>
               <div class="col-md-7 col-sm-12">
                 <div class="row" >
-                  <h1 class="product-name cx-heading cx-brand-font bold larger">Classic Clog</h1>
-                  <div class="col-md-6" >
+                  <div class="col-md-12" >
+
+                    <h1 class="product-name cx-heading cx-brand-font bold larger">{{articulo.nombre_producto.toLowerCase()}}</h1>
+                  </div>
+                  <div class="col-md-12" >
                     <!-- <span class="product-price-lowest">$44.99</span> -->
                     <span class="product-price-lowest" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</span>
+                  </div>
+                  <div class="col-md-12" >
                     <span  class="product-price-lowest" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
+
                   </div>
                 </div>
                 <div class="row" >
