@@ -608,6 +608,18 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               $scope.getPedidos_filteringV2();
 
+              $(function(){
+                $("#addPedidoModal").modal("hide");
+                $("#showPedidoModal").modal("hide");
+                $("#modalproduct").modal("hide");
+                $("#modalInfoProduct").modal("hide");
+                $("#modalConfirmDynamic").modal("hide");
+                $("#modalImg").modal("hide");
+
+
+                $('.modal-backdrop').remove();
+              })
+
               notify({ message:response.data.estatus, position:'left', duration:10000, classes:'   alert-success'});
               $scope.msgOrdCancel = false
 
@@ -736,7 +748,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
         }
 
         $scope.auxBusqueda = null
-        $scope.getProdNew = function (filter = false, articulo = false) {
+        $scope.getProdNew = function (filter = false, articulo = false, refresh = false ) {
           $scope.loading = true
 
           var body = {};
@@ -751,9 +763,9 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
               body.pArticulo = $scope.pArticulo
             }else{
 
-              // if($scope.busqueda_prod == null){
-              //    $scope.busqueda_prod = $scope.auxBusqueda
-              // }
+              if($scope.busqueda_prod == null && refresh){
+                 $scope.busqueda_prod = $scope.auxBusqueda
+              }
               if($scope.tipoBusqueda=='2'){
                 body.pComponente = $scope.busqueda_prod
               }else{
@@ -797,6 +809,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             }else{
               notify({ message:'¡No se encontraron resultados!', position:'left', duration:10000, classes:'   alert-warning'});
+              $scope.productos = []
             }
             $scope.loading = false
 
@@ -817,7 +830,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
         stop = $interval(function() {
             if (refreshCount <= 3) {
-              $scope.getProdNew(true)
+              $scope.getProdNew(true, null, true)
 
             } else {
               $scope.stopFight();
@@ -990,7 +1003,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
             $scope.getPedidos_filteringV2();
-            $scope.getProdNew(true);
+            $scope.getProdNew(true, null, true);
             if(response.data.reserved < articulo.CANTIDAD){
               articulo.CANTIDAD = response.data.reserved
               articulo.alert = true
@@ -1052,7 +1065,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
 
             $scope.getPedidos_filteringV2();
-            $scope.getProdNew(true)
+            $scope.getProdNew(true, null, true)
             $scope.removeArt(i)
             $scope.loading = false
 
