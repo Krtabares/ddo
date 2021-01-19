@@ -9,7 +9,7 @@ var DATATABLE_LANGUAGE_ES = {
   "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
   "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
   "sInfoPostFix":    "",
-  "sSearch":         "Búsqueda detallada:",
+  "sSearch":         "Búsqueda detallada: ",
   "sUrl":            "",
   "sInfoThousands":  ",",
   "sLoadingRecords": "Cargando...",
