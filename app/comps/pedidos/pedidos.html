@@ -846,7 +846,7 @@
                 <div class="row" >
                   <div class="col-md-12" >
 
-                    <h1 class="product-name cx-heading cx-brand-font bold larger">{{articulo.nombre_producto.toLowerCase()}}<span style="font-size: small; color: gray;">{{articulo.princ_activo}}</span></h1>
+                    <h1 class="product-name cx-heading cx-brand-font bold larger">{{articulo.nombre_producto.toLowerCase()}} <span style="font-size: small; color: gray;"> {{articulo.princ_activo}}</span></h1>
                     
                   </div>
 
@@ -876,10 +876,10 @@
                   padding-top: 10px;
                   margin-top: 10px;"  >
                     <!-- <span class="product-price-lowest">$44.99</span> -->
-                    <span class="product-price-lowest text-right" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</span>
+                    <h2 class="product-price-lowest text-right" >{{formato(2,(articulo.precio_neto_bs)? articulo.precio_neto_bs:0)}}</h2>
                   </div>
                   <div class="col-md-12" >
-                    <span  class="product-price-lowest text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</span>
+                    <h2  class="product-price-lowest text-right" >{{formato(3,(articulo.precio_neto_usd)? articulo.precio_neto_usd:0)}}</h2>
 
                   </div>
                 </div>
