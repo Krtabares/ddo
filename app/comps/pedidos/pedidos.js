@@ -772,7 +772,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 body.pBusqueda = $scope.busqueda_prod
               }
 
-              if($scope.proveedor.cod_proveedor != null || $scope.proveedor.cod_proveedor != "null" ){
+              if($scope.proveedor.cod_proveedor != null && $scope.proveedor.cod_proveedor != "null" ){
                 body.pCodProveedor = $scope.proveedor.cod_proveedor
                 body.pExistencia = 1
               }else{
