@@ -190,35 +190,40 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
           onceCrt = true
         }
         
-        if ( $scope.busqueda_prod != null && $scope.busqueda_prod != '') {
-          onceCrt = true
-        }
+        // if ( $scope.busqueda_prod != null && $scope.busqueda_prod != '') {
+        //   onceCrt = true
+        // }
 
-        if(!onceCrt){
-          ngNotify.set('¡Coloque al menos 1 criterio de busqueda !', 'warn')
-          return
-        }
+
 
       }
 
+      if(body.busqueda_prod == null && body.pCodProveedor == null && $scope.categoria.CODIGO == null ){
+        ngNotify.set('¡Coloque al menos 1 criterio de busqueda !', 'warn')
+        $scope.loading = false
+        return
+      }else{
 
-      console.log(body)
-      request.post(ip+'/procedure_productos', body,{})
-      .then(function successCallback(response) {
-        console.log(response)
-        if(response.data.obj.length > 0){
-          // $scope.productos = response.data.obj
-          // defer.resolve(response.data.obj);
-            $scope.productos = response.data.obj;
-          // $scope.dtOptions.reloadData()
-        }else{
-          ngNotify.set('¡No se encontraron resultados!', 'warn')
-        }
-        $scope.loading = false
-      }, function errorCallback(response) {
-        console.log(response)
-        $scope.loading = false
-      });
+        console.log(body)
+        request.post(ip+'/procedure_productos', body,{})
+        .then(function successCallback(response) {
+          console.log(response)
+          if(response.data.obj.length > 0){
+            // $scope.productos = response.data.obj
+            // defer.resolve(response.data.obj);
+              $scope.productos = response.data.obj;
+            // $scope.dtOptions.reloadData()
+          }else{
+            ngNotify.set('¡No se encontraron resultados!', 'warn')
+          }
+          $scope.loading = false
+        }, function errorCallback(response) {
+          console.log(response)
+          $scope.loading = false
+        });
+
+      }
+
     }
 
     $scope.listaPro=[];
