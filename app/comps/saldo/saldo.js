@@ -196,6 +196,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
 
         if(!onceCrt){
           ngNotify.set('¡Coloque al menos 1 criterio de busqueda !', 'warn')
+          return
         }
 
       }
