@@ -762,21 +762,21 @@
                     </thead>
                     <tbody>
 
-                        <tr ng-repeat="x in productos"  ng-class="{ selectedRow : $index == productIndex }"  ng-click="selectProduct($index,true)"  >
+                        <tr ng-repeat="x in productos"  ng-class="{ selectedRow : $index == productIndex }"    >
   
-                            <td><p class="text-left">{{ $index + 1 }}</p></td>
-                            <td><i class="fa fa-eye" style="cursor: pointer;"  ng-click="selectProduct($index)" ></i></td>
-                            <td> 
+                            <td ng-click="selectProduct($index,true)" ><p class="text-left">{{ $index + 1 }}</p></td>
+                            <td ><i class="fa fa-eye" style="cursor: pointer;"  ng-click="selectProduct($index)" ></i></td>
+                            <td ng-click="selectProduct($index,true)" > 
                               <div ng-if="x.dir_imagen != ''" style="cursor: pointer;" ng-click="zoomImg(srcServer+x.dir_imagen, x.nombre_producto )"   >
                                 <img id="img_{{$index}}" src="{{  srcServer+x.dir_imagen }}" alt="no image"  style="width: 120px;">
                               </div>
                             </td>
-                            <td><p class="text-left">{{ x.nombre_producto }}</p></td>
-                            <td><p class="text-left">{{ x.categoria }}</p></td>
-                            <td><p class="text-left">{{ x.existencia }}</p></td>
-                            <td>
+                            <td ng-click="selectProduct($index,true)" ><p class="text-left">{{ x.nombre_producto }}</p></td>
+                            <td ng-click="selectProduct($index,true)" ><p class="text-left">{{ x.categoria }}</p></td>
+                            <td ng-click="selectProduct($index,true)" ><p class="text-left">{{ x.existencia }}</p></td>
+                            <td  >
                               <div ng-if="$index == productIndex">
-                                <input id="cantidad_{{$index}}" type="text" style=" width: 130px !important;"  ng-model="articulo.CANTIDAD"
+                                <input id="cantidad_{{$index}}" type="number" style=" width: 130px !important;"  ng-model="articulo.CANTIDAD"
                                  ng-keydown="$event.keyCode === 13 && addArtPedido(true)" 
                                  ng-blur="validaBlur(articulo.CANTIDAD)"
                                 class="form-control" placeholder="cantidad" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
@@ -785,15 +785,15 @@
                                 <input type="text" class="form-control" ng-click="selectProduct($index,true)" style=" width: 130px !important;" ng-disabled="true" >
                               </div>
                             </td>
-                            <td><p class="text-right">{{  formato(2,x.precio_neto_bs) }}</p></td>
-                            <td><p class="text-right">{{  formato(2,x.iva_bs) }}</p></td>
-                            <!-- <td><p class="text-right">{{  formato(3,x.precio_neto_usd) }}</p></td>
-                            <td><p class="text-right">{{  formato(3,x.iva_usd) }}</p></td> -->
+                            <td ng-click="selectProduct($index,true)" ><p class="text-right">{{  formato(2,x.precio_neto_bs) }}</p></td>
+                            <td ng-click="selectProduct($index,true)" ><p class="text-right">{{  formato(2,x.iva_bs) }}</p></td>
+                            <!-- <td ng-click="selectProduct($index,true)" ><p class="text-right">{{  formato(3,x.precio_neto_usd) }}</p></td>
+                            <td ng-click="selectProduct($index,true)" ><p class="text-right">{{  formato(3,x.iva_usd) }}</p></td> -->
                             
-                            <td><p class="text-right">${{x.precio_neto_usd }}</p></td>
-                            <td><p class="text-right">${{x.iva_usd }}</p></td>
-                            <td><p class="text-left">{{ x.princ_activo }}</p></td>
-                            <td><p class="text-left">{{  x.proveedor }}</p></td>
+                            <td ng-click="selectProduct($index,true)" ><p class="text-right">${{x.precio_neto_usd }}</p></td>
+                            <td ng-click="selectProduct($index,true)" ><p class="text-right">${{x.iva_usd }}</p></td>
+                            <td ng-click="selectProduct($index,true)" ><p class="text-left">{{ x.princ_activo }}</p></td>
+                            <td ng-click="selectProduct($index,true)" ><p class="text-left">{{  x.proveedor }}</p></td>
   
                         </tr>
   
