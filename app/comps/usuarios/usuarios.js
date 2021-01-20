@@ -240,15 +240,15 @@ angular.module('app.usuarios', ['datatables', 'datatables.buttons', 'datatables.
 
     $scope.validaUsuario = function (user) {
       
-      if (!user.username) {
+      if (!user.username || user.username == null || user.username == '' ) {
         notify({ message:'¡Seleccione un nombre de usuario !', position:'left', duration:10000, classes:'   alert-warning'});
         return true
       }
-      if (!user.email) {
+      if (!user.email || user.email == null || user.email == '') {
         notify({ message:'¡Seleccione un correo !', position:'left', duration:10000, classes:'   alert-warning'});
         return true
       }
-      if (!user.estatus) {
+      if (!user.estatus || user.estatus == null || user.estatus == '') {
         notify({ message:'¡Seleccione un estatus !', position:'left', duration:10000, classes:'   alert-warning'});
         return true
       }
