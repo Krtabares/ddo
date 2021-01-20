@@ -448,7 +448,7 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             if(!existe){
 
-              $scope.articulo.CANTIDAD = null
+              $scope.articulo.CANTIDAD = 0
 
             }else{
               $scope.articulo.CANTIDAD = cantidadAux
