@@ -774,12 +774,13 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
               if($scope.proveedor.cod_proveedor != null || $scope.proveedor.cod_proveedor != "null" ){
                 body.pCodProveedor = $scope.proveedor.cod_proveedor
-                body.pExistencia = 1
+                
               }else{
                 body.pExistencia = null
               }
               if(body.pCodProveedor === "null"){
                 body.pCodProveedor = null
+                body.pExistencia = 1
               }
 
               if($scope.categoria.CODIGO != null || $scope.categoria.CODIGO != "null" ){
