@@ -158,7 +158,7 @@
       </div>
       <div class="modal-footer" style="display: block;margin: 0 auto;">
         <button type="button"  class="btn btn-primary" ng-if=" userLogged.permisos.usuario.editar && typeview == 'view'" ng-click="goToEdit();">Editar</button>
-        <button type="submit" class="btn btn-primary" ng-click="addUser(user);"  ng-if="typeview == 'add'" ng-disabled="!usernameValid || !emailValid"  >Guardar</button>
+        <button type="submit" class="btn btn-primary" ng-click="addUser(user);"  ng-if="typeview == 'add'" ng-disabled="user.username == '' || user.email == ''"  >Guardar</button>
         <button type="submit" class="btn btn-success" ng-click="updUser(user);"  ng-if="typeview == 'edit'" >Guardar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addUser(user);">Cerrar</button> -->
