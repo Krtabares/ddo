@@ -777,11 +777,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
                 
               }else{
                 body.pExistencia = null
-                
+
               }
               if(body.pCodProveedor === "null"){
                 body.pCodProveedor = null
-                body.pExistencia = 1
+                body.pExistencia = null
               }
 
               if($scope.categoria.CODIGO != null || $scope.categoria.CODIGO != "null" ){
