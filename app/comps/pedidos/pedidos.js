@@ -1685,9 +1685,11 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
             console.log("tiempo de servidor " , $scope.msToTime(tiempo*1000))
             if (tiempo < 600 ) {
-              $scope.timerRunning = true;
-            }
             
+              $scope.msgOrdCancel = true;
+            }
+            $scope.timerRunning = true;
+            // msgOrdCancel
 
             $scope.loading = false
 
