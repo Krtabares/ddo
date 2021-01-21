@@ -198,13 +198,9 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
 
       }
 
-      if(body.busqueda_prod == null && body.pCodProveedor == null && $scope.categoria.CODIGO == null ){
-        ngNotify.set('¡Coloque al menos 1 criterio de busqueda !', 'warn')
-        $scope.loading = false
-        return
-      }else{
+      console.log(body)
+      if(body.busqueda_prod != null || body.pCodProveedor == null || $scope.categoria.CODIGO == null ){
 
-        console.log(body)
         request.post(ip+'/procedure_productos', body,{})
         .then(function successCallback(response) {
           console.log(response)
@@ -221,6 +217,12 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
           console.log(response)
           $scope.loading = false
         });
+
+      }else{
+
+        ngNotify.set('¡Coloque al menos 1 criterio de busqueda !', 'warn')
+        $scope.loading = false
+        return
 
       }
 
