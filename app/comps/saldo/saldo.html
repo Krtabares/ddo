@@ -76,7 +76,7 @@
     <div class="card-body">
 
       <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="col-sm-12 col-md-12 col-lg-12" ng-if="2==1">
           <div class="form-check mb-3">
             <input class="form-check-input" type="radio" name="exampleRadios" ng-model="tipoBusqueda" id="exampleRadios1" ng-value="0" >
             <label class="form-check-label" for="exampleRadios1">
@@ -95,6 +95,73 @@
               <label for="clientes">Búsqueda</label>
               <div class="input-group mb-3">
                 <input type="text" class="form-control" ng-keydown="$event.keyCode === 13 && getProdNew(true)" ng-model="busqueda_prod" placeholder="Búsqueda del producto" aria-label="Búsqueda del Producto" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="proveedor">Filtrar por proveedor</label>
+              <div class="input-group mb-3 ">
+                <div class="form-group">
+                  <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                  <select class="form-control" ng-model="proveedor.cod_proveedor" id="proveedor" >
+                    <option value="null" >Todos</option>
+                    <option ng-repeat="x in listProveedores" value="{{x.cod_proveedor}}">{{x.nombre_proveedor}}</option>
+                    <option value="" disabled selected>Seleccione un proveedor</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="filtro">Filtrar por categoría</label>
+              <div class="input-group mb-3 ">
+                <div class="form-group">
+                  <!-- <label for="exampleFormControlSelect1">Seleccione</label> -->
+                  <select class="form-control" ng-model="categoria.CODIGO" id="proveedor" >
+                    <!-- <option value="null" >Todos</option> -->
+                    <option ng-repeat="x in listCategorias" value="{{x.CODIGO}}">{{x.NOMBRE}}</option>
+                    <option value="" disabled selected>Seleccione una categoría</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12">  
+  
+          <div class="row">
+
+              <div class="col-md-3">
+              <label for="tipoBusqueda">Tipo de búsqueda</label>
+              <div class="input-group mb-3 ">
+                <div class="form-group">
+                  <select class="form-control" ng-model="tipoBusqueda" id="tipoBusqueda" >
+                    <option  value="1" >
+                      Por producto
+                    </option>
+                    <option  value="2">
+                      Por principio activo
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="clientes">Búsqueda </label>
+              <div class="input-group mb-3 ">
+                <input type="text" class="form-control"
+                ng-model="busqueda_prod"
+                ng-keydown="$event.keyCode === 13 && getProdNew(true)"
+                placeholder="Búsqueda del producto"
+                aria-label="Búsqueda del producto"
+                aria-describedby="basic-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary"   ng-click="getProdNew(true)" type="button">Buscar</button>
                 </div>
