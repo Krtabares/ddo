@@ -28,7 +28,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       $scope.client = {};
       $scope.client_info = {}
       $scope.dtInstance = {};
-      $scope.tipoBusqueda = 0
+      $scope.tipoBusqueda = '1'
       $scope.productos= []
       $scope.srcServer = IP_SRC_IMAGE
       verificClient()
@@ -170,7 +170,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
         body.pNoGrupo = ($scope.client.GRUPO_CLIENTE)? $scope.client.GRUPO_CLIENTE: $scope.client.grupo_cliente;
         body.pCliente = ($scope.client.COD_CLIENTE)? $scope.client.COD_CLIENTE: $scope.client.cod_cliente;
 
-        if($scope.tipoBusqueda==1){
+        if($scope.tipoBusqueda=='2'){
           body.pComponente = $scope.busqueda_prod
         }else{
           body.pBusqueda = $scope.busqueda_prod
