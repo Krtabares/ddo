@@ -161,7 +161,6 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       console.log("getProdNew");
       // var defer = $q.defer();
       var body = {};
-      var onceCrt = false
 
       console.log($scope.client)
       if(filter){
@@ -178,7 +177,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
 
         if($scope.proveedor.cod_proveedor != null || $scope.proveedor.cod_proveedor != "null" ){
           body.pCodProveedor = $scope.proveedor.cod_proveedor
-          onceCrt = true
+          
           
         }
         if(body.pCodProveedor === "null"){
@@ -187,13 +186,8 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
 
         if($scope.categoria.CODIGO != null || $scope.categoria.CODIGO != "null" ){
           body.pFiltroCategoria = $scope.categoria.CODIGO
-          onceCrt = true
+          
         }
-        
-        // if ( $scope.busqueda_prod != null && $scope.busqueda_prod != '') {
-        //   onceCrt = true
-        // }
-
 
 
       }
