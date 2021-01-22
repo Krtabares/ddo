@@ -232,7 +232,7 @@
               <td><p class="text-left">{{ $index + 1 }}</p></td> 
 
               <td> 
-                <div ng-if="x.dir_imagen != ''" style="cursor: pointer;" ng-click="zoomImg(srcServer+x.dir_imagen, x.nombre_producto )"   >
+                <div ng-if="x.dir_imagen != ''" style="cursor: pointer;" ng-click="zoomImg('/ddo/app/assets/imagen/'+x.dir_imagen, x.nombre_producto )"   >
                   <img id="img_{{$index}}" src="/ddo/app/assets/imagen/{{ x.dir_imagen }}" alt="no image"  style="width: 120px;">
                 </div>
               </td>
