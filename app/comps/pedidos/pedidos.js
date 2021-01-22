@@ -795,29 +795,39 @@ angular.module('app.pedidos', ['datatables', 'datatables.buttons', 'datatables.b
 
           }
 
-          request.post(ip+'/procedure_productos', body,{})
-          .then(function successCallback(response) {
+          if((body.pBusqueda != null && body.pBusqueda.length > 0 )||(body.pComponente != null && body.pComponente.length > 0 )|| body.pCodProveedor != null || body.pFiltroCategoria != null ){
+            request.post(ip+'/procedure_productos', body,{})
+            .then(function successCallback(response) {
+  
+  
+              if(response.data.obj.length > 0){
+  
+  
+                $scope.productos = response.data.obj
+  
+                $scope.refreshProduct()
+                $scope.auxBusqueda = $scope.busqueda_prod
+                $scope.busqueda_prod = null;
+  
+              }else{
+                notify({ message:'¡No se encontraron resultados!', position:'left', duration:10000, classes:'   alert-warning'});
+                $scope.productos = []
+              }
+              $scope.loading = false
+  
+            }, function errorCallback(response) {
+  
+              $scope.loading = false
+            });
+          }else{
 
+              ngNotify.set('¡Coloque al menos 1 criterio de busqueda !', 'warn')
+              $scope.loading = false
+              return
 
-            if(response.data.obj.length > 0){
-
-
-              $scope.productos = response.data.obj
-
-              $scope.refreshProduct()
-              $scope.auxBusqueda = $scope.busqueda_prod
-              $scope.busqueda_prod = null;
-
-            }else{
-              notify({ message:'¡No se encontraron resultados!', position:'left', duration:10000, classes:'   alert-warning'});
-              $scope.productos = []
             }
-            $scope.loading = false
 
-          }, function errorCallback(response) {
-
-            $scope.loading = false
-          });
+         
         }
 
         var refreshCount = 0

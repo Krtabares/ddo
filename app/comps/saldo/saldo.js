@@ -199,7 +199,7 @@ angular.module('app.saldo', ['datatables', 'datatables.buttons', 'datatables.boo
       }
 
       console.log(body)
-      if((body.pBusqueda != null && body.pBusqueda.length > 0 )|| body.pCodProveedor != null || body.pFiltroCategoria != null ){
+      if((body.pBusqueda != null && body.pBusqueda.length > 0 )||(body.pComponente != null && body.pComponente.length > 0 )|| body.pCodProveedor != null || body.pFiltroCategoria != null ){
 
         request.post(ip+'/procedure_productos', body,{})
         .then(function successCallback(response) {
