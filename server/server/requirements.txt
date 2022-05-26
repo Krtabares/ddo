@@ -32,7 +32,7 @@ sanic-openapi==0.6.1
 Sanic-Plugins-Framework==0.6.5
 six==1.14.0
 sniffio==1.1.0
-ujson==1.35
+ujson==5.2.0
 Unidecode==1.0.23
 urllib3==1.25.8
 websockets==6.0
